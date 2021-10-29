@@ -21,9 +21,9 @@
     <div class="damfw scrollforce nospace left" style="width:100%;height:fit-content;"><!-- The Story Content NA -->
         <div style="width:100%;height:182px;">
             <img id="cover" runat="server" style="width:auto;height:180px;display:inline;" loading="lazy" src="#" />
-            <div style="width:calc(100%-132);height:fit-content;display:inline-block;">
+            <div style="width:calc(100%-132);height:fit-content;display:block;">
                 <h4 style="color:#6840D9;float:left;padding-left:8px;" id="MangaViewsAndChapters" runat="server"></h4>
-                <h6 style="color:#1a171c;float:left;padding-left:8px;" id="MangaDis" runat="server"></h6>
+                <h5 style="color:#1a171c;float:left;padding-left:8px;" id="MangaDis" runat="server"></h5>
             </div>
         </div>
         <div style="direction: ltr;" id="TheMangaPhotos" runat="server"></div>

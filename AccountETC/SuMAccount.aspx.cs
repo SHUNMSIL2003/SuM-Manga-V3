@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Net.Mail;
 
 namespace SuM_Manga_V3.AccountETC
 {
@@ -113,8 +114,26 @@ namespace SuM_Manga_V3.AccountETC
                     sqlCmd2.Parameters.AddWithValue("@Signetsure", newSignetsure);
                     sqlCmd2.ExecuteNonQuery();
                 }
-                //sqlCmd.Parameters.AddWithValue("@SuMCustomPFP", SqlDbType.Image).Value = imgarray;
                 sqlCon.Close();
+            }
+        }
+        protected void ChangeEmail(object sender, EventArgs e)
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            string UserName = GetUserInfoCookie["UserName"].ToString();
+            string Email = EmailEP.Value.ToString();
+
+            if (currEmail != Email)
+            {
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+                {
+                    string query = "UPDATE SuMUsersAccounts SET Email = @Email WHERE UserName = @UserName";
+                    SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
+                    sqlCmd2.Parameters.AddWithValue("@UserName", UserName);
+                    sqlCmd2.Parameters.AddWithValue("@Email", Email);
+                    sqlCmd2.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
             }
         }
     }

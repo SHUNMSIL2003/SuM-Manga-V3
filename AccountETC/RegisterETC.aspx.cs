@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Text;
 using System.Data.SqlClient;
+using System.Net.Mail;
+using System.IO;
 
 namespace SuM_Manga_V3.AccountETC
 {
@@ -38,6 +40,8 @@ namespace SuM_Manga_V3.AccountETC
             string dsig = "#Joined_to_SuM " + DateTime.Now.ToString("yyyy MM dd");
             if (UserNameExsists == false && EmailExsists == false && PasswordsMatch == true && passwordcheckok == true)
             {
+                string virivicationcode = GetVerificationCode(8);
+                string accountstats = "#R$" + virivicationcode;
                 using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
                 {
                     sqlCon.Open();
@@ -46,13 +50,47 @@ namespace SuM_Manga_V3.AccountETC
                     sqlCmd.Parameters.AddWithValue("@Password", sha256(PasswordR.Value));
                     sqlCmd.Parameters.AddWithValue("@Email", EmailR.Value);
                     sqlCmd.Parameters.AddWithValue("@PFP", DPFP);
-                    sqlCmd.Parameters.AddWithValue("@AccountStatus", "Regist");
+                    sqlCmd.Parameters.AddWithValue("@AccountStatus", accountstats);
                     sqlCmd.Parameters.AddWithValue("@Signetsure", dsig);
                     sqlCmd.ExecuteNonQuery();
                     sqlCon.Close();
-                    UserNameR.Value = PasswordR.Value = PasswordRc.Value = EmailR.Value = "";
-                    Response.Redirect("~/AccountETC/LoginETC.aspx");
                 }
+                int id = 0;
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+                {
+                    sqlCon.Open();
+                    string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    //HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+                    string username0 = UserNameR.Value.ToString();
+                    sqlCmd.Parameters.AddWithValue("@UserName", username0);
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            id = Convert.ToInt32(dr[0]);
+                        }
+                    }
+                }
+                //
+                string D = DateTime.UtcNow.ToString("dd");
+                string M = DateTime.UtcNow.ToString("MM");
+                string Y = DateTime.UtcNow.ToString("yyyy");
+                string freetrialalert = "#FreeT?Y" + Y + "?M" + M + "?D" + D + "$N";
+                //
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
+                {
+                    sqlCon.Open();
+                    SqlCommand sqlCmd = new SqlCommand("INSERT INTO UsersAccountAlert(UserID,SuMPaymentAlert,AlertsSeen) values(@UserID,@SuMPaymentAlert,@AlertsSeen)", sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UserID"].Value = id;
+                    sqlCmd.Parameters.AddWithValue("@SuMPaymentAlert", freetrialalert);
+                    sqlCmd.Parameters.AddWithValue("@AlertsSeen", "1");
+                    sqlCmd.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+                SendVirifyEmail(virivicationcode);
+                Response.Redirect("~/AccountETC/LoginETC.aspx");
             }
             else
             {
@@ -129,6 +167,61 @@ namespace SuM_Manga_V3.AccountETC
                 hash.Append(theByte.ToString("x2"));
             }
             return hash.ToString();
+        }
+        protected string MailTemplate(string link)
+        {
+            StreamReader sr = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/AccountETC/Email.html"));
+            string body = sr.ReadToEnd();
+            sr.Close();
+            string username = UserNameR.Value.ToString();
+            body = body.Replace("#USERNAME#", username);
+            body = body.Replace("#LINK#", link);
+            return body;
+        }
+        protected void SendVirifyEmail(string VCODE)
+        {
+            //Send Email
+            string thelink = "https://sum-manga.azurewebsites.net/AccountETC/ValidateUsers.aspx?UserName=" + UserNameR.Value.ToString() + "&VCode=" + VCODE;
+            string emailbody = MailTemplate(thelink);
+            MailMessage Msg = new MailMessage();
+            Msg.From = new MailAddress("sumverifysystem@gmail.com", "SuM System");// Sender details here, replace with valid value
+            Msg.Subject = "Setup SuM Account!"; // subject of email
+            string useremail = EmailR.Value.ToString();
+            Msg.To.Add(useremail); //Add Email id, to which we will send email
+            Msg.Body = emailbody;
+            Msg.IsBodyHtml = true;
+            Msg.Priority = MailPriority.High;
+            SmtpClient smtp = new SmtpClient();
+            smtp.UseDefaultCredentials = false; // to get rid of error "SMTP server requires a secure connection"
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.Credentials = new System.Net.NetworkCredential("sumverifysystem@gmail.com", "rxuclaczswvdhjpj");// replace with valid value
+            smtp.EnableSsl = true;
+            smtp.Timeout = 20000;
+            smtp.Send(Msg);
+        }
+        protected static string GetVerificationCode(int length)
+        {
+            char[] chArray = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            string str = string.Empty;
+            Random random = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                int index = random.Next(1, chArray.Length);
+                if (!str.Contains(chArray.GetValue(index).ToString()))
+                {
+                    str = str + chArray.GetValue(index);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            Random r = new Random();
+            int randNum = r.Next(1000000);
+            string sixDigitNumber = randNum.ToString("D6");
+            str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
+            return str;
         }
     }
 }

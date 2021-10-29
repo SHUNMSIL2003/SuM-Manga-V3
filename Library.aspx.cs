@@ -90,13 +90,13 @@ namespace SuM_Manga_V3
             string cn = ChaptersNum.ToString();
             CExplorerLink += "&CN=" + cn + "&VC=" + id;
             string figureclass = "imghvr-fade box";//width:160px;
-            string figurestyle = "margin-left:2.6px;margin-right:2.6px;margin-top:3px;width:116px;height:175px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;border:-2px solid #6840D9;";
-            string astyle = "border-radius:10px;margin:10px;width:120px;";//mw
+            string figurestyle = "margin-left:2.6px;margin-right:2.6px;margin-top:3px;width:136px;height:204px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;border:-2px solid #6840D9;";
+            string astyle = "border-radius:10px;margin:10px;width:142px;";//mw
             //string vstyle = "margin-left:4px;width:24px;height:24px;position:relative;z-index:1;display:block;";
             //string vimage = "/storeitems/view.png";
             string viewes = /*"<img src=" + vimage + " style=" + vstyle + ">" +*/ "<h6 style=" + "color:white;position:relative;display:inline-block;margin-top:-10px" + ">Views:" + MangaViews + " Ch: " + ChaptersNum + "</h6>";
-            string divfits = "<div data-bss-hover-animate="+"pulse"+" style=" + "display:inline-block; height:fit-content;width:120px;" + ">";//mw
-            string result = divfits + "<a href=" + CExplorerLink + " ><figure class=" + figureclass + "  style = " + astyle + "  ><img style = " + figurestyle + " src=" + MangaCoverLink + ">" + viewes + "<figcaption><h6 style=" + "font-size:90%;" + " ><b>" + MangaName + "</b></h6><br/><h6 style=" + "font-size:60%;" + " >" + MangaInfo + "</h6></figcaption></figure></a></div>";
+            string divfits = "<div data-bss-hover-animate="+"pulse"+" style=" + "display:inline-block; height:fit-content;width:142px;" + ">";//mw
+            string result = divfits + "<a href=" + CExplorerLink + " ><figure class=" + figureclass + "  style = " + astyle + "  ><img style = " + figurestyle + " src=" + MangaCoverLink + ">" + viewes + "<figcaption><h6 style=" + "font-size:100%;" + " ><b>" + MangaName + "</b></h6><br/><h6 style=" + "font-size:74%;" + " >" + MangaInfo + "</h6></figcaption></figure></a></div>";
             return result;
         }
     }

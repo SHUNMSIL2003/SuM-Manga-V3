@@ -16,6 +16,7 @@ namespace SuM_Manga_V3.storeitems
             {
                 Response.Redirect("/AccountETC/LogInETC.aspx");
             }
+            if (Request.QueryString["CN"] == null || Request.QueryString["Manga"] == null) { backhome(); }
             string MangaName = Request.QueryString["Manga"];
             string ChapterX = Request.QueryString["Chapter"];
             char[] chnum = ChapterX.ToCharArray();
@@ -44,7 +45,7 @@ namespace SuM_Manga_V3.storeitems
                 //string beforerelasecode = "";
                 //beforerelasecode += sendhtmlforchimges;
                 //TheMangaPhotos.InnerHtml = beforerelasecode;
-                string pathstartnochx = "../storeitems/";
+                string pathstartnochx = "/storeitems/";
                 string extraexplore = "MangaExplorer.aspx";
                 string identifylast = "?Manga=" + Request.QueryString["Manga"];
                 string identifynexthelper = "Chapter=";
@@ -97,6 +98,10 @@ namespace SuM_Manga_V3.storeitems
             {
                 Response.Redirect("~/404.aspx");
             }
+        }
+        public void backhome()
+        {
+            Response.Redirect("~/404.aspx");
         }
         public static string NextChapterNum(string cname)
         {

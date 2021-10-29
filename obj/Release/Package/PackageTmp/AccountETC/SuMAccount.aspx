@@ -19,7 +19,7 @@
                                 <div class="card-body text-center shadow">
                                     <img class="rounded-circle mb-3 mt-4" id="PFP" src="/assets/img/avatars/DeafultPFP.jpg" width="160" height="160" runat="server">
 
-                                    <div class="mb-3"><asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="ChangePFP" Text="Save Pic" />
+                                    <div class="mb-3"><asp:Button CssClass="btn btn-primary btn-sm" ID="chpfp000" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="ChangePFP" Text="Save Pic" />
                                     <!--    <button class="btn btn-primary btn-sm" type="button" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server" onclick="ChangePFP" >Apply Change</button> --> </div>
 
                                     <script>
@@ -90,7 +90,9 @@
                                                         <div class="mb-3"><label class="form-label" for="first_name"><strong>Password (To Save changes !)</strong></label><input class="form-control" type="text" id="first_name" placeholder="Password" name="first_name"></div>
                                                     </div>
                                                 </div>
-                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server">Save Settings</button></div>
+                                                <div class="mb-3">
+                                                    <asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="ChangeEmail" Text="Change Email" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -110,7 +112,10 @@
                                         <div class="mb-3">
                                             <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="NofifyCheckEP" runat="server"><label class="form-check-label" for="formCheck-1"><strong>Notify me about new replies</strong></label></div>
                                         </div>
-                                        <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server" onclick="ChangeSIG">Save Settings</button></div>
+                                        <div class="mb-3">
+                                            <asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="ChangeSIG" Text="Change signature" />
+
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="col">

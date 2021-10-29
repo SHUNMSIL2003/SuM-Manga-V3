@@ -6,6 +6,6 @@
                                  <p class="m-0">404</p>
                              </div>
                              <p class="text-dark mb-5 lead">Page Not Found</p>
-                             <p class="text-black-50 mb-0">It looks like you found a glitch in the matrix...</p><a id="A1" href="../Default.aspx" style="color: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server">← Back to Home</a>
+                             <p class="text-black-50 mb-0">The Server might be down or you may have found a glitch in the matrix...</p><a id="A1" href="../Default.aspx" style="color: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server">← Back to Home</a>
                     </div>
 </asp:Content>

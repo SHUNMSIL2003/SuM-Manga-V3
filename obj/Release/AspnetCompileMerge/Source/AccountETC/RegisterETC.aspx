@@ -4,7 +4,8 @@
 <html>
 
 <head runat="server">
-    <script src="/sw.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <script src="/runsw.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Register - SuM Manga</title>
@@ -26,6 +27,46 @@
 </head>
 
 <body class="bg-gradient-primary" style="background: rgb(104,64,217);">
+    <style>
+         * {
+             -moz-user-select: none;
+             -webkit-user-select: none;
+             user-select: none;
+         }
+         text, h1, h2, h3, h4, h5, h6, p {
+            pointer-events: none;
+         }
+    </style>
+    <script>  
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onkeydown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+    </script>   
+    <script>
+        window.addEventListener('contextmenu', e => {
+            e.preventDefault();
+        });/*
+        (function () {
+            setInterval(() => {
+                debugger;
+            }, 100);
+        })();
+    */</script>
     <form id="SuM" method="post" runat="server">
     <div class="container">
         <div class="card shadow-lg o-hidden border-0 my-5">
@@ -37,7 +78,7 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h4 class="text-dark mb-4">Create an Account!</h4>
+                                <h4 class="text-dark mb-4">Create a SuM Account!</h4>
                             </div>
                             <div class="user">
                                 <div class="row mb-3" style="width: 100%;">

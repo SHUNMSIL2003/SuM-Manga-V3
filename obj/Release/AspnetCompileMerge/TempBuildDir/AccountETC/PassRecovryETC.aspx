@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <script src="/sw.js"></script>
+<head runat="server">
+    <link rel="manifest" href="/manifest.json">
+    <script src="/runsw.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Forgotten Password - SuM Manga</title>
@@ -26,6 +27,46 @@
 </head>
 
 <body class="bg-gradient-primary" style="background: rgb(104,64,217);">
+    <style>
+         * {
+             -moz-user-select: none;
+             -webkit-user-select: none;
+             user-select: none;
+         }
+         text, h1, h2, h3, h4, h5, h6, p {
+            pointer-events: none;
+         }
+    </style>
+    <script>  
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onkeydown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+    </script>   
+    <script>
+        window.addEventListener('contextmenu', e => {
+            e.preventDefault();
+        });/*
+        (function () {
+            setInterval(() => {
+                debugger;
+            }, 100);
+        })();
+    */</script>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-12 col-xl-10">
@@ -41,8 +82,17 @@
                                         <h4 class="text-dark mb-2">Forgot Your Password?</h4>
                                         <p class="mb-4">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</p>
                                     </div>
-                                    <form class="user">
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="EmailF" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" runat="server"></div><button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: rgb(104,64,217);" runat="server">Reset Password</button>
+                                    <form class="user" runat="server">
+                                        <div class="mb-3">
+                                            <input style="" class="form-control form-control-user" type="email" id="EmailF" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" runat="server">
+                                            <input class="form-control form-control-user" type="text" style="display:none;" id="VCODECONF" placeholder="Verification Code" name="VCode" runat="server">
+                                            <input style="display:none;" class="form-control form-control-user" type="password" id="PasswordRes" placeholder="New Password" name="password" runat="server">
+                                            <input style="display:none;" class="form-control form-control-user" type="password" id="PasswordResC" placeholder="New Password Confirm" name="passwordconf" runat="server">
+                                            <p id="errormsg" runat="server" style="color:red;"></p>
+                                            <br />
+                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnP" runat="server" OnClick="PassResetStart" style="background: rgb(104,64,217);" Text="Reset Password" />
+                                       <!-- <button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: rgb(104,64,217);" runat="server">Reset Password</button> -->
+                                        </div>
                                     </form>
                                     <div class="text-center">
                                         <hr><a class="small" href="../AccountETC/RegisterETC.aspx" style="color: rgb(104,64,217);">Create an Account!</a>

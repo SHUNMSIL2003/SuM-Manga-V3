@@ -4,7 +4,8 @@
 <html>
   
 <head runat="server">
-    <script src="/sw.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <script src="/runsw.js"></script>
     <meta charset="utf-8" runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Login - SuM Manga</title>
@@ -26,6 +27,46 @@
 </head>
 
 <body class="bg-gradient-primary" style="background: rgb(104,64,217);">
+    <style>
+         * {
+             -moz-user-select: none;
+             -webkit-user-select: none;
+             user-select: none;
+         }
+         text, h1, h2, h3, h4, h5, h6, p {
+            pointer-events: none;
+         }
+    </style>
+    <script>  
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onkeydown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+    </script>   
+    <script>
+        window.addEventListener('contextmenu', e => {
+            e.preventDefault();
+        });/*
+        (function () {
+            setInterval(() => {
+                debugger;
+            }, 100);
+        })();
+    */</script>
     <form id="SuM" method="post" runat="server">
     <div class="container">
         <div class="row justify-content-center">
@@ -39,13 +80,13 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                        <h4 class="text-dark mb-4">Welcome Back to SuM!</h4>
                                     </div>
                                     <div class="user">
                                         <div class="mb-3">
                                             <input class="form-control form-control-user" type="text" style="" id="UserNameL" placeholder="User Name" name="UserName" runat="server"></div>
                                         <div class="mb-3"><input class="form-control form-control-user" type="password" style="" id="PasswordL" placeholder="Password" name="password" runat="server"></div>
-                                        <div style="text-align:center;width:100%;height:fit-content;"><h6 style="color:red;" id="LoginStatus" runat="server"></h6></div>
+                                        <div style="text-align:center;width:100%;height:fit-content;"><h6 style="color:red;" id="LoginStatus" runat="server"></h6><asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" OnClick="ResendConfLink" Visible="false" ID="ResendConf" Text="Re-Send Email" /></div>
                                         <div class="mb-3">
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label id="rem" runat="server" class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
@@ -56,7 +97,7 @@
                                         <hr>
                                     </div>
                                     <div class="text-center"><a class="small" href="../AccountETC/PassRecovryETC.aspx" style="color: rgb(104,64,217);">Forgot Password?</a></div>
-                                    <div class="text-center"><a class="small"  href="../AccountETC/RegisterETC.aspx" style="color: rgb(104,64,217);">Create an Account!</a></div>
+                                    <div class="text-center"><a class="small" href="../AccountETC/RegisterETC.aspx" style="color: rgb(104,64,217);">Create an Account!</a></div>
                                 </div>
                             </div>
                         </div>
