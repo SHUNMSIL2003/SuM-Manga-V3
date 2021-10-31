@@ -1,1 +1,108 @@
-{"short_name":"SuM","name":"SuM Manga","icons":[{"src":"/assets/img/SuM-192.png?h=470ab06da498d6fc442f5928b61025aa","type":"image/png","sizes":"192x192"},{"src":"/assets/img/SuM-512.png?h=eda22b93e7f5abd9666617319b61838a","type":"image/png","sizes":"512x512"}],"start_url":"Default.aspx","background_color":"rgb(138,97,255)","theme_color":"rgb(138,97,255)","display":"standalone"}
+{
+  "short_name": "SuM",
+  "name": "SuM Manga",
+  "icons": [
+    {
+      "src": "/assets/img/maskable_icon_x512.png?h=50b2e7d67ab724952d93ffbccc470f84",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/img/maskable_icon_x384.png?h=aa99a12f8619e12317433fc546b848f9",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/img/maskable_icon_x192.png?h=afddf163b4490a3f84b5938474da6fea",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/img/maskable_icon_x128.png?h=4c233a40a2bb593abc9b11941675eec7",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/img/maskable_icon_x96.png?h=99046cf09cd40fd0ce6295f8a49182b5",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/img/maskable_icon_x72.png?h=92423b34db8e0a3a8092d7dbf1ad9ab3",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/img/maskable_icon_x48.png?h=2bd1eec3c7ed43f424796c6ae7eec91c",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/img/any_icon_x512.png?h=951d9a72d5c8436fe4694aec7383dc0a",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/assets/img/any_icon_x192.png?h=ce0f4944b0b251649d44e6c8399f6165",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/img/any_icon_x180.png?h=871c022ab54519fd72e751e1fb1e8b51",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "/assets/img/any_icon_x32.png?h=c6e95e86bee5c429ad96d74eb8a03d17",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f",
+      "type": "image/png",
+      "sizes": "16x16"
+    }
+  ],
+  "start_url": "Default.aspx",
+  "scope": "/",
+  "description": "The best app for reading manga.",
+  "background_color": "rgb(138,97,255)",
+  "theme_color": "rgb(138,97,255)",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "screenshots": [
+    {
+      "src": "screenshot1.webp",
+      "sizes": "1280x720",
+      "type": "image/webp"
+    },
+    {
+      "src": "screenshot2.webp",
+      "sizes": "1280x720",
+      "type": "image/webp"
+    }
+  ],
+  "categories": [ "books", "manga", "entertainment", "paid", "ASchoolProjectNotReal" ],
+  "url": "https://sum-manga.azurewebsites.net",
+  "shortcuts": [
+    {
+      "name": "SuM library",
+      "description": "a shortcut to your library.",
+      "url": "/Library.aspx",
+      "icons": [
+        {
+          "src": "/assets/img/maskable_icon_x512.png",
+          "type": "image/png",
+          "purpose": "maskable"
+        }
+      ]
+    }
+  ]
+}

@@ -2,27 +2,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <script src="/runsw.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>SuM Manga</title>
     <meta name="theme-color" content="rgb(104,64,217)">
     <meta name="description" content="Shun Manga Shop">
-    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../assets/img/SuM-180.png?h=470ab06da498d6fc442f5928b61025aa">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/SuM-16.png?h=0feb0de48de04a3db9816426bc4d5316">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/SuM-32.png?h=389e91614f7dd3a8393d241cc93ff6ca">
-    <link rel="icon" type="image/png" sizes="180x180" href="../assets/img/SuM-180.png?h=470ab06da498d6fc442f5928b61025aa">
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/SuM-192.png?h=470ab06da498d6fc442f5928b61025aa">
-    <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/SuM-512.png?h=eda22b93e7f5abd9666617319b61838a">
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css?h=9c9410dd08c3e2433b1961c2a8a68b39">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/img/SuM-180.png?h=470ab06da498d6fc442f5928b61025aa">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/any_icon_x32.png?h=c6e95e86bee5c429ad96d74eb8a03d17">
+    <link rel="icon" type="image/png" sizes="180x180" href="/assets/img/any_icon_x180.png?h=871c022ab54519fd72e751e1fb1e8b51">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/any_icon_x192.png?h=ce0f4944b0b251649d44e6c8399f6165">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/any_icon_x512.png?h=951d9a72d5c8436fe4694aec7383dc0a">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css?h=9c9410dd08c3e2433b1961c2a8a68b39">
     <!-- <link rel="manifest" href="manifest.json?h=f7ca12cbff627266dac4280164023899" /> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css?h=34f9b351b7076f97babcdac3c1081100">
-    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css?h=34f9b351b7076f97babcdac3c1081100">
-    <link rel="stylesheet" href="../assets/fonts/fontawesome5-overrides.min.css?h=34f9b351b7076f97babcdac3c1081100">
-    <link rel="stylesheet" href="../assets/animate.min.css">
-
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css?h=34f9b351b7076f97babcdac3c1081100">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css?h=34f9b351b7076f97babcdac3c1081100">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css?h=34f9b351b7076f97babcdac3c1081100">
+    <link rel="stylesheet" href="/assets/animate.min.css">
+    <meta name="google-site-verification" content="mp9Vewhm3_3ddQfuO0zmgnIvZpKaygdMO36zmFOgzos" />
+    <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
     <style>
          * {
              -moz-user-select: none;
@@ -66,6 +67,26 @@
 </head>
 <body id="page-top">
     <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+/* Track */
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+ 
+/* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #8a61ff;
+            border-radius: 5px;
+        }
+
+/* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6840D9;
+            border-radius: 5px;
+        }
         .ForceMaxW {
             max-width:1200px !important;
             margin: 0 auto !important;
@@ -74,15 +95,15 @@
     <form id="SuM" method="post" runat="server">
     <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: rgb(104,64,217);border-radius: 1px;border-top-right-radius: 12px;border-bottom-right-radius: 12px;">
-            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-                    <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
+            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/Default.aspx">
+                    <div class="sidebar-brand-icon"><img src="/Brand_x258.png?h=3c8f21de823a0d96f2696a176483f32c" style="width:36px;height:36px;" /></div>
                     <div class="sidebar-brand-text mx-3"><span>SuM Manga</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link active" data-bss-disabled-mobile="true" data-bss-hover-animate="pulse" href="../Default.aspx"><i class="fas fa-window-maximize"></i><span>Home</span></a></li>
-                    <li class="nav-item"><a class="nav-link" data-bss-disabled-mobile="true" data-bss-hover-animate="pulse" href="../Library.aspx"><i class="fas fa-table"></i><span>Library</span></a></li>
-                    <li class="nav-item"><a class="nav-link" data-bss-disabled-mobile="true" data-bss-hover-animate="pulse" href="../About.aspx"><i class="fas fa-tachometer-alt"></i><span>About</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" data-bss-disabled-mobile="true" data-bss-hover-animate="pulse" href="/Default.aspx"><i class="fas fa-window-maximize"></i><span>Home</span></a></li>
+                    <li class="nav-item"><a class="nav-link" data-bss-disabled-mobile="true" data-bss-hover-animate="pulse" href="/Library.aspx"><i class="fas fa-table"></i><span>Library</span></a></li>
+                    <li class="nav-item"><a class="nav-link" data-bss-disabled-mobile="true" data-bss-hover-animate="pulse" href="/About.aspx"><i class="fas fa-tachometer-alt"></i><span>About</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
@@ -92,14 +113,14 @@
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars" style="border-color: rgb(104,64,217);color: rgb(104,64,217);"></i></button>
                         <div class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" id="LookUp" placeholder="Search for ..." runat="server"><button class="btn btn-primary py-0" type="button" style="background: rgb(104,64,217);border-color: rgb(104,64,217);"><i class="fas fa-search"></i></button></div>
+                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" id="LookUp" placeholder="Search for ..." runat="server"><button class="btn btn-primary py-0" id="SerchBTN0" runat="server" type="button" style="background: rgb(104,64,217);border-color: rgb(104,64,217);"><i class="fas fa-search"></i></button></div>
                         </div>
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
                                     <div class="me-auto navbar-search w-100">
-                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
-                                            <div class="input-group-append"> <!-- <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button> --> <asp:Button CssClass="btn btn-primary py-0" runat="server" Text="Serch for..." /></div><!--                        a btn                       -->
+                                        <div class="input-group"><input class="bg-light form-control border-0 small" id="LookUpMobile" runat="server" type="text" placeholder="Search for ...">
+                                            <div class="input-group-append"><button class="btn btn-primary py-0" id="SerchBTN1" runat="server" type="button"><i class="fas fa-search"></i></button><!-- <asp:Button CssClass="btn btn-primary py-0" runat="server" Text="Serch for..." />--></div><!--                        a btn                       -->
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +190,7 @@
                         </ul>
                     </div>
                 </nav>
-                <div class="container-fluid ForceMaxW">
+                <div id="SuMMainBlock" runat="server" class="container-fluid ForceMaxW">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>

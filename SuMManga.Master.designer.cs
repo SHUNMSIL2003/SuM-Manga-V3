@@ -33,6 +33,33 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlInputText LookUp;
 
         /// <summary>
+        /// SerchBTN0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton SerchBTN0;
+
+        /// <summary>
+        /// LookUpMobile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText LookUpMobile;
+
+        /// <summary>
+        /// SerchBTN1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton SerchBTN1;
+
+        /// <summary>
         /// UserNotifications control.
         /// </summary>
         /// <remarks>
@@ -139,6 +166,15 @@ namespace SuM_Manga_V3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor SignOption;
+
+        /// <summary>
+        /// SuMMainBlock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMMainBlock;
 
         /// <summary>
         /// MainContent control.

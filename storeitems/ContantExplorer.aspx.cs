@@ -16,28 +16,35 @@ namespace SuM_Manga_V3.storeitems
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             if (GetUserInfoCookie == null)
             {
-                Response.Redirect("/AccountETC/LogInETC.aspx");
+                Response.Redirect("~/AccountETC/LoginETC.aspx");
             }
             if (Request.QueryString["CN"] == null || Request.QueryString["Manga"] == null || Request.QueryString["VC"] == null) { backhome(); }
             if (IsPostBack == false)
             {
+                string MangaPathName = Request.QueryString["Manga"].ToString();
+                string covername = MangaPathName + ".jpg";
+                string MangaPathCover = "/storeitems/" + MangaPathName + "/" + covername;
+                cover.Attributes["src"] = MangaPathCover;
                 string cn = Request.QueryString["CN"].ToString();
                 MangaViewsAndChapters.InnerText = "Chapters: " + cn + "  -   Views:  "+ ShowViews() + "";
                 MangaDis.InnerText = ShowDis();
                 string pathstartnochx = "/storeitems/";
-                string btn2 = "btn";
-                string btn3 = "btn-primary btn-sm";
+                //string btn2 = "btn";
+                //string btn3 = "btn-primary btn-sm";
                 string extraexplore = "MangaExplorer.aspx";
-                string identifylast = "?Manga=" + Request.QueryString["Manga"];
+                string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
                 MainCardT.InnerText = Request.QueryString["Manga"].ToString();
-                string identifynexthelper = "Chapter=";
+                string identifynexthelper = "&Chapter=";
                 string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
                 if (Request.QueryString["Manga"] == null) { backhome(); }
                 string M0path = epath + "\\storeitems\\" + Request.QueryString["Manga"] + "\\";
                 if (System.IO.Directory.Exists(M0path) == false) { backhome(); }
                 string cn0 = Request.QueryString["CN"];
                 int cn1 = Convert.ToInt32(cn0);
-                string ChapterFixedForm = "";
+                string ChapterFixedForm = string.Empty;
+                string btnclass = "btn-primary btn-sm"; //btn
+                string RLink = string.Empty;
+                char sc = '"';
                 for (int c = 1; c < (cn1 + 1); c++)
                 {
                     string chxC = c.ToString();
@@ -46,12 +53,9 @@ namespace SuM_Manga_V3.storeitems
                     if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
                     if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
                     if (c > 10000) { c = (cn1 + 1); }
-                    TheMangaPhotos.InnerHtml += "<a class=" + (btn2 + btn3) + " href=" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + ChapterFixedForm + c + ">Chapter &raquo; " + c + "</a> ";
+                    RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm;
+                    TheMangaPhotos.InnerHtml += "<a class=" + sc + btnclass + sc + " href=" + sc + RLink + sc + ">Chapter " + chxC + "</a>";
                 }
-                string MangaPathName = Request.QueryString["Manga"];
-                string covername = MangaPathName + ".jpg";
-                string MangaPathCover = "/storeitems/" + MangaPathName + "/" + covername;
-                cover.Attributes["src"] = MangaPathCover;
                 //string coverstyle = "text-align:left;width:226px;height:320px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;";
                 //string covercode = "<img style=" + coverstyle + " src=" + MangaPathCover + ">";
                 //mangacoverinpage.InnerHtml += covercode;

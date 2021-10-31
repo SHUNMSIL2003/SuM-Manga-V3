@@ -17,6 +17,13 @@ namespace SuM_Manga_V3.AccountETC
         public string emailre = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie != null)
+            {
+                //MPB.InnerText = "Explore";
+                //MPB.Attributes["href"] = "Library.aspx";
+                Response.Redirect("~/Default.aspx");
+            }
         }
         protected void PassResetStart(object sender, EventArgs e) 
         {

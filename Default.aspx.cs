@@ -12,7 +12,13 @@ namespace SuM_Manga_V3
         protected void Page_Load(object sender, EventArgs e)
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-            if (GetUserInfoCookie != null)
+            if (GetUserInfoCookie == null)
+            {
+                //MPB.InnerText = "Explore";
+                //MPB.Attributes["href"] = "Library.aspx";
+                Response.Redirect("~/AccountETC/LoginETC.aspx");
+            }
+            else 
             {
                 MPB.InnerText = "Explore";
                 MPB.Attributes["href"] = "Library.aspx";

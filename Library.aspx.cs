@@ -17,11 +17,14 @@ namespace SuM_Manga_V3
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             if (GetUserInfoCookie == null)
             {
-                Response.Redirect("/AccountETC/LogInETC.aspx");
+                Response.Redirect("~/AccountETC/LoginETC.aspx");
             }
-            UserNameforshow.InnerText = GetUserInfoCookie["UserName"].ToString();
-            MangasAvalibleDiv.InnerHtml = "";
-            ContantLoad(1);
+            else
+            {
+                UserNameforshow.InnerText = GetUserInfoCookie["UserName"].ToString();
+                MangasAvalibleDiv.InnerHtml = "";
+                ContantLoad(1);
+            }
         }
         protected void LoadMore(object sender, EventArgs e)
         {

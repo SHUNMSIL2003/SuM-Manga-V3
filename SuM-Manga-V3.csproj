@@ -46,10 +46,28 @@
     <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Google.Apis, Version=1.55.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.1.55.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.55.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Auth.1.55.0\lib\net461\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.55.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Auth.1.55.0\lib\net461\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.55.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Core.1.55.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.55.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.1.55.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -90,6 +108,11 @@
     <Content Include="assets\fonts\fontawesome-all.min.css" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\fonts\fontawesome5-overrides.min.css" />
+    <Content Include="assets\img\any_icon_x16.png" />
+    <Content Include="assets\img\any_icon_x180.png" />
+    <Content Include="assets\img\any_icon_x192.png" />
+    <Content Include="assets\img\any_icon_x32.png" />
+    <Content Include="assets\img\any_icon_x512.png" />
     <Content Include="assets\img\avatars\avatar1.jpeg" />
     <Content Include="assets\img\avatars\avatar2.jpeg" />
     <Content Include="assets\img\avatars\avatar3.jpeg" />
@@ -101,6 +124,13 @@
     <Content Include="assets\img\dogs\image3.jpeg" />
     <Content Include="assets\img\dogs\SuM-Reader.jpg" />
     <Content Include="assets\img\dogs\SuM-ReadingStart.jpg" />
+    <Content Include="assets\img\maskable_icon_x128.png" />
+    <Content Include="assets\img\maskable_icon_x192.png" />
+    <Content Include="assets\img\maskable_icon_x384.png" />
+    <Content Include="assets\img\maskable_icon_x48.png" />
+    <Content Include="assets\img\maskable_icon_x512.png" />
+    <Content Include="assets\img\maskable_icon_x72.png" />
+    <Content Include="assets\img\maskable_icon_x96.png" />
     <Content Include="assets\img\SuM-16.png" />
     <Content Include="assets\img\SuM-180.png" />
     <Content Include="assets\img\SuM-192.png" />
@@ -112,8 +142,11 @@
     <Content Include="assets\js\jquery.min.js" />
     <Content Include="assets\js\theme.js" />
     <Content Include="assets\lazyload.js" />
+    <Content Include="Brand_x258.png" />
     <Content Include="Contact.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="google139ca1b85e8d81e5.html" />
+    <Content Include="google202f75c3bd92d10f.html" />
     <Content Include="imghover\.gitignore" />
     <Content Include="imghover\css\demo-page.css" />
     <Content Include="imghover\css\imagehover.css" />
@@ -2510,6 +2543,7 @@
     <Content Include="storeitems\UramichiOniisan\UramichiOniisan.jpg" />
     <Content Include="storeitems\view.png" />
     <Content Include="SuM-32.ico" />
+    <Content Include="SuMSiteIconFlexable.ico" />
     <Content Include="UserAgreementBD.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -2678,7 +2712,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>SuM-32.ico</ApplicationIcon>
+    <ApplicationIcon>SuMSiteIconFlexable.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />

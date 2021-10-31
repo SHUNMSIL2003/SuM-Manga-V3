@@ -22,7 +22,7 @@
                             <h1 style="color:#6840D9;padding-left:16px;">Shun Manga</h1>
                             <h3 class="text-dark mb-4" style="padding-left:16px;">SuM is a grate website to access high quality Manga, it comes with a cost of 14.99 USD per month.<br></h3>
                             <!-- <p style="float:right;" id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Start Exploring !</p> -->
-                            <a id="MPB" class="btn btn-primary btn-lg" href="../AccountETC/LoginETC.aspx" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;margin-bottom:12px;margin-right:12px;" data-bss-hover-animate="pulse" runat="server">Login Or Sign Up</a>
+                            <a id="MPB" class="btn btn-primary btn-lg" href="/AccountETC/LoginETC.aspx" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;margin-bottom:12px;margin-right:12px;" data-bss-hover-animate="pulse" runat="server">Login Or Sign Up</a>
                         </div>
                     </div>
     <br />

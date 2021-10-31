@@ -46,6 +46,16 @@ namespace SuM_Manga_V3
                 }
                 //ignOption.Attributes["onclick"] = "LogOut";
                 SignOption.InnerText = " Logout";
+                SerchBTN0.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(SerchBTN0, string.Empty));
+                if (IsPostBack && Request["__EVENTTARGET"] == SerchBTN0.UniqueID)
+                {
+                    LookUpImprovedNB(SuMAppAlert, EventArgs.Empty);
+                }
+                SerchBTN1.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(SerchBTN1, string.Empty));
+                if (IsPostBack && Request["__EVENTTARGET"] == SerchBTN1.UniqueID)
+                {
+                    LookUpImprovedNB(SuMAppAlert, EventArgs.Empty);
+                }
                 bool once = true;
                 if (once == true)
                 {
@@ -55,13 +65,13 @@ namespace SuM_Manga_V3
             }
             else
             {
-                SignOption.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(SignOption, string.Empty));
+                Response.Redirect("~/AccountETC/LoginETC.aspx");
+                /*SignOption.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(SignOption, string.Empty));
                 if (IsPostBack && Request["__EVENTTARGET"] == SignOption.UniqueID)
                 {
                     ToSign(SignOption, EventArgs.Empty);
                 }
-                //SignOption.Attributes["onclick"] = "ToSign";
-                SignOption.InnerText = " Login";
+                SignOption.InnerText = " Login";*/
             }
         }
         protected void PayNoti()
@@ -283,13 +293,103 @@ namespace SuM_Manga_V3
         public void empty0() { }
         protected void LogOut(object sender, EventArgs e) 
         {
-            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-            GetUserInfoCookie.Expires = DateTime.Now.AddDays(-2);
+            HttpCookie GetUserInfoCookie = new HttpCookie("SuMCurrentUser");
+            GetUserInfoCookie.Expires = DateTime.Now.AddDays(-1);
             Response.Cookies.Add(GetUserInfoCookie);
             //HttpCookie GetUserpinns = Request.Cookies["SuMPinns"];
             //GetUserpinns["Pinns"] = "!";
             //Response.Cookies.Add(GetUserpinns);
             Response.Redirect("~/AccountETC/LogInETC.aspx");
+        }
+        protected void SuMLookUp(object sender, EventArgs e)
+        {
+
+        }
+        public void LookUpImprovedNB(object sender, EventArgs e)
+        {
+            string figureclass = "imghvr-blur box";
+            string figurestyle = "width:196px;height:300px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;";
+            string astyle = "border-radius:10px;margin:10px;";
+            string lookupfor = string.Empty;
+            if (LookUp.Value != null) { lookupfor = LookUp.Value.ToString(); }
+            if (LookUpMobile.Value != null) { lookupfor = LookUpMobile.Value.ToString(); }
+            string nospacelookup = "";
+            int matchednum = 0;
+            for (int i = 0; i < lookupfor.Length; i++) { if (lookupfor[i] != ' ') { nospacelookup += lookupfor[i]; } }
+            char[] lookupl = lookupfor.ToCharArray();
+            string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+            string ActivePath = epath + "\\storeitems\\";
+            string[] Folders = System.IO.Directory.GetDirectories(ActivePath);
+            int timec = 0;
+            string codesent = "";
+            while (timec < Folders.Length)
+            {
+                matchednum = 0;
+                char[] fname = Folders[timec].ToCharArray();///
+                char[] lname = nospacelookup.ToCharArray();
+                int slash = 0;
+                for (int g = 0; g < Folders[timec].Length; g++)
+                {
+                    if (fname[g] == '\\') { slash = g; }
+                }
+                string LNameFixed = "";
+                for (int j = slash; j < Folders[timec].Length; j++)
+                {
+                    LNameFixed += fname[j];
+                }
+                char[] LNameFixedChar = LNameFixed.ToCharArray();
+                for (int s = 0; s < LNameFixedChar.Length; s++)
+                {
+                    if (s < lname.Length)
+                    {
+                        if (LNameFixedChar[s] == lname[s]) { matchednum++; }
+                    }
+                    else { s = Folders[timec].Length; }
+                }
+                if (matchednum == lname.Length || (double)(matchednum / lname.Length) > 0.5)
+                {
+                    string MangaIdAKAName = fname.ToString();
+                    string covername = MangaIdAKAName + ".jpg"; //FilterToMangaCoverLink(filePathscover);
+                    string MangaPathCover = "/storeitems/" + MangaIdAKAName + "/" + covername;
+                    string mangaroottitle = epath + "\\storeitems\\" + MangaIdAKAName + "\\Title.txt";
+                    string mangarootdisc = epath + "\\storeitems\\" + MangaIdAKAName + "\\Discrip.txt";
+                    string MnagaTitle = System.IO.File.ReadAllText(mangaroottitle);////error---------------------------------------------------Need to convert to data base
+                    string MnagaDiscription = System.IO.File.ReadAllText(mangarootdisc);////  System.IO.File.ReadAllText
+                    string linkToExplorer = "/storeitems/ContantExplorer.aspx?Manga=" + MangaIdAKAName;
+                    codesent += "<a href=" + linkToExplorer + " ><figure class=" + figureclass + "  style = " + astyle + "  ><img style = " + figurestyle + " src=" + MangaPathCover + "><figcaption><h3>" + MnagaTitle + "</h3><h4>" + MnagaDiscription + "</h4></figcaption></figure></a>";
+                    SuMMainBlock.InnerHtml = codesent;
+                }
+                timec++;
+            }
+        }
+        public bool MatchUPto50Per(string a, string b)
+        {
+            if (a.Length > 0 && b.Length > 0)
+            {
+                char[] ca = a.ToCharArray();
+                char[] cb = b.ToCharArray();
+                int matchednum = 0;
+                double devideon = b.Length;
+                if (a.Length > b.Length)
+                {
+                    for (int i = 0; i < b.Length; i++)
+                    {
+                        if (ca[i] == cb[i]) { matchednum++; }
+                    }
+                    if ((double)(matchednum / devideon) > 0.3) { return true; }
+                    else { return false; }
+                }
+                else
+                {
+                    for (int i = 0; i < a.Length; i++)
+                    {
+                        if (ca[i] == cb[i]) { matchednum++; }
+                    }
+                    if ((double)(matchednum / devideon) > 0.3) { return true; }
+                    else { return false; }
+                }
+            }
+            else { return false; }
         }
     }
 }

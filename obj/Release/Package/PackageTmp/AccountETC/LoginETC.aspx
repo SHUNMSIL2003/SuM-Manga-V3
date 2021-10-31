@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css?h=34f9b351b7076f97babcdac3c1081100">
     <link rel="stylesheet" href="../assets/fonts/fontawesome5-overrides.min.css?h=34f9b351b7076f97babcdac3c1081100">
     <link rel="stylesheet" href="../assets/animate.min.css">
+    <meta name="google-site-verification" content="mp9Vewhm3_3ddQfuO0zmgnIvZpKaygdMO36zmFOgzos" />
+    <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
 </head>
 
 <body class="bg-gradient-primary" style="background: rgb(104,64,217);">
@@ -83,8 +85,7 @@
                                         <h4 class="text-dark mb-4">Welcome Back to SuM!</h4>
                                     </div>
                                     <div class="user">
-                                        <div class="mb-3">
-                                            <input class="form-control form-control-user" type="text" style="" id="UserNameL" placeholder="User Name" name="UserName" runat="server"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="text" style="" id="UserNameL" placeholder="User Name" name="UserName" runat="server"></div>
                                         <div class="mb-3"><input class="form-control form-control-user" type="password" style="" id="PasswordL" placeholder="Password" name="password" runat="server"></div>
                                         <div style="text-align:center;width:100%;height:fit-content;"><h6 style="color:red;" id="LoginStatus" runat="server"></h6><asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" OnClick="ResendConfLink" Visible="false" ID="ResendConf" Text="Re-Send Email" /></div>
                                         <div class="mb-3">

@@ -9,6 +9,8 @@
         .forcecolor {
             color:#6840D9 !important;
         }
+        a {
+        }
     </style>
     <div class="card shadow ForceMaxW">
          <div class="card-header py-3">
@@ -20,13 +22,14 @@
     <!-- <div style="float:left;display:inline;text-align:left;" id="mangacoverinpage" runat="server"></div>  -->
     <div class="damfw scrollforce nospace left" style="width:100%;height:fit-content;"><!-- The Story Content NA -->
         <div style="width:100%;height:182px;">
-            <img id="cover" runat="server" style="width:auto;height:180px;display:inline;" loading="lazy" src="#" />
             <div style="width:calc(100%-132);height:fit-content;display:block;">
+                <img id="cover" runat="server" style="width:auto;height:220px;display:inline;border-radius:16px;border:solid 2px #6840D9;" loading="lazy" src="#" />
                 <h4 style="color:#6840D9;float:left;padding-left:8px;" id="MangaViewsAndChapters" runat="server"></h4>
                 <h5 style="color:#1a171c;float:left;padding-left:8px;" id="MangaDis" runat="server"></h5>
             </div>
         </div>
-        <div style="direction: ltr;" id="TheMangaPhotos" runat="server"></div>
+        <div style="direction: ltr;" id="TheMangaPhotos" runat="server">
+        </div>
     </div>
         </div>
 

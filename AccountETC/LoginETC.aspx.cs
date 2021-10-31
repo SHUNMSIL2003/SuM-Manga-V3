@@ -19,10 +19,20 @@ namespace SuM_Manga_V3.AccountETC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ResendConf.Visible = false;
-            LoginStatus.InnerText = "";
-            UserNameL.Attributes["style"] = "";
-            PasswordL.Attributes["style"] = "";
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie != null)
+            {
+                //MPB.InnerText = "Explore";
+                //MPB.Attributes["href"] = "Library.aspx";
+                Response.Redirect("~/Default.aspx");
+            }
+            else
+            {
+                ResendConf.Visible = false;
+                LoginStatus.InnerText = "";
+                UserNameL.Attributes["style"] = "";
+                PasswordL.Attributes["style"] = "";
+            }
         }
         protected void LoginToSuM(object sender, EventArgs e)
         {

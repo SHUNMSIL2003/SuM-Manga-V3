@@ -81,10 +81,8 @@
                                 <h4 class="text-dark mb-4">Create a SuM Account!</h4>
                             </div>
                             <div class="user">
-                                <div class="row mb-3" style="width: 100%;">
-                                    <div class="col-sm-6 mb-3 mb-sm-0" style="width: 100%;"><input style="" class="form-control form-control-user" type="text" id="UserNameR" placeholder="User Name" name="UserName" runat="server"></div>
+                                    <div class="mb-3"><input style="" class="form-control form-control-user" type="text" id="UserNameR" placeholder="User Name" name="UserName" runat="server"></div>
                                     <div style="text-align:center;"><p style="color:red;" id="UserNameSWM" runat="server"></p></div>
-                                </div>
                                 <div class="mb-3"></div>
                                 <div class="mb-3"><input class="form-control form-control-user" style="" type="email" id="EmailR" aria-describedby="emailHelp" placeholder="Email Address" name="email" runat="server"></div>
                                 <div style="text-align:center;"><p style="color:red;" id="EmailSWM" runat="server"></p></div>
