@@ -42,7 +42,7 @@ namespace SuM_Manga_V3.storeitems
                 string cn0 = Request.QueryString["CN"];
                 int cn1 = Convert.ToInt32(cn0);
                 string ChapterFixedForm = string.Empty;
-                string btnclass = "btn-primary btn-sm"; //btn
+                string btnclass = "btn"; //btn
                 string RLink = string.Empty;
                 char sc = '"';
                 for (int c = 1; c < (cn1 + 1); c++)
@@ -54,7 +54,7 @@ namespace SuM_Manga_V3.storeitems
                     if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
                     if (c > 10000) { c = (cn1 + 1); }
                     RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm;
-                    TheMangaPhotos.InnerHtml += "<a class=" + sc + btnclass + sc + " href=" + sc + RLink + sc + ">Chapter " + chxC + "</a>";
+                    TheMangaPhotos.InnerHtml += "<a class=" + "btn btn-primary btn-sm" + " href=" + sc + RLink + sc + " >Chapter " + chxC + "</a>";
                 }
                 //string coverstyle = "text-align:left;width:226px;height:320px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;";
                 //string covercode = "<img style=" + coverstyle + " src=" + MangaPathCover + ">";

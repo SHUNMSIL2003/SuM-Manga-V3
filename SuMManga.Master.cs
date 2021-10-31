@@ -39,22 +39,22 @@ namespace SuM_Manga_V3
                 {
                     LogOut(SignOption, EventArgs.Empty);
                 }
-                SuMAppAlert.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(SuMAppAlert, string.Empty));
-                if (IsPostBack && Request["__EVENTTARGET"] == SuMAppAlert.UniqueID)
-                {
-                    SuMAppAlertsStartsS(SuMAppAlert, EventArgs.Empty);
-                }
+                //SuMSiteAlert.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(SuMSiteAlert, string.Empty));
+                //if (IsPostBack && Request["__EVENTTARGET"] == SuMSiteAlert.UniqueID)
+                //{
+                //    SuMAppAlertsStartsS(SuMSiteAlert, EventArgs.Empty);
+                //}
                 //ignOption.Attributes["onclick"] = "LogOut";
                 SignOption.InnerText = " Logout";
                 SerchBTN0.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(SerchBTN0, string.Empty));
                 if (IsPostBack && Request["__EVENTTARGET"] == SerchBTN0.UniqueID)
                 {
-                    LookUpImprovedNB(SuMAppAlert, EventArgs.Empty);
+                    LookUpSQL(SerchBTN0, EventArgs.Empty);
                 }
                 SerchBTN1.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(SerchBTN1, string.Empty));
                 if (IsPostBack && Request["__EVENTTARGET"] == SerchBTN1.UniqueID)
                 {
-                    LookUpImprovedNB(SuMAppAlert, EventArgs.Empty);
+                    LookUpSQL(SerchBTN1, EventArgs.Empty);
                 }
                 bool once = true;
                 if (once == true)
@@ -305,6 +305,116 @@ namespace SuM_Manga_V3
         {
 
         }
+        protected void LookUpSQL(object sender, EventArgs e) 
+        {
+            string Wanted = string.Empty;
+            if (LookUp.Value.ToString() != null) { Wanted = LookUp.Value.ToString(); }
+            //if (LookUpMobile.Value.ToString() != null) { Wanted = LookUpMobile.Value.ToString(); }
+            if (Wanted != null)
+            {
+                //Debig202312.InnerHtml = "";
+                /*string savecurhelp = string.Empty;
+                char[] WanatedRaw = Wanted.ToCharArray();
+                for (int c = 0; c < WanatedRaw.Length; c++)
+                {
+                    if (WanatedRaw[c] != ' ') { savecurhelp += WanatedRaw[c]; }
+                    if (WanatedRaw[c] == ' ' || (c + 1) == WanatedRaw.Length)
+                    {
+                        Debig202312.InnerHtml += GetMangaFromSQL(savecurhelp);
+                        savecurhelp = "";
+                    }
+                }*/
+                Debig202312.InnerHtml = GetMangaFromSQL(Wanted);
+                mc.InnerHtml = "";
+                //GetMangaFromSQL(Wanted);
+            }
+        }
+        /*protected void GetMangaFromSQL(string Wanted)
+        {
+            string ResultsQ = string.Empty;
+            //int i = 0;
+            string MangaName = string.Empty;
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            {
+                sqlCon.Open();
+                string queryFIND = "SELECT MangaID FROM SuMManga WHERE MangaName LIKE @Wanted ";
+                SqlCommand sqlCmdFIND = new SqlCommand(queryFIND, sqlCon);
+                sqlCmdFIND.Parameters.AddWithValue("@Wanted", Wanted);
+
+                if (sqlCmdFIND.ExecuteScalar() != null)
+                {
+                    var X = sqlCmdFIND.ExecuteScalar(); //ExecuteNonQuery();
+                    int i = Convert.ToInt32(X);
+                    string query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = i;
+                    //X = sqlCmd.ExecuteScalar();
+                    var l= sqlCmd.ExecuteScalar(); ;
+                    string Link = l.ToString(); // Convert.ToInt32(sqlCmd.ExecuteScalar()); //(Int32)sqlCmd.ExecuteScalar();
+                    Response.Redirect(Link);
+                }
+            }
+        }*/
+        protected string GetMangaFromSQL(string Wanted)
+        {
+            string ResultsQ = string.Empty;
+            //int i = 0;
+            string MangaName = string.Empty;
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            {
+                sqlCon.Open();
+                string queryFIND = "SELECT MangaID FROM SuMManga WHERE MangaName LIKE @Wanted ";
+                SqlCommand sqlCmdFIND = new SqlCommand(queryFIND, sqlCon);
+                sqlCmdFIND.Parameters.AddWithValue("@Wanted", Wanted);
+
+                if (sqlCmdFIND.ExecuteScalar() != null)
+                {
+                    var X = sqlCmdFIND.ExecuteScalar(); //ExecuteNonQuery();
+                    int i = Convert.ToInt32(X);
+
+                    string query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = i;
+                    //X = sqlCmd.ExecuteScalar();
+                    int ChaptersNum = (Int32)sqlCmd.ExecuteScalar(); // Convert.ToInt32(sqlCmd.ExecuteScalar()); //(Int32)sqlCmd.ExecuteScalar();
+
+                    query = "SELECT MangaInfo FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = i;
+                    X = sqlCmd.ExecuteScalar();
+                    string MangaInfo = X.ToString();
+
+                    query = "SELECT MangaViews FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = i;
+                    //X = sqlCmd.ExecuteScalar();
+                    int MangaViews = (Int32)sqlCmd.ExecuteScalar();
+
+                    query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = i;
+                    X = sqlCmd.ExecuteScalar();
+                    string CExplorerLink = X.ToString();
+
+                    query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = i;
+                    // X = sqlCmd.ExecuteScalar();
+                    string MangaCoverLink = sqlCmd.ExecuteScalar().ToString();
+                    return ContantShow(MangaName, MangaInfo, MangaViews, MangaCoverLink, CExplorerLink, ChaptersNum, i);
+
+
+                    //return ContantShow(MangaName, MangaInfo, MangaViews, MangaCoverLink, CExplorerLink, ChaptersNum, ID);
+                }
+                else { return "<h4>Not Found!</h4>"; }
+            }
+        }
         public void LookUpImprovedNB(object sender, EventArgs e)
         {
             string figureclass = "imghvr-blur box";
@@ -357,7 +467,7 @@ namespace SuM_Manga_V3
                     string MnagaDiscription = System.IO.File.ReadAllText(mangarootdisc);////  System.IO.File.ReadAllText
                     string linkToExplorer = "/storeitems/ContantExplorer.aspx?Manga=" + MangaIdAKAName;
                     codesent += "<a href=" + linkToExplorer + " ><figure class=" + figureclass + "  style = " + astyle + "  ><img style = " + figurestyle + " src=" + MangaPathCover + "><figcaption><h3>" + MnagaTitle + "</h3><h4>" + MnagaDiscription + "</h4></figcaption></figure></a>";
-                    SuMMainBlock.InnerHtml = codesent;
+                    Debig202312.InnerHtml = codesent;
                 }
                 timec++;
             }
@@ -390,6 +500,20 @@ namespace SuM_Manga_V3
                 }
             }
             else { return false; }
+        }
+        public string ContantShow(string MangaName, string MangaInfo, int MangaViews, string MangaCoverLink, string CExplorerLink, int ChaptersNum, int id)
+        {
+            string cn = ChaptersNum.ToString();
+            CExplorerLink += "&CN=" + cn + "&VC=" + id;
+            string figureclass = "imghvr-fade box";//width:160px;
+            string figurestyle = "margin-left:2.6px;margin-right:2.6px;margin-top:3px;width:136px;height:204px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;border:-2px solid #6840D9;";
+            string astyle = "border-radius:10px;margin:10px;width:142px;";//mw
+            //string vstyle = "margin-left:4px;width:24px;height:24px;position:relative;z-index:1;display:block;";
+            //string vimage = "/storeitems/view.png";
+            string viewes = /*"<img src=" + vimage + " style=" + vstyle + ">" +*/ "<h6 style=" + "color:white;position:relative;display:inline-block;margin-top:-10px" + ">Views:" + MangaViews + " Ch: " + ChaptersNum + "</h6>";
+            string divfits = "<div data-bss-hover-animate=" + "pulse" + " style=" + "display:inline-block; height:fit-content;width:142px;" + ">";//mw
+            string result = divfits + "<a href=" + CExplorerLink + " ><figure class=" + figureclass + "  style = " + astyle + "  ><img style = " + figurestyle + " src=" + MangaCoverLink + ">" + viewes + "<figcaption><h6 style=" + "font-size:100%;" + " ><b>" + MangaName + "</b></h6><br/><h6 style=" + "font-size:74%;" + " >" + MangaInfo + "</h6></figcaption></figure></a></div>";
+            return result;
         }
     }
 }

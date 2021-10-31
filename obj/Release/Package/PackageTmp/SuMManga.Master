@@ -1,13 +1,13 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SuMManga.Master.cs" Inherits="SuM_Manga_V3.Site1" %>
+﻿<%@ Master Language="C#"  AutoEventWireup="true" CodeBehind="SuMManga.Master.cs" Inherits="SuM_Manga_V3.Site1" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow: hidden;">
 <head>
     <link rel="manifest" href="/manifest.json">
     <script src="/runsw.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>SuM Manga</title>
-    <meta name="theme-color" content="rgb(104,64,217)">
+    <meta name="theme-color" content="rgb(242,242,242)">
     <meta name="description" content="Shun Manga Shop">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/img/SuM-180.png?h=470ab06da498d6fc442f5928b61025aa">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/assets/animate.min.css">
     <meta name="google-site-verification" content="mp9Vewhm3_3ddQfuO0zmgnIvZpKaygdMO36zmFOgzos" />
     <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
+    <link rel="stylesheet" href="../imghover/css/imagehover.min.css">
     <style>
          * {
              -moz-user-select: none;
@@ -64,8 +65,41 @@
             }, 100);
         })();
     */</script>
+    <script>
+
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+
+        } else {
+            var installPromptEvent = null;
+
+            window.addEventListener("beforeinstallprompt", e => {
+
+                // Prevent Chrome 76 and later from showing the install prompt
+                e.preventDefault();
+
+                // Stash the event so it can be triggered later.
+                installPromptEvent = e;
+
+            });
+
+            const installPWA = async () => {
+                if (installPromptEvent != null) {
+                    installPromptEvent.prompt(); // Wait for the user to respond to the prompt
+                    const choiceResult = await installPromptEvent.userChoice;
+
+                    if (choiceResult.outcome === "accepted") {
+                        console.log("User accepted the PWA prompt");
+                    } else {
+                        closeAndroidPromptWithoutDownload();
+                        console.log("User dismissed the PWA prompt");
+                    }
+                }
+            };
+        }
+
+    </script>
 </head>
-<body id="page-top">
+<body id="page-top" style="overflow: hidden;height:100vh;">
     <style>
         ::-webkit-scrollbar {
             width: 10px;
@@ -93,7 +127,7 @@
         }
     </style>
     <form id="SuM" method="post" runat="server">
-    <div id="wrapper">
+    <div id="wrapper" style="overflow:hidden;">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: rgb(104,64,217);border-radius: 1px;border-top-right-radius: 12px;border-bottom-right-radius: 12px;">
             <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/Default.aspx">
                     <div class="sidebar-brand-icon"><img src="/Brand_x258.png?h=3c8f21de823a0d96f2696a176483f32c" style="width:36px;height:36px;" /></div>
@@ -108,9 +142,9 @@
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
-        <div class="d-flex flex-column" id="content-wrapper">
+        <div class="d-flex flex-column" id="content-wrapper" style="overflow:hidden;">
             <div id="content">
-                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                <nav style="height:7vh;" class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars" style="border-color: rgb(104,64,217);color: rgb(104,64,217);"></i></button>
                         <div class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group"><input class="bg-light form-control border-0 small" type="text" id="LookUp" placeholder="Search for ..." runat="server"><button class="btn btn-primary py-0" id="SerchBTN0" runat="server" type="button" style="background: rgb(104,64,217);border-color: rgb(104,64,217);"><i class="fas fa-search"></i></button></div>
@@ -125,6 +159,37 @@
                                     </div>
                                 </div>
                             </li>
+
+                             <!--                                             nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn                -->    
+                            <div style="display: table; height:7vh; overflow: hidden;width:fit-content;">
+                         <div style="display: table-cell; vertical-align: middle;width:fit-content;">
+                                    <div style="width:fit-content;">
+                            <div style="text-align:center; vertical-align: middle;line-height:8px;"><a style="color:#8a61ff;font-size:x-small; vertical-align: middle;"><b>Install</b></a><br style="font-size:xx-small;line-height:0px;" /><a style="color:#8a61ff;font-size:x-small; vertical-align: middle;"><b>the app</b></a></div>
+                            </div>
+                            </div>
+                              </div>
+                              
+
+                            <li class="nav-item dropdown no-arrow mx-1">                                                                                                                                                        <!--  fas fa-download fa-sm text-white-50 -->
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" data-bss-disabled-mobile="true" data-bss-hover-animate="pulse" ><span class="badge bg-danger badge-counter" id="Span1" runat="server">N</span><i class="fas fa-download fa-fw" style="color:#8a61ff"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" style="background-color:#ffffff;max-width:600px;">
+                                        <h6 class="dropdown-header"><b>Install SuM Manga PWA App</b></h6>
+                                        <div id="Div1" runat="server" style="height:fit-content;">
+                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="dropdown-list-image me-3"><img class="rounded-circle" src="/assets/PFP_SuM_UsersSupport.jpg?h=2a9b6cc4b74f5f5f4edbdb337151a1c6">
+                                                <div class="bg-success status-indicator"></div>
+                                            </div>
+                                            <div class="fw-bold">
+                                                <div style="max-width:400px;"><br /><p>Installing the app will result in a better user experince.</p></div>
+                                                <p class="small text-gray-500 mb-0">SuM Manga - Users Support</p>
+                                            </div>
+                                        </a>
+                                        </div><div style="background-color:#efebff;">
+                                        <a style="color:#6840D9" onclick="installPWA();"  class="dropdown-item text-center small" href="#">Install Now</a>
+                                            </div>
+                                    </div>
+                                </div>
+                                <!--                             nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn                     -->
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <!--                                                U-----------------------------U                      -->
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" data-bss-disabled-mobile="true" data-bss-hover-animate="pulse" ><span class="badge bg-danger badge-counter" id="UserNotifications" runat="server"></span><i class="fas fa-bell fa-fw"></i></a>
@@ -148,7 +213,7 @@
                             </li>
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <!--                                       O-------------------------O                   -->
-                                <div class="nav-item dropdown no-arrow"><a id="SuMAppAlert" runat="server" class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" data-bss-disabled-mobile="true" data-bss-hover-animate="pulse" ><span class="badge bg-danger badge-counter" id="UserIMP" runat="server"></span><i class="fas fa-envelope fa-fw"></i></a>
+                                <div class="nav-item dropdown no-arrow"><a id="SuMSiteAlert" runat="server" class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" data-bss-disabled-mobile="true" data-bss-hover-animate="pulse" ><span class="badge bg-danger badge-counter" id="UserIMP" runat="server"></span><i class="fas fa-envelope fa-fw"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
                                         <h6 class="dropdown-header">SuM App alerts center</h6>
                                         <div id="payalertshow" runat="server" style="display:none;">
@@ -167,8 +232,8 @@
                                             <div class="me-3">
                                                 <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
                                             </div>
-                                            <div><span class="small text-gray-500">December 12, 2019</span>
-                                                <p>A new monthly report is ready to download!</p>
+                                            <div><span class="small text-gray-500">October 31, 2021</span>
+                                                <p>PWA is now avalible!</p>
                                             </div>
                                         </a>
                                         </div>
@@ -190,17 +255,21 @@
                         </ul>
                     </div>
                 </nav>
-                <div id="SuMMainBlock" runat="server" class="container-fluid ForceMaxW">
+                <div style="height:90vh;max-height:90vh; overflow-y: auto;overflow: auto;width:100%;" id="SuMMainBlock" runat="server" class="container-fluid ForceMaxW">
+                    <div id="gotopagetop" style="height:0px;width:0px"></div>
+                    <div id="Debig202312" runat="server"></div>
+                    <div id="mc" runat="server">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
+                    </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>[School-Project!]Copyright © SuM Manga 2021</span></div>
-                </div>
-            </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top" style="background: rgba(71,41,159,0.45);"><i class="fas fa-angle-up"></i></a>
+            <!-- <footer style="background-color:transparent;height:4vh;"> -->
+               <!-- <div class="container my-auto" style="background-color:transparent;height:3vh;">
+                    <div class="text-center my-auto copyright" style="background-color:transparent;height:3vh;"><span>[School-Project!]Copyright © SuM Manga 2021</span></div>
+                </div> -->
+           <!-- </footer> -->
+        </div><a class="border rounded d-inline scroll-to-top" href="#gotopagetop" style="background: rgba(71,41,159,0.45);height:46px"><i class="fas fa-angle-up"></i></a>
     </div>
     <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>

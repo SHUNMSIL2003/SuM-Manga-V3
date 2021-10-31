@@ -24,13 +24,13 @@ namespace SuM_Manga_V3.storeitems
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MainCardT;
 
         /// <summary>
-        /// mangacoverinpage control.
+        /// MangaViewsAndChapters control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mangacoverinpage;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaViewsAndChapters;
 
         /// <summary>
         /// cover control.
@@ -40,15 +40,6 @@ namespace SuM_Manga_V3.storeitems
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage cover;
-
-        /// <summary>
-        /// MangaViewsAndChapters control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaViewsAndChapters;
 
         /// <summary>
         /// MangaDis control.

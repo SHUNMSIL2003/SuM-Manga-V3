@@ -60,6 +60,24 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlButton SerchBTN1;
 
         /// <summary>
+        /// Span1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span1;
+
+        /// <summary>
+        /// Div1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+
+        /// <summary>
         /// UserNotifications control.
         /// </summary>
         /// <remarks>
@@ -78,13 +96,13 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMApp;
 
         /// <summary>
-        /// SuMAppAlert control.
+        /// SuMSiteAlert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor SuMAppAlert;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor SuMSiteAlert;
 
         /// <summary>
         /// UserIMP control.
@@ -175,6 +193,24 @@ namespace SuM_Manga_V3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMMainBlock;
+
+        /// <summary>
+        /// Debig202312 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Debig202312;
+
+        /// <summary>
+        /// mc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mc;
 
         /// <summary>
         /// MainContent control.

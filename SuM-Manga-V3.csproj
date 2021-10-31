@@ -142,6 +142,7 @@
     <Content Include="assets\js\jquery.min.js" />
     <Content Include="assets\js\theme.js" />
     <Content Include="assets\lazyload.js" />
+    <Content Include="assets\PFP_SuM_UsersSupport.jpg" />
     <Content Include="Brand_x258.png" />
     <Content Include="Contact.aspx" />
     <Content Include="Default.aspx" />
