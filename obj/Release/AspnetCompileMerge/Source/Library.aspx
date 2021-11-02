@@ -32,6 +32,19 @@
             max-width:1200px !important;
             margin: 0 auto;
         }
+        body {
+            overflow: hidden; /* Hide scrollbars */
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        body {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
     </style>
                     <div class="card shadow ForceMaxW">
                         <div class="card-header py-3">

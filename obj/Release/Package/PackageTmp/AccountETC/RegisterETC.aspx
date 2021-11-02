@@ -36,6 +36,19 @@
          text, h1, h2, h3, h4, h5, h6, p {
             pointer-events: none;
          }
+        body {
+            overflow: hidden; /* Hide scrollbars */
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        body {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
     </style>
     <script>  
         document.onkeypress = function (event) {
@@ -91,7 +104,7 @@
                                     <div class="col-sm-6"><input class="form-control form-control-user" style="" type="password" id="PasswordRc" placeholder="Repeat Password" name="password_repeat" runat="server"></div>
                                     <div style="text-align:center;"><p style="color:red;" id="PasswordSWM" runat="server"></p></div>
                                 </div><asp:Button CssClass="btn btn-primary d-block btn-user w-100" style="background: rgb(104,64,217);" runat="server" OnClick="RegisterProsss" Text="Register Account" />
-                                <!-- <button class="btn btn-primary d-block btn-user w-100" data-bss-disabled-mobile="true" data-bss-hover-animate="pulse" type="submit" style="background: rgb(104,64,217);" runat="server">Register Account</button> -->
+                                <!-- <button class="btn btn-primary d-block btn-user w-100" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" type="submit" style="background: rgb(104,64,217);" runat="server">Register Account</button> -->
                                 <hr><a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Register with Google</a><a class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Register with Facebook</a>
                                 <hr>
                             </div>

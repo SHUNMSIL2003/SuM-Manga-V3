@@ -38,6 +38,18 @@
          text, h1, h2, h3, h4, h5, h6, p {
             pointer-events: none;
          }
+        body {
+            overflow: hidden; /* Hide scrollbars */
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+/* Hide scrollbar for IE, Edge and Firefox */
+        body {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
     </style>
     <script>  
         document.onkeypress = function (event) {

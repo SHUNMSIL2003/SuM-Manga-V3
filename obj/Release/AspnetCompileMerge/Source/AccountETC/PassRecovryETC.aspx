@@ -37,6 +37,19 @@
          text, h1, h2, h3, h4, h5, h6, p {
             pointer-events: none;
          }
+        body {
+            overflow: hidden; /* Hide scrollbars */
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        body {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
     </style>
     <script>  
         document.onkeypress = function (event) {
@@ -90,8 +103,13 @@
                                             <input style="display:none;" class="form-control form-control-user" type="password" id="PasswordRes" placeholder="New Password" name="password" runat="server">
                                             <input style="display:none;" class="form-control form-control-user" type="password" id="PasswordResC" placeholder="New Password Confirm" name="passwordconf" runat="server">
                                             <p id="errormsg" runat="server" style="color:red;"></p>
+                                            <p style="display:none;color:rgb(104,64,217);" id="SuMRP" runat="server"></p>
+                                            <p id="debug454540d2" runat="server"></p>
                                             <br />
-                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnP" runat="server" OnClick="PassResetStart" style="background: rgb(104,64,217);" Text="Reset Password" />
+                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnP" Visible="true" runat="server" OnClick="PassResetStart" style="background: rgb(104,64,217);" Text="Reset Password" />
+                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnC" Visible="false" runat="server" OnClick="ConfirmCode" style="background: rgb(104,64,217);" Text="Confirm Code" />
+                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnS" Visible="false" runat="server" OnClick="SaveNewPass" style="background: rgb(104,64,217);" Text="Change Password" />
+                                            
                                        <!-- <button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: rgb(104,64,217);" runat="server">Reset Password</button> -->
                                         </div>
                                     </form>

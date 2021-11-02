@@ -8,6 +8,19 @@
         .forcecolor {
             color:#6840D9 !important;
         }
+        body {
+            overflow: hidden; /* Hide scrollbars */
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        body {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
     </style>
                     <h3 style="color:#6840D9;display:inline;" class="text-dark mb-4"><p class="forcecolor" style="display:inline;" id="UserNameForShow0" runat="server"></p>'s Profile</h3><br /><br />
                     <div class="row mb-3">

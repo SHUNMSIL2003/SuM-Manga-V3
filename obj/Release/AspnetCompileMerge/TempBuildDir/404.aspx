@@ -1,6 +1,21 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Master" AutoEventWireup="true" CodeBehind="404.aspx.cs" Inherits="SuM_Manga_V3._404" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <style>
+        body {
+            overflow: hidden; /* Hide scrollbars */
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        body {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+    </style>
                     <div class="text-center mt-5">
                              <div class="error mx-auto" data-text="404">
                                  <p class="m-0">404</p>

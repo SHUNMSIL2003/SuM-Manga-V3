@@ -13,6 +13,19 @@
             max-width:1200px !important;
             margin: 0 auto;
         }
+        body {
+            overflow: hidden; /* Hide scrollbars */
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        body {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
     </style>
                         <div class="card shadow ForceMaxW">
                         <div class="card-header py-3">
@@ -37,27 +50,27 @@
             <p class="text-dark mb-4">
                 By creating an account u automaticly agree to thos tirms.
             </p>
-            <p style="margin-bottom:12px;">
+            <a style="margin-bottom:12px;">
                 <a class="btn btn-primary btn-sm forcecolor2" data-bss-hover-animate="pulse" href="../UserAgreementBD.aspx"> Tirms & Con... &raquo;</a>
-            </p><br />
+            </a><br /><br />
         </div>
         <div class="col-md-4">
             <h2 style="color:#6840D9;">Need Help?</h2>
             <p class="text-dark mb-4">
                 Contact is active from Monday-Friday 10:00AM-6:00PM.
             </p>
-            <p style="margin-bottom:12px;">
+            <a style="margin-bottom:12px;">
                 <a class="btn btn-primary btn-sm forcecolor2" data-bss-hover-animate="pulse" href="../Contact.aspx">Contact Us! &raquo;</a>
-            </p><br />
+            </a><br /><br />
         </div>
         <div class="col-md-4">
             <h2 style="color:#6840D9;">Social Meadia...</h2>
             <p class="text-dark mb-4">
                 Our offical Twitter,U can get the status and reports about our site from there.
             </p>
-            <p style="margin-bottom:12px;">
+            <a style="margin-bottom:12px;">
                 <a class="btn btn-primary btn-sm forcecolor2" data-bss-hover-animate="pulse" href="https://twitter.com/">Learn more &raquo;</a>
-            </p><br />
+            </a><br /><br />
         </div>
     </div>
                         </div>
