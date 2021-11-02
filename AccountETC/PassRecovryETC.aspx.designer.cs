@@ -60,6 +60,24 @@ namespace SuM_Manga_V3.AccountETC
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl errormsg;
 
         /// <summary>
+        /// SuMRP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMRP;
+
+        /// <summary>
+        /// debug454540d2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl debug454540d2;
+
+        /// <summary>
         /// BtnP control.
         /// </summary>
         /// <remarks>
@@ -67,5 +85,23 @@ namespace SuM_Manga_V3.AccountETC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnP;
+
+        /// <summary>
+        /// BtnC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnC;
+
+        /// <summary>
+        /// BtnS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnS;
     }
 }

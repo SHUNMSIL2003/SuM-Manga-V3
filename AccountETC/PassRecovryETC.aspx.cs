@@ -14,7 +14,8 @@ namespace SuM_Manga_V3.AccountETC
 {
     public partial class PassRecovryETC : System.Web.UI.Page
     {
-        public string emailre = string.Empty;
+        //protected string ConfCode = string.Empty;
+        //protected string emailre = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
@@ -28,22 +29,40 @@ namespace SuM_Manga_V3.AccountETC
         protected void PassResetStart(object sender, EventArgs e) 
         {
             errormsg.InnerText = "";
+            //emailre = EmailF.Value.ToString();
             string email = EmailF.Value.ToString();
             using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
             {
                 sqlCon.Open();
-                string query = "SELECT COUNT(1) FROM SuMUsersAccounts WHERE Email = @Email";
+                string query = "SELECT UserName FROM SuMUsersAccounts WHERE Email = @Email";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@Email", email);
-                int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
-                if (count > 0)
+                var smth = sqlCmd.ExecuteScalar();
+                //string username = smth.ToString();
+                if (smth != null)
                 {
-                    emailre = EmailF.Value.ToString();
+                    string username = smth.ToString();
+                    string vc21520 = GetVerificationCode(8);
+                    //debug454540d2.InnerText = vc21520;
+                    //ConfCode = vc21520;
+                    //debug454540d2.InnerText += "SV " + ConfCode + " Ok?";
+                    HttpCookie sd654fgsd65d5 = new HttpCookie("sd654fgsd65d5", EmailF.Value.ToString());
+                    sd654fgsd65d5.Expires.AddMinutes(5);
+                    HttpContext.Current.Response.Cookies.Add(sd654fgsd65d5);
+                    HttpCookie dfjgh2512021dsaf = new HttpCookie("dfjgh2512021dsaf", sha256(vc21520));
+                    dfjgh2512021dsaf.Expires.AddMinutes(5);
+                    HttpContext.Current.Response.Cookies.Add(dfjgh2512021dsaf);
+                    SendVirifyEmail(vc21520, username);
+                    //emailre = EmailF.Value.ToString();
                     EmailF.Attributes["style"] = "display:none;";
-                    PasswordRes.Attributes["style"] = "";
-                    PasswordResC.Attributes["style"] = "";
+                    //PasswordRes.Attributes["style"] = "";
+                    //PasswordResC.Attributes["style"] = "";
                     VCODECONF.Attributes["style"] = "";
-                    BtnP.Text = "Confirm & Change Password";
+                    BtnP.Visible = false;
+                    BtnC.Visible = true;
+                    BtnS.Visible = false;
+                    SuMRP.InnerText = "Type in the code send to your email";
+                    SuMRP.Attributes["style"] = "";
                     //BtnP.Attributes["OnClick"] = "ConfAndSavePass";
                 }
                 else
@@ -54,9 +73,66 @@ namespace SuM_Manga_V3.AccountETC
                 sqlCon.Close();
             }
         }
-        protected void ConfAndSavePass(object sender, EventArgs e) 
+        protected void ConfirmCode(object sender, EventArgs e)
         {
-
+            //debug454540d2.InnerText += "SV " + ConfCode + " Ok?";
+            if (Request.Cookies["dfjgh2512021dsaf"] != null)
+            {
+                string ConfCode = Request.Cookies["dfjgh2512021dsaf"].Value.ToString();
+                if (VCODECONF.Value != null)
+                {
+                    string enteredConfCode = sha256(VCODECONF.Value.ToString());
+                    if (enteredConfCode == ConfCode)
+                    {
+                        BtnP.Visible = false;
+                        BtnC.Visible = false;
+                        BtnS.Visible = true;
+                        SuMRP.Attributes["style"] = "display:none;";
+                        VCODECONF.Attributes["style"] = "display:none;";
+                        PasswordRes.Attributes["style"] = "";
+                        PasswordResC.Attributes["style"] = "";
+                    }
+                    else
+                    {
+                        SuMRP.InnerText = "Code is invalid! Plz make sure you have typed it currectly";
+                    }
+                }
+                else { SuMRP.InnerText = "Enter the Code plz"; }
+            }
+            else { SuMRP.InnerText = "Code Expired! Plz try again later"; }
+        }
+        protected void SaveNewPass(object sender, EventArgs e)
+        {
+            //debug454540d2.InnerText += "SV " + ConfCode + " Ok?";
+            PasswordRes.Attributes["style"] = "";
+            PasswordResC.Attributes["style"] = "";
+            SuMRP.InnerText = "";
+            if (PasswordRes.Value == PasswordResC.Value && PasswordRes.Value != null)
+            {
+                string newPass = PasswordRes.Value.ToString();
+                if (PasswordIsOk(newPass) == true)
+                {
+                    string emailre = Request.Cookies["sd654fgsd65d5"].Value.ToString();
+                    using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+                    {
+                        sqlCon.Open();
+                        string query = "UPDATE SuMUsersAccounts SET Password = @Password WHERE Email = @Email";
+                        SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
+                        sqlCmd2.Parameters.AddWithValue("@Email", emailre);
+                        sqlCmd2.Parameters.AddWithValue("@Password", sha256(newPass));
+                        sqlCmd2.ExecuteNonQuery();
+                        sqlCon.Close();
+                    }
+                    Response.Redirect("~/AccountETC/LoginETC.aspx");
+                }
+                else { SuMRP.InnerText = "Password Must Contain atleast 8 numbers and 4 more latters/charecter !"; }
+            }
+            else 
+            {
+                SuMRP.InnerText = "Passwords do not match or they are empty!";
+                PasswordRes.Attributes["style"] = "border: solid 2px red;";
+                PasswordResC.Attributes["style"] = "border: solid 2px red;";
+            }
         }
         static string sha256(string randomString)
         {
@@ -85,7 +161,7 @@ namespace SuM_Manga_V3.AccountETC
             MailMessage Msg = new MailMessage();
             Msg.From = new MailAddress("sumverifysystem@gmail.com", "SuM System");// Sender details here, replace with valid value
             Msg.Subject = "Password Reset!"; // subject of email
-            string useremail = EmailF.Value.ToString();
+            string useremail = Request.Cookies["sd654fgsd65d5"].Value.ToString();
             Msg.To.Add(useremail); //Add Email id, to which we will send email
             Msg.Body = emailbody;
             Msg.IsBodyHtml = true;
