@@ -44,7 +44,7 @@ namespace SuM_Manga_V3.storeitems
                         for (int i = 0; i < filePaths.Length; i++)
                         {
                             string filename = System.IO.Path.GetFileName(filePaths[i]);
-                            TheMangaPhotos.InnerHtml += "<img style=" + imgstyle + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " /><br/>";
+                            TheMangaPhotos.InnerHtml += "<img class=" + "lazyload" + " style=" + imgstyle + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " /><br/>";
                         }
                         //string beforerelasecode = "";
                         //beforerelasecode += sendhtmlforchimges;

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="3" virtualPath="/storeitems/ContantExplorer.aspx" hash="8cc7169df" filehash="1d2a3defb83c4900" flags="110000" assembly="App_Web_oxqfoswa" type="ASP.storeitems_contantexplorer_aspx">
+    <filedeps>
+        <filedep name="/storeitems/ContantExplorer.aspx" />
+        <filedep name="/SuMManga.Master" />
+    </filedeps>
+</preserve>

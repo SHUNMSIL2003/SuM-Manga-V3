@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Master" AutoEventWireup="true" CodeBehind="Library.aspx.cs" Inherits="SuM_Manga_V3.Library" %>
+﻿<%@ Page Language="C#" enableEventValidation="false" MasterPageFile="~/SuMManga.Master" AutoEventWireup="true" CodeBehind="Library.aspx.cs" Inherits="SuM_Manga_V3.Library" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="../imghover/css/imagehover.min.css">
@@ -53,20 +53,20 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
+                                    <div runat="server" id="dataTable_length1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
+                                                <option value="10" selected="">12</option>
+                                                <option value="25">24</option>
+                                                <option value="50">48</option>
+                                                <option value="100">96</option>
                                             </select>&nbsp;</label></div>
                                 </div>
                                 <div class="col-md-6">
                                     <!-- <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div> -->
                                 </div>
                             </div>
-                            <div id="MangasAvalibleDiv" runat="server" style="text-align:center;width:calc(inherit/2);">
+                            <div id="MangasAvalibleDiv" runat="server" style="text-align:center;align-items:center; width:auto; margin-left:-18px; margin-right:-18px;">
                                <h3 class="text-dark mb-4">Loading...<br></h3>
-                            </div>
+                            </div><br />
                             <div class="row">
                                 <div class="col-md-6 align-self-center">
                                     <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">For better Experience use Wi-Fi !</p>
@@ -74,11 +74,11 @@
                                 <div class="col-md-6">
                                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                         <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                            <li id="PPS" runat="server" class="page-item disabled"><a id="PrePageG" runat="server" class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">« Prev page</span></a></li>
+                                            <li class="page-item active"><a id="CurrPageNum" runat="server" class="page-link" style="pointer-events:none;-moz-user-select: none; -webkit-user-select:none; user-select: none;">1</a></li>
+                                        <!--    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                                            <li id="NPS" runat="server" class="page-item"><a id="NextPageG" runat="server" class="page-link" href="#" aria-label="Next"><span aria-hidden="true">Next page »</span></a></li>
                                         </ul>
                                     </nav>
                                 </div>

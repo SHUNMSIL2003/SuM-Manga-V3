@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="3" virtualPath="/storeitems/MangaExplorer.aspx" hash="8cc7169df" filehash="e4f448bccf06ab06" flags="110000" assembly="App_Web_oxqfoswa" type="ASP.storeitems_mangaexplorer_aspx">
+    <filedeps>
+        <filedep name="/storeitems/MangaExplorer.aspx" />
+        <filedep name="/SuMManga.Master" />
+    </filedeps>
+</preserve>

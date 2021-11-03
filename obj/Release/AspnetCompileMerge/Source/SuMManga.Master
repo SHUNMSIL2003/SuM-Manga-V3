@@ -34,8 +34,12 @@
          text, h1, h2, h3, h4, h5, h6, p {
             pointer-events: none;
          }
+        img {
+            pointer-events: none;
+        }
     </style>
     <script>  
+
         document.onkeypress = function (event) {
             event = (event || window.event);
             if (event.keyCode == 123) {
@@ -58,49 +62,46 @@
     <script>
         window.addEventListener('contextmenu', e => {
             e.preventDefault();
-        });/*
+        });
         (function () {
             setInterval(() => {
                 debugger;
             }, 100);
         })();
-    */</script>
+    </script>
     <script>
-
-        if (window.matchMedia('(display-mode: standalone)').matches) {
-
-        } else {
-            var installPromptEvent = null;
-
-            window.addEventListener("beforeinstallprompt", e => {
-
-                // Prevent Chrome 76 and later from showing the install prompt
-                e.preventDefault();
-
-                // Stash the event so it can be triggered later.
-                installPromptEvent = e;
-
-            });
-
-            const installPWA = async () => {
-                if (installPromptEvent != null) {
-                    installPromptEvent.prompt(); // Wait for the user to respond to the prompt
-                    const choiceResult = await installPromptEvent.userChoice;
-
-                    if (choiceResult.outcome === "accepted") {
-                        console.log("User accepted the PWA prompt");
-                    } else {
-                        closeAndroidPromptWithoutDownload();
-                        console.log("User dismissed the PWA prompt");
-                    }
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            deferredPrompt = e;
+            // Update UI notify the user they can install the PWA
+            showInstallPromotion();
+        });
+        buttonInstall.addEventListener('click', (e) => {
+            // Hide the app provided install promotion
+            hideMyInstallPromotion();
+            // Show the install prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
                 }
-            };
-        }
-
+            });
+        });
     </script>
 </head>
 <body id="page-top" style="overflow: hidden;height:100vh;">
     <style>
+        @media print {
+
+            html, body {
+                display: none; /* hide whole page */
+            }
+        }
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -150,7 +151,10 @@
                 <nav style="height:7vh;" class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars" style="border-color: rgb(104,64,217);color: rgb(104,64,217);"></i></button>
                         <div class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" id="LookUp" placeholder="Search for ..." runat="server"><button class="btn btn-primary py-0" id="SerchBTN0" runat="server" type="button" style="background: rgb(104,64,217);border-color: rgb(104,64,217);"><i class="fas fa-search"></i></button></div>
+                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" id="LookUp" placeholder="Search for ..." runat="server">
+                                <!-- <asp:ImageButton CssClass="btn btn-primary" ID="SIinput0" OnClick="LookUpSQL" runat="server" BackColor="Transparent" BorderColor="Transparent" ImageUrl="/assets/SuM_earch_Icon_W_x32.png" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-top-right-radius:8px;border-bottom-right-radius:8px;" /> -->
+                                <button class="btn btn-primary py-0" id="SerchBTN0" runat="server" type="button" style="background: rgb(104,64,217);border-color: rgb(104,64,217);"><i class="fas fa-search"></i></button>
+                            </div>
                         </div>
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
@@ -188,7 +192,7 @@
                                             </div>
                                         </a>
                                         </div><div style="background-color:#efebff;">
-                                        <a style="color:#6840D9" onclick="installPWA();"  class="dropdown-item text-center small" href="#">Install Now</a>
+                                        <a style="color:#6840D9" onclick="showInstallPromotion();"  class="dropdown-item text-center small">Install Now</a>
                                             </div>
                                     </div>
                                 </div>

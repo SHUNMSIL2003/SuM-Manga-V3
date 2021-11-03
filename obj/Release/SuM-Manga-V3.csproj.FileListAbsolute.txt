@@ -1,4 +1,3 @@
-D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.CoreCompileInputs.cache
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll.config
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.pdb
@@ -32,16 +31,12 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\vbc.exe.config
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\vbc.rsp
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\VBCSCompiler.exe
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\VBCSCompiler.exe.config
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.dll
-D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.pdb
-D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.AssemblyReference.cache
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Google.Apis.Auth.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Google.Apis.Auth.PlatformServices.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Google.Apis.Core.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Google.Apis.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Google.Apis.PlatformServices.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Newtonsoft.Json.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Google.Apis.pdb
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Google.Apis.xml
@@ -49,4 +44,9 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\Google.Apis.Auth.pdb
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Google.Apis.Auth.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Google.Apis.Core.pdb
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Google.Apis.Core.xml
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Newtonsoft.Json.xml
+D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.CoreCompileInputs.cache
+D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.pdb
+D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.AssemblyReference.cache
