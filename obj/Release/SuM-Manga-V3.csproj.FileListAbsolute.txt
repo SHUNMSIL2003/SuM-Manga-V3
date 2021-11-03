@@ -49,4 +49,4 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\Newtonsoft.Json.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.CoreCompileInputs.cache
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.pdb
-D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.AssemblyReference.cache
+D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.CopyComplete

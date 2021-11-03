@@ -5,6 +5,9 @@
         .forcecolor {
             color:#6840D9 !important;
         }
+        img {
+            pointer-events: none;
+        }
     </style>
     <div class="card shadow ForceMaxW">
             <div class="card-header py-3">

@@ -28,6 +28,9 @@
 
 <body class="bg-gradient-primary" style="background: rgb(104,64,217);">
     <style>
+        img {
+            pointer-events: none;
+        }
          * {
              -moz-user-select: none;
              -webkit-user-select: none;

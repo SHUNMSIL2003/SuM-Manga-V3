@@ -30,7 +30,7 @@
                                     <p style="color:#6840D9;" class="text-primary m-0 fw-bold forcecolor">Profile Pic</p>
                                 </div>
                                 <div class="card-body text-center shadow">
-                                    <img class="rounded-circle mb-3 mt-4" id="PFP" src="/assets/img/avatars/DeafultPFP.jpg" width="160" height="160" runat="server">
+                                    <img class="rounded-circle mb-3 mt-4 lazyload" id="PFP" src="/assets/img/avatars/DeafultPFP.jpg" width="160" height="160" runat="server">
 
                                     <div class="mb-3"><asp:Button CssClass="btn btn-primary btn-sm" ID="chpfp000" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="ChangePFP" Text="Save Pic" />
                                     <!--    <button class="btn btn-primary btn-sm" type="button" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server" onclick="ChangePFP" >Apply Change</button> --> </div>

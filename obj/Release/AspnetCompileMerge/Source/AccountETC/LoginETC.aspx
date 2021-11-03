@@ -35,6 +35,9 @@
              -webkit-user-select: none;
              user-select: none;
          }
+         img {
+            pointer-events: none;
+        }
          text, h1, h2, h3, h4, h5, h6, p {
             pointer-events: none;
          }

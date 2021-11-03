@@ -15,6 +15,9 @@
             -ms-overflow-style: none; /* IE and Edge */
             scrollbar-width: none; /* Firefox */
         }
+        img {
+            pointer-events: none;
+        }
     </style>
                     <div class="text-center mt-5">
                              <div class="error mx-auto" data-text="404">

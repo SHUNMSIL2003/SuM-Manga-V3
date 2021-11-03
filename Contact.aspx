@@ -17,6 +17,9 @@
             -ms-overflow-style: none; /* IE and Edge */
             scrollbar-width: none; /* Firefox */
         }
+        img {
+            pointer-events: none;
+        }
     </style>
     <div class="card shadow ForceMaxW">
                         <div class="card-header py-3">
