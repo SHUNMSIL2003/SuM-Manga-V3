@@ -143,6 +143,9 @@
     <Content Include="assets\js\theme.js" />
     <Content Include="assets\lazyload.js" />
     <Content Include="assets\PFP_SuM_UsersSupport.jpg" />
+    <Content Include="assets\SuM_earch_Icon.png" />
+    <Content Include="assets\SuM_earch_Icon_W.png" />
+    <Content Include="assets\SuM_earch_Icon_W_x32.png" />
     <Content Include="Brand_x258.png" />
     <Content Include="Contact.aspx" />
     <Content Include="Default.aspx" />
@@ -2701,6 +2704,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\index.ts" />

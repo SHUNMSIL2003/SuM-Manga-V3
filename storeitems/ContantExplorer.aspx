@@ -9,6 +9,9 @@
         .forcecolor {
             color:#6840D9 !important;
         }
+        h5 {
+            width:14vw !important;
+        }
     </style>
     <div class="card shadow ForceMaxW">
          <div class="card-header py-3">
@@ -16,17 +19,20 @@
            </div>
 <div class="card-body">
                   <br />
-                <h4 style="color:#6840D9;padding-left:8px;" id="MangaViewsAndChapters" runat="server"></h4>
-            <div style="height:fit-content;width:100%;display:inline;">
-                <img id="cover" runat="server" style="width:174px;height:260px;border-radius:16px;border:solid 2px #6840D9;" loading="lazy" src="#" />
-                
-                <h5 style="color:#1a171c;padding-left:8px;display:inline;width:calc(100%-180px);" id="MangaDis" runat="server"></h5>
-                
-        
+    <div style="background-color:#6840D9;border-color:#6840D9;border-radius:8px;padding:12px;width:100%;">
+                <h4 style="color:#ffffff;padding-left:8px;width:fit-content;" id="MangaViewsAndChapters" runat="server"></h4><br />
+        <div style="width:100%;">
+            <div style="height:fit-content;width:20vw;height:20vw; display:inline;">
+                <img id="cover" runat="server" style="width:20vw;height:30vw; max-width:174px;max-height:260px;border-radius:8px;" loading="lazy" src="#" />
+            </div>
+        <div style="display:inline;width:50vw;text-align:center;height:30vw;float:right;">
+                <p style="color:rgb(255 255 255 / 0.85);display:inline;" id="MangaDis" runat="server"></p>
+                </div>
             </div>
 </div>
 <br />
         <div style="display:inline;" id="TheMangaPhotos" runat="server"></div>
         <br /><br />
    </div>
+        </div>
 </asp:Content>

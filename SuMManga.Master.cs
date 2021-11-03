@@ -13,7 +13,7 @@ namespace SuM_Manga_V3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-                HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             if (GetUserInfoCookie != null)
             {
                 string PFPFDB = string.Empty;
@@ -76,145 +76,148 @@ namespace SuM_Manga_V3
         }
         protected void PayNoti()
         {
-            int ID = 0;
-            string D = DateTime.UtcNow.ToString("dd");
-            string M = DateTime.UtcNow.ToString("MM");
-            string Y = DateTime.UtcNow.ToString("yyyy");
-            HttpCookie GetUserInfoCookie2 = Request.Cookies["SuMCurrentUser"];
-            string UserName = GetUserInfoCookie2["UserName"].ToString();
-            int AlS = 0;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            if (!IsPostBack)
             {
-                sqlCon.Open();
-                string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName ";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@UserName", UserName);
-                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                int ID = 0;
+                string D = DateTime.UtcNow.ToString("dd");
+                string M = DateTime.UtcNow.ToString("MM");
+                string Y = DateTime.UtcNow.ToString("yyyy");
+                HttpCookie GetUserInfoCookie2 = Request.Cookies["SuMCurrentUser"];
+                string UserName = GetUserInfoCookie2["UserName"].ToString();
+                int AlS = 0;
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
                 {
-                    while (dr.Read())
+                    sqlCon.Open();
+                    string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName ";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserName", UserName);
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
                     {
-                        ID = Convert.ToInt32(dr[0]);
+                        while (dr.Read())
+                        {
+                            ID = Convert.ToInt32(dr[0]);
+                        }
                     }
+                    sqlCon.Close();
                 }
-                sqlCon.Close();
-            }
-            string RawAlert = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
-            {
-                sqlCon.Open();
-                string query = "SELECT SuMPaymentAlert FROM UsersAccountAlert WHERE UserID = @UserID ";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
-                sqlCmd.Parameters["@UserID"].Value = ID;
-                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                string RawAlert = string.Empty;
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
                 {
-                    while (dr.Read())
+                    sqlCon.Open();
+                    string query = "SELECT SuMPaymentAlert FROM UsersAccountAlert WHERE UserID = @UserID ";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UserID"].Value = ID;
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
                     {
-                        RawAlert = dr[0].ToString();
+                        while (dr.Read())
+                        {
+                            RawAlert = dr[0].ToString();
+                        }
                     }
+                    sqlCon.Close();
                 }
-                sqlCon.Close();
-            }
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
-            {
-                sqlCon.Open();
-                string query = "SELECT AlertsSeen FROM UsersAccountAlert WHERE UserID = @UserID ";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
-                sqlCmd.Parameters["@UserID"].Value = ID;
-                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
                 {
-                    while (dr.Read())
+                    sqlCon.Open();
+                    string query = "SELECT AlertsSeen FROM UsersAccountAlert WHERE UserID = @UserID ";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UserID"].Value = ID;
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
                     {
-                        AlS = Convert.ToInt32(dr[0]);
+                        while (dr.Read())
+                        {
+                            AlS = Convert.ToInt32(dr[0]);
+                        }
                     }
+                    sqlCon.Close();
                 }
-                sqlCon.Close();
-            }
-            //dataready now
-            payalertshow.Attributes["style"] = "height:fit-content;";
-            string month = string.Empty;
-            string[] months = { "January", "February", "March ", "April", "May ", "June ", "July", "August", "September", "October", "November", "December" };
-            //PayDate.InnerText = Month + " " + d.ToString() + Y; wrong
-            string SType = "";
-            string SD = string.Empty;
-            string SM = string.Empty;
-            string SY = string.Empty;
-            string SNotReadden = "";
-            char[] Alert = RawAlert.ToCharArray();
-            bool Q = false;
-            for (int i = 0; i < Alert.Length; i++)
-            {
-                if (Alert[i] == '?') { Q = true; }
-                if (Alert[i] != '#' && Q == false)
+                //dataready now
+                payalertshow.Attributes["style"] = "height:fit-content;";
+                string month = string.Empty;
+                string[] months = { "January", "February", "March ", "April", "May ", "June ", "July", "August", "September", "October", "November", "December" };
+                //PayDate.InnerText = Month + " " + d.ToString() + Y; wrong
+                string SType = "";
+                string SD = string.Empty;
+                string SM = string.Empty;
+                string SY = string.Empty;
+                string SNotReadden = "";
+                char[] Alert = RawAlert.ToCharArray();
+                bool Q = false;
+                for (int i = 0; i < Alert.Length; i++)
                 {
-                    SType += Alert[i];
-                }
-                if (Alert[i] == '?' && Alert[i + 1] == 'Y')
-                {
-                    SY = "" + Alert[i + 2] + Alert[i + 3] + Alert[i + 4] + Alert[i + 5];
-                }
-                if (Alert[i] == '?' && Alert[(i + 1)] == 'M')
-                {
-                    SM = (Alert[i + 2]).ToString() + (Alert[i + 3]).ToString();
-                }
-                if (Alert[i] == '?' && Alert[i + 1] == 'D')
-                {
-                    SD = "" + Alert[i + 2] + Alert[i + 3];
-                }
-                if (Alert[i] == '$') { SNotReadden = (Alert[i + 1]).ToString(); }
-            }//Remember to add red to seen in register
-            int pm = Convert.ToInt32(SM);
-            int fixedday = Convert.ToInt32(SD);
-            PayDate.InnerText = months[pm - 1] + " " + fixedday.ToString() + " " + SY;
-            bool timepassed = false;
-            if ((Convert.ToInt32(SY) - Convert.ToInt32(Y)) <= 0)
-            {
-                if ((Convert.ToInt32(SM) - Convert.ToInt32(M)) == 0)
-                {
-                    if ((Convert.ToInt32(SD) <= Convert.ToInt32(D)))
+                    if (Alert[i] == '?') { Q = true; }
+                    if (Alert[i] != '#' && Q == false)
                     {
-                        if (SType == "FreeT") { PayDisc.InnerText = "Enjoy your One Month FREE Traial :) "; }
-                        if (SType == "Paied") { PayDisc.InnerText = "Payment Confirmed, Enjoy SuM Manga :) "; }
+                        SType += Alert[i];
                     }
-                    else { timepassed = true; }
-                }
-                if ((Convert.ToInt32(M) - Convert.ToInt32(SM)) == 1)
-                {
-                    if ((Convert.ToInt32(SD) > Convert.ToInt32(D)))
+                    if (Alert[i] == '?' && Alert[i + 1] == 'Y')
                     {
-                        if (SType == "FreeT") { PayDisc.InnerText = "Enjoy your One Month FREE Traial :) "; }
-                        if (SType == "Paied") { PayDisc.InnerText = "Payment Confirmed, Enjoy SuM Manga :) "; }
+                        SY = "" + Alert[i + 2] + Alert[i + 3] + Alert[i + 4] + Alert[i + 5];
                     }
-                    else { timepassed = true; }
+                    if (Alert[i] == '?' && Alert[(i + 1)] == 'M')
+                    {
+                        SM = (Alert[i + 2]).ToString() + (Alert[i + 3]).ToString();
+                    }
+                    if (Alert[i] == '?' && Alert[i + 1] == 'D')
+                    {
+                        SD = "" + Alert[i + 2] + Alert[i + 3];
+                    }
+                    if (Alert[i] == '$') { SNotReadden = (Alert[i + 1]).ToString(); }
+                }//Remember to add red to seen in register
+                int pm = Convert.ToInt32(SM);
+                int fixedday = Convert.ToInt32(SD);
+                PayDate.InnerText = months[pm - 1] + " " + fixedday.ToString() + " " + SY;
+                bool timepassed = false;
+                if ((Convert.ToInt32(SY) - Convert.ToInt32(Y)) <= 0)
+                {
+                    if ((Convert.ToInt32(SM) - Convert.ToInt32(M)) == 0)
+                    {
+                        if ((Convert.ToInt32(SD) <= Convert.ToInt32(D)))
+                        {
+                            if (SType == "FreeT") { PayDisc.InnerText = "Enjoy your One Month FREE Traial :) "; }
+                            if (SType == "Paied") { PayDisc.InnerText = "Payment Confirmed, Enjoy SuM Manga :) "; }
+                        }
+                        else { timepassed = true; }
+                    }
+                    if ((Convert.ToInt32(M) - Convert.ToInt32(SM)) == 1)
+                    {
+                        if ((Convert.ToInt32(SD) > Convert.ToInt32(D)))
+                        {
+                            if (SType == "FreeT") { PayDisc.InnerText = "Enjoy your One Month FREE Traial :) "; }
+                            if (SType == "Paied") { PayDisc.InnerText = "Payment Confirmed, Enjoy SuM Manga :) "; }
+                        }
+                        else { timepassed = true; }
+                    }
+                    if ((Convert.ToInt32(SM) - Convert.ToInt32(M)) != 0 && (Convert.ToInt32(M) - Convert.ToInt32(SM)) != 1) { timepassed = true; }
                 }
-                if ((Convert.ToInt32(SM) - Convert.ToInt32(M)) != 0 && (Convert.ToInt32(M) - Convert.ToInt32(SM)) != 1) { timepassed = true; }
+                else { timepassed = true; }
+                if (timepassed == true)
+                {
+                    if (SType == "FreeT") { PayDisc.InnerText = "Your One Month FREE Traial has endded,Create a subscription to contenue. "; }
+                    if (SType == "Paied") { PayDisc.InnerText = "Your subscription hase expired!, Renew it contenue."; }
+                    HttpCookie userInfo = new HttpCookie("SuMCurrentUser");  //Request.Cookies["userInfo"].Value;  
+                    userInfo["UserName"] = UserName;
+                    userInfo["SubValid"] = "N";
+                    //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
+                    userInfo.Expires = DateTime.MaxValue;
+                    HttpContext.Current.Response.Cookies.Add(userInfo);
+                }
+                else
+                {
+                    HttpCookie userInfo = new HttpCookie("SuMCurrentUser");  //Request.Cookies["userInfo"].Value;  
+                    userInfo["UserName"] = UserName;
+                    userInfo["SubValid"] = "N";
+                }
+                /*SuMAppAlert.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(SuMAppAlert, string.Empty));
+                if (IsPostBack && Request["__EVENTTARGET"] == SuMAppAlert.UniqueID)
+                {
+                    MarkReadDone(ID, RawAlert, SuMAppAlert, EventArgs.Empty);
+                }*/
+                // if (SType == "FreeT") { PayDisc.InnerText = "Enjoy your One Month FREE Traial :) "; }
+                // if (SType == "Paied") { PayDisc.InnerText = "Payment Confirmed, Enjoy SuM Manga :) "; }
             }
-            else { timepassed = true; }
-            if (timepassed == true)
-            {
-                if (SType == "FreeT") { PayDisc.InnerText = "Your One Month FREE Traial has endded,Create a subscription to contenue. "; }
-                if (SType == "Paied") { PayDisc.InnerText = "Your subscription hase expired!, Renew it contenue."; }
-                HttpCookie userInfo = new HttpCookie("SuMCurrentUser");  //Request.Cookies["userInfo"].Value;  
-                userInfo["UserName"] = UserName;
-                userInfo["SubValid"] = "N";
-                //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
-                userInfo.Expires = DateTime.MaxValue;
-                HttpContext.Current.Response.Cookies.Add(userInfo);
-            }
-            else
-            {
-                HttpCookie userInfo = new HttpCookie("SuMCurrentUser");  //Request.Cookies["userInfo"].Value;  
-                userInfo["UserName"] = UserName;
-                userInfo["SubValid"] = "N";
-            }
-            /*SuMAppAlert.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(SuMAppAlert, string.Empty));
-            if (IsPostBack && Request["__EVENTTARGET"] == SuMAppAlert.UniqueID)
-            {
-                MarkReadDone(ID, RawAlert, SuMAppAlert, EventArgs.Empty);
-            }*/
-            // if (SType == "FreeT") { PayDisc.InnerText = "Enjoy your One Month FREE Traial :) "; }
-            // if (SType == "Paied") { PayDisc.InnerText = "Payment Confirmed, Enjoy SuM Manga :) "; }
         }
         private void SuMAppAlertsStartsS(object sender, EventArgs e) 
         {
@@ -308,9 +311,10 @@ namespace SuM_Manga_V3
         protected void LookUpSQL(object sender, EventArgs e) 
         {
             string Wanted = string.Empty;
-            if (LookUp.Value.ToString() != null) { Wanted = LookUp.Value.ToString(); }
+            if (string.IsNullOrWhiteSpace(LookUp.Value) == false) { Wanted = LookUp.Value.ToString(); }
+            if (string.IsNullOrWhiteSpace(LookUpMobile.Value) == false) { Wanted = LookUpMobile.Value.ToString(); }
             //if (LookUpMobile.Value.ToString() != null) { Wanted = LookUpMobile.Value.ToString(); }
-            if (Wanted != null)
+            if (Wanted != null && Wanted != " " && Wanted != "")
             {
                 //Debig202312.InnerHtml = "";
                 /*string savecurhelp = string.Empty;
@@ -324,7 +328,7 @@ namespace SuM_Manga_V3
                         savecurhelp = "";
                     }
                 }*/
-                Debig202312.InnerHtml = GetMangaFromSQL(Wanted);
+                Debig202312.InnerHtml = GetMangaFromSQL(Wanted) + "<p>OK</p>";
                 mc.InnerHtml = "";
                 //GetMangaFromSQL(Wanted);
             }
@@ -367,11 +371,12 @@ namespace SuM_Manga_V3
                 string queryFIND = "SELECT MangaID FROM SuMManga WHERE MangaName LIKE @Wanted ";
                 SqlCommand sqlCmdFIND = new SqlCommand(queryFIND, sqlCon);
                 sqlCmdFIND.Parameters.AddWithValue("@Wanted", Wanted);
-
-                if (sqlCmdFIND.ExecuteScalar() != null)
+                var FID = sqlCmdFIND.ExecuteScalar();
+                if (FID != null)
                 {
-                    var X = sqlCmdFIND.ExecuteScalar(); //ExecuteNonQuery();
-                    int i = Convert.ToInt32(X);
+                    //Debig202312.InnerHtml = FID.ToString();
+                    //var X = sqlCmdFIND.ExecuteScalar(); //ExecuteNonQuery();
+                    int i = Convert.ToInt32(FID);
 
                     string query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
                     SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
@@ -384,7 +389,7 @@ namespace SuM_Manga_V3
                     sqlCmd = new SqlCommand(query, sqlCon);
                     sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                     sqlCmd.Parameters["@MangaID"].Value = i;
-                    X = sqlCmd.ExecuteScalar();
+                    var X = sqlCmd.ExecuteScalar();
                     string MangaInfo = X.ToString();
 
                     query = "SELECT MangaViews FROM SuMManga WHERE MangaID = @MangaID";
@@ -407,6 +412,12 @@ namespace SuM_Manga_V3
                     sqlCmd.Parameters["@MangaID"].Value = i;
                     // X = sqlCmd.ExecuteScalar();
                     string MangaCoverLink = sqlCmd.ExecuteScalar().ToString();
+                    query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = i;
+                    X = sqlCmd.ExecuteScalar();
+                    MangaName = X.ToString();
                     return ContantShow(MangaName, MangaInfo, MangaViews, MangaCoverLink, CExplorerLink, ChaptersNum, i);
 
 

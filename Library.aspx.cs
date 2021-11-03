@@ -14,16 +14,19 @@ namespace SuM_Manga_V3
         int loadt = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-            if (GetUserInfoCookie == null)
+            if (!IsPostBack)
             {
-                Response.Redirect("~/AccountETC/LoginETC.aspx");
-            }
-            else
-            {
-                UserNameforshow.InnerText = GetUserInfoCookie["UserName"].ToString();
-                MangasAvalibleDiv.InnerHtml = "";
-                ContantLoad(1);
+                HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+                if (GetUserInfoCookie == null)
+                {
+                    Response.Redirect("~/AccountETC/LoginETC.aspx");
+                }
+                else
+                {
+                    UserNameforshow.InnerText = GetUserInfoCookie["UserName"].ToString();
+                    MangasAvalibleDiv.InnerHtml = "";
+                    ContantLoad(1);
+                }
             }
         }
         protected void LoadMore(object sender, EventArgs e)
