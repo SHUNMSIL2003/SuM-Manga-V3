@@ -17,13 +17,13 @@
 <div class="card-body">
                   <br />
     <div style="background-color:#6840D9;border-color:#6840D9;border-radius:8px;padding:8px;width:auto;margin-left:-12px;margin-right:-12px;height:fit-content;overflow: hidden;">
-                <h6 style="color:#ffffff;padding-left:8px;width:fit-content;" id="MangaViewsAndChapters" runat="server"></h6>
+                <h6 style="color:#ffffff;padding-left:8px;width:fit-content;" id="MangaViewsAndChapters" runat="server"></h6><br />
         <div style="width:100%;height:auto;vertical-align:middle;align-items:center;padding:2px;">
              <div style="height:fit-content;width:22vw;height:auto; display:inline-block;max-width:180px;float:left;vertical-align:middle;">
                 <img class="lazyload" id="cover" runat="server" style="width:22vw;height:33vw; max-width:186px;max-height:279px;border-radius:8px;vertical-align:middle;align-items:center;display:block;margin-bottom:8px;" loading="lazy" src="#" />
              </div>
-        <div style="display:inline-block;width:54vw;text-align:center;height:fit-content;max-width:900px;float:right;">
-                <p style="color:rgb(255 255 255 / 0.85);display:block;" id="MangaDis" runat="server"></p>
+        <div style="display:inline-block;width:55vw;text-align:center;height:fit-content;max-width:880px !important;float:right;text-align:left !important;">
+                <p style="color:rgb(255 255 255 / 0.85);margin-left:8px !important;" id="MangaDis" runat="server"></p>
                 </div>
             </div>
 </div>

@@ -21,6 +21,9 @@
             -ms-overflow-style: none; /* IE and Edge */
             scrollbar-width: none; /* Firefox */
         }
+        img {
+            pointer-events:all !important;
+        }
     </style>
                     <h3 style="color:#6840D9;display:inline;" class="text-dark mb-4"><p class="forcecolor" style="display:inline;" id="UserNameForShow0" runat="server"></p>'s Profile</h3><br /><br />
                     <div class="row mb-3">

@@ -39,12 +39,16 @@ namespace SuM_Manga_V3.storeitems
                         //string sendhtmlforchimges = "";
                         string deafultstartitems = "/storeitems/";
                         string slash0 = "/";
-                        string imgstyle = "width:92%;max-width:800px;";
+                        string imgstyle = "width:100%;max-width:800px;";
+                        string imgstyle0 = "width:100%;max-width:800px;border-top-left-radius:12px;border-top-right-radius:12px;";
+                        string imgstyle2 = "width:100%;max-width:800px;border-bottom-right-radius:12px;border-bottom-left-radius:12px;";
                         //string x = "lazy";
                         for (int i = 0; i < filePaths.Length; i++)
                         {
                             string filename = System.IO.Path.GetFileName(filePaths[i]);
-                            TheMangaPhotos.InnerHtml += "<img class=" + "lazyload" + " style=" + imgstyle + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " /><br/>";
+                            if (i == 0) { TheMangaPhotos.InnerHtml += "<img class=" + "lazyload" + " style=" + imgstyle0 + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " /><br/>"; }
+                            if (i != 0 && i != (filePaths.Length - 1)) { TheMangaPhotos.InnerHtml += "<img class=" + "lazyload" + " style=" + imgstyle + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " /><br/>"; }
+                            if (i == (filePaths.Length - 1)) { TheMangaPhotos.InnerHtml += "<img class=" + "lazyload" + " style=" + imgstyle2 + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " /><br/>"; }
                         }
                         //string beforerelasecode = "";
                         //beforerelasecode += sendhtmlforchimges;
@@ -87,7 +91,7 @@ namespace SuM_Manga_V3.storeitems
                         if (System.IO.Directory.Exists(checkifitexsists) == true)
                         {
                             //"<a class="+"btn btn-primary btn-sm"+" href=" "> Next Chapter  &raquo;</a>"
-                            string sendNextChapter = "<a class=" + "btn btn-primary btn-sm" + " href=" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "> Next Chapter  &raquo;</a>";
+                            string sendNextChapter = "<a style="+ "color:#6840D9 !important;" + " class=" + "btn btn-primary btn-sm" + " href=" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "> Next Chapter  &raquo;</a>";
                             NextChapter.InnerHtml = sendNextChapter;
                         }
                         else

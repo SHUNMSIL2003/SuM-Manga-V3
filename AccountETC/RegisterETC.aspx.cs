@@ -41,9 +41,9 @@ namespace SuM_Manga_V3.AccountETC
             bool EmailExsists = true;
             if (PasswordR.Value == PasswordRc.Value) { PasswordsMatch = true; }
             else { PasswordsMatch = false; }
-            if (XExsisits("UserName", UserNameR.Value) == true) { UserNameExsists = true; }
+            if (XExsisits("UserName", UserNameR.Value.ToString()) == true) { UserNameExsists = true; }
             else { UserNameExsists = false; }
-            if (XExsisits("Email", EmailR.Value) == true) { EmailExsists = true; }
+            if (XExsisits("Email", EmailR.Value.ToString()) == true) { EmailExsists = true; }
             else { EmailExsists = false; }
             bool passwordcheckok = PasswordIsOk(PasswordR.Value);
             string DPFP = "~/AccountETC/DeafultPFP.jpg";

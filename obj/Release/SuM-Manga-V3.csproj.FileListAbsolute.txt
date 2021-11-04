@@ -49,4 +49,14 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\Newtonsoft.Json.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.CoreCompileInputs.cache
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.pdb
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\AspNet.ScriptManager.jQuery.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Antlr3.Runtime.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Antlr3.Runtime.pdb
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.ScriptManager.MSAjax.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.ScriptManager.WebForms.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Web.Infrastructure.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Optimization.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\WebGrease.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Optimization.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.CopyComplete
