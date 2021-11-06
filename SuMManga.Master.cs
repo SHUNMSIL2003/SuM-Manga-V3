@@ -34,6 +34,7 @@ namespace SuM_Manga_V3
                     }
                 }
                 UserPFP.Attributes["src"] = ResolveUrl(PFPFDB);
+                if (GetUserInfoCookie["CreatorName"] == null) { craetoroption.Attributes["style"] = "display:none;"; }
                 SignOption.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(SignOption, string.Empty));
                 if (IsPostBack && Request["__EVENTTARGET"] == SignOption.UniqueID)
                 {

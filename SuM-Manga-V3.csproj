@@ -115,11 +115,14 @@
   <ItemGroup>
     <Content Include="404.aspx" />
     <Content Include="About.aspx" />
+    <Content Include="AccountETC\DarkMoon.svg" />
     <Content Include="AccountETC\Email.html" />
     <Content Include="AccountETC\LoginETC.aspx" />
+    <Content Include="AccountETC\Noti.svg" />
     <Content Include="AccountETC\PassRecovryETC.aspx" />
     <Content Include="AccountETC\RegisterETC.aspx" />
     <Content Include="AccountETC\SuMAccount.aspx" />
+    <Content Include="AccountETC\SuMSettings.aspx" />
     <Content Include="AccountETC\UsersUploads\DeafultPFP.jpg" />
     <Content Include="AccountETC\EmailPassword.html" />
     <Content Include="AccountETC\ValidateUsers.aspx" />
@@ -2836,6 +2839,9 @@
     <Content Include="storeitems\UramichiOniisan\UramichiOniisan.jpg" />
     <Content Include="storeitems\view.png" />
     <Content Include="SuM-32.ico" />
+    <Content Include="SuMAdmin\AdminControlPanel.aspx" />
+    <Content Include="SuMAdmin\AdminLogin.aspx" />
+    <Content Include="SuMCreator\CreatorPanel.aspx" />
     <Content Include="SuMSiteIconFlexable.ico" />
     <Content Include="UserAgreementBD.aspx" />
     <Content Include="Web.config" />
@@ -2883,6 +2889,13 @@
     <Compile Include="AccountETC\SuMAccount.aspx.designer.cs">
       <DependentUpon>SuMAccount.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AccountETC\SuMSettings.aspx.cs">
+      <DependentUpon>SuMSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccountETC\SuMSettings.aspx.designer.cs">
+      <DependentUpon>SuMSettings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AccountETC\ValidateUsers.aspx.cs">
       <DependentUpon>ValidateUsers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2925,6 +2938,27 @@
     </Compile>
     <Compile Include="storeitems\MangaExplorer.aspx.designer.cs">
       <DependentUpon>MangaExplorer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuMAdmin\AdminControlPanel.aspx.cs">
+      <DependentUpon>AdminControlPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuMAdmin\AdminControlPanel.aspx.designer.cs">
+      <DependentUpon>AdminControlPanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuMAdmin\AdminLogin.aspx.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuMAdmin\AdminLogin.aspx.designer.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuMCreator\CreatorPanel.aspx.cs">
+      <DependentUpon>CreatorPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuMCreator\CreatorPanel.aspx.designer.cs">
+      <DependentUpon>CreatorPanel.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuMManga.Master.cs">
       <DependentUpon>SuMManga.Master</DependentUpon>
@@ -3001,6 +3035,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SuMCreator\CreatorDrafts\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="3" virtualPath="/SuMAdmin/AdminLogin.aspx" hash="8ef922025" filehash="fffff57eabfb5516" flags="110000" assembly="App_Web_y34jm3ag" type="ASP.sumadmin_adminlogin_aspx">
+    <filedeps>
+        <filedep name="/SuMAdmin/AdminLogin.aspx" />
+    </filedeps>
+</preserve>

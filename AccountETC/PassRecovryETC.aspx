@@ -77,13 +77,13 @@
     <script>
         window.addEventListener('contextmenu', e => {
             e.preventDefault();
-        });/*
+        });
         (function () {
             setInterval(() => {
                 debugger;
             }, 100);
         })();
-    */</script>
+    </script>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-12 col-xl-10">

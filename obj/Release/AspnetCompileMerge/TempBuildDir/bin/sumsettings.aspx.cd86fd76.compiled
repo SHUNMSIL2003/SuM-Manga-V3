@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="3" virtualPath="/AccountETC/SuMSettings.aspx" hash="8ef922025" filehash="797bf7217acc4a5" flags="110000" assembly="App_Web_ejye3y5k" type="ASP.accountetc_sumsettings_aspx">
+    <filedeps>
+        <filedep name="/AccountETC/SuMSettings.aspx" />
+        <filedep name="/SuMManga.Master" />
+    </filedeps>
+</preserve>

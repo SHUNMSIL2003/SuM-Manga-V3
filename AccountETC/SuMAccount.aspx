@@ -107,7 +107,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="ChangeEmail" Text="Change Email" />
+                                                    <asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" OnClick="ChangeEmail" Text="Change Email" />
                                                 </div>
                                             </div>
                                         </div>
@@ -150,7 +150,7 @@
                                                         <div class="mb-3"><label class="form-label" for="country"><strong>Country (optional!)</strong></label><input class="form-control" type="text" id="CountryPE" placeholder="Israel" name="country" runat="server"></div>
                                                     </div>
                                                 </div>
-                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server">Save&nbsp;Settings</button></div>
+                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" runat="server">Save&nbsp;Settings</button></div>
                                             </div>
                                         </div>
                                     </div>

@@ -41,7 +41,7 @@ namespace SuM_Manga_V3.AccountETC
             using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
             {
                 sqlCon.Open();
-                string query = "SELECT COUNT(1) FROM SuMUsersAccounts WHERE UserName = @UserName AND Password = @Password ";
+                string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName AND Password = @Password ";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                 string username = UserNameL.Value; //Request.QueryString["UserNameL"].ToString();
                 sqlCmd.Parameters.AddWithValue("@UserName", username);
@@ -67,9 +67,22 @@ namespace SuM_Manga_V3.AccountETC
                     }
                     else
                     {
-                        SaveCookie(username);
-                        sqlCon.Close();
-                        HttpContext.Current.Response.Redirect("~/Default.aspx");
+                        string qc = "SELECT CreatorName FROM SuMCreators WHERE UserName = @UserName";
+                        SqlCommand cv = new SqlCommand(qc, sqlCon);
+                        cv.Parameters.AddWithValue("@UserName", username);
+                        var ituac = cv.ExecuteScalar();
+                        if (ituac == null)
+                        {
+                            SaveCookie(username);
+                            sqlCon.Close();
+                            HttpContext.Current.Response.Redirect("~/Default.aspx");
+                        }
+                        else
+                        {
+                            SaveSCCookie(username, ituac.ToString());
+                            sqlCon.Close();
+                            HttpContext.Current.Response.Redirect("~/Default.aspx");
+                        }
                     }
                 }
                 else
@@ -96,10 +109,20 @@ namespace SuM_Manga_V3.AccountETC
             }
             return hash.ToString();
         }
-        static void SaveCookie(string UserName)
+        protected static void SaveCookie(string UserName)
         {
             HttpCookie userInfo = new HttpCookie("SuMCurrentUser");  //Request.Cookies["userInfo"].Value;  
             userInfo["UserName"] = UserName;
+            //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
+            userInfo.Expires = DateTime.MaxValue;
+            HttpContext.Current.Response.Cookies.Add(userInfo);
+            HttpContext.Current.Response.Redirect("/AccountETC/SuMAccount.aspx");
+        }
+        protected static void SaveSCCookie(string UserName,string craetorname)
+        {
+            HttpCookie userInfo = new HttpCookie("SuMCurrentUser");  //Request.Cookies["userInfo"].Value;  
+            userInfo["UserName"] = UserName;
+            userInfo["CreatorName"] = craetorname;
             //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);

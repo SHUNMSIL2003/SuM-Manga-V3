@@ -76,13 +76,13 @@
     <script>
         window.addEventListener('contextmenu', e => {
             e.preventDefault();
-        });/*
+        });
         (function () {
             setInterval(() => {
                 debugger;
             }, 100);
         })();
-    */</script>
+    </script>
     <form id="SuM" method="post" runat="server">
     <div class="container">
         <div class="row justify-content-center">
