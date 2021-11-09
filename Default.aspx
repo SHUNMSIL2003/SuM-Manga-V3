@@ -41,11 +41,7 @@
                             <a id="MPB" class="btn btn-primary btn-lg" href="/AccountETC/LoginETC.aspx" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;margin-bottom:12px;margin-right:12px;" data-bss-hover-animate="pulse" runat="server">Login Or Sign Up</a>
                         </div>
                     </div>
-    <br />
-                    <div class="card shadow ForceMaxW">
-                        <!-- <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold forcecolor">SuM - More</p>
-                        </div> -->
+                    <div class="card" style="width:100% !important;">
                         <div class="card-body"><br />
     <div class="row">
         <div class="col-md-4">

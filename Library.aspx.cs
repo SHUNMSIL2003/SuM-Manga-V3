@@ -11,6 +11,11 @@ namespace SuM_Manga_V3
 {
     public partial class Library : System.Web.UI.Page
     {
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Request.Browser.IsMobileDevice)
+                MasterPageFile = "~/SuMManga.Mobile.Master";
+        }
         //int loadt = 1;
         protected void Page_Load(object sender, EventArgs e)
         {

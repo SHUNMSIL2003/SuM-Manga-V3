@@ -12,6 +12,11 @@ namespace SuM_Manga_V3.AccountETC
 {
     public partial class SuMAccount : System.Web.UI.Page
     {
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Request.Browser.IsMobileDevice)
+                MasterPageFile = "~/SuMManga.Mobile.Master";
+        }
         public string currSignetsure = string.Empty;
         public string currEmail = string.Empty;
         protected void Page_Load(object sender, EventArgs e)

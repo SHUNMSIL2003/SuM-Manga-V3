@@ -193,6 +193,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Explore.aspx" />
     <Content Include="google139ca1b85e8d81e5.html" />
     <Content Include="google202f75c3bd92d10f.html" />
     <Content Include="imghover\.gitignore" />
@@ -2843,6 +2844,10 @@
     <Content Include="SuMAdmin\AdminLogin.aspx" />
     <Content Include="SuMCreator\CreatorPanel.aspx" />
     <Content Include="SuMSiteIconFlexable.ico" />
+    <Content Include="svg\Explore.svg" />
+    <Content Include="svg\InBox.svg" />
+    <Content Include="svg\Library.svg" />
+    <Content Include="svg\MostSeen.svg" />
     <Content Include="UserAgreementBD.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -2917,6 +2922,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Explore.aspx.cs">
+      <DependentUpon>Explore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Explore.aspx.designer.cs">
+      <DependentUpon>Explore.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Library.aspx.cs">
       <DependentUpon>Library.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2966,6 +2978,13 @@
     </Compile>
     <Compile Include="SuMManga.Master.designer.cs">
       <DependentUpon>SuMManga.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SuMManga.Mobile.Master.cs">
+      <DependentUpon>SuMManga.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuMManga.Mobile.Master.designer.cs">
+      <DependentUpon>SuMManga.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="UserAgreementBD.aspx.cs">
       <DependentUpon>UserAgreementBD.aspx</DependentUpon>
@@ -3023,6 +3042,7 @@
     <None Include="Properties\PublishProfiles\SuM-Manga - Web Deploy.pubxml" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
+    <Content Include="SuMManga.Mobile.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
