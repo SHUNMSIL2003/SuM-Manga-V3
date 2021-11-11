@@ -165,6 +165,7 @@
     <Content Include="assets\img\SuM-32.png" />
     <Content Include="assets\img\SuM-512.png" />
     <Content Include="assets\img\SuMSiteBrand.jpg" />
+    <Content Include="assets\img\SuM_TBrabd_x92.png" />
     <Content Include="assets\js\bs-init.js" />
     <Content Include="assets\js\chart.min.js" />
     <Content Include="assets\js\jquery.min.js" />
@@ -193,6 +194,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Default.aspx" />
+    <Content Include="dragscroll.js" />
     <Content Include="Explore.aspx" />
     <Content Include="google139ca1b85e8d81e5.html" />
     <Content Include="google202f75c3bd92d10f.html" />
@@ -232,6 +234,7 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="assets\VarelaRound.ttf" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -263,6 +266,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Search.aspx" />
     <Content Include="service-worker.js" />
     <Content Include="storeitems\Anohana\Anohana.jpg" />
     <Content Include="storeitems\Anohana\ch0001\ano_hi_mita_hana_no_namae_o_bokutachi_wa_mada_shiranai_1_01.jpg" />
@@ -2844,10 +2848,17 @@
     <Content Include="SuMAdmin\AdminLogin.aspx" />
     <Content Include="SuMCreator\CreatorPanel.aspx" />
     <Content Include="SuMSiteIconFlexable.ico" />
+    <Content Include="svg\arrowback.svg" />
+    <Content Include="svg\bookmarks.svg" />
     <Content Include="svg\Explore.svg" />
     <Content Include="svg\InBox.svg" />
     <Content Include="svg\Library.svg" />
+    <Content Include="svg\librarybooks.svg" />
+    <Content Include="svg\manageaccount.svg" />
     <Content Include="svg\MostSeen.svg" />
+    <Content Include="svg\Search.svg" />
+    <Content Include="svg\settings.svg" />
+    <Content Include="svg\SuM.svg" />
     <Content Include="UserAgreementBD.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -2937,6 +2948,13 @@
       <DependentUpon>Library.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
     <Compile Include="storeitems\ContantExplorer.aspx.cs">
       <DependentUpon>ContantExplorer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3057,6 +3075,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="SlideShowCards\" />
     <Folder Include="SuMCreator\CreatorDrafts\" />
   </ItemGroup>
   <PropertyGroup>

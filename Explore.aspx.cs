@@ -4,14 +4,232 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace SuM_Manga_V3
 {
     public partial class Explore : System.Web.UI.Page
     {
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Request.Browser.IsMobileDevice)
+                MasterPageFile = "~/SuMManga.Mobile.Master";
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Request.Browser.IsMobileDevice)
+                {
+                    ShowCardsCNew();
+                }
+                else { cardscontain.Attributes["style"] = "display:none"; }
+                //
+                //X.InnerHtml=GetFromGarna(X)
+                //
+                Action.InnerHtml = GetFromGarna("Action");// Comedy
+                Fantasy.InnerHtml = GetFromGarna("Fantasy");
+                Comedy.InnerHtml = GetFromGarna("Comedy");
+                Supernatural.InnerHtml = GetFromGarna("Supernatural");
+                SciFi.InnerHtml = GetFromGarna("Sci-Fi");
+                Drama.InnerHtml = GetFromGarna("Drama");
+                Mystery.InnerHtml = GetFromGarna("Mystery");
+                SliceofLife.InnerHtml = GetFromGarna("Slice of Life");
+                //.InnerHtml = GetFromGarna("");
+                //.InnerHtml = GetFromGarna("");
+                //.InnerHtml = GetFromGarna("");
+                //.InnerHtml = GetFromGarna("");
+                //.InnerHtml = GetFromGarna("");
+                //.InnerHtml = GetFromGarna("");
+                //.InnerHtml = GetFromGarna("");
+                //.InnerHtml = GetFromGarna("");
+            }
+        }
+        protected void ShowCardsCNew()
+        {
+            string ResultS = " ";
+            int RN = 0;
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT MAX(MangaID) FROM SuMManga";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                var jdbvg = sqlCmd00.ExecuteScalar();
+                if (jdbvg != null)
+                {
+                    int maxidf = Convert.ToInt32(jdbvg);
+                    int vet = 0;
+                    while (vet < 7 && maxidf > 0)
+                    {
+                        string Name = string.Empty;
+                        string Cover = string.Empty;
+                        string Disc = string.Empty;
+                        string CExplorerLink = string.Empty;
+                        string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
+                        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                        sqlCmd.Parameters["@MangaID"].Value = maxidf;
+                        var un = sqlCmd.ExecuteScalar();
+                        if (un != null)
+                        {
+                            Name = un.ToString();
+                            query = "SELECT MangaInfo FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
+                            un = sqlCmd.ExecuteScalar();
+                            Disc = un.ToString();
+                            query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
+                            un = sqlCmd.ExecuteScalar();
+                            CExplorerLink = un.ToString();
+                            query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
+                            un = sqlCmd.ExecuteScalar();
+                            int ChaptersNum = Convert.ToInt32(un);
+                            CExplorerLink += "&CN=" + ChaptersNum.ToString() + "&VC=" + maxidf.ToString();
+                            query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
+                            // X = sqlCmd.ExecuteScalar();
+                            un = sqlCmd.ExecuteScalar();
+                            Cover = un.ToString();
+                            ResultS += BuildCard(Cover, Name, Disc, CExplorerLink);
+                            vet++;
+                            RN = vet;
+                            maxidf = maxidf - 1;
+                        }
+                    }
+                    cardstoshow.InnerHtml = ResultS;
+                    cardsdots.InnerHtml = " ";
+                    for (int i = 0; i < RN; i++) { cardsdots.InnerHtml += "<span class=" + "dot" + "></span> "; }
+                }
+                sqlCon.Close();
+            }
+        }
+        protected string GetFromGarna(string G)
+        {
+            int RN = 0;
+            string Result = string.Empty;
+            string Garna = string.Empty;
+            if (G == "Action") { Garna = "Action"; }
+            if (G == "Fantasy") { Garna = "Fantasy"; }
+            if (G == "Comedy") { Garna = "Comedy"; }
+            if (G == "Romance") { Garna = "Romance"; }
+            if (G == "BL") { Garna = "BL"; }
+            if (G == "GL") { Garna = "GL"; }
+            if (G == "Drama") { Garna = "Drama"; }
+            if (G == "Mystery") { Garna = "Mystery"; }
+            if (G == "Slice of Life") { Garna = "SliceofLife"; }
+            if (G == "Supernatural") { Garna = "Supernatural"; }
+            if (G == "Sport") { Garna = "Sport"; }
+            if (G == "Sci-Fi") { Garna = "SciFi"; }
+            if (string.IsNullOrEmpty(G) == false)
+            {
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+                {
+                    sqlCon.Open();
+                    string qwi = "SELECT MAX(ID) FROM " + Garna + " ";
+                    SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                    var jdbvg = sqlCmd00.ExecuteScalar();
+                    //int lt = Convert.ToInt32(StoreV.InnerText.ToString());
+                    if (jdbvg != null)
+                    {
+                        int maxidf = Convert.ToInt32(jdbvg);
+                        int vet = 0;
+                        while (vet < 7 && maxidf > 0)
+                        {
+                            string Name = string.Empty;
+                            string Cover = string.Empty;
+                            string Disc = string.Empty;
+                            string CExplorerLink = string.Empty;
+                            string query = "SELECT MangaID FROM " + Garna + " WHERE ID = @ID";
+                            SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@ID", SqlDbType.Int);
+                            sqlCmd.Parameters["@ID"].Value = maxidf;
+                            var un = sqlCmd.ExecuteScalar();
+                            if (un != null)
+                            {
+                                int MangaIDF = Convert.ToInt32(un);
+                                query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
+                                sqlCmd = new SqlCommand(query, sqlCon);
+                                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                                sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                                un = sqlCmd.ExecuteScalar();
+                                Name = un.ToString();
+                                query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
+                                sqlCmd = new SqlCommand(query, sqlCon);
+                                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                                sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                                un = sqlCmd.ExecuteScalar();
+                                CExplorerLink = un.ToString();
+                                query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
+                                sqlCmd = new SqlCommand(query, sqlCon);
+                                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                                sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                                un = sqlCmd.ExecuteScalar();
+                                int ChaptersNum = Convert.ToInt32(un);
+                                CExplorerLink += "&CN=" + ChaptersNum.ToString() + "&VC=" + MangaIDF.ToString();
+                                query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
+                                sqlCmd = new SqlCommand(query, sqlCon);
+                                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                                sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                                // X = sqlCmd.ExecuteScalar();
+                                un = sqlCmd.ExecuteScalar();
+                                Cover = un.ToString();
+                                Result += BuildGCard(Cover, Name, G, CExplorerLink);
+                                vet++;
+                                RN = vet;
+                                maxidf = maxidf - 1;
+                            }
+                        }
+                    }
+                    else { Result = " "; }
+                    sqlCon.Close();
+                }
+            }
+            else { Result = " "; }
+            return Result;
+        }
+        protected string BuildCard(string CardBG,string cardtitle,string discr0,string Link) 
+        {
+            string discr = string.Empty;
+            if (discr0.Length > 280)
+            {
+                discr = discr0.Substring(0, 280) + "...";
+            }
+            else { discr = discr0; }
+            //string cardtitle = string.Empty;
+            string h1style = "float:left;margin-top:8px;margin-left:8px;color:#ffffff;font-size:160%;display:block;";
+            string divclass = "mySlides fade";
+            string pstyle = "color:#f2f2f2;text-align:center;vertical-align:middle;display:block;";
+            //string CardBG = "Link!";
+            string divstyle = "overflow:hidden;background-image:linear-gradient(rgba(0,0,0,0.527),rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;";
+            string result = "<div class=" + divclass + " style=" + divstyle + "><a href=" + Link + "><br><h1 style=" + h1style + ">" + cardtitle + "</h1><br><p style=" + pstyle + ">" + discr + "</p></a></div>";
+            return result;
+        }
+        protected string BuildGCard(string CardBG, string cardtitle, string G, string Link)
+        {
+            //string cardtitle = string.Empty;
+            //string h1style = "float:left;margin-top:8px;margin-left:8px;color:#ffffff;font-size:160%;display:block;";
+            //string divclass = "mySlides fade";
+            //string pstyle = "color:#f2f2f2;text-align:center;vertical-align:middle;display:block;";
+            //string CardBG = "Link!";
+            string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
+            string as0 = "display:inline;margin-left:6px;margin-right:6px;";
+            string divs1 = "border-radius:8px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
+            string divstyle = "overflow:hidden;background-image:linear-gradient(rgba(0,0,0,0.527),rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;";
+            string divs2 = "background-color:rgb(104,64,217,0.64)!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;";
+            string ps0 = "height:fit-content;width:auto;max-width:118px;color:#ffffff;margin-left:6px;";
+            string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;";
+            string result = "<div style="+divs0+"><a href="+Link+" style="+as0+"><div style="+divs1+"><div style="+divs2+"><p style="+ps0+">"+cardtitle+"</p></div></div><p style="+ps1+">"+G+"</p></a></div>";
+            return result;
         }
     }
 }

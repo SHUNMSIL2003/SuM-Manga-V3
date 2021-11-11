@@ -18,22 +18,6 @@ namespace SuM_Manga_V3
             {
                 string PFPFDB = string.Empty;
                 string user = GetUserInfoCookie["UserName"].ToString();
-                //UserName.InnerText = user;
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
-                {
-                    sqlCon.Open();
-                    string query = "SELECT PFP FROM SuMUsersAccounts WHERE UserName = @UserName";
-                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@UserName", user);
-                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            PFPFDB = dr[0].ToString();
-                        }
-                    }
-                }
-                UserPFP.Attributes["src"] = ResolveUrl(PFPFDB);
             }
             else
             {

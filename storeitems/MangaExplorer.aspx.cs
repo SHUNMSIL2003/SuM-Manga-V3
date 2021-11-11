@@ -32,7 +32,7 @@ namespace SuM_Manga_V3.storeitems
                     for (int i = 0; i < chnum.Length; i++) { if (Char.IsDigit(chnum[i]) == false) { chnum[i] = '0'; } }
                     string chnumst = new string(chnum);
                     int ab = Int32.Parse(chnumst);
-                    MainCardT.InnerText = MangaName + " - Chapter " + ab.ToString();
+                    //MainCardT.InnerText = MangaName + " - Chapter " + ab.ToString();
                     string help0136 = "\\";
                     string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
                     string ActivePath = epath + "\\storeitems\\" + MangaName + help0136 + ChapterX + help0136;
@@ -45,15 +45,11 @@ namespace SuM_Manga_V3.storeitems
                         string deafultstartitems = "/storeitems/";
                         string slash0 = "/";
                         string imgstyle = "width:100%;max-width:800px;";
-                        string imgstyle0 = "width:100%;max-width:800px;border-top-left-radius:12px;border-top-right-radius:12px;";
-                        string imgstyle2 = "width:100%;max-width:800px;border-bottom-right-radius:12px;border-bottom-left-radius:12px;";
                         //string x = "lazy";
                         for (int i = 0; i < filePaths.Length; i++)
                         {
                             string filename = System.IO.Path.GetFileName(filePaths[i]);
-                            if (i == 0) { TheMangaPhotos.InnerHtml += "<img class=" + "lazyload" + " style=" + imgstyle0 + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " /><br/>"; }
-                            if (i != 0 && i != (filePaths.Length - 1)) { TheMangaPhotos.InnerHtml += "<img class=" + "lazyload" + " style=" + imgstyle + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " /><br/>"; }
-                            if (i == (filePaths.Length - 1)) { TheMangaPhotos.InnerHtml += "<img class=" + "lazyload" + " style=" + imgstyle2 + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " /><br/>"; }
+                            TheMangaPhotos.InnerHtml += "<img class=" + "lazyload" + " style=" + imgstyle + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " /><br/>";
                         }
                         //string beforerelasecode = "";
                         //beforerelasecode += sendhtmlforchimges;

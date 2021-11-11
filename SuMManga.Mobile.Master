@@ -6,7 +6,10 @@
     <link rel="manifest" href="/manifest.json">
     <script src="/runsw.js"></script>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <!--
+    <meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">--><!-- 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> -->
     <title>SuM Manga</title>
     <meta name="theme-color" content="rgb(242,242,242)">
     <meta name="description" content="Shun Manga Shop">
@@ -27,20 +30,28 @@
     <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
     <link rel="stylesheet" href="../imghover/css/imagehover.min.css">
     <style>
+        @font-face {
+            font-family: 'VarelaRound';
+            src: url('/assets/VarelaRound.ttf');
+        }
          * {
              -moz-user-select: none;
              -webkit-user-select: none;
              user-select: none;
          }
-         text, h1, h2, h3, h4, h5, h6, p {
+         text, h1, h2, h3, h4, h5, h6, p , b {
             pointer-events: none;
+            font-family:VarelaRound !important;
+            text-decoration:none;
          }
+        text, a {
+            text-decoration:none !important;
+        }
         img {
             pointer-events:none;
         }
     </style>
-    <script>  
-
+    <script>
         document.onkeypress = function (event) {
             event = (event || window.event);
             if (event.keyCode == 123) {
@@ -70,77 +81,55 @@
             }, 100);
         })();*/
     </script>
-    <script>
-        export default {
-            name: 'AddToHomeScreen',
-            data: () => ({
-                deferredPrompt: null,
-            }),
-            mounted() {
-                this.captureEvent()
-            },
-            methods: {
-                captureEvent() {
-                    window.addEventListener('beforeinstallprompt', (e) => {
-                        // ! Prevent Chrome 67 and earlier from automatically showing the prompt
-                        e.preventDefault()
-                        // Stash the event so it can be triggered later.
-                        this.deferredPrompt = e
-                    })
-                },
-                clickCallback() {
-                    // Show the prompt
-                    this.deferredPrompt.prompt()
-                    // Wait for the user to respond to the prompt
-                    this.deferredPrompt.userChoice.then((choiceResult) => {
-                        if (choiceResult.outcome === 'accepted') {
-                            // Call another function?
-                        }
-                        this.deferredPrompt = null
-                    })
-                },
-            },
-        }
-    </script>
 </head>
-<body id="page-top" style="overflow: hidden;height:100vh;">
+<body id="page-top" style="overflow:hidden;height:100vh;width:100vw;">
     <style>
+        div {
+            box-shadow: 0px 0px #000000 !important;
+            overflow-x: hidden !important;
+            font-family:VarelaRound !important;
+        }
         @media print {
 
             html, body {
                 display: none; /* hide whole page */
             }
         }
+
         ::-webkit-scrollbar {
-            margin-top:26px !important;
-            width: 3px;
+            display:none !important;
+            /*margin-top:26px !important;
+            width: 3px;*/
         }
 
 /* Track */
         ::-webkit-scrollbar-track {
+            display:none !important;/*
             margin-top:26px !important;
-            background: #ffffff;
+            background: #ffffff;*/
         }
  
 /* Handle */
         ::-webkit-scrollbar-thumb {
+            display:none !important;/*
             margin-top:26px !important;
             background: #8a61ff;
-            border-radius: 1px;
+            border-radius: 1px;*/
         }
 
 /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
+            display:none !important;/*
             margin-top:26px !important;
             background: #6840D9;
-            border-radius: 1px;
+            border-radius: 1px;*/
         }
         .ForceMaxW {
             max-width:1200px !important;
             /*margin: 0 auto !important;*/
         }
-        .PupShadow {
-            box-shadow: 0px 0px 1px 160vw rgba(104, 64, 217, 0.25) !important;
+        .PupShadow {/*
+            box-shadow: 0px 0px 1px 160vw rgba(104, 64, 217, 0.25) !important;*/
         }
     </style>
     <form id="SuM" method="post" runat="server">
@@ -155,21 +144,14 @@
                         /*background-color:rgb(240, 235, 255) !important;*/
                     }
                 </style>
-                <div style="height:93vh;max-height:93vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;" id="SuMMainBlock" runat="server" class="container-fluid">
-                    <div id="gotopagetop" style="height:0px;width:0px"></div>
-                    <div id="Debig202312" runat="server"></div>
-                    <div class="ForceMaxW" style="margin-left:-22px !important;margin-right:-20px !important;width:100vw !important; height:93vh !important;max-height:93vh !important;" id="mc" runat="server">
+                <div style="width:100vw !important; height:93vh !important;max-height:93vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;" id="SuMMainBlock" runat="server" class="container-fluid">
+                    <div class="ForceMaxW" style="width:100vw !important; height:93vh !important;max-height:93vh !important;margin-left:-24px !important;background-color:#F8F9FD;" id="mc" runat="server">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
-                    </div><br />
+                    </div><div style="height:36px !important;width:1px !important;"><p>PLaceHolder</p></div>
                 </div>
             </div>
-            <!-- <footer style="background-color:transparent;height:4vh;"> -->
-               <!-- <div class="container my-auto" style="background-color:transparent;height:3vh;">
-                    <div class="text-center my-auto copyright" style="background-color:transparent;height:3vh;"><span>[School-Project!]Copyright © SuM Manga 2021</span></div>
-                </div> -->
-           <!-- </footer> -->
-        </div><a class="border rounded d-inline scroll-to-top" data-bss-hover-animate="pulse" href="#gotopagetop" style="background: rgba(71,41,159,0.45);height:46px"><i class="fas fa-angle-up"></i></a>
+        </div>
         <style>
             .STBSUMBAR {
                 position:fixed !important;
@@ -177,33 +159,47 @@
                 width:100% !important;
                 text-align:center !important;
             }
+            .WAHFH021 {
+                display:inline !important;
+                max-width:7vh !important;
+                max-height:7vh !important;
+            }
         </style>
-        <div class="STBSUMBAR">
-        <nav style="height:7vh;" class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top FNM5455511">
+        <div class="STBSUMBAR bg-white shadow" style="border-top-left-radius:22px;border-top-right-radius:22px;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;">
+                <a style="float:left !important;width:fit-content;">
+                    <img src="/assets/img/SuM_TBrabd_x92.png" style="width:28px;height:28px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
+                    <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM Manga</p>
+                </a>
+            <a class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" href="/Search.aspx"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
+        </div>
+        <nav style="height:7vh;width:100% !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
                     <div class="container-fluid" style="text-align:center !important;">
-                                <div class="nav-item dropdown no-arrow" style="display:inline !important;width:7vh !important;height:7vh !important;">
+                                <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
                                     <a href="/Explore.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
-                                        <img src="/svg/Explore.svg" style="width:3vh;height:3vh;display:block;position:relative;" />
+                                        <img src="/svg/Explore.svg" style="width:4vh;height:4vh;display:block;position:relative;" />
                                         <b style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;position:relative;">Explore</b>
                                     </a>
                                 </div>
-                        <div class="nav-item dropdown no-arrow" style="display:inline !important;width:7vh !important;height:7vh !important;">
-                                    <a href="/Library.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
-                                        <img src="/svg/Library.svg" style="width:3vh;height:3vh;display:block;" />
-                                        <b style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Library</b>
-                                    </a>
-                                </div>
-                        <div class="nav-item dropdown no-arrow" style="display:inline !important;width:7vh !important;height:7vh !important;">
+                        <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
                                     <a href="/Explore.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
-                                        <img src="/svg/MostSeen.svg" style="width:3vh;height:3vh;display:block;" />
+                                        <img src="/svg/MostSeen.svg" style="width:4vh;height:4vh;display:block;" />
                                         <b style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Top Hits</b>
                                     </a>
                                 </div>
-                        <div>
-                            <a href="/AccountETC/SuMAccount.aspx">
-                            <img class="border rounded-circle img-profile" id="UserPFP" style="border:solid 1px #6840D9 !important;height:3vh;width:3vh;" src="/assets/img/avatars/DeafultPFP.jpg?h=3e2a44151a0dff078a9f59a44cc2bcff" runat="server" />
-                            </a>
-                        </div>
+                        
+                        <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
+                                    <a href="/Library.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                                        <img src="/svg/bookmarks.svg" style="width:4vh;height:4vh;display:block;" />
+                                        <b style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Library</b>
+                                    </a>
+                                </div>
+                        <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
+                                    <a href="/AccountETC/SuMSettings.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                                        <img src="/svg/settings.svg" style="width:4vh;height:4vh;display:block;" />
+                                        <b style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Settings</b>
+                                    </a>
+                                </div>
                     </div>
                 </nav>
             </div>

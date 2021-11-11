@@ -70,7 +70,7 @@
       "sizes": "16x16"
     }
   ],
-  "start_url": "Default.aspx",
+  "start_url": "Explore.aspx",
   "scope": "/",
   "description": "The best app for reading manga.",
   "background_color": "rgb(138,97,255)",

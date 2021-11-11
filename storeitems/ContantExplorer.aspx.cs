@@ -29,16 +29,18 @@ namespace SuM_Manga_V3.storeitems
                 //string MangaPathName = Request.QueryString["Manga"].ToString();
                 //string covername = MangaPathName + ".jpg";
                 //string MangaPathCover = "/storeitems/" + MangaPathName + "/" + covername;
-                cover.Attributes["src"] = ShowCover();//MangaPathCover;
+                //cover.Attributes["src"] = ShowCover();//MangaPathCover;
+                MTitle.InnerText = ShowName();
+                infoCover.Attributes["style"] = "overflow:hidden;background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)),url(" + ShowCover() + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
                 string cn = Request.QueryString["CN"].ToString();
-                MangaViewsAndChapters.InnerText = "Chapters: " + cn + "  -   Views:  "+ ShowViews() + "";
-                MangaDis.InnerText = ShowDis();
+                //MangaViewsAndChapters.InnerText = "Chapters: " + cn + "  -   Views:  "+ ShowViews() + "";
+                MdiscS.InnerText = ShowDis();
                 string pathstartnochx = "/storeitems/";
                 //string btn2 = "btn";
                 //string btn3 = "btn-primary btn-sm";
                 string extraexplore = "MangaExplorer.aspx";
                 string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
-                MainCardT.InnerText = Request.QueryString["Manga"].ToString();
+                //MainCardT.InnerText = Request.QueryString["Manga"].ToString();
                 string identifynexthelper = "&Chapter=";
                 string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
                 if (Request.QueryString["Manga"] == null) { backhome(); }
@@ -59,7 +61,7 @@ namespace SuM_Manga_V3.storeitems
                     if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
                     if (c > 10000) { c = (cn1 + 1); }
                     RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm;
-                    TheMangaPhotos.InnerHtml += "<a class=" + "btn btn-primary btn-sm" + " href=" + sc + RLink + sc + " >Chapter " + chxC + "</a>";
+                    TheMangaPhotosF.InnerHtml += "<a class=" + "btn btn-primary btn-sm" + " href=" + sc + RLink + sc + " >Chapter " + chxC + "</a>";
                 }
                 //string coverstyle = "text-align:left;width:226px;height:320px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;";
                 //string covercode = "<img style=" + coverstyle + " src=" + MangaPathCover + ">";
@@ -125,6 +127,29 @@ namespace SuM_Manga_V3.storeitems
             {
                 sqlCon.Open();
                 string query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                string x = Request.QueryString["VC"];
+                int y = Convert.ToInt32(x);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = y;
+                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        V = dr[0].ToString();
+                    }
+                }
+                sqlCon.Close();
+            }
+            return V;
+        }
+        protected string ShowName()
+        {
+            string V = string.Empty;
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            {
+                sqlCon.Open();
+                string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                 string x = Request.QueryString["VC"];
                 int y = Convert.ToInt32(x);

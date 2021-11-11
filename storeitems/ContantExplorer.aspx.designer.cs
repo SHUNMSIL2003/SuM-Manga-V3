@@ -15,48 +15,48 @@ namespace SuM_Manga_V3.storeitems
     {
 
         /// <summary>
-        /// MainCardT control.
+        /// CategoryX control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MainCardT;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CategoryX;
 
         /// <summary>
-        /// MangaViewsAndChapters control.
+        /// infoCover control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaViewsAndChapters;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl infoCover;
 
         /// <summary>
-        /// cover control.
+        /// MTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage cover;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MTitle;
 
         /// <summary>
-        /// MangaDis control.
+        /// MdiscS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaDis;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MdiscS;
 
         /// <summary>
-        /// TheMangaPhotos control.
+        /// TheMangaPhotosF control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TheMangaPhotos;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TheMangaPhotosF;
     }
 }
