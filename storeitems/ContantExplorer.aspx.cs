@@ -34,9 +34,15 @@ namespace SuM_Manga_V3.storeitems
                 MTitle.InnerText = ShowName();//rgba(0,0,0,0.527)
                 string CardBG = ShowCover();
                 //Bitmap bMap = Bitmap.FromFile(Server.MapPath("~/" + CardBG + "")) as Bitmap;
-                string ThemeColor = Request.QueryString["TC"].ToString();//RgbConverter(getDominantColor(bMap));
-                string abtntheme = "color:" + Request.QueryString["TC"].ToString();//ORgbConverter(getDominantColor(bMap));
-                string theme = Request.QueryString["TC"].ToString();//RgbConverter(getDominantColor(bMap));
+                string ThemeColor = string.Empty;
+                if (Request.QueryString["TC"] != null)
+                {
+                    ThemeColor = Request.QueryString["TC"].ToString();//RgbConverter(getDominantColor(bMap));
+                }
+                else { ThemeColor = "#6840D9"; }
+                TheMangaPhotosF.Attributes["style"] = "display:inline-block;height:fit-content;min-height:84vh;background-color:" + ThemeColor + ";";
+                string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100vw;height:fit-content;float:left;";//ORgbConverter(getDominantColor(bMap));------background-color:" + ThemeColor + ";
+                string theme = ThemeColor;//RgbConverter(getDominantColor(bMap));
                 infoCover.Attributes["style"] = "overflow:hidden;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
                 string cn = Request.QueryString["CN"].ToString();
                 //MangaViewsAndChapters.InnerText = "Chapters: " + cn + "  -   Views:  "+ ShowViews() + "";
@@ -57,8 +63,10 @@ namespace SuM_Manga_V3.storeitems
                 string ChapterFixedForm = string.Empty;
                 //string btnclass = "btn"; //btn
                 string RLink = string.Empty;
-                string themecolor = Request.QueryString["TC"].ToString();
+                string themecolor = ThemeColor;
                 char sc = '"';
+                TheMangaPhotosF.InnerHtml = "<br>";//"<a style=" + abtntheme + "><p style="+ "color:#ffffff;float:right;font-size:142%;" + ">" + Request.QueryString["CN"].ToString() + " Chapters</p></a>";
+                //TheMangaPhotosF.InnerHtml += "<hr style=" + "height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.42;margin:0px;margin-block:0px;" + ">";
                 for (int c = 1; c < (cn1 + 1); c++)
                 {
                     string chxC = c.ToString();
@@ -67,8 +75,11 @@ namespace SuM_Manga_V3.storeitems
                     if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
                     if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
                     if (c > 10000) { c = (cn1 + 1); }
+                    string cpcover = "/storeitems/" + Request.QueryString["Manga"].ToString() + "/sumcp" + ChapterFixedForm + ".jpg";
                     RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor;
-                    TheMangaPhotosF.InnerHtml += "<a style=" + abtntheme + " class=" + "btn btn-primary btn-sm" + " href=" + sc + RLink + sc + " >Chapter " + chxC + "</a>";
+                    TheMangaPhotosF.InnerHtml += "<a style=" + abtntheme + " class=" + "btn" + " href=" + sc + RLink + sc + " ><img src=" + cpcover + " style=" + "width:64px;height:64px;float:left;margin:0px;opacity:0.92;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
+                    if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + "height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.24;margin:0px;margin-block:0px;" + ">"; }
+                    //<a style="dc" class="btn" href="#"><img src="/storeitems/Anohana/0001/sumcp.png" style="width:48px;height:48px;float:left;margin:0px;" /><p style="dc">dc</p></a>
                 }
                 //string coverstyle = "text-align:left;width:226px;height:320px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;";
                 //string covercode = "<img style=" + coverstyle + " src=" + MangaPathCover + ">";

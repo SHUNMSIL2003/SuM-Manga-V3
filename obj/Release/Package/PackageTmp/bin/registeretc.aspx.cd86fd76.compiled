@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/AccountETC/RegisterETC.aspx" hash="8ef922025" filehash="ffffefab576ed473" flags="110000" assembly="App_Web_gipfcqfw" type="ASP.accountetc_registeretc_aspx">
+<preserve resultType="3" virtualPath="/AccountETC/RegisterETC.aspx" hash="8ef922025" filehash="ffffef3f4b79b6a3" flags="110000" assembly="App_Web_tojnlw0b" type="ASP.accountetc_registeretc_aspx">
     <filedeps>
         <filedep name="/AccountETC/RegisterETC.aspx" />
     </filedeps>

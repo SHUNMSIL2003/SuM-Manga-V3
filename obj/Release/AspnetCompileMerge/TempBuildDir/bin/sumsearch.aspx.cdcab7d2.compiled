@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="3" virtualPath="/SuMSearch.aspx" hash="8ef922025" filehash="fffff890e514f507" flags="110000" assembly="App_Web_xmzsdi2a" type="ASP.sumsearch_aspx">
+    <filedeps>
+        <filedep name="/SuMSearch.aspx" />
+    </filedeps>
+</preserve>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/Search.aspx" hash="8ef922025" filehash="e5ab3c7e356662ca" flags="110000" assembly="App_Web_0d5la1oc" type="ASP.search_aspx">
+<preserve resultType="3" virtualPath="/Search.aspx" hash="8ef922025" filehash="12cf17e6694b1b70" flags="110000" assembly="App_Web_na3kuwiu" type="ASP.search_aspx">
     <filedeps>
         <filedep name="/Search.aspx" />
         <filedep name="/SuMManga.Master" />

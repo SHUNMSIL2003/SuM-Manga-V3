@@ -2,18 +2,19 @@
 
 <!DOCTYPE html>
 <html lang="en" style="overflow: hidden;">
-<head>
+<head id="SMHead" runat="server">
     <link rel="manifest" href="/manifest.json">
     <script src="/runsw.js"></script>
     <meta charset="utf-8">
+    <asp:PlaceHolder id="MetaPlaceHolder" runat="server" />
+    <meta name="robots" content="<%=GetMetaRobotsValueFromDatabase()%>" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <!--
     <meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">--><!-- 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>SuM Manga</title>
-    <meta name="theme-color" content="rgb(242,242,242)">
-    <meta name="description" content="Shun Manga Shop">
+    <meta name="description" content="Shun Manga">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/img/SuM-180.png?h=470ab06da498d6fc442f5928b61025aa">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/any_icon_x32.png?h=c6e95e86bee5c429ad96d74eb8a03d17">
@@ -29,39 +30,6 @@
     <link rel="stylesheet" href="/assets/animate.min.css">
     <meta name="google-site-verification" content="mp9Vewhm3_3ddQfuO0zmgnIvZpKaygdMO36zmFOgzos" />
     <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
-    <link rel="stylesheet" href="../imghover/css/imagehover.min.css">
-    <!-- -->
-    <meta id="meta--themecolor-light" name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-    <meta id="meta--themecolor-dark" name="theme-color" media="(prefers-color-scheme: dark)" content="#2a2a2a">
-    <meta id="meta--msapplicationnavbuttoncolor-light" name="msapplication-navbutton-color" media="(prefers-color-scheme: light)" content="#ffffff">
-    <meta id="meta--msapplicationnavbuttoncolor-dark" name="msapplication-navbutton-color" media="(prefers-color-scheme: dark)" content="#2a2a2a">
-    <script>
-        function updateThemeColor(lightColor, darkColor = lightColor) {
-
-            // Update the meta tags
-            [
-
-                document.getElementById("meta--themecolor-light"),
-                document.getElementById("meta--msapplicationnavbuttoncolor-light")
-
-            ].forEach(function (metaTag) {
-
-                metaTag.setAttribute("content", lightColor);
-
-            });
-            [
-
-                document.getElementById("meta--themecolor-dark"),
-                document.getElementById("meta--msapplicationnavbuttoncolor-dark")
-
-            ].forEach(function (metaTag) {
-
-                metaTag.setAttribute("content", darkColor);
-
-            });
-
-        }
-    </script>
     <!-- -->
     <style>
         @font-face {
@@ -167,8 +135,8 @@
         }
     </style>
     <form id="SuM" method="post" runat="server">
-    <div id="wrapper" style="overflow:hidden;">
-        <div class="d-flex flex-column" id="content-wrapper" style="overflow:hidden;">
+    <di runat="server" id="wrapper" style="overflow:hidden;">
+        <div class="d-flex flex-column" id="content-wrapper" style="overflow-x:hidden;">
             <div id="content">
                 <style>
                     .FNM5455511 {
@@ -178,11 +146,11 @@
                         /*background-color:rgb(240, 235, 255) !important;*/
                     }
                 </style>
-                <div style="width:100vw !important; height:93vh !important;max-height:93vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;" id="SuMMainBlock" runat="server" class="container-fluid">
-                    <div class="ForceMaxW" style="width:100vw !important; height:93vh !important;max-height:93vh !important;margin-left:-24px !important;background-color:#F8F9FD;" id="mc" runat="server">
+                <div style="width:100vw !important; height:98vh !important;max-height:93vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;" id="SuMMainBlock" runat="server" class="container-fluid">
+                    <div class="ForceMaxW" style="width:100vw !important; height:98vh !important;max-height:98vh !important;margin-left:-24px !important;background-color:#F8F9FD;" id="mc" runat="server">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
-                    </div><div style="height:36px !important;width:1px !important;"><p>PLaceHolder</p></div>
+                    </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>
                 </div>
             </div>
         </div>
@@ -195,19 +163,19 @@
             }
             .WAHFH021 {
                 display:inline !important;
-                max-width:7vh !important;
+                max-height:64px !important;
                 max-height:7vh !important;
             }
         </style>
-        <div class="STBSUMBAR bg-white shadow" style="border-top-left-radius:22px;border-top-right-radius:22px;">
-            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;">
+        <div id="fullnavscont" runat="server" class="STBSUMBAR bg-white shadow" style="border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:transparent !important;">
+            <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;">
                 <a href="/Explore.aspx" style="float:left !important;width:fit-content;">
                     <img src="/assets/img/SuM_TBrabd_x92.png" style="width:28px;height:28px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:#6840D9;margin-top:8px !important;">Manga</p>
                 </a>
             <a class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" href="/Search.aspx"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
         </div>
-        <nav id="nav" runat="server" style="height:7vh;width:100% !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
+        <nav id="nav" runat="server" style="height:7vh;width:100% !important;max-height:64px !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
                     <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;">
                                 <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
                                     <a href="/Explore.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
@@ -237,7 +205,7 @@
                     </div>
                 </nav>
             </div>
-    </div>
+    </di>
     <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>
     <script src="/assets/js/bs-init.js?h=cfc1cf2ac1407be801a1de7dc4705464"></script>

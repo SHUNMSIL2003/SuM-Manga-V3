@@ -13,9 +13,10 @@
     <div style="height:fit-content;width:100vw;overflow:hidden; background-color:#ffffff !important;" id="CategoryX" runat="server">
     <div id="infoCover" runat="server" class="mySlides" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:fit-content;">
     <h1 id="MTitle" runat="server" style="float:left;margin-top:12px;margin-left:12px;color:#ffffff;font-size:186%;margin-right:14px !important;">Blue Exorcist</h1>
-    <p style="height:fit-content;min-height:96vw !important; width:96vw;max-width:96vw;font-size:96%;color:#ffffff;margin:14px !important;" id="MdiscS" runat="server"></p>
+    <p style="height:fit-content;min-height:60vw !important; width:96vw;max-width:96vw;font-size:96%;color:#ffffff;margin:14px !important;" id="MdiscS" runat="server"></p>
 </div>
 </div>
-    <div style="display:inline-block;" id="TheMangaPhotosF" runat="server">
+    <div style="display:inline-block;height:fit-content;min-height:60vh;background-color:rgba(1,65,54,0.544);" id="TheMangaPhotosF" runat="server">
         </div>
+    <hr style="height:1.6px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.76;margin:0px;margin-block:0px;">
 </asp:Content>

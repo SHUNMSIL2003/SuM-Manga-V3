@@ -268,6 +268,10 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Search.aspx" />
     <Content Include="service-worker.js" />
+    <Content Include="sh\jquery-3.6.0.js" />
+    <Content Include="sh\jquery-ui.js" />
+    <Content Include="sh\jquery-ui.css" />
+    <Content Include="sh\style.css" />
     <Content Include="storeitems\Anohana\Anohana.jpg" />
     <Content Include="storeitems\Anohana\ch0001\ano_hi_mita_hana_no_namae_o_bokutachi_wa_mada_shiranai_1_01.jpg" />
     <Content Include="storeitems\Anohana\ch0001\ano_hi_mita_hana_no_namae_o_bokutachi_wa_mada_shiranai_1_02.jpg" />
@@ -431,6 +435,9 @@
     <Content Include="storeitems\Anohana\ch0003\ano_hi_mita_hana_no_namae_o_bokutachi_wa_mada_shiranai_3_44.jpg" />
     <Content Include="storeitems\Anohana\ch0003\ano_hi_mita_hana_no_namae_o_bokutachi_wa_mada_shiranai_3_45.jpg" />
     <Content Include="storeitems\Anohana\ch0003\manga_ic_64.png" />
+    <Content Include="storeitems\Anohana\sumcp0001.jpg" />
+    <Content Include="storeitems\Anohana\sumcp0002.jpg" />
+    <Content Include="storeitems\Anohana\sumcp0003.jpg" />
     <Content Include="storeitems\assassinationclassroom\assassinationclassroom.jpg" />
     <Content Include="storeitems\assassinationclassroom\ch0001\p01.jpg" />
     <Content Include="storeitems\assassinationclassroom\ch0001\p02.jpg" />
@@ -548,6 +555,10 @@
     <Content Include="storeitems\assassinationclassroom\ch0004\p23.jpg" />
     <Content Include="storeitems\assassinationclassroom\ch0004\p24.jpg" />
     <Content Include="storeitems\assassinationclassroom\ch0004\p25.jpg" />
+    <Content Include="storeitems\assassinationclassroom\sumcp0001.jpg" />
+    <Content Include="storeitems\assassinationclassroom\sumcp0002.jpg" />
+    <Content Include="storeitems\assassinationclassroom\sumcp0003.jpg" />
+    <Content Include="storeitems\assassinationclassroom\sumcp0004.jpg" />
     <Content Include="storeitems\AttackOnTitan\AttackOnTitan.jpg" />
     <Content Include="storeitems\AttackOnTitan\ch0001\01.jpg" />
     <Content Include="storeitems\AttackOnTitan\ch0001\03.jpg" />
@@ -812,6 +823,12 @@
     <Content Include="storeitems\AttackOnTitan\ch0006\36.jpg" />
     <Content Include="storeitems\AttackOnTitan\ch0006\37.jpg" />
     <Content Include="storeitems\AttackOnTitan\ch0006\38.jpg" />
+    <Content Include="storeitems\AttackOnTitan\sumcp0001.jpg" />
+    <Content Include="storeitems\AttackOnTitan\sumcp0002.jpg" />
+    <Content Include="storeitems\AttackOnTitan\sumcp0003.jpg" />
+    <Content Include="storeitems\AttackOnTitan\sumcp0004.jpg" />
+    <Content Include="storeitems\AttackOnTitan\sumcp0005.jpg" />
+    <Content Include="storeitems\AttackOnTitan\sumcp0006.jpg" />
     <Content Include="storeitems\BlueExorcist\BlueExorcist.jpg" />
     <Content Include="storeitems\BlueExorcist\ch0001\h001.jpg" />
     <Content Include="storeitems\BlueExorcist\ch0001\h002_003.jpg" />
@@ -1220,6 +1237,14 @@
     <Content Include="storeitems\BlueExorcist\ch0008\njac_ao_no_exorcist_ch_008.044.jpg" />
     <Content Include="storeitems\BlueExorcist\ch0008\njac_ao_no_exorcist_ch_008.045.jpg" />
     <Content Include="storeitems\BlueExorcist\ch0008\njac_ao_no_exorcist_ch_008.credits.jpg" />
+    <Content Include="storeitems\BlueExorcist\sumcp0001.jpg" />
+    <Content Include="storeitems\BlueExorcist\sumcp0002.jpg" />
+    <Content Include="storeitems\BlueExorcist\sumcp0003.jpg" />
+    <Content Include="storeitems\BlueExorcist\sumcp0004.jpg" />
+    <Content Include="storeitems\BlueExorcist\sumcp0005.jpg" />
+    <Content Include="storeitems\BlueExorcist\sumcp0006.jpg" />
+    <Content Include="storeitems\BlueExorcist\sumcp0007.jpg" />
+    <Content Include="storeitems\BlueExorcist\sumcp0008.jpg" />
     <Content Include="storeitems\ContantExplorer.aspx" />
     <Content Include="storeitems\DemonSlayer\ch0001\002.jpg" />
     <Content Include="storeitems\DemonSlayer\ch0001\005.jpg" />
@@ -2267,6 +2292,7 @@
     <Content Include="storeitems\kemonojihen\ch0001\kemono_jihen_1_70.jpg" />
     <Content Include="storeitems\kemonojihen\ch0001\kemono_jihen_1_71.jpg" />
     <Content Include="storeitems\kemonojihen\kemonojihen.png" />
+    <Content Include="storeitems\kemonojihen\sumcp0001.jpg" />
     <Content Include="storeitems\MangaExplorer.aspx" />
     <Content Include="storeitems\MyHeroAcademia\ch0001\my_hero_academia_1_02.jpg" />
     <Content Include="storeitems\MyHeroAcademia\ch0001\my_hero_academia_1_03.jpg" />
@@ -2368,6 +2394,7 @@
     <Content Include="storeitems\MyHeroAcademia\ch0003\my_hero_academia_3_23.jpg" />
     <Content Include="storeitems\MyHeroAcademia\ch0003\my_hero_academia_3_24.jpg" />
     <Content Include="storeitems\MyHeroAcademia\MyHeroAcademia.jpg" />
+    <Content Include="storeitems\MyHeroAcademia\sumcp0001.jpg" />
     <Content Include="storeitems\No.6\ch0001\no6_1_01.jpg" />
     <Content Include="storeitems\No.6\ch0001\no6_1_02.jpg" />
     <Content Include="storeitems\No.6\ch0001\no6_1_03.jpg" />
@@ -2616,6 +2643,7 @@
     <Content Include="storeitems\SwordArtOnline\ch0001\032.jpg" />
     <Content Include="storeitems\SwordArtOnline\ch0001\033.jpg" />
     <Content Include="storeitems\SwordArtOnline\ch0001\cropped-311019-minmin-min.jpg" />
+    <Content Include="storeitems\SwordArtOnline\sumcp0001.jpg" />
     <Content Include="storeitems\SwordArtOnline\SwordArtOnline.jpg" />
     <Content Include="storeitems\ThePromisedNeverland\ch0001\the_promised_neverland_1_01.jpg" />
     <Content Include="storeitems\ThePromisedNeverland\ch0001\the_promised_neverland_1_02.jpg" />
@@ -2736,6 +2764,10 @@
     <Content Include="storeitems\ThePromisedNeverland\ch0004\the_promised_neverland_4_17.jpg" />
     <Content Include="storeitems\ThePromisedNeverland\ch0004\the_promised_neverland_4_18.jpg" />
     <Content Include="storeitems\ThePromisedNeverland\ch0004\the_promised_neverland_4_19.jpg" />
+    <Content Include="storeitems\ThePromisedNeverland\sumcp0001.jpg" />
+    <Content Include="storeitems\ThePromisedNeverland\sumcp0002.jpg" />
+    <Content Include="storeitems\ThePromisedNeverland\sumcp0003.jpg" />
+    <Content Include="storeitems\ThePromisedNeverland\sumcp0004.jpg" />
     <Content Include="storeitems\ThePromisedNeverland\ThePromisedNeverland.jpg" />
     <Content Include="storeitems\UramichiOniisan\ch0001\uramichi_oniisan_1_02.jpg" />
     <Content Include="storeitems\UramichiOniisan\ch0001\uramichi_oniisan_1_03.jpg" />
@@ -2847,6 +2879,7 @@
     <Content Include="SuMAdmin\AdminControlPanel.aspx" />
     <Content Include="SuMAdmin\AdminLogin.aspx" />
     <Content Include="SuMCreator\CreatorPanel.aspx" />
+    <Content Include="SuMSearch.aspx" />
     <Content Include="SuMSiteIconFlexable.ico" />
     <Content Include="svg\arrowback.svg" />
     <Content Include="svg\bookmarksNA.svg" />
@@ -3008,6 +3041,13 @@
     </Compile>
     <Compile Include="SuMManga.Mobile.Master.designer.cs">
       <DependentUpon>SuMManga.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SuMSearch.aspx.cs">
+      <DependentUpon>SuMSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuMSearch.aspx.designer.cs">
+      <DependentUpon>SuMSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserAgreementBD.aspx.cs">
       <DependentUpon>UserAgreementBD.aspx</DependentUpon>
