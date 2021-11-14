@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Drawing;
 
 namespace SuM_Manga_V3
 {
@@ -60,7 +61,7 @@ namespace SuM_Manga_V3
                 {
                     int maxidf = Convert.ToInt32(jdbvg);
                     int vet = 0;
-                    while (vet < 7 && maxidf > 0)
+                    while (vet < 6 && maxidf > 0)
                     {
                         string Name = string.Empty;
                         string Cover = string.Empty;
@@ -100,7 +101,12 @@ namespace SuM_Manga_V3
                             // X = sqlCmd.ExecuteScalar();
                             un = sqlCmd.ExecuteScalar();
                             Cover = un.ToString();
-                            ResultS += BuildCard(Cover, Name, Disc, CExplorerLink);
+                            query = "SELECT SuMThemeColor FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
+                            string themecolor = sqlCmd.ExecuteScalar().ToString();
+                            ResultS += BuildCard(Cover, Name, Disc, CExplorerLink, themecolor);
                             vet++;
                             RN = vet;
                             maxidf = maxidf - 1;
@@ -112,6 +118,85 @@ namespace SuM_Manga_V3
                 }
                 sqlCon.Close();
             }
+        }
+        protected string GetGarnas(int id)
+        {
+            string garns = " ";
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            {
+                sqlCon.Open();
+                string query = "SELECT ID FROM Fantasy WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                if (sqlCmd.ExecuteScalar() != null) { garns += "Fantasy, "; }
+
+                query = "SELECT ID FROM Comedy WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                if (sqlCmd.ExecuteScalar() != null) { garns += "Comedy, "; }
+
+                query = "SELECT ID FROM Supernatural WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                if (sqlCmd.ExecuteScalar() != null) { garns += "Supernatural, "; }
+
+                query = "SELECT ID FROM SciFi WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                if (sqlCmd.ExecuteScalar() != null) { garns += "Sci-Fi, "; }
+
+                query = "SELECT ID FROM Drama WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                if (sqlCmd.ExecuteScalar() != null) { garns += "Drama, "; }
+
+                query = "SELECT ID FROM Mystery WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                if (sqlCmd.ExecuteScalar() != null) { garns += "Mystery, "; }
+
+                query = "SELECT ID FROM SliceofLife WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                if (sqlCmd.ExecuteScalar() != null) { garns += "Slice of Life, "; }
+
+                query = "SELECT ID FROM Action WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                if (sqlCmd.ExecuteScalar() != null) { garns += "Action, "; }
+
+                /*query = "SELECT ID FROM smth WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                if (sqlCmd.ExecuteScalar() != null) { garns += "smth, "; }
+
+                query = "SELECT ID FROM smth WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                if (sqlCmd.ExecuteScalar() != null) { garns += "smth, "; }
+
+                query = "SELECT ID FROM smth WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                if (sqlCmd.ExecuteScalar() != null) { garns += "smth, "; }*/
+
+                //if (garns != null) { if (garns[garns.Length - 2] == ',' && garns[garns.Length - 1] == ' ') { garns.Substring(garns.Length - 3); } }
+
+                sqlCon.Close();
+            }
+            if (string.IsNullOrEmpty(garns) == false) { garns = garns.Substring(1, (garns.Length - 3)); }
+            return garns;
         }
         protected string GetFromGarna(string G)
         {
@@ -143,7 +228,7 @@ namespace SuM_Manga_V3
                     {
                         int maxidf = Convert.ToInt32(jdbvg);
                         int vet = 0;
-                        while (vet < 7 && maxidf > 0)
+                        while (vet < 6 && maxidf > 0)
                         {
                             string Name = string.Empty;
                             string Cover = string.Empty;
@@ -183,7 +268,13 @@ namespace SuM_Manga_V3
                                 // X = sqlCmd.ExecuteScalar();
                                 un = sqlCmd.ExecuteScalar();
                                 Cover = un.ToString();
-                                Result += BuildGCard(Cover, Name, G, CExplorerLink);
+                                query = "SELECT SuMThemeColor FROM SuMManga WHERE MangaID = @MangaID";
+                                sqlCmd = new SqlCommand(query, sqlCon);
+                                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                                sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                                string themecolor = sqlCmd.ExecuteScalar().ToString();
+                                CExplorerLink += "&TC=" + themecolor;
+                                Result += BuildGCard(Cover, Name, G, CExplorerLink, themecolor, MangaIDF);
                                 vet++;
                                 RN = vet;
                                 maxidf = maxidf - 1;
@@ -197,8 +288,10 @@ namespace SuM_Manga_V3
             else { Result = " "; }
             return Result;
         }
-        protected string BuildCard(string CardBG,string cardtitle,string discr0,string Link) 
+        protected string BuildCard(string CardBG, string cardtitle, string discr0, string Link, string theme)
         {
+            //Bitmap bMap = Bitmap.FromFile(Server.MapPath("~/" + CardBG + "")) as Bitmap;
+            //string ThemeColor = RgbConverter(getDominantColor(bMap));
             string discr = string.Empty;
             if (discr0.Length > 280)
             {
@@ -208,27 +301,67 @@ namespace SuM_Manga_V3
             //string cardtitle = string.Empty;
             string h1style = "float:left;margin-top:8px;margin-left:8px;color:#ffffff;font-size:160%;display:block;";
             string divclass = "mySlides fade";
-            string pstyle = "color:#f2f2f2;text-align:center;vertical-align:middle;display:block;";
+            string pstyle = "color:#f2f2f2;text-align:center;vertical-align:middle;display:block;overflow-wrap:break-word;";
             //string CardBG = "Link!";
-            string divstyle = "overflow:hidden;background-image:linear-gradient(rgba(0,0,0,0.527),rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;";
+            string divstyle = "overflow:hidden;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;"; //rgba(0,0,0,0.527)
             string result = "<div class=" + divclass + " style=" + divstyle + "><a href=" + Link + "><br><h1 style=" + h1style + ">" + cardtitle + "</h1><br><p style=" + pstyle + ">" + discr + "</p></a></div>";
             return result;
-        }
-        protected string BuildGCard(string CardBG, string cardtitle, string G, string Link)
+        }/*
+        protected static string HexConverter(Color c)
         {
+            return String.Format("#{0:X6}", c.ToArgb() & 0x00FFFFFF);
+        }*/
+        protected static string RgbConverter(Color c)
+        {
+            return String.Format("rgba({0},{1},{2},0.74)", c.R, c.G, c.B);
+        }
+        protected static Color getDominantColor(Bitmap bmp)
+        {
+            //Used for tally
+            int r = 0;
+            int g = 0;
+            int b = 0;
+
+            int total = 0;
+
+            for (int x = 0; x < bmp.Width; x++)
+            {
+                for (int y = 0; y < bmp.Height; y++)
+                {
+                    Color clr = bmp.GetPixel(x, y);
+
+                    r += clr.R;
+                    g += clr.G;
+                    b += clr.B;
+
+                    total++;
+                }
+            }
+
+            //Calculate average
+            r /= total;
+            g /= total;
+            b /= total;
+
+            return Color.FromArgb(r, g, b);
+        }
+        protected string BuildGCard(string CardBG, string cardtitle, string G, string Link, string theme, int id)
+        {
+            //Bitmap bMap = Bitmap.FromFile(Server.MapPath("~/" + CardBG + "")) as Bitmap;
+            //string ThemeColor = RgbConverter(getDominantColor(bMap));
             //string cardtitle = string.Empty;
             //string h1style = "float:left;margin-top:8px;margin-left:8px;color:#ffffff;font-size:160%;display:block;";
             //string divclass = "mySlides fade";
             //string pstyle = "color:#f2f2f2;text-align:center;vertical-align:middle;display:block;";
             //string CardBG = "Link!";
             string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
-            string as0 = "display:inline;margin-left:6px;margin-right:6px;";
+            string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";
             string divs1 = "border-radius:8px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
             string divstyle = "overflow:hidden;background-image:linear-gradient(rgba(0,0,0,0.527),rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;";
-            string divs2 = "background-color:rgb(104,64,217,0.64)!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;";
-            string ps0 = "height:fit-content;width:auto;max-width:118px;color:#ffffff;margin-left:6px;";
-            string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;";
-            string result = "<div style="+divs0+"><a href="+Link+" style="+as0+"><div style="+divs1+"><div style="+divs2+"><p style="+ps0+">"+cardtitle+"</p></div></div><p style="+ps1+">"+G+"</p></a></div>";
+            string divs2 = "backdrop-filter:blur(2px);background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;"; //rgb(104,64,217,0.64)
+            string ps0 = "height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
+            string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
+            string result = "<div style=" + divs0 + "><a href=" + Link + " style=" + as0 + "><div style=" + divs1 + "><div style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>";//GetGarnas(id)
             return result;
         }
     }

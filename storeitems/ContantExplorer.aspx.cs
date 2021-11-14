@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Drawing;
 
 namespace SuM_Manga_V3.storeitems
 {
@@ -30,8 +31,13 @@ namespace SuM_Manga_V3.storeitems
                 //string covername = MangaPathName + ".jpg";
                 //string MangaPathCover = "/storeitems/" + MangaPathName + "/" + covername;
                 //cover.Attributes["src"] = ShowCover();//MangaPathCover;
-                MTitle.InnerText = ShowName();
-                infoCover.Attributes["style"] = "overflow:hidden;background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)),url(" + ShowCover() + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
+                MTitle.InnerText = ShowName();//rgba(0,0,0,0.527)
+                string CardBG = ShowCover();
+                //Bitmap bMap = Bitmap.FromFile(Server.MapPath("~/" + CardBG + "")) as Bitmap;
+                string ThemeColor = Request.QueryString["TC"].ToString();//RgbConverter(getDominantColor(bMap));
+                string abtntheme = "color:" + Request.QueryString["TC"].ToString();//ORgbConverter(getDominantColor(bMap));
+                string theme = Request.QueryString["TC"].ToString();//RgbConverter(getDominantColor(bMap));
+                infoCover.Attributes["style"] = "overflow:hidden;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
                 string cn = Request.QueryString["CN"].ToString();
                 //MangaViewsAndChapters.InnerText = "Chapters: " + cn + "  -   Views:  "+ ShowViews() + "";
                 MdiscS.InnerText = ShowDis();
@@ -51,6 +57,7 @@ namespace SuM_Manga_V3.storeitems
                 string ChapterFixedForm = string.Empty;
                 //string btnclass = "btn"; //btn
                 string RLink = string.Empty;
+                string themecolor = Request.QueryString["TC"].ToString();
                 char sc = '"';
                 for (int c = 1; c < (cn1 + 1); c++)
                 {
@@ -60,8 +67,8 @@ namespace SuM_Manga_V3.storeitems
                     if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
                     if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
                     if (c > 10000) { c = (cn1 + 1); }
-                    RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm;
-                    TheMangaPhotosF.InnerHtml += "<a class=" + "btn btn-primary btn-sm" + " href=" + sc + RLink + sc + " >Chapter " + chxC + "</a>";
+                    RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor;
+                    TheMangaPhotosF.InnerHtml += "<a style=" + abtntheme + " class=" + "btn btn-primary btn-sm" + " href=" + sc + RLink + sc + " >Chapter " + chxC + "</a>";
                 }
                 //string coverstyle = "text-align:left;width:226px;height:320px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;";
                 //string covercode = "<img style=" + coverstyle + " src=" + MangaPathCover + ">";
@@ -69,6 +76,44 @@ namespace SuM_Manga_V3.storeitems
                 //TheMangaPhotos.InnerHtml += "<a><h1> &zwnj; </h1><h1> &zwnj; </1><h1> &zwnj; </h1><h2> &zwnj; </h2><h4> &zwnj; </h4></a>";
                 AddOneView();
             }
+        }
+        protected static string RgbConverter(Color c)
+        {
+            return String.Format("rgba({0},{1},{2},0.74)", c.R, c.G, c.B);
+        }
+        protected static string ORgbConverter(Color c)
+        {
+            return String.Format("rgba({0},{1},{2},1)", c.R, c.G, c.B);
+        }
+        protected static Color getDominantColor(Bitmap bmp)
+        {
+            //Used for tally
+            int r = 0;
+            int g = 0;
+            int b = 0;
+
+            int total = 0;
+
+            for (int x = 0; x < bmp.Width; x++)
+            {
+                for (int y = 0; y < bmp.Height; y++)
+                {
+                    Color clr = bmp.GetPixel(x, y);
+
+                    r += clr.R;
+                    g += clr.G;
+                    b += clr.B;
+
+                    total++;
+                }
+            }
+
+            //Calculate average
+            r /= total;
+            g /= total;
+            b /= total;
+
+            return Color.FromArgb(r, g, b);
         }
         private void backhome()
         {

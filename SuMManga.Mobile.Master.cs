@@ -16,13 +16,36 @@ namespace SuM_Manga_V3
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             if (GetUserInfoCookie != null)
             {
-                string PFPFDB = string.Empty;
-                string user = GetUserInfoCookie["UserName"].ToString();
+                /*string PFPFDB = string.Empty;
+                string user = GetUserInfoCookie["UserName"].ToString();*/
             }
-            else
+            string path = HttpContext.Current.Request.Url.AbsolutePath;
+            if (path.Contains("Explore") == true || string.IsNullOrEmpty(path) == true || path == "/")
             {
-                Response.Redirect("~/AccountETC/LoginETC.aspx");
+                ExpIMG.Attributes["src"] = "/svg/Explore.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#6840D9;height:2vh !important;text-align:center !important;display:block;position:relative;";
+                LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#636166;height:2vh !important;text-align:center !important;display:block;position:relative;";
+                SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#636166;height:2vh !important;text-align:center !important;display:block;position:relative;";
             }
+            if (path.Contains("Library") == true)
+            {
+                ExpIMG.Attributes["src"] = "/svg/ExploreNA.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#636166;height:2vh !important;text-align:center !important;display:block;position:relative;";
+                LibIMG.Attributes["src"] = "/svg/bookmarks.svg"; LibText.Attributes["style"] = "font-size:64%;color:#6840D9;height:2vh !important;text-align:center !important;display:block;position:relative;";
+                SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#636166;height:2vh !important;text-align:center !important;display:block;position:relative;";
+            }
+            if (path.Contains("SuMSettings") == true || path.Contains("SuMAccount") == true)
+            {
+                ExpIMG.Attributes["src"] = "/svg/ExploreNA.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#636166;height:2vh !important;text-align:center !important;display:block;position:relative;";
+                LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#636166;height:2vh !important;text-align:center !important;display:block;position:relative;";
+                SetIMG.Attributes["src"] = "/svg/settings.svg"; SetText.Attributes["style"] = "font-size:64%;color:#6840D9;height:2vh !important;text-align:center !important;display:block;position:relative;";
+            }
+            /*if (path.Contains("smth") == true) 
+            {
+                ExpIMG.Attributes["src"] = "/svg/Explore.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#6840D9;height:2vh !important;text-align:center !important;display:block;position:relative;";
+                LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#a3a3a3;height:2vh !important;text-align:center !important;display:block;position:relative;";
+                SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#a3a3a3;height:2vh !important;text-align:center !important;display:block;position:relative;";
+            }*/
+            if (path.Contains("ContantExplorer") || path.Contains("MangaExplorer")) { NavItems.InnerHtml = ""; nav.Attributes["style"] = "height:1vh !important;width:100% !important;"; }
+            if (Request.QueryString["TC"] != null) { mangacolor.Attributes["style"] = "display:inline;color:" + Request.QueryString["TC"].ToString() + ";margin-top:8px !important;"; }
         }
         private void SuMAppAlertsStartsS(object sender, EventArgs e)
         {

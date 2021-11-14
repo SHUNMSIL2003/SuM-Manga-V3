@@ -10,6 +10,7 @@
     <!--
     <meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">--><!-- 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>SuM Manga</title>
     <meta name="theme-color" content="rgb(242,242,242)">
     <meta name="description" content="Shun Manga Shop">
@@ -29,6 +30,39 @@
     <meta name="google-site-verification" content="mp9Vewhm3_3ddQfuO0zmgnIvZpKaygdMO36zmFOgzos" />
     <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
     <link rel="stylesheet" href="../imghover/css/imagehover.min.css">
+    <!-- -->
+    <meta id="meta--themecolor-light" name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+    <meta id="meta--themecolor-dark" name="theme-color" media="(prefers-color-scheme: dark)" content="#2a2a2a">
+    <meta id="meta--msapplicationnavbuttoncolor-light" name="msapplication-navbutton-color" media="(prefers-color-scheme: light)" content="#ffffff">
+    <meta id="meta--msapplicationnavbuttoncolor-dark" name="msapplication-navbutton-color" media="(prefers-color-scheme: dark)" content="#2a2a2a">
+    <script>
+        function updateThemeColor(lightColor, darkColor = lightColor) {
+
+            // Update the meta tags
+            [
+
+                document.getElementById("meta--themecolor-light"),
+                document.getElementById("meta--msapplicationnavbuttoncolor-light")
+
+            ].forEach(function (metaTag) {
+
+                metaTag.setAttribute("content", lightColor);
+
+            });
+            [
+
+                document.getElementById("meta--themecolor-dark"),
+                document.getElementById("meta--msapplicationnavbuttoncolor-dark")
+
+            ].forEach(function (metaTag) {
+
+                metaTag.setAttribute("content", darkColor);
+
+            });
+
+        }
+    </script>
+    <!-- -->
     <style>
         @font-face {
             font-family: 'VarelaRound';
@@ -167,37 +201,37 @@
         </style>
         <div class="STBSUMBAR bg-white shadow" style="border-top-left-radius:22px;border-top-right-radius:22px;">
             <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;">
-                <a style="float:left !important;width:fit-content;">
+                <a href="/Explore.aspx" style="float:left !important;width:fit-content;">
                     <img src="/assets/img/SuM_TBrabd_x92.png" style="width:28px;height:28px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
-                    <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM Manga</p>
+                    <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:#6840D9;margin-top:8px !important;">Manga</p>
                 </a>
             <a class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" href="/Search.aspx"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
         </div>
-        <nav style="height:7vh;width:100% !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
-                    <div class="container-fluid" style="text-align:center !important;">
+        <nav id="nav" runat="server" style="height:7vh;width:100% !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
+                    <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;">
                                 <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
                                     <a href="/Explore.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
-                                        <img src="/svg/Explore.svg" style="width:4vh;height:4vh;display:block;position:relative;" />
-                                        <b style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;position:relative;">Explore</b>
+                                        <img id="ExpIMG" runat="server" src="/svg/Explore.svg" style="width:4vh;height:4vh;display:block;position:relative;" />
+                                        <b id="ExpText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;position:relative;">Explore</b>
                                     </a>
                                 </div>
                         <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
                                     <a href="/Explore.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
-                                        <img src="/svg/MostSeen.svg" style="width:4vh;height:4vh;display:block;" />
-                                        <b style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Top Hits</b>
+                                        <img src="/svg/MostSeenNA.svg" style="width:4vh;height:4vh;display:block;" />
+                                        <b style="font-size:64%;color:#a3a3a3;height:2vh !important; text-align:center !important;display:block;">Top Hits</b>
                                     </a>
                                 </div>
                         
                         <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
                                     <a href="/Library.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
-                                        <img src="/svg/bookmarks.svg" style="width:4vh;height:4vh;display:block;" />
-                                        <b style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Library</b>
+                                        <img id="LibIMG" runat="server" src="/svg/bookmarks.svg" style="width:4vh;height:4vh;display:block;" />
+                                        <b id="LibText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Library</b>
                                     </a>
                                 </div>
                         <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
                                     <a href="/AccountETC/SuMSettings.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
-                                        <img src="/svg/settings.svg" style="width:4vh;height:4vh;display:block;" />
-                                        <b style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Settings</b>
+                                        <img id="SetIMG" runat="server" src="/svg/settings.svg" style="width:4vh;height:4vh;display:block;" />
+                                        <b id="SetText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Settings</b>
                                     </a>
                                 </div>
                     </div>

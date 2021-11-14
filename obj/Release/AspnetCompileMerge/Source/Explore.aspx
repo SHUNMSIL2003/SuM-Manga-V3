@@ -84,7 +84,7 @@ img {vertical-align: middle;}
         <a href="#">Read Now</a>
     </div>
 </div>
-        <div class="mySlides fade" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:82vw !important;">
+        <div class="mySlides fade" style="overflow:hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:82vw !important;">
     <a style="width:100%;height:100%;" href="#">
     <h1 style="float:left;margin-top:8px;margin-left:8px;color:#ffffff;font-size:160%;">Blue Exorcist</h1>
     <p style="text-align:center;vertical-align:middle;"></p>
@@ -141,37 +141,37 @@ img {vertical-align: middle;}
         </div>
 
 
-        <div style="height:fit-content;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div1" runat="server">
+        <div style="height:fit-content;max-height:242px!important; width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div1" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Fantasy</h2>
             <div id="Fantasy" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
 
-        <div style="height:fit-content;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div2" runat="server">
+        <div style="height:fit-content;max-height:242px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div2" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Comedy</h2>
             <div id="Comedy" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
 
-        <div style="height:fit-content;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div3" runat="server">
+        <div style="height:fit-content;max-height:242px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div3" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Supernatural</h2>
             <div id="Supernatural" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
 
-        <div style="height:fit-content;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div4" runat="server">
+        <div style="height:fit-content;max-height:242px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div4" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Sci-Fi</h2>
             <div id="SciFi" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
 
-        <div style="height:fit-content;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div5" runat="server">
+        <div style="height:fit-content;max-height:242px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div5" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Drama</h2>
             <div id="Drama" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
 
-        <div style="height:fit-content;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div6" runat="server">
+        <div style="height:fit-content;max-height:242px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div6" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Mystery</h2>
             <div id="Mystery" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
 
-        <div style="height:fit-content;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div7" runat="server">
+        <div style="height:fit-content;max-height:242px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div7" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Slice of Life</h2>
             <div id="SliceofLife" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>

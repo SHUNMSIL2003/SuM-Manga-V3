@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/Contact.aspx" hash="8ef922025" filehash="6c73c47c622a3723" flags="110000" assembly="App_Web_0dqrdygb" type="ASP.contact_aspx">
+<preserve resultType="3" virtualPath="/Contact.aspx" hash="8ef922025" filehash="6e96a4d51e9c7833" flags="110000" assembly="App_Web_0d5la1oc" type="ASP.contact_aspx">
     <filedeps>
         <filedep name="/Contact.aspx" />
         <filedep name="/SuMManga.Master" />
