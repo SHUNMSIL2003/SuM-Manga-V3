@@ -272,6 +272,16 @@
     <Content Include="sh\jquery-ui.js" />
     <Content Include="sh\jquery-ui.css" />
     <Content Include="sh\style.css" />
+    <Content Include="splashscreens\ipadpro1_splash.png" />
+    <Content Include="splashscreens\ipadpro2_splash.png" />
+    <Content Include="splashscreens\ipadpro3_splash.png" />
+    <Content Include="splashscreens\ipad_splash.png" />
+    <Content Include="splashscreens\iphone5_splash.png" />
+    <Content Include="splashscreens\iphone6_splash.png" />
+    <Content Include="splashscreens\iphoneplus_splash.png" />
+    <Content Include="splashscreens\iphonexr_splash.png" />
+    <Content Include="splashscreens\iphonexsmax_splash.png" />
+    <Content Include="splashscreens\iphonex_splash.png" />
     <Content Include="storeitems\Anohana\Anohana.jpg" />
     <Content Include="storeitems\Anohana\ch0001\ano_hi_mita_hana_no_namae_o_bokutachi_wa_mada_shiranai_1_01.jpg" />
     <Content Include="storeitems\Anohana\ch0001\ano_hi_mita_hana_no_namae_o_bokutachi_wa_mada_shiranai_1_02.jpg" />
@@ -3099,7 +3109,7 @@
     <Content Include="imghover\scss\imagehover.scss" />
     <Content Include="imghover\scss\_custom.scss" />
     <Content Include="imghover\scss\_variables.scss" />
-    <Content Include="manifest.json" />
+    <None Include="manifest.webmanifest" />
     <Content Include="SuMManga.Master" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\SuM-Manga - Web Deploy.pubxml" />

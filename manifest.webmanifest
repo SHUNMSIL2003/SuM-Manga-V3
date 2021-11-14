@@ -1,5 +1,5 @@
 {
-  "short_name": "SuM",
+  "short_name": "SuM Manga",
   "name": "SuM Manga",
   "icons": [
     {
@@ -70,11 +70,11 @@
       "sizes": "16x16"
     }
   ],
-  "start_url": "Explore.aspx",
+  "start_url": "/Explore.aspx",
   "scope": "/",
-  "description": "The best app for reading manga.",
-  "background_color": "rgb(138,97,255)",
-  "theme_color": "rgb(138,97,255)",
+  "description": "Best app for reading manga!",
+  "background_color": "rgb(242,242,242)",
+  "theme_color": "rgb(242,242,242)",
   "display": "standalone",
   "orientation": "portrait-primary",
   "screenshots": [

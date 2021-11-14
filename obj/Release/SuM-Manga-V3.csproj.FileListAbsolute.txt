@@ -1,3 +1,6 @@
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\vbc.exe
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\vbc.exe.config
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\vbc.rsp
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll.config
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.pdb
@@ -26,9 +29,6 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\System.Reflection.Metadata.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\System.Text.Encoding.CodePages.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\System.Threading.Tasks.Extensions.dll
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\vbc.exe
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\vbc.exe.config
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\vbc.rsp
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\VBCSCompiler.exe
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\VBCSCompiler.exe.config
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Antlr3.Runtime.dll

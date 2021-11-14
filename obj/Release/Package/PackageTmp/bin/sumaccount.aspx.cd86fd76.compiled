@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/AccountETC/SuMAccount.aspx" hash="8ef922025" filehash="e8f74aace66fa104" flags="110000" assembly="App_Web_tojnlw0b" type="ASP.accountetc_sumaccount_aspx">
+<preserve resultType="3" virtualPath="/AccountETC/SuMAccount.aspx" hash="8ef922025" filehash="1ea7ce61829d7135" flags="110000" assembly="App_Web_e14a5kqk" type="ASP.accountetc_sumaccount_aspx">
     <filedeps>
         <filedep name="/AccountETC/SuMAccount.aspx" />
         <filedep name="/SuMManga.Master" />

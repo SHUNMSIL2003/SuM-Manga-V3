@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en" style="overflow: hidden;">
 <head>
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials">
     <script src="/runsw.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
