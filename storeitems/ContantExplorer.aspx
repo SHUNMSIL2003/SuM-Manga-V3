@@ -16,7 +16,7 @@
     <p style="height:fit-content;min-height:60vw !important; width:96vw;max-width:96vw;font-size:96%;color:#ffffff;margin:14px !important;" id="MdiscS" runat="server"></p>
 </div>
 </div>
-    <div style="display:inline-block;height:fit-content;min-height:60vh;background-color:rgba(1,65,54,0.544);" id="TheMangaPhotosF" runat="server">
-        </div>
-    <hr style="height:1.6px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.76;margin:0px;margin-block:0px;">
+    <div style="display:inline-block;height:100vh !important;min-height:100% !important;background-color:rgba(1,65,54,0.544);" id="TheMangaPhotosF" runat="server">
+        </div><!--
+    <hr style="height:1.6px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.76;margin:0px;margin-block:0px;"> -->
 </asp:Content>

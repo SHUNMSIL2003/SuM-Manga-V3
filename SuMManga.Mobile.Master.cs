@@ -58,6 +58,8 @@ namespace SuM_Manga_V3
             //}
             string path = HttpContext.Current.Request.Url.AbsolutePath;
             bool foundit = false;
+            subnavscont2.Attributes["style"] = "display:none !important;";
+            fullnavscont.Attributes["style"] = "border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:transparent !important;";
             if (path.Contains("Explore") == true || string.IsNullOrEmpty(path) == true || path == "/")
             {
                 foundit = true;
@@ -89,10 +91,12 @@ namespace SuM_Manga_V3
             {
                 //if (Request.QueryString["TC"] != null)
                 //{
-                    //fullnavscont.Attributes["style"] = "border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;background-color:" + Request.QueryString["TC"].ToString() + " !important;";
-                    //subnavscont.Attributes["style"] = "height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;background-color:" + Request.QueryString["TC"].ToString() + " !important;";
-                    //wrapper.Attributes["style"] = "overflow:hidden;background-color:" + Request.QueryString["TC"].ToString() + " !important;";
+                //fullnavscont.Attributes["style"] = "border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;background-color:" + Request.QueryString["TC"].ToString() + " !important;";
+                //subnavscont.Attributes["style"] = "height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;background-color:" + Request.QueryString["TC"].ToString() + " !important;";
+                //wrapper.Attributes["style"] = "overflow:hidden;background-color:" + Request.QueryString["TC"].ToString() + " !important;";
                 //}
+                fullnavscont.Attributes["style"] = "display:none !important;";
+                subnavscont2.Attributes["style"] = "height:46px !important;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px #f2f2f2 !important;";
                 foundit = true; NavItems.InnerHtml = ""; nav.Attributes["style"] = "height:1vh !important;width:100% !important;";
             }
             if (foundit == false) 

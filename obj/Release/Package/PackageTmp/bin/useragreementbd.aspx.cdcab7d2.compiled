@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/UserAgreementBD.aspx" hash="8ef922025" filehash="44f0b02ebdddbd4b" flags="110000" assembly="App_Web_arf1rtqy" type="ASP.useragreementbd_aspx">
+<preserve resultType="3" virtualPath="/UserAgreementBD.aspx" hash="8ef922025" filehash="d623868bcd53648f" flags="110000" assembly="App_Web_iuqd5dlb" type="ASP.useragreementbd_aspx">
     <filedeps>
         <filedep name="/SuMManga.Master" />
         <filedep name="/UserAgreementBD.aspx" />

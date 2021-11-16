@@ -96,7 +96,14 @@
     </script>
 </head>
 <body id="page-top" style="overflow:hidden;height:100vh;width:100vw;">
+    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            scroll-behavior:smooth !important;
+        }
         div {
             box-shadow: 0px 0px #000000 !important;
             overflow-x: hidden !important;
@@ -146,7 +153,7 @@
         }
     </style>
     <form id="SuM" method="post" runat="server">
-    <di runat="server" id="wrapper" style="overflow:hidden;">
+    <di runat="server" id="wrapper" style="overflow:hidden;background-color:#ffffff !important;">
         <div class="d-flex flex-column" id="content-wrapper" style="overflow-x:hidden;">
             <div id="content">
                 <style>
@@ -157,12 +164,18 @@
                         /*background-color:rgb(240, 235, 255) !important;*/
                     }
                 </style>
-                <div style="width:100vw !important; height:98vh !important;max-height:93vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;" id="SuMMainBlock" runat="server" class="container-fluid">
-                    <div class="ForceMaxW" style="width:100vw !important; height:98vh !important;max-height:98vh !important;margin-left:-24px !important;background-color:#F8F9FD;" id="mc" runat="server">
+                <div style="width:100vw !important; height:99vh !important;max-height:98vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;background-color:#ffffff !important;" id="SuMMainBlock" runat="server" class="container-fluid">
+                    <div class="ForceMaxW" style="width:100vw !important; height:99vh !important;max-height:99vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;" id="mc" runat="server">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
                     </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>
-                </div>
+                </div><!--
+                <div style="width:100vw !important; height:98vh !important;max-height:93vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;" id="Div1" runat="server" class="container-fluid">
+                    <div class="ForceMaxW" style="width:100vw !important; height:98vh !important;max-height:98vh !important;margin-left:-24px !important;background-color:#F8F9FD;" id="Div2" runat="server">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                    </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>
+                </div> -->
             </div>
         </div>
         <style>
@@ -178,7 +191,14 @@
                 max-height:7vh !important;
             }
         </style>
-        <div id="fullnavscont" runat="server" class="STBSUMBAR bg-white shadow" style="border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:transparent !important;">
+        <div id="subnavscont2" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:46px !important;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;">
+                <a id="navb2" runat="server" href="/Explore.aspx" style="float:left !important;width:fit-content;">
+                    <img src="/assets/img/SuM_TBrabd_x92.png" style="width:28px;height:28px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
+                    <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
+                </a>
+            <a class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" href="/Search.aspx"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;"></a>
+        </div>
+        <div id="fullnavscont" runat="server" class="STBSUMBAR bg-white shadow" style="border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:transparent !important;">
             <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;">
                 <a href="/Explore.aspx" style="float:left !important;width:fit-content;">
                     <img src="/assets/img/SuM_TBrabd_x92.png" style="width:28px;height:28px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
@@ -186,30 +206,30 @@
                 </a>
             <a class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" href="/Search.aspx"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
         </div>
-        <nav id="nav" runat="server" style="height:7vh;width:100% !important;max-height:64px !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
+        <nav id="nav" runat="server" style="height:7.2vh !important;width:100% !important;max-height:64px !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
                     <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;">
-                                <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
+                                <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
                                     <a href="/Explore.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
-                                        <img id="ExpIMG" runat="server" src="/svg/Explore.svg" style="width:4vh;height:4vh;display:block;position:relative;" />
+                                        <img id="ExpIMG" runat="server" src="/svg/Explore.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;position:relative;" />
                                         <b id="ExpText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;position:relative;">Explore</b>
                                     </a>
                                 </div>
-                        <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
+                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
                                     <a href="/Explore.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
-                                        <img src="/svg/MostSeenNA.svg" style="width:4vh;height:4vh;display:block;" />
+                                        <img src="/svg/MostSeenNA.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;" />
                                         <b style="font-size:64%;color:#a3a3a3;height:2vh !important; text-align:center !important;display:block;">Top Hits</b>
                                     </a>
                                 </div>
                         
-                        <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
+                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
                                     <a href="/Library.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
-                                        <img id="LibIMG" runat="server" src="/svg/bookmarks.svg" style="width:4vh;height:4vh;display:block;" />
+                                        <img id="LibIMG" runat="server" src="/svg/bookmarks.svg" style="max-height:62px;max-width:62px; width:4vh;height:4vh;display:block;" />
                                         <b id="LibText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Library</b>
                                     </a>
                                 </div>
-                        <div class="" style="display:inline !important;width:7vh !important;height:7vh !important;text-align:center !important;align-items:center;align-content:center;">
+                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
                                     <a href="/AccountETC/SuMSettings.aspx" class="dropdown-toggle nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
-                                        <img id="SetIMG" runat="server" src="/svg/settings.svg" style="width:4vh;height:4vh;display:block;" />
+                                        <img id="SetIMG" runat="server" src="/svg/settings.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;" />
                                         <b id="SetText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Settings</b>
                                     </a>
                                 </div>

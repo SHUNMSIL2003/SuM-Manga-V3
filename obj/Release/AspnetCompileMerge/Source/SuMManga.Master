@@ -297,7 +297,7 @@
                     <div class="text-center my-auto copyright" style="background-color:transparent;height:3vh;"><span>[School-Project!]Copyright © SuM Manga 2021</span></div>
                 </div> -->
            <!-- </footer> -->
-        </div><a class="border rounded d-inline scroll-to-top" data-bss-hover-animate="pulse" href="#gotopagetop" style="background: rgba(71,41,159,0.45);height:46px"><i class="fas fa-angle-up"></i></a>
+        </div><a class="border rounded scroll-to-top" data-bss-hover-animate="pulse" href="#gotopagetop" style="background: rgba(71,41,159,0.45);height:36px;width:36px;float:left !important;margin-left:6px !important;margin-bottom:6px !important;bottom:0 !important;opacity:0.64 !important;border-radius:16px !important;"><i class="fas fa-angle-up"></i></a>
     </div>
     <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>
