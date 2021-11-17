@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Master" AutoEventWireup="true" CodeBehind="UserAgreementBD.aspx.cs" Inherits="SuM_Manga_V3.UserAgreementBD" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="UserAgreementBD.aspx.cs" Inherits="SuM_Manga_V3.UserAgreementBD" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>

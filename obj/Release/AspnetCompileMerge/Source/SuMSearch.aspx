@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SuMSearch.aspx.cs" Inherits="SuM_Manga_V3.SuMSearch" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="SuMSearch.aspx.cs" Inherits="SuM_Manga_V3.SuMSearch" %>
 
 <!DOCTYPE html>
 <html lang="en" style="overflow: hidden;">

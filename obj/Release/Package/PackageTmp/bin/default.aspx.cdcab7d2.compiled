@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/Default.aspx" hash="8ef922025" filehash="b2508b51edf67ab7" flags="110000" assembly="App_Web_rfffx1nk" type="ASP.default_aspx">
+<preserve resultType="3" virtualPath="/Default.aspx" hash="8ef922025" filehash="ab9a19b0cab828e3" flags="110000" assembly="App_Web_onhd3k1e" type="ASP.default_aspx">
     <filedeps>
         <filedep name="/Default.aspx" />
-        <filedep name="/SuMManga.Master" />
+        <filedep name="/SuMManga.Mobile.Master" />
     </filedeps>
 </preserve>

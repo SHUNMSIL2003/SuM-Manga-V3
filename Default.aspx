@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" enableEventValidation="false" MasterPageFile="~/SuMManga.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="SuM_Manga_V3.Default" %>
+﻿<%@ Page Language="C#" enableEventValidation="false" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="SuM_Manga_V3.Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>

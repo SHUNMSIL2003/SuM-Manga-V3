@@ -9,8 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Forgotten Password - SuM Manga</title>
-    <meta name="theme-color" content="rgb(104,64,217)">
-    <meta name="theme-color" content="#6840D9" />
+    <meta name="theme-color" content="rgb(242,242,242)">
     <meta name="description" content="Shun Manga Shop">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../assets/img/SuM-180.png?h=470ab06da498d6fc442f5928b61025aa">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/SuM-16.png?h=0feb0de48de04a3db9816426bc4d5316">

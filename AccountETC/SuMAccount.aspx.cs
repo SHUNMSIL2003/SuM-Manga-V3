@@ -13,11 +13,11 @@ namespace SuM_Manga_V3.AccountETC
 {
     public partial class SuMAccount : System.Web.UI.Page
     {
-        protected void Page_PreInit(object sender, EventArgs e)
+        /*protected void Page_PreInit(object sender, EventArgs e)
         {
             if (Request.Browser.IsMobileDevice)
                 MasterPageFile = "~/SuMManga.Mobile.Master";
-        }
+        }*/
         public string currSignetsure = string.Empty;
         public string currEmail = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
@@ -97,7 +97,8 @@ namespace SuM_Manga_V3.AccountETC
                     }
                 }
                 bool fixer = File.Exists(Server.MapPath(OrPATH));
-                if (fixer == true) { File.Delete(Server.MapPath(OrPATH)); }
+                bool Fix5 = OrPATH.Contains("DeafultPFP.jpg");
+                if (fixer == true && Fix5 == false) { File.Delete(Server.MapPath(OrPATH)); }
                 //if(SuMCustomPFP.PostedFile.ContentType!="png"|| SuMCustomPFP.PostedFile.ContentType != "jpeg")
                 //
                 string fileName = System.IO.Path.GetFileName(SuMCustomPFP.PostedFile.FileName);

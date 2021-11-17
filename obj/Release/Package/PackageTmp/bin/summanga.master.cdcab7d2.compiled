@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/SuMManga.Master" hash="8ef922025" filehash="ffffd95062c59808" flags="110000" assembly="App_Web_4syzdjt0" type="ASP.summanga_master">
+<preserve resultType="3" virtualPath="/SuMManga.Master" hash="8ef922025" filehash="ffffd9423035750f" flags="110000" assembly="App_Web_z4dvshkk" type="ASP.summanga_master">
     <filedeps>
         <filedep name="/SuMManga.Master" />
     </filedeps>
