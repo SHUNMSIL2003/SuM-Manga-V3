@@ -28,7 +28,7 @@
     <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
 </head>
 
-<body class="bg-gradient-primary" style="background: rgb(104,64,217);">
+<body class="bg-gradient-primary" style="background: rgb(242,242,242);">
     <style>
          * {
              -moz-user-select: none;

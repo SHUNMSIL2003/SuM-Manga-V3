@@ -116,7 +116,7 @@ namespace SuM_Manga_V3.AccountETC
             //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
-            HttpContext.Current.Response.Redirect("/AccountETC/SuMAccount.aspx");
+            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx");
         }
         protected static void SaveSCCookie(string UserName,string craetorname)
         {
@@ -126,7 +126,7 @@ namespace SuM_Manga_V3.AccountETC
             //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
-            HttpContext.Current.Response.Redirect("/AccountETC/SuMAccount.aspx");
+            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx");
         }
         protected void ResendConfLink(object sender, EventArgs e)
         {

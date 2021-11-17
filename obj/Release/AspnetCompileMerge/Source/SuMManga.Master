@@ -62,12 +62,12 @@
     <script>
         window.addEventListener('contextmenu', e => {
             e.preventDefault();
-        });/*
+        });
         (function () {
             setInterval(() => {
                 debugger;
             }, 100);
-        })();*/
+        })();
     </script>
     <script>
         export default {

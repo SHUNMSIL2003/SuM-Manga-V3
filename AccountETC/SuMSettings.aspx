@@ -24,7 +24,7 @@
         img {
             pointer-events:all !important;
         }
-    </style>
+    </style><br />
                     <h3 style="color:#6840D9;display:inline;" class="text-dark mb-4"><p class="forcecolor" style="display:inline;" id="UserNameForShow0" runat="server"></p> SuM Settings</h3><br /><br />
                     <div class="row mb-3">
                         <div class="col-lg-4" style="height: 90%;">

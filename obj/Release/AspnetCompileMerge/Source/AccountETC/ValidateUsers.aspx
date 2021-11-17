@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="../assets/animate.min.css">
 </head>
 
-<body class="bg-gradient-primary" style="background: rgb(104,64,217);">
+<body class="bg-gradient-primary" style="background: rgb(242,242,242);">
     <style>
         img {
             pointer-events: none;

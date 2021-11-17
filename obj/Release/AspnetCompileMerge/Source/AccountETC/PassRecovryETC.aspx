@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 </head>
 
-<body class="bg-gradient-primary" style="background: rgb(104,64,217);">
+<body class="bg-gradient-primary" style="background: rgb(242,242,242);">
     <style>
          * {
              -moz-user-select: none;

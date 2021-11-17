@@ -121,6 +121,7 @@
     <Content Include="AccountETC\Noti.svg" />
     <Content Include="AccountETC\PassRecovryETC.aspx" />
     <Content Include="AccountETC\RegisterETC.aspx" />
+    <Content Include="AccountETC\Settings.aspx" />
     <Content Include="AccountETC\SuMAccount.aspx" />
     <Content Include="AccountETC\SuMSettings.aspx" />
     <Content Include="AccountETC\UsersUploads\DeafultPFP.jpg" />
@@ -2856,6 +2857,7 @@
     <Content Include="svg\LibraryNA.svg" />
     <Content Include="svg\Library.svg" />
     <Content Include="svg\librarybooks.svg" />
+    <Content Include="svg\logout.svg" />
     <Content Include="svg\manageaccount.svg" />
     <Content Include="svg\MostSeenNA.svg" />
     <Content Include="svg\MostSeen.svg" />
@@ -2901,6 +2903,13 @@
     </Compile>
     <Compile Include="AccountETC\RegisterETC.aspx.designer.cs">
       <DependentUpon>RegisterETC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AccountETC\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccountETC\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="AccountETC\SuMAccount.aspx.cs">
       <DependentUpon>SuMAccount.aspx</DependentUpon>

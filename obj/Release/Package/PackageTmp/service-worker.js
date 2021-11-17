@@ -10,7 +10,7 @@ var cacheFirstFiles = [
 
 var networkFirstFiles = [
     // ADDME: Add paths and URLs to pull from network first. Else fall back to cache if offline. Examples:
-    'Default.aspx',
+    'Explore.aspx',
     '404.aspx',
     'UserAgreementBD.aspx',
     'About.aspx',

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
 using System.Net.Mail;
 
 namespace SuM_Manga_V3.AccountETC
@@ -79,6 +80,24 @@ namespace SuM_Manga_V3.AccountETC
             string UserName = GetUserInfoCookie["UserName"].ToString();
             if (SuMCustomPFP.HasFile == true)
             {
+                string oldimg = PFP.Attributes["src"].ToString();
+                char[] fixing = oldimg.ToCharArray();
+                string OrPATH = string.Empty;
+                for (int i = 0; i < fixing.Length; i++)
+                {
+                    if (fixing[i] == '/')
+                    {
+                        if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = "\\"; }
+                        else { OrPATH += "\\"; }
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = fixing[i].ToString(); }
+                        else { OrPATH += fixing[i].ToString(); }
+                    }
+                }
+                bool fixer = File.Exists(Server.MapPath(OrPATH));
+                if (fixer == true) { File.Delete(Server.MapPath(OrPATH)); }
                 //if(SuMCustomPFP.PostedFile.ContentType!="png"|| SuMCustomPFP.PostedFile.ContentType != "jpeg")
                 //
                 string fileName = System.IO.Path.GetFileName(SuMCustomPFP.PostedFile.FileName);
