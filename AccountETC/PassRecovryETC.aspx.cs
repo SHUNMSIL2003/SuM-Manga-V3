@@ -23,7 +23,7 @@ namespace SuM_Manga_V3.AccountETC
             {
                 //MPB.InnerText = "Explore";
                 //MPB.Attributes["href"] = "Library.aspx";
-                Response.Redirect("~/Default.aspx");
+                Response.Redirect("~/Explore.aspx");
             }
         }
         protected void PassResetStart(object sender, EventArgs e) 

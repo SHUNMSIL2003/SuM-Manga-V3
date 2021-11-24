@@ -154,7 +154,7 @@
         })();
     </script>
     <form id="SuM" method="post" runat="server">
-    <div class="container bounce animated">
+    <div class="container pulse animated">
         <div class="card shadow-lg o-hidden border-0 my-5">
             <div class="card-body p-0">
                 <div class="row">

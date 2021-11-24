@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/storeitems/TagView.aspx" hash="8ef922025" filehash="3919e79210542d59" flags="110000" assembly="App_Web_10gfwiyp" type="ASP.storeitems_tagview_aspx">
+<preserve resultType="3" virtualPath="/storeitems/TagView.aspx" hash="8ef922025" filehash="2a5b3426e8b4663e" flags="110000" assembly="App_Web_ncvdpq1i" type="ASP.storeitems_tagview_aspx">
     <filedeps>
         <filedep name="/storeitems/TagView.aspx" />
         <filedep name="/SuMManga.Mobile.Master" />

@@ -301,7 +301,8 @@ namespace SuM_Manga_V3
             else { discr = discr0; }
             //string cardtitle = string.Empty;
             string h1style = "float:left;margin-top:8px;margin-left:8px;color:#ffffff;font-size:160%;display:block;";
-            string divclass = "mySlides fade";
+            char b12 = '"';
+            string divclass = b12.ToString() + "mySlides pulse animated" + b12.ToString();
             string pstyle = "color:#f2f2f2;text-align:center;vertical-align:middle;display:block;overflow-wrap:break-word;";
             //string CardBG = "Link!";
             string divstyle = "overflow:hidden;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;"; //rgba(0,0,0,0.527)
@@ -356,12 +357,12 @@ namespace SuM_Manga_V3
             //string pstyle = "color:#f2f2f2;text-align:center;vertical-align:middle;display:block;";
             //string CardBG = "Link!";
             char b12 = '"';
-            string zoominanim = b12.ToString() + "zoomIn animated" + b12.ToString();
+            string zoominanim = b12.ToString() + "fadeIn animated" + b12.ToString();
             string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
-            string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";
+            string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
             string divs1 = "border-radius:8px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
             string divstyle = "overflow:hidden;background-image:linear-gradient(rgba(0,0,0,0.527),rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;";
-            string divs2 = "backdrop-filter:blur(1px);background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;"; //rgb(104,64,217,0.64)
+            string divs2 = "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;"; //rgb(104,64,217,0.64)
             string ps0 = "height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
             string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
             string result = "<div class=" + zoominanim + " style=" + divs0 + "><a href=" + Link + " style=" + as0 + "><div style=" + divs1 + "><div style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>";//GetGarnas(id)

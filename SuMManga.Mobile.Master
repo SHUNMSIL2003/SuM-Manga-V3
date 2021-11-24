@@ -224,7 +224,7 @@
                     }
                 </style>
                 <div style="width:100vw !important; height:99vh !important;max-height:98vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;background-color:#ffffff !important;" id="SuMMainBlock" runat="server" class="container-fluid">
-                    <div class="ForceMaxW" style="width:100vw !important; height:99vh !important;max-height:99vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;" id="mc" runat="server">
+                    <div class="fadeIn animated ForceMaxW" style="width:100vw !important; height:99vh !important;max-height:99vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;" id="mc" runat="server">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
                     </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>
@@ -250,18 +250,20 @@
                 max-height:7vh !important;
             }
         </style>
-        <div id="subnavscont2" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:46px !important;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px #f2f2f2 !important;">
-                <a id="navb2" runat="server" href="/Explore.aspx" style="float:left !important;width:fit-content;">
-                    <img src="/assets/img/SuM_TBrabd_x92.png" style="width:28px;height:28px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
+        <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:46px !important;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px #f2f2f2 !important;">
+                <a id="navb2" runat="server" href='javascript:history.go(-1)' style="float:left !important;width:fit-content;">
+                    <img src="/assets/img/SuM_TBrabd_x92.png" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
+                    <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;">Navigate Back</b>
                 </a>
             <a class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" href="/Search.aspx"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;"></a>
         </div>
         <div id="fullnavscont" runat="server" class="STBSUMBAR bg-white shadow" style="border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:transparent !important;bottom:0 !important;">
             <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;">
-                <a href="/Explore.aspx" style="float:left !important;width:fit-content;">
-                    <img src="/assets/img/SuM_TBrabd_x92.png" style="width:28px;height:28px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
+                <a href='javascript:history.go(-1)' style="float:left !important;width:fit-content;">
+                    <img src="/assets/img/SuM_TBrabd_x92.png" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:#6840D9;margin-top:8px !important;">Manga</p>
+                    <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;">Navigate Back</b>
                 </a>
             <a class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" href="/Search.aspx"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
         </div>

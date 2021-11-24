@@ -36,13 +36,13 @@
             box-shadow: none !important;
         }
         </style>
-    <div class="STBSUMBAR2 bg-white shadow">
+    <div class="STBSUMBAR2 bg-white shadow fadeInDown animated">
         <nav style="height:7vh;max-height:62px !important; min-height:56px !important;width:100% !important;" class="navbar navbar-light navbar-expand bg-white mb-4 FNM5455511">
                     <div class="container-fluid" style="text-align:center !important;">
                                 <div class="" style="display:inline !important;width:100vw !important;height:7vh !important;max-height:62px !important; min-height:56px !important; text-align:center !important;align-items:center;align-content:center;">
                                     <div class="me-auto navbar-search w-100" style="vertical-align:middle !important;">
                                         <div class="input-group" style="vertical-align:middle !important;">
-                                            <a style="width:38px;height:7vh;display:inline-block !important;float:right;vertical-align:middle !important;" href="/Explore.aspx"><img src="/svg/arrowback.svg" style="height:5vh;width:5vh;max-height:32px;max-width:32px;display:inline-block !important;margin-top:1vh !important;margin-bottom:1vh !important;" /></a>
+                                            <a style="width:38px;height:7vh;display:inline-block !important;float:right;vertical-align:middle !important;" href='javascript:history.go(-1)'><img src="/svg/arrowback.svg" style="height:5vh;width:5vh;max-height:32px;max-width:32px;display:inline-block !important;margin-top:1vh !important;margin-bottom:1vh !important;" /></a>
                                             <asp:TextBox ID="TextBoxFor" runat="server" CssClass="bg-light form-control border-0 small" style="background-color:#ffffff !important;border:solid 0px #ffffff !important;height:7vh !important;width:64vw !important;display:inline !important;float:right;max-height:62px !important;" AutoCompleteType="Search" TextMode="Search" placeholder="Search for..."></asp:TextBox>
                                             <!--<input style="background-color:#ffffff !important;border:solid 0px #ffffff !important;height:7vh !important;width:64vw !important;display:inline !important;float:right;" class="bg-light form-control border-0 small" id="SearchText" runat="server" type="search" placeholder="Search for ..."> -->
                                         </div>
@@ -51,7 +51,7 @@
                     </div>
                 </nav>
             </div>
-    <div id="Results" style="height:calc(86vh-38px) !important;width:100vw !important" runat="server">
+    <div class id="Results" style="height:calc(86vh-38px) !important;width:100vw !important" runat="server">
         <p>Loading...</p>
     </div>
 </asp:Content>

@@ -87,7 +87,7 @@ namespace SuM_Manga_V3
                 LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#a3a3a3;height:2vh !important;text-align:center !important;display:block;position:relative;";
                 SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#a3a3a3;height:2vh !important;text-align:center !important;display:block;position:relative;";
             }*/
-            if (path.Contains("ContantExplorer") || path.Contains("MangaExplorer"))
+            if (/*path.Contains("ContantExplorer") ||*/ path.Contains("MangaExplorer"))
             {
                 //if (Request.QueryString["TC"] != null)
                 //{

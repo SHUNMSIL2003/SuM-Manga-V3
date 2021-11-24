@@ -68,7 +68,7 @@ namespace SuM_Manga_V3.storeitems
                 string themecolor = ThemeColor;
                 char sc = '"';
                 char b12 = '"';
-                string btnanimationclass = b12.ToString() + "flash animated btn" + b12.ToString();
+                string btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
                 TheMangaPhotosF.InnerHtml = "<br>";//"<a style=" + abtntheme + "><p style="+ "color:#ffffff;float:right;font-size:142%;" + ">" + Request.QueryString["CN"].ToString() + " Chapters</p></a>";
                 //TheMangaPhotosF.InnerHtml += "<hr style=" + "height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.42;margin:0px;margin-block:0px;" + ">";
                 for (int c = 1; c < (cn1 + 1); c++)
@@ -243,7 +243,7 @@ namespace SuM_Manga_V3.storeitems
         protected string GetGerns(string ThemeColor, int ID)
         {
             char b12 = '"';
-            string flashani = b12.ToString() + "flash animated" + b12.ToString();
+            string flashani = b12.ToString() + "fadeIn animated" + b12.ToString();
             bool un = false;
             string gernsincard = " ";
             string TagViewer0 = "/storeitems/TagView.aspx";
