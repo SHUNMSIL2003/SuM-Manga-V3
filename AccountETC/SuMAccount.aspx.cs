@@ -84,7 +84,7 @@ namespace SuM_Manga_V3.AccountETC
                 char[] fixing = oldimg.ToCharArray();
                 string OrPATH = string.Empty;
                 for (int i = 0; i < fixing.Length; i++)
-                {
+                { 
                     if (fixing[i] == '/')
                     {
                         if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = "\\"; }

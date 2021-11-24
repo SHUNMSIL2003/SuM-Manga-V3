@@ -74,7 +74,7 @@ img {vertical-align: middle;}
 }
     </style>
     <div style="height:100% !important;width:100% !important">
-<div class="slideshow-container" id="cardscontain" runat="server" style="width:100vw !important;height:fit-content !important;overflow:hidden !important;">
+<div class="bounce animated slideshow-container" id="cardscontain" runat="server" style="width:100vw !important;height:fit-content !important;overflow:hidden !important;">
     <div id="cardstoshow" runat="server">
 <div class="mySlides fade" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:82vw !important;padding:12px;">
     <a style="width:100%;height:100%;" href="#">

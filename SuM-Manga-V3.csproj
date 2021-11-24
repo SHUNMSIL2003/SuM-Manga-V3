@@ -120,6 +120,7 @@
     <Content Include="AccountETC\LoginETC.aspx" />
     <Content Include="AccountETC\Noti.svg" />
     <Content Include="AccountETC\PassRecovryETC.aspx" />
+    <Content Include="AccountETC\pwabuilder-sw.js" />
     <Content Include="AccountETC\RegisterETC.aspx" />
     <Content Include="AccountETC\Settings.aspx" />
     <Content Include="AccountETC\SuMAccount.aspx" />
@@ -220,6 +221,16 @@
     <Content Include="favicon.ico" />
     <Content Include="google139ca1b85e8d81e5.html" />
     <Content Include="google202f75c3bd92d10f.html" />
+    <Content Include="images\128x128.png" />
+    <Content Include="images\16x16.png" />
+    <Content Include="images\180x180.png" />
+    <Content Include="images\192x192.png" />
+    <Content Include="images\32x32.png" />
+    <Content Include="images\384x384.png" />
+    <Content Include="images\48x48.png" />
+    <Content Include="images\512x512.png" />
+    <Content Include="images\72x72.png" />
+    <Content Include="images\96x96.png" />
     <Content Include="imghover\.gitignore" />
     <Content Include="imghover\css\demo-page.css" />
     <Content Include="imghover\css\imagehover.css" />
@@ -253,14 +264,18 @@
     <Content Include="ios\80.png" />
     <Content Include="ios\87.png" />
     <Content Include="Library.aspx" />
+    <Content Include="livereload.js" />
     <Content Include="mstile-144x144.png" />
     <Content Include="mstile-150x150.png" />
     <Content Include="mstile-310x150.png" />
     <Content Include="mstile-310x310.png" />
     <Content Include="mstile-70x70.png" />
+    <Content Include="pwabuilder-sw\pwabuilder-sw-register.js" />
+    <Content Include="pwabuilder-sw\pwabuilder-sw.js" />
     <Content Include="runsw.js" />
     <Content Include="assets\VarelaRound.ttf" />
     <Content Include="safari-pinned-tab.svg" />
+    <Content Include="storeitems\TagView.aspx" />
     <Content Include="windows11\LargeTile.scale-100.png" />
     <Content Include="windows11\LargeTile.scale-125.png" />
     <Content Include="windows11\LargeTile.scale-150.png" />
@@ -341,6 +356,8 @@
     <Content Include="windows11\Wide310x150Logo.scale-150.png" />
     <Content Include="windows11\Wide310x150Logo.scale-200.png" />
     <Content Include="windows11\Wide310x150Logo.scale-400.png" />
+    <Content Include="manifest.json" />
+    <Content Include="results.json" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -3130,6 +3147,13 @@
     </Compile>
     <Compile Include="storeitems\MangaExplorer.aspx.designer.cs">
       <DependentUpon>MangaExplorer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="storeitems\TagView.aspx.cs">
+      <DependentUpon>TagView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="storeitems\TagView.aspx.designer.cs">
+      <DependentUpon>TagView.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuMAdmin\AdminControlPanel.aspx.cs">
       <DependentUpon>AdminControlPanel.aspx</DependentUpon>
