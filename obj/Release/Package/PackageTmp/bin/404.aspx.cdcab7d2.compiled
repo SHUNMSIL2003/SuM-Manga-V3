@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/404.aspx" hash="8ef922025" filehash="f94d4c8b23487891" flags="110000" assembly="App_Web_zqjisb3p" type="ASP._404_aspx">
+<preserve resultType="3" virtualPath="/404.aspx" hash="8ef922025" filehash="f92d0c83e4ff5283" flags="110000" assembly="App_Web_a2ecojoc" type="ASP._404_aspx">
     <filedeps>
         <filedep name="/404.aspx" />
         <filedep name="/SuMManga.Mobile.Master" />

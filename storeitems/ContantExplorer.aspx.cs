@@ -252,56 +252,56 @@ namespace SuM_Manga_V3.storeitems
             {
                 string TagViewer = TagViewer0 + "?G=Action";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Fantasy", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Fantasy";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Fantasy&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Fantasy&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Comedy", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Comedy";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Comedy&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Comedy&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("SciFi", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=SciFi";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Sci-Fi&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Sci-Fi&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Supernatural", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Supernatural";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Supernatural&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Supernatural&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("SliceofLife", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=SliceofLife";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Slice of Life&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Slice of Life&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Mystery", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Mystery";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Mystery&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Mystery&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Drama", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Drama";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Drama&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name="+"no-animation"+" href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Drama&nbsp;&nbsp;&nbsp;</a></div>";
             }
             return gernsincard;
         }

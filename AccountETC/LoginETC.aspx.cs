@@ -73,15 +73,15 @@ namespace SuM_Manga_V3.AccountETC
                         var ituac = cv.ExecuteScalar();
                         if (ituac == null)
                         {
-                            SaveCookie(username);
+                            SaveCookie(username, count);
                             sqlCon.Close();
-                            HttpContext.Current.Response.Redirect("~/Default.aspx");
+                            HttpContext.Current.Response.Redirect("~/Explore.aspx");
                         }
                         else
                         {
-                            SaveSCCookie(username, ituac.ToString());
+                            SaveSCCookie(username, ituac.ToString(), count);
                             sqlCon.Close();
-                            HttpContext.Current.Response.Redirect("~/Default.aspx");
+                            HttpContext.Current.Response.Redirect("~/Explore.aspx");
                         }
                     }
                 }
@@ -109,20 +109,22 @@ namespace SuM_Manga_V3.AccountETC
             }
             return hash.ToString();
         }
-        protected static void SaveCookie(string UserName)
+        protected static void SaveCookie(string UserName, int ID)
         {
             HttpCookie userInfo = new HttpCookie("SuMCurrentUser");  //Request.Cookies["userInfo"].Value;  
             userInfo["UserName"] = UserName;
+            userInfo["ID"] = ID.ToString();
             //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
             HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx");
         }
-        protected static void SaveSCCookie(string UserName,string craetorname)
+        protected static void SaveSCCookie(string UserName, string craetorname, int ID)
         {
             HttpCookie userInfo = new HttpCookie("SuMCurrentUser");  //Request.Cookies["userInfo"].Value;  
             userInfo["UserName"] = UserName;
             userInfo["CreatorName"] = craetorname;
+            userInfo["ID"] = ID.ToString();
             //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);

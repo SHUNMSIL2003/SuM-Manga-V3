@@ -9,7 +9,56 @@
         .forcecolor {
             color:#6840D9 !important;
         }
-    </style><div class="fadeIn animated">
+
+    </style>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var fullnavscont = document.getElementById("fullnavscont");
+
+            // Check if there is a local storage item with tbe name "animate"
+            /*if (window.localStorage.getItem("animate") != null) {
+
+                fullnavscont.style.display = "none";
+                */
+                // Remove the item
+                /*window.localStorage.removeItem("animate");
+
+                fullnavscont.classList.add("animated", "slideInUp");
+
+                fullnavscont.style.display = null;
+
+            }*/
+
+            window.onclick = function (e) {
+
+                console.log(e);
+
+                // Check if this action was triggered by clicking an <a> element
+                if (document.activeElement.tagName == "A" && document.activeElement.getAttribute("name") != "no-animation") {
+
+                    // Get the element's href
+                    var redirectLink = document.activeElement.getAttribute("href");
+
+                    // Prevent the page from being redirected
+                    e.preventDefault();
+
+                    // Add the slide down animation
+                    fullnavscont.classList.add("animated", "slideOutDown");
+
+                    setTimeout(function () {
+
+                        window.location.href = redirectLink;
+
+                    }, 600);
+
+                }
+
+            };
+        });
+    </script>
+    <div class="fadeIn animated">
     <div style="height:fit-content;width:100vw;overflow:hidden; background-color:#ffffff !important;" id="CategoryX" runat="server">
     <div id="infoCover" runat="server" class="mySlides" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:fit-content;max-height:864px !important;position:relative;">
     <h1 id="MTitle" runat="server" style="float:left;margin-top:12px;margin-left:12px;color:#ffffff;font-size:186%;margin-right:14px !important;">Blue Exorcist</h1>

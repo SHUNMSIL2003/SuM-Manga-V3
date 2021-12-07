@@ -24,15 +24,6 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserNameforshow;
 
         /// <summary>
-        /// dataTable_length1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dataTable_length1;
-
-        /// <summary>
         /// MangasAvalibleDiv control.
         /// </summary>
         /// <remarks>

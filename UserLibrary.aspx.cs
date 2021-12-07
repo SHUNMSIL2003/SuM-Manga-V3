@@ -1,0 +1,280 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+using Newtonsoft.Json.Linq;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
+
+namespace SuM_Manga_V3
+{
+    public partial class UserLibrary : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+                if (GetUserInfoCookie == null)
+                {
+                    Response.Redirect("~/AccountETC/LoginETC.aspx");
+                }
+                else
+                {
+                    int UID = Convert.ToInt32(Convert.ToString(GetUserInfoCookie["ID"]));
+                    var CT = Request.QueryString["RT"];
+                    if (CT != null)
+                    {
+                        string CTPSK = CT.ToString();
+                        if (CT == "Curr" || CT == "Fav" || CT == "Wanna")
+                        {
+                            if (CT == "Curr") 
+                            { 
+                                LoadReqContant("Curr", UID);
+                                cr.Attributes["style"] = "margin-left:8px;color:#6840D9;";
+                                cr.Attributes["class"] = "pulse animated";
+                                wr.Attributes["style"] = "margin-right:8px;color:#636166;";
+                                mf.Attributes["style"] = "margin-right:3px;margin-left:3px;color:#636166;";
+                            }
+                            else 
+                            {
+                                if (CT == "Fav") 
+                                { 
+                                    LoadReqContant("Fav", UID);
+                                    mf.Attributes["style"] = "margin-right:3px;margin-left:3px;color:#6840D9;";
+                                    mf.Attributes["class"] = "pulse animated";
+                                    cr.Attributes["style"] = "margin-left:8px;color:#636166;";
+                                    wr.Attributes["style"] = "margin-right:8px;color:#636166;";
+                                }
+                                else 
+                                { 
+                                    LoadReqContant("Wanna", UID);
+                                    wr.Attributes["style"] = "margin-right:8px;color:#6840D9;";
+                                    wr.Attributes["class"] = "pulse animated";
+                                    cr.Attributes["style"] = "margin-left:8px;color:#636166;";
+                                    mf.Attributes["style"] = "margin-right:3px;margin-left:3px;color:#636166;";
+                                }
+                            }
+                        }
+                        else { Response.Redirect("~/404.aspx"); }
+                    }
+                    else { Response.Redirect("~/404.aspx"); }
+                }
+            }
+        }
+        protected int[,] ST1(string x) 
+        {
+            Queue<int> R1 = new Queue<int>();
+            Queue<int> R2 = new Queue<int>();
+            bool fh = false;
+            bool fc = false;
+            string A1 = "";
+            string A2 = "";
+            char[] aa = x.ToCharArray();
+            for (int i = 0; i < aa.Length; i++)
+            {
+                if (aa[i] == '&') 
+                { 
+                    fh = false;
+                    fc = false;
+                    R1.Enqueue(Convert.ToInt32(A1));
+                    R2.Enqueue(Convert.ToInt32(A2));
+                    A1 = "";
+                    A2 = "";
+                }
+                if (fh == true && fc == true)
+                {
+                    A2 += aa[i].ToString();
+                }
+                if (aa[i] == ';') { fc = true; }
+                if (fh == true && fc == false)
+                {
+                    A1 += aa[i].ToString();
+                }
+                if (aa[i] == '#') { fh = true; }
+            }
+            int RdL = R1.Count;
+            int[,] RS = new int[2, RdL];
+            int RFDH = 0;
+            while (R1.Count > 0) 
+            {
+                RS[0, RFDH] = R1.Dequeue();
+                RFDH++;
+            }
+            RFDH = 0;
+            while (R2.Count > 0)
+            {
+                RS[1, RFDH] = R2.Dequeue();
+                RFDH++;
+            }
+            return RS;
+        }
+        protected int[] ST0(string x)
+        {
+            Queue<int> R1 = new Queue<int>();
+            bool fh = false;
+            string A1 = "";
+            char[] aa = x.ToCharArray();
+            for (int i = 0; i < aa.Length; i++)
+            {
+                if (aa[i] == '&')
+                {
+                    fh = false;
+                    R1.Enqueue(Convert.ToInt32(A1));
+                    A1 = "";
+                }
+                if (fh == true)
+                {
+                    A1 += aa[i].ToString();
+                }
+                if (aa[i] == '#') { fh = true; }
+            }
+            int RdL = R1.Count;
+            int[] RS = new int[RdL];
+            int RFDH = 0;
+            while (R1.Count > 0)
+            {
+                RS[RFDH] = R1.Dequeue();
+                RFDH++;
+            }
+            return RS;
+        }
+        protected void LoadReqContant(string Type, int UserID)
+        {
+            bool fail = false;
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT " + Type + " FROM SuMUsersAccounts WHERE UserID = @UID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd00.Parameters["@UID"].Value = UserID;
+                var RawRes = sqlCmd00.ExecuteScalar();
+                if (RawRes != null)
+                {
+                    string Res = RawRes.ToString();
+                    if (Type == "Curr")
+                    {
+                        int[,] R = ST1(Res);//JsonConvert.DeserializeObject<int[,]>(a);
+                        for (int i = 0; i < R.GetLength(1); i++)
+                        {
+                            //ShowReqContant.InnerHtml += "<p> " + R[0, i].ToString() + "|" + R[1, i].ToString() + " </p>"; DEBUG
+
+                            string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
+                            SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = R[0, i];
+                            var g = sqlCmd.ExecuteScalar();
+                            string MangaName = g.ToString();
+
+                            query = "SELECT SuMThemeColor FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = R[0, i];
+                            g = sqlCmd.ExecuteScalar();
+                            string MangaTheme = g.ToString();
+
+                            query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = R[0, i];
+                            g = sqlCmd.ExecuteScalar();
+                            string ExplorerLink = g.ToString();
+                            query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = R[0, i];
+                            var un = sqlCmd.ExecuteScalar();
+                            int ChaptersNum = Convert.ToInt32(un);
+                            ExplorerLink += "&CN=" + ChaptersNum.ToString() + "&VC=" + R[0, i].ToString() + "&TC=" + MangaTheme;
+
+                            query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = R[0, i];
+                            g = sqlCmd.ExecuteScalar();
+                            string CoverLink = g.ToString();
+
+                            ShowReqContant.InnerHtml += BuildCurrCard(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink);
+                        }
+                    }
+                    else 
+                    {
+
+                        int[] R = ST0(Res);//JsonConvert.DeserializeObject<int[,]>(a);
+                        for (int i = 0; i < R.Length; i++)
+                        {
+                            //ShowReqContant.InnerHtml += "<p> " + R[0, i].ToString() + "|" + R[1, i].ToString() + " </p>"; DEBUG
+
+                            string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
+                            SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = R[i];
+                            var g = sqlCmd.ExecuteScalar();
+                            string MangaName = g.ToString();
+
+                            query = "SELECT SuMThemeColor FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = R[i];
+                            g = sqlCmd.ExecuteScalar();
+                            string MangaTheme = g.ToString();
+
+                            query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = R[i];
+                            g = sqlCmd.ExecuteScalar();
+                            string ExplorerLink = g.ToString();
+                            query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = R[i];
+                            var un = sqlCmd.ExecuteScalar();
+                            int ChaptersNum = Convert.ToInt32(un);
+                            ExplorerLink += "&CN=" + ChaptersNum.ToString() + "&VC=" + R[i].ToString() + "&TC=" + MangaTheme;
+
+                            query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = R[i];
+                            g = sqlCmd.ExecuteScalar();
+                            string CoverLink = g.ToString();
+
+                            ShowReqContant.InnerHtml += BuildRestCard(MangaName, MangaTheme, ExplorerLink, CoverLink);
+                        }
+                    }
+                    sqlCon.Close();
+                }
+                else 
+                {
+                    fail = true;
+                    sqlCon.Close();
+                }
+            }
+            if (fail == true) { Response.Redirect("~/404.aspx"); }
+        }
+        protected string BuildCurrCard(string MangaName, string MangaTheme, string ExplorerLink, string chapter,string CoverLink) 
+        {
+            char sc = '"';string scfu = sc.ToString();
+            string astyle = scfu + "width:100vw;height:74px;background-color:#ffffff;border-bottom:#f2f2f2 1px solid;border-top:#f2f2f2 1px solid;position:relative;margin-left:0px;display:block;" + scfu;
+            string imgstyle = scfu + "height:74px;width:74px;object-fit:cover;display:inline;margin-left:0px;border-radius:0px;float:left;margin-left:0px;" + scfu;
+            string h3style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;" + scfu;
+            string RS = "<a style=" + astyle + " href=" + ExplorerLink + "><img src=" + CoverLink + " style=" + imgstyle + "><h3 style=" + h3style + ">" + MangaName + "</h3><br style=" + "float:left;" + "><p style=" + "margin:0px;color:#6b6b6b;display:block;positon:fixed;width:fit-content;padding-left:12px;margin-left:74px;" + ">chapter: " + chapter + "</p></a>";
+            return RS;
+        }
+        protected string BuildRestCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink)
+        {
+            char sc = '"'; string scfu = sc.ToString();
+            string astyle = scfu + "width:100vw;height:74px;background-color:#ffffff;border-bottom:#f2f2f2 1px solid;border-top:#f2f2f2 1px solid;position:relative;margin-left:0px;display:block;" + scfu;
+            string imgstyle = scfu + "height:74px;width:74px;object-fit:cover;display:inline;margin-left:0px;border-radius:0px;float:left;margin-left:0px;" + scfu;
+            string h3style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;" + scfu;
+            string RS = "<a style=" + astyle + " href=" + ExplorerLink + "><img src=" + CoverLink + " style=" + imgstyle + "><h3 style=" + h3style + ">" + MangaName + "</h3><br style=" + "float:left;" + "></a>";
+            return RS;
+        }
+    }
+}

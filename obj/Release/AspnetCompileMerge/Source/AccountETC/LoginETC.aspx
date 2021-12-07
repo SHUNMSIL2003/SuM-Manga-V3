@@ -22,7 +22,6 @@
     <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
 
 
-    >
     <meta name="description" content="Shun Manga">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/any_icon_x32.png?h=c6e95e86bee5c429ad96d74eb8a03d17">
@@ -147,12 +146,12 @@
     <script>
         window.addEventListener('contextmenu', e => {
             e.preventDefault();
-        });
+        });/*
         (function () {
             setInterval(() => {
                 debugger;
             }, 100);
-        })();
+        })();*/
     </script>
     <form id="SuM" method="post" runat="server">
     <div class="container pulse animated">

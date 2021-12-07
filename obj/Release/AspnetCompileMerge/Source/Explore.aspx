@@ -128,51 +128,50 @@ img {vertical-align: middle;}
         <br style="height:4px !important;width:100vw !important; margin:0 auto !important;" />
         <div style="height:fit-content;max-height:248px!important; width:100vw;overflow:hidden; background-color:#ffffff !important;" id="CategoryX" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Action</h2>
-            <div id="Action" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;" >
-            <div style="margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;"><a href="#" style="display:inline;margin-left:6px;margin-right:6px;"><div style="border-radius:8px; position:relative; overflow: hidden; background-image:url(/storeitems/BlueExorcist/BlueExorcist.jpg); background-size: cover; background-position: center;width:118px;height:177px"><div style="background-color:rgb(104 64 217 / 0.64) !important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;"><p style="height:fit-content;width:auto;max-width:118px !important;color:#ffffff;margin-left:6px;">Blue Exorcist</p></div></div><p style="height:fit-content;width:118px;max-width:118px;font-size:69% !important;color:#2e2e2e;">Comidy,Action</p></a></div>
+            <div id="Action" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;" >
             </div>
         </div>
         
         <br style="height:4px !important;width:100vw !important; margin:0 auto !important;" />
         <div style="height:fit-content;max-height:248px!important; width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div1" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Fantasy</h2>
-            <div id="Fantasy" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
+            <div id="Fantasy" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100vw !important; margin:0 auto !important;" />
         <div style="height:fit-content;max-height:248px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div2" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Comedy</h2>
-            <div id="Comedy" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
+            <div id="Comedy" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100vw !important; margin:0 auto !important;" />
         <div style="height:fit-content;max-height:248px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div3" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Supernatural</h2>
-            <div id="Supernatural" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
+            <div id="Supernatural" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100vw !important; margin:0 auto !important;" />
         <div style="height:fit-content;max-height:248px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div4" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Sci-Fi</h2>
-            <div id="SciFi" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
+            <div id="SciFi" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100vw !important; margin:0 auto !important;" />
         <div style="height:fit-content;max-height:248px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div5" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Drama</h2>
-            <div id="Drama" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
+            <div id="Drama" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100vw !important; margin:0 auto !important;" />
         <div style="height:fit-content;max-height:248px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div6" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Mystery</h2>
-            <div id="Mystery" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
+            <div id="Mystery" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100vw !important; margin:0 auto !important;" />
         <div style="height:fit-content;max-height:248px!important;width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div7" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Slice of Life</h2>
-            <div id="SliceofLife" runat="server" style="overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
+            <div id="SliceofLife" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         <br /><br /><br /><br /><br /><br />
     </div>

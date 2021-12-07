@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../assets/fonts/fontawesome5-overrides.min.css?h=34f9b351b7076f97babcdac3c1081100">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
-    >
+
     <meta name="description" content="Shun Manga">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/any_icon_x32.png?h=c6e95e86bee5c429ad96d74eb8a03d17">
@@ -145,12 +145,12 @@
     <script>
         window.addEventListener('contextmenu', e => {
             e.preventDefault();
-        });
+        });/*
         (function () {
             setInterval(() => {
                 debugger;
             }, 100);
-        })();
+        })();*/
     </script>
     <div class="container pulse animated">
         <div class="row justify-content-center">

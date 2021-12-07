@@ -13,6 +13,20 @@
             max-width:806px !important;
         }
     </style>
+    <script>
+
+
+        //function goBackWithAnim() {
+
+            // Save a local storage item to detect the need to animate the bottom bar
+            //window.localStorage.setItem("animate", "");
+
+            // Go back
+            //window.history.back();
+
+        //}
+
+    </script>
     <div class="fadeInRight animated">
     <div class="nospace" style="height:fit-content;width:100vw !important;margin-left:0px !important;margin-right:0px !important;" id="TheMangaPhotos" runat="server"><!-- The Story Content NA -->
          </div>

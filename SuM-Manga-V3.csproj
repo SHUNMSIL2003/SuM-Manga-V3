@@ -276,6 +276,7 @@
     <Content Include="assets\VarelaRound.ttf" />
     <Content Include="safari-pinned-tab.svg" />
     <Content Include="storeitems\TagView.aspx" />
+    <Content Include="UserLibrary.aspx" />
     <Content Include="windows11\LargeTile.scale-100.png" />
     <Content Include="windows11\LargeTile.scale-125.png" />
     <Content Include="windows11\LargeTile.scale-150.png" />
@@ -3203,6 +3204,13 @@
     </Compile>
     <Compile Include="UserAgreementBD.aspx.designer.cs">
       <DependentUpon>UserAgreementBD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserLibrary.aspx.cs">
+      <DependentUpon>UserLibrary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserLibrary.aspx.designer.cs">
+      <DependentUpon>UserLibrary.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
