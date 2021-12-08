@@ -5,6 +5,8 @@
 <head id="SMHead" runat="server"><!--
     <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials"> -->
     <script src="/runsw.js"></script>
+    <meta name="google-signin-client_id" content="464504450730-iuk9hotshe7kjnq73p11mdvijc49ll5c.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta charset="utf-8">
     <asp:PlaceHolder id="MetaPlaceHolder" runat="server" />
     <meta name="robots" content="<%=GetMetaRobotsValueFromDatabase()%>" />
@@ -14,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>SuM Manga</title>
+    <link rel="stylesheet" href="/dist/magic.min.css">
     <meta name="description" content="Shun Manga">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/any_icon_x32.png?h=c6e95e86bee5c429ad96d74eb8a03d17">
@@ -152,7 +155,7 @@
 <body id="page-top" style="overflow:hidden;height:100vh;width:100vw;">
     <div id="popup" style="">
         <div style="width:fit-content !important; height:fit-content !important;background-color:rgb(242,242,242,0.6);display:block !important;float:left !important;">
-            <p style="color:red;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI</p>
+            <p class="animated slideInDown" style="color:red;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI</p>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
@@ -224,7 +227,7 @@
                     }
                 </style>
                 <div style="width:100vw !important; height:99vh !important;max-height:98vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;background-color:#ffffff !important;" id="SuMMainBlock" runat="server" class="container-fluid">
-                    <div class="fadeIn animated ForceMaxW" style="width:100vw !important; height:99vh !important;max-height:99vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;" id="mc" runat="server">
+                    <div class="ForceMaxW" style="width:100vw !important; height:99vh !important;max-height:99vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;" id="mc" runat="server">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
                     </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>

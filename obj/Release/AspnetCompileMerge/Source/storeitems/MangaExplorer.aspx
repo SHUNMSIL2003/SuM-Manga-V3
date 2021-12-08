@@ -27,13 +27,15 @@
         //}
 
     </script>
-    <div class="fadeInRight animated">
-    <div class="nospace" style="height:fit-content;width:100vw !important;margin-left:0px !important;margin-right:0px !important;" id="TheMangaPhotos" runat="server"><!-- The Story Content NA -->
-         </div>
-                  <br style="float:right;" />
-        <div id="NextChapter" style="float:right;" runat="server" >
-            <a style="" class="btn btn-primary btn-sm" href="#"></a>
+    <div id="pfc" runat="server" style="background-color:#6840D9;">
+        <div class="slideInRight animated">
+            <div class="nospace" style="height:fit-content;width:100vw !important;margin-left:0px !important;margin-right:0px !important;" id="TheMangaPhotos" runat="server"><!-- The Story Content NA -->
+            </div>
+                <br style="float:right;" />
+            <div id="NextChapter" style="float:right;" runat="server" >
+                <a style="" class="btn btn-primary btn-sm" href="#"></a>
+            </div>
+        <br /><br /><br /><br />
         </div>
-    <br /><br /><br /><br />
     </div>
 </asp:Content>

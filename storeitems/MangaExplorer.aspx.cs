@@ -40,6 +40,7 @@ namespace SuM_Manga_V3.storeitems
                     if (System.IO.Directory.Exists(ActivePath) == true)
                     {
                         TheMangaPhotos.InnerHtml = "";
+                        if (Request.QueryString["TC"] != null) { pfc.Attributes["style"] = "background-color:" + Request.QueryString["TC"].ToString() + ";"; }
                         string[] filePaths = System.IO.Directory.GetFiles(ActivePath, "*.jpg");
                         //string sendhtmlforchimges = "";
                         string deafultstartitems = "/storeitems/";

@@ -36,7 +36,7 @@
             box-shadow: none !important;
         }
         </style>
-    <div class="STBSUMBAR2 bg-white shadow fadeInDown animated">
+    <div class="STBSUMBAR2 bg-white shadow slideInDown animated">
         <nav style="height:7vh;max-height:62px !important; min-height:56px !important;width:100% !important;" class="navbar navbar-light navbar-expand bg-white mb-4 FNM5455511">
                     <div class="container-fluid" style="text-align:center !important;">
                                 <div class="" style="display:inline !important;width:100vw !important;height:7vh !important;max-height:62px !important; min-height:56px !important; text-align:center !important;align-items:center;align-content:center;">
@@ -51,7 +51,7 @@
                     </div>
                 </nav>
             </div>
-    <div class id="Results" style="height:calc(86vh-38px) !important;width:100vw !important" runat="server">
+    <div class="animated fadeIn" id="Results" style="height:calc(86vh-38px) !important;width:100vw !important" runat="server">
         <p>Loading...</p>
     </div>
 </asp:Content>

@@ -51,7 +51,7 @@
 
                         window.location.href = redirectLink;
 
-                    }, 600);
+                    }, 540);
 
                 }
 
@@ -68,8 +68,14 @@
         </div>
 </div>
 </div><!-- aos-init aos-animate" data-aos="zoom-in" -->
+        <div style="background-color:aqua;margin:0 auto;" id="SVC" runat="server">
+            <div class="animated pulse" id="MRSC" runat="server" style="margin-top:6px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;">
+                <a id="MRSW" runat="server" href="#" style="color:#6840D9;"></a>
+            </div>
+        </div>
     <div style="display:inline-block;height:100vh !important;min-height:100% !important;background-color:rgba(1,65,54,0.544);" id="TheMangaPhotosF" runat="server">
-        </div><!--
+        
+     </div><!--
     <hr style="height:1.6px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.76;margin:0px;margin-block:0px;"> -->
     </div>
 </asp:Content>

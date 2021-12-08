@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/storeitems/ContantExplorer.aspx" hash="8ef922025" filehash="d7391330a6d2c691" flags="110000" assembly="App_Web_wmwp1ap2" type="ASP.storeitems_contantexplorer_aspx">
+<preserve resultType="3" virtualPath="/storeitems/ContantExplorer.aspx" hash="8ef922025" filehash="d9ada0aefe6b6469" flags="110000" assembly="App_Web_qpysh4uv" type="ASP.storeitems_contantexplorer_aspx">
     <filedeps>
         <filedep name="/storeitems/ContantExplorer.aspx" />
         <filedep name="/SuMManga.Mobile.Master" />

@@ -69,7 +69,10 @@ namespace SuM_Manga_V3.storeitems
                 char sc = '"';
                 char b12 = '"';
                 string btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
-                TheMangaPhotosF.InnerHtml = "<br>";//"<a style=" + abtntheme + "><p style="+ "color:#ffffff;float:right;font-size:142%;" + ">" + Request.QueryString["CN"].ToString() + " Chapters</p></a>";
+                string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor;
+                string linktoupdatech = identifynexthelper + "ch";
+                MangaUserStateV(Convert.ToInt32(Request.QueryString["VC"].ToString()), linktoupdate, linktoupdatech);
+                //"<a style=" + abtntheme + "><p style="+ "color:#ffffff;float:right;font-size:142%;" + ">" + Request.QueryString["CN"].ToString() + " Chapters</p></a>";
                 //TheMangaPhotosF.InnerHtml += "<hr style=" + "height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.42;margin:0px;margin-block:0px;" + ">";
                 for (int c = 1; c < (cn1 + 1); c++)
                 {
@@ -91,6 +94,112 @@ namespace SuM_Manga_V3.storeitems
                 //TheMangaPhotos.InnerHtml += "<a><h1> &zwnj; </h1><h1> &zwnj; </1><h1> &zwnj; </h1><h2> &zwnj; </h2><h4> &zwnj; </h4></a>";
                 AddOneView();
             }
+        }
+        protected void MangaUserStateV(int MID,string LinkToUpdate,string linktoupdatech)
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            int UID = Convert.ToInt32(Convert.ToString(GetUserInfoCookie["ID"]));
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd00.Parameters["@UID"].Value = UID;
+                var RawRes = sqlCmd00.ExecuteScalar();
+                if (RawRes != null)
+                {
+                    bool foundit = false;
+                    string Res = RawRes.ToString();
+                    int[,] R = ST1(Res);
+                    for (int i = 0; i < R.GetLength(1); i++) 
+                    {
+                        if (R[0, i] == MID)
+                        {
+                            foundit = true;
+                            int c = R[1, i];
+                            string ChapterFixedForm = string.Empty;
+                            string chxC = c.ToString();
+                            if (c < 10 && c > 0) { ChapterFixedForm = "000" + chxC; }
+                            if (c > 9 && c < 100) { ChapterFixedForm = "00" + chxC; }
+                            if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
+                            if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
+                            SVC.Attributes["style"] = "overflow:hidden;background-color:" + Request.QueryString["TC"].ToString() + ";margin:0 auto;";
+                            MRSW.InnerHtml = "<b>Continue Reading</b><br /><p style=" + "margin-top:-4px;font-size:64%;color:" + Request.QueryString["TC"].ToString() + ">Currently In Chapter " + c + "</p>";
+                            MRSW.Attributes["style"] = "overflow:hidden;color:" + Request.QueryString["TC"].ToString() + ";";
+                            MRSC.Attributes["style"] = "overflow:hidden;margin-top:8px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
+                            MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + ChapterFixedForm;
+                            sqlCon.Close();
+                        }
+                    }
+                    if (foundit == false) 
+                    {
+                        SVC.Attributes["style"] = "overflow:hidden;background-color:" + Request.QueryString["TC"].ToString() + ";margin:0 auto;";
+                        MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + Request.QueryString["TC"].ToString() + ">Auto adds to currently reading</p>";
+                        MRSW.Attributes["style"] = "overflow:hidden;color:" + Request.QueryString["TC"].ToString() + ";";
+                        MRSC.Attributes["style"] = "overflow:hidden;margin-top:8px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
+                        MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + "0001" + "&MAC=ACT";
+                        sqlCon.Close();
+                    }
+                }
+                else
+                {
+                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + Request.QueryString["TC"].ToString() + ";margin:0 auto;";
+                    MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + Request.QueryString["TC"].ToString() + ">Auto adds to currently reading</p>";
+                    MRSW.Attributes["style"] = "overflow:hidden;color:" + Request.QueryString["TC"].ToString() + ";";
+                    MRSC.Attributes["style"] = "overflow:hidden;margin-top:8px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
+                    MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + "0001" + "&MAC=ACT";
+                    sqlCon.Close();
+                }
+            }
+
+        }
+        protected int[,] ST1(string x)
+        {
+            Queue<int> R1 = new Queue<int>();
+            Queue<int> R2 = new Queue<int>();
+            bool fh = false;
+            bool fc = false;
+            string A1 = "";
+            string A2 = "";
+            char[] aa = x.ToCharArray();
+            for (int i = 0; i < aa.Length; i++)
+            {
+                if (aa[i] == '&')
+                {
+                    fh = false;
+                    fc = false;
+                    R1.Enqueue(Convert.ToInt32(A1));
+                    R2.Enqueue(Convert.ToInt32(A2));
+                    A1 = "";
+                    A2 = "";
+                }
+                if (fh == true && fc == true)
+                {
+                    A2 += aa[i].ToString();
+                }
+                if (aa[i] == ';') { fc = true; }
+                if (fh == true && fc == false)
+                {
+                    A1 += aa[i].ToString();
+                }
+                if (aa[i] == '#') { fh = true; }
+            }
+            int RdL = R1.Count;
+            int[,] RS = new int[2, RdL];
+            int RFDH = 0;
+            while (R1.Count > 0)
+            {
+                RS[0, RFDH] = R1.Dequeue();
+                RFDH++;
+            }
+            RFDH = 0;
+            while (R2.Count > 0)
+            {
+                RS[1, RFDH] = R2.Dequeue();
+                RFDH++;
+            }
+            return RS;
         }
         protected static string RgbConverter(Color c)
         {

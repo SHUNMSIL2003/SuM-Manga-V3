@@ -218,5 +218,9 @@ namespace SuM_Manga_V3.AccountETC
             str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
             return str;
         }
+        protected void LogInWithGoogle(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -48,7 +48,7 @@ img {
             scrollbar-width: none; /* Firefox */
         }
     </style>
-                    <div class="card shadow ForceMaxW" style="margin-bottom:82px !important;">
+                    <div class="animated fadeIn card shadow ForceMaxW" style="margin-bottom:82px !important;">
                         <div class="card-header py-3">
                             <p style="color:#6840D9;display:inline;" class="text-primary m-0 fw-bold"><p style="color:#6840D9;display:inline;" id="UserNameforshow" runat="server"></p>'s Library</p>
                         </div>

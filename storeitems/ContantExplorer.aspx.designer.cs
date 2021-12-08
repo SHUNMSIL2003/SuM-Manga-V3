@@ -60,6 +60,33 @@ namespace SuM_Manga_V3.storeitems
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl GernsTags;
 
         /// <summary>
+        /// SVC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SVC;
+
+        /// <summary>
+        /// MRSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MRSC;
+
+        /// <summary>
+        /// MRSW control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor MRSW;
+
+        /// <summary>
         /// TheMangaPhotosF control.
         /// </summary>
         /// <remarks>
