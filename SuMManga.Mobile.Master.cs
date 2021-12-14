@@ -105,7 +105,11 @@ namespace SuM_Manga_V3
                 LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#636166;height:2vh !important;text-align:center !important;display:block;position:relative;";
                 SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#636166;height:2vh !important;text-align:center !important;display:block;position:relative;";
             }
-            if (Request.QueryString["TC"] != null) { mangacolor.Attributes["style"] = "display:inline;color:" + Request.QueryString["TC"].ToString() + ";margin-top:8px !important;"; }
+            if (Request.QueryString["TC"] != null) 
+            { 
+                mangacolor.Attributes["style"] = "display:inline;color:" + Request.QueryString["TC"].ToString() + ";margin-top:8px !important;";
+                mangacolor2.Attributes["style"] = "display:inline;color:" + Request.QueryString["TC"].ToString() + ";margin-top:8px !important;";
+            }
         }
         private void SuMAppAlertsStartsS(object sender, EventArgs e)
         {

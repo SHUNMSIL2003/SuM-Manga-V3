@@ -71,7 +71,27 @@ namespace SuM_Manga_V3.storeitems
                 string btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
                 string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor;
                 string linktoupdatech = identifynexthelper + "ch";
-                MangaUserStateV(Convert.ToInt32(Request.QueryString["VC"].ToString()), linktoupdate, linktoupdatech);
+                HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+                //string OptionToAddCurrFunc = "";
+                if (GetUserInfoCookie != null)
+                {
+                    //int UID = Convert.ToInt32(GetUserInfoCookie["UID"].ToString());
+                    int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
+                    MangaUserStateV(MID, linktoupdate, linktoupdatech);
+                    /*   Removed it so the func is only avalible when using Curr Button :)   */
+                    /*if (IsItInCurr(MID, UID) == true)
+                    {
+                        OptionToAddCurrFunc = "&UCICU=T&MID=" + MID.ToString();
+                    }*/
+                }
+                else 
+                {
+                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + Request.QueryString["TC"].ToString() + ";margin:0 auto;";
+                    MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + Request.QueryString["TC"].ToString() + ">You need to Login!</p>";
+                    MRSW.Attributes["style"] = "overflow:hidden;color:" + Request.QueryString["TC"].ToString() + ";";
+                    MRSC.Attributes["style"] = "overflow:hidden;margin-top:8px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
+                    MRSW.Attributes["href"] = "/AccountETC/LogInETC.aspx";
+                }
                 //"<a style=" + abtntheme + "><p style="+ "color:#ffffff;float:right;font-size:142%;" + ">" + Request.QueryString["CN"].ToString() + " Chapters</p></a>";
                 //TheMangaPhotosF.InnerHtml += "<hr style=" + "height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.42;margin:0px;margin-block:0px;" + ">";
                 for (int c = 1; c < (cn1 + 1); c++)
@@ -83,7 +103,7 @@ namespace SuM_Manga_V3.storeitems
                     if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
                     if (c > 10000) { c = (cn1 + 1); }
                     string cpcover = "/storeitems/" + Request.QueryString["Manga"].ToString() + "/sumcp" + ChapterFixedForm + ".jpg";
-                    RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor;
+                    RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor;//+ OptionToAddCurrFunc;
                     TheMangaPhotosF.InnerHtml += "<a style=" + abtntheme + " class=" + btnanimationclass + " href=" + sc + RLink + sc + " ><img src=" + cpcover + " style=" + "width:64px;height:64px;float:left;margin:0px;opacity:0.92;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
                     if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + "height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.24;margin:0px;margin-block:0px;" + ">"; }
                     //<a style="dc" class="btn" href="#"><img src="/storeitems/Anohana/0001/sumcp.png" style="width:48px;height:48px;float:left;margin:0px;" /><p style="dc">dc</p></a>
@@ -94,6 +114,66 @@ namespace SuM_Manga_V3.storeitems
                 //TheMangaPhotos.InnerHtml += "<a><h1> &zwnj; </h1><h1> &zwnj; </1><h1> &zwnj; </h1><h2> &zwnj; </h2><h4> &zwnj; </h4></a>";
                 AddOneView();
             }
+        }
+        protected bool IsItInCurr(int MID, int UID)
+        {
+
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd00.Parameters["@UID"].Value = UID;
+                var RawRes = sqlCmd00.ExecuteScalar();
+                if (RawRes != null)
+                {
+                    string Res = RawRes.ToString();
+                    int[] R = ST11(Res);
+                    for (int i = 0; i < R.GetLength(1); i++)
+                    {
+                        if (R[i] == MID)
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                else { return false; }
+            }
+        }
+        protected int[] ST11(string x)
+        {
+            Queue<int> R1 = new Queue<int>();
+            bool fh = false;
+            bool fc = false;
+            string A1 = "";
+            char[] aa = x.ToCharArray();
+            for (int i = 0; i < aa.Length; i++)
+            {
+                if (aa[i] == '&')
+                {
+                    fh = false;
+                    fc = false;
+                    R1.Enqueue(Convert.ToInt32(A1));
+                    A1 = "";
+                }
+                if (aa[i] == ';') { fc = true; }
+                if (fh == true && fc == false)
+                {
+                    A1 += aa[i].ToString();
+                }
+                if (aa[i] == '#') { fh = true; }
+            }
+            int RdL = R1.Count;
+            int[] RS = new int[RdL];
+            int RFDH = 0;
+            while (R1.Count > 0)
+            {
+                RS[RFDH] = R1.Dequeue();
+                RFDH++;
+            }
+            return RS;
         }
         protected void MangaUserStateV(int MID,string LinkToUpdate,string linktoupdatech)
         {
@@ -128,7 +208,8 @@ namespace SuM_Manga_V3.storeitems
                             MRSW.InnerHtml = "<b>Continue Reading</b><br /><p style=" + "margin-top:-4px;font-size:64%;color:" + Request.QueryString["TC"].ToString() + ">Currently In Chapter " + c + "</p>";
                             MRSW.Attributes["style"] = "overflow:hidden;color:" + Request.QueryString["TC"].ToString() + ";";
                             MRSC.Attributes["style"] = "overflow:hidden;margin-top:8px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
-                            MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + ChapterFixedForm;
+                            string WorkerHelp = "&UCU=" + MID.ToString();
+                            MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + ChapterFixedForm + WorkerHelp;
                             sqlCon.Close();
                         }
                     }
@@ -138,7 +219,7 @@ namespace SuM_Manga_V3.storeitems
                         MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + Request.QueryString["TC"].ToString() + ">Auto adds to currently reading</p>";
                         MRSW.Attributes["style"] = "overflow:hidden;color:" + Request.QueryString["TC"].ToString() + ";";
                         MRSC.Attributes["style"] = "overflow:hidden;margin-top:8px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
-                        MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + "0001" + "&MAC=ACT";
+                        MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID;
                         sqlCon.Close();
                     }
                 }
@@ -148,7 +229,7 @@ namespace SuM_Manga_V3.storeitems
                     MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + Request.QueryString["TC"].ToString() + ">Auto adds to currently reading</p>";
                     MRSW.Attributes["style"] = "overflow:hidden;color:" + Request.QueryString["TC"].ToString() + ";";
                     MRSC.Attributes["style"] = "overflow:hidden;margin-top:8px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
-                    MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + "0001" + "&MAC=ACT";
+                    MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID;
                     sqlCon.Close();
                 }
             }

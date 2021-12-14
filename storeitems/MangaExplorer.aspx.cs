@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace SuM_Manga_V3.storeitems
 {
@@ -55,6 +57,11 @@ namespace SuM_Manga_V3.storeitems
                         //string beforerelasecode = "";
                         //beforerelasecode += sendhtmlforchimges;
                         //TheMangaPhotos.InnerHtml = beforerelasecode;
+
+
+                        UpdateChapterNumInCurr();
+
+
                         string pathstartnochx = "/storeitems/";
                         string extraexplore = "MangaExplorer.aspx";
                         string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
@@ -90,16 +97,25 @@ namespace SuM_Manga_V3.storeitems
                         string managtocheckexsis = Request.QueryString["Manga"].ToString();
                         string rootpath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
                         string checkifitexsists = rootpath + "\\storeitems\\" + managtocheckexsis + "\\" + chaptertocheckexsis + "\\";
+                        string CurWorker = "";
+                        /*string NCN = chaptertocheckexsis;
+                        NCN = NCN.Remove(0, 2);
+                        if (Request.QueryString["UCICU"] == "T" && Request.QueryString["MID"] != null)
+                        {
+                            CurWorker = "&UCU=" + Request.QueryString["MID"] + "&CUUC=" + Convert.ToInt32(NCN);
+                        }*/
+                        if (Request.QueryString["UCU"] != null) { CurWorker = "&UCU=" + Request.QueryString["UCU"].ToString(); }
                         if (System.IO.Directory.Exists(checkifitexsists) == true)
                         {
                             //"<a class="+"btn btn-primary btn-sm"+" href=" "> Next Chapter  &raquo;</a>"
-                            string sendNextChapter = "<a style="+ "color:#6840D9 !important;" + " class=" + "btn btn-primary btn-sm" + " href=" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "> Next Chapter  &raquo;</a>";
+                            string sendNextChapter = "<a style=" + "color:#ffffff;" + " class=" + "btn btn-primary btn-sm" + " href=" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "> Next Chapter  &raquo;</a>";
                             NextChapter.InnerHtml = sendNextChapter;
                         }
                         else
                         {
-                            NextChapter.InnerHtml = "<h4 style=" + "color:#6840D9;" + ">No Chapters Left for now!</h4>";
+                            NextChapter.InnerHtml = "<h4 style=" + "color:#ffffff;" + ">No Chapters Left for now!</h4>";
                         }
+                        AddToCurrIfNot();
                     }
                     else
                     {
@@ -107,6 +123,234 @@ namespace SuM_Manga_V3.storeitems
                     }
                 }
             }
+        }
+        protected void UpdateChapterNumInCurr()
+        {
+            if (Request.QueryString["UCU"] != null)
+            {
+                int MID = Convert.ToInt32(Request.QueryString["UCU"].ToString());
+                HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+                int UID = Convert.ToInt32(Convert.ToString(GetUserInfoCookie["ID"]));
+                bool CIIDI = IsItAlraedyInCurr(MID, UID);
+
+                if (CIIDI == true)
+                {
+                    string NCN = Request.QueryString["Chapter"].ToString();
+                    NCN = NCN.Remove(0, 2);
+                    int CurPageCH = Convert.ToInt32(NCN);
+
+                    using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+                    {
+                        sqlCon.Open();
+                        string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
+                        SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        sqlCmd00.Parameters["@UID"].Value = UID;
+                        var RawRes = sqlCmd00.ExecuteScalar();
+                        string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MID";
+                        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@MID", SqlDbType.Int);
+                        sqlCmd.Parameters["@MID"].Value = MID;
+                        var CIME = sqlCmd.ExecuteScalar();
+                        bool MDE = false;
+                        if (CIME != null) { MDE = true; }
+                        if (RawRes != null && MDE == true)
+                        {
+                            string Res = RawRes.ToString();
+                            int[,] R = ST1(Res);
+                            for (int i = 0; i < R.GetLength(1); i++)
+                            {
+                                if (R[0, i] == MID)
+                                {
+                                    if ((R[1, i] + 1) == CurPageCH)
+                                    {
+                                        R[1, i] = CurPageCH;
+                                    }
+                                }
+                            }
+                            string RawST1 = RevercST1(R);
+                            string InsertQ = "UPDATE SuMUsersAccounts SET Curr = @NewCurr WHERE UserID = @UID";
+                            SqlCommand sqlCmdIn = new SqlCommand(InsertQ, sqlCon);
+                            sqlCmdIn.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                            sqlCmdIn.Parameters["@UID"].Value = UID;
+                            sqlCmdIn.Parameters.AddWithValue("@NewCurr", RawST1);
+                            sqlCmdIn.ExecuteNonQuery();
+                        }
+                        sqlCon.Close();
+                    }
+                }
+            }
+        }
+        protected string RevercST1(int[,] ST1R) 
+        {
+            string Result = "";
+            for (int i = 0; i < ST1R.GetLength(1); i++) 
+            {
+                Result += "#" + ST1R[0, i].ToString() + ";" + ST1R[1, i].ToString() + "&";
+            }
+            return Result;
+        }
+        protected int[,] ST1(string x)
+        {
+            Queue<int> R1 = new Queue<int>();
+            Queue<int> R2 = new Queue<int>();
+            bool fh = false;
+            bool fc = false;
+            string A1 = "";
+            string A2 = "";
+            char[] aa = x.ToCharArray();
+            for (int i = 0; i < aa.Length; i++)
+            {
+                if (aa[i] == '&')
+                {
+                    fh = false;
+                    fc = false;
+                    R1.Enqueue(Convert.ToInt32(A1));
+                    R2.Enqueue(Convert.ToInt32(A2));
+                    A1 = "";
+                    A2 = "";
+                }
+                if (fh == true && fc == true)
+                {
+                    A2 += aa[i].ToString();
+                }
+                if (aa[i] == ';') { fc = true; }
+                if (fh == true && fc == false)
+                {
+                    A1 += aa[i].ToString();
+                }
+                if (aa[i] == '#') { fh = true; }
+            }
+            int RdL = R1.Count;
+            int[,] RS = new int[2, RdL];
+            int RFDH = 0;
+            while (R1.Count > 0)
+            {
+                RS[0, RFDH] = R1.Dequeue();
+                RFDH++;
+            }
+            RFDH = 0;
+            while (R2.Count > 0)
+            {
+                RS[1, RFDH] = R2.Dequeue();
+                RFDH++;
+            }
+            return RS;
+        }
+        protected void AddToCurrIfNot()
+        {
+            var Ce = Request.QueryString["ADTCU"];
+            if (Ce != null)
+            {
+                string RM = Ce.ToString();
+                HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+                int UID = Convert.ToInt32(Convert.ToString(GetUserInfoCookie["ID"]));
+                if (IsItAlraedyInCurr(Convert.ToInt32(Ce.ToString()), UID) == false)
+                {
+                    using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+                    {
+                        sqlCon.Open();
+                        string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
+                        SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        sqlCmd00.Parameters["@UID"].Value = UID;
+                        var RawRes = sqlCmd00.ExecuteScalar();
+
+                        string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MID";
+                        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@MID", SqlDbType.Int);
+                        sqlCmd.Parameters["@MID"].Value = Convert.ToInt32(Ce.ToString());
+                        var CIME = sqlCmd00.ExecuteScalar();
+                        bool MDE = false;
+                        if (CIME != null) { MDE = true; }
+
+                        if (RawRes != null && MDE == true)
+                        {
+                            query = "UPDATE SuMUsersAccounts SET Curr = @NewCurr WHERE UserID = @UID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                            sqlCmd.Parameters["@UID"].Value = UID;
+                            sqlCmd.Parameters.AddWithValue("@NewCurr", RawRes.ToString() + "#" + Ce.ToString() + ";1&");
+                            sqlCmd.ExecuteNonQuery();
+                            sqlCon.Close();
+                        }
+                        else
+                        {
+                            if (MDE == true)
+                            {
+                                query = "UPDATE SuMUsersAccounts SET Curr = @NewCurr WHERE UserID = @UID";
+                                sqlCmd = new SqlCommand(query, sqlCon);
+                                sqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                                sqlCmd.Parameters["@UID"].Value = UID;
+                                sqlCmd.Parameters.AddWithValue("@NewCurr", "#" + Ce.ToString() + ";1&");
+                                sqlCmd.ExecuteNonQuery();
+                                sqlCon.Close();
+                            }
+                        }
+                        sqlCon.Close();
+                    }
+                }
+            }
+        }
+        protected bool IsItAlraedyInCurr(int MID, int UID)
+        {
+
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd00.Parameters["@UID"].Value = UID;
+                var RawRes = sqlCmd00.ExecuteScalar();
+                if (RawRes != null)
+                {
+                    string Res = RawRes.ToString();
+                    int[] R = ST11(Res);
+                    for (int i = 0; i < R.Length; i++)
+                    {
+                        if (R[i] == MID)
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                else { return false; }
+            }
+        }
+        protected int[] ST11(string x)
+        {
+            Queue<int> R1 = new Queue<int>();
+            bool fh = false;
+            bool fc = false;
+            string A1 = "";
+            char[] aa = x.ToCharArray();
+            for (int i = 0; i < aa.Length; i++)
+            {
+                if (aa[i] == '&')
+                {
+                    fh = false;
+                    fc = false;
+                    R1.Enqueue(Convert.ToInt32(A1));
+                    A1 = "";
+                }
+                if (aa[i] == ';') { fc = true; }
+                if (fh == true && fc == false)
+                {
+                    A1 += aa[i].ToString();
+                }
+                if (aa[i] == '#') { fh = true; }
+            }
+            int RdL = R1.Count;
+            int[] RS = new int[RdL];
+            int RFDH = 0;
+            while (R1.Count > 0)
+            {
+                RS[RFDH] = R1.Dequeue();
+                RFDH++;
+            }
+            return RS;
         }
         public void backhome()
         {

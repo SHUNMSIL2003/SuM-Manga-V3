@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/AccountETC/Settings.aspx" hash="8ef922025" filehash="4479e8290eaf015" flags="110000" assembly="App_Web_5tcigh5z" type="ASP.accountetc_settings_aspx">
+<preserve resultType="3" virtualPath="/AccountETC/Settings.aspx" hash="8ef922025" filehash="f8c0fde50751a5c3" flags="110000" assembly="App_Web_jzbk0w0h" type="ASP.accountetc_settings_aspx">
     <filedeps>
         <filedep name="/AccountETC/Settings.aspx" />
         <filedep name="/SuMManga.Mobile.Master" />

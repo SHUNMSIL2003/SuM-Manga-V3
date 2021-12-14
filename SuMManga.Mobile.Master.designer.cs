@@ -123,6 +123,15 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navb2;
 
         /// <summary>
+        /// mangacolor2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mangacolor2;
+
+        /// <summary>
         /// fullnavscont control.
         /// </summary>
         /// <remarks>
