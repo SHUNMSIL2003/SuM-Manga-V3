@@ -214,6 +214,7 @@
     <Content Include="404.aspx" />
     <Content Include="About.aspx" />
     <Content Include="AccountETC\DarkMoon.svg" />
+    <Content Include="AccountETC\DeafultPFP.jpg" />
     <Content Include="AccountETC\Email.html" />
     <Content Include="AccountETC\LoginETC.aspx" />
     <Content Include="AccountETC\Noti.svg" />
@@ -376,6 +377,10 @@
     <Content Include="assets\VarelaRound.ttf" />
     <Content Include="safari-pinned-tab.svg" />
     <Content Include="storeitems\TagView.aspx" />
+    <Content Include="UploadConsole\CreatorConsole.aspx" />
+    <Content Include="UploadConsole\MangaChaptersUpdator.aspx" />
+    <Content Include="UploadConsole\MangaProfileCreator.aspx" />
+    <Content Include="UploadConsole\PuplishManga.aspx" />
     <Content Include="UserLibrary.aspx" />
     <Content Include="windows11\LargeTile.scale-100.png" />
     <Content Include="windows11\LargeTile.scale-125.png" />
@@ -3299,6 +3304,34 @@
     </Compile>
     <Compile Include="SuMSearch.aspx.designer.cs">
       <DependentUpon>SuMSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadConsole\CreatorConsole.aspx.cs">
+      <DependentUpon>CreatorConsole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UploadConsole\CreatorConsole.aspx.designer.cs">
+      <DependentUpon>CreatorConsole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadConsole\MangaChaptersUpdator.aspx.cs">
+      <DependentUpon>MangaChaptersUpdator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UploadConsole\MangaChaptersUpdator.aspx.designer.cs">
+      <DependentUpon>MangaChaptersUpdator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadConsole\MangaProfileCreator.aspx.cs">
+      <DependentUpon>MangaProfileCreator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UploadConsole\MangaProfileCreator.aspx.designer.cs">
+      <DependentUpon>MangaProfileCreator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadConsole\PuplishManga.aspx.cs">
+      <DependentUpon>PuplishManga.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UploadConsole\PuplishManga.aspx.designer.cs">
+      <DependentUpon>PuplishManga.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserAgreementBD.aspx.cs">
       <DependentUpon>UserAgreementBD.aspx</DependentUpon>

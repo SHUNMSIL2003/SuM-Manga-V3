@@ -51,7 +51,7 @@ namespace SuM_Manga_V3
         {
             string ResultS = " ";
             int RN = 0;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string qwi = "SELECT MAX(MangaID) FROM SuMManga";
@@ -123,7 +123,7 @@ namespace SuM_Manga_V3
         protected string GetGarnas(int id)
         {
             string garns = " ";
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "SELECT ID FROM Fantasy WHERE MangaID = @MangaID";
@@ -218,7 +218,7 @@ namespace SuM_Manga_V3
             if (G == "Sci-Fi") { Garna = "SciFi"; }
             if (string.IsNullOrEmpty(G) == false)
             {
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
                 {
                     sqlCon.Open();
                     string qwi = "SELECT MAX(ID) FROM " + Garna + " ";

@@ -42,7 +42,7 @@ namespace SuM_Manga_V3.AccountETC
             bool NoQ = string.IsNullOrEmpty(Q.Value);
             if (NoCreatorName == false && NoPhoneNum == false && NoPassword == false)
             {
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
                 {
                     sqlCon.Open();
 

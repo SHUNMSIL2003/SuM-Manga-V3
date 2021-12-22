@@ -139,7 +139,7 @@ namespace SuM_Manga_V3.storeitems
                     NCN = NCN.Remove(0, 2);
                     int CurPageCH = Convert.ToInt32(NCN);
 
-                    using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+                    using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
                     {
                         sqlCon.Open();
                         string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
@@ -247,7 +247,7 @@ namespace SuM_Manga_V3.storeitems
                 int UID = Convert.ToInt32(Convert.ToString(GetUserInfoCookie["ID"]));
                 if (IsItAlraedyInCurr(Convert.ToInt32(Ce.ToString()), UID) == false)
                 {
-                    using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+                    using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
                     {
                         sqlCon.Open();
                         string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
@@ -295,7 +295,7 @@ namespace SuM_Manga_V3.storeitems
         protected bool IsItAlraedyInCurr(int MID, int UID)
         {
 
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";

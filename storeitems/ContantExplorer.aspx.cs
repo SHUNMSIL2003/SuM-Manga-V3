@@ -43,12 +43,15 @@ namespace SuM_Manga_V3.storeitems
                 TheMangaPhotosF.Attributes["style"] = "display:inline-block;height:100vh !important;min-height:100% !important;background-color:" + ThemeColor + ";";
                 string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100vw;height:fit-content;float:left;";//ORgbConverter(getDominantColor(bMap));------background-color:" + ThemeColor + ";
                 string theme = ThemeColor;//RgbConverter(getDominantColor(bMap));
-                infoCover.Attributes["style"] = "position:relative;overflow:hidden;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
+                infoCover.Attributes["style"] = "min-height:100vw;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
                 string cn = Request.QueryString["CN"].ToString();
                 //MangaViewsAndChapters.InnerText = "Chapters: " + cn + "  -   Views:  "+ ShowViews() + "";
                 MdiscS.InnerText = ShowDis();
                 int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
                 GernsTags.InnerHtml = GetGerns(theme, idfg0554);
+                string ThemeColorOp1 = ThemeColor.Substring(0, ThemeColor.Length - 6);
+                ThemeColorOp1 += ")";
+                GernsTags.Attributes["style"] = "border-top-right-radius:22px;border-top-left-radius:22px;width:100%;height:fit-content;background-color:" + ThemeColorOp1 + ";align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;";
                 string pathstartnochx = "/storeitems/";
                 //string btn2 = "btn";
                 //string btn3 = "btn-primary btn-sm";
@@ -86,10 +89,13 @@ namespace SuM_Manga_V3.storeitems
                 }
                 else 
                 {
-                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + Request.QueryString["TC"].ToString() + ";margin:0 auto;";
-                    MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + Request.QueryString["TC"].ToString() + ">You need to Login!</p>";
-                    MRSW.Attributes["style"] = "overflow:hidden;color:" + Request.QueryString["TC"].ToString() + ";";
-                    MRSC.Attributes["style"] = "overflow:hidden;margin-top:8px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
+                    string TC = Request.QueryString["TC"].ToString();
+                    TC = TC.Substring(0, TC.Length - 6);
+                    TC += ")";
+                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;";
+                    MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">You need to Login!</p>";
+                    MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
+                    MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
                     MRSW.Attributes["href"] = "/AccountETC/LogInETC.aspx";
                 }
                 //"<a style=" + abtntheme + "><p style="+ "color:#ffffff;float:right;font-size:142%;" + ">" + Request.QueryString["CN"].ToString() + " Chapters</p></a>";
@@ -104,7 +110,7 @@ namespace SuM_Manga_V3.storeitems
                     if (c > 10000) { c = (cn1 + 1); }
                     string cpcover = "/storeitems/" + Request.QueryString["Manga"].ToString() + "/sumcp" + ChapterFixedForm + ".jpg";
                     RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor;//+ OptionToAddCurrFunc;
-                    TheMangaPhotosF.InnerHtml += "<a style=" + abtntheme + " class=" + btnanimationclass + " href=" + sc + RLink + sc + " ><img src=" + cpcover + " style=" + "width:64px;height:64px;float:left;margin:0px;opacity:0.92;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
+                    TheMangaPhotosF.InnerHtml += "<a style=" + abtntheme + " class=" + btnanimationclass + " href=" + sc + RLink + sc + " ><img src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
                     if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + "height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.24;margin:0px;margin-block:0px;" + ">"; }
                     //<a style="dc" class="btn" href="#"><img src="/storeitems/Anohana/0001/sumcp.png" style="width:48px;height:48px;float:left;margin:0px;" /><p style="dc">dc</p></a>
                 }
@@ -118,7 +124,7 @@ namespace SuM_Manga_V3.storeitems
         protected bool IsItInCurr(int MID, int UID)
         {
 
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
@@ -179,7 +185,7 @@ namespace SuM_Manga_V3.storeitems
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             int UID = Convert.ToInt32(Convert.ToString(GetUserInfoCookie["ID"]));
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
@@ -189,6 +195,10 @@ namespace SuM_Manga_V3.storeitems
                 var RawRes = sqlCmd00.ExecuteScalar();
                 if (RawRes != null)
                 {
+                    string TC = Request.QueryString["TC"].ToString();
+                    TC = TC.Substring(0, TC.Length - 6);
+                    TC += ")";
+
                     bool foundit = false;
                     string Res = RawRes.ToString();
                     int[,] R = ST1(Res);
@@ -204,10 +214,10 @@ namespace SuM_Manga_V3.storeitems
                             if (c > 9 && c < 100) { ChapterFixedForm = "00" + chxC; }
                             if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
                             if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
-                            SVC.Attributes["style"] = "overflow:hidden;background-color:" + Request.QueryString["TC"].ToString() + ";margin:0 auto;";
-                            MRSW.InnerHtml = "<b>Continue Reading</b><br /><p style=" + "margin-top:-4px;font-size:64%;color:" + Request.QueryString["TC"].ToString() + ">Currently In Chapter " + c + "</p>";
-                            MRSW.Attributes["style"] = "overflow:hidden;color:" + Request.QueryString["TC"].ToString() + ";";
-                            MRSC.Attributes["style"] = "overflow:hidden;margin-top:8px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
+                            SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;";
+                            MRSW.InnerHtml = "<b>Continue Reading</b><br /><p style=" + "margin-top:-4px;font-size:64%;color:" + TC + ">Currently In Chapter " + c + "</p>";
+                            MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
+                            MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
                             string WorkerHelp = "&UCU=" + MID.ToString();
                             MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + ChapterFixedForm + WorkerHelp;
                             sqlCon.Close();
@@ -215,20 +225,23 @@ namespace SuM_Manga_V3.storeitems
                     }
                     if (foundit == false) 
                     {
-                        SVC.Attributes["style"] = "overflow:hidden;background-color:" + Request.QueryString["TC"].ToString() + ";margin:0 auto;";
-                        MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + Request.QueryString["TC"].ToString() + ">Auto adds to currently reading</p>";
-                        MRSW.Attributes["style"] = "overflow:hidden;color:" + Request.QueryString["TC"].ToString() + ";";
-                        MRSC.Attributes["style"] = "overflow:hidden;margin-top:8px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
+                        SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;";
+                        MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
+                        MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
+                        MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
                         MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID;
                         sqlCon.Close();
                     }
                 }
                 else
                 {
-                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + Request.QueryString["TC"].ToString() + ";margin:0 auto;";
-                    MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + Request.QueryString["TC"].ToString() + ">Auto adds to currently reading</p>";
-                    MRSW.Attributes["style"] = "overflow:hidden;color:" + Request.QueryString["TC"].ToString() + ";";
-                    MRSC.Attributes["style"] = "overflow:hidden;margin-top:8px !important;margin-bottom:6px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
+                    string TC = Request.QueryString["TC"].ToString();
+                    TC = TC.Substring(0, TC.Length - 6);
+                    TC += ")";
+                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;";
+                    MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
+                    MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
+                    MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
                     MRSW.Attributes["href"] = LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID;
                     sqlCon.Close();
                 }
@@ -327,7 +340,7 @@ namespace SuM_Manga_V3.storeitems
         protected string ShowDis() 
         {
             string V = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "SELECT MangaInfo FROM SuMManga WHERE MangaID = @MangaID";
@@ -350,7 +363,7 @@ namespace SuM_Manga_V3.storeitems
         protected string ShowViews()
         {
             string V = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "SELECT MangaViews FROM SuMManga WHERE MangaID = @MangaID";
@@ -373,7 +386,7 @@ namespace SuM_Manga_V3.storeitems
         protected string ShowCover()
         {
             string V = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
@@ -396,7 +409,7 @@ namespace SuM_Manga_V3.storeitems
         protected string ShowName()
         {
             string V = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
@@ -418,7 +431,7 @@ namespace SuM_Manga_V3.storeitems
         }
         protected bool IsGernXCodeName(string X,int MangaID)
         {
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string qwi = "SELECT ID FROM " + X + " WHERE MangaID = @MangaID ";
@@ -438,6 +451,7 @@ namespace SuM_Manga_V3.storeitems
             string gernsincard = " ";
             string TagViewer0 = "/storeitems/TagView.aspx";
             un = IsGernXCodeName("Action", ID);
+            ThemeColor = "rgba(225,225,225,0.36)";//DesignChange!
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Action";
@@ -497,7 +511,7 @@ namespace SuM_Manga_V3.storeitems
         }
         protected void AddOneView()
         {
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "UPDATE SuMManga SET MangaViews = MangaViews + 1 WHERE MangaID = @MangaID";

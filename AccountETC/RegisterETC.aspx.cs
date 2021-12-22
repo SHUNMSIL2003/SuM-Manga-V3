@@ -46,13 +46,13 @@ namespace SuM_Manga_V3.AccountETC
             if (XExsisits("Email", EmailR.Value.ToString()) == true) { EmailExsists = true; }
             else { EmailExsists = false; }
             bool passwordcheckok = PasswordIsOk(PasswordR.Value);
-            string DPFP = "~/AccountETC/DeafultPFP.jpg";
-            string dsig = "#Joined_to_SuM " + DateTime.Now.ToString("yyyy MM dd");
+            string DPFP = "/AccountETC/DeafultPFP.jpg";
+            string dsig = "#Joined_to_SuM_Manga " + DateTime.Now.ToString("yyyy MM dd");
             if (UserNameExsists == false && EmailExsists == false && PasswordsMatch == true && passwordcheckok == true)
             {
                 string virivicationcode = GetVerificationCode(8);
                 string accountstats = "#R$" + virivicationcode;
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
                 {
                     sqlCon.Open();
                     SqlCommand sqlCmd = new SqlCommand("INSERT INTO SuMUsersAccounts(UserName,Password,Email,AccountStatus,PFP,Signetsure) values(@UserName,@Password,@Email,@AccountStatus,@PFP,@Signetsure)", sqlCon);
@@ -66,7 +66,7 @@ namespace SuM_Manga_V3.AccountETC
                     sqlCon.Close();
                 }
                 int id = 0;
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
                 {
                     sqlCon.Open();
                     string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName";
@@ -88,7 +88,7 @@ namespace SuM_Manga_V3.AccountETC
                 string Y = DateTime.UtcNow.ToString("yyyy");
                 string freetrialalert = "#FreeT?Y" + Y + "?M" + M + "?D" + D + "$N";
                 //
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
+                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
                 {
                     sqlCon.Open();
                     SqlCommand sqlCmd = new SqlCommand("INSERT INTO UsersAccountAlert(UserID,SuMPaymentAlert,AlertsSeen) values(@UserID,@SuMPaymentAlert,@AlertsSeen)", sqlCon);
@@ -156,7 +156,7 @@ namespace SuM_Manga_V3.AccountETC
         }
         public bool XExsisits(string type, string X)
         {
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "SELECT COUNT(1) FROM SuMUsersAccounts WHERE " + type + " = @" + type + " ";

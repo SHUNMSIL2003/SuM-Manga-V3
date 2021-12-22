@@ -116,7 +116,7 @@ namespace SuM_Manga_V3
             int ID = 0;
             HttpCookie GetUserInfoCookie2 = Request.Cookies["SuMCurrentUser"];
             string UserName = GetUserInfoCookie2["UserName"].ToString();
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName ";
@@ -132,7 +132,7 @@ namespace SuM_Manga_V3
                 sqlCon.Close();
             }
             string RawAlert = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "SELECT SuMPaymentAlert FROM UsersAccountAlert WHERE UserID = @UserID ";
@@ -172,7 +172,7 @@ namespace SuM_Manga_V3
                 NewSeenTag = backupoldfornew + "Y";
             }
             else { NewSeenTag = OValue; }
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "UPDATE UsersAccountAlert SET SuMPaymentAlert = @SuMPaymentAlert WHERE UserID = @UserID";
@@ -201,7 +201,7 @@ namespace SuM_Manga_V3
             string ResultsQ = string.Empty;
             //int i = 0;
             string MangaName = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string queryFIND = "SELECT MangaID FROM SuMManga WHERE MangaName LIKE @Wanted ";

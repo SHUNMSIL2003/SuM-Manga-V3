@@ -38,7 +38,7 @@ namespace SuM_Manga_V3.AccountETC
         {
             LoginStatus.InnerText = "";
             string statevalid = "";
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName AND Password = @Password ";
@@ -79,7 +79,11 @@ namespace SuM_Manga_V3.AccountETC
                         }
                         else
                         {
-                            SaveSCCookie(username, ituac.ToString(), count);
+                            qc = "SELECT UserID FROM SuMCreators WHERE UserName = @UserName";
+                            cv = new SqlCommand(qc, sqlCon);
+                            cv.Parameters.AddWithValue("@UserName", username);
+                            int CID = Convert.ToInt32(cv.ExecuteScalar().ToString());
+                            SaveSCCookie(username, ituac.ToString(), count, CID);
                             sqlCon.Close();
                             HttpContext.Current.Response.Redirect("~/Explore.aspx");
                         }
@@ -119,12 +123,13 @@ namespace SuM_Manga_V3.AccountETC
             HttpContext.Current.Response.Cookies.Add(userInfo);
             HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx");
         }
-        protected static void SaveSCCookie(string UserName, string craetorname, int ID)
+        protected static void SaveSCCookie(string UserName, string craetorname, int ID, int CID)
         {
             HttpCookie userInfo = new HttpCookie("SuMCurrentUser");  //Request.Cookies["userInfo"].Value;  
             userInfo["UserName"] = UserName;
             userInfo["CreatorName"] = craetorname;
             userInfo["ID"] = ID.ToString();
+            userInfo["CID"] = CID.ToString();
             //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
@@ -136,7 +141,7 @@ namespace SuM_Manga_V3.AccountETC
             string accountstats = "#R$" + virivicationcode;
             string UserName = UserNameL.Value.ToString();
             string Email = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:shun-sum-projctdb-server.database.windows.net,1433;Initial Catalog=Shun-SuM-Projct_db;User Id=SuMSite2003@shun-sum-projctdb-server;Password=55878833shunpass#SQL"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
             {
                 sqlCon.Open();
                 string query = "UPDATE SuMUsersAccounts SET AccountStatus = @AccountStatus WHERE UserName = @UserName";

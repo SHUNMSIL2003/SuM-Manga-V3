@@ -87,7 +87,6 @@
                         <div class="card-body" style="background-color:#ffffff !important;">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <form>
                                         <div class="mb-3"><label class="form-label" for="signature"><strong>Signature</strong><br></label><textarea class="form-control" id="SignaturePE" rows="4" name="signature" placeholder="..." runat="server"></textarea></div>
                                         <div class="mb-3">
                                             <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="NofifyCheckEP" runat="server"><label class="form-check-label" for="formCheck-1"><strong>Notify me about new replies</strong></label></div>
@@ -96,7 +95,6 @@
                                             <asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="ChangeSIG" Text="Change signature" />
 
                                         </div>
-                                    </form>
                                 </div>
                                 <div class="col">
                                     <div >
