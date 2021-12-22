@@ -404,6 +404,9 @@ namespace SuM_Manga_V3.storeitems
                 }
                 sqlCon.Close();
             }
+            //BodyStyle = "<style>body { background-image: url(" + V + "); }</style>";
+            //Body.InnerText = "body { background-image: url(" + V + "); }";
+            FakeBody.Attributes["style"] = "background-image:url(" + V + ");";
             return V;
         }
         protected string ShowName()
