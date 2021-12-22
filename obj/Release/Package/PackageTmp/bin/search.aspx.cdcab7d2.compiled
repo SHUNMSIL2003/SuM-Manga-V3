@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/Search.aspx" hash="8ef922025" filehash="eb5fa54084ced044" flags="110000" assembly="App_Web_cg4lrc5j" type="ASP.search_aspx">
-    <filedeps>
-        <filedep name="/Search.aspx" />
-        <filedep name="/SuMManga.Mobile.Master" />
-    </filedeps>
-</preserve>

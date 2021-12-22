@@ -1,3 +1,4 @@
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Optimization.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll.config
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.pdb
@@ -75,7 +76,6 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Security.Cryptography.Xml.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Security.Permissions.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Security.Principal.Windows.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Text.Encodings.Web.dll
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Optimization.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\WebGrease.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Antlr3.Runtime.pdb
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.AspNetCore.Authentication.xml

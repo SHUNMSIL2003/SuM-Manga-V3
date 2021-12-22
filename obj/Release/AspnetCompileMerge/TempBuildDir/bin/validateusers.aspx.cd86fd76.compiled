@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/AccountETC/ValidateUsers.aspx" hash="8ef922025" filehash="ffffc4ef5dc3b4f6" flags="110000" assembly="App_Web_jzbk0w0h" type="ASP.accountetc_validateusers_aspx">
-    <filedeps>
-        <filedep name="/AccountETC/ValidateUsers.aspx" />
-    </filedeps>
-</preserve>

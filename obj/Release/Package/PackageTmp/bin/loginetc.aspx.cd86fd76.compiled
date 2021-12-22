@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/AccountETC/LoginETC.aspx" hash="8ef922025" filehash="ffffe6724956ca74" flags="110000" assembly="App_Web_jzbk0w0h" type="ASP.accountetc_loginetc_aspx">
-    <filedeps>
-        <filedep name="/AccountETC/LoginETC.aspx" />
-    </filedeps>
-</preserve>

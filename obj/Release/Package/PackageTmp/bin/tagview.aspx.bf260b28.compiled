@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/storeitems/TagView.aspx" hash="8ef922025" filehash="2c06862270e17a37" flags="110000" assembly="App_Web_ac14xfpv" type="ASP.storeitems_tagview_aspx">
-    <filedeps>
-        <filedep name="/storeitems/TagView.aspx" />
-        <filedep name="/SuMManga.Mobile.Master" />
-    </filedeps>
-</preserve>

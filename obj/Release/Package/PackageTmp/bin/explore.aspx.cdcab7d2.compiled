@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="3" virtualPath="/Explore.aspx" hash="8ef922025" filehash="2a1f6614406b0a7d" flags="110000" assembly="App_Web_cg4lrc5j" type="ASP.explore_aspx">
-    <filedeps>
-        <filedep name="/Explore.aspx" />
-        <filedep name="/SuMManga.Mobile.Master" />
-    </filedeps>
-</preserve>
