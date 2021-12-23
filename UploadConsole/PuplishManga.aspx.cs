@@ -29,7 +29,7 @@ namespace SuM_Manga_V3.UploadConsole
             string MangaFolderName = MangaNameFolder.Text;
             string CExplorerLink = "/storeitems/ContantExplorer.aspx?Manga=" + MangaFolderName;
             string MangaCoverLink = "/storeitems/" + MangaFolderName + "/" + CoverLink.Text;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
             {
                 sqlCon.Open();
                 SqlCommand sqlCmd = new SqlCommand("INSERT INTO SuMManga(MangaInfo,MangaCreator,MangaName,MangaViews,SuMThemeColor,MangaCoverLink,ChaptersNumber,CExplorerLink) values(@MangaInfo,@MangaCreator,@MangaName,@MangaViews,@SuMThemeColor,@MangaCoverLink,@ChaptersNumber,@CExplorerLink)", sqlCon);

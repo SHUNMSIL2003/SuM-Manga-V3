@@ -31,7 +31,7 @@ namespace SuM_Manga_V3.AccountETC
             errormsg.InnerText = "";
             //emailre = EmailF.Value.ToString();
             string email = EmailF.Value.ToString();
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
                 string query = "SELECT UserName FROM SuMUsersAccounts WHERE Email = @Email";
@@ -113,7 +113,7 @@ namespace SuM_Manga_V3.AccountETC
                 if (PasswordIsOk(newPass) == true)
                 {
                     string emailre = Request.Cookies["sd654fgsd65d5"].Value.ToString();
-                    using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+                    using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                     {
                         sqlCon.Open();
                         string query = "UPDATE SuMUsersAccounts SET Password = @Password WHERE Email = @Email";

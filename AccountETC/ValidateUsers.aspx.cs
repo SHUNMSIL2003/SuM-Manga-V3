@@ -23,7 +23,7 @@ namespace SuM_Manga_V3.AccountETC
                 string username = Request.QueryString["UserName"];
                 string vcode = Request.QueryString["VCode"];
                 string acs = "#R$" + vcode;
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
                     string query = "SELECT COUNT(1) FROM SuMUsersAccounts WHERE UserName = @UserName AND AccountStatus = @AccountStatus ";
@@ -65,7 +65,7 @@ namespace SuM_Manga_V3.AccountETC
             string accountstats = "#R$" + virivicationcode;
             string UserName = Request.QueryString["UserName"];
             string Email = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
                 string query = "UPDATE SuMUsersAccounts SET AccountStatus = @AccountStatus WHERE UserName = @UserName";

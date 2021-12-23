@@ -104,7 +104,7 @@ namespace SuM_Manga_V3.storeitems
                         {
                             CurWorker = "&UCU=" + Request.QueryString["MID"] + "&CUUC=" + Convert.ToInt32(NCN);
                         }*/
-                        if (Request.QueryString["UCU"] != null) { CurWorker = "&UCU=" + Request.QueryString["UCU"].ToString(); }
+                        if (Request.QueryString["UCU"] != null || Request.QueryString["ADTCU"] != null) { CurWorker = "&UCU=" + Request.QueryString["UCU"].ToString(); }
                         if (System.IO.Directory.Exists(checkifitexsists) == true)
                         {
                             //"<a class="+"btn btn-primary btn-sm"+" href=" "> Next Chapter  &raquo;</a>"
@@ -139,7 +139,7 @@ namespace SuM_Manga_V3.storeitems
                     NCN = NCN.Remove(0, 2);
                     int CurPageCH = Convert.ToInt32(NCN);
 
-                    using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+                    using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                     {
                         sqlCon.Open();
                         string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
@@ -247,7 +247,7 @@ namespace SuM_Manga_V3.storeitems
                 int UID = Convert.ToInt32(Convert.ToString(GetUserInfoCookie["ID"]));
                 if (IsItAlraedyInCurr(Convert.ToInt32(Ce.ToString()), UID) == false)
                 {
-                    using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+                    using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                     {
                         sqlCon.Open();
                         string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
@@ -295,7 +295,7 @@ namespace SuM_Manga_V3.storeitems
         protected bool IsItAlraedyInCurr(int MID, int UID)
         {
 
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
                 string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";

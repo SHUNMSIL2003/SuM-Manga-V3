@@ -31,7 +31,7 @@ namespace SuM_Manga_V3.AccountETC
             UserNameForShow0.InnerText = UserName;
             string CurrPFP = string.Empty;
             //string currSignetsure = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
                 string query = "SELECT PFP FROM SuMUsersAccounts WHERE UserName = @UserName";
@@ -109,7 +109,7 @@ namespace SuM_Manga_V3.AccountETC
                 //CurrUserName.InnerText = UserName; ---------------------------
                 //System.Drawing.Image pfp = System.Drawing.Image.FromFile(SuMCustomPFP.PostedFile.InputStream);
                 //
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
                     string query = "UPDATE SuMUsersAccounts SET PFP = @SuMCustomPFP WHERE UserName = @UserName";
@@ -127,7 +127,7 @@ namespace SuM_Manga_V3.AccountETC
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             string UserName = GetUserInfoCookie["UserName"].ToString();
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
                 string newSignetsure = SignaturePE.Value.ToString();
@@ -150,7 +150,7 @@ namespace SuM_Manga_V3.AccountETC
 
             if (currEmail != Email)
             {
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     string query = "UPDATE SuMUsersAccounts SET Email = @Email WHERE UserName = @UserName";
                     SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);

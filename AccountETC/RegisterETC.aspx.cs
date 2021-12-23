@@ -52,7 +52,7 @@ namespace SuM_Manga_V3.AccountETC
             {
                 string virivicationcode = GetVerificationCode(8);
                 string accountstats = "#R$" + virivicationcode;
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
                 {
                     sqlCon.Open();
                     SqlCommand sqlCmd = new SqlCommand("INSERT INTO SuMUsersAccounts(UserName,Password,Email,AccountStatus,PFP,Signetsure) values(@UserName,@Password,@Email,@AccountStatus,@PFP,@Signetsure)", sqlCon);
@@ -66,7 +66,7 @@ namespace SuM_Manga_V3.AccountETC
                     sqlCon.Close();
                 }
                 int id = 0;
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
                     string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName";
@@ -88,7 +88,7 @@ namespace SuM_Manga_V3.AccountETC
                 string Y = DateTime.UtcNow.ToString("yyyy");
                 string freetrialalert = "#FreeT?Y" + Y + "?M" + M + "?D" + D + "$N";
                 //
-                using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
                 {
                     sqlCon.Open();
                     SqlCommand sqlCmd = new SqlCommand("INSERT INTO UsersAccountAlert(UserID,SuMPaymentAlert,AlertsSeen) values(@UserID,@SuMPaymentAlert,@AlertsSeen)", sqlCon);
@@ -156,7 +156,7 @@ namespace SuM_Manga_V3.AccountETC
         }
         public bool XExsisits(string type, string X)
         {
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source=tcp:summangaserver.database.windows.net,1433;Initial Catalog=SuMMangaSQL;User Id=summangasqladmin;Password=55878833sqlpass#S"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
                 string query = "SELECT COUNT(1) FROM SuMUsersAccounts WHERE " + type + " = @" + type + " ";

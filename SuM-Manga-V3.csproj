@@ -467,6 +467,7 @@
     <Content Include="dist\magic.css.map" />
     <Content Include="dist\magic.min.css.map" />
     <None Include="Properties\PublishProfiles\Sum-Manga - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\Sum-Manga - Web Deploy2.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

@@ -59,7 +59,7 @@
         });
     </script>
     <div id="FakeBody" runat="server" style="">
-    <div style="backdrop-filter:blur(3px);background-color:rgba(225,225,225,0.32);">
+    <div style="background-color:rgba(225,225,225,0.50);">
     <div class="fadeIn animated">
     <div style="height:fit-content;width:100vw;overflow:hidden; background-color:#ffffff !important;" id="CategoryX" runat="server">
     <div id="infoCover" runat="server" class="mySlides" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:fit-content;max-height:864px !important;">
