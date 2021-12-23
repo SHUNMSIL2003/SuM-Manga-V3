@@ -259,11 +259,38 @@
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p runat="server" id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;">Navigate Back</b>
                 </a>
-            <a class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" href="/Search.aspx"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;"></a>
-            <a href="/Explore.aspx" style="float:right !important;vertical-align:middle !important;width:fit-content;margin-left:12px;">
-                <img src="/svg/ExploreNA.svg" id="Img1" style="width:22px;height:22px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;"><br>
-                <p style="color:#636166;font-size:40%;margin-top:-20px;margin-left:10px;"><b>Home</b></p>
+            <a class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" href="/Search.aspx"><img src="/svg/Search.svg" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:14px !important;"></a>
+            <a id="ComAct" style="float:right !important;vertical-align:middle !important;width:fit-content;margin-left:4px;">
+                <img src="/svg/chat.svg" id="Img5" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;">
             </a>
+            <a href="/Explore.aspx" style="margin-right:-8px;float:right !important;vertical-align:middle !important;width:fit-content;margin-right:-6px;">
+                <img src="/svg/ExploreNA.svg" id="Img1" style="width:29px;height:29px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;"><br>
+            </a>
+            <script>
+                        document.getElementById("ComAct").onclick = function () {
+
+                            var elm = document.getElementById("MainContent_CommentsSecCont");
+                            if (elm.classList.contains("slideInUp")) {
+                                setTimeout(() => {
+                                    if (elm.classList.contains("slideInUp")) { elm.classList.remove("slideInUp"); elm.classList.add("slideDown"); }
+                                    else { elm.classList.remove("slideDown"); elm.classList.add("slideInUp"); }
+                                }, 10);
+                                setTimeout(() => {
+                                    elm.style.display = (elm.style.display == "block") ? "none" : "block";
+                                }, 800);
+                            }
+                            else {
+                                setTimeout(() => {
+                                    if (elm.classList.contains("slideInUp")) { elm.classList.remove("slideInUp"); elm.classList.add("slideDown"); }
+                                    else { elm.classList.remove("slideDown"); elm.classList.add("slideInUp"); }
+                                }, 10);
+                                setTimeout(() => {
+                                    elm.style.display = (elm.style.display == "block") ? "none" : "block";
+                                }, 10);
+                            }
+
+                        };
+            </script>
         </div>
         <div id="fullnavscont" runat="server" class="STBSUMBAR bg-white shadow" style="border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:transparent !important;bottom:0 !important;">
             <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;">

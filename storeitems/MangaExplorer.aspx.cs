@@ -104,16 +104,17 @@ namespace SuM_Manga_V3.storeitems
                         {
                             CurWorker = "&UCU=" + Request.QueryString["MID"] + "&CUUC=" + Convert.ToInt32(NCN);
                         }*/
-                        if (Request.QueryString["UCU"] != null || Request.QueryString["ADTCU"] != null) { CurWorker = "&UCU=" + Request.QueryString["UCU"].ToString(); }
+                        if (Request.QueryString["UCU"] != null) { CurWorker = "&UCU=" + Request.QueryString["UCU"].ToString(); }
+                        if (Request.QueryString["ADTCU"] != null && Request.QueryString["UCU"] == null) { CurWorker = "&UCU=" + Request.QueryString["ADTCU"].ToString(); }
                         if (System.IO.Directory.Exists(checkifitexsists) == true)
                         {
                             //"<a class="+"btn btn-primary btn-sm"+" href=" "> Next Chapter  &raquo;</a>"
-                            string sendNextChapter = "<a style=" + "color:#ffffff;" + " class=" + "btn btn-primary btn-sm" + " href=" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "> Next Chapter  &raquo;</a>";
+                            string sendNextChapter = "<a style=" + "border-radius:16px;padding:8px;background-color:rgb(255,255,255);margin:8px;margin-right:4px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + "btn btn-primary btn-sm" + " href=" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "><b>Next Chapter  &raquo;</b></a>";
                             NextChapter.InnerHtml = sendNextChapter;
                         }
                         else
                         {
-                            NextChapter.InnerHtml = "<h4 style=" + "color:#ffffff;" + ">No Chapters Left for now!</h4>";
+                            NextChapter.InnerHtml = "<a style=" + "border-radius:16px;padding:8px;background-color:rgba(255,255,255,0.46);margin:8px;margin-right:4px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + "><b>Next Chapter  &raquo;</b></a>";
                         }
                         AddToCurrIfNot();
                     }
@@ -122,7 +123,139 @@ namespace SuM_Manga_V3.storeitems
                         Response.Redirect("~/404.aspx");
                     }
                 }
+                LoadCommentsSection();
             }
+        }
+        protected void SendComment(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(UserComment.Text) == false && UserComment.Text != "add a comment...")
+            {
+                HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+                int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                char[] RawComment = UserComment.Text.ToCharArray();
+                string ProssesedComment = "";
+                for (int i = 0; i < RawComment.Length; i++)
+                {
+                    if (RawComment[i] != '#' && RawComment[i] != ';' && RawComment[i] != '&')
+                    {
+                        ProssesedComment += RawComment[i];
+                    }
+                }
+                string NewComment = "#" + UID.ToString() + ";" + ProssesedComment + "&";
+                int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string query = "SELECT Comments FROM SuMMangaComments WHERE MangaID = @MangaID";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = MID;
+                    var Raw = sqlCmd.ExecuteScalar();
+                    string RAWDATA = Raw.ToString();
+                    RAWDATA += NewComment;
+                    query = "UPDATE SuMMangaComments SET Comments = @NewComment WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = MID;
+                    sqlCmd.Parameters.AddWithValue("@NewComment", RAWDATA);
+                    sqlCmd.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+                Response.Redirect(Request.RawUrl);
+            }
+        }
+        protected void LoadCommentsSection() 
+        {
+            string ThemeColor = Request.QueryString["TC"].ToString();
+            string MangaID = Request.QueryString["VC"].ToString();
+            //ComSecTitle.Attributes["style"] = "color:" + ThemeColor + ";padding-top:8px;padding-left:8px;padding-bottom:4px;";
+            SendBTN.Attributes["style"] = "background-color:" + ThemeColor + ";border-radius:4px;width:40px;height:34px;margin:4px;";
+            CommentsSecCont.Attributes["style"] = "overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:6px;width:100vw;height:fit-content;position:absolute;bottom:28px;padding-bottom:26px;border-top:4px rgba(0,0,0,0) solid;";
+            string RawComments = string.Empty;
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT Comments FROM SuMMangaComments WHERE MangaID=@MangaID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd00.Parameters["@MangaID"].Value = MangaID;
+                var Raw = sqlCmd00.ExecuteScalar();
+                if (Raw != null) { RawComments = Raw.ToString(); }
+                sqlCon.Close();
+            }
+            if (string.IsNullOrWhiteSpace(RawComments) == false)
+            {
+                string[,] CSF = ST1String(RawComments);
+                string CommentsHTML = "";
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    int id = 0;
+                    string UserName = string.Empty;
+                    string PFP = string.Empty;
+                    for (int i = 0; i < CSF.GetLength(1); i++)
+                    {
+                        id = Convert.ToInt32(CSF[0, i]);
+                        string qwi = "SELECT UserName FROM SuMUsersAccounts WHERE UserID=@UserID";
+                        SqlCommand sqlCmd = new SqlCommand(qwi, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                        sqlCmd.Parameters["@UserID"].Value = id;
+                        var Raw = sqlCmd.ExecuteScalar();
+                        UserName = Raw.ToString();
+                        qwi = "SELECT PFP FROM SuMUsersAccounts WHERE UserID=@UserID";
+                        sqlCmd = new SqlCommand(qwi, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                        sqlCmd.Parameters["@UserID"].Value = id;
+                        Raw = sqlCmd.ExecuteScalar();
+                        PFP = Raw.ToString();
+                        CommentsHTML += ApplyCommentForm(PFP, UserName, CSF[1, i]);
+                    }
+                    sqlCon.Close();
+                }
+                Comments.InnerHtml = CommentsHTML;
+            }
+            else 
+            {
+                Comments.InnerHtml = "<p style=" + "color:" + ThemeColor + ";margin:0 auto;" + ">No comments yet</p>";
+            }
+        }
+
+        /*protected string[,] CSFRawToStringArray(string RawCSF)
+        {
+            char[] CSFPross = RawCSF.ToCharArray();
+            bool CStart = false;
+            bool CEnd = false;
+            bool TStart = false;
+            bool TEnd = false;
+            string CInProssStorge = "";
+            string IDInProssStorge = "";
+            Queue<string> COs = new Queue<string>();
+            Queue<string> IDs = new Queue<string>();
+            for (int i = 0; i < CSFPross.Length; i++)
+            {
+                if (CSFPross[i] == '[') { CStart = true; CEnd = false; }
+                if (CSFPross[i] == '#') { TStart = true; }
+                if (CSFPross[i] == '$') { TEnd = true; }
+                if (CSFPross[i] == ']') { CEnd = true; CStart = false; }
+                if (CStart == true && TStart == false && CEnd == false) { IDInProssStorge += CSFPross[i].ToString(); }
+                if (TStart == true && TEnd == false && CEnd == false) { CInProssStorge += CSFPross[i].ToString(); }
+                if (CEnd == true && CStart == false) 
+                {
+
+                }
+
+            }
+        }*/
+
+        /*protected string StringArrayToRawCSF(string[,] CSF) 
+        {
+        }*/
+        protected string ApplyCommentForm(string PFP, string UserName, string Comment)
+        {
+            char RSC = '"';
+            string SC = RSC.ToString();
+            string RS = "<div style=" + "background-color:rgb(255,255,255);border-radius:16px;padding:6px;margin:4px;width:calc(100%-8px);" + "><img style=" + "display:inline;border-radius:50%;width:32px;height:32px;" + " src=" + SC + PFP + SC + " /><a style=" + "display:inline;" + "><p style=" + "font-size:80%;display:inline;margin-left:6px;" + "><b>" + UserName + "</b></p><p style=" + "font-size:90%;margin-top:12px;margin-left:8px;margin-right:8px;" + ">" + Comment + "</p></a></div>";
+            return RS;
         }
         protected void UpdateChapterNumInCurr()
         {
@@ -190,6 +323,15 @@ namespace SuM_Manga_V3.storeitems
             }
             return Result;
         }
+        protected string RevercST1String(string[,] ST1R)
+        {
+            string Result = "";
+            for (int i = 0; i < ST1R.GetLength(1); i++)
+            {
+                Result += "#" + ST1R[0, i] + ";" + ST1R[1, i] + "&";
+            }
+            return Result;
+        }
         protected int[,] ST1(string x)
         {
             Queue<int> R1 = new Queue<int>();
@@ -223,6 +365,53 @@ namespace SuM_Manga_V3.storeitems
             }
             int RdL = R1.Count;
             int[,] RS = new int[2, RdL];
+            int RFDH = 0;
+            while (R1.Count > 0)
+            {
+                RS[0, RFDH] = R1.Dequeue();
+                RFDH++;
+            }
+            RFDH = 0;
+            while (R2.Count > 0)
+            {
+                RS[1, RFDH] = R2.Dequeue();
+                RFDH++;
+            }
+            return RS;
+        }
+        protected string[,] ST1String(string x)
+        {
+            Queue<string> R1 = new Queue<string>();
+            Queue<string> R2 = new Queue<string>();
+            bool fh = false;
+            bool fc = false;
+            string A1 = "";
+            string A2 = "";
+            char[] aa = x.ToCharArray();
+            for (int i = 0; i < aa.Length; i++)
+            {
+                if (aa[i] == '&')
+                {
+                    fh = false;
+                    fc = false;
+                    R1.Enqueue(A1);
+                    R2.Enqueue(A2);
+                    A1 = "";
+                    A2 = "";
+                }
+                if (fh == true && fc == true)
+                {
+                    A2 += aa[i].ToString();
+                }
+                if (aa[i] == ';') { fc = true; }
+                if (fh == true && fc == false)
+                {
+                    A1 += aa[i].ToString();
+                }
+                if (aa[i] == '#') { fh = true; }
+            }
+            int RdL = R1.Count;
+            string[,] RS = new string[2, RdL];
             int RFDH = 0;
             while (R1.Count > 0)
             {

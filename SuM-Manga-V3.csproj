@@ -377,6 +377,8 @@
     <Content Include="assets\VarelaRound.ttf" />
     <Content Include="safari-pinned-tab.svg" />
     <Content Include="storeitems\TagView.aspx" />
+    <Content Include="svg\chat.svg" />
+    <Content Include="svg\send.svg" />
     <Content Include="UploadConsole\CreatorConsole.aspx" />
     <Content Include="UploadConsole\MangaChaptersUpdator.aspx" />
     <Content Include="UploadConsole\MangaProfileCreator.aspx" />

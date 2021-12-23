@@ -160,7 +160,7 @@ namespace SuM_Manga_V3
                     if (Type == "Curr")
                     {
                         int[,] R = ST1(Res);//JsonConvert.DeserializeObject<int[,]>(a);
-                        for (int i = 0; i < R.GetLength(1); i++)
+                        for (int i = (R.GetLength(1) - 1); i > (-1); i--)
                         {
                             //ShowReqContant.InnerHtml += "<p> " + R[0, i].ToString() + "|" + R[1, i].ToString() + " </p>"; DEBUG
 
