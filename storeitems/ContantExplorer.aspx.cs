@@ -72,7 +72,7 @@ namespace SuM_Manga_V3.storeitems
                 char sc = '"';
                 char b12 = '"';
                 string btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
-                string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor;
+                string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();
                 string linktoupdatech = identifynexthelper + "ch";
                 HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
                 //string OptionToAddCurrFunc = "";

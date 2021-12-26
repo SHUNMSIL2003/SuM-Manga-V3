@@ -200,6 +200,7 @@ namespace SuM_Manga_V3
                             string CoverLink = g.ToString();
 
                             ShowReqContant.InnerHtml += BuildCurrCard(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink);
+                            if (i == 0) { ShowReqContant.InnerHtml += "<br/><br/><br/><br/>"; }
                         }
                     }
                     else 
