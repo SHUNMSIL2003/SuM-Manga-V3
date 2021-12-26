@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="SuM_Manga_V3.Search" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Async="true" Inherits="SuM_Manga_V3.Search" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
@@ -35,23 +36,65 @@
             -webkit-box-shadow: none !important;
             box-shadow: none !important;
         }
+        input[type=text]::-ms-clear {
+            border: 2px solid #6840D9 !important;
+            color:#6840D9 !important;
+            background-color:transparent !important;
+        }
         </style>
+    <script>/*
+        Sys.Browser.WebKit = {};
+        if (navigator.userAgent.indexOf('WebKit/') > -1) {
+            Sys.Browser.agent = Sys.Browser.WebKit;
+            Sys.Browser.version = parseFloat(navigator.userAgent.match(/WebKit\/(\d+(\.\d+)?)/)[1]);
+            Sys.Browser.name = 'WebKit';
+        }*/
+    </script>
+    <script type="text/javascript">
+        function RefreshUpdatePanel() {
+            __doPostBack('<%= TextBoxForSuM.ClientID %>', '');
+            <%ShowResults(TextBoxForSuM.ClientID, EventArgs.Empty);%>
+        };
+    </script>
+    <script>
+        setTimeout(function () {
+            var viewheight = $(window).height();
+            var viewwidth = $(window).width();
+            var viewport = $("meta[name=viewport]");
+            viewport.attr("content", "height=" + viewheight + "px, width=" +
+                viewwidth + "px, initial-scale=1.0");
+        }, 300);
+    </script>
+    <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
+    </asp:ScriptManager>
     <div class="STBSUMBAR2 bg-white shadow slideInDown animated">
-        <nav style="height:7vh;max-height:62px !important; min-height:56px !important;width:100% !important;" class="navbar navbar-light navbar-expand bg-white mb-4 FNM5455511">
+        <nav style="height:64px;width:100% !important;" class="navbar navbar-light navbar-expand bg-white mb-4 FNM5455511">
                     <div class="container-fluid" style="text-align:center !important;">
                                 <div class="" style="display:inline !important;width:100vw !important;height:7vh !important;max-height:62px !important; min-height:56px !important; text-align:center !important;align-items:center;align-content:center;">
                                     <div class="me-auto navbar-search w-100" style="vertical-align:middle !important;">
                                         <div class="input-group" style="vertical-align:middle !important;">
                                             <a style="width:38px;height:7vh;display:inline-block !important;float:right;vertical-align:middle !important;" href='javascript:history.go(-1)'><img src="/svg/arrowback.svg" style="height:5vh;width:5vh;max-height:32px;max-width:32px;display:inline-block !important;margin-top:1vh !important;margin-bottom:1vh !important;" /></a>
-                                            <asp:TextBox ID="TextBoxFor" runat="server" CssClass="bg-light form-control border-0 small" style="background-color:#ffffff !important;border:solid 0px #ffffff !important;height:7vh !important;width:64vw !important;display:inline !important;float:right;max-height:62px !important;" AutoCompleteType="Search" TextMode="Search" placeholder="Search for..."></asp:TextBox>
-                                            <!--<input style="background-color:#ffffff !important;border:solid 0px #ffffff !important;height:7vh !important;width:64vw !important;display:inline !important;float:right;" class="bg-light form-control border-0 small" id="SearchText" runat="server" type="search" placeholder="Search for ..."> -->
+                                            <asp:TextBox AutoPostBack="true" OnTextChanged="ShowResults" onkeyup="this.onchange();" ID="TextBoxForSuM" runat="server" CssClass="bg-light form-control border-0 small" style="background-color:#ffffff !important;border:solid 0px #ffffff !important;height:7vh !important;width:64vw !important;display:inline !important;float:right;max-height:62px !important;" AutoCompleteType="Search" TextMode="Search" placeholder="Search for..."></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
                     </div>
                 </nav>
             </div>
-    <div class="animated fadeIn" id="Results" style="height:calc(86vh-38px) !important;width:100vw !important" runat="server">
-        <p>Loading...</p>
-    </div>
+        <div>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="TextBoxForSuM" />
+                    </Triggers>
+                <ContentTemplate>
+                    <asp:Panel runat="server">
+                        <div class="animated fadeIn" id="ShowSuMResults" style="text-align:center;background-color:#ffffff;height:fit-content !important;width:100vw !important;overflow-y:scroll;margin-top:68px;" runat="server">
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                    </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
 </asp:Content>

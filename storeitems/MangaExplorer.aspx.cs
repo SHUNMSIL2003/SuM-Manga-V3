@@ -161,7 +161,8 @@ namespace SuM_Manga_V3.storeitems
                     sqlCmd.ExecuteNonQuery();
                     sqlCon.Close();
                 }
-                Response.Redirect(Request.RawUrl);
+                LoadCommentsSection();
+                //Response.Redirect(Request.RawUrl);
             }
         }
         protected void LoadCommentsSection() 
@@ -193,7 +194,7 @@ namespace SuM_Manga_V3.storeitems
                     int id = 0;
                     string UserName = string.Empty;
                     string PFP = string.Empty;
-                    for (int i = 0; i < CSF.GetLength(1); i++)
+                    for (int i = (CSF.GetLength(1) - 1); i > (-1); i--)
                     {
                         id = Convert.ToInt32(CSF[0, i]);
                         string qwi = "SELECT UserName FROM SuMUsersAccounts WHERE UserID=@UserID";

@@ -260,11 +260,14 @@ namespace SuM_Manga_V3
         }
         protected string BuildCurrCard(string MangaName, string MangaTheme, string ExplorerLink, string chapter,string CoverLink) 
         {
-            char sc = '"';string scfu = sc.ToString();
-            string astyle = scfu + "width:100vw;height:74px;background-color:#ffffff;border-bottom:#f2f2f2 1px solid;border-top:#f2f2f2 1px solid;position:relative;margin-left:0px;display:block;" + scfu;
-            string imgstyle = scfu + "height:74px;width:74px;object-fit:cover;display:inline;margin-left:0px;border-radius:4px;float:left;" + scfu;
-            string h3style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;" + scfu;
-            string RS = "<a style=" + astyle + " href=" + ExplorerLink + "><img src=" + CoverLink + " style=" + imgstyle + "><h3 style=" + h3style + ">" + MangaName + "</h3><br style=" + "float:left;" + "><p style=" + "margin:0px;color:#6b6b6b;display:block;positon:fixed;width:fit-content;padding-left:12px;margin-left:74px;" + ">chapter: " + chapter + "</p></a>";
+            char sc = '"'; string scfu = sc.ToString();
+            string divST = "<div style=" + "overflow:clip;width:fit-content;height:fit-content;" + ">";
+            string PDivST = "<div style=" + "margin-top:30px;display:block;width:fit-content;padding-left:8px;margin-left:84px;" + ">";
+            string astyle = scfu + "width:100vw;height:100px;background-color:#ffffff;border-bottom:#f2f2f2 1px solid;border-top:#f2f2f2 1px solid;position:relative;margin-left:0px;display:block;" + scfu;
+            string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:4px;float:left;margin:8px;" + scfu;
+            string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;" + scfu;
+            string hr = "<hr style=" + sc.ToString() + "color:rgba(242,242,242,0.6);width:96vw;margin:0 auto !important;height:1px;" + sc.ToString() + "/>";
+            string RS = divST + "<a style=" + astyle + " href=" + ExplorerLink + "><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h3><br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:90%;" + ">Chapter: " + chapter + "</p></div></a></div>" + hr;
             return RS;
         }
         protected string BuildRestCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink)

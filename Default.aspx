@@ -30,7 +30,7 @@
             pointer-events: none;
         }
     </style>
-                        <div class="card shadow ForceMaxW">
+                        <div class="card shadow ForceMaxW ">
                         <div class="card-header py-3">
                             <p class="text-primary m-0 fw-bold forcecolor">SuM - Info</p>
                         </div>

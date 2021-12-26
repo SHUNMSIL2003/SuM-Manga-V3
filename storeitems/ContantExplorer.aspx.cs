@@ -40,7 +40,7 @@ namespace SuM_Manga_V3.storeitems
                     ThemeColor = Request.QueryString["TC"].ToString();//RgbConverter(getDominantColor(bMap));
                 }
                 else { ThemeColor = "#6840D9"; }//height:100vh !important;min-height:100% !important;
-                TheMangaPhotosF.Attributes["style"] = "display:inline-block;height:100vh !important;min-height:100% !important;background-color:" + ThemeColor + ";";
+                TheMangaPhotosF.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";";
                 string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100vw;height:fit-content;float:left;";//ORgbConverter(getDominantColor(bMap));------background-color:" + ThemeColor + ";
                 string theme = ThemeColor;//RgbConverter(getDominantColor(bMap));
                 infoCover.Attributes["style"] = "min-height:100vw;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
@@ -51,7 +51,7 @@ namespace SuM_Manga_V3.storeitems
                 GernsTags.InnerHtml = GetGerns(theme, idfg0554);
                 string ThemeColorOp1 = ThemeColor.Substring(0, ThemeColor.Length - 6);
                 ThemeColorOp1 += ")";
-                GernsTags.Attributes["style"] = "border-top-right-radius:22px;border-top-left-radius:22px;width:100%;height:fit-content;background-color:" + ThemeColorOp1 + ";align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;";
+                GernsTags.Attributes["style"] = "border-top-right-radius:22px;border-top-left-radius:22px;width:100vw;height:fit-content;background-color:" + ThemeColorOp1 + ";align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;";
                 string pathstartnochx = "/storeitems/";
                 //string btn2 = "btn";
                 //string btn3 = "btn-primary btn-sm";
@@ -92,7 +92,7 @@ namespace SuM_Manga_V3.storeitems
                     string TC = Request.QueryString["TC"].ToString();
                     TC = TC.Substring(0, TC.Length - 6);
                     TC += ")";
-                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;";
+                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;";
                     MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">You need to Login!</p>";
                     MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                     MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
@@ -111,7 +111,7 @@ namespace SuM_Manga_V3.storeitems
                     string cpcover = "/storeitems/" + Request.QueryString["Manga"].ToString() + "/sumcp" + ChapterFixedForm + ".jpg";
                     RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
                     TheMangaPhotosF.InnerHtml += "<a style=" + abtntheme + " class=" + btnanimationclass + " href=" + sc + RLink + sc + " ><img src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
-                    if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + "height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.24;margin:0px;margin-block:0px;" + ">"; }
+                    if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
                     //<a style="dc" class="btn" href="#"><img src="/storeitems/Anohana/0001/sumcp.png" style="width:48px;height:48px;float:left;margin:0px;" /><p style="dc">dc</p></a>
                 }
                 //string coverstyle = "text-align:left;width:226px;height:320px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;";
@@ -214,7 +214,7 @@ namespace SuM_Manga_V3.storeitems
                             if (c > 9 && c < 100) { ChapterFixedForm = "00" + chxC; }
                             if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
                             if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
-                            SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;";
+                            SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;";
                             MRSW.InnerHtml = "<b>Continue Reading</b><br /><p style=" + "margin-top:-4px;font-size:64%;color:" + TC + ">Currently In Chapter " + c + "</p>";
                             MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                             MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
@@ -225,7 +225,7 @@ namespace SuM_Manga_V3.storeitems
                     }
                     if (foundit == false) 
                     {
-                        SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;";
+                        SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;";
                         MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
                         MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                         MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
@@ -238,7 +238,7 @@ namespace SuM_Manga_V3.storeitems
                     string TC = Request.QueryString["TC"].ToString();
                     TC = TC.Substring(0, TC.Length - 6);
                     TC += ")";
-                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;";
+                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;";
                     MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
                     MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                     MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
@@ -453,62 +453,63 @@ namespace SuM_Manga_V3.storeitems
             bool un = false;
             string gernsincard = " ";
             string TagViewer0 = "/storeitems/TagView.aspx";
-            un = IsGernXCodeName("Action", ID);
             ThemeColor = "rgba(225,225,225,0.36)";//DesignChange!
+            string DivACStyle = b12.ToString() + "height:fit-content !important;margin-left:6px;display:inline-block;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + b12.ToString();
+            un = IsGernXCodeName("Action", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Action";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Fantasy", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Fantasy";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Fantasy&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Fantasy&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Comedy", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Comedy";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Comedy&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Comedy&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("SciFi", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=SciFi";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Sci-Fi&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Sci-Fi&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Supernatural", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Supernatural";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Supernatural&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Supernatural&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("SliceofLife", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=SliceofLife";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Slice of Life&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Slice of Life&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Mystery", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Mystery";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Mystery&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Mystery&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Drama", ID);
             if (un == true)
             {
                 string TagViewer = TagViewer0 + "?G=Drama";
                 un = false;
-                gernsincard += "<div class=" + flashani + " style=" + "margin-left:6px;display:inline;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + "><a name="+"no-animation"+" href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Drama&nbsp;&nbsp;&nbsp;</a></div>";
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name="+"no-animation"+" href=" + TagViewer + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Drama&nbsp;&nbsp;&nbsp;</a></div>";
             }
             return gernsincard;
         }

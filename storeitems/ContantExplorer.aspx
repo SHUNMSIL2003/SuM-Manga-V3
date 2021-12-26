@@ -69,16 +69,16 @@
 </div>
 </div>
             </div>
-        <div class="animated fadeInUp" style="margin-top:-20px;background-color:#ffffff;border-top-left-radius:22px;border-top-right-radius:22px;">
-        <div id="GernsTags" runat="server" style="border-top-right-radius:22px;border-top-left-radius:22px;width:100%;height:fit-content;background-color:transparent;align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;">
+        <div class="animated fadeInUp" style="margin-top:-20px;background-color:#ffffff;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;">
+        <div id="GernsTags" runat="server" style="border-top-right-radius:22px;border-top-left-radius:22px;width:100vw;height:fit-content;background-color:transparent;align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;">
             <div style="margin-left:6px;display:inline;width:fit-content;height:38px;background-color:rgba(0,0,0,0.36);border-radius:19px;"><a href="/storeitems/TagView.aspx" style="color:white;font-size:112%;">&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;</a></div>
         </div>
-        <div style="background-color:aqua;margin:0 auto;" id="SVC" runat="server">
+        <div style="background-color:aqua;margin:0 auto;height:fit-content;" id="SVC" runat="server">
             <div class="animated pulse" id="MRSC" runat="server" style="margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;">
                 <a id="MRSW" runat="server" href="#" style="color:#6840D9;"></a>
             </div>
         </div>
-    <div style="display:inline-block;height:100vh !important;min-height:100% !important;background-color:rgba(1,65,54,0.544);" id="TheMangaPhotosF" runat="server">
+    <div style="display:block;height:fit-content;min-height:100vh !important;background-color:rgba(1,65,54,0.544);" id="TheMangaPhotosF" runat="server">
         
      </div>
        </div>
