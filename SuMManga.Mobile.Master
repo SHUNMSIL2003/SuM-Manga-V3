@@ -15,8 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">--><!-- 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>SuM Manga</title><!--
-    <link rel="stylesheet" href="/dist/magic.min.css">-->
+    <title>SuM Manga</title>
+    <link rel="stylesheet" href="/dist/magic.min.css">
     <meta name="description" content="Shun Manga - Readers Haven">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/any_icon_x32.png?h=c6e95e86bee5c429ad96d74eb8a03d17">
