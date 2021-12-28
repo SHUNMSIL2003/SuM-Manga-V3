@@ -118,6 +118,8 @@ namespace SuM_Manga_V3.storeitems
                 //string covercode = "<img style=" + coverstyle + " src=" + MangaPathCover + ">";
                 //mangacoverinpage.InnerHtml += covercode;
                 //TheMangaPhotos.InnerHtml += "<a><h1> &zwnj; </h1><h1> &zwnj; </1><h1> &zwnj; </h1><h2> &zwnj; </h2><h4> &zwnj; </h4></a>";
+                ShowCreator();
+                ShowViews();
                 AddOneView();
             }
         }
@@ -360,13 +362,13 @@ namespace SuM_Manga_V3.storeitems
             }
             return V;
         }
-        protected string ShowViews()
+        protected void ShowCreator() 
         {
             string V = string.Empty;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
-                string query = "SELECT MangaViews FROM SuMManga WHERE MangaID = @MangaID";
+                string query = "SELECT MangaCreator FROM SuMManga WHERE MangaID = @MangaID";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                 string x = Request.QueryString["VC"];
                 int y = Convert.ToInt32(x);
@@ -381,7 +383,53 @@ namespace SuM_Manga_V3.storeitems
                 }
                 sqlCon.Close();
             }
-            return V;
+            MangaCreator.InnerText = V;
+        }
+        protected void ShowViews()
+        {
+            int V = 0;
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "SELECT MangaViews FROM SuMManga WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                string x = Request.QueryString["VC"];
+                int y = Convert.ToInt32(x);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = y;
+                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        V = Convert.ToInt32(dr[0].ToString());
+                    }
+                }
+                sqlCon.Close();
+            }
+            if (V < 1000)
+            {
+                ViewsSutNum.InnerText = V.ToString();
+                ViewsSutLater.InnerText = "";
+            }
+            if (V > 999 && V < 1000000)
+            {
+                double B = V / 1000.0;
+                ViewsSutNum.InnerText = String.Format("{0:0.00}", B);
+                ViewsSutLater.InnerText = "K";
+            }
+            if (V > 999999 && V < 1000000000)
+            {
+                double B = V / 1000000.0;
+                ViewsSutNum.InnerText = String.Format("{0:0.00}", B);
+                ViewsSutLater.InnerText = "M";
+            }
+            if (V > 999999999)
+            {
+                double B = V / 1000000000.0;
+                ViewsSutNum.InnerText = String.Format("{0:0.00}", B);
+                ViewsSutLater.InnerText = "B";
+            }
+
         }
         protected string ShowCover()
         {

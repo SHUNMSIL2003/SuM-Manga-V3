@@ -51,6 +51,15 @@ namespace SuM_Manga_V3.storeitems
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MTitle;
 
         /// <summary>
+        /// MangaCreator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaCreator;
+
+        /// <summary>
         /// MdiscS control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,24 @@ namespace SuM_Manga_V3.storeitems
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MdiscS;
+
+        /// <summary>
+        /// ViewsSutNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewsSutNum;
+
+        /// <summary>
+        /// ViewsSutLater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewsSutLater;
 
         /// <summary>
         /// GernsTags control.

@@ -18,7 +18,7 @@
                 </style>
     <style>
             .STBSUMBAR2 {
-                position:fixed !important;
+                /*position:fixed !important;*/
                 top:0 !important;
                 width:100% !important;
                 text-align:center !important;
@@ -88,7 +88,7 @@
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-                        <div class="animated fadeIn" id="ShowSuMResults" style="text-align:center;background-color:#ffffff;height:fit-content !important;width:100vw !important;overflow-y:scroll;margin-top:68px;" runat="server">
+                        <div class="animated fadeIn" id="ShowSuMResults" style="height:fit-content !important;width:100vw !important;overflow-y:scroll;margin-top:6px;" runat="server">
                         </div>
                         <br />
                         <br />

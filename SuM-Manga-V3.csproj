@@ -389,6 +389,8 @@
     <Content Include="mstile-310x150.png" />
     <Content Include="mstile-310x310.png" />
     <Content Include="mstile-70x70.png" />
+    <Content Include="OfflineBETA.aspx" />
+    <Content Include="pwabuilder-sw.js" />
     <Content Include="pwabuilder-sw\pwabuilder-sw-register.js" />
     <Content Include="pwabuilder-sw\pwabuilder-sw.js" />
     <Content Include="runsw.js" />
@@ -396,9 +398,58 @@
     <Content Include="safari-pinned-tab.svg" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="storeitems\DemonSlayer\sumcp0001.jpg" />
+    <Content Include="storeitems\DemonSlayer\sumcp0002.jpg" />
+    <Content Include="storeitems\DemonSlayer\sumcp0003.jpg" />
+    <Content Include="storeitems\DemonSlayer\sumcp0004.jpg" />
+    <Content Include="storeitems\DemonSlayer\sumcp0005.jpg" />
+    <Content Include="storeitems\DemonSlayer\sumcp0006.jpg" />
+    <Content Include="storeitems\DemonSlayer\sumcp0007.jpg" />
+    <Content Include="storeitems\DemonSlayer\sumcp0008.jpg" />
+    <Content Include="storeitems\DemonSlayer\sumcp0009.jpg" />
+    <Content Include="storeitems\DemonSlayer\sumcp0010.jpg" />
+    <Content Include="storeitems\Dr.Stone\sumcp0001.jpg" />
+    <Content Include="storeitems\Dr.Stone\sumcp0002.jpg" />
+    <Content Include="storeitems\Dr.Stone\sumcp0003.jpg" />
+    <Content Include="storeitems\Dr.Stone\sumcp0004.jpg" />
+    <Content Include="storeitems\Dr.Stone\sumcp0005.jpg" />
+    <Content Include="storeitems\FumetsuAnataE\sumcp0001.jpg" />
+    <Content Include="storeitems\FumetsuAnataE\sumcp0002.jpg" />
+    <Content Include="storeitems\FumetsuAnataE\sumcp0003.jpg" />
+    <Content Include="storeitems\FumetsuAnataE\sumcp0004.jpg" />
+    <Content Include="storeitems\FumetsuAnataE\sumcp0005.jpg" />
+    <Content Include="storeitems\FumetsuAnataE\sumcp0006.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0001.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0002.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0003.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0004.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0005.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0006.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0007.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0008.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0009.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0010.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0011.jpg" />
+    <Content Include="storeitems\Hanako-Kun\sumcp0012.jpg" />
+    <Content Include="storeitems\MyHeroAcademia\sumcp0002.jpg" />
+    <Content Include="storeitems\MyHeroAcademia\sumcp0003.jpg" />
+    <Content Include="storeitems\No.6\sumcp0001.jpg" />
+    <Content Include="storeitems\No.6\sumcp0002.jpg" />
+    <Content Include="storeitems\No.6\sumcp0003.jpg" />
+    <Content Include="storeitems\No.6\sumcp0004.jpg" />
+    <Content Include="storeitems\No.6\sumcp0005.jpg" />
     <Content Include="storeitems\TagView.aspx" />
+    <Content Include="storeitems\UramichiOniisan\sumcp0001.jpg" />
+    <Content Include="storeitems\UramichiOniisan\sumcp0002.jpg" />
+    <Content Include="storeitems\UramichiOniisan\sumcp0003.jpg" />
+    <Content Include="storeitems\UramichiOniisan\sumcp0004.jpg" />
+    <Content Include="storeitems\UramichiOniisan\sumcp0005.jpg" />
+    <Content Include="storeitems\UramichiOniisan\sumcp0006.jpg" />
+    <Content Include="storeitems\UramichiOniisan\sumcp0007.jpg" />
+    <Content Include="SuMOffline.html" />
     <Content Include="svg\chat.svg" />
     <Content Include="svg\send.svg" />
+    <Content Include="svg\views.svg" />
     <Content Include="UploadConsole\CreatorConsole.aspx" />
     <Content Include="UploadConsole\MangaChaptersUpdator.aspx" />
     <Content Include="UploadConsole\MangaProfileCreator.aspx" />
@@ -3257,6 +3308,13 @@
     </Compile>
     <Compile Include="Library.aspx.designer.cs">
       <DependentUpon>Library.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OfflineBETA.aspx.cs">
+      <DependentUpon>OfflineBETA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OfflineBETA.aspx.designer.cs">
+      <DependentUpon>OfflineBETA.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search.aspx.cs">

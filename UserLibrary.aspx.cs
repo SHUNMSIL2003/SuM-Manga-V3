@@ -199,7 +199,14 @@ namespace SuM_Manga_V3
                             g = sqlCmd.ExecuteScalar();
                             string CoverLink = g.ToString();
 
-                            ShowReqContant.InnerHtml += BuildCurrCard(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink);
+                            query = "SELECT MangaCreator FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = R[0, i];
+                            g = sqlCmd.ExecuteScalar();
+                            string CreatorName = g.ToString();
+
+                            ShowReqContant.InnerHtml += BuildCurrCard(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink, CreatorName);
                             if (i == 0) { ShowReqContant.InnerHtml += "<br/><br/><br/><br/>"; }
                         }
                     }
@@ -259,16 +266,17 @@ namespace SuM_Manga_V3
             }
             if (fail == true) { Response.Redirect("~/404.aspx"); }
         }
-        protected string BuildCurrCard(string MangaName, string MangaTheme, string ExplorerLink, string chapter,string CoverLink) 
+        protected string BuildCurrCard(string MangaName, string MangaTheme, string ExplorerLink, string chapter,string CoverLink,string MangaCreator) 
         {
             char sc = '"'; string scfu = sc.ToString();
             string divST = "<div style=" + "overflow:clip;width:fit-content;height:fit-content;" + ">";
-            string PDivST = "<div style=" + "margin-top:30px;display:block;width:fit-content;padding-left:8px;margin-left:84px;" + ">";
-            string astyle = scfu + "width:100vw;height:100px;background-color:#ffffff;border-bottom:#f2f2f2 1px solid;border-top:#f2f2f2 1px solid;position:relative;margin-left:0px;display:block;" + scfu;
+            string PDivST = "<div style=" + "margin-top:52px;display:block;width:fit-content;padding-left:8px;" + ">";
+            string astyle = scfu + "width:100vw;height:100px;position:relative;margin-left:0px;display:block;" + scfu;
             string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:4px;float:left;margin:8px;" + scfu;
-            string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;" + scfu;
-            string hr = "<hr style=" + sc.ToString() + "color:rgba(242,242,242,0.6);width:96vw;margin:0 auto !important;height:1px;" + sc.ToString() + "/>";
-            string RS = divST + "<a style=" + astyle + " href=" + ExplorerLink + "><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h3><br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:90%;" + ">Chapter: " + chapter + "</p></div></a></div>" + hr;
+            string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
+            string hr = "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:rgba(99,99,99,0.9);background-color:rgba(99,99,99,0.9);width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">";
+            string AuthString = "<p style=" + "color:rgb(0,0,0,0.50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
+            string RS = divST + "<a style=" + astyle + " href=" + ExplorerLink + "><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>"+AuthString+"<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">Chapter: " + chapter + "</p></div></a></div>" + hr;
             return RS;
         }
         protected string BuildRestCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink)

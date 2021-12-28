@@ -92,9 +92,12 @@
         div#popup {
             display: none;
         }
+        body {
+            width:100vw !important;
+        }
 
 /* use a media query to filter small devices */
-        @media only screen and (min-width:640px) {
+        @media only screen and (min-width:740px) {
             /* show the popup */
             div#popup {
                 display: block;
@@ -172,8 +175,8 @@
 </head>
 <body id="page-top" style="overflow:hidden;height:100vh;width:100vw;">
     <div id="popup" style="">
-        <div style="width:fit-content !important; height:fit-content !important;background-color:rgb(242,242,242,0.6);display:block !important;float:left !important;">
-            <p class="animated slideInDown" style="color:red;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI</p>
+        <div class="animated slideInDown" style="width:fit-content !important; height:fit-content !important;background-color:rgb(242,242,242,0.6);display:block !important;float:left !important;">
+            <p style="color:red;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI</p>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
