@@ -43,7 +43,7 @@ namespace SuM_Manga_V3.storeitems
                 TheMangaPhotosF.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";";
                 string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100vw;height:fit-content;float:left;";//ORgbConverter(getDominantColor(bMap));------background-color:" + ThemeColor + ";
                 string theme = ThemeColor;//RgbConverter(getDominantColor(bMap));
-                infoCover.Attributes["style"] = "min-height:100vw;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
+                infoCover.Attributes["style"] = "background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
                 string cn = Request.QueryString["CN"].ToString();
                 //MangaViewsAndChapters.InnerText = "Chapters: " + cn + "  -   Views:  "+ ShowViews() + "";
                 MdiscS.InnerText = ShowDis();
@@ -110,7 +110,7 @@ namespace SuM_Manga_V3.storeitems
                     if (c > 10000) { c = (cn1 + 1); }
                     string cpcover = "/storeitems/" + Request.QueryString["Manga"].ToString() + "/sumcp" + ChapterFixedForm + ".jpg";
                     RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
-                    TheMangaPhotosF.InnerHtml += "<a style=" + abtntheme + " class=" + btnanimationclass + " href=" + sc + RLink + sc + " ><img src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
+                    TheMangaPhotosF.InnerHtml += "<a onclick=" + sc.ToString() + "fetch('" + RLink + "', { method: 'GET' }).then(res => {location.href = '" + RLink + "';}).catch(err => { location.href = '/SuMOffline.html'; })" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
                     if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
                     //<a style="dc" class="btn" href="#"><img src="/storeitems/Anohana/0001/sumcp.png" style="width:48px;height:48px;float:left;margin:0px;" /><p style="dc">dc</p></a>
                 }
@@ -120,6 +120,7 @@ namespace SuM_Manga_V3.storeitems
                 //TheMangaPhotos.InnerHtml += "<a><h1> &zwnj; </h1><h1> &zwnj; </1><h1> &zwnj; </h1><h2> &zwnj; </h2><h4> &zwnj; </h4></a>";
                 ShowCreator();
                 ShowViews();
+                ShowAgeRating();
                 AddOneView();
             }
         }
@@ -384,6 +385,29 @@ namespace SuM_Manga_V3.storeitems
                 sqlCon.Close();
             }
             MangaCreator.InnerText = V;
+        }
+        protected void ShowAgeRating()
+        {
+            string V = string.Empty;
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "SELECT MangaAgeRating FROM SuMManga WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                string x = Request.QueryString["VC"];
+                int y = Convert.ToInt32(x);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = y;
+                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        V = dr[0].ToString();
+                    }
+                }
+                sqlCon.Close();
+            }
+            MangaRating.InnerText = V;
         }
         protected void ShowViews()
         {

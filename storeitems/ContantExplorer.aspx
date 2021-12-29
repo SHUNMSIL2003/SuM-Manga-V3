@@ -69,7 +69,8 @@
     </div>
     <p style="height:fit-content;min-height:54vw !important; width:96vw;max-width:96vw;font-size:96%;color:#ffffff;margin:14px !important;margin-bottom:26px !important;margin-top:-12px !important;" id="MdiscS" runat="server">#</p>
     <div style="margin:0 auto;margin-bottom:28px;height:fit-content;width:100%;position:relative;">
-        <a style="display:block;float:right;margin-right:12px;">
+        <a style="display:block;float:right !important;margin-right:12px;">
+            <p style="display:inline;color:rgba(255,255,255,0.74);" id="MangaRating" runat="server"></p>
             <img style="width:20px;height:20px;display:inline;" src="/svg/views.svg" />
             <p style="display:inline;color:#ffffff;" id="ViewsSutNum" runat="server"></p>
             <b style="display:inline;color:#ffffff;" id="ViewsSutLater" runat="server"></b>

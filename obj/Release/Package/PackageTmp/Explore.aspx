@@ -131,7 +131,7 @@ img {vertical-align: middle;}
             <div id="Action" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;" >
             </div>
         </div>
-        
+
         <br style="height:4px !important;width:100vw !important; margin:0 auto !important;" />
         <div style="height:fit-content;max-height:248px!important; width:100vw;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div1" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Fantasy</h2>

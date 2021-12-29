@@ -66,6 +66,7 @@ namespace SuM_Manga_V3.storeitems
                         string extraexplore = "MangaExplorer.aspx";
                         string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
                         string identifynexthelper = "Chapter=";
+                        char sc = '"';
                         string NextCh = Request.QueryString["Chapter"].ToString();
                         if (NextCh == null) { Response.Redirect("~/404.aspx"); }
                         char[] NectChConvToInt = NextCh.ToCharArray();
@@ -109,7 +110,7 @@ namespace SuM_Manga_V3.storeitems
                         if (System.IO.Directory.Exists(checkifitexsists) == true)
                         {
                             //"<a class="+"btn btn-primary btn-sm"+" href=" "> Next Chapter  &raquo;</a>"
-                            string sendNextChapter = "<a style=" + "border-radius:16px;padding:8px;background-color:rgb(255,255,255);margin:8px;margin-right:4px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + "btn btn-primary btn-sm" + " href=" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "><b>Next Chapter  &raquo;</b></a>";
+                            string sendNextChapter = "<a style=" + "border-radius:16px;padding:8px;background-color:rgb(255,255,255);margin:8px;margin-right:4px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + "btn btn-primary btn-sm" + " onclick=" + sc.ToString() + "fetch('" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "', { method: 'GET' }).then(res => {location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "';}).catch(err => { location.href = '/SuMOffline.html'; })" + sc.ToString() + " ><b>Next Chapter  &raquo;</b></a>";
                             NextChapter.InnerHtml = sendNextChapter;
                         }
                         else

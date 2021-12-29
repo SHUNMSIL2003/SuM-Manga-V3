@@ -19,11 +19,11 @@
             pointer-events: none;
         }
     </style>
-                    <div class="text-center mt-5">
-                             <div class="error mx-auto" data-text="404">
-                                 <p class="m-0">404</p>
-                             </div>
-                             <p class="text-dark mb-5 lead">Page Not Found</p>
-                             <p class="text-black-50 mb-0">The Server might be down or you may have found a glitch in the matrix...</p><a id="A1" href="../Explore.aspx" style="color: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server">← Back to Main Page</a>
-                    </div>
+                     <div style="text-align:center;" class="text-center mt-5">
+                                <div>
+                                    <img src="/svg/warning.svg" class="animated pulse" style="width:164px;height:164px;margin:0 auto;">
+                                </div>
+                                <p class="text-dark mb-5 lead animated fadeIn" style="font-size:240%;color:#6840D9 !important;">You are offline!</p>
+                                <p class="text-dark mb-5 lead animated fadeIn" style="margin-top:-48px;font-size:80%;"><b>Only previously viewed pages will be avalible.</b></p>
+                            </div>
 </asp:Content>

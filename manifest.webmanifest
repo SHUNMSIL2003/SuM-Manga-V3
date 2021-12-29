@@ -71,24 +71,12 @@
     }
   ],
   "start_url": "/Explore.aspx",
-  "scope": "/",
+  "scope": "https://apis.google.com/",
   "description": "Best app for reading manga!",
   "background_color": "rgb(242,242,242)",
   "theme_color": "rgb(242,242,242)",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "screenshots": [
-    {
-      "src": "screenshot1.webp",
-      "sizes": "1280x720",
-      "type": "image/webp"
-    },
-    {
-      "src": "screenshot2.webp",
-      "sizes": "1280x720",
-      "type": "image/webp"
-    }
-  ],
   "categories": [ "books", "manga", "entertainment", "paid", "ASchoolProjectNotReal" ],
   "url": "https://sum-manga.azurewebsites.net",
   "shortcuts": [

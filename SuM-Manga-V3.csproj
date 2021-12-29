@@ -237,7 +237,6 @@
     <Content Include="AccountETC\LoginETC.aspx" />
     <Content Include="AccountETC\Noti.svg" />
     <Content Include="AccountETC\PassRecovryETC.aspx" />
-    <Content Include="AccountETC\pwabuilder-sw.js" />
     <Content Include="AccountETC\RegisterETC.aspx" />
     <Content Include="AccountETC\Settings.aspx" />
     <Content Include="AccountETC\SuMAccount.aspx" />
@@ -390,6 +389,7 @@
     <Content Include="mstile-310x310.png" />
     <Content Include="mstile-70x70.png" />
     <Content Include="OfflineBETA.aspx" />
+    <Content Include="pwabuilder-sw-register.js" />
     <Content Include="pwabuilder-sw.js" />
     <Content Include="pwabuilder-sw\pwabuilder-sw-register.js" />
     <Content Include="pwabuilder-sw\pwabuilder-sw.js" />
@@ -446,10 +446,13 @@
     <Content Include="storeitems\UramichiOniisan\sumcp0005.jpg" />
     <Content Include="storeitems\UramichiOniisan\sumcp0006.jpg" />
     <Content Include="storeitems\UramichiOniisan\sumcp0007.jpg" />
+    <Content Include="offline.html" />
+    <Content Include="ToDo-replace-this-name.html" />
     <Content Include="SuMOffline.html" />
     <Content Include="svg\chat.svg" />
     <Content Include="svg\send.svg" />
     <Content Include="svg\views.svg" />
+    <Content Include="svg\warning.svg" />
     <Content Include="UploadConsole\CreatorConsole.aspx" />
     <Content Include="UploadConsole\MangaChaptersUpdator.aspx" />
     <Content Include="UploadConsole\MangaProfileCreator.aspx" />

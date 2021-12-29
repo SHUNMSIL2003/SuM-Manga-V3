@@ -175,11 +175,11 @@
         window.addEventListener('contextmenu', e => {
             e.preventDefault();
         });/*
-            (function () {
-                setInterval(() => {
-                    debugger;
-                }, 100);
-            })();*/
+                (function () {
+                    setInterval(() => {
+                        debugger;
+                    }, 100);
+                })();*/
     </script>
 </head>
 <body id="page-top" style="overflow:hidden;height:100vh;width:100vw;">
@@ -291,12 +291,12 @@
                                     pointer-events: none;
                                 }
                             </style>
-                            <div class="text-center mt-5">
-                                <div class="error mx-auto" data-text="404">
-                                    <p class="m-0">404</p>
+                            <div style="text-align:center;" class="text-center mt-5">
+                                <div>
+                                    <img src="/svg/warning.svg" class="animated pulse" style="width:164px;height:164px;margin:0 auto;">
                                 </div>
-                                <p class="text-dark mb-5 lead">Our APP can't work offline!</p>
-                                <p class="text-dark mb-5 lead" style="margin-top:-48px;">Plz connect to network.</p>
+                                <p class="text-dark mb-5 lead animated fadeIn" style="font-size:240%;color:#6840D9 !important;">You are offline!</p>
+                                <p class="text-dark mb-5 lead animated fadeIn" style="margin-top:-48px;font-size:80%;"><b>Only previously viewed pages will be avalible.</b></p>
                             </div>
 
                         </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>
@@ -409,6 +409,7 @@
         <script src="/assets/js/bs-init.js?h=cfc1cf2ac1407be801a1de7dc4705464"></script>
         <script src="/assets/js/theme.js?h=79f403485707cf2617c5bc5a2d386bb0"></script>
     </form>
+
 
 </body>
 </html>
