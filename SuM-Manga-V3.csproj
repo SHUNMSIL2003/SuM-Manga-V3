@@ -398,6 +398,8 @@
     <Content Include="safari-pinned-tab.svg" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="SS0.png" />
+    <Content Include="SS1.png" />
     <Content Include="storeitems\DemonSlayer\sumcp0001.jpg" />
     <Content Include="storeitems\DemonSlayer\sumcp0002.jpg" />
     <Content Include="storeitems\DemonSlayer\sumcp0003.jpg" />
@@ -458,6 +460,7 @@
     <Content Include="UploadConsole\MangaProfileCreator.aspx" />
     <Content Include="UploadConsole\PuplishManga.aspx" />
     <Content Include="UserLibrary.aspx" />
+    <Content Include="warning.png" />
     <Content Include="windows11\LargeTile.scale-100.png" />
     <Content Include="windows11\LargeTile.scale-125.png" />
     <Content Include="windows11\LargeTile.scale-150.png" />

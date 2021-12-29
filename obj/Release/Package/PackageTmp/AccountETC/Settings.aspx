@@ -8,7 +8,7 @@
     </style>
     <div style="height:100%;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
         <div style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:12px !important; margin-bottom:12px !important;">
-            <a href="/AccountETC/SuMAccount.aspx" style="height:fit-content !important;width:100vw !important;background-color:transparent !important;display:block !important;margin-top:8px;margin-bottom:8px; margin-left:8px;">
+            <a id="AccountSettingsOrLogin" href="/AccountETC/SuMAccount.aspx" style="height:fit-content !important;width:100vw !important;background-color:transparent !important;display:block !important;margin-top:8px;margin-bottom:8px; margin-left:8px;">
             <img class="fadeIn animated" id="PFP" runat="server" style="width:84px !important;height:84px !important;border-radius:50% !important;float:left;display:inline;margin-bottom:6px;" src="/AccountETC/UsersUploads/DeafultPFP.jpg" />
                 <div class="fadeIn animated" style="float:left;display:inline;margin-left:8px;">
                     <h3 id="SuMUserName" runat="server" style="color:#1d1d1d;">Loging to SuM</h3>
@@ -33,5 +33,11 @@
         <div class="fadeIn animated" style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:6px !important;margin-top:12px;">
         </div>
     </div>
+        <div class="animated fadeIn" style="background-color:#ffffff !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;">
+            <div class="fadeIn animated" style="margin-top:-4px;vertical-align:middle;display:block !important;height:64px;">
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.4.1 Beta</p>
+                <p class="" style="color:#8f8f8f;margin-left:28px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
+            </div>
+        </div>
         </div>
 </asp:Content>

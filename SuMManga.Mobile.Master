@@ -137,7 +137,7 @@
             perspective: 1000 !important;
             transform: translate3d(0,0,0) !important;
             transform: translateZ(0) !important;
-            backdrop-filter:blur(1px) !important;
+            /*backdrop-filter:blur(1px) !important;*/
         }
         input, textarea {
             -webkit-user-select: text !important;
@@ -279,13 +279,40 @@
                 max-height:7vh !important;
             }
         </style>
+        <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:174px;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+                 <div style="text-align:center;" class="text-center">
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:140%;color:#FFFFFF !important;">You are offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Only previously viewed pages are avalible.</b></p>
+                     <br />
+                </div>
+            </div>
+        </div>
+        <div id="SearchOffline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:174px;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+                 <div style="text-align:center;" class="text-center">
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:120%;color:#FFFFFF !important;">Search isn't avalible when offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Only previously viewed pages are avalible.</b></p>
+                     <br />
+                </div>
+            </div>
+        </div>
+        <div id="AccountOffline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:174px;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+                 <div style="text-align:center;" class="text-center">
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:100%;color:#FFFFFF !important;">Can't change account settings when offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Only previously viewed pages are avalible.</b></p>
+                     <br />
+                </div>
+            </div>
+        </div>
         <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:46px !important;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px #f2f2f2 !important;">
                 <a name="no-animation" id="navb2" runat="server" href='javascript:history.go(-1)' style="float:left !important;width:fit-content;">
                     <img src="/assets/img/SuM_TBrabd_x92.png" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p runat="server" id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;">Navigate Back</b>
                 </a>
-            <a class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" href="/Search.aspx"><img src="/svg/Search.svg" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:14px !important;"></a>
+            <a class="" id="SubSearch" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="fetch('/Search.aspx', { method: 'GET' }).then(res => {location.href = '/Search.aspx';}).catch(err => { document.getElementById('SearchOffline').style.display = 'block'; })" href="#"><img src="/svg/Search.svg" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:14px !important;"></a>
             <a id="ComAct" style="float:right !important;vertical-align:middle !important;width:fit-content;margin-left:4px;">
                 <img src="/svg/chat.svg" id="Img5" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;">
             </a>
@@ -325,7 +352,7 @@
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:#6840D9;margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;">Navigate Back</b>
                 </a>
-            <a name="no-animation" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" href="/Search.aspx"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
+            <a name="no-animation" id="FullSearch" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="fetch('/Search.aspx', { method: 'GET' }).then(res => {location.href = '/Search.aspx';}).catch(err => { document.getElementById('SearchOffline').style.display = 'block'; })" href="#"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
         </div>
         <nav id="nav" runat="server" style="overflow:clip;height:7.2vh !important;width:100% !important;max-height:64px !important;bottom:0 !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
                     <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;">
@@ -358,6 +385,29 @@
                 </nav>
             <div style="width:100% !important;height:8px !important;background-color:#ffffff !important;float:left;bottom:0 !important;"></div>
             </div>
+        <!-- IOS PWA POPUP -->
+        <script>/*
+            const isIos = () => {
+                const userAgent = window.navigator.userAgent.toLowerCase();
+                return /iphone|ipad|ipod/.test(userAgent);
+            }
+            const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+            if (isIos() && !isInStandaloneMode()) {
+                this.setState({ showInstallMessage: true });
+            }
+            if (showInstallMessage) {
+
+            };*/
+        </script>
+        <script>
+            if (!navigator.onLine) {
+                document.getElementById('FullSearch').onclick = function () { document.getElementById('SearchOffline').style.display = 'block'; };
+                document.getElementById('SubSearch').onclick = function () { document.getElementById('SearchOffline').style.display = 'block'; };
+                document.getElementById('AccountSettingsOrLogin').onclick = function () { document.getElementById('AccountOffline').style.display = 'block'; };
+                document.getElementById('AccountSettingsOrLogin').href = '#';
+            };
+        </script>
     </div>
     <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>

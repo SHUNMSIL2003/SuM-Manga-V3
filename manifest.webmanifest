@@ -79,14 +79,42 @@
   "orientation": "portrait-primary",
   "categories": [ "books", "manga", "entertainment", "paid", "ASchoolProjectNotReal" ],
   "url": "https://sum-manga.azurewebsites.net",
+  "screenshots": [
+    {
+      "src": "SS0.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Homescreen"
+    },
+    {
+      "src": "SS1.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Settings"
+    }
+  ],
   "shortcuts": [
     {
-      "name": "SuM library",
-      "description": "a shortcut to your library.",
-      "url": "/Library.aspx",
+      "name": "My library",
+      "description": "a shortcut to your SuM library.",
+      "url": "/UserLibrary.aspx",
       "icons": [
         {
-          "src": "/assets/img/maskable_icon_x512.png",
+          "src": "/svg/bookmarks.svg",
+          "type": "image/png",
+          "purpose": "maskable"
+        }
+      ]
+    },
+    {
+      "name": "SuM Settings",
+      "description": "a shortcut to your SuM Settings.",
+      "url": "/AccountETC/Settings.aspx",
+      "icons": [
+        {
+          "src": "/svg/settingsNA.svg",
           "type": "image/png",
           "purpose": "maskable"
         }

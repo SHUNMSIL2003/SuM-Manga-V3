@@ -98,7 +98,7 @@ img {vertical-align: middle;}
     </a>
 </div>
      </div>
-    <div id="cardsdots" runat="server" style="text-align:center;background-color:#f2f2f2;width:100vw;height:fit-content;margin-top:1px !important;">
+    <div id="cardsdots" runat="server" style="text-align:center;background-color:#f2f2f2;width:100vw;height:fit-content;margin-top:-4px !important;">
   <span class="dot"></span> 
   <span class="dot"></span> 
   <span class="dot"></span> 

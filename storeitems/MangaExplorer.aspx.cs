@@ -110,12 +110,12 @@ namespace SuM_Manga_V3.storeitems
                         if (System.IO.Directory.Exists(checkifitexsists) == true)
                         {
                             //"<a class="+"btn btn-primary btn-sm"+" href=" "> Next Chapter  &raquo;</a>"
-                            string sendNextChapter = "<a style=" + "border-radius:16px;padding:8px;background-color:rgb(255,255,255);margin:8px;margin-right:4px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + "btn btn-primary btn-sm" + " onclick=" + sc.ToString() + "fetch('" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "', { method: 'GET' }).then(res => {location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "';}).catch(err => { location.href = '/SuMOffline.html'; })" + sc.ToString() + " ><b>Next Chapter  &raquo;</b></a>";
+                            string sendNextChapter = "<a style=" + "border-radius:14px;padding:8px;background-color:rgb(255,255,255);margin:8px;margin-right:8px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + "btn btn-primary btn-sm" + " onclick=" + sc.ToString() + "fetch('" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "', { method: 'GET' }).then(res => {location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + sc.ToString() + " ><b>Next Chapter  &raquo;</b></a>";
                             NextChapter.InnerHtml = sendNextChapter;
                         }
                         else
                         {
-                            NextChapter.InnerHtml = "<a style=" + "border-radius:16px;padding:8px;background-color:rgba(255,255,255,0.46);margin:8px;margin-right:4px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + "><b>Next Chapter  &raquo;</b></a>";
+                            NextChapter.InnerHtml = "<a style=" + "border-radius:14px;padding:8px;background-color:rgba(255,255,255,0.46);margin:8px;margin-right:8px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + "><b>Next Chapter  &raquo;</b></a>";
                         }
                         AddToCurrIfNot();
                     }
@@ -172,7 +172,7 @@ namespace SuM_Manga_V3.storeitems
             string MangaID = Request.QueryString["VC"].ToString();
             //ComSecTitle.Attributes["style"] = "color:" + ThemeColor + ";padding-top:8px;padding-left:8px;padding-bottom:4px;";
             SendBTN.Attributes["style"] = "background-color:" + ThemeColor + ";border-radius:4px;width:40px;height:34px;margin:4px;";
-            CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;backdrop-filter:blur(1px) !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:6px;width:100vw;height:fit-content;position:absolute;bottom:28px;padding-bottom:26px;border-top:4px rgba(0,0,0,0) solid;";
+            CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:6px;width:100vw;height:fit-content;position:absolute;bottom:28px;padding-bottom:26px;border-top:4px rgba(0,0,0,0) solid;";
             string RawComments = string.Empty;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
@@ -218,7 +218,7 @@ namespace SuM_Manga_V3.storeitems
             }
             else 
             {
-                Comments.InnerHtml = "<p style=" + "color:" + ThemeColor + ";margin:0 auto;" + ">No comments yet</p>";
+                Comments.InnerHtml = "<p style=" + "color:rgba(255,255,255,0.32);text-align:center;" + ">No comments yet</p>";
             }
         }
 
