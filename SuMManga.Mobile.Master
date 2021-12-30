@@ -357,26 +357,26 @@
         <nav id="nav" runat="server" style="overflow:clip;height:7.2vh !important;width:100% !important;max-height:64px !important;bottom:0 !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
                     <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;">
                                 <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" href="/Explore.aspx" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                                    <a name="no-animation" onclick="fetch('/Explore.aspx', { method: 'GET' }).then(res => {location.href = '/Explore.aspx';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
                                         <img id="ExpIMG" runat="server" src="/svg/ExploreNA.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;position:relative;" />
                                         <b id="ExpText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;position:relative;">Explore</b>
                                     </a>
                                 </div>
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" href="/Explore.aspx" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                                    <a name="no-animation" onclick="fetch('/Explore.aspx', { method: 'GET' }).then(res => {location.href = '/Explore.aspx';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
                                         <img src="/svg/MostSeenNA.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;" />
                                         <b style="font-size:64%;color:#636166;height:2vh !important; text-align:center !important;display:block;">Hits</b>
                                     </a>
                                 </div>
                         
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" href="/UserLibrary.aspx?RT=Curr" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                                    <a name="no-animation" onclick="fetch('/UserLibrary.aspx?RT=Curr', { method: 'GET' }).then(res => {location.href = '/UserLibrary.aspx?RT=Curr';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
                                         <img id="LibIMG" runat="server" src="/svg/bookmarks.svg" style="max-height:62px;max-width:62px; width:4vh;height:4vh;display:block;" />
                                         <b id="LibText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Library</b>
                                     </a>
                                 </div><!-- dropdown-toggle -->
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" href="/AccountETC/Settings.aspx" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                                    <a name="no-animation" onclick="fetch('/AccountETC/Settings.aspx', { method: 'GET' }).then(res => {location.href = '/AccountETC/Settings.aspx';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
                                         <img id="SetIMG" runat="server" src="/svg/settings.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;" />
                                         <b id="SetText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Settings</b>
                                     </a>
@@ -406,6 +406,7 @@
                 document.getElementById('SubSearch').onclick = function () { document.getElementById('SearchOffline').style.display = 'block'; };
                 document.getElementById('AccountSettingsOrLogin').onclick = function () { document.getElementById('AccountOffline').style.display = 'block'; };
                 document.getElementById('AccountSettingsOrLogin').href = '#';
+                document.getElementById('SendCommentAria').style.display = 'none';
             };
         </script>
     </div>
