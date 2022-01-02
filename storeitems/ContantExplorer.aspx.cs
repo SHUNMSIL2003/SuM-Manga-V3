@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Drawing;
+using System.Net.Mail;
+using System.IO;
+using System.Text;
 
 namespace SuM_Manga_V3.storeitems
 {
@@ -25,81 +28,56 @@ namespace SuM_Manga_V3.storeitems
                 Response.Redirect("~/AccountETC/LoginETC.aspx");
             }*/
             if (Request.QueryString["CN"] == null || Request.QueryString["Manga"] == null || Request.QueryString["VC"] == null) { backhome(); }
-            if (IsPostBack == false)
+            MTitle.InnerText = ShowName();//rgba(0,0,0,0.527)
+            string CardBG = ShowCover();
+            //Bitmap bMap = Bitmap.FromFile(Server.MapPath("~/" + CardBG + "")) as Bitmap;
+            string ThemeColor = string.Empty;
+            if (Request.QueryString["TC"] != null)
             {
-                //string MangaPathName = Request.QueryString["Manga"].ToString();
-                //string covername = MangaPathName + ".jpg";
-                //string MangaPathCover = "/storeitems/" + MangaPathName + "/" + covername;
-                //cover.Attributes["src"] = ShowCover();//MangaPathCover;
-                MTitle.InnerText = ShowName();//rgba(0,0,0,0.527)
-                string CardBG = ShowCover();
-                //Bitmap bMap = Bitmap.FromFile(Server.MapPath("~/" + CardBG + "")) as Bitmap;
-                string ThemeColor = string.Empty;
-                if (Request.QueryString["TC"] != null)
-                {
-                    ThemeColor = Request.QueryString["TC"].ToString();//RgbConverter(getDominantColor(bMap));
-                }
-                else { ThemeColor = "#6840D9"; }//height:100vh !important;min-height:100% !important;
-                TheMangaPhotosF.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";";
-                string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100vw;height:fit-content;float:left;";//ORgbConverter(getDominantColor(bMap));------background-color:" + ThemeColor + ";
-                string theme = ThemeColor;//RgbConverter(getDominantColor(bMap));
-                infoCover.Attributes["style"] = "background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
-                string cn = Request.QueryString["CN"].ToString();
-                //MangaViewsAndChapters.InnerText = "Chapters: " + cn + "  -   Views:  "+ ShowViews() + "";
-                MdiscS.InnerText = ShowDis();
-                int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
-                GernsTags.InnerHtml = GetGerns(theme, idfg0554);
-                string ThemeColorOp1 = ThemeColor.Substring(0, ThemeColor.Length - 6);
-                ThemeColorOp1 += ")";
-                GernsTags.Attributes["style"] = "border-top-right-radius:22px;border-top-left-radius:22px;width:100vw;height:fit-content;background-color:" + ThemeColorOp1 + ";align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;";
-                string pathstartnochx = "/storeitems/";
-                //string btn2 = "btn";
-                //string btn3 = "btn-primary btn-sm";
-                string extraexplore = "MangaExplorer.aspx";
-                string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
-                //MainCardT.InnerText = Request.QueryString["Manga"].ToString();
-                string identifynexthelper = "&Chapter=";
-                string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-                if (Request.QueryString["Manga"] == null) { backhome(); }
-                string M0path = epath + "\\storeitems\\" + Request.QueryString["Manga"] + "\\";
-                if (System.IO.Directory.Exists(M0path) == false) { backhome(); }
-                string cn0 = Request.QueryString["CN"];
-                int cn1 = Convert.ToInt32(cn0);
-                string ChapterFixedForm = string.Empty;
-                //string btnclass = "btn"; //btn
-                string RLink = string.Empty;
-                string themecolor = ThemeColor;
-                char sc = '"';
-                char b12 = '"';
-                string btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
-                string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();
-                string linktoupdatech = identifynexthelper + "ch";
-                HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-                //string OptionToAddCurrFunc = "";
-                if (GetUserInfoCookie != null)
-                {
-                    //int UID = Convert.ToInt32(GetUserInfoCookie["UID"].ToString());
-                    int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
-                    MangaUserStateV(MID, linktoupdate, linktoupdatech);
-                    /*   Removed it so the func is only avalible when using Curr Button :)   */
-                    /*if (IsItInCurr(MID, UID) == true)
-                    {
-                        OptionToAddCurrFunc = "&UCICU=T&MID=" + MID.ToString();
-                    }*/
-                }
-                else 
-                {
-                    string TC = Request.QueryString["TC"].ToString();
-                    TC = TC.Substring(0, TC.Length - 6);
-                    TC += ")";
-                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;";
-                    MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">You need to Login!</p>";
-                    MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
-                    MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
-                    MRSW.Attributes["onclick"] = "fetch('/AccountETC/LogInETC.aspx', { method: 'GET' }).then(res => {location.href = '/AccountETC/LogInETC.aspx';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })";
-                }
-                //"<a style=" + abtntheme + "><p style="+ "color:#ffffff;float:right;font-size:142%;" + ">" + Request.QueryString["CN"].ToString() + " Chapters</p></a>";
-                //TheMangaPhotosF.InnerHtml += "<hr style=" + "height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:100vw;opacity:0.42;margin:0px;margin-block:0px;" + ">";
+                ThemeColor = Request.QueryString["TC"].ToString();//RgbConverter(getDominantColor(bMap));
+            }
+            else { ThemeColor = "#6840D9"; }//height:100vh !important;min-height:100% !important;
+            TheMangaPhotosF.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";";
+            string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100vw;height:fit-content;float:left;";//ORgbConverter(getDominantColor(bMap));------background-color:" + ThemeColor + ";
+            string theme = ThemeColor;//RgbConverter(getDominantColor(bMap));
+            infoCover.Attributes["style"] = "background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
+            string cn = Request.QueryString["CN"].ToString();
+            //MangaViewsAndChapters.InnerText = "Chapters: " + cn + "  -   Views:  "+ ShowViews() + "";
+            MdiscS.InnerText = ShowDis();
+            int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
+            GernsTags.InnerHtml = GetGerns(theme, idfg0554);
+            string ThemeColorOp1 = ThemeColor.Substring(0, ThemeColor.Length - 6);
+            ThemeColorOp1 += ")";
+            GernsTags.Attributes["style"] = "border-top-right-radius:22px;border-top-left-radius:22px;width:100vw;height:fit-content;background-color:" + ThemeColorOp1 + ";align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;";
+            string pathstartnochx = "/storeitems/";
+            //string btn2 = "btn";
+            //string btn3 = "btn-primary btn-sm";
+            string extraexplore = "MangaExplorer.aspx";
+            string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
+            //MainCardT.InnerText = Request.QueryString["Manga"].ToString();
+            string identifynexthelper = "&Chapter=";
+            string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+            if (Request.QueryString["Manga"] == null) { backhome(); }
+            string M0path = epath + "\\storeitems\\" + Request.QueryString["Manga"] + "\\";
+            if (System.IO.Directory.Exists(M0path) == false) { backhome(); }
+            string cn0 = Request.QueryString["CN"];
+            int cn1 = Convert.ToInt32(cn0);
+            string ChapterFixedForm = string.Empty;
+            //string btnclass = "btn"; //btn
+            string RLink = string.Empty;
+            string themecolor = ThemeColor;
+            char sc = '"';
+            char b12 = '"';
+            SuMLoginUI.Attributes["style"] = "background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;";
+            string btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
+            string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();
+            string linktoupdatech = identifynexthelper + "ch";
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            //string OptionToAddCurrFunc = "";
+            if (GetUserInfoCookie != null)
+            {
+                int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
+                MangaUserStateV(MID, linktoupdate, linktoupdatech);
                 for (int c = 1; c < (cn1 + 1); c++)
                 {
                     string chxC = c.ToString();
@@ -110,19 +88,66 @@ namespace SuM_Manga_V3.storeitems
                     if (c > 10000) { c = (cn1 + 1); }
                     string cpcover = "/storeitems/" + Request.QueryString["Manga"].ToString() + "/sumcp" + ChapterFixedForm + ".jpg";
                     RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
-                    TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "fetch('" + RLink + "', { method: 'GET' }).then(res => {location.href = '" + RLink + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
+                    TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "if (!navigator.onLine) { fetch('" + RLink + "', { method: 'GET' }).then(res => { location.href = '" + RLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + RLink + "'; }" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
                     if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
                     //<a style="dc" class="btn" href="#"><img src="/storeitems/Anohana/0001/sumcp.png" style="width:48px;height:48px;float:left;margin:0px;" /><p style="dc">dc</p></a>
                 }
-                //string coverstyle = "text-align:left;width:226px;height:320px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;";
-                //string covercode = "<img style=" + coverstyle + " src=" + MangaPathCover + ">";
-                //mangacoverinpage.InnerHtml += covercode;
-                //TheMangaPhotos.InnerHtml += "<a><h1> &zwnj; </h1><h1> &zwnj; </1><h1> &zwnj; </h1><h2> &zwnj; </h2><h4> &zwnj; </h4></a>";
-                ShowCreator();
-                ShowViews();
-                ShowAgeRating();
+            }
+            else
+            {
+                string TC = Request.QueryString["TC"].ToString();
+                TC = TC.Substring(0, TC.Length - 6);
+                TC += ")";
+                SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;";
+                MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">You need to Login!</p>";
+                MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
+                MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
+                MRSW.Attributes["onclick"] = "document.getElementById('MainContent_SuMLoginUI').style.display = 'block';";
+                for (int c = 1; c < (cn1 + 1); c++)
+                {
+                    string chxC = c.ToString();
+                    if (c < 10 && c > 0) { ChapterFixedForm = "000" + chxC; }
+                    if (c > 9 && c < 100) { ChapterFixedForm = "00" + chxC; }
+                    if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
+                    if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
+                    if (c > 10000) { c = (cn1 + 1); }
+                    string cpcover = "/storeitems/" + Request.QueryString["Manga"].ToString() + "/sumcp" + ChapterFixedForm + ".jpg";
+                    TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "document.getElementById('MainContent_SuMLoginUI').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
+                    if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
+                }
+            }
+            ShowCreator();
+            ShowViews();
+            ShowAgeRating();
+            ShareLink();
+            if (IsPostBack == false)
+            {
                 AddOneView();
             }
+        }
+        protected void ShareLink()
+        {
+            var V = "";
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                string x = Request.QueryString["VC"];
+                int y = Convert.ToInt32(x);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = y;
+                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        V = dr[0].ToString();
+                    }
+                }
+                sqlCon.Close();
+            }
+            string LINK = "https://sum-manga.azurewebsites.net/storeitems/ContantExplorer.aspx?Manga=" + Request.QueryString["Manga"].ToString() + "&CN=" + Request.QueryString["CN"].ToString() + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString();
+            SuMShare.Attributes["onclick"] = "navigator.share({title:'SuM Manga',text:'Check out " + V.ToString() + " on SuM Manga.',url:'" + LINK + "'});";
         }
         protected bool IsItInCurr(int MID, int UID)
         {
@@ -222,7 +247,7 @@ namespace SuM_Manga_V3.storeitems
                             MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                             MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
                             string WorkerHelp = "&UCU=" + MID.ToString();
-                            MRSW.Attributes["onclick"] = "fetch('" + LinkToUpdate + linktoupdatech + ChapterFixedForm + WorkerHelp + "', { method: 'GET' }).then(res => {location.href = '" + LinkToUpdate + linktoupdatech + ChapterFixedForm + WorkerHelp + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })";
+                            MRSW.Attributes["onclick"] = "if (!navigator.onLine) { fetch('" + LinkToUpdate + linktoupdatech + ChapterFixedForm + WorkerHelp + "', { method: 'GET' }).then(res => { location.href = '" + LinkToUpdate + linktoupdatech + ChapterFixedForm + WorkerHelp + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + LinkToUpdate + linktoupdatech + ChapterFixedForm + WorkerHelp + "'; }";
                             sqlCon.Close();
                         }
                     }
@@ -232,7 +257,7 @@ namespace SuM_Manga_V3.storeitems
                         MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
                         MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                         MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
-                        MRSW.Attributes["onclick"] = "fetch('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "', { method: 'GET' }).then(res => {location.href = '" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })";
+                        MRSW.Attributes["onclick"] = "if (!navigator.onLine) { fetch('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "', { method: 'GET' }).then(res => { location.href = '" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "'; }";
                         sqlCon.Close();
                     }
                 }
@@ -245,7 +270,7 @@ namespace SuM_Manga_V3.storeitems
                     MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
                     MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                     MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
-                    MRSW.Attributes["onclick"] = "fetch('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "', { method: 'GET' }).then(res => {location.href = '" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })";
+                    MRSW.Attributes["onclick"] = "if (!navigator.onLine) { fetch('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "', { method: 'GET' }).then(res => { location.href = '" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "'; }";
                     sqlCon.Close();
                 }
             }
@@ -524,81 +549,293 @@ namespace SuM_Manga_V3.storeitems
             string flashani = b12.ToString() + "fadeIn animated" + b12.ToString();
             bool un = false;
             string gernsincard = " ";
-            string TagViewer0 = "/storeitems/TagView.aspx";
+            //string TagViewer0 = "/storeitems/TagView.aspx";
             ThemeColor = "rgba(225,225,225,0.36)";//DesignChange!
             string DivACStyle = b12.ToString() + "height:fit-content !important;margin-left:6px;display:inline-block;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + b12.ToString();
             un = IsGernXCodeName("Action", ID);
             if (un == true)
             {
-                string TagViewer = TagViewer0 + "?G=Action";
-                un = false;
-                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " onclick=" + b12.ToString() + "fetch('" + TagViewer + "', { method: 'GET' }).then(res => {location.href = '" + TagViewer + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + b12.ToString() + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;</a></div>";
+                //string TagViewer = TagViewer0 + "?G=Action";
+                //un = false;
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Fantasy", ID);
             if (un == true)
             {
-                string TagViewer = TagViewer0 + "?G=Fantasy";
-                un = false;
-                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " onclick=" + b12.ToString() + "fetch('" + TagViewer + "', { method: 'GET' }).then(res => {location.href = '" + TagViewer + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + b12.ToString() + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Fantasy&nbsp;&nbsp;&nbsp;</a></div>";
+                //string TagViewer = TagViewer0 + "?G=Fantasy";
+                //un = false;
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Fantasy&nbsp;&nbsp;&nbsp;</a></div>";//onclick=" + b12.ToString() + "fetch('" + TagViewer + "', { method: 'GET' }).then(res => {location.href = '" + TagViewer + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + b12.ToString()
             }
             un = IsGernXCodeName("Comedy", ID);
             if (un == true)
             {
-                string TagViewer = TagViewer0 + "?G=Comedy";
-                un = false;
-                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " onclick=" + b12.ToString() + "fetch('" + TagViewer + "', { method: 'GET' }).then(res => {location.href = '" + TagViewer + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + b12.ToString() + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Comedy&nbsp;&nbsp;&nbsp;</a></div>";
+                //string TagViewer = TagViewer0 + "?G=Comedy";
+                //un = false;
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Comedy&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("SciFi", ID);
             if (un == true)
             {
-                string TagViewer = TagViewer0 + "?G=SciFi";
-                un = false;
-                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " onclick=" + b12.ToString() + "fetch('" + TagViewer + "', { method: 'GET' }).then(res => {location.href = '" + TagViewer + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + b12.ToString() + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Sci-Fi&nbsp;&nbsp;&nbsp;</a></div>";
+                //string TagViewer = TagViewer0 + "?G=SciFi";
+                //un = false;
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Sci-Fi&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Supernatural", ID);
             if (un == true)
             {
-                string TagViewer = TagViewer0 + "?G=Supernatural";
-                un = false;
-                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " onclick=" + b12.ToString() + "fetch('" + TagViewer + "', { method: 'GET' }).then(res => {location.href = '" + TagViewer + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + b12.ToString() + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Supernatural&nbsp;&nbsp;&nbsp;</a></div>";
+                //string TagViewer = TagViewer0 + "?G=Supernatural";
+                //un = false;
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Supernatural&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("SliceofLife", ID);
             if (un == true)
             {
-                string TagViewer = TagViewer0 + "?G=SliceofLife";
-                un = false;
-                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " onclick=" + b12.ToString() + "fetch('" + TagViewer + "', { method: 'GET' }).then(res => {location.href = '" + TagViewer + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + b12.ToString() + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Slice of Life&nbsp;&nbsp;&nbsp;</a></div>";
+                //string TagViewer = TagViewer0 + "?G=SliceofLife";
+                //un = false;
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Slice of Life&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Mystery", ID);
             if (un == true)
             {
-                string TagViewer = TagViewer0 + "?G=Mystery";
-                un = false;
-                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " onclick=" + b12.ToString() + "fetch('" + TagViewer + "', { method: 'GET' }).then(res => {location.href = '" + TagViewer + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + b12.ToString() + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Mystery&nbsp;&nbsp;&nbsp;</a></div>";
+                //string TagViewer = TagViewer0 + "?G=Mystery";
+                //un = false;
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Mystery&nbsp;&nbsp;&nbsp;</a></div>";
             }
             un = IsGernXCodeName("Drama", ID);
             if (un == true)
             {
-                string TagViewer = TagViewer0 + "?G=Drama";
-                un = false;
-                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " onclick=" + b12.ToString() + "fetch('" + TagViewer + "', { method: 'GET' }).then(res => {location.href = '" + TagViewer + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + b12.ToString() + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Drama&nbsp;&nbsp;&nbsp;</a></div>";
+                //string TagViewer = TagViewer0 + "?G=Drama";
+                //un = false;
+                gernsincard += "<div class=" + flashani + " style=" + DivACStyle + "><a name=" + "no-animation" + " style=" + "color:white;font-size:112%;" + ">&nbsp;&nbsp;&nbsp;Drama&nbsp;&nbsp;&nbsp;</a></div>";
             }
             return gernsincard;
         }
         protected void AddOneView()
         {
+            if (!IsPostBack)
+            {
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE SuMManga SET MangaViews = MangaViews + 1 WHERE MangaID = @MangaID";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    string x = Request.QueryString["VC"];
+                    int y = Convert.ToInt32(x);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = y;
+                    sqlCmd.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+            }
+        }
+        /*    LoginCode      */
+        protected void LoginToSuM(object sender, EventArgs e)
+        {
+            LoginStatus.InnerText = "";
+            string statevalid = "";
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
-                string query = "UPDATE SuMManga SET MangaViews = MangaViews + 1 WHERE MangaID = @MangaID";
+                string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName AND Password = @Password ";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                string x = Request.QueryString["VC"];
-                int y = Convert.ToInt32(x);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = y;
+                string username = UserNameL.Value;
+                sqlCmd.Parameters.AddWithValue("@UserName", username);
+                string password = PasswordL.Value;
+                sqlCmd.Parameters.AddWithValue("@Password", sha256(password));
+                int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                if (count > 0)
+                {
+                    string query2 = "SELECT AccountStatus FROM SuMUsersAccounts WHERE UserName = @UserName";
+                    SqlCommand sqlCmd2 = new SqlCommand(query2, sqlCon);
+                    sqlCmd2.Parameters.AddWithValue("@UserName", username);
+                    using (SqlDataReader dr = sqlCmd2.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            statevalid = dr[0].ToString();
+                        }
+                    }
+                    if (statevalid[0] == '#' && statevalid[1] == 'R')
+                    {
+                        LoginStatus.InnerText = "You need to Complete SuM Account registration! You will find the link in you email-inbox.";
+                        ResendConf.Visible = true;
+                    }
+                    else
+                    {
+                        string qc = "SELECT CreatorName FROM SuMCreators WHERE UserName = @UserName";
+                        SqlCommand cv = new SqlCommand(qc, sqlCon);
+                        cv.Parameters.AddWithValue("@UserName", username);
+                        var ituac = cv.ExecuteScalar();
+                        if (ituac == null)
+                        {
+                            SaveCookie(username, count);
+                            sqlCon.Close();
+                            Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
+                        }
+                        else
+                        {
+                            qc = "SELECT UserID FROM SuMCreators WHERE UserName = @UserName";
+                            cv = new SqlCommand(qc, sqlCon);
+                            cv.Parameters.AddWithValue("@UserName", username);
+                            int CID = Convert.ToInt32(cv.ExecuteScalar().ToString());
+                            SaveSCCookie(username, ituac.ToString(), count, CID);
+                            sqlCon.Close();
+                            Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
+                        }
+                    }
+                }
+                else
+                {
+                    LoginStatus.InnerText = "Username or Password are incorrect"; sqlCon.Close();
+                    UserNameL.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
+                    PasswordL.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
+                    LoginStatus.InnerText = "Username Or Password are incurrect!";
+                }
+
+            }
+        }
+        static string sha256(string randomString)
+        {
+            var crypt = new System.Security.Cryptography.SHA256Managed();
+            var hash = new System.Text.StringBuilder();
+            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(randomString));
+            foreach (byte theByte in crypto)
+            {
+                hash.Append(theByte.ToString("x2"));
+            }
+            return hash.ToString();
+        }
+        protected void SaveCookie(string UserName, int ID)
+        {
+            HttpCookie userInfo = new HttpCookie("SuMCurrentUser"); 
+            userInfo["UserName"] = UserName;
+            userInfo["ID"] = ID.ToString();
+            //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
+            userInfo.Expires = DateTime.MaxValue;
+            HttpContext.Current.Response.Cookies.Add(userInfo);
+            HttpContext.Current.Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
+        }
+        protected void SaveSCCookie(string UserName, string craetorname, int ID, int CID)
+        {
+            HttpCookie userInfo = new HttpCookie("SuMCurrentUser");
+            userInfo["UserName"] = UserName;
+            userInfo["CreatorName"] = craetorname;
+            userInfo["ID"] = ID.ToString();
+            userInfo["CID"] = CID.ToString();
+            userInfo.Expires = DateTime.MaxValue;
+            HttpContext.Current.Response.Cookies.Add(userInfo);
+            HttpContext.Current.Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
+        }
+        protected void ResendConfLink(object sender, EventArgs e)
+        {
+            string virivicationcode = GetVerificationCode(8);
+            string accountstats = "#R$" + virivicationcode;
+            string UserName = UserNameL.Value.ToString();
+            string Email = string.Empty;
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "UPDATE SuMUsersAccounts SET AccountStatus = @AccountStatus WHERE UserName = @UserName";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@UserName", UserName);
+                sqlCmd.Parameters.AddWithValue("@AccountStatus", accountstats);
                 sqlCmd.ExecuteNonQuery();
+                string query4 = "SELECT Email FROM SuMUsersAccounts WHERE UserName = @UserName";
+                SqlCommand sqlCmd4 = new SqlCommand(query4, sqlCon);
+                sqlCmd4.Parameters.AddWithValue("@UserName", UserName);
+                using (SqlDataReader dr = sqlCmd4.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Email = dr[0].ToString();
+                    }
+                }
                 sqlCon.Close();
             }
+            SendVirifyEmail(virivicationcode, Email);
+
+        }
+        protected void SendVirifyEmail(string VCODE, string Email)
+        {
+            string thelink = "https://sum-manga.azurewebsites.net/AccountETC/ValidateUsers.aspx?UserName=" + UserNameL.Value.ToString() + "&VCode=" + VCODE;
+            string emailbody = MailTemplate(thelink);
+            MailMessage Msg = new MailMessage();
+            Msg.From = new MailAddress("sumverifysystem@gmail.com", "SuM System");// Sender details here, replace with valid value
+            Msg.Subject = "Setup SuM Account!"; // subject of email
+            string useremail = Email;
+            Msg.To.Add(useremail); //Add Email id, to which we will send email
+            Msg.Body = emailbody;
+            Msg.IsBodyHtml = true;
+            Msg.Priority = MailPriority.High;
+            SmtpClient smtp = new SmtpClient();
+            smtp.UseDefaultCredentials = false; // to get rid of error "SMTP server requires a secure connection"
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.Credentials = new System.Net.NetworkCredential("sumverifysystem@gmail.com", "rxuclaczswvdhjpj");// replace with valid value
+            smtp.EnableSsl = true;
+            smtp.Timeout = 20000;
+            smtp.Send(Msg);
+        }
+        protected string MailTemplate(string link)
+        {
+            StreamReader sr = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/AccountETC/Email.html"));
+            string body = sr.ReadToEnd();
+            sr.Close();
+            string username = UserNameL.Value.ToString();
+            body = body.Replace("#USERNAME#", username);
+            body = body.Replace("#LINK#", link);
+            return body;
+        }
+        protected static string GetVerificationCode(int length)
+        {
+            char[] chArray = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            string str = string.Empty;
+            Random random = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                int index = random.Next(1, chArray.Length);
+                if (!str.Contains(chArray.GetValue(index).ToString()))
+                {
+                    str = str + chArray.GetValue(index);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            Random r = new Random();
+            int randNum = r.Next(1000000);
+            string sixDigitNumber = randNum.ToString("D6");
+            str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
+            return str;
+        }
+        protected static string RandomQuryForReload()
+        {
+            int length = 9;
+            char[] chArray = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            string str = string.Empty;
+            Random random = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                int index = random.Next(1, chArray.Length);
+                if (!str.Contains(chArray.GetValue(index).ToString()))
+                {
+                    str = str + chArray.GetValue(index);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            Random r = new Random();
+            int randNum = r.Next(1000000);
+            string sixDigitNumber = randNum.ToString("D6");
+            str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
+            return "&" + str + "=ClearCache";
+        }
+        protected void LogInWithGoogle(object sender, EventArgs e)
+        {
+
         }
     }
 }

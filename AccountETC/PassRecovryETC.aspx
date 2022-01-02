@@ -105,6 +105,31 @@
          text, h1, h2, h3, h4, h5, h6, p {
             pointer-events: none;
          }
+         body {
+            animation: rainbow 10s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% {
+                background-color: #baa9cc;
+            }
+
+            25% {
+                background-color: #85798b;
+            }
+
+            50% {
+                background-color: #82667b;
+            }
+
+            75% {
+                background-color: #968aae;
+            }
+
+            100% {
+                background-color: #baa9cc;
+            }
+        }
          img {
             pointer-events: none;
         }
@@ -159,10 +184,10 @@
             }, 100);
         })();*/
     </script>
-    <div class="container pulse animated">
+    <div style="height:calc(100vh - 100px);" class="container pulse animated">
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-12 col-xl-10">
-                <div class="card shadow-lg o-hidden border-0 my-5">
+                <div style="border-radius:22px;" class="card shadow-lg o-hidden border-0 my-5">
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-flex">
@@ -176,17 +201,17 @@
                                     </div>
                                     <form class="user" runat="server">
                                         <div class="mb-3">
-                                            <input style="" class="form-control form-control-user" type="email" id="EmailF" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" runat="server">
-                                            <input class="form-control form-control-user" type="text" style="display:none;" id="VCODECONF" placeholder="Verification Code" name="VCode" runat="server">
-                                            <input style="display:none;" class="form-control form-control-user" type="password" id="PasswordRes" placeholder="New Password" name="password" runat="server">
-                                            <input style="display:none;" class="form-control form-control-user" type="password" id="PasswordResC" placeholder="New Password Confirm" name="passwordconf" runat="server">
+                                            <input style="border-radius:14px;" class="form-control form-control-user" type="email" id="EmailF" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" runat="server">
+                                            <input class="form-control form-control-user" type="text" style="display:none;border-radius:14px;" id="VCODECONF" placeholder="Verification Code" name="VCode" runat="server">
+                                            <input style="display:none;border-radius:14px;" class="form-control form-control-user" type="password" id="PasswordRes" placeholder="New Password" name="password" runat="server">
+                                            <input style="display:none;border-radius:14px;" class="form-control form-control-user" type="password" id="PasswordResC" placeholder="New Password Confirm" name="passwordconf" runat="server">
                                             <p id="errormsg" runat="server" style="color:red;"></p>
                                             <p style="display:none;color:rgb(104,64,217);" id="SuMRP" runat="server"></p>
                                             <p id="debug454540d2" runat="server"></p>
                                             <br />
-                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnP" Visible="true" runat="server" OnClick="PassResetStart" style="background: rgb(104,64,217);" Text="Reset Password" />
-                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnC" Visible="false" runat="server" OnClick="ConfirmCode" style="background: rgb(104,64,217);" Text="Confirm Code" />
-                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnS" Visible="false" runat="server" OnClick="SaveNewPass" style="background: rgb(104,64,217);" Text="Change Password" />
+                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnP" Visible="true" runat="server" OnClick="PassResetStart" style="background: rgb(104,64,217);border-radius:14px;" Text="Reset Password" />
+                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnC" Visible="false" runat="server" OnClick="ConfirmCode" style="background: rgb(104,64,217);border-radius:14px;" Text="Confirm Code" />
+                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnS" Visible="false" runat="server" OnClick="SaveNewPass" style="background: rgb(104,64,217);border-radius:14px;" Text="Change Password" />
                                             
                                        <!-- <button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: rgb(104,64,217);" runat="server">Reset Password</button> -->
                                         </div>
@@ -203,6 +228,20 @@
             </div>
         </div>
     </div>
+    <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100vw !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+                 <div style="text-align:center;" class="text-center">
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:140%;color:#FFFFFF !important;">You are offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Password reset is not avalibe...</b></p>
+                     <br />
+                </div>
+            </div>
+        </div>
+    <script>
+        if (!navigator.onLine) {
+            document.getElementById('Offline').style.display = 'block';
+        }
+     </script>
     <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>
     <script src="/assets/js/bs-init.js?h=cfc1cf2ac1407be801a1de7dc4705464"></script>

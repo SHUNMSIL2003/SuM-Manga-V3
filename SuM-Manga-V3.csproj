@@ -278,6 +278,7 @@
     <Content Include="apple-touch-icon-76x76.png" />
     <Content Include="apple-touch-icon-precomposed.png" />
     <Content Include="apple-touch-icon.png" />
+    <Content Include="app_offline.html" />
     <Content Include="assets\animate.min.css" />
     <Content Include="assets\bootstrap\css\bootstrap.min.css" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
@@ -449,6 +450,9 @@
     <Content Include="storeitems\UramichiOniisan\sumcp0006.jpg" />
     <Content Include="storeitems\UramichiOniisan\sumcp0007.jpg" />
     <Content Include="offline.html" />
+    <Content Include="svg\close.svg" />
+    <Content Include="svg\share.svg" />
+    <Content Include="svg\under-maintenance.svg" />
     <Content Include="ToDo-replace-this-name.html" />
     <Content Include="SuMOffline.html" />
     <Content Include="svg\chat.svg" />

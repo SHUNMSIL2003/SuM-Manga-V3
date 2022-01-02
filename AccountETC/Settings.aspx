@@ -35,7 +35,7 @@
     </div>
         <div class="animated fadeIn" style="background-color:#ffffff !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="fadeIn animated" style="margin-top:-4px;vertical-align:middle;display:block !important;height:64px;overflow:hidden !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.4.1 Beta</p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.5.0 Beta</p>
                 <p class="" style="color:#8f8f8f;margin-left:28px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
             </div>
         </div>

@@ -302,7 +302,7 @@ namespace SuM_Manga_V3
             string pstyle = "color:#f2f2f2;text-align:center;vertical-align:middle;display:block;overflow-wrap:break-word;";
             //string CardBG = "Link!";
             string divstyle = "overflow:hidden;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;"; //rgba(0,0,0,0.527)
-            string result = "<div class=" + divclass + " style=" + divstyle + "><a onclick=" + b12.ToString() + "fetch('" + Link + "', { method: 'GET' }).then(res => {location.href = '" + Link + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + b12.ToString() + " ><br><h1 style=" + h1style + ">" + cardtitle + "</h1><br><p style=" + pstyle + ">" + discr + "</p></a></div>";
+            string result = "<div class=" + divclass + " style=" + divstyle + "><a onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " ><br><h1 style=" + h1style + ">" + cardtitle + "</h1><br><p style=" + pstyle + ">" + discr + "</p></a></div>";
             return result;
         }/*
         protected static string HexConverter(Color c)
@@ -361,7 +361,7 @@ namespace SuM_Manga_V3
             string divs2 = "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;"; //rgb(104,64,217,0.64)
             string ps0 = "margin-top:8px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;";
             string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
-            string result = "<div class=" + zoominanim + " style=" + divs0 + "><a onclick=" + b12.ToString() + "fetch('" + Link + "', { method: 'GET' }).then(res => {location.href = '" + Link + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + b12.ToString() + " style=" + as0 + "><div style=" + divs1 + "><div class=" + "GoodBlur" + " style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
+            string result = "<div class=" + zoominanim + " style=" + divs0 + "><a onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " style=" + as0 + "><div style=" + divs1 + "><div class=" + "GoodBlur" + " style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
             return result;
         }
     }

@@ -99,6 +99,7 @@
         }
         body {
             width:100vw !important;
+            height:100vh !important;
         }
 
 /* use a media query to filter small devices */
@@ -112,11 +113,14 @@
             font-family: 'VarelaRound';
             src: url('/assets/VarelaRound.ttf');
         }
-         * {
-             -moz-user-select: none;
-             -webkit-user-select: none;
-             user-select: none;
-         }
+        * {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
          text, h1, h2, h3, h4, h5, h6, p , b {
             pointer-events: none;
             font-family:VarelaRound !important;
@@ -148,6 +152,7 @@
         }
     </style>
     <script>
+        /* */
         document.onkeypress = function (event) {
             event = (event || window.event);
             if (event.keyCode == 123) {
@@ -166,6 +171,21 @@
                 return false;
             }
         }
+        function preventDefaultActivities(e) {
+            console.log("Suppressed default activity");
+            e.preventDefault();
+        }
+
+        //Bind key or key combination to preventDefaultActivities function.
+        $(document).ready(function (ev) {
+            if (Mousetrap) {
+                Mousetrap.bind('command+c', preventDefaultActivities);
+                Mousetrap.bind('command+v', preventDefaultActivities);
+                Mousetrap.bind('ctrl+c', preventDefaultActivities);
+                Mousetrap.bind('ctrl+v', preventDefaultActivities);
+            }
+        });
+        console.log("Content of this website is for public information. Usage of it without owners permission is strictly prohibited.");
     </script>   
     <script>
         window.addEventListener('contextmenu', e => {
@@ -312,7 +332,7 @@
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p runat="server" id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;">Navigate Back</b>
                 </a>
-            <a class="" id="SubSearch" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="fetch('/Search.aspx', { method: 'GET' }).then(res => {location.href = '/Search.aspx';}).catch(err => { document.getElementById('SearchOffline').style.display = 'block'; })" href="#"><img src="/svg/Search.svg" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:14px !important;"></a>
+            <a class="" id="SubSearch" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="if (!navigator.onLine) { document.getElementById('SearchOffline').style.display = 'block'; } else { location.href = '/Search.aspx'; }" href="#"><img src="/svg/Search.svg" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:14px !important;"></a>
             <a id="ComAct" style="float:right !important;vertical-align:middle !important;width:fit-content;margin-left:4px;">
                 <img src="/svg/chat.svg" id="Img5" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;">
             </a>
@@ -352,31 +372,31 @@
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:#6840D9;margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;">Navigate Back</b>
                 </a>
-            <a name="no-animation" id="FullSearch" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="fetch('/Search.aspx', { method: 'GET' }).then(res => {location.href = '/Search.aspx';}).catch(err => { document.getElementById('SearchOffline').style.display = 'block'; })" href="#"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
+            <a name="no-animation" id="FullSearch" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="if (!navigator.onLine) { document.getElementById('SearchOffline').style.display = 'block'; } else { location.href = '/Search.aspx'; }" href="#"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
         </div>
         <nav id="nav" runat="server" style="overflow:clip;height:7.2vh !important;width:100% !important;max-height:64px !important;bottom:0 !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
                     <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;">
                                 <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" onclick="fetch('/Explore.aspx', { method: 'GET' }).then(res => {location.href = '/Explore.aspx';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/Explore.aspx', { method: 'GET' }).then(res => { location.href = '/Explore.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Explore.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
                                         <img id="ExpIMG" runat="server" src="/svg/ExploreNA.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;position:relative;" />
                                         <b id="ExpText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;position:relative;">Explore</b>
                                     </a>
                                 </div>
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" onclick="fetch('/Explore.aspx', { method: 'GET' }).then(res => {location.href = '/Explore.aspx';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/Explore.aspx', { method: 'GET' }).then(res => { location.href = '/Explore.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Explore.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
                                         <img src="/svg/MostSeenNA.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;" />
                                         <b style="font-size:64%;color:#636166;height:2vh !important; text-align:center !important;display:block;">Hits</b>
                                     </a>
                                 </div>
                         
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" onclick="fetch('/UserLibrary.aspx?RT=Curr', { method: 'GET' }).then(res => {location.href = '/UserLibrary.aspx?RT=Curr';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/UserLibrary.aspx?RT=Curr', { method: 'GET' }).then(res => { location.href = '/UserLibrary.aspx?RT=Curr'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/UserLibrary.aspx?RT=Curr'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
                                         <img id="LibIMG" runat="server" src="/svg/bookmarks.svg" style="max-height:62px;max-width:62px; width:4vh;height:4vh;display:block;" />
                                         <b id="LibText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Library</b>
                                     </a>
                                 </div><!-- dropdown-toggle -->
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" onclick="fetch('/AccountETC/Settings.aspx', { method: 'GET' }).then(res => {location.href = '/AccountETC/Settings.aspx';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/AccountETC/Settings.aspx', { method: 'GET' }).then(res => { location.href = '/AccountETC/Settings.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/AccountETC/Settings.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
                                         <img id="SetIMG" runat="server" src="/svg/settings.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;" />
                                         <b id="SetText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Settings</b>
                                     </a>
@@ -386,7 +406,8 @@
             <div style="width:100% !important;height:8px !important;background-color:#ffffff !important;float:left;bottom:0 !important;"></div>
             </div>
         <!-- IOS PWA POPUP -->
-        <script>/*
+        <script>
+            /*
             const isIos = () => {
                 const userAgent = window.navigator.userAgent.toLowerCase();
                 return /iphone|ipad|ipod/.test(userAgent);

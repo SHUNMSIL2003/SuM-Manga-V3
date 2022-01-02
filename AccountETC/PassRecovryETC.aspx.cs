@@ -67,7 +67,7 @@ namespace SuM_Manga_V3.AccountETC
                 }
                 else
                 {
-                    EmailF.Attributes["style"] = "border-color:red;border-width:2px;";
+                    EmailF.Attributes["style"] = "border-color:red;border-width:2px;border-radius:14px;";
                     errormsg.InnerText = "Email doesn't match any user";
                 }
                 sqlCon.Close();
@@ -130,8 +130,8 @@ namespace SuM_Manga_V3.AccountETC
             else 
             {
                 SuMRP.InnerText = "Passwords do not match or they are empty!";
-                PasswordRes.Attributes["style"] = "border: solid 2px red;";
-                PasswordResC.Attributes["style"] = "border: solid 2px red;";
+                PasswordRes.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
+                PasswordResC.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
             }
         }
         static string sha256(string randomString)

@@ -30,8 +30,8 @@ namespace SuM_Manga_V3.AccountETC
             {
                 ResendConf.Visible = false;
                 LoginStatus.InnerText = "";
-                UserNameL.Attributes["style"] = "";
-                PasswordL.Attributes["style"] = "";
+                UserNameL.Attributes["style"] = "border-radius:14px;";
+                PasswordL.Attributes["style"] = "border-radius:14px;";
             }
         }
         protected void LoginToSuM(object sender, EventArgs e)
@@ -92,8 +92,8 @@ namespace SuM_Manga_V3.AccountETC
                 else
                 {
                     LoginStatus.InnerText = "Username or Password are incorrect"; sqlCon.Close();
-                    UserNameL.Attributes["style"] = "border: solid 2px red;";
-                    PasswordL.Attributes["style"] = "border: solid 2px red;";
+                    UserNameL.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
+                    PasswordL.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
                     LoginStatus.InnerText = "Username Or Password are incurrect!";
                     //UserNameL.BorderColor = System.Drawing.Color.Red;
                     //PasswordL.BorderColor = System.Drawing.Color.Red;

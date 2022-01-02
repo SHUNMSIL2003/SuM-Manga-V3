@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../assets/animate.min.css">
 
 
-    >
+    
     <meta name="description" content="Shun Manga">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/any_icon_x32.png?h=c6e95e86bee5c429ad96d74eb8a03d17">
@@ -106,6 +106,31 @@
          text, h1, h2, h3, h4, h5, h6, p {
             pointer-events: none;
          }
+         body {
+            animation: rainbow 10s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% {
+                background-color: #baa9cc;
+            }
+
+            25% {
+                background-color: #85798b;
+            }
+
+            50% {
+                background-color: #82667b;
+            }
+
+            75% {
+                background-color: #968aae;
+            }
+
+            100% {
+                background-color: #baa9cc;
+            }
+        }
          input, textarea {
             -webkit-user-select: text !important;
             -khtml-user-select: text !important;
@@ -153,16 +178,16 @@
     <script>
         window.addEventListener('contextmenu', e => {
             e.preventDefault();
-        });
+        });/*
         (function () {
             setInterval(() => {
                 debugger;
             }, 100);
-        })();
+        })();*/
     </script>
     <form id="SuM" method="post" runat="server">
-    <div class="container pulse animated">
-        <div class="card shadow-lg o-hidden border-0 my-5">
+    <div style="height:calc(100vh - 100px);" class="container pulse animated">
+        <div style="border-radius:22px;" class="card shadow-lg o-hidden border-0 my-5">
             <div class="card-body p-0">
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-flex">
@@ -174,18 +199,18 @@
                                 <h4 class="text-dark mb-4">Create a SuM Account!</h4>
                             </div>
                             <div class="user">
-                                    <div class="mb-3"><input style="" class="form-control form-control-user" type="text" id="UserNameR" placeholder="User Name" name="UserName" runat="server"></div>
+                                    <div class="mb-3"><input style="border-radius:14px;" class="form-control form-control-user" type="text" id="UserNameR" placeholder="User Name" name="UserName" runat="server"></div>
                                     <div style="text-align:center;"><p style="color:red;" id="UserNameSWM" runat="server"></p></div>
                                 <div class="mb-3"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" style="" type="email" id="EmailR" aria-describedby="emailHelp" placeholder="Email Address" name="email" runat="server"></div>
+                                <div class="mb-3"><input class="form-control form-control-user" style="border-radius:14px;" type="email" id="EmailR" aria-describedby="emailHelp" placeholder="Email Address" name="email" runat="server"></div>
                                 <div style="text-align:center;"><p style="color:red;" id="EmailSWM" runat="server"></p></div>
                                 <div class="row mb-3">
-                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" style="" type="password" id="PasswordR" placeholder="Password" name="password" runat="server"></div>
-                                    <div class="col-sm-6"><input class="form-control form-control-user" style="" type="password" id="PasswordRc" placeholder="Repeat Password" name="password_repeat" runat="server"></div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" style="border-radius:14px;" type="password" id="PasswordR" placeholder="Password" name="password" runat="server"></div>
+                                    <div class="col-sm-6"><input class="form-control form-control-user" style="border-radius:14px;" type="password" id="PasswordRc" placeholder="Repeat Password" name="password_repeat" runat="server"></div>
                                     <div style="text-align:center;"><p style="color:red;" id="PasswordSWM" runat="server"></p></div>
-                                </div><asp:Button CssClass="btn btn-primary d-block btn-user w-100" style="background: rgb(104,64,217);" runat="server" OnClick="RegisterProsss" Text="Register Account" />
+                                </div><asp:Button CssClass="btn btn-primary d-block btn-user w-100" style="background: rgb(104,64,217);border-radius:14px;" runat="server" OnClick="RegisterProsss" Text="Register Account" />
                                 <!-- <button class="btn btn-primary d-block btn-user w-100" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" type="submit" style="background: rgb(104,64,217);" runat="server">Register Account</button> -->
-                                <hr><a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Register with Google</a><a class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Register with Facebook</a>
+                                <hr><a style="border-radius:14px;" class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Register with Google</a><a style="border-radius:14px;" class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Register with Facebook</a>
                                 <hr>
                             </div>
                             <div class="text-center"><a class="small" href="../AccountETC/PassRecovryETC.aspx" style="color: rgb(104,64,217);">Forgot Password?</a></div>
@@ -196,6 +221,20 @@
             </div>
         </div>
     </div>
+        <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100vw !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+                 <div style="text-align:center;" class="text-center">
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:140%;color:#FFFFFF !important;">You are offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Login is not avalibe...</b></p>
+                     <br />
+                </div>
+            </div>
+        </div>
+    <script>
+        if (!navigator.onLine) {
+            document.getElementById('Offline').style.display = 'block';
+        }
+    </script>
     <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>
     <script src="/assets/js/bs-init.js?h=cfc1cf2ac1407be801a1de7dc4705464"></script>

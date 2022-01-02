@@ -110,7 +110,7 @@ namespace SuM_Manga_V3.storeitems
                         if (System.IO.Directory.Exists(checkifitexsists) == true)
                         {
                             //"<a class="+"btn btn-primary btn-sm"+" href=" "> Next Chapter  &raquo;</a>"
-                            string sendNextChapter = "<a style=" + "border-radius:14px;padding:8px;background-color:rgb(255,255,255);margin:8px;margin-right:8px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + "btn btn-primary btn-sm" + " onclick=" + sc.ToString() + "fetch('" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum +"&VC="+Request.QueryString["VC"].ToString()+ "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "', { method: 'GET' }).then(res => {location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "';}).catch(err => { document.getElementById('Offline').style.display = 'block'; })" + sc.ToString() + " ><b>Next Chapter  &raquo;</b></a>";
+                            string sendNextChapter = "<a style=" + "border-radius:14px;padding:8px;background-color:rgb(255,255,255);margin:8px;margin-right:8px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + "btn btn-primary btn-sm" + " onclick=" + sc.ToString() + "if (!navigator.onLine) { fetch('" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "', { method: 'GET' }).then(res => { location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "'; }" + sc.ToString() + " ><b>Next Chapter  &raquo;</b></a>";
                             NextChapter.InnerHtml = sendNextChapter;
                         }
                         else
@@ -218,7 +218,7 @@ namespace SuM_Manga_V3.storeitems
             }
             else 
             {
-                Comments.InnerHtml = "<p style=" + "color:rgba(255,255,255,0.32);text-align:center;" + ">No comments yet</p>";
+                Comments.InnerHtml = "<p style=" + "color:rgba(255,255,255,0.32);text-align:center;" + ">No comments yet...</p>";
             }
         }
 

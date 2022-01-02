@@ -167,22 +167,59 @@
     <div id="wrapper" style="overflow:hidden;">
         <div class="d-flex flex-column" id="content-wrapper" style="overflow:hidden;">
             <div id="content">
-                <style>
-                    .FNM5455511 {
-                        margin-top:0px !important;
-                        margin-bottom:0px !important;
-                        height:7vh !important;
-                        /*background-color:rgb(240, 235, 255) !important;*/
-                    }
-                </style>
-                <div style="width:100vw !important; height:93vh !important;max-height:93vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;" id="SuMMainBlock" runat="server" class="container-fluid">
-                    <div class="ForceMaxW" style="width:100vw !important; height:93vh !important;max-height:93vh !important;margin-left:-24px !important;background-color:#F8F9FD;" id="mc" runat="server">
-                    <div class="ui-widget">
-  <label for="tags">Tags: </label>
-  <input id="tags">
-</div>
-                    </div><div style="height:36px !important;width:1px !important;"><p>PLaceHolder</p></div>
+
+
+
+
+
+
+                <div id="SuMLoginUI" runat="server" style="z-index:999 !important;margin-left:12px !important;margin-right:12px !important;margin-top:28px !important;position:absolute !important;" class="row justify-content-center animated pulse">
+            <div class="col-md-9 col-lg-12 col-xl-10">
+                <div style="border-radius:22px !important;" class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background: url(&quot;/assets/img/dogs/SuM-Reader.jpg?h=0086b7bb234345281e92a417000e3a03&quot;);"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">Welcome Back to SuM!</h4>
+                                    </div>
+                                    <div class="user">
+                                        <div class="mb-3"><input class="form-control form-control-user" type="text" style="" id="UserNameL" placeholder="User Name" name="UserName" runat="server"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" style="" id="PasswordL" placeholder="Password" name="password" runat="server"></div>
+                                        <div style="text-align:center;width:100%;height:fit-content;"><h6 style="color:red;" id="LoginStatus" runat="server"></h6><asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" OnClick="ResendConfLink" Visible="false" ID="ResendConf" Text="Re-Send Email" /></div>
+                                        <div class="mb-3">
+                                            <div class="custom-control custom-checkbox small">
+                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" checked="checked" id="formCheck-1"><label id="rem" runat="server" class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
+                                            </div> 
+                                        </div><!-- <button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: rgb(104,64,217);" onclick="LoginToSuM" runat="server">Login</button> -->
+                                        <asp:Button CssClass="btn btn-primary d-block btn-user w-100" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="LoginToSuM" runat="server" Text="Login" />
+                                        
+                                        <hr>
+                                        <!--<div style="width:100%;border-radius:28px;" class="g-signin2" data-onsuccess="onSignIn"></div>-->
+                                        <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Login with Google</a>
+                                        <a class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
+                                        <hr>
+                                    </div>
+                                    <div class="text-center"><a class="small" href="../AccountETC/PassRecovryETC.aspx" style="color: rgb(104,64,217);">Forgot Password?</a></div>
+                                    <div class="text-center"><a class="small" href="../AccountETC/RegisterETC.aspx" style="color: rgb(104,64,217);">Create an Account!</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
             </div>
         </div>
         <style>

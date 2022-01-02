@@ -29,10 +29,10 @@ namespace SuM_Manga_V3.AccountETC
             PasswordSWM.InnerText = "";
             UserNameSWM.InnerText = "";
             EmailSWM.InnerText = "";
-            EmailR.Attributes["style"] = "";
-            UserNameR.Attributes["style"] = "";
-            PasswordR.Attributes["style"] = "";
-            PasswordRc.Attributes["style"] = "";
+            EmailR.Attributes["style"] = "border-radius:14px;";
+            UserNameR.Attributes["style"] = "border-radius:14px;";
+            PasswordR.Attributes["style"] = "border-radius:14px;";
+            PasswordRc.Attributes["style"] = "border-radius:14px;";
         }
         protected void RegisterProsss(object sender, EventArgs e)
         {
@@ -107,32 +107,32 @@ namespace SuM_Manga_V3.AccountETC
                 PasswordSWM.InnerText = "";
                 UserNameSWM.InnerText = "";
                 EmailSWM.InnerText = "";
-                EmailR.Attributes["style"] = "";
-                UserNameR.Attributes["style"] = "";
-                PasswordR.Attributes["style"] = "";
-                PasswordRc.Attributes["style"] = "";
+                EmailR.Attributes["style"] = "border-radius:14px;";
+                UserNameR.Attributes["style"] = "border-radius:14px;";
+                PasswordR.Attributes["style"] = "border-radius:14px;";
+                PasswordRc.Attributes["style"] = "border-radius:14px;";
                 if (EmailExsists == true)
                 {
                     //somthingwrong.InnerText += "- Email is already in use! -\n";
                     EmailSWM.InnerText = "Email is already in use!     ";
-                    EmailR.Attributes["style"] = "border: solid 2px red;";
+                    EmailR.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
                 }
                 if (UserNameExsists == true)
                 {
                     UserNameSWM.InnerText = "Username is unavalible!";
-                    UserNameR.Attributes["style"] = "border: solid 2px red;";
+                    UserNameR.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
                 }
                 if (PasswordsMatch == false)
                 {
                     PasswordSWM.InnerText = "Passwords does not match";
-                    PasswordR.Attributes["style"] = "border: solid 2px red;";
-                    PasswordRc.Attributes["style"] = "border: solid 2px red;";
+                    PasswordR.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
+                    PasswordRc.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
                 }
                 if (PasswordsMatch == true && passwordcheckok == false)
                 {
                     PasswordSWM.InnerText = "Your password should have atleast 8 numbers and 4 other charecters";
-                    PasswordR.Attributes["style"] = "border: solid 2px red;";
-                    PasswordRc.Attributes["style"] = "border: solid 2px red;";
+                    PasswordR.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
+                    PasswordRc.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
                 }
             }
         }

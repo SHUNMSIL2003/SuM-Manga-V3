@@ -33,22 +33,58 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlForm SuM;
 
         /// <summary>
-        /// SuMMainBlock control.
+        /// SuMLoginUI control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMMainBlock;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMLoginUI;
 
         /// <summary>
-        /// mc control.
+        /// UserNameL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mc;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText UserNameL;
+
+        /// <summary>
+        /// PasswordL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword PasswordL;
+
+        /// <summary>
+        /// LoginStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LoginStatus;
+
+        /// <summary>
+        /// ResendConf control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ResendConf;
+
+        /// <summary>
+        /// rem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rem;
 
         /// <summary>
         /// mangacolor control.

@@ -1,7 +1,101 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="ContantExplorer.aspx.cs" Inherits="SuM_Manga_V3.storeitems.ContantExplorer" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+        //PlaceHolder
+        //document.getElementById('MainContent_SuMLoginUI').style.display = 'block';
+    </script>
+    <asp:ScriptManager ID="ScriptManagerLogin" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
+       </asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanelLogin" runat="server" UpdateMode="Conditional">
+                <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="LoginBTN" EventName="Click" />
+                    </Triggers>
+                <ContentTemplate>
+                    <asp:Panel runat="server">
+                        <div id="SuMLoginUI" runat="server" style="background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;" class="row justify-content-center">
+            <div id="SacondContForLogin" class="col-md-9 col-lg-12 col-xl-10">
+                <div style="border-radius:22px !important;" class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div style="width:100%;position:relative;">
+                                <a style="float:right;width:32px;height:32px;padding:4px;margin-right:12px;margin-top:12px;" onclick="document.getElementById('MainContent_SuMLoginUI').style.display = 'none'; document.getElementById('MainContent_SuMLoginUI').classList.add('fadeIn'); document.getElementById('MainContent_SuMLoginUI').classList.add('animated'); document.getElementById('SacondContForLogin').classList.add('pulse'); document.getElementById('SacondContForLogin').classList.add('animated'); document.getElementById('fullnavscont').style.display = 'none'; document.getElementById('fullnavscont').classList.remove('slideOutDown'); document.getElementById('fullnavscont').classList.add('slideInUp'); document.getElementById('fullnavscont').style.display = 'block';">
+                                    <img style="width:22px;height:22px;" src="/svg/close.svg" />
+                                </a>
+                            </div>
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background: url(&quot;/assets/img/dogs/SuM-Reader.jpg?h=0086b7bb234345281e92a417000e3a03&quot;);"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">Login to start reading!</h4>
+                                    </div>
+                                    <div class="user">
+                                        <div class="mb-3"><input class="form-control form-control-user" type="text" style="border-radius:14px;" id="UserNameL" placeholder="User Name" name="UserName" runat="server"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" style="border-radius:14px;" id="PasswordL" placeholder="Password" name="password" runat="server"></div>
+                                        <div style="text-align:center;width:100%;height:fit-content;"><h6 style="color:red;" id="LoginStatus" runat="server"></h6><asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" OnClick="ResendConfLink" Visible="false" ID="ResendConf" Text="Re-Send Email" /></div>
+                                        <div class="mb-3">
+                                            <div class="custom-control custom-checkbox small">
+                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" checked="checked" id="formCheck-1"><label id="rem" runat="server" class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
+                                            </div> 
+                                        </div>
+                                        <asp:Button ID="LoginBTN" CssClass="btn btn-primary d-block btn-user w-100" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-radius:14px;" OnClick="LoginToSuM" runat="server" Text="Login" />
+                                        <hr>
+                                        <a style="border-radius:14px !important;" class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Login with Google</a>
+                                        <a style="border-radius:14px !important;" class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
+                                        <hr>
+                                    </div>
+                                    <div class="text-center"><a class="small" href="/AccountETC/PassRecovryETC.aspx" style="color: rgb(104,64,217);">Forgot Password?</a></div>
+                                    <div class="text-center"><a class="small" href="/AccountETC/RegisterETC.aspx" style="color: rgb(104,64,217);">Create an Account!</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+    <script>
+        document.getElementById('MainContent_SuMLoginUI').style.display = 'none';
+        document.getElementById('MainContent_SuMLoginUI').classList.add('fadeIn');
+        document.getElementById('MainContent_SuMLoginUI').classList.add('animated');
+        document.getElementById('SacondContForLogin').classList.add('pulse');
+        document.getElementById('SacondContForLogin').classList.add('animated');
+
+        /*document.getElementById('fullnavscont').style.display = 'none';
+        document.getElementById('fullnavscont').classList.remove('slideOutDown');
+        document.getElementById('fullnavscont').classList.add('slideInUp');
+        document.getElementById('fullnavscont').style.display = 'block';*/
+    </script>
     <style>
+        /*# {
+            animation: rainbow 10s linear infinite;
+        }*/
+
+        @keyframes rainbow {
+            0% {
+                background-color: #baa9ccd1;
+            }
+
+            25% {
+                background-color: #85798bd1;
+            }
+
+            50% {
+                background-color: #82667bd1;
+            }
+
+            75% {
+                background-color: #968aaed1;
+            }
+
+            100% {
+                background-color: #baa9ccd1;
+            }
+        }
         .ForceMaxW {
             max-width:1200px !important;
             margin: 0 auto;
@@ -12,7 +106,7 @@
 
     </style>
     <script>
-
+        /* navigator.share({title:'SuM Manga',text:'Check out X on SuM Manga.',url:'LINK'}); */
         document.addEventListener("DOMContentLoaded", function () {
 
             var fullnavscont = document.getElementById("fullnavscont");
@@ -79,23 +173,34 @@
 </div>
 </div>
             </div>
-        <div class="animated fadeInUp" id="ChaptersAndFuncCard" style="margin-top:-20px;background-color:#ffffff;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;">
+        <div class="animated fadeInUp" id="ChaptersAndFuncCard" style="opacity: 0 !important;margin-top:-20px;background-color:#ffffff;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;">
         <div id="GernsTags" runat="server" style="border-top-right-radius:22px;border-top-left-radius:22px;width:100vw;height:fit-content;background-color:transparent;align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;">
             <div style="margin-left:6px;display:inline;width:fit-content;height:38px;background-color:rgba(0,0,0,0.36);border-radius:19px;"><a href="/storeitems/TagView.aspx" style="color:white;font-size:112%;">&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;</a></div>
         </div>
-        <div style="background-color:aqua;margin:0 auto;height:fit-content;" id="SVC" runat="server">
-            <div class="animated pulse" id="MRSC" runat="server" style="margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;">
+        <div style="background-color:aqua;margin:0 auto;height:fit-content;position:relative;" id="SVC" runat="server">
+            <div class="animated pulse" id="MRSC" runat="server" style="margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;display:inline;">
                 <a id="MRSW" onclick="" runat="server" href="#" style="color:#6840D9;"></a>
             </div>
+            <a id="SuMShare" runat="server" style="width:38px;width:38px;float:right;margin-top:-46px;padding:4px;margin-right:6px;display:inline !important;" class="animated fadeIn" onclick="#">
+                <img src="/svg/share.svg" style="width:28px;height:28px;" alt="Share" />
+            </a>
         </div>
     <div style="display:block;height:fit-content;min-height:100vh !important;background-color:rgba(1,65,54,0.544);" id="TheMangaPhotosF" runat="server">
-        
      </div>
        </div>
         </div>
         </div>
     <script>
-        var CatXHeight = document.getElementById('MainContent_CategoryX').offsetHeight;
-        document.getElementById('ChaptersAndFuncCard').style.marginTop = CatXHeight - 20 + "px";
+        document.onreadystatechange = function () {
+            if (document.readyState == "complete") {
+
+                var CatXHeight = document.getElementById('MainContent_CategoryX').getBoundingClientRect();
+                document.getElementById('ChaptersAndFuncCard').style.marginTop = (CatXHeight.height - 22) + "px";
+                document.getElementById("ChaptersAndFuncCard").style.opacity = null;
+                document.getElementById("ChaptersAndFuncCard").style.display = "none";
+                document.getElementById("ChaptersAndFuncCard").style.display = "block";
+
+            }
+        };
     </script>
 </asp:Content>

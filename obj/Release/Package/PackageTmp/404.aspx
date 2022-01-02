@@ -24,6 +24,6 @@
                                  <p class="m-0">404</p>
                              </div>
                              <p class="text-dark mb-5 lead">Page Not Found</p>
-                             <p class="text-black-50 mb-0">The Server might be down or you may have found a glitch...</p><a id="A1" href="../Explore.aspx" style="color: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server">← Back to Main Page</a>
+                             <p class="text-black-50 mb-0">The Server might be down or you may have found a glitch...</p><a id="A1" onclick="if (!navigator.onLine) { fetch('/Explore.aspx', { method: 'GET' }).then(res => { location.href = '/Explore.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Explore.aspx'; }" href="#" style="color: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server">← Back to Main Page</a>
                     </div>
 </asp:Content>

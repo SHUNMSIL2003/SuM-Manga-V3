@@ -105,6 +105,31 @@
              -webkit-user-select: none;
              user-select: none;
          }
+        body {
+            animation: rainbow 10s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% {
+                background-color: #baa9cc;
+            }
+
+            25% {
+                background-color: #85798b;
+            }
+
+            50% {
+                background-color: #82667b;
+            }
+
+            75% {
+                background-color: #968aae;
+            }
+
+            100% {
+                background-color: #baa9cc;
+            }
+        }
          img {
             pointer-events: none;
         }
@@ -161,10 +186,10 @@
         })();*/
     </script>
     <form id="SuM" method="post" runat="server">
-    <div class="container pulse animated">
+    <div style="height:calc(100vh - 100px);" class="container pulse animated">
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-12 col-xl-10">
-                <div class="card shadow-lg o-hidden border-0 my-5">
+                <div style="border-radius:22px;" class="card shadow-lg o-hidden border-0 my-5">
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-flex">
@@ -176,20 +201,20 @@
                                         <h4 class="text-dark mb-4">Welcome Back to SuM!</h4>
                                     </div>
                                     <div class="user">
-                                        <div class="mb-3"><input class="form-control form-control-user" type="text" style="" id="UserNameL" placeholder="User Name" name="UserName" runat="server"></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" style="" id="PasswordL" placeholder="Password" name="password" runat="server"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="text" style="border-radius:14px;" id="UserNameL" placeholder="User Name" name="UserName" runat="server"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" style="border-radius:14px;" id="PasswordL" placeholder="Password" name="password" runat="server"></div>
                                         <div style="text-align:center;width:100%;height:fit-content;"><h6 style="color:red;" id="LoginStatus" runat="server"></h6><asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" OnClick="ResendConfLink" Visible="false" ID="ResendConf" Text="Re-Send Email" /></div>
                                         <div class="mb-3">
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" checked="checked" id="formCheck-1"><label id="rem" runat="server" class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
                                             </div> 
                                         </div><!-- <button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: rgb(104,64,217);" onclick="LoginToSuM" runat="server">Login</button> -->
-                                        <asp:Button CssClass="btn btn-primary d-block btn-user w-100" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="LoginToSuM" runat="server" Text="Login" />
+                                        <asp:Button CssClass="btn btn-primary d-block btn-user w-100" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-radius:14px;" OnClick="LoginToSuM" runat="server" Text="Login" />
                                         
                                         <hr>
                                         <!--<div style="width:100%;border-radius:28px;" class="g-signin2" data-onsuccess="onSignIn"></div>-->
-                                        <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Login with Google</a>
-                                        <a class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
+                                        <a style="border-radius:14px;" class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Login with Google</a>
+                                        <a style="border-radius:14px;" class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
                                         <hr>
                                     </div>
                                     <div class="text-center"><a class="small" href="../AccountETC/PassRecovryETC.aspx" style="color: rgb(104,64,217);">Forgot Password?</a></div>
@@ -202,6 +227,20 @@
             </div>
         </div>
     </div>
+        <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100vw !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+                 <div style="text-align:center;" class="text-center">
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:140%;color:#FFFFFF !important;">You are offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Login is not avalibe ...</b></p>
+                     <br />
+                </div>
+            </div>
+        </div>
+    <script>
+        if (!navigator.onLine) {
+            document.getElementById('Offline').style.display = 'block';
+        }
+    </script>
     <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>
     <script src="/assets/js/bs-init.js?h=cfc1cf2ac1407be801a1de7dc4705464"></script>
