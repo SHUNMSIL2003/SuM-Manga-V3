@@ -37,7 +37,7 @@ namespace SuM_Manga_V3.storeitems
                 ThemeColor = Request.QueryString["TC"].ToString();//RgbConverter(getDominantColor(bMap));
             }
             else { ThemeColor = "#6840D9"; }//height:100vh !important;min-height:100% !important;
-            TheMangaPhotosF.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";";
+            TheMangaPhotosF.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";padding-bottom:128px !important;";
             string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100vw;height:fit-content;float:left;";//ORgbConverter(getDominantColor(bMap));------background-color:" + ThemeColor + ";
             string theme = ThemeColor;//RgbConverter(getDominantColor(bMap));
             infoCover.Attributes["style"] = "background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";

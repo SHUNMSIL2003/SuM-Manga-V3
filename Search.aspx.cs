@@ -87,7 +87,7 @@ namespace SuM_Manga_V3
                             un = sqlCmd.ExecuteScalar();
                             string CreatorName = un.ToString();
                             ShowSuMResults.InnerHtml += BuildSearchCard(Cover, Name, CExplorerLink, themecolor, MangaIDF, CreatorName);
-                            if (IDs.Count != 0) { ShowSuMResults.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
+                            if (IDs.Count != 0) { ShowSuMResults.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:96vw;opacity:0.18;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
                             
                         }
                         sqlCon.Close();

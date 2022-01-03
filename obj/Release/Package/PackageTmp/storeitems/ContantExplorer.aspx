@@ -157,11 +157,12 @@
     <div class="fadeIn animated">
     <div style="height:fit-content;width:100vw;overflow:hidden; background-color:#ffffff !important;position:fixed;" id="CategoryX" runat="server">
     <div id="infoCover" runat="server" class="mySlides" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:fit-content;">
-    <div style="width:100%;height:fit-content;position:relative;margin:0 auto;">
+    <div style="width:100%;height:fit-content;position:relative;margin:0 auto;margin-top:32px;">
         <h1 id="MTitle" runat="server" style="float:left;margin-top:12px;margin-left:12px;color:#ffffff;font-size:186%;margin-right:14px !important;width:100%;height:fit-content;">#</h1>
         <p style="color:rgb(255, 255, 255, 0.82);float:right;margin-top:-18px;margin-right:10px;">By <b id="MangaCreator" style="font-size:80%;" runat="server"></b></p>
     </div>
-    <p style="height:fit-content;min-height:54vw !important; width:96vw;max-width:96vw;font-size:96%;color:#ffffff;margin:14px !important;margin-bottom:26px !important;margin-top:-12px !important;" id="MdiscS" runat="server">#</p>
+        <hr style="margin:0 auto !important;height:2.6px !important;border-width:0;color:#ffffff;background-color:#ffffff;width:92vw;opacity:0.26;margin:0px;margin-block:0px;border-radius:1.3px !important;margin-bottom:6px;margin-bottom:6px !important;">
+    <p style="height:fit-content;min-height:54vw !important; width:96vw;max-width:96vw;font-size:96%;color:#ffffff;margin:14px !important;margin-bottom:26px !important;margin-top:2px !important;" id="MdiscS" runat="server">#</p>
     <div style="margin:0 auto;margin-bottom:28px;height:fit-content;width:100%;position:relative;">
         <a style="display:block;float:right !important;margin-right:12px;">
             <p style="display:inline;color:rgba(255,255,255,0.74);" id="MangaRating" runat="server"></p>
@@ -185,7 +186,7 @@
                 <img src="/svg/share.svg" style="width:28px;height:28px;" alt="Share" />
             </a>
         </div>
-    <div style="display:block;height:fit-content;min-height:100vh !important;background-color:rgba(1,65,54,0.544);" id="TheMangaPhotosF" runat="server">
+    <div style="display:block;height:fit-content;min-height:100vh !important;background-color:rgba(1,65,54,0.544);padding-bottom:128px !important;" id="TheMangaPhotosF" runat="server">
      </div>
        </div>
         </div>
