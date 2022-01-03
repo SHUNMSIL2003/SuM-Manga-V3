@@ -35,8 +35,11 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\AjaxControlToolkit.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Antlr3.Runtime.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\AspNet.ScriptManager.jQuery.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Azure.NotificationHubs.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Bcl.AsyncInterfaces.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.Caching.Abstractions.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.Caching.Memory.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.FileProviders.Abstractions.dll
@@ -68,8 +71,11 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.ValueTuple.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Optimization.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\WebGrease.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Antlr3.Runtime.pdb
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Azure.NotificationHubs.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Bcl.AsyncInterfaces.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.Caching.Abstractions.xml
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.Caching.Memory.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.Configuration.Abstractions.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.FileProviders.Abstractions.xml

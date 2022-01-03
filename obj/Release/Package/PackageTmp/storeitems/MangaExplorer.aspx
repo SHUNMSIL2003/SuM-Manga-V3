@@ -41,13 +41,8 @@
     </script>
     <div id="pfc" runat="server" style="background-color:#6840D9;">
         <div class="slideInRight animated">
-            <div class="nospace" style="height:fit-content;width:100vw !important;margin-left:0px !important;margin-right:0px !important;" id="TheMangaPhotos" runat="server"><!-- The Story Content NA -->
+            <div class="nospace ContantDivSuM" style="height:fit-content;width:100vw !important;margin-left:0px !important;margin-right:0px !important;margin:0;" id="TheMangaPhotos" runat="server"><!-- The Story Content NA -->
             </div>
-                <br style="float:right;" />
-            <div id="NextChapter" style="float:right;" runat="server" >
-                <a style="" class="btn btn-primary btn-sm" href="#"></a>
-            </div>
-        <br /><br /><br /><br />
         </div>
         <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
        </asp:ScriptManager>
@@ -71,5 +66,39 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
             </div>
+        <div class="animated fadeIn" id="NextChapter" style="display:block;position:absolute;bottom:48px;margin-left:calc(92vw - 60px);" runat="server" >
+                <a style="" class="btn btn-primary btn-sm animated fadeInUp" href="#"></a>
+            </div>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+        <script>
+
+            /*var myDiv = document.getElementById("MainContent_TheMangaPhotos");
+            myDiv.scrollTop = myDiv.scrollHeight;
+
+            window.addEventListener("scroll", () => {
+                var offset = element.getBoundingClientRect().top - element.offsetParent.getBoundingClientRect().top;
+                const top = window.pageYOffset + window.innerHeight - offset;
+
+                if (top === element.scrollHeight) {
+                    document.getElementById('MainContent_NextChapter').style.display = 'block';
+                }
+            }, { passive: false });*/
+
+
+            /*jQuery(function ($) {
+                $('.ContantDivSuM').on('scroll', function () {
+                    if ($(this).scrollTop() +
+                        $(this).innerHeight() >=
+                        $(this)[0].scrollHeight) {
+
+                        document.getElementById('MainContent_NextChapter').style.display = "block";
+                    }
+                });
+            });*/
+
+            /*if (document.getElementById('MainContent_TheMangaPhotos').scrollTop === (document.getElementById('MainContent_TheMangaPhotos').scrollHeight - document.getElementById('MainContent_TheMangaPhotos').offsetHeight)) {
+                document.getElementById('MainContent_NextChapter').style.display = 'block';
+            }*/
+        </script>
     </div>
 </asp:Content>
