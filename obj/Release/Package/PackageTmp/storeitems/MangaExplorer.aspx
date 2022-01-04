@@ -46,7 +46,7 @@
         </div>
         <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
        </asp:ScriptManager>
-        <div id="CommentsSecCont" runat="server" class="animated slideDown" style="border:4px rgba(225,225,225,0.75) solid;border-top:4px rgba(0,0,0,0) solid;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:rgba(255,255,255,0.74);display:none;margin-top:6px;width:100vw;height:fit-content;position:absolute;bottom:28px;padding-bottom:26px;">
+        <div id="CommentsSecCont" runat="server" class="animated slideDown" style="border:4px rgba(225,225,225,0.75) solid;border-top:4px rgba(0,0,0,0) solid;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:rgba(255,255,255,0.74);display:none;margin-top:6px;width:100vw;height:fit-content;position:absolute;bottom:28px;padding-bottom:26px;z-index:998;">
                 <h5 style="color:#fff;padding-top:8px;padding-left:8px;padding-bottom:4px;font-size:96%;">Comments section</h5>
                 <div id="SendCommentAria" style="border-radius:12px;width:100%;height:fit-content;margin:0 auto;padding:6px;margin-top:8px;margin-bottom:6px;display:block;">
                     <!--<a style="display:inline;color:#141414;">add a comment...</a>-->

@@ -172,7 +172,7 @@ namespace SuM_Manga_V3.storeitems
             string MangaID = Request.QueryString["VC"].ToString();
             //ComSecTitle.Attributes["style"] = "color:" + ThemeColor + ";padding-top:8px;padding-left:8px;padding-bottom:4px;";
             SendBTN.Attributes["style"] = "background-color:" + ThemeColor + ";border-radius:4px;width:40px;height:34px;margin:4px;";
-            CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:6px;width:100vw;height:fit-content;position:absolute;bottom:28px;padding-bottom:26px;border-top:4px rgba(0,0,0,0) solid;";
+            CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:6px;width:100vw;height:fit-content;position:absolute;bottom:28px;padding-bottom:26px;border-top:4px rgba(0,0,0,0) solid;z-index:998;";
             string RawComments = string.Empty;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
