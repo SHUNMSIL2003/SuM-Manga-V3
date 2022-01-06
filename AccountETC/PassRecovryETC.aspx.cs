@@ -121,8 +121,17 @@ namespace SuM_Manga_V3.AccountETC
                         sqlCmd2.Parameters.AddWithValue("@Email", emailre);
                         sqlCmd2.Parameters.AddWithValue("@Password", sha256(newPass));
                         sqlCmd2.ExecuteNonQuery();
+                        //LogOutPartStart
+                        query = "SELECT UserID FROM SuMUsersAccounts WHERE Email = @Email";
+                        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@Email", emailre);
+                        HttpCookie CacheUserInfo = new HttpCookie("SuMCurrentLoginWorkerCache");
+                        CacheUserInfo["ID"] = sqlCmd.ExecuteScalar().ToString();
+                        CacheUserInfo.Expires = DateTime.Now.AddMinutes(30);
+                        HttpContext.Current.Response.Cookies.Add(CacheUserInfo);
                         sqlCon.Close();
                     }
+                    LogOutOffAll();
                     Response.Redirect("~/AccountETC/LoginETC.aspx");
                 }
                 else { SuMRP.InnerText = "Password Must Contain atleast 8 numbers and 4 more latters/charecter !"; }
@@ -132,6 +141,20 @@ namespace SuM_Manga_V3.AccountETC
                 SuMRP.InnerText = "Passwords do not match or they are empty!";
                 PasswordRes.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
                 PasswordResC.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
+            }
+        }
+        protected void LogOutOffAll()
+        {
+            HttpCookie GetLoginCacheUserInfo = Request.Cookies["SuMCurrentLoginWorkerCache"];
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "UPDATE SuMUsersAccounts SET SIDs = NULL WHERE UserID = @UID";
+                SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
+                sqlCmd2.Parameters.AddWithValue("@UID", System.Data.SqlDbType.Int);
+                sqlCmd2.Parameters["@UID"].Value = Convert.ToInt32(GetLoginCacheUserInfo["ID"].ToString());
+                sqlCmd2.ExecuteNonQuery();
+                sqlCon.Close();
             }
         }
         static string sha256(string randomString)

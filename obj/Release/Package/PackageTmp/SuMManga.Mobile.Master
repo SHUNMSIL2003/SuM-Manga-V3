@@ -4,7 +4,7 @@
 <html lang="en" style="overflow: hidden;">
 <head id="SMHead" runat="server"><!--
     <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials"> -->
-    <!--<script src="/runsw.js"></script>-->
+    <script src="/runsw.js"></script>
     <script type="module">
         import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
         const el = document.createElement('pwa-update');
@@ -120,6 +120,18 @@
             -ms-user-select: none;
             -o-user-select: none;
             user-select: none;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+        .sumsmoothtrans {
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
         }
          text, h1, h2, h3, h4, h5, h6, p , b {
             pointer-events: none;
@@ -362,10 +374,11 @@
                                 }, 10);
                             }
 
-                        };
+                };
+                //document.getElementById('X').style.display = (document.getElementById('X').style.display == "block") ? "none" : "block";
             </script>
         </div>
-        <div id="fullnavscont" runat="server" class="STBSUMBAR bg-white shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:transparent !important;bottom:0 !important;z-index:999;">
+        <div id="fullnavscont" runat="server" class="STBSUMBAR bg-white shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:transparent !important;bottom:0 !important;z-index:999;position:fixed !important;">
             <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;overflow:clip;">
                 <a name="no-animation" href='javascript:history.go(-1)' style="float:left !important;width:fit-content;">
                     <img src="/assets/img/SuM_TBrabd_x92.png" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
@@ -423,10 +436,10 @@
         </script>
         <script>
             if (!navigator.onLine) {
-                document.getElementById('FullSearch').onclick = function () { document.getElementById('SearchOffline').style.display = 'block'; };
-                document.getElementById('SubSearch').onclick = function () { document.getElementById('SearchOffline').style.display = 'block'; };
-                document.getElementById('AccountSettingsOrLogin').onclick = function () { document.getElementById('AccountOffline').style.display = 'block'; };
-                document.getElementById('AccountSettingsOrLogin').href = '#';
+                document.getElementById('FullSearch').onclick = document.getElementById('SearchOffline').style.display = 'block';
+                document.getElementById('SubSearch').onclick = document.getElementById('SearchOffline').style.display = 'block';
+                document.getElementById('MainContent_AccountSettingsOrLogin').onclick = document.getElementById('AccountOffline').style.display = 'block';
+                document.getElementById('MainContent_AccountSettingsOrLogin').href = '#';
                 document.getElementById('SendCommentAria').style.display = 'none';
             };
         </script>

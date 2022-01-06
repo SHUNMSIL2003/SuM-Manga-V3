@@ -632,19 +632,21 @@ namespace SuM_Manga_V3.storeitems
         protected void LoginToSuM(object sender, EventArgs e)
         {
             LoginStatus.InnerText = "";
+            LogInProssInfo.Attributes["style"] = "display:none;";
             string statevalid = "";
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
                 string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName AND Password = @Password ";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                string username = UserNameL.Value;
+                string username = UserNameL.Value; //Request.QueryString["UserNameL"].ToString();
                 sqlCmd.Parameters.AddWithValue("@UserName", username);
-                string password = PasswordL.Value;
+                string password = PasswordL.Value; //Request.QueryString["PasswordL"].ToString();
                 sqlCmd.Parameters.AddWithValue("@Password", sha256(password));
-                int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
-                if (count > 0)
+                var Res = sqlCmd.ExecuteScalar();
+                if (Res != null)
                 {
+                    int ID = Convert.ToInt32(Res.ToString());
                     string query2 = "SELECT AccountStatus FROM SuMUsersAccounts WHERE UserName = @UserName";
                     SqlCommand sqlCmd2 = new SqlCommand(query2, sqlCon);
                     sqlCmd2.Parameters.AddWithValue("@UserName", username);
@@ -655,44 +657,120 @@ namespace SuM_Manga_V3.storeitems
                             statevalid = dr[0].ToString();
                         }
                     }
-                    if (statevalid[0] == '#' && statevalid[1] == 'R')
+                    if (statevalid.Contains("#R") == true)//statevalid[0] == '#' && statevalid[1] == 'R'&&
                     {
-                        LoginStatus.InnerText = "You need to Complete SuM Account registration! You will find the link in you email-inbox.";
+                        LoginStatus.InnerText = "You need to Complete SuM Account registration! You will find a link in you email-inbox.";
+                        LogInProssInfo.Attributes["style"] = "background-color:rgba(255,124,107,0.16);width:100%;text-align:center;padding:0px;height:fit-content;border-radius:14px;display:block;";
                         ResendConf.Visible = true;
                     }
                     else
                     {
-                        string qc = "SELECT CreatorName FROM SuMCreators WHERE UserName = @UserName";
-                        SqlCommand cv = new SqlCommand(qc, sqlCon);
-                        cv.Parameters.AddWithValue("@UserName", username);
-                        var ituac = cv.ExecuteScalar();
-                        if (ituac == null)
+                        string qwi = "SELECT SIDs FROM SuMUsersAccounts WHERE UserID = @UID";
+                        sqlCmd = new SqlCommand(qwi, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        sqlCmd.Parameters["@UID"].Value = ID;
+                        var CMDRs = sqlCmd.ExecuteScalar();
+                        if (CMDRs != null)
                         {
-                            SaveCookie(username, count);
-                            sqlCon.Close();
-                            Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
+
+                            if (SIDsCountLessThanX(CMDRs.ToString(), 3) == true)
+                            {
+                                string qc = "SELECT CreatorName FROM SuMCreators WHERE UserName = @UserName";
+                                SqlCommand cv = new SqlCommand(qc, sqlCon);
+                                cv.Parameters.AddWithValue("@UserName", username);
+                                var ituac = cv.ExecuteScalar();
+                                string GSID = GetNewSID(username);
+                                qc = "UPDATE SuMUsersAccounts SET SIDs = @NSID WHERE UserID = @UID";
+                                cv = new SqlCommand(qc, sqlCon);
+                                cv.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                                cv.Parameters["@UID"].Value = ID;
+                                cv.Parameters.AddWithValue("@NSID", CMDRs.ToString() + GSID);
+                                cv.ExecuteNonQuery();
+                                if (ituac == null)
+                                {
+                                    SaveCookie(username, ID, GSID);
+                                    sqlCon.Close();
+                                    Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
+                                }
+                                else
+                                {
+                                    qc = "SELECT UserID FROM SuMCreators WHERE UserName = @UserName";
+                                    cv = new SqlCommand(qc, sqlCon);
+                                    cv.Parameters.AddWithValue("@UserName", username);
+                                    int CID = Convert.ToInt32(cv.ExecuteScalar().ToString());
+                                    SaveSCCookie(username, ituac.ToString(), ID, CID, GSID);
+                                    sqlCon.Close();
+                                    Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
+                                }
+                            }
+                            else
+                            {
+                                HttpCookie CacheUserInfo = new HttpCookie("SuMCurrentLoginWorkerCache");
+                                CacheUserInfo["ID"] = ID.ToString();
+                                CacheUserInfo.Expires = DateTime.Now.AddMinutes(30);
+                                HttpContext.Current.Response.Cookies.Add(CacheUserInfo);
+                                LoginStatus.InnerText = "You can login to a maximum of three devices!";
+                                LogInProssInfo.Attributes["style"] = "background-color:rgba(255,124,107,0.16);width:100%;text-align:center;padding:0px;height:fit-content;border-radius:14px;display:block;";
+                                LogOutOffAllBTN.Visible = true;
+                            }
                         }
                         else
                         {
-                            qc = "SELECT UserID FROM SuMCreators WHERE UserName = @UserName";
-                            cv = new SqlCommand(qc, sqlCon);
+                            string qc = "SELECT CreatorName FROM SuMCreators WHERE UserName = @UserName";
+                            SqlCommand cv = new SqlCommand(qc, sqlCon);
                             cv.Parameters.AddWithValue("@UserName", username);
-                            int CID = Convert.ToInt32(cv.ExecuteScalar().ToString());
-                            SaveSCCookie(username, ituac.ToString(), count, CID);
-                            sqlCon.Close();
-                            Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
+                            var ituac = cv.ExecuteScalar();
+                            string GSID = GetNewSID(username);
+                            qc = "UPDATE SuMUsersAccounts SET SIDs = @NSID WHERE UserID = @UID";
+                            cv = new SqlCommand(qc, sqlCon);
+                            cv.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                            cv.Parameters["UID"].Value = ID;
+                            cv.Parameters.AddWithValue("@NSID", GSID);
+                            cv.ExecuteNonQuery();
+                            if (ituac == null)
+                            {
+                                SaveCookie(username, ID, GSID);
+                                sqlCon.Close();
+                                Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
+                            }
+                            else
+                            {
+                                qc = "SELECT UserID FROM SuMCreators WHERE UserName = @UserName";
+                                cv = new SqlCommand(qc, sqlCon);
+                                cv.Parameters.AddWithValue("@UserName", username);
+                                int CID = Convert.ToInt32(cv.ExecuteScalar().ToString());
+                                SaveSCCookie(username, ituac.ToString(), ID, CID, GSID);
+                                sqlCon.Close();
+                                Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
+                            }
                         }
                     }
                 }
                 else
                 {
-                    LoginStatus.InnerText = "Username or Password are incorrect"; sqlCon.Close();
-                    UserNameL.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
-                    PasswordL.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
+                    UserNameL.Attributes["style"] = "border: solid 2px rgb(255,90,69);border-radius:14px;";
+                    PasswordL.Attributes["style"] = "border: solid 2px rgb(255,90,69);border-radius:14px;";
                     LoginStatus.InnerText = "Username Or Password are incurrect!";
+                    LogInProssInfo.Attributes["style"] = "background-color:rgba(255,124,107,0.16);width:100%;text-align:center;padding:0px;height:fit-content;border-radius:14px;display:block;";
+                    sqlCon.Close();
                 }
-
+                sqlCon.Close();
             }
+        }
+        protected void LogOutOffAll(object sender, EventArgs e)
+        {
+            HttpCookie GetLoginCacheUserInfo = Request.Cookies["SuMCurrentLoginWorkerCache"];
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "UPDATE SuMUsersAccounts SET SIDs = NULL WHERE UserID = @UID";
+                SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
+                sqlCmd2.Parameters.AddWithValue("@UID", System.Data.SqlDbType.Int);
+                sqlCmd2.Parameters["@UID"].Value = Convert.ToInt32(GetLoginCacheUserInfo["ID"].ToString());
+                sqlCmd2.ExecuteNonQuery();
+                sqlCon.Close();
+            }
+            Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
         }
         static string sha256(string randomString)
         {
@@ -705,26 +783,25 @@ namespace SuM_Manga_V3.storeitems
             }
             return hash.ToString();
         }
-        protected void SaveCookie(string UserName, int ID)
+        protected static void SaveCookie(string UserName, int ID, string SessionID)
         {
-            HttpCookie userInfo = new HttpCookie("SuMCurrentUser"); 
+            HttpCookie userInfo = new HttpCookie("SuMCurrentUser");
             userInfo["UserName"] = UserName;
             userInfo["ID"] = ID.ToString();
-            //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
+            userInfo["SID"] = SessionID;
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
-            HttpContext.Current.Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
         }
-        protected void SaveSCCookie(string UserName, string craetorname, int ID, int CID)
+        protected static void SaveSCCookie(string UserName, string craetorname, int ID, int CID, string SessionID)
         {
             HttpCookie userInfo = new HttpCookie("SuMCurrentUser");
             userInfo["UserName"] = UserName;
             userInfo["CreatorName"] = craetorname;
+            userInfo["SID"] = SessionID;
             userInfo["ID"] = ID.ToString();
             userInfo["CID"] = CID.ToString();
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
-            HttpContext.Current.Response.Redirect(Request.Url.ToString() + RandomQuryForReload());
         }
         protected void ResendConfLink(object sender, EventArgs e)
         {
@@ -832,6 +909,69 @@ namespace SuM_Manga_V3.storeitems
             string sixDigitNumber = randNum.ToString("D6");
             str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
             return "&" + str + "=ClearCache";
+        }
+        protected static string GetNewSID(string UserName)
+        {
+            int length = 6;
+            char[] chArray = "'a~bc}$def!gh1?i&jklm{n\\opq@rs|tu~vwxyz1223456%7[890AB@CD|EF^&G?HI6J3\\~&KLMNOP!QR$STU%]VWX@YZ*".ToCharArray();
+            string str = string.Empty;
+            Random random = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                int index = random.Next(1, chArray.Length);
+                if (!str.Contains(chArray.GetValue(index).ToString()))
+                {
+                    str = str + chArray.GetValue(index);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            DateTime dateTime = DateTime.UtcNow.Date;
+            str = "#" + str + "&" + UserName + "%" + dateTime.ToString("yyyyMMdd") + ";";
+            return str;
+        }
+        protected string[] SIDsToStringArray(string SIDs)
+        {
+            Queue<string> R1 = new Queue<string>();
+            bool fh = false;
+            string A1 = "";
+            char[] aa = SIDs.ToCharArray();
+            for (int i = 0; i < aa.Length; i++)
+            {
+                if (aa[i] == ';')
+                {
+                    fh = false;
+                    R1.Enqueue(A1);
+                    A1 = "";
+                }
+                if (fh == true)
+                {
+                    A1 += aa[i].ToString();
+                }
+                if (aa[i] == '#') { fh = true; }
+            }
+            int RdL = R1.Count;
+            string[] RS = new string[RdL];
+            int RFDH = 0;
+            while (R1.Count > 0)
+            {
+                RS[RFDH] = R1.Dequeue();
+                RFDH++;
+            }
+            return RS;
+        }
+        protected bool SIDsCountLessThanX(string SIDs, int MAX)
+        {
+            int HCount = SIDs.Count(f => (f == '#'));
+            int CCount = SIDs.Count(f => (f == ';'));
+            if (HCount == CCount)
+            {
+                if (CCount < MAX) { return true; }
+                else { return false; }
+            }
+            else { return false; }
         }
         protected void LogInWithGoogle(object sender, EventArgs e)
         {

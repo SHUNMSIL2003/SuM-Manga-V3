@@ -196,6 +196,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="00000000J0P.js" />
     <Content Include="404.aspx" />
     <Content Include="About.aspx" />
     <Content Include="AccountETC\DarkMoon.svg" />
@@ -1315,7 +1316,13 @@
     <Content Include="storeitems\UramichiOniisan\sumcp0006.jpg" />
     <Content Include="storeitems\UramichiOniisan\sumcp0007.jpg" />
     <Content Include="offline.html" />
+    <Content Include="svg\attachemail.svg" />
     <Content Include="svg\close.svg" />
+    <Content Include="svg\devices.svg" />
+    <Content Include="svg\face.svg" />
+    <Content Include="svg\feed.svg" />
+    <Content Include="svg\payment.svg" />
+    <Content Include="svg\publish.svg" />
     <Content Include="svg\share.svg" />
     <Content Include="svg\under-maintenance.svg" />
     <Content Include="ToDo-replace-this-name.html" />
@@ -4156,6 +4163,7 @@
     <Compile Include="AccountETC\ValidateUsers.aspx.designer.cs">
       <DependentUpon>ValidateUsers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

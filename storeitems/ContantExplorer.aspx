@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="ContantExplorer.aspx.cs" Inherits="SuM_Manga_V3.storeitems.ContantExplorer" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="ContantExplorer.aspx.cs" Async="true" Inherits="SuM_Manga_V3.storeitems.ContantExplorer" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
@@ -15,7 +15,7 @@
                     <asp:Panel runat="server">
                         <div id="SuMLoginUI" runat="server" style="background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;" class="row justify-content-center">
             <div id="SacondContForLogin" class="col-md-9 col-lg-12 col-xl-10">
-                <div style="border-radius:22px !important;" class="card shadow-lg o-hidden border-0 my-5">
+                <div style="border-radius:22px !important;" class="card shadow-lg o-hidden border-0 my-5 sumsmoothtrans">
                     <div class="card-body p-0">
                         <div class="row">
                             <div style="width:100%;position:relative;">
@@ -27,27 +27,33 @@
                                 <div class="flex-grow-1 bg-login-image" style="background: url(&quot;/assets/img/dogs/SuM-Reader.jpg?h=0086b7bb234345281e92a417000e3a03&quot;);"></div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="p-5">
+                                <div class="p-5 sumsmoothtrans">
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Login to start reading!</h4>
                                     </div>
                                     <div class="user">
                                         <div class="mb-3"><input class="form-control form-control-user" type="text" style="border-radius:14px;" id="UserNameL" placeholder="User Name" name="UserName" runat="server"></div>
                                         <div class="mb-3"><input class="form-control form-control-user" type="password" style="border-radius:14px;" id="PasswordL" placeholder="Password" name="password" runat="server"></div>
-                                        <div style="text-align:center;width:100%;height:fit-content;"><h6 style="color:red;" id="LoginStatus" runat="server"></h6><asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" OnClick="ResendConfLink" Visible="false" ID="ResendConf" Text="Re-Send Email" /></div>
-                                        <div class="mb-3">
+                                        <div style="text-align:center;width:100%;height:fit-content;margin-bottom:16px;">
+                                            <div class="animated fadeInDown" runat="server" id="LogInProssInfo" style="display:none;">
+                                                <h6 class="animated pulse" style="color:rgb(255,90,69);padding:8px;" id="LoginStatus" runat="server"></h6>
+                                                <asp:Button CssClass="btn btn-primary d-block btn-user w-100" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-radius:14px;" OnClick="ResendConfLink" Visible="false" ID="ResendConf" Text="Re-Send Email" />
+                                                <asp:Button CssClass="btn btn-primary d-block btn-user w-100" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-radius:14px;" OnClick="LogOutOffAll" Visible="false" ID="LogOutOffAllBTN" Text="Logout of all devices" />
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 sumsmoothtrans">
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" checked="checked" id="formCheck-1"><label id="rem" runat="server" class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
                                             </div> 
                                         </div>
-                                        <asp:Button ID="LoginBTN" CssClass="btn btn-primary d-block btn-user w-100" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-radius:14px;" OnClick="LoginToSuM" runat="server" Text="Login" />
-                                        <hr>
-                                        <a style="border-radius:14px !important;" class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Login with Google</a>
-                                        <a style="border-radius:14px !important;" class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
-                                        <hr>
+                                        <asp:Button ID="LoginBTN" CssClass="btn btn-primary d-block btn-user w-100 sumsmoothtrans" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-radius:14px;" OnClick="LoginToSuM" runat="server" Text="Login" />
+                                        <hr class="sumsmoothtrans">
+                                        <a style="border-radius:14px !important;" class="sumsmoothtrans btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Login with Google</a>
+                                        <a style="border-radius:14px !important;" class="sumsmoothtrans btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
+                                        <hr class="sumsmoothtrans">
                                     </div>
-                                    <div class="text-center"><a class="small" href="/AccountETC/PassRecovryETC.aspx" style="color: rgb(104,64,217);">Forgot Password?</a></div>
-                                    <div class="text-center"><a class="small" href="/AccountETC/RegisterETC.aspx" style="color: rgb(104,64,217);">Create an Account!</a></div>
+                                    <div class="text-center sumsmoothtrans"><a class="small" href="/AccountETC/PassRecovryETC.aspx" style="color: rgb(104,64,217);">Forgot Password?</a></div>
+                                    <div class="text-center sumsmoothtrans"><a class="small" href="/AccountETC/RegisterETC.aspx" style="color: rgb(104,64,217);">Create an Account!</a></div>
                                 </div>
                             </div>
                         </div>

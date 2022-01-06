@@ -97,11 +97,17 @@
 
 <body class="bg-gradient-primary" style="background: rgb(242,242,242);">
     <style>
-         * {
-             -moz-user-select: none;
-             -webkit-user-select: none;
-             user-select: none;
-         }
+        * {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            text-decoration: none;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+        }
          text, h1, h2, h3, h4, h5, h6, p {
             pointer-events: none;
          }

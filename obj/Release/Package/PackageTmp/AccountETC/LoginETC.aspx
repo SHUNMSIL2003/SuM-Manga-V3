@@ -100,11 +100,17 @@
 
 <body class="bg-gradient-primary" style="background: rgb(242,242,242);">
     <style>
-         * {
-             -moz-user-select: none;
-             -webkit-user-select: none;
-             user-select: none;
-         }
+        * {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            text-decoration: none;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+        }
         body {
             animation: rainbow 10s linear infinite;
         }
@@ -203,7 +209,13 @@
                                     <div class="user">
                                         <div class="mb-3"><input class="form-control form-control-user" type="text" style="border-radius:14px;" id="UserNameL" placeholder="User Name" name="UserName" runat="server"></div>
                                         <div class="mb-3"><input class="form-control form-control-user" type="password" style="border-radius:14px;" id="PasswordL" placeholder="Password" name="password" runat="server"></div>
-                                        <div style="text-align:center;width:100%;height:fit-content;"><h6 style="color:red;" id="LoginStatus" runat="server"></h6><asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" OnClick="ResendConfLink" Visible="false" ID="ResendConf" Text="Re-Send Email" /></div>
+                                        <div style="text-align:center;width:100%;height:fit-content;">
+                                            <div runat="server" id="LogInProssInfo" style="display:none;">
+                                                <h6 style="color:rgb(255,90,69);padding:8px;" id="LoginStatus" runat="server"></h6>
+                                                <asp:Button CssClass="btn btn-primary d-block btn-user w-100" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-radius:14px;margin-bottom:12px;" OnClick="ResendConfLink" Visible="false" ID="ResendConf" Text="Re-Send Email" />
+                                                <asp:Button CssClass="btn btn-primary d-block btn-user w-100" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-radius:14px;margin-bottom:12px;" OnClick="LogOutOffAll" Visible="false" ID="LogOutOffAllBTN" Text="Logout of all devices" />
+                                            </div>
+                                        </div>
                                         <div class="mb-3">
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" checked="checked" id="formCheck-1"><label id="rem" runat="server" class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
