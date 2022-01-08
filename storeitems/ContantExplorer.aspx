@@ -13,7 +13,7 @@
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-                        <div id="SuMLoginUI" runat="server" style="background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;" class="row justify-content-center">
+                        <div id="SuMLoginUI" runat="server" style=" background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;" class="row justify-content-center">
             <div id="SacondContForLogin" class="col-md-9 col-lg-12 col-xl-10">
                 <div style="border-radius:22px !important;" class="card shadow-lg o-hidden border-0 my-5 sumsmoothtrans">
                     <div class="card-body p-0">
@@ -133,7 +133,7 @@
 
             window.onclick = function (e) {
 
-                console.log(e);
+                //console.log(e);
 
                 // Check if this action was triggered by clicking an <a> element
                 if (document.activeElement.tagName == "A" && document.activeElement.getAttribute("name") != "no-animation") {
@@ -151,7 +151,7 @@
 
                         window.location.href = redirectLink;
 
-                    }, 540);
+                    }, 480);
 
                 }
 
@@ -161,8 +161,8 @@
     <div id="FakeBody" runat="server" style="">
     <div id="background" style="background-color:rgba(225,225,225,0.50);">
     <div class="fadeIn animated">
-    <div style="height:fit-content;width:100vw;overflow:hidden; background-color:#ffffff !important;position:fixed;" id="CategoryX" runat="server">
-    <div id="infoCover" runat="server" class="mySlides" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:fit-content;">
+    <div style="height:fit-content;width:100vw;overflow:hidden; background-color:transparent !important;position:fixed;" id="CategoryX" runat="server">
+    <div id="infoCover" runat="server" class="mySlides animated zoomInDown" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:fit-content;">
     <div style="width:94vw;height:fit-content;position:relative;margin:0 auto;margin-top:32px;">
         <h1 id="MTitle" runat="server" style="float:left;margin-top:12px;margin-left:12px;color:#ffffff;font-size:186%;margin-right:14px !important;width:100%;height:fit-content;">#</h1>
         <p style="color:rgb(255, 255, 255, 0.82);float:right;margin-top:-18px;margin-right:10px;">By <b id="MangaCreator" style="font-size:80%;" runat="server"></b></p>

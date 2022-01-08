@@ -1319,6 +1319,7 @@
     <Content Include="svg\attachemail.svg" />
     <Content Include="svg\close.svg" />
     <Content Include="svg\devices.svg" />
+    <Content Include="svg\error.svg" />
     <Content Include="svg\face.svg" />
     <Content Include="svg\feed.svg" />
     <Content Include="svg\payment.svg" />

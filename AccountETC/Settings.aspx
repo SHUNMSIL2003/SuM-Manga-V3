@@ -8,11 +8,17 @@
         slideInDown{
             animation-duration:0.4s !important;
         }
-    </style>
+    </style><!-- 
+    <a id="DebugSettings" runat="server">
+
+    </a>
+    <a id="RootDebug" runat="server">
+
+    </a> -->
     <div style="height:100%;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
         <div style="width:100vw;height:22px;background-color:#f2f2f2;position:relative;z-index:999;margin-top:-8px !important;"></div>
         <div style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;">
-            <a runat="server" id="AccountSettingsOrLogin" onclick="" href="/AccountETC/SuMAccount.aspx" style="height:112px !important;width:calc(100vw -54px) !important;background-color:transparent !important;display:block !important;margin-top:8px;margin-bottom:8px; margin-left:8px;position:relative;z-index:998;">
+            <a runat="server" id="AccountSettingsOrLogin" onclick="" href="/AccountETC/SuMAccount.aspx" style="height:112px !important;width:calc(100vw - 56px) !important;background-color:transparent !important;display:block !important;margin-top:8px;margin-bottom:8px; margin-left:8px;position:relative;z-index:998;">
             <img class="animated pulse" id="PFP" runat="server" style="width:84px !important;height:84px !important;border-radius:50% !important;float:left;display:inline;margin-bottom:6px;" src="/AccountETC/UsersUploads/DeafultPFP.jpg" />
                 <div class="fadeIn animated" style="float:left;display:inline;margin-left:8px;">
                     <h3 id="SuMUserName" runat="server" style="color:#1d1d1d;">Loging to SuM</h3>

@@ -22,6 +22,7 @@ namespace SuM_Manga_V3.storeitems
         }*/
         protected void Page_Load(object sender, EventArgs e)
         {
+            LastRefreshPross();
             /*HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             if (GetUserInfoCookie == null)
             {
@@ -913,7 +914,7 @@ namespace SuM_Manga_V3.storeitems
         protected static string GetNewSID(string UserName)
         {
             int length = 6;
-            char[] chArray = "'a~bc}$def!gh1?i&jklm{n\\opq@rs|tu~vwxyz1223456%7[890AB@CD|EF^&G?HI6J3\\~&KLMNOP!QR$STU%]VWX@YZ*".ToCharArray();
+            char[] chArray = "abcd168efgh1ijklmnopqrst16uvwxyz122d34567890ABdCDEFGHI6J3KLMNOPQRST6UVWXYZ".ToCharArray();
             string str = string.Empty;
             Random random = new Random();
             for (int i = 0; i < length; i++)
@@ -929,7 +930,7 @@ namespace SuM_Manga_V3.storeitems
                 }
             }
             DateTime dateTime = DateTime.UtcNow.Date;
-            str = "#" + str + "&" + UserName + "%" + dateTime.ToString("yyyyMMdd") + ";";
+            str = "#" + str + "%" + UserName + "%" + dateTime.ToString("yyyyMMdd") + "@";
             return str;
         }
         protected string[] SIDsToStringArray(string SIDs)
@@ -940,32 +941,30 @@ namespace SuM_Manga_V3.storeitems
             char[] aa = SIDs.ToCharArray();
             for (int i = 0; i < aa.Length; i++)
             {
-                if (aa[i] == ';')
+                if (aa[i] == '@')
                 {
+                    A1 += "@";
                     fh = false;
                     R1.Enqueue(A1);
                     A1 = "";
                 }
+                if (aa[i] == '#') { fh = true; }
                 if (fh == true)
                 {
                     A1 += aa[i].ToString();
                 }
-                if (aa[i] == '#') { fh = true; }
             }
-            int RdL = R1.Count;
-            string[] RS = new string[RdL];
-            int RFDH = 0;
+            string[] RS = new string[R1.Count];
             while (R1.Count > 0)
             {
-                RS[RFDH] = R1.Dequeue();
-                RFDH++;
+                RS[R1.Count - 1] = R1.Dequeue();
             }
             return RS;
         }
         protected bool SIDsCountLessThanX(string SIDs, int MAX)
         {
             int HCount = SIDs.Count(f => (f == '#'));
-            int CCount = SIDs.Count(f => (f == ';'));
+            int CCount = SIDs.Count(f => (f == '@'));
             if (HCount == CCount)
             {
                 if (CCount < MAX) { return true; }
@@ -976,6 +975,77 @@ namespace SuM_Manga_V3.storeitems
         protected void LogInWithGoogle(object sender, EventArgs e)
         {
 
+        }
+        // -- Login Part Eng --
+        protected void LastRefreshPross()
+        {
+            HttpCookie GetRefreshInfoCookie = Request.Cookies["SuMMangaRefreshPross" + Request.QueryString["Manga"].ToString()];
+            if (GetRefreshInfoCookie != null)
+            {
+                int Year = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedYear"].ToString());
+                int Month = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedMonth"].ToString());
+                int Day = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedDay"].ToString());
+                int Hour = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedHour"].ToString());
+                int CurrYear = Convert.ToInt32(DateTime.UtcNow.ToString("yyyy"));
+                int CurrMonth = Convert.ToInt32(DateTime.UtcNow.ToString("MM"));
+                int CurrDay = Convert.ToInt32(DateTime.UtcNow.ToString("dd"));
+                int CurrHour = Convert.ToInt32(DateTime.UtcNow.ToString("HH"));
+                if ((Year - CurrYear) == 0)
+                {
+                    if ((Month - CurrMonth) == 0)
+                    {
+                        if ((Day - CurrDay) != 0) { ReloadAndUpdate(); }
+                    }
+                    else { ReloadAndUpdate(); }
+                }
+                else { ReloadAndUpdate(); }
+            }
+            else
+            {
+                HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshPross" + Request.QueryString["Manga"].ToString());
+                UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                UpdateInfo.Expires = DateTime.MaxValue;
+                HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+            }
+        }
+        protected void ReloadAndUpdate()
+        {
+            string CurrURL = Request.Url.ToString();
+            if (CurrURL.Contains("?") == true)
+            {
+                Response.Redirect(Request.Url.ToString() + "&" + RandomQuryForUpdate());
+            }
+            else
+            {
+                Response.Redirect(Request.Url.ToString() + "?" + RandomQuryForUpdate());
+            }
+        }
+        protected static string RandomQuryForUpdate()
+        {
+            int length = 9;
+            char[] chArray = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            string str = string.Empty;
+            Random random = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                int index = random.Next(1, chArray.Length);
+                if (!str.Contains(chArray.GetValue(index).ToString()))
+                {
+                    str = str + chArray.GetValue(index);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            Random r = new Random();
+            int randNum = r.Next(1000000);
+            string sixDigitNumber = randNum.ToString("D6");
+            str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
+            return "UPDATE=" + str;
         }
     }
 }

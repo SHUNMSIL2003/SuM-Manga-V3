@@ -301,7 +301,7 @@ namespace SuM_Manga_V3.AccountETC
         protected static string GetNewSID(string UserName)
         {
             int length = 6;
-            char[] chArray = "'a~bc}$def!gh1?i&jklm{n\\opq@rs|tu~vwxyz1223456%7[890AB@CD|EF^&G?HI6J3\\~&KLMNOP!QR$STU%]VWX@YZ*".ToCharArray();
+            char[] chArray = "abcd168efgh1ijklmnopqrst16uvwxyz122d34567890ABdCDEFGHI6J3KLMNOPQRST6UVWXYZ".ToCharArray();
             string str = string.Empty;
             Random random = new Random();
             for (int i = 0; i < length; i++)
@@ -317,7 +317,7 @@ namespace SuM_Manga_V3.AccountETC
                 }
             }
             DateTime dateTime = DateTime.UtcNow.Date;
-            str = "#" + str + "&" + UserName + "%" + dateTime.ToString("yyyyMMdd") + ";";
+            str = "#" + str + "%" + UserName + "%" + dateTime.ToString("yyyyMMdd") + "@";
             return str;
         }
         protected string[] SIDsToStringArray(string SIDs)
@@ -328,32 +328,30 @@ namespace SuM_Manga_V3.AccountETC
             char[] aa = SIDs.ToCharArray();
             for (int i = 0; i < aa.Length; i++)
             {
-                if (aa[i] == ';')
+                if (aa[i] == '@')
                 {
+                    A1 += "@";
                     fh = false;
                     R1.Enqueue(A1);
                     A1 = "";
                 }
+                if (aa[i] == '#') { fh = true; }
                 if (fh == true)
                 {
                     A1 += aa[i].ToString();
                 }
-                if (aa[i] == '#') { fh = true; }
             }
-            int RdL = R1.Count;
-            string[] RS = new string[RdL];
-            int RFDH = 0;
+            string[] RS = new string[R1.Count];
             while (R1.Count > 0)
             {
-                RS[RFDH] = R1.Dequeue();
-                RFDH++;
+                RS[R1.Count - 1] = R1.Dequeue();
             }
             return RS;
         }
         protected bool SIDsCountLessThanX(string SIDs, int MAX)
         {
             int HCount = SIDs.Count(f => (f == '#'));
-            int CCount = SIDs.Count(f => (f == ';'));
+            int CCount = SIDs.Count(f => (f == '@'));
             if (HCount == CCount)
             {
                 if (CCount < MAX) { return true; }

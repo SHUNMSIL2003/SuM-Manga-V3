@@ -19,8 +19,10 @@ namespace SuM_Manga_V3
         }*/
         protected void Page_Load(object sender, EventArgs e)
         {
+            LastRefreshPross();
             if (!IsPostBack)
             {
+                SussionPross();
                 ShowCardsCNew();
                 //
                 //X.InnerHtml=GetFromGarna(X)
@@ -404,7 +406,7 @@ namespace SuM_Manga_V3
             DivContant += "<div style=" + b12.ToString() + "margin:0 auto;margin-bottom:8px;height:fit-content;width:100%;position:relative;" + b12.ToString() + "><a style=" + b12.ToString() + "display:block;float:right !important;margin-bottom:8px;margin-left:calc(92vw - 74px);bottom:0;position:fixed;" + b12.ToString() + ">";
             DivContant += "<p style=" + b12.ToString() + "display:inline;color:rgba(255,255,255,0.74);" + b12.ToString() + ">" + AgeRating + "</p><img style=" + b12.ToString() + "width:20px;height:20px;display:inline;" + b12.ToString() + " src=" + b12.ToString() + "/svg/views.svg" + b12.ToString() + ">";
             DivContant += "<p style=" + "display:inline;color:#ffffff;" + ">" + ViewsNumPart + "</p><b style=" + "display:inline;color:#ffffff;" + ">" + ViewsLPart + "</b></a></div>";
-            string result = "<div onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " class=" + divclass + " style=" + divstyle + ">" + DivContant + "</div>";
+            string result = "<div onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " class=" + divclass + " style=" + divstyle + ">" + "<div class=" + b12.ToString() + "animated fadeIn" + b12.ToString() + " >" + DivContant + "</div>" + "</div>";
             return result;
         }
         /*
@@ -466,6 +468,113 @@ namespace SuM_Manga_V3
             string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
             string result = "<div class=" + zoominanim + " style=" + divs0 + "><a onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " style=" + as0 + "><div style=" + divs1 + "><div class=" + "GoodBlur" + " style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
             return result;
+        }
+        protected void SussionPross()
+        {
+            HttpCookie userInfo = Request.Cookies["SuMCurrentUser"];
+            if (userInfo != null)
+            {
+                string SID = userInfo["SID"].ToString();
+                int UID = Convert.ToInt32(userInfo["ID"].ToString());
+                object CMDRs;
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string qwi = "SELECT SIDs FROM SuMUsersAccounts WHERE UserID = @UID";
+                    SqlCommand sqlCmd = new SqlCommand(qwi, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UID"].Value = UID;
+                    CMDRs = sqlCmd.ExecuteScalar();
+                    sqlCon.Close();
+                }
+                if (CMDRs != null)
+                {
+                    if (CMDRs.ToString().Contains(SID) == false)
+                    {
+                        ForceLogOut();
+                    }
+                }
+                else
+                {
+                    ForceLogOut();
+                }
+            }
+        }
+        protected void ForceLogOut()
+        {
+            HttpCookie GetUserInfoCookie = new HttpCookie("SuMCurrentUser");
+            GetUserInfoCookie.Expires = DateTime.Now.AddDays(-100);
+            Response.Cookies.Add(GetUserInfoCookie);
+        }
+        protected void LastRefreshPross()
+        {
+            HttpCookie GetRefreshInfoCookie = Request.Cookies["SuMMangaRefreshProssHome"];
+            if (GetRefreshInfoCookie != null)
+            {
+                int Year = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedYear"].ToString());
+                int Month = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedMonth"].ToString());
+                int Day = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedDay"].ToString());
+                int Hour = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedHour"].ToString());
+                int CurrYear = Convert.ToInt32(DateTime.UtcNow.ToString("yyyy"));
+                int CurrMonth = Convert.ToInt32(DateTime.UtcNow.ToString("MM"));
+                int CurrDay = Convert.ToInt32(DateTime.UtcNow.ToString("dd"));
+                int CurrHour = Convert.ToInt32(DateTime.UtcNow.ToString("HH"));
+                if ((Year - CurrYear) == 0)
+                {
+                    if ((Month - CurrMonth) == 0)
+                    {
+                        if ((CurrDay - Day) > 2) { ReloadAndUpdate(); }
+                    }
+                    else { ReloadAndUpdate(); }
+                }
+                else { ReloadAndUpdate(); }
+            }
+            else
+            {
+                HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssHome");
+                UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                UpdateInfo.Expires = DateTime.MaxValue;
+                HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+            }
+        }
+        protected void ReloadAndUpdate()
+        {
+            string CurrURL = Request.Url.ToString();
+            if (CurrURL.Contains("?") == true)
+            {
+                Response.Redirect(Request.Url.ToString() + "&" + RandomQuryForUpdate());
+            }
+            else
+            {
+                Response.Redirect(Request.Url.ToString() + "?" + RandomQuryForUpdate());
+            }
+        }
+        protected static string RandomQuryForUpdate()
+        {
+            int length = 9;
+            char[] chArray = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            string str = string.Empty;
+            Random random = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                int index = random.Next(1, chArray.Length);
+                if (!str.Contains(chArray.GetValue(index).ToString()))
+                {
+                    str = str + chArray.GetValue(index);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            Random r = new Random();
+            int randNum = r.Next(1000000);
+            string sixDigitNumber = randNum.ToString("D6");
+            str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
+            return "UPDATE=" + str;
         }
     }
 }

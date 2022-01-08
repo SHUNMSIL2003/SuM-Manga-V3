@@ -15,9 +15,13 @@ namespace SuM_Manga_V3.AccountETC
         protected void Page_Load(object sender, EventArgs e)
         {
             SussionPross();
+            LastRefreshPross();
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             if (GetUserInfoCookie != null)
             {
+                // -Debug Start-
+                //RootDebug.InnerText = GetUserInfoCookie.Value;
+                // -Debug End-
                 AccountSettingsOrLogin.Attributes["onclick"] = "if (document.getElementById('UserSettingsCards').style.height == '0px') { document.getElementById('UserSettingsCards').style.height = '275px'; } else { document.getElementById('UserSettingsCards').style.height = '0px'; document.getElementById('PFPDiv').style.display = 'none'; document.getElementById('ChangeEmailDiv').style.display = 'none'; document.getElementById('SigAndMore').style.display = 'none'; document.getElementById('creatorsupmitform').style.display = 'none'; document.getElementById('MainContent_PaymentCard').style.display = 'none'; document.getElementById('ManageDevicesCard').style.display = 'none'; }"; //"if (document.getElementById('UserSettingsCards').style.height == '0px') { document.getElementById('UserSettingsCards').style.height = '232px'; } else { document.getElementById('UserSettingsCards').style.height = '0px'; }";
                 //"document.getElementById('UserSettingsCards').style.display = (document.getElementById('UserSettingsCards').style.display == 'block') ? 'none' : 'block';";
                 AccountSettingsOrLogin.Attributes["href"] = "#";
@@ -114,35 +118,70 @@ namespace SuM_Manga_V3.AccountETC
             char[] aa = SIDs.ToCharArray();
             for (int i = 0; i < aa.Length; i++)
             {
-                if (aa[i] == ';')
+                if (aa[i] == '@')
                 {
+                    A1 += "@";
                     fh = false;
                     R1.Enqueue(A1);
                     A1 = "";
                 }
+                if (aa[i] == '#') { fh = true; }
                 if (fh == true)
                 {
                     A1 += aa[i].ToString();
                 }
-                if (aa[i] == '#') { fh = true; }
             }
-            int RdL = R1.Count;
-            string[] RS = new string[RdL];
-            int RFDH = 0;
+            string[] RS = new string[R1.Count];
             while (R1.Count > 0)
             {
-                RS[RFDH] = R1.Dequeue();
-                RFDH++;
+                RS[R1.Count - 1] = R1.Dequeue();
             }
             return RS;
         }
         public void NULL(object sender, EventArgs e) { }
         protected void LogOut(object sender, EventArgs e)
         {
-            HttpCookie GetUserInfoCookie = new HttpCookie("SuMCurrentUser");
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            string CurrSID = GetUserInfoCookie["SID"].ToString();
+            int CurrUID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+            GetUserInfoCookie = new HttpCookie("SuMCurrentUser");
             GetUserInfoCookie.Expires = DateTime.Now.AddDays(-100);
             Response.Cookies.Add(GetUserInfoCookie);
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "SELECT SIDs FROM SuMUsersAccounts WHERE UserID = @UID ";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd.Parameters["@UID"].Value = CurrUID;
+                var Res = sqlCmd.ExecuteScalar();
+                if (Res != null)
+                {
+                    string NewSIDsSQLString = RemoveAnSIDfromSIDsString(Res.ToString(), CurrSID);
+                    query = "UPDATE SuMUsersAccounts SET SIDs = @NewSIDs WHERE UserID = @UID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UID"].Value = CurrUID;
+                    sqlCmd.Parameters.AddWithValue("@NewSIDs", NewSIDsSQLString);
+                    sqlCmd.ExecuteNonQuery();
+                    //DebugSettings.InnerText = "RemoveTarget:" + CurrSID + " Result:" + NewSIDsSQLString;
+                }
+                sqlCon.Close();
+            }
             Response.Redirect("~/AccountETC/LogInETC.aspx");
+        }
+        protected string RemoveAnSIDfromSIDsString(string SIDs, string SIDToRemove)
+        {
+            string[] SQLCurrSIDs = SIDsToStringArray(SIDs);
+            string Result = "";
+            for (int i = 0; i < SQLCurrSIDs.Length; i++) 
+            {
+                if (SQLCurrSIDs[i] != SIDToRemove) 
+                {
+                    Result += SQLCurrSIDs[i];
+                }
+            }
+            return Result;
         }
         protected void ForceLogOut()
         {
@@ -231,6 +270,80 @@ namespace SuM_Manga_V3.AccountETC
                     sqlCon.Close();
                 }
             }
+        }
+        protected void LastRefreshPross()
+        {
+            HttpCookie GetRefreshInfoCookie = Request.Cookies["SuMMangaRefreshProssSettings"];
+            if (GetRefreshInfoCookie != null)
+            {
+                int Year = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedYear"].ToString());
+                int Month = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedMonth"].ToString());
+                int Day = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedDay"].ToString());
+                int Hour = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedHour"].ToString());
+                int CurrYear = Convert.ToInt32(DateTime.UtcNow.ToString("yyyy"));
+                int CurrMonth = Convert.ToInt32(DateTime.UtcNow.ToString("MM"));
+                int CurrDay = Convert.ToInt32(DateTime.UtcNow.ToString("dd"));
+                int CurrHour = Convert.ToInt32(DateTime.UtcNow.ToString("HH"));
+                if ((Year - CurrYear) == 0)
+                {
+                    if ((Month - CurrMonth) == 0)
+                    {
+                        if ((Day - CurrDay) == 0)
+                        {
+                            if ((CurrHour - Hour) > 8) { ReloadAndUpdate(); }
+                        }
+                        else { ReloadAndUpdate(); }
+                    }
+                    else { ReloadAndUpdate(); }
+                }
+                else { ReloadAndUpdate(); }
+            }
+            else
+            {
+                HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssSettings");
+                UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                UpdateInfo.Expires = DateTime.MaxValue;
+                HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+            }
+        }
+        protected void ReloadAndUpdate()
+        {
+            string CurrURL = Request.Url.ToString();
+            if (CurrURL.Contains("?") == true)
+            {
+                Response.Redirect(Request.Url.ToString() + "&" + RandomQuryForUpdate());
+            }
+            else
+            {
+                Response.Redirect(Request.Url.ToString() + "?" + RandomQuryForUpdate());
+            }
+        }
+        protected static string RandomQuryForUpdate()
+        {
+            int length = 9;
+            char[] chArray = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            string str = string.Empty;
+            Random random = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                int index = random.Next(1, chArray.Length);
+                if (!str.Contains(chArray.GetValue(index).ToString()))
+                {
+                    str = str + chArray.GetValue(index);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            Random r = new Random();
+            int randNum = r.Next(1000000);
+            string sixDigitNumber = randNum.ToString("D6");
+            str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
+            return "UPDATE=" + str;
         }
     }
 }

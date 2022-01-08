@@ -19,11 +19,12 @@
             pointer-events: none;
         }
     </style>
-                     <div class="text-center mt-5">
-                             <div class="error mx-auto" data-text="404">
-                                 <p class="m-0">404</p>
+                     <div class="text-center mt-5 animated fadeIn" style="text-align:center;position:relative;vertical-align:middle;margin-top:24vh !important;">
+                             <div class=" animated pulse" >
+                                 <img src="/svg/error.svg" style="width:142px;height:142px;margin:0 auto !important;" />
                              </div>
-                             <p class="text-dark mb-5 lead">Page Not Found</p>
-                             <p class="text-black-50 mb-0">The Server might be down or you may have found a glitch...</p><a id="A1" onclick="if (!navigator.onLine) { fetch('/Explore.aspx', { method: 'GET' }).then(res => { location.href = '/Explore.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Explore.aspx'; }" href="#" style="color: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server">← Back to Main Page</a>
+                             <p class="text-dark mb-5 lead animated pulse" style="color:#6840D9 !important;font-size:180%;margin-top:6px;">something went wrong!</p>
+                             <p class="text-black-50 mb-0" style="font-size:110%;margin-top:-48px;color:#000000;"><b>The Server might be down or you may have found a glitch...</b></p>
+                         <!-- <a id="A1" onclick="if (!navigator.onLine) { fetch('/Explore.aspx', { method: 'GET' }).then(res => { location.href = '/Explore.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Explore.aspx'; }" href="#" style="color: rgb(104,64,217);border-color: rgb(104,64,217);" runat="server">← Back to Main Page</a> -->
                     </div>
 </asp:Content>
