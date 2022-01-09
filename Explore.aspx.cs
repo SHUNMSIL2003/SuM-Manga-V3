@@ -19,7 +19,7 @@ namespace SuM_Manga_V3
         }*/
         protected void Page_Load(object sender, EventArgs e)
         {
-            LastRefreshPross();
+            //LastRefreshPross();
             if (!IsPostBack)
             {
                 SussionPross();
@@ -523,11 +523,41 @@ namespace SuM_Manga_V3
                 {
                     if ((Month - CurrMonth) == 0)
                     {
-                        if ((CurrDay - Day) > 2) { ReloadAndUpdate(); }
+                        if ((CurrDay - Day) > 1)
+                        {
+                            HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssHome");
+                            UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                            UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                            UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                            UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                            UpdateInfo.Expires = DateTime.MaxValue;
+                            HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+                            ReloadAndUpdate();
+                        }
                     }
-                    else { ReloadAndUpdate(); }
+                    else
+                    {
+                        HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssHome");
+                        UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                        UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                        UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                        UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                        UpdateInfo.Expires = DateTime.MaxValue;
+                        HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+                        ReloadAndUpdate();
+                    }
                 }
-                else { ReloadAndUpdate(); }
+                else
+                {
+                    HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssHome");
+                    UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                    UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                    UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                    UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                    UpdateInfo.Expires = DateTime.MaxValue;
+                    HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+                    ReloadAndUpdate();
+                }
             }
             else
             {

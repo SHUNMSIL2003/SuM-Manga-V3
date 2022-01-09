@@ -46,7 +46,7 @@ namespace SuM_Manga_V3.AccountETC
             if (XExsisits("Email", EmailR.Value.ToString()) == true) { EmailExsists = true; }
             else { EmailExsists = false; }
             bool passwordcheckok = PasswordIsOk(PasswordR.Value);
-            string DPFP = "/AccountETC/DeafultPFP.jpg";
+            string DPFP = SuMRandomPFP();
             string dsig = "#Joined_to_SuM_Manga " + DateTime.Now.ToString("yyyy MM dd");
             if (UserNameExsists == false && EmailExsists == false && PasswordsMatch == true && passwordcheckok == true)
             {
@@ -135,6 +135,14 @@ namespace SuM_Manga_V3.AccountETC
                     PasswordRc.Attributes["style"] = "border: solid 2px red;border-radius:14px;";
                 }
             }
+        }
+        protected string SuMRandomPFP()
+        {
+            string PFP = string.Empty;
+            Random random = new Random();
+            int index = random.Next(1, 7);
+            PFP = "/AccountETC/DeafultPFP/" + index.ToString() + ".jpg";
+            return PFP;
         }
         public bool PasswordIsOk(string pass)
         {

@@ -211,7 +211,7 @@
         //document.getElementById('popup').style.display = 'none';
     </script>
 </head>
-<body id="page-top" style="overflow:hidden;height:100vh;width:100vw;">
+<body id="page-top" style="overflow:hidden;height:100vh;width:100vw;"> 
     <div onclick="document.getElementById('popup').style.display = 'none';" id="popup" style="">
         <div class="animated slideInDown" style="width:fit-content !important; height:fit-content !important;background-color:rgb(242,242,242,0.6);display:block !important;float:left !important;">
             <p style="color:red;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI, You can tap this popup to hide it!</p>
@@ -377,40 +377,42 @@
 
                 };
                 //document.getElementById('X').style.display = (document.getElementById('X').style.display == "block") ? "none" : "block";
+                document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('subnavscont2').offsetHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 6) + 'px';
             </script>
         </div>
-        <div id="fullnavscont" runat="server" class="STBSUMBAR bg-white shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:#ffffff !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;">
-            <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;overflow:clip;border-color:#ffffff;margin-bottom:-2px;">
+        <div id="fullnavscont" runat="server" class="STBSUMBAR bg-white shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:#ffffff !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;">
+            <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;overflow:clip;border-color:#ffffff;margin-bottom:0px;">
                 <a name="no-animation" href='javascript:history.go(-1)' style="float:left !important;width:fit-content;">
                     <img src="/assets/img/SuM_TBrabd_x92.png" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:#6840D9;margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;">Navigate Back</b>
                 </a>
             <a name="no-animation" id="FullSearch" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="if (!navigator.onLine) { document.getElementById('SearchOffline').style.display = 'block'; } else { location.href = '/Search.aspx'; }" href="#"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
+            <a style="display:block;width:100vw;height:2px;margin:0 auto !important;background-color:#ffffff;color:#ffffff;">   </a>
         </div>
         <nav id="nav" runat="server" style="overflow:clip;height:7.2vh !important;width:100% !important;max-height:64px !important;bottom:0 !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
                     <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;">
-                                <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/Explore.aspx', { method: 'GET' }).then(res => { location.href = '/Explore.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Explore.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                                <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/Explore.aspx', { method: 'GET' }).then(res => { location.href = '/Explore.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Explore.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
                                         <img id="ExpIMG" runat="server" src="/svg/ExploreNA.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;position:relative;" />
                                         <b id="ExpText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;position:relative;">Explore</b>
                                     </a>
                                 </div>
-                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/Explore.aspx', { method: 'GET' }).then(res => { location.href = '/Explore.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Explore.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/Explore.aspx', { method: 'GET' }).then(res => { location.href = '/Explore.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Explore.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
                                         <img src="/svg/MostSeenNA.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;" />
                                         <b style="font-size:64%;color:#636166;height:2vh !important; text-align:center !important;display:block;">Hits</b>
                                     </a>
                                 </div>
                         
-                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/UserLibrary.aspx?RT=Curr', { method: 'GET' }).then(res => { location.href = '/UserLibrary.aspx?RT=Curr'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/UserLibrary.aspx?RT=Curr'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/UserLibrary.aspx?RT=Curr', { method: 'GET' }).then(res => { location.href = '/UserLibrary.aspx?RT=Curr'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/UserLibrary.aspx?RT=Curr'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
                                         <img id="LibIMG" runat="server" src="/svg/bookmarks.svg" style="max-height:62px;max-width:62px; width:4vh;height:4vh;display:block;" />
                                         <b id="LibText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Library</b>
                                     </a>
                                 </div><!-- dropdown-toggle -->
-                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;">
-                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/AccountETC/Settings.aspx', { method: 'GET' }).then(res => { location.href = '/AccountETC/Settings.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/AccountETC/Settings.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;">
+                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/AccountETC/Settings.aspx', { method: 'GET' }).then(res => { location.href = '/AccountETC/Settings.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/AccountETC/Settings.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
                                         <img id="SetIMG" runat="server" src="/svg/settings.svg" style="max-height:62px;max-width:62px;width:4vh;height:4vh;display:block;" />
                                         <b id="SetText" runat="server" style="font-size:64%;color:#6840D9;height:2vh !important; text-align:center !important;display:block;">Settings</b>
                                     </a>

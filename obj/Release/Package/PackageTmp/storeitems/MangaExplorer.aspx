@@ -66,12 +66,12 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
             </div>
-        <div class="animated fadeIn" id="NextChapter" style="display:block;position:absolute;bottom:48px;margin-left:calc(92vw - 60px);" runat="server" >
+        <div class="animated fadeIn" id="NextChapter" style="display:block;position:absolute;top:0;margin-left:calc(92vw - 60px);margin-top:4px;" runat="server" >
                 <a style="" class="btn btn-primary btn-sm animated fadeInUp" href="#"></a>
             </div>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
         <script>
-
+            //document.getElementById('MainContent_NextChapter').style.bottom = (document.getElementById('X').offsetHeight + 6) + "px";
             /*var myDiv = document.getElementById("MainContent_TheMangaPhotos");
             myDiv.scrollTop = myDiv.scrollHeight;
 

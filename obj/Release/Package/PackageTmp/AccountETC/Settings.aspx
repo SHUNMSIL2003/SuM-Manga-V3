@@ -41,7 +41,9 @@
                                     <img style="position:relative !important;z-index:999 !important;" class="rounded-circle mb-3 mt-4 lazyload" id="PFPC" src="/assets/img/avatars/DeafultPFP.jpg" width="160" height="160" runat="server">
                                     </a>
                                     <div class="mb-3">
-                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="chpfp000" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="ChangePFP" Text="Save Pic" />
+                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="chpfp000" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;" OnClick="ChangePFP" Text="Save Pic" />
+                                        <p style="display:inline-block !important;"> Or </p>
+                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="RemovePFP" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;" OnClick="ChangePFPAtRandom" Text="Reset PFP" />
                                     </div>
 
                                     <script>

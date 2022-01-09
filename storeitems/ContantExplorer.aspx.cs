@@ -22,7 +22,7 @@ namespace SuM_Manga_V3.storeitems
         }*/
         protected void Page_Load(object sender, EventArgs e)
         {
-            LastRefreshPross();
+            //LastRefreshPross();   -- Needs work
             /*HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             if (GetUserInfoCookie == null)
             {
@@ -75,6 +75,9 @@ namespace SuM_Manga_V3.storeitems
             string linktoupdatech = identifynexthelper + "ch";
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             //string OptionToAddCurrFunc = "";
+            string managtocheckexsis = Request.QueryString["Manga"].ToString();
+            string rootpath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+            string checkifitexsistsStart = rootpath + "\\storeitems\\" + managtocheckexsis + "\\";
             if (GetUserInfoCookie != null)
             {
                 int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
@@ -88,10 +91,16 @@ namespace SuM_Manga_V3.storeitems
                     if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
                     if (c > 10000) { c = (cn1 + 1); }
                     string cpcover = "/storeitems/" + Request.QueryString["Manga"].ToString() + "/sumcp" + ChapterFixedForm + ".jpg";
-                    RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
-                    TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "if (!navigator.onLine) { fetch('" + RLink + "', { method: 'GET' }).then(res => { location.href = '" + RLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + RLink + "'; }" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
+                    if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
+                    {
+                        RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
+                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "if (!navigator.onLine) { fetch('" + RLink + "', { method: 'GET' }).then(res => { location.href = '" + RLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + RLink + "'; }" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
+                    }
+                    else 
+                    {
+                        TheMangaPhotosF.InnerHtml += "<a onclick=" + sc.ToString() + "document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;opacity:0.36;" + "> <p style=" + "opacity:0.36;color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:right;margin-right:calc(100vw - 248px);margin-top:-4px;height:fit-content;width:fit-content;" + b12.ToString() + ">currency unavailable!</p></a>";
+                    }
                     if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
-                    //<a style="dc" class="btn" href="#"><img src="/storeitems/Anohana/0001/sumcp.png" style="width:48px;height:48px;float:left;margin:0px;" /><p style="dc">dc</p></a>
                 }
             }
             else
@@ -99,7 +108,7 @@ namespace SuM_Manga_V3.storeitems
                 string TC = Request.QueryString["TC"].ToString();
                 TC = TC.Substring(0, TC.Length - 6);
                 TC += ")";
-                SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;";
+                SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;margin-top:-2px !important;";
                 MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">You need to Login!</p>";
                 MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                 MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
@@ -113,10 +122,19 @@ namespace SuM_Manga_V3.storeitems
                     if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
                     if (c > 10000) { c = (cn1 + 1); }
                     string cpcover = "/storeitems/" + Request.QueryString["Manga"].ToString() + "/sumcp" + ChapterFixedForm + ".jpg";
-                    TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "document.getElementById('MainContent_SuMLoginUI').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
+                    if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
+                    {
+                        RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
+                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "document.getElementById('MainContent_SuMLoginUI').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
+                    }
+                    else
+                    {
+                        TheMangaPhotosF.InnerHtml += "<a onclick=" + sc.ToString() + "document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;opacity:0.36;" + "> <p style=" + "opacity:0.36;color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:right;margin-right:calc(100vw - 248px);margin-top:-4px;height:fit-content;width:fit-content;" + b12.ToString() + ">currency unavailable!</p></a>";
+                    }
                     if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
                 }
             }
+            ChapterUnavaliblePOPUP.Attributes["style"] = "background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
             ShowCreator();
             ShowViews();
             ShowAgeRating();
@@ -243,7 +261,7 @@ namespace SuM_Manga_V3.storeitems
                             if (c > 9 && c < 100) { ChapterFixedForm = "00" + chxC; }
                             if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
                             if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
-                            SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;";
+                            SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;margin-top:-2px !important;";
                             MRSW.InnerHtml = "<b>Continue Reading</b><br /><p style=" + "margin-top:-4px;font-size:64%;color:" + TC + ">Currently In Chapter " + c + "</p>";
                             MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                             MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
@@ -254,7 +272,7 @@ namespace SuM_Manga_V3.storeitems
                     }
                     if (foundit == false) 
                     {
-                        SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;";
+                        SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;margin-top:-2px !important;";
                         MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
                         MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                         MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
@@ -267,7 +285,7 @@ namespace SuM_Manga_V3.storeitems
                     string TC = Request.QueryString["TC"].ToString();
                     TC = TC.Substring(0, TC.Length - 6);
                     TC += ")";
-                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;";
+                    SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;margin-top:-2px !important;";
                     MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
                     MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                     MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
@@ -994,11 +1012,41 @@ namespace SuM_Manga_V3.storeitems
                 {
                     if ((Month - CurrMonth) == 0)
                     {
-                        if ((Day - CurrDay) != 0) { ReloadAndUpdate(); }
+                        if ((Day - CurrDay) != 0)
+                        {
+                            HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshPross" + Request.QueryString["Manga"].ToString());
+                            UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                            UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                            UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                            UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                            UpdateInfo.Expires = DateTime.MaxValue;
+                            HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+                            ReloadAndUpdate();
+                        }
                     }
-                    else { ReloadAndUpdate(); }
+                    else
+                    {
+                        HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshPross" + Request.QueryString["Manga"].ToString());
+                        UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                        UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                        UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                        UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                        UpdateInfo.Expires = DateTime.MaxValue;
+                        HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+                        ReloadAndUpdate();
+                    }
                 }
-                else { ReloadAndUpdate(); }
+                else
+                {
+                    HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshPross" + Request.QueryString["Manga"].ToString());
+                    UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                    UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                    UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                    UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                    UpdateInfo.Expires = DateTime.MaxValue;
+                    HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+                    ReloadAndUpdate();
+                }
             }
             else
             {

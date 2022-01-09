@@ -15,7 +15,7 @@ namespace SuM_Manga_V3.AccountETC
         protected void Page_Load(object sender, EventArgs e)
         {
             SussionPross();
-            LastRefreshPross();
+            //LastRefreshPross();
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             if (GetUserInfoCookie != null)
             {
@@ -77,6 +77,7 @@ namespace SuM_Manga_V3.AccountETC
             {
                 LogOutBTN.Attributes["style"] = "display:none;";
                 LogOutBTN.Attributes["OnClick"] = "NULL";
+                PFP.Attributes["src"] = SuMRandomPFP();
             }
         }
         protected void SussionPross()
@@ -168,7 +169,7 @@ namespace SuM_Manga_V3.AccountETC
                 }
                 sqlCon.Close();
             }
-            Response.Redirect("~/AccountETC/LogInETC.aspx");
+            ReloadAndUpdate();
         }
         protected string RemoveAnSIDfromSIDsString(string SIDs, string SIDToRemove)
         {
@@ -188,6 +189,7 @@ namespace SuM_Manga_V3.AccountETC
             HttpCookie GetUserInfoCookie = new HttpCookie("SuMCurrentUser");
             GetUserInfoCookie.Expires = DateTime.Now.AddDays(-100);
             Response.Cookies.Add(GetUserInfoCookie);
+            ReloadAndUpdate();
         }
         // UserSettingsStart     -imported from SuMAccount.aspx.cs-
         public string currSignetsure = string.Empty;
@@ -195,6 +197,7 @@ namespace SuM_Manga_V3.AccountETC
         protected void ChangePFP(object sender, EventArgs e)
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            string UserID = GetUserInfoCookie["ID"].ToString();
             string UserName = GetUserInfoCookie["UserName"].ToString();
             if (SuMCustomPFP.HasFile == true)
             {
@@ -215,8 +218,8 @@ namespace SuM_Manga_V3.AccountETC
                     }
                 }
                 bool fixer = File.Exists(Server.MapPath(OrPATH));
-                bool Fix5 = OrPATH.Contains("DeafultPFP.jpg");
-                if (fixer == true && Fix5 == false) { File.Delete(Server.MapPath(OrPATH)); }
+                bool Deafult = PFPIsNotADeafult(oldimg);
+                if (fixer == true && Deafult == false) { File.Delete(Server.MapPath(OrPATH)); }
                 string fileName = System.IO.Path.GetFileName(SuMCustomPFP.PostedFile.FileName);
                 string ffn = DateTime.Now.ToString("yyyyMMddHHmmss") + UserName + fileName;
                 SuMCustomPFP.PostedFile.SaveAs(Server.MapPath(Path.Combine("UsersUploads", ffn)));
@@ -224,51 +227,57 @@ namespace SuM_Manga_V3.AccountETC
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
-                    string query = "UPDATE SuMUsersAccounts SET PFP = @SuMCustomPFP WHERE UserName = @UserName";
+                    string query = "UPDATE SuMUsersAccounts SET PFP = @SuMCustomPFP WHERE UserID = @ID";
                     SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@UserName", UserName);
+                    sqlCmd.Parameters.AddWithValue("@ID", SqlDbType.Int);
+                    sqlCmd.Parameters["@ID"].Value = Convert.ToInt32(UserID);
                     sqlCmd.Parameters.AddWithValue("@SuMCustomPFP", pfppath);
                     sqlCmd.ExecuteNonQuery();
                     sqlCon.Close();
                 }
+                ReloadAndUpdate();
             }
         }
         protected void ChangeSIG(object sender, EventArgs e)
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-            string UserName = GetUserInfoCookie["UserName"].ToString();
+            string UserID = GetUserInfoCookie["ID"].ToString();
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
                 string newSignetsure = SignaturePE.Value.ToString();
                 if (newSignetsure != currSignetsure && newSignetsure != null && newSignetsure != "" && newSignetsure != " ")
                 {
-                    string query = "UPDATE SuMUsersAccounts SET Signetsure = @Signetsure WHERE UserName = @UserName";
+                    string query = "UPDATE SuMUsersAccounts SET Signetsure = @Signetsure WHERE UserID = @ID";
                     SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
-                    sqlCmd2.Parameters.AddWithValue("@UserName", UserName);
+                    sqlCmd2.Parameters.AddWithValue("@ID", SqlDbType.Int);
+                    sqlCmd2.Parameters["@ID"].Value = Convert.ToInt32(UserID);
                     sqlCmd2.Parameters.AddWithValue("@Signetsure", newSignetsure);
                     sqlCmd2.ExecuteNonQuery();
                 }
                 sqlCon.Close();
             }
+            ReloadAndUpdate();
         }
         protected void ChangeEmail(object sender, EventArgs e)
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-            string UserName = GetUserInfoCookie["UserName"].ToString();
+            string UserID = GetUserInfoCookie["ID"].ToString();
             string Email = EmailEP.Value.ToString();
 
             if (currEmail != Email)
             {
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
-                    string query = "UPDATE SuMUsersAccounts SET Email = @Email WHERE UserName = @UserName";
+                    string query = "UPDATE SuMUsersAccounts SET Email = @Email WHERE UserID = @ID";
                     SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
-                    sqlCmd2.Parameters.AddWithValue("@UserName", UserName);
+                    sqlCmd2.Parameters.AddWithValue("@ID", SqlDbType.Int);
+                    sqlCmd2.Parameters["@ID"].Value = Convert.ToInt32(UserID);
                     sqlCmd2.Parameters.AddWithValue("@Email", Email);
                     sqlCmd2.ExecuteNonQuery();
                     sqlCon.Close();
                 }
+                ReloadAndUpdate();
             }
         }
         protected void LastRefreshPross()
@@ -290,13 +299,53 @@ namespace SuM_Manga_V3.AccountETC
                     {
                         if ((Day - CurrDay) == 0)
                         {
-                            if ((CurrHour - Hour) > 8) { ReloadAndUpdate(); }
+                            if ((CurrHour - Hour) > 8)
+                            {
+                                HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssSettings");
+                                UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                                UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                                UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                                UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                                UpdateInfo.Expires = DateTime.MaxValue;
+                                HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+                                ReloadAndUpdate();
+                            }
                         }
-                        else { ReloadAndUpdate(); }
+                        else
+                        {
+                            HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssSettings");
+                            UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                            UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                            UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                            UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                            UpdateInfo.Expires = DateTime.MaxValue;
+                            HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+                            ReloadAndUpdate();
+                        }
                     }
-                    else { ReloadAndUpdate(); }
+                    else
+                    {
+                        HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssSettings");
+                        UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                        UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                        UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                        UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                        UpdateInfo.Expires = DateTime.MaxValue;
+                        HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+                        ReloadAndUpdate();
+                    }
                 }
-                else { ReloadAndUpdate(); }
+                else
+                {
+                    HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssSettings");
+                    UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
+                    UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
+                    UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
+                    UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
+                    UpdateInfo.Expires = DateTime.MaxValue;
+                    HttpContext.Current.Response.Cookies.Add(UpdateInfo);
+                    ReloadAndUpdate();
+                }
             }
             else
             {
@@ -321,7 +370,7 @@ namespace SuM_Manga_V3.AccountETC
                 Response.Redirect(Request.Url.ToString() + "?" + RandomQuryForUpdate());
             }
         }
-        protected static string RandomQuryForUpdate()
+        protected string RandomQuryForUpdate()
         {
             int length = 9;
             char[] chArray = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
@@ -344,6 +393,60 @@ namespace SuM_Manga_V3.AccountETC
             string sixDigitNumber = randNum.ToString("D6");
             str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
             return "UPDATE=" + str;
+        }
+        protected string SuMRandomPFP()
+        {
+            string PFP = string.Empty;
+            Random random = new Random();
+            int index = random.Next(1, 7);
+            PFP = "/AccountETC/DeafultPFP/" + index.ToString() + ".jpg";
+            return PFP;
+        }
+        protected bool PFPIsNotADeafult(string PFP) 
+        {
+            bool Deafult = false;
+            for (int i = 1; i < 8; i++) 
+            {
+                if (PFP == "/AccountETC/DeafultPFP/" + i.ToString() + ".jpg") { Deafult = true; }
+            }
+            return Deafult;
+        }
+        protected void ChangePFPAtRandom(object sender, EventArgs e)
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            string UserID = GetUserInfoCookie["ID"].ToString();
+            string oldimg = PFP.Attributes["src"].ToString();
+            char[] fixing = oldimg.ToCharArray();
+            string OrPATH = string.Empty;
+            for (int i = 0; i < fixing.Length; i++)
+            {
+                if (fixing[i] == '/')
+                {
+                    if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = "\\"; }
+                    else { OrPATH += "\\"; }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = fixing[i].ToString(); }
+                    else { OrPATH += fixing[i].ToString(); }
+                }
+            }
+            bool fixer = File.Exists(Server.MapPath(OrPATH));
+            bool Deafult = PFPIsNotADeafult(oldimg);
+            if (fixer == true && Deafult == false) { File.Delete(Server.MapPath(OrPATH)); }
+            string pfppath = SuMRandomPFP();
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "UPDATE SuMUsersAccounts SET PFP = @SuMCustomPFP WHERE UserID = @ID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@ID", SqlDbType.Int);
+                sqlCmd.Parameters["@ID"].Value = Convert.ToString(UserID);
+                sqlCmd.Parameters.AddWithValue("@SuMCustomPFP", pfppath);
+                sqlCmd.ExecuteNonQuery();
+                sqlCon.Close();
+            }
+            ReloadAndUpdate();
         }
     }
 }
