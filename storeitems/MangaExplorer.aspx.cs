@@ -129,6 +129,7 @@ namespace SuM_Manga_V3.storeitems
         }
         protected void SendComment(object sender, EventArgs e)
         {
+            string CurrCH = Request.QueryString["Chapter"].ToString();
             if (string.IsNullOrEmpty(UserComment.Text) == false && UserComment.Text != "add a comment...")
             {
                 HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
@@ -147,14 +148,14 @@ namespace SuM_Manga_V3.storeitems
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
-                    string query = "SELECT Comments FROM SuMMangaComments WHERE MangaID = @MangaID";
+                    string query = "SELECT " + CurrCH + " FROM SuMMangaComments WHERE MangaID = @MangaID";
                     SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                     sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                     sqlCmd.Parameters["@MangaID"].Value = MID;
                     var Raw = sqlCmd.ExecuteScalar();
                     string RAWDATA = Raw.ToString();
                     RAWDATA += NewComment;
-                    query = "UPDATE SuMMangaComments SET Comments = @NewComment WHERE MangaID = @MangaID";
+                    query = "UPDATE SuMMangaComments SET " + CurrCH + " = @NewComment WHERE MangaID = @MangaID";
                     sqlCmd = new SqlCommand(query, sqlCon);
                     sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                     sqlCmd.Parameters["@MangaID"].Value = MID;
@@ -166,18 +167,18 @@ namespace SuM_Manga_V3.storeitems
                 //Response.Redirect(Request.RawUrl);
             }
         }
-        protected void LoadCommentsSection() 
+        protected void LoadCommentsSection()
         {
             string ThemeColor = Request.QueryString["TC"].ToString();
             string MangaID = Request.QueryString["VC"].ToString();
-            //ComSecTitle.Attributes["style"] = "color:" + ThemeColor + ";padding-top:8px;padding-left:8px;padding-bottom:4px;";
+            string CurrCH = Request.QueryString["Chapter"].ToString();
             SendBTN.Attributes["style"] = "background-color:" + ThemeColor + ";border-radius:4px;width:40px;height:34px;margin:4px;";
-            CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:6px;width:100vw;height:fit-content;position:absolute;bottom:28px;padding-bottom:26px;border-top:4px rgba(0,0,0,0) solid;z-index:998;";
+            CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:6px;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:100vh;border-top:4px rgba(0,0,0,0) solid;z-index:998;";
             string RawComments = string.Empty;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
-                string qwi = "SELECT Comments FROM SuMMangaComments WHERE MangaID=@MangaID";
+                string qwi = "SELECT " + CurrCH + " FROM SuMMangaComments WHERE MangaID = @MangaID";
                 SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
                 sqlCmd00.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                 sqlCmd00.Parameters["@MangaID"].Value = MangaID;
@@ -216,7 +217,7 @@ namespace SuM_Manga_V3.storeitems
                 }
                 Comments.InnerHtml = CommentsHTML;
             }
-            else 
+            else
             {
                 Comments.InnerHtml = "<p style=" + "color:rgba(255,255,255,0.32);text-align:center;" + ">No comments yet...</p>";
             }

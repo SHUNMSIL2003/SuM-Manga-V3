@@ -4,6 +4,7 @@
     <script>
         //PlaceHolder
         //document.getElementById('MainContent_SuMLoginUI').style.display = 'block';
+        document.getElementById('fullnavscont').style.display = 'block';
     </script>
     <div id="ChapterUnavaliblePOPUP" runat="server" style="background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center">
         <div class="animated pulse card" style="animation-duration:0.36s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(48vh - 120px) !important;">
@@ -190,7 +191,7 @@
 </div>
 </div>
             </div>
-        <div class="animated fadeInUp" id="ChaptersAndFuncCard" style="opacity: 0 !important;margin-top:-20px;background-color:#ffffff;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;">
+        <div class="animated fadeInUp" id="ChaptersAndFuncCard" style="opacity: 0;margin-top:-20px;background-color:#ffffff;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;">
         <div id="GernsTags" runat="server" style="border-top-right-radius:22px;border-top-left-radius:22px;width:100vw;height:fit-content;background-color:transparent;align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;">
             <div style="margin-left:6px;display:inline;width:fit-content;height:38px;background-color:rgba(0,0,0,0.36);border-radius:19px;"><a href="/storeitems/TagView.aspx" style="color:white;font-size:112%;">&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;</a></div>
         </div>
@@ -209,12 +210,12 @@
         </div>
     <script>
         document.onreadystatechange = function () {
-            if (document.readyState == "complete") {
+            if (document.readyState == "interactive") {
 
                 var CatXHeight = document.getElementById('MainContent_CategoryX').getBoundingClientRect();
                 document.getElementById('ChaptersAndFuncCard').style.marginTop = (CatXHeight.height - 22) + "px";
-                document.getElementById("ChaptersAndFuncCard").style.opacity = null;
                 document.getElementById("ChaptersAndFuncCard").style.display = "none";
+                document.getElementById("ChaptersAndFuncCard").style.opacity = null;
                 document.getElementById("ChaptersAndFuncCard").style.display = "block";
 
             }

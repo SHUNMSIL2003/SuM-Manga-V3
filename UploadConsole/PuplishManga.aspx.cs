@@ -18,7 +18,7 @@ namespace SuM_Manga_V3.UploadConsole
         }
         protected void PuplishStart(object sender, EventArgs e)
         {
-            string MangaName = MangaNameP.Text;
+            /*string MangaName = MangaNameP.Text;
             string MangaDisc = MangaDescP.Text;
             string MangaAuthor = MangaAuthorP.Text;
             int ChaptersNum = Convert.ToInt32(ChaptersNumP.Text.ToString());
@@ -45,7 +45,7 @@ namespace SuM_Manga_V3.UploadConsole
                 sqlCmd.Parameters.AddWithValue("@CExplorerLink", CExplorerLink);
                 sqlCmd.ExecuteNonQuery();
                 sqlCon.Close();
-            }
+            }*/
         }
         protected static string RgbConverter(Color c)
         {

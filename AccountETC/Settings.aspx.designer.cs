@@ -33,6 +33,15 @@ namespace SuM_Manga_V3.AccountETC
         protected global::System.Web.UI.HtmlControls.HtmlAnchor RootDebug;
 
         /// <summary>
+        /// SettingsUnavaliblePOPUP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SettingsUnavaliblePOPUP;
+
+        /// <summary>
         /// AccountSettingsOrLogin control.
         /// </summary>
         /// <remarks>
@@ -265,23 +274,5 @@ namespace SuM_Manga_V3.AccountETC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox2;
-
-        /// <summary>
-        /// DarkModeS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox DarkModeS;
-
-        /// <summary>
-        /// Checkbox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox1;
     }
 }

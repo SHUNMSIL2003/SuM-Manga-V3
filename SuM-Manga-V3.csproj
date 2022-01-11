@@ -1544,6 +1544,7 @@
     <Content Include="svg\send.svg" />
     <Content Include="svg\views.svg" />
     <Content Include="svg\warning.svg" />
+    <Content Include="UploadConsole\CommentsSQLEDITOR.aspx" />
     <Content Include="UploadConsole\CreatorConsole.aspx" />
     <Content Include="UploadConsole\MangaChaptersUpdator.aspx" />
     <Content Include="UploadConsole\MangaProfileCreator.aspx" />
@@ -3770,6 +3771,13 @@
     </Compile>
     <Compile Include="SuMSearch.aspx.designer.cs">
       <DependentUpon>SuMSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadConsole\CommentsSQLEDITOR.aspx.cs">
+      <DependentUpon>CommentsSQLEDITOR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UploadConsole\CommentsSQLEDITOR.aspx.designer.cs">
+      <DependentUpon>CommentsSQLEDITOR.aspx</DependentUpon>
     </Compile>
     <Compile Include="UploadConsole\CreatorConsole.aspx.cs">
       <DependentUpon>CreatorConsole.aspx</DependentUpon>

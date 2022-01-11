@@ -15,6 +15,16 @@
     <a id="RootDebug" runat="server">
 
     </a> -->
+    <div id="SettingsUnavaliblePOPUP" runat="server" style="background-color:transparent !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center">
+        <div class="animated pulse card shadow" style="animation-duration:0.36s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(48vh - 120px) !important;">
+            <p style="font-size:146%;color:#232323;margin-bottom:3px;margin-left:12px;margin-top:2px;">This Setting is unavalible</p>
+            <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(0, 0, 0, 0.527);background-color:rgba(0, 0, 0, 0.527);width:calc(96vw - 36px) !important;margin:0px;margin-block:0px;height:2px !important;margin-bottom:12px !important;">
+            <p style="color:rgba(0, 0, 0, 0.527);height:fit-content;width:auto;text-align:center;display:block;font-size:112%;">The reason is eather there is a bug therefore its temporarily disabled or your device does not support it.</p>
+            <div style="text-align:center;margin-top:16px;">
+                <a onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'none';" class="btn" style="margin:0 auto !important;background-color:rgb(104,64,217);color:#ffffff;border-radius:12px;width:fit-content;height:fit-content;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px;">OK</a>
+            </div>
+        </div>
+    </div>
     <div style="height:100%;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
         <div style="width:100vw;height:22px;background-color:#f2f2f2;position:relative;z-index:999;margin-top:-8px !important;"></div>
         <div style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;">
@@ -123,7 +133,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" OnClick="ChangeEmail" Text="Change Email" />
+                                                    <!-- <asp:Button OnClientClick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'none'; return false;" CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" Text="Change Email" /> -->
+                                                    <button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; return false;" class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;width:fit-content;" runat="server">Change Email</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -160,7 +171,7 @@
                                                         <div class="mb-3"><label class="form-label" for="country"><strong>Country (optional!)</strong></label><input class="form-control" type="text" id="CountryPE" placeholder="Israel" name="country" runat="server"></div>
                                                     </div>
                                                 </div>
-                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" runat="server">Save&nbsp;Settings</button></div>
+                                                <div class="mb-3"><button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; return false;" class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" runat="server">Save&nbsp;Adress</button></div>
                                             </div>
                                         </div>
                                     </div>
@@ -198,7 +209,7 @@
                                 <div class="mb-3"><label class="form-label" for="cvc">CVC</label><input class="form-control" type="text" id="cvc" placeholder="CVC" name="cvc"></div>
                             </div>
                             <div class="col-sm-12">
-                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;width:64px;" runat="server"> Save! </button></div>
+                                <div class="mb-3"><button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; return false;" class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;width:64px;" runat="server"> Save! </button></div>
                             </div>
                         </div>
                     </div>
@@ -237,9 +248,8 @@
                                             <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="Checkbox2" runat="server" checked><label class="form-check-label" for="formCheck-1"><strong>Notify me about the prosses on my email!</strong></label></div>
                                         </div>
                                         <div class="mb-3">
-                                            <div class="mb-3">
-                                                <asp:Button CssClass="btn btn-primary btn-sm" style="float:right;" runat="server" Text="Apply Now" BorderColor="#6840d9" BackColor="#6840d9" />
-                                            </div>
+                                            
+                                            <div class="mb-3"><button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; return false;" class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" runat="server">Apply&nbsp;Now</button></div>
                                         </div>
                                 </div>
                             </div>
@@ -251,14 +261,14 @@
                                 <div class="fadeIn animated" style="vertical-align:middle;display:block !important;">
                                     <img src="/AccountETC/DarkMoon.svg" style="width:auto;height:32px;display:inline;float:left;" />
                                     <p style="color:#000000;display:inline;float:left;margin:8px;">Enable Dark Mode</p>
-                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;" type="checkbox" id="DarkModeS" runat="server"></div>
+                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;" type="checkbox" onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block';document.getElementById('DarkModeS').checked = false; return false;" id="DarkModeS" ></div>
                                     <p style="font-size:60%;color:#808080;float:left;margin-left:36px;">Change SuM Theme to dark shades of color, This option is not recommended!</p>
                                 </div>
             <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;"/>
             <div class="fadeIn animated"  style="vertical-align:middle;display:block !important;margin-top:12px !important;">
         <img src="/AccountETC/Noti.svg" style="width:auto;height:32px;display:inline;float:left;" />
         <p style="color:#1d1d1d;display:inline;float:left;margin:8px;">Get The latest</p>
-        <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:36px;height:18px;float:right;" type="checkbox" id="Checkbox1" runat="server"></div>
+        <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:36px;height:18px;float:right;" onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block';document.getElementById('GetTheLatest').checked = false; return false;" type="checkbox" id="GetTheLatest" ></div>
                <p style="font-size:60%;color:#808080;float:left;margin-left:36px;">Get The latest News about mangas in general</p>
             </div>
         <div class="fadeIn animated" style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:6px !important;margin-top:12px;">
@@ -266,7 +276,7 @@
     </div>
         <div class="animated fadeIn" style="background-color:#ffffff !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="fadeIn animated" style="margin-top:-4px;vertical-align:middle;display:block !important;height:64px;overflow:hidden !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.5.0 Beta</p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.6.3 Beta</p>
                 <p class="" style="color:#8f8f8f;margin-left:28px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
             </div>
         </div>
