@@ -7,17 +7,16 @@
         document.getElementById('fullnavscont').style.display = 'block';
     </script>
     <div id="ChapterUnavaliblePOPUP" runat="server" style="background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center">
-        <div class="animated pulse card" style="animation-duration:0.36s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(48vh - 120px) !important;">
+        <div class="animated zoomIn card shadow-sm" style="animation-duration:0.28s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#fffffff0;vertical-align:middle !important;margin-top:calc(48vh - 120px) !important;">
             <p style="font-size:146%;color:#232323;margin-bottom:3px;margin-left:12px;margin-top:2px;">Chapter is unavalible</p>
-            <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(0, 0, 0, 0.527);background-color:rgba(0, 0, 0, 0.527);width:calc(96vw - 36px) !important;margin:0px;margin-block:0px;height:2px !important;margin-bottom:12px !important;">
-            <p style="color:rgba(0, 0, 0, 0.527);height:fit-content;width:auto;text-align:center;display:block;font-size:112%;">The reason is eather the chapter is not Finished/Uploaded or it does not sutable for audience from your contry.</p>
+            <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(0, 0, 0, 0.527);background-color:rgba(0, 0, 0, 0.527);width:calc(96vw - 36px) !important;margin:0px;margin-block:0px;height:1px !important;margin-bottom:12px !important;">
+            <p style="color:rgba(0, 0, 0, 0.527);height:fit-content;width:auto;text-align:center;display:block;font-size:112%;">The reason is eather the chapter is not Finished/Uploaded yet, or it is not sutable for audience from your contry or your age.</p>
             <div style="text-align:center;margin-top:16px;">
                 <a onclick="document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'none';" class="btn" style="margin:0 auto !important;background-color:rgb(104,64,217);color:#ffffff;border-radius:12px;width:fit-content;height:fit-content;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px;">OK</a>
             </div>
         </div>
     </div>
-    <asp:ScriptManager ID="ScriptManagerLogin" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
-       </asp:ScriptManager>
+    
     <asp:UpdatePanel ID="UpdatePanelLogin" runat="server" UpdateMode="Conditional">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="LoginBTN" EventName="Click" />
@@ -169,7 +168,7 @@
             };
         });
     </script>
-    <div id="FakeBody" runat="server" style="">
+    <div id="FakeBody" runat="server" style="width:100vw !important;height:100vh !important;max-height:100vh !important;position:absolute !important;">
     <div id="background" style="background-color:rgba(225,225,225,0.50);">
     <div class="fadeIn animated">
     <div style="height:fit-content;width:100vw;overflow:hidden; background-color:transparent !important;position:fixed;" id="CategoryX" runat="server">

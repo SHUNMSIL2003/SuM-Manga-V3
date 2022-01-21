@@ -99,62 +99,279 @@ namespace SuM_Manga_V3
                 subnavscont2.Attributes["style"] = "margin-bottom:-2px;z-index:999;height:46px !important;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px #f2f2f2 !important;";
                 foundit = true; NavItems.InnerHtml = ""; nav.Attributes["style"] = "height:1vh !important;width:100% !important;";
             }
-            if (foundit == false) 
+            if (foundit == false)
             {
                 ExpIMG.Attributes["src"] = "/svg/ExploreNA.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
                 LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
                 SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
             }
-            if (Request.QueryString["TC"] != null) 
-            { 
+            if (Request.QueryString["TC"] != null)
+            {
                 mangacolor.Attributes["style"] = "display:inline;color:" + Request.QueryString["TC"].ToString() + ";margin-top:8px !important;";
                 mangacolor2.Attributes["style"] = "display:inline;color:" + Request.QueryString["TC"].ToString() + ";margin-top:8px !important;";
             }
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie == null) { SuMNotificationStart.Visible = false; }
         }
-        private void SuMAppAlertsStartsS(object sender, EventArgs e)
+        /* - New Version Of SuMAppAlerts! - */
+        protected void STARTNOFIFICATIONPROSS()
         {
-            int ID = 0;
+            /*string ThemeColor = string.Empty;
+            if (Request.QueryString["TC"] != null) { ThemeColor = Request.QueryString["TC"].ToString(); }
+            if (string.IsNullOrEmpty(ThemeColor) == true) { ThemeColor = "rgba(242,242,242,0.74)"; }*/
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            //SuMUserNofifications.Attributes["style"] = "background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
+            if (GetUserInfoCookie != null)
+            {
+                int UNSEENNum = 0;
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string query = "SELECT SuMPaymentAlert FROM UsersAccountAlert WHERE UserID = @UserID ";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UserID"].Value = ID;
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            var b = dr[0];
+                            if (b != null)
+                            {
+                                UNSEENNum = Convert.ToInt32(b.ToString());//NUM FOR NOTIFICATION BUBILE
+                            }
+                        }
+                    }
+                    sqlCon.Close();
+                }
+                //
+            }
+            else
+            {
+                //
+            }
+        }
+        protected void SuMAppAlertsStartsS(object sender, EventArgs e)
+        {
             HttpCookie GetUserInfoCookie2 = Request.Cookies["SuMCurrentUser"];
-            string UserName = GetUserInfoCookie2["UserName"].ToString();
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            if (GetUserInfoCookie2 != null)
             {
-                sqlCon.Open();
-                string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName ";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@UserName", UserName);
-                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                string ThemeColor = string.Empty;
+                if (Request.QueryString["TC"] != null) { ThemeColor = Request.QueryString["TC"].ToString().Replace("0.74", "0.92"); }
+                if (string.IsNullOrEmpty(ThemeColor) == true) { ThemeColor = "rgba(104,64,217,0.92)"; }
+                SuMUserNofifications.Attributes["style"] = "animation-duration:0.36s !important;background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:block;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;margin-left:-100vw !important;";
+                int ID = Convert.ToInt32(GetUserInfoCookie2["ID"].ToString());
+                string UserName = GetUserInfoCookie2["UserName"].ToString();
+                string UserPFP = string.Empty;
+                object UNSEENRawPayAlert = string.Empty;
+                object SEENRawPayAlert = string.Empty;
+                object UNSEENRawSecureAlert = string.Empty;
+                object SEENRawSecureAlert = string.Empty;
+                object UNSEENRawOtherAlerts = string.Empty;
+                object SEENRawOtherAlerts = string.Empty;
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
-                    while (dr.Read())
+                    sqlCon.Open();
+                    //Pay
+                    string query = "SELECT SuMPaymentAlert FROM UsersAccountAlert WHERE UserID = @UserID ";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UserID"].Value = ID;
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
                     {
-                        ID = Convert.ToInt32(dr[0]);
+                        while (dr.Read())
+                        {
+                            UNSEENRawPayAlert = dr[0];//PAY NOT SEEN
+                        }
                     }
+                    /*query = "SELECT SuMPaymentAlertSeen FROM UsersAccountAlert WHERE UserID = @UserID ";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UserID"].Value = ID;
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            SEENRawPayAlert = dr[0];
+                        }
+                    }*/
+                    //SECURE
+                    query = "SELECT SecurityAlert FROM UsersAccountAlert WHERE UserID = @UserID ";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UserID"].Value = ID;
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            UNSEENRawSecureAlert = dr[0];//SECURITY NOT SEEN
+                        }
+                    }
+                    query = "SELECT SecurityAlertSeen FROM UsersAccountAlert WHERE UserID = @UserID ";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UserID"].Value = ID;
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            SEENRawSecureAlert = dr[0];//SECURITY SEEN
+                        }
+                    }
+                    //OTHER
+                    /*query = "SELECT OtherAlerts FROM UsersAccountAlert WHERE UserID = @UserID ";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UserID"].Value = ID;
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            UNSEENRawOtherAlerts = dr[0];//OTHER NOT SEEN
+                        }
+                    }
+                    query = "SELECT OtherAlertsSeen FROM UsersAccountAlert WHERE UserID = @UserID ";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UserID"].Value = ID;
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            SEENRawOtherAlerts = dr[0];//OTHER SEEN
+                        }
+                    }*/
+                    query = "SELECT PFP FROM SuMUsersAccounts WHERE UserID = @UserID ";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UserID"].Value = ID;
+                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            UserPFP = dr[0].ToString();//User-PFP
+                        }
+                    }
+                    sqlCon.Close();
                 }
-                sqlCon.Close();
+                NotiUPFP.Attributes["src"] = UserPFP;
+                NotiUserName.InnerText = UserName;
+                // - only Payment Notification for now! -
+                /*if (SEENRawPayAlert != null)
+                {
+                    // - May Not Be Used! - 
+                }*/
+                if (UNSEENRawPayAlert != null)
+                {
+                    RawPayProssor(UNSEENRawPayAlert.ToString());
+                }
+                //MarkReadDone(ID, RawAlert);
             }
-            string RawAlert = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+        }
+        protected void RawPayProssor(string RawPay) 
+        {
+            //#FreeT?Y2021?M12?D23$N
+            string ACCOUNTSTATUSKEY = string.Empty;
+            string ASDY = "";
+            string ASDM = "";
+            string ASDD = "";
+            char[] Pross = RawPay.ToCharArray();
+            for (int i = 0; i < Pross.Length; i++)
             {
-                sqlCon.Open();
-                string query = "SELECT SuMPaymentAlert FROM UsersAccountAlert WHERE UserID = @UserID ";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
-                sqlCmd.Parameters["@UserID"].Value = ID;
-                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                if (Pross[i] == '#')
                 {
-                    while (dr.Read())
-                    {
-                        RawAlert = dr[0].ToString();
-                    }
+                    ACCOUNTSTATUSKEY = Pross[i + 1].ToString() + Pross[i + 2].ToString() + Pross[i + 3].ToString() + Pross[i + 4].ToString();
                 }
-                sqlCon.Close();
+                if (Pross[i] == '?' && Pross[i + 1] == 'Y')
+                {
+                    ASDY = Pross[i + 2].ToString() + Pross[i + 3].ToString() + Pross[i + 4].ToString() + Pross[i + 5].ToString();
+                }
+                if (Pross[i] == '?' && Pross[i + 1] == 'M')
+                {
+                    ASDM = Pross[i + 2].ToString() + Pross[i + 3].ToString();
+                }
+                if (Pross[i] == '?' && Pross[i + 1] == 'D')
+                {
+                    ASDD = Pross[i + 2].ToString() + Pross[i + 3].ToString();
+                }
             }
-            MarkReadDone(ID, RawAlert);
+            /*int DD = Convert.ToInt32(DateTime.UtcNow.ToString("dd")) - ASDD;
+            int DDbw = ASDD - Convert.ToInt32(DateTime.UtcNow.ToString("dd"));
+            int MD = Convert.ToInt32(DateTime.UtcNow.ToString("MM")) - ASDM;
+            int YD = Convert.ToInt32(DateTime.UtcNow.ToString("yyyy")) - ASDY;*/
+            bool MembershipIsValid = false;
+            DateTime STARTDate = DateTime.ParseExact(ASDY + ASDM + ASDD, "yyyyMMdd", null);
+            //DateTime.Parse(ASDM + "/" + ASDD + "/" + ASDY);
+            if ((DateTime.UtcNow - STARTDate).TotalDays < 31)
+            {
+                MembershipIsValid = true;
+            }
+            ACCOUNTSTATUSKEY = ACCOUNTSTATUSKEY.ToUpper();
+            if (MembershipIsValid == true) 
+            {
+                if (ACCOUNTSTATUSKEY == "FREE") 
+                {
+                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildGreenCard("No actiond is needed, enjoy your free trial!", STARTDate.ToString("MMMM d yyyy"), "SuM System");
+                }
+                if (ACCOUNTSTATUSKEY == "PAID") 
+                {
+                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildGreenCard("No actiond is needed, enjoy!", STARTDate.ToString("MMMM d yyyy"), "SuM System");
+                }
+            }
+            if (MembershipIsValid == false) 
+            {
+                if (ACCOUNTSTATUSKEY == "FREE")
+                {
+                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free trial has expired!", DateTime.Now.ToString("MMMM d yyyy"), "#", "SuM System");
+                }
+                if (ACCOUNTSTATUSKEY == "PAID")
+                {
+                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free subscription has expired!", DateTime.Now.ToString("MMMM d yyyy"), "#", "SuM System");
+                }
+            }
+            //ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml += "<a>" + ACCOUNTSTATUSKEY + " MS:" + MembershipIsValid.ToString() + "</a>"; DEBUG
+        }
+        protected string BuildSeenCard(string IMG, string TITLE, string INFO, string DATE, string LINK, string SENDER)
+        {
+            string SC = '"'.ToString();
+            string DATERES = DATE + "";
+            string RS = "";
+            RS = "<a class=" + SC + "dropdown-item d-flex align-items-center" + SC + "href=" + LINK + "><div class=" + SC + "dropdown-list-image me-3" + SC + "><img class=" + SC + "rounded-circle" + SC + " src =" + SC + IMG + SC + "><div class=" + "status-indicator" + "></div></div><div class=" + "fw-bold" + "><div class=" + "text-truncate" + "><span>" + INFO + "</span></div><p class=" + SC + "small text-gray-500 mb-0" + SC + ">" + SENDER + " - " + DATERES + "</p></div></a>";
+            RS = "";
+            return RS;
+        }
+        protected string BuildGreenCard(string INFO, string DATE, string SENDER)
+        {
+            string SC = '"'.ToString();
+            string DATERES = DATE + "";
+            string RS = "";
+            RS = "<a class=" + SC + "d-flex align-items-center" + SC + " style="+SC+"padding-left:6px;padding-top:6px;padding-bottom:6px;"+SC+" ><div class=" + SC + "dropdown-list-image" + SC + "><div class=me-3 ><div class=" + SC + "bg-success icon-circle" + SC + "><i class=" + SC + "fas fa-donate text-white" + SC + "></i></div></div></div><div class=" + "fw-bold" + "><div class=" + "text-truncate" + "><span style="+"color:#000000B3;"+" >" + INFO + "</span></div><p class=" + SC + "small mb-0" + SC + " style=color:#00000080; >" + SENDER + " - " + DATERES + "</p></div></a>";
+            //RS = "";
+            return RS;
+        }
+        protected string BuildYellowCard(string INFO, string DATE, string LINK, string SENDER)
+        {
+            string SC = '"'.ToString();
+            string DATERES = DATE + "";
+            string RS = "";
+            RS = "<a class=" + SC + "d-flex align-items-center" + SC + "href=" + LINK + " style=" + SC + "padding-left:6px;padding-top:6px;padding-bottom:6px;" + SC + " ><div class=" + SC + "dropdown-list-image" + SC + "><div class=me-3><div class=" + SC + "bg-warning icon-circle" + SC + "><i class=" + SC + "fas fa-exclamation-triangle text-white" + SC + "></i></div></div></div></div><div class=" + "fw-bold" + "><div class=" + "text-truncate" + "><span style=" + "color:#000000B3;" + " >" + INFO + "</span></div><p class=" + SC + "small mb-0" + SC + " style=color:#00000080; >" + SENDER + " - " + DATERES + "</p></div></a>";
+            //RS = "";
+            return RS;
+        }
+        protected string BuildUnseenCard(string IMG, string TITLE, string INFO, string DATE, string LINK, string SENDER)
+        {
+            string SC = '"'.ToString();
+            string DATERES = DATE + "";
+            string RS = "";
+            RS = "<a class=" + SC + "dropdown-item d-flex align-items-center" + SC + "href=" + LINK + "><div class=" + SC + "dropdown-list-image me-3" + SC + "><img class=" + SC + "rounded-circle" + SC + " src =" + SC + IMG + SC + "><div class=" + SC + "bg-warning status-indicator" + SC + "></div></div><div class=" + "fw-bold" + "><div class=" + "text-truncate" + "><span>" + INFO + "</span></div><p class=" + SC + "small text-gray-500 mb-0" + SC + ">" + SENDER + " - " + DATERES + "</p></div></a>";
+            RS = "";
+            return RS;
         }
         protected void ToSign(object sender, EventArgs e)
         {
             Response.Redirect("~/AccountETC/LoginETC.aspx");
         }
-        protected void MarkReadDone(int Colum, string OValue) //name colum but its a row
+        /*protected void MarkReadDone(int Colum, string OValue) //name colum but its a row
         {
             string confirmseentag = "";
             string backupoldfornew = "";
@@ -184,7 +401,7 @@ namespace SuM_Manga_V3
                 //sqlCmd.Parameters.AddWithValue("@SuMCustomPFP", SqlDbType.Image).Value = imgarray;
                 sqlCon.Close();
             }
-        }
+        }*/
         public void empty0() { }
         protected void LogOut(object sender, EventArgs e)
         {
@@ -196,7 +413,7 @@ namespace SuM_Manga_V3
             //Response.Cookies.Add(GetUserpinns);
             Response.Redirect("~/AccountETC/LogInETC.aspx");
         }
-        protected string GetMangaFromSQL(string Wanted)
+        /*protected string GetMangaFromSQL(string Wanted)
         {
             string ResultsQ = string.Empty;
             //int i = 0;
@@ -261,8 +478,8 @@ namespace SuM_Manga_V3
                 }
                 else { return "<h4>Not Found!</h4>"; }
             }
-        }
-        public bool MatchUPto50Per(string a, string b)
+        }*/
+        /*public bool MatchUPto50Per(string a, string b)
         {
             if (a.Length > 0 && b.Length > 0)
             {
@@ -290,8 +507,8 @@ namespace SuM_Manga_V3
                 }
             }
             else { return false; }
-        }
-        public string ContantShow(string MangaName, string MangaInfo, int MangaViews, string MangaCoverLink, string CExplorerLink, int ChaptersNum, int id)
+        }*/
+        /*public string ContantShow(string MangaName, string MangaInfo, int MangaViews, string MangaCoverLink, string CExplorerLink, int ChaptersNum, int id)
         {
             string cn = ChaptersNum.ToString();
             CExplorerLink += "&CN=" + cn + "&VC=" + id;
@@ -300,10 +517,10 @@ namespace SuM_Manga_V3
             string astyle = "border-radius:10px;margin:10px;width:142px;";//mw
             //string vstyle = "margin-left:4px;width:24px;height:24px;position:relative;z-index:1;display:block;";
             //string vimage = "/storeitems/view.png";
-            string viewes = /*"<img src=" + vimage + " style=" + vstyle + ">" +*/ "<h6 style=" + "color:white;position:relative;display:inline-block;margin-top:-10px" + ">Views:" + MangaViews + " Ch: " + ChaptersNum + "</h6>";
+            string viewes ="<h6 style=" + "color:white;position:relative;display:inline-block;margin-top:-10px" + ">Views:" + MangaViews + " Ch: " + ChaptersNum + "</h6>";
             string divfits = "<div data-bss-hover-animate=" + "pulse" + " style=" + "display:inline-block; height:fit-content;width:142px;" + ">";//mw
             string result = divfits + "<a href=" + CExplorerLink + " ><figure class=" + figureclass + "  style = " + astyle + "  ><img style = " + figurestyle + " src=" + MangaCoverLink + ">" + viewes + "<figcaption><h6 style=" + "font-size:100%;" + " ><b>" + MangaName + "</b></h6><br/><h6 style=" + "font-size:74%;" + " >" + MangaInfo + "</h6></figcaption></figure></a></div>";
             return result;
-        }
+        }*/
     }
 }

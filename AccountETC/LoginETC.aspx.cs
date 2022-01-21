@@ -44,7 +44,7 @@ namespace SuM_Manga_V3.AccountETC
                 sqlCon.Open();
                 string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName AND Password = @Password ";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                string username = UserNameL.Value; //Request.QueryString["UserNameL"].ToString();
+                string username = UserNameL.Value.ToString().Replace(" ", ""); //Request.QueryString["UserNameL"].ToString();
                 sqlCmd.Parameters.AddWithValue("@UserName", username);
                 string password = PasswordL.Value; //Request.QueryString["PasswordL"].ToString();
                 sqlCmd.Parameters.AddWithValue("@Password", sha256(password));

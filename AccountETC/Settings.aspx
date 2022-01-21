@@ -15,8 +15,8 @@
     <a id="RootDebug" runat="server">
 
     </a> -->
-    <div id="SettingsUnavaliblePOPUP" runat="server" style="background-color:transparent !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center">
-        <div class="animated pulse card shadow" style="animation-duration:0.36s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(48vh - 120px) !important;">
+    <div id="SettingsUnavaliblePOPUP" runat="server" style="animation-duration:0.36s !important;background-color:rgba(104,64,217,0.32) !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:999 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center animated fadeIn">
+        <div class="animated zoomIn card shadow-sm" style="animation-duration:0.28s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#fffffff0;vertical-align:middle !important;margin-top:calc(50vh - 160px) !important;">
             <p style="font-size:146%;color:#232323;margin-bottom:3px;margin-left:12px;margin-top:2px;">This Setting is unavalible</p>
             <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(0, 0, 0, 0.527);background-color:rgba(0, 0, 0, 0.527);width:calc(96vw - 36px) !important;margin:0px;margin-block:0px;height:2px !important;margin-bottom:12px !important;">
             <p style="color:rgba(0, 0, 0, 0.527);height:fit-content;width:auto;text-align:center;display:block;font-size:112%;">The reason is eather there is a bug therefore its temporarily disabled or your device does not support it.</p>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div style="height:100%;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
-        <div style="width:100vw;height:22px;background-color:#f2f2f2;position:relative;z-index:999;margin-top:-8px !important;"></div>
+        <div style="width:100vw;height:22px;background-color:#f2f2f2;position:relative;z-index:998;margin-top:-8px !important;"></div>
         <div style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;">
             <a runat="server" id="AccountSettingsOrLogin" onclick="" href="/AccountETC/SuMAccount.aspx" style="height:112px !important;width:calc(100vw - 56px) !important;background-color:transparent !important;display:block !important;margin-top:8px;margin-bottom:8px; margin-left:8px;position:relative;z-index:998;">
             <img class="animated pulse" id="PFP" runat="server" style="width:84px !important;height:84px !important;border-radius:50% !important;float:left;display:inline;margin-bottom:6px;" src="/AccountETC/UsersUploads/DeafultPFP.jpg" />
@@ -276,9 +276,12 @@
     </div>
         <div class="animated fadeIn" style="background-color:#ffffff !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="fadeIn animated" style="margin-top:-4px;vertical-align:middle;display:block !important;height:64px;overflow:hidden !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.6.3 Beta</p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.7.0 Beta</p>
                 <p class="" style="color:#8f8f8f;margin-left:28px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
             </div>
         </div>
         </div>
+    <script>
+        document.getElementById('AccountOffline').style.display = 'block';
+    </script>
 </asp:Content>

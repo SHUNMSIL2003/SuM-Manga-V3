@@ -522,7 +522,7 @@ namespace SuM_Manga_V3.storeitems
             }
             //BodyStyle = "<style>body { background-image: url(" + V + "); }</style>";
             //Body.InnerText = "body { background-image: url(" + V + "); }";
-            FakeBody.Attributes["style"] = "background-image:url(" + V + ");";
+            FakeBody.Attributes["style"] = "background-image:url(" + V + ");width:100vw !important;height:100vh !important;max-height:100vh !important;position:absolute !important;";
             return V;
         }
         protected string ShowName()

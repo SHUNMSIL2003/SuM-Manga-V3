@@ -41,7 +41,7 @@ namespace SuM_Manga_V3.AccountETC
             bool EmailExsists = true;
             if (PasswordR.Value == PasswordRc.Value) { PasswordsMatch = true; }
             else { PasswordsMatch = false; }
-            if (XExsisits("UserName", UserNameR.Value.ToString()) == true) { UserNameExsists = true; }
+            if (XExsisits("UserName", UserNameR.Value.ToString().Replace(" ", "")) == true) { UserNameExsists = true; }
             else { UserNameExsists = false; }
             if (XExsisits("Email", EmailR.Value.ToString()) == true) { EmailExsists = true; }
             else { EmailExsists = false; }
@@ -56,7 +56,7 @@ namespace SuM_Manga_V3.AccountETC
                 {
                     sqlCon.Open();
                     SqlCommand sqlCmd = new SqlCommand("INSERT INTO SuMUsersAccounts(UserName,Password,Email,AccountStatus,PFP,Signetsure) values(@UserName,@Password,@Email,@AccountStatus,@PFP,@Signetsure)", sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@UserName", UserNameR.Value);
+                    sqlCmd.Parameters.AddWithValue("@UserName", UserNameR.Value.ToString().Replace(" ", ""));
                     sqlCmd.Parameters.AddWithValue("@Password", sha256(PasswordR.Value));
                     sqlCmd.Parameters.AddWithValue("@Email", EmailR.Value);
                     sqlCmd.Parameters.AddWithValue("@PFP", DPFP);
@@ -72,7 +72,7 @@ namespace SuM_Manga_V3.AccountETC
                     string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName";
                     SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                     //HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-                    string username0 = UserNameR.Value.ToString();
+                    string username0 = UserNameR.Value.ToString().Replace(" ", "");
                     sqlCmd.Parameters.AddWithValue("@UserName", username0);
                     using (SqlDataReader dr = sqlCmd.ExecuteReader())
                     {
@@ -95,7 +95,7 @@ namespace SuM_Manga_V3.AccountETC
                     sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
                     sqlCmd.Parameters["@UserID"].Value = id;
                     sqlCmd.Parameters.AddWithValue("@SuMPaymentAlert", freetrialalert);
-                    sqlCmd.Parameters.AddWithValue("@AlertsSeen", "1");
+                    sqlCmd.Parameters.AddWithValue("@AlertsSeen", "0");
                     sqlCmd.ExecuteNonQuery();
                     sqlCon.Close();
                 }
@@ -191,7 +191,7 @@ namespace SuM_Manga_V3.AccountETC
             StreamReader sr = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/AccountETC/Email.html"));
             string body = sr.ReadToEnd();
             sr.Close();
-            string username = UserNameR.Value.ToString();
+            string username = UserNameR.Value.ToString().Replace(" ", "");
             body = body.Replace("#USERNAME#", username);
             body = body.Replace("#LINK#", link);
             return body;
@@ -199,7 +199,7 @@ namespace SuM_Manga_V3.AccountETC
         protected void SendVirifyEmail(string VCODE)
         {
             //Send Email
-            string thelink = "https://sum-manga.azurewebsites.net/AccountETC/ValidateUsers.aspx?UserName=" + UserNameR.Value.ToString() + "&VCode=" + VCODE;
+            string thelink = "https://sum-manga.azurewebsites.net/AccountETC/ValidateUsers.aspx?UserName=" + UserNameR.Value.ToString().Replace(" ", "") + "&VCode=" + VCODE;
             string emailbody = MailTemplate(thelink);
             MailMessage Msg = new MailMessage();
             Msg.From = new MailAddress("sumverifysystem@gmail.com", "SuM System");// Sender details here, replace with valid value

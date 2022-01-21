@@ -72,6 +72,11 @@ img {vertical-align: middle;}
 @media only screen and (max-width: 300px) {
   .text {font-size: 16px}
 }
+/*ClickEFFECT*/
+.ClickEffect:active {
+    width: 70px;
+    height: 74px;
+}
     </style>
     <div class="fadeIn animated" style="height:100% !important;width:100% !important">
 <div class="slideshow-container" id="cardscontain" runat="server" style="width:100vw !important;height:fit-content !important;overflow:hidden !important;">

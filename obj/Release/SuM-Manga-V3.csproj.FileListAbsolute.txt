@@ -57,7 +57,6 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Win32.Registry.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Newtonsoft.Json.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Buffers.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.ComponentModel.Annotations.dll
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.IO.Pipelines.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Memory.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Numerics.Vectors.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Runtime.CompilerServices.Unsafe.dll
@@ -89,7 +88,6 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Net.Http.Headers.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Win32.Registry.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Newtonsoft.Json.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Buffers.xml
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.IO.Pipelines.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Memory.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Numerics.Vectors.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Runtime.CompilerServices.Unsafe.xml
@@ -105,3 +103,4 @@ D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.CoreCompileInputs.c
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.CopyComplete
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.pdb
+D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.AssemblyReference.cache

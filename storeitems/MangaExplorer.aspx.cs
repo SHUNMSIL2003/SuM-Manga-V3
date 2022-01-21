@@ -172,8 +172,9 @@ namespace SuM_Manga_V3.storeitems
             string ThemeColor = Request.QueryString["TC"].ToString();
             string MangaID = Request.QueryString["VC"].ToString();
             string CurrCH = Request.QueryString["Chapter"].ToString();
-            SendBTN.Attributes["style"] = "background-color:" + ThemeColor + ";border-radius:4px;width:40px;height:34px;margin:4px;";
-            CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:6px;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:100vh;border-top:4px rgba(0,0,0,0) solid;z-index:998;";
+            CommentsSecTopPartColor.Attributes["style"] = "display:block;margin-top:18px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background-color:" + ThemeColor.Replace("0.74", "0.54") + ";padding:0px !important;";
+            SendBTN.Attributes["style"] = "background-color:rgba(0,0,0,0);border-radius:4px;width:40px;height:34px;margin:4px;";
+            CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
             string RawComments = string.Empty;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
@@ -212,6 +213,7 @@ namespace SuM_Manga_V3.storeitems
                         Raw = sqlCmd.ExecuteScalar();
                         PFP = Raw.ToString();
                         CommentsHTML += ApplyCommentForm(PFP, UserName, CSF[1, i]);
+                        if (i != 0) { CommentsHTML += "<hr style=" + '"'.ToString() + "width:calc(100% - 26px) !important;height:2px !important;color:" + ThemeColor.Replace("0.74", "0.82") + " !important;margin:0 auto !important;margin-top:-4px !important;margin-bottom:12px !important;border-radius:1px !important;" + '"'.ToString() + " />"; }
                     }
                     sqlCon.Close();
                 }
@@ -219,7 +221,7 @@ namespace SuM_Manga_V3.storeitems
             }
             else
             {
-                Comments.InnerHtml = "<p style=" + "color:rgba(255,255,255,0.32);text-align:center;" + ">No comments yet...</p>";
+                Comments.InnerHtml = "<p style=" + '"'.ToString() + "color:rgba(0,0,0,0.48);text-align:center;width:100%;text-align:center;margin-top:calc(35vh - 128px);" + '"'.ToString() + ">No comments yet</p>";
             }
         }
 
@@ -257,7 +259,7 @@ namespace SuM_Manga_V3.storeitems
         {
             char RSC = '"';
             string SC = RSC.ToString();
-            string RS = "<div style=" + "background-color:rgb(255,255,255);border-radius:16px;padding:6px;margin:4px;width:calc(100%-8px);" + "><img style=" + "display:inline;border-radius:50%;width:32px;height:32px;" + " src=" + SC + PFP + SC + " /><a style=" + "display:inline;" + "><p style=" + "font-size:80%;display:inline;margin-left:6px;" + "><b>" + UserName + "</b></p><p style=" + "font-size:90%;margin-top:12px;margin-left:8px;margin-right:8px;" + ">" + Comment + "</p></a></div>";
+            string RS = "<div style=" + "background-color:rgb(255,255,255,0);padding:4px;margin:4px;width:calc(100%-8px);" + "><img style=" + "display:inline;border-radius:50%;width:32px;height:32px;" + " src=" + SC + PFP + SC + " /><a style=" + "display:inline;" + "><p style=" + "font-size:80%;display:inline;margin-left:6px;" + "><b>" + UserName + "</b></p><p style=" + "font-size:90%;margin-top:12px;margin-left:8px;margin-right:8px;" + ">" + Comment + "</p></a></div>";
             return RS;
         }
         protected void UpdateChapterNumInCurr()

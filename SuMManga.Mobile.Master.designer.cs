@@ -51,6 +51,15 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl wrapper;
 
         /// <summary>
+        /// SuMScriptManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager SuMScriptManager;
+
+        /// <summary>
         /// SuMMainBlock control.
         /// </summary>
         /// <remarks>
@@ -159,6 +168,24 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl mangacolor;
 
         /// <summary>
+        /// SuMNotificationStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor SuMNotificationStart;
+
+        /// <summary>
+        /// StartNotificationProssForShowBTN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton StartNotificationProssForShowBTN;
+
+        /// <summary>
         /// nav control.
         /// </summary>
         /// <remarks>
@@ -229,5 +256,59 @@ namespace SuM_Manga_V3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SetText;
+
+        /// <summary>
+        /// UpdatePanelNotificationSec control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelNotificationSec;
+
+        /// <summary>
+        /// SuMUserNofifications control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMUserNofifications;
+
+        /// <summary>
+        /// NotiUPFP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage NotiUPFP;
+
+        /// <summary>
+        /// NotiUserName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NotiUserName;
+
+        /// <summary>
+        /// ACCOUNTNOTOFICATIONSPaymentCard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ACCOUNTNOTOFICATIONSPaymentCard;
+
+        /// <summary>
+        /// USERNOTIFICATIONS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl USERNOTIFICATIONS;
     }
 }

@@ -205,7 +205,7 @@
 <body id="page-top" style="overflow:hidden !important;height:100vh;width:100vw;"> 
     <div onclick="document.getElementById('popup').style.display = 'none';" id="popup" style="">
         <div class="animated slideInDown" style="width:fit-content !important; height:fit-content !important;background-color:rgb(242,242,242,0.6);display:block !important;float:left !important;">
-            <p style="color:red;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI, You can tap this popup to hide it!</p>
+            <p style="color:red;font-size:70%;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI, You can tap this popup to hide it!</p>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
@@ -266,6 +266,8 @@
     </style>
     <form autocomplete="off" id="SuM" method="post" runat="server">
     <div runat="server" id="wrapper" style="overflow:hidden;background-color:#ffffff !important;">
+        <asp:ScriptManager ID="SuMScriptManager" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
+       </asp:ScriptManager>
         <div class="d-flex flex-column" id="content-wrapper" style="overflow-x:hidden;">
             <div id="content">
                 <style>
@@ -385,7 +387,10 @@
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;">Navigate Back</b>
                 </a>
             <a name="no-animation" id="FullSearch" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="if (!navigator.onLine) { document.getElementById('SearchOffline').style.display = 'block'; } else { location.href = '/Search.aspx'; }" href="#"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
-            <a style="display:block;width:100vw;height:2px;margin:0 auto !important;background-color:#ffffff;color:#ffffff;">   </a>
+            <a name="no-animation" id="SuMNotificationStart" runat="server" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;padding-top:4px !important;" >
+                <asp:ImageButton ID="StartNotificationProssForShowBTN" runat="server" Width="26" Height="26" ImageAlign="AbsMiddle" BackColor="Transparent" BorderColor="Transparent" ImageUrl="/svg/notifications.svg" OnClick="SuMAppAlertsStartsS" />
+            </a>
+                <a style="display:block;width:100vw;height:2px;margin:0 auto !important;background-color:#ffffff;color:#ffffff;">   </a>
         </div>
         <nav id="nav" runat="server" style="overflow:clip;height:72px !important;width:100% !important;max-height:64px !important;bottom:0 !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
                     <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;height:64px !important;overflow:hidden !important;margin-bottom:14px !important;">
@@ -419,30 +424,33 @@
                 <a style="width:100vw !important;font-size:20%;color:#ffffff !important;background-color:#ffffff !important">NavBarHBF!</a>
             </div> -->
                 </nav>
-            
-            <!--
-                <div style="width:100vw !important;height:8px !important;background-color:#ffffff !important;display:block !important;overflow:hidden !important;">
-                <a style="width:100vw !important;font-size:20%;color:#ffffff !important;background-color:#ffffff !important">NavBarHBF!</a>
-            </div>
-                
-                <div style="width:100% !important;height:8px !important;background-color:#ffffff !important;float:left;bottom:0 !important;display:none;"></div>
-            </div> -->
-        <!-- IOS PWA POPUP -->
-        <script>
-            /*
-            const isIos = () => {
-                const userAgent = window.navigator.userAgent.toLowerCase();
-                return /iphone|ipad|ipod/.test(userAgent);
-            }
-            const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
-
-            if (isIos() && !isInStandaloneMode()) {
-                this.setState({ showInstallMessage: true });
-            }
-            if (showInstallMessage) {
-
-            };*/
-        </script>
+    </div>
+        <asp:UpdatePanel ID="UpdatePanelNotificationSec" runat="server" UpdateMode="Conditional">
+                <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="StartNotificationProssForShowBTN" EventName="Click" />
+                    </Triggers>
+                <ContentTemplate>
+                    <asp:Panel runat="server">
+                        <div id="SuMUserNofifications" runat="server" style="animation-duration:0.36s !important;background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;padding-bottom:74px;padding-top:42px;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center animated fadeIn">
+                            <div style="width:calc(100vw - 24px) !important;height:68px;display:block !important;overflow:hidden !important;position:relative;">
+                                <img id="NotiUPFP" runat="server" src="/UserPFP/pfp.png" style="border-radius:50% !important;width:36px;height:36px;margin-top:2px;display:inline-block !important;margin-top:8px !important;" />
+                                <p style="color:rgba(255,255,255,0.92);display:inline !important;font-size:126%;margin-top:8px !important;" id="NotiUserName" runat="server">UserName</p><p style="display:inline !important;font-size:122%;color:#fffffff0;margin-top:12px !important;">'s</p>
+                                <img onclick="document.getElementById('SuMUserNofifications').style.display = 'none';return false;" src="/svg/closeWt.svg" style="float:right !important;margin-right:-10px;margin-top:10px;width:32px;height:32px;pointer-events:all !important;" />
+                            </div>
+                        <a class="shadow-sm" style="color:rgba(255,255,255,92);margin-left:8px;margin-top:22px;margin-bottom:2px;font-size:130%;">SuM Account Info</a>
+                        <div id="ACCOUNTNOTOFICATIONSPaymentCard" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100vw - 18px) !important;height:fit-content;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;">
+                        
+                        </div>
+                        <div style="width:calc(100vw - 24px) !important;height:14px !important;display:block !important;"></div>
+                        <a class="shadow-sm" style="color:rgba(255,255,255,0.92);margin-left:8px;margin-top:16px;margin-bottom:3px;font-size:130%;">SuM Notifications</a>
+                        <div id="USERNOTIFICATIONS" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100vw - 18px) !important;height:calc(100vh - 356px) !important;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;min-height:62px !important;overflow-x:hidden !important;overflow-y:scroll !important;">
+                            <a style="width:100% !important;height:12px !important;display:block !important;"></a>
+                            <a style="color:rgba(0,0,0,0.54);margin:0 auto !important;text-align:center;width:100%;font-size:94%;vertical-align:middle !important;margin-top:18px;"><b> no notifications yet! </b></a>
+                        </div>
+                </div>
+                    </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
     </div>
         <script>
             if (document.getElementById('subnavscont2').style.display == 'none') {
@@ -451,11 +459,10 @@
             if (document.getElementById('subnavscont2').style.display == 'block') {
                 document.getElementById('fullnavscont').style.display = 'none';
             };
-
+            
             if (!navigator.onLine) {
-                document.getElementById('FullSearch').onclick = document.getElementById('SearchOffline').style.display = 'block';
-                document.getElementById('SubSearch').onclick = document.getElementById('SearchOffline').style.display = 'block';
-                document.getElementById('MainContent_AccountSettingsOrLogin').onclick = document.getElementById('AccountOffline').style.display = 'block';
+                document.getElementById('FullSearch').onclick = "document.getElementById('SearchOffline').style.display = 'block'";
+                document.getElementById('SubSearch').onclick = "document.getElementById('SearchOffline').style.display = 'block'";
                 document.getElementById('MainContent_AccountSettingsOrLogin').href = '#';
                 document.getElementById('SendCommentAria').style.display = 'none';
             };

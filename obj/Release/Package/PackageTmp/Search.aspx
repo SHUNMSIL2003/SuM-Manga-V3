@@ -65,8 +65,6 @@
                 viewwidth + "px, initial-scale=1.0");
         }, 300);
     </script>
-    <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
-    </asp:ScriptManager>
     <div class="STBSUMBAR2 bg-white shadow slideInDown animated">
         <nav style="height:64px;width:100% !important;" class="navbar navbar-light navbar-expand bg-white mb-4 FNM5455511">
                     <div class="container-fluid" style="text-align:center !important;">
