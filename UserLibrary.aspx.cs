@@ -235,6 +235,7 @@ namespace SuM_Manga_V3
                 if (RawRes != null)
                 {
                     string Res = RawRes.ToString();
+                    if (string.IsNullOrEmpty(Res) == true) { fail = true; }
                     if (Type == "Curr")
                     {
                         int[,] R = ST1(Res);//JsonConvert.DeserializeObject<int[,]>(a);
@@ -285,7 +286,7 @@ namespace SuM_Manga_V3
                             string CreatorName = g.ToString();
 
                             ShowReqContant.InnerHtml += BuildCurrCard(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink, CreatorName);
-                            if (i != 0) { ShowReqContant.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;color:rgba(242,242,242,0.96);width:calc(100vw - 36px);margin:0 auto important;" + sc.ToString() + ">"; }
+                            if (i != 0) { ShowReqContant.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;color:rgba(242,242,242,1);width:calc(100vw - 36px);margin:0 auto important;" + sc.ToString() + ">"; }
                         }
                     }
                     else 
@@ -338,7 +339,7 @@ namespace SuM_Manga_V3
                         }
                         else 
                         {
-                            ShowReqContant.InnerHtml = "<p style=" + '"'.ToString() + "color:rgb(104,64,217,0.74);font-size:112%;width:100%;text-align:center;margin:0 auto !important;margin-top:36px !important;" + '"'.ToString() + ">Nothing Yet!</p>";
+                            fail = true;
                         }
                     }
                     sqlCon.Close();
