@@ -24,6 +24,20 @@
         ::-ms-input-placeholder { /* Microsoft Edge */
             color: rgba(255,255,255,0.8) !important;
         }
+        textarea:focus,
+        textarea.form-control:focus,
+        input.form-control:focus,
+        input[type=text]:focus,
+        input[type=password]:focus,
+        input[type=email]:focus,
+        input[type=number]:focus,
+        [type=text].form-control:focus,
+        [type=password].form-control:focus,
+        [type=email].form-control:focus,
+        [type=tel].form-control:focus,
+        [contenteditable].form-control:focus {
+            box-shadow: inset 0 0px 0 #000 !important;
+        }
     </style>
     <script>
 
@@ -53,13 +67,58 @@
                     <asp:ImageButton OnClick="SendComment" ID="SendBTN" style="background-color:#fff;border-radius:4px;width:38px;height:32px;margin:4px;" ImageAlign="AbsMiddle" ImageUrl="/svg/send.svg" runat="server" />
                 </div>
             </a>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+            <style>
+                .HiddenASPBTN {
+                    display:none !important;
+                    visibility:hidden !important;
+                }
+            </style>
+            <asp:Button ID="CommentsSecOpenBTN" runat="server" OnClick="LoadCommentsSection" CssClass="HiddenASPBTN" />
+            <script type="text/javascript">
+                var CommentsSecIsloaded = false;
+                var CommentsSecFirstLoad = true;
+                var elm = document.getElementById("MainContent_CommentsSecCont");
+                elm.style.marginTop = (elm.style.marginTop - document.getElementById('subnavscont2').offsetHeight) + 'px';
+                function FuncLoadCommentsSec() {
+                    if (CommentsSecIsloaded == false) {
+                        if (CommentsSecFirstLoad == true) {
+                            document.getElementById('<%= CommentsSecOpenBTN.ClientID %>').click();
+                            CommentsSecFirstLoad = false;
+                        }
+                        CommentsSecIsloaded = true;
+                        setTimeout(() => {
+                            elm.classList.remove('slideDown');
+                            elm.classList.add('slideInUp');
+                        }, 10);
+                        setTimeout(() => {
+                            elm.style.display = "block";
+                        }, 10);
+                    }
+                    else {
+                        document.getElementById('<%= CommentsSecCont.ClientID %>').style.display = 'none';
+                        CommentsSecIsloaded = false;
+                        setTimeout(() => {
+                            elm.classList.remove('slideInUp');
+                            document.getElementById('MainContent_Comments').classList.remove('fadeIn');
+                            elm.style.display = 'none';
+                            elm.classList.add('slideDown');
+                            elm.style.display = 'block';
+                        }, 10);
+                        setTimeout(() => {
+                            elm.style.display = 'none';
+                            document.getElementById('MainContent_Comments').classList.add('fadeIn');
+                        }, 800);
+                    }
+                };
+            </script>
+            <asp:UpdatePanel ID="CommentsSecUpdatePanel" runat="server" UpdateMode="Conditional">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="SendBTN" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="CommentsSecOpenBTN" EventName="Click" />
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-                        <div class="animated fadeIn" id="Comments" style="width:calc(100vw - 20px) !important;max-height:calc(70vh - 208px) !important;height:calc(70vh - 208px) !important;overflow-x:hidden;overflow-y:scroll;background-color:#fffffff0 !important;border-radius:18px;padding-left:12px;padding-right:12px;padding-top:18px;padding-bottom:18px;margin-left:10px;margin-right:10px;margin-top:10px;" runat="server">
+                        <div class="animated fadeIn" id="Comments" style="width:calc(100vw - 20px) !important;max-height:calc(70vh - 208px) !important;height:calc(70vh - 208px) !important;overflow-x:hidden;overflow-y:scroll;background-color:#ffffff !important;border-radius:18px;padding-left:12px;padding-right:12px;padding-top:18px;padding-bottom:18px;margin-left:10px;margin-right:10px;margin-top:10px;" runat="server">
                         </div>
                         <br />
                     </asp:Panel>

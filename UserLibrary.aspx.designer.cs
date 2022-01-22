@@ -15,6 +15,15 @@ namespace SuM_Manga_V3
     {
 
         /// <summary>
+        /// SettingsUnavaliblePOPUP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SettingsUnavaliblePOPUP;
+
+        /// <summary>
         /// cr control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace SuM_Manga_V3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor wr;
+
+        /// <summary>
+        /// InfoAboutC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl InfoAboutC;
 
         /// <summary>
         /// ShowReqContant control.

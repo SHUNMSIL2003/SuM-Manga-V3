@@ -266,9 +266,11 @@ namespace SuM_Manga_V3
                     RawPayProssor(UNSEENRawPayAlert.ToString());
                 }
                 //MarkReadDone(ID, RawAlert);
+                // -TEMP!-
+                USERNOTIFICATIONS.InnerHtml = "<a style=" + '"'.ToString() + "width:100% !important;height:calc(50vh - 200px) !important;display:block !important;" + '"'.ToString() + "></a> <a style=" + '"'.ToString() + "color:" + ThemeColor + ";margin:0 auto !important;text-align:center;width:100%;font-size:94%;vertical-align:middle !important;margin-top:18px;" + '"'.ToString() + "><b> no notifications yet! </b></a>";
             }
         }
-        protected void RawPayProssor(string RawPay) 
+        protected void RawPayProssor(string RawPay)
         {
             //#FreeT?Y2021?M12?D23$N
             string ACCOUNTSTATUSKEY = string.Empty;
@@ -307,26 +309,26 @@ namespace SuM_Manga_V3
                 MembershipIsValid = true;
             }
             ACCOUNTSTATUSKEY = ACCOUNTSTATUSKEY.ToUpper();
-            if (MembershipIsValid == true) 
+            if (MembershipIsValid == true)
             {
-                if (ACCOUNTSTATUSKEY == "FREE") 
+                if (ACCOUNTSTATUSKEY == "FREE")
                 {
                     ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildGreenCard("No actiond is needed, enjoy your free trial!", STARTDate.ToString("MMMM d yyyy"), "SuM System");
                 }
-                if (ACCOUNTSTATUSKEY == "PAID") 
+                if (ACCOUNTSTATUSKEY == "PAID")
                 {
                     ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildGreenCard("No actiond is needed, enjoy!", STARTDate.ToString("MMMM d yyyy"), "SuM System");
                 }
             }
-            if (MembershipIsValid == false) 
+            if (MembershipIsValid == false)
             {
                 if (ACCOUNTSTATUSKEY == "FREE")
                 {
-                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free trial has expired!", DateTime.Now.ToString("MMMM d yyyy"), "#", "SuM System");
+                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free trial has expired!", DateTime.Now.ToString("MMMM d yyyy"), "/AccountETC/Settings.aspx", "SuM System");
                 }
                 if (ACCOUNTSTATUSKEY == "PAID")
                 {
-                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free subscription has expired!", DateTime.Now.ToString("MMMM d yyyy"), "#", "SuM System");
+                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free subscription has expired!", DateTime.Now.ToString("MMMM d yyyy"), "/AccountETC/Settings.aspx", "SuM System");
                 }
             }
             //ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml += "<a>" + ACCOUNTSTATUSKEY + " MS:" + MembershipIsValid.ToString() + "</a>"; DEBUG
@@ -345,7 +347,7 @@ namespace SuM_Manga_V3
             string SC = '"'.ToString();
             string DATERES = DATE + "";
             string RS = "";
-            RS = "<a class=" + SC + "d-flex align-items-center" + SC + " style="+SC+"padding-left:6px;padding-top:6px;padding-bottom:6px;"+SC+" ><div class=" + SC + "dropdown-list-image" + SC + "><div class=me-3 ><div class=" + SC + "bg-success icon-circle" + SC + "><i class=" + SC + "fas fa-donate text-white" + SC + "></i></div></div></div><div class=" + "fw-bold" + "><div class=" + "text-truncate" + "><span style="+"color:#000000B3;"+" >" + INFO + "</span></div><p class=" + SC + "small mb-0" + SC + " style=color:#00000080; >" + SENDER + " - " + DATERES + "</p></div></a>";
+            RS = "<a class=" + SC + "d-flex align-items-center" + SC + " style=" + SC + "padding-left:6px;padding-top:6px;padding-bottom:6px;" + SC + " ><div class=" + SC + "dropdown-list-image" + SC + "><div class=me-3 ><div class=" + SC + "bg-success icon-circle" + SC + "><i class=" + SC + "fas fa-donate text-white" + SC + "></i></div></div></div><div class=" + '"'.ToString() + "fw-bold NotifMaxWidth" + '"'.ToString() + " ><div class=" + "text-truncate" + "><span style=" + "color:#000000B3;" + " >" + INFO + "</span></div><p class=" + SC + "small mb-0" + SC + " style=color:#00000080; >" + SENDER + " - " + DATERES + "</p></div></a>";
             //RS = "";
             return RS;
         }
@@ -354,7 +356,7 @@ namespace SuM_Manga_V3
             string SC = '"'.ToString();
             string DATERES = DATE + "";
             string RS = "";
-            RS = "<a class=" + SC + "d-flex align-items-center" + SC + "href=" + LINK + " style=" + SC + "padding-left:6px;padding-top:6px;padding-bottom:6px;" + SC + " ><div class=" + SC + "dropdown-list-image" + SC + "><div class=me-3><div class=" + SC + "bg-warning icon-circle" + SC + "><i class=" + SC + "fas fa-exclamation-triangle text-white" + SC + "></i></div></div></div></div><div class=" + "fw-bold" + "><div class=" + "text-truncate" + "><span style=" + "color:#000000B3;" + " >" + INFO + "</span></div><p class=" + SC + "small mb-0" + SC + " style=color:#00000080; >" + SENDER + " - " + DATERES + "</p></div></a>";
+            RS = "<a href=" + SC + LINK + SC + " class=" + SC + "d-flex align-items-center" + SC + " style=" + SC + "padding-left:6px;padding-top:6px;padding-bottom:6px;" + SC + " ><div class=" + SC + "dropdown-list-image" + SC + "><div class=me-3 ><div class=" + SC + "bg-warning icon-circle" + SC + "><i class=" + SC + "fas fa-exclamation-triangle text-white" + SC + "></i></div></div></div><div class=" + '"'.ToString() + "fw-bold NotifMaxWidth" + '"'.ToString() + " ><div class=" + "text-truncate" + "><span style=" + "color:#000000B3;" + " >" + INFO + "</span></div><p class=" + SC + "small mb-0" + SC + " style=color:#00000080; >" + SENDER + " - " + DATERES + "</p></div></a>";
             //RS = "";
             return RS;
         }

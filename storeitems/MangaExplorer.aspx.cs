@@ -124,7 +124,12 @@ namespace SuM_Manga_V3.storeitems
                         Response.Redirect("~/404.aspx");
                     }
                 }
-                LoadCommentsSection();
+                //LoadCommentsSection(); Loads onclick now!
+                // New Code for parts outside the update panel
+                string ThemeColor = Request.QueryString["TC"].ToString();
+                CommentsSecTopPartColor.Attributes["style"] = "display:block;margin-top:18px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background-color:" + ThemeColor.Replace("0.74", "0.58") + ";padding:0px !important;";
+                SendBTN.Attributes["style"] = "background-color:rgba(0,0,0,0);border-radius:4px;width:40px;height:34px;margin:4px;";
+                CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
             }
         }
         protected void SendComment(object sender, EventArgs e)
@@ -163,18 +168,69 @@ namespace SuM_Manga_V3.storeitems
                     sqlCmd.ExecuteNonQuery();
                     sqlCon.Close();
                 }
-                LoadCommentsSection();
+                LoadCommentsSectionNFBTN();
                 //Response.Redirect(Request.RawUrl);
             }
         }
-        protected void LoadCommentsSection()
+        protected void LoadCommentsSection(object sender, EventArgs e)
         {
             string ThemeColor = Request.QueryString["TC"].ToString();
             string MangaID = Request.QueryString["VC"].ToString();
             string CurrCH = Request.QueryString["Chapter"].ToString();
-            CommentsSecTopPartColor.Attributes["style"] = "display:block;margin-top:18px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background-color:" + ThemeColor.Replace("0.74", "0.54") + ";padding:0px !important;";
-            SendBTN.Attributes["style"] = "background-color:rgba(0,0,0,0);border-radius:4px;width:40px;height:34px;margin:4px;";
-            CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
+            string RawComments = string.Empty;
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT " + CurrCH + " FROM SuMMangaComments WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd00.Parameters["@MangaID"].Value = MangaID;
+                var Raw = sqlCmd00.ExecuteScalar();
+                if (Raw != null) { RawComments = Raw.ToString(); }
+                sqlCon.Close();
+            }
+            if (string.IsNullOrWhiteSpace(RawComments) == false)
+            {
+                string[,] CSF = ST1String(RawComments);
+                string CommentsHTML = "";
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    int id = 0;
+                    string UserName = string.Empty;
+                    string PFP = string.Empty;
+                    for (int i = (CSF.GetLength(1) - 1); i > (-1); i--)
+                    {
+                        id = Convert.ToInt32(CSF[0, i]);
+                        string qwi = "SELECT UserName FROM SuMUsersAccounts WHERE UserID=@UserID";
+                        SqlCommand sqlCmd = new SqlCommand(qwi, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                        sqlCmd.Parameters["@UserID"].Value = id;
+                        var Raw = sqlCmd.ExecuteScalar();
+                        UserName = Raw.ToString();
+                        qwi = "SELECT PFP FROM SuMUsersAccounts WHERE UserID=@UserID";
+                        sqlCmd = new SqlCommand(qwi, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                        sqlCmd.Parameters["@UserID"].Value = id;
+                        Raw = sqlCmd.ExecuteScalar();
+                        PFP = Raw.ToString();
+                        CommentsHTML += ApplyCommentForm(PFP, UserName, CSF[1, i]);
+                        if (i != 0) { CommentsHTML += "<hr style=" + '"'.ToString() + "width:calc(100% - 26px) !important;height:2px !important;color:" + ThemeColor.Replace("0.74", "0.82") + " !important;margin:0 auto !important;margin-top:-4px !important;margin-bottom:12px !important;border-radius:1px !important;" + '"'.ToString() + " />"; }
+                    }
+                    sqlCon.Close();
+                }
+                Comments.InnerHtml = CommentsHTML;
+            }
+            else
+            {
+                Comments.InnerHtml = "<p style=" + '"'.ToString() + "color:" + ThemeColor + ";text-align:center;width:100%;text-align:center;margin-top:calc(35vh - 128px);" + '"'.ToString() + ">No comments yet</p>";
+            }
+        }
+        protected void LoadCommentsSectionNFBTN() //TMP!
+        {
+            string ThemeColor = Request.QueryString["TC"].ToString();
+            string MangaID = Request.QueryString["VC"].ToString();
+            string CurrCH = Request.QueryString["Chapter"].ToString();
             string RawComments = string.Empty;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {

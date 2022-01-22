@@ -162,6 +162,28 @@
             -ms-user-select: text !important;
             user-select: text !important;
         }
+            /* clears the ‘X’ from Internet Explorer */
+            input[type=search]::-ms-clear {
+                display: none;
+                width: 0;
+                height: 0;
+            }
+            input[type=search]::-ms-reveal {
+                display: none;
+                width: 0;
+                height: 0;
+            }
+            /* clears the ‘X’ from Chrome */
+            input[type="search"]::-webkit-search-decoration,
+            input[type="search"]::-webkit-search-cancel-button,
+            input[type="search"]::-webkit-search-results-button,
+            input[type="search"]::-webkit-search-results-decoration {
+                display: none;
+            }
+            input[type=checkbox]:focus,
+            input[type=submit]:focus {
+                box-shadow: inset 0 0px 0 #000 !important;
+            }
     </style>
     <script>
         /* */
@@ -263,6 +285,9 @@
         .PupShadow {/*
             box-shadow: 0px 0px 1px 160vw rgba(104, 64, 217, 0.25) !important;*/
         }
+        .NotifMaxWidth {
+            max-width:calc(100vw - 120px) !important;
+        }
     </style>
     <form autocomplete="off" id="SuM" method="post" runat="server">
     <div runat="server" id="wrapper" style="overflow:hidden;background-color:#ffffff !important;">
@@ -339,14 +364,14 @@
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;">Navigate Back</b>
                 </a>
             <a class="" id="SubSearch" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="if (!navigator.onLine) { document.getElementById('SearchOffline').style.display = 'block'; } else { location.href = '/Search.aspx'; }" href="#"><img src="/svg/Search.svg" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:14px !important;"></a>
-            <a id="ComAct" style="float:right !important;vertical-align:middle !important;width:fit-content;margin-left:4px;">
-                <img src="/svg/chat.svg" id="Img5" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;">
+            <a id="ComAct" onclick="FuncLoadCommentsSec()" style="float:right !important;vertical-align:middle !important;width:fit-content;margin-left:4px;">
+                <img src="/svg/chat.svg" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;">
             </a>
             <a href="/Explore.aspx" style="margin-right:-8px;float:right !important;vertical-align:middle !important;width:fit-content;margin-right:-6px;">
-                <img src="/svg/ExploreNA.svg" id="Img1" style="width:29px;height:29px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;"><br>
+                <img src="/svg/ExploreNAFME.svg" style="width:29px;height:29px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;"><br>
             </a>
             <script>
-                        document.getElementById("ComAct").onclick = function () {
+                        /*document.getElementById("ComAct").onclick = function () {
 
                             var elm = document.getElementById("MainContent_CommentsSecCont");
                             elm.style.marginTop = (elm.style.marginTop - document.getElementById('subnavscont2').offsetHeight) + 'px';
@@ -369,7 +394,7 @@
                                 }, 10);
                             }
 
-                };
+                };*/
                 //document.getElementById('X').style.display = (document.getElementById('X').style.display == "block") ? "none" : "block";
                 document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('subnavscont2').offsetHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 6) + 'px';
             </script>
@@ -443,9 +468,8 @@
                         </div>
                         <div style="width:calc(100vw - 24px) !important;height:14px !important;display:block !important;"></div>
                         <a class="shadow-sm" style="color:rgba(255,255,255,0.92);margin-left:8px;margin-top:16px;margin-bottom:3px;font-size:130%;">SuM Notifications</a>
-                        <div id="USERNOTIFICATIONS" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100vw - 18px) !important;height:calc(100vh - 356px) !important;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;min-height:62px !important;overflow-x:hidden !important;overflow-y:scroll !important;">
-                            <a style="width:100% !important;height:12px !important;display:block !important;"></a>
-                            <a style="color:rgba(0,0,0,0.54);margin:0 auto !important;text-align:center;width:100%;font-size:94%;vertical-align:middle !important;margin-top:18px;"><b> no notifications yet! </b></a>
+                        <div id="USERNOTIFICATIONS" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100vw - 18px) !important;height:calc(100vh - 342px) !important;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;min-height:62px !important;overflow-x:hidden !important;overflow-y:scroll !important;">
+                            
                         </div>
                 </div>
                     </asp:Panel>
