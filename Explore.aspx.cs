@@ -170,7 +170,7 @@ namespace SuM_Manga_V3
                             sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                             sqlCmd.Parameters["@MangaID"].Value = maxidf;
                             string themecolor = sqlCmd.ExecuteScalar().ToString();
-                            CExplorerLink += "&CN=" + ChaptersNum.ToString() + "&VC=" + maxidf.ToString() + "&TC=" + themecolor;
+                            CExplorerLink += "&VC=" + maxidf.ToString() + "&TC=" + themecolor;
                             query = "SELECT MangaCreator FROM SuMManga WHERE MangaID = @MangaID";
                             sqlCmd = new SqlCommand(query, sqlCon);
                             sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
@@ -397,7 +397,7 @@ namespace SuM_Manga_V3
                 ViewsNumPart = String.Format("{0:0.00}", B);
                 ViewsLPart = "B";
             }
-            string divstyle = "overflow:hidden;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;";
+            string divstyle = "overflow:hidden;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;max-height:420px !important;padding:12px;";
             string DivContant = "<div style=" + b12.ToString() + "width:94vw;height:fit-content;position:relative;margin:0 auto;margin-top:2px;" + b12.ToString() + ">";
             DivContant += "<h1 style=" + b12.ToString() + "float:left;margin-top:12px;margin-left:12px;color:#ffffff;font-size:178%;margin-right:14px !important;width:100%;height:fit-content;" + b12.ToString() + ">" + cardtitle + "</h1>";
             DivContant += "<p style=" + b12.ToString() + "color:rgb(255, 255, 255, 0.82); float:right; margin-top:-18px; margin-right:10px;" + b12.ToString() + ">By <b style=" + "font-size:80%;" + ">" + CraetorName + "</b></p></div>";

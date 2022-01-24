@@ -31,7 +31,7 @@ img {
             margin: -2px;
         }
         .ForceMaxW {
-            max-width:1200px !important;
+            max-width:1600px !important;
             margin: 0 auto;
         }
         body {

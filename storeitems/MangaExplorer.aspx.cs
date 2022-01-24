@@ -130,6 +130,7 @@ namespace SuM_Manga_V3.storeitems
                 CommentsSecTopPartColor.Attributes["style"] = "display:block;margin-top:18px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background-color:" + ThemeColor.Replace("0.74", "0.58") + ";padding:0px !important;";
                 SendBTN.Attributes["style"] = "background-color:rgba(0,0,0,0);border-radius:4px;width:40px;height:34px;margin:4px;";
                 CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
+                dot1.Attributes["style"] = "transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:" + ThemeColor + ";margin-right:6px;";
             }
         }
         protected void SendComment(object sender, EventArgs e)
@@ -174,6 +175,7 @@ namespace SuM_Manga_V3.storeitems
         }
         protected void LoadCommentsSection(object sender, EventArgs e)
         {
+            //System.Threading.Thread.Sleep(6000);
             string ThemeColor = Request.QueryString["TC"].ToString();
             string MangaID = Request.QueryString["VC"].ToString();
             string CurrCH = Request.QueryString["Chapter"].ToString();

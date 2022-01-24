@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="MangaExplorer.aspx.cs" Inherits="SuM_Manga_V3.storeitems.MangaExplorer" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" Async="true" CodeBehind="MangaExplorer.aspx.cs" Inherits="SuM_Manga_V3.storeitems.MangaExplorer" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
@@ -53,6 +53,7 @@
         //}
 
     </script>
+    
     <div id="pfc" runat="server" style="background-color:#6840D9;">
         <div class="slideInRight animated">
             <div class="nospace ContantDivSuM" style="height:fit-content;width:100vw !important;margin-left:0px !important;margin-right:0px !important;margin:0;" id="TheMangaPhotos" runat="server"><!-- The Story Content NA -->
@@ -82,8 +83,10 @@
                 function FuncLoadCommentsSec() {
                     if (CommentsSecIsloaded == false) {
                         if (CommentsSecFirstLoad == true) {
-                            document.getElementById('<%= CommentsSecOpenBTN.ClientID %>').click();
-                            CommentsSecFirstLoad = false;
+                            setTimeout(() => {
+                                document.getElementById('<%= CommentsSecOpenBTN.ClientID %>').click();
+                                CommentsSecFirstLoad = false;
+                            }, 1800);
                         }
                         CommentsSecIsloaded = true;
                         setTimeout(() => {
@@ -119,6 +122,38 @@
                 <ContentTemplate>
                     <asp:Panel runat="server">
                         <div class="animated fadeIn" id="Comments" style="width:calc(100vw - 20px) !important;max-height:calc(70vh - 208px) !important;height:calc(70vh - 208px) !important;overflow-x:hidden;overflow-y:scroll;background-color:#ffffff !important;border-radius:18px;padding-left:12px;padding-right:12px;padding-top:18px;padding-bottom:18px;margin-left:10px;margin-right:10px;margin-top:10px;" runat="server">
+                            <div class="animated fadeIn" style="width:100%;height:fit-content;margin-top:calc(35vh - 128px) !important;text-align:center !important;">
+                                <a id="dot1" runat="server" style="transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:#00000066;margin-right:12px;"></a>
+                                <a id="dot2" style="transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:#00000029;margin-left:6px;margin-right:6px;"></a>
+                                <a id="dot3" style="transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:#00000029;margin-left:6px;"></a>
+                            </div>
+                            <script>
+                                var dot1 = document.getElementById('MainContent_dot1');
+                                var dot2 = document.getElementById('dot2');
+                                var dot3 = document.getElementById('dot3');
+                                var DotsThemeColor = dot1.style.backgroundColor;
+                                var Deafultcolor = '#00000029';
+                                function AnimationDots123() {
+                                    setTimeout(() => {
+                                        dot2.style.backgroundColor = DotsThemeColor;
+                                        dot1.style.backgroundColor = Deafultcolor;
+                                        document.getElementById('MainContent_Comments').classList.add('fadeIn');
+                                    }, 600);
+                                    setTimeout(() => {
+                                        dot3.style.backgroundColor = DotsThemeColor;
+                                        dot2.style.backgroundColor = Deafultcolor;
+                                        document.getElementById('MainContent_Comments').classList.add('fadeIn');
+                                    }, 1200);
+                                    setTimeout(() => {
+                                        dot1.style.backgroundColor = DotsThemeColor;
+                                        dot3.style.backgroundColor = Deafultcolor;
+                                        document.getElementById('MainContent_Comments').classList.add('fadeIn');
+                                    }, 1800);
+
+                                    setTimeout(AnimationDots123, 1900);
+                                }
+                                AnimationDots123();
+                            </script>
                         </div>
                         <br />
                     </asp:Panel>

@@ -135,7 +135,7 @@
             border-radius: 1px;
         }
         .ForceMaxW {
-            max-width:1200px !important;
+            max-width:1600px !important;
             /*margin: 0 auto !important;*/
         }
         .PupShadow {

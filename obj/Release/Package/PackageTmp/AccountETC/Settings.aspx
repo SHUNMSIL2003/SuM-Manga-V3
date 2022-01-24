@@ -16,19 +16,19 @@
 
     </a> -->
     <div id="SettingsUnavaliblePOPUP" runat="server" style="animation-duration:0.36s !important;background-color:rgba(0,0,0,0.32) !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:999 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center animated fadeIn">
-        <div id="SUAC000SP" class="animated zoomIn card shadow-sm" style="animation-duration:0.28s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(50vh - 106px) !important;">
+        <div id="SUAC000SP" class="animated zoomIn card shadow-sm" style="margin:0 auto !important;max-width:382px !important;animation-duration:0.28s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(50vh - 106px) !important;">
             <p style="font-size:146%;color:#232323;margin-bottom:0px;margin:0 auto;margin-top:6px !important;">This option is unavalible</p>
             <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(0, 0, 0, 0.527);background-color:rgba(0, 0, 0, 0.527);width:84% !important;margin:0px;margin-block:0px;height:2px !important;margin-bottom:12px !important;margin-top:8px !important;border-radius:1px !important;">
             <p style="width:80% !important;margin:0 auto;color:rgba(0, 0, 0, 0.527);height:fit-content;text-align:center;display:block;font-size:112%;">The reason is eather there is a bug therefore its temporarily disabled or your device does not support it.</p>
             <div style="text-align:center;margin-top:16px;">
-                <a onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'none';" class="btn" style="margin:0 auto !important;background-color:rgb(104,64,217);color:#ffffff;border-radius:12px;width:fit-content;height:fit-content;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px;">OK</a>
+                <a onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'none';" class="btn" style="margin:0 auto !important;background-color:rgb(104,64,217);color:#ffffff;border-radius:12px;width:fit-content;height:fit-content;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px;margin-bottom:8px !important;">OK</a>
             </div>
         </div>
     </div>
     <div style="height:100%;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
         <div style="width:100vw;height:22px;background-color:#f2f2f2;position:relative;z-index:998;margin-top:-8px !important;"></div>
         <div style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;">
-            <a runat="server" id="AccountSettingsOrLogin" onclick="" href="/AccountETC/SuMAccount.aspx" style="height:112px !important;width:calc(100vw - 56px) !important;background-color:transparent !important;display:block !important;margin-top:8px;margin-bottom:8px; margin-left:8px;position:relative;z-index:998;">
+            <a runat="server" id="AccountSettingsOrLogin" onclick="" href="/AccountETC/LoginETC.aspx" style="height:112px !important;width:calc(100vw - 56px) !important;background-color:transparent !important;display:block !important;margin-top:8px;margin-bottom:8px; margin-left:8px;position:relative;z-index:998;">
             <img class="animated pulse" id="PFP" runat="server" style="width:84px !important;height:84px !important;border-radius:50% !important;float:left;display:inline;margin-bottom:6px;" src="/AccountETC/UsersUploads/DeafultPFP.jpg" />
                 <div class="fadeIn animated" style="float:left;display:inline;margin-left:8px;">
                     <h3 id="SuMUserName" runat="server" style="color:#1d1d1d;">Loging to SuM</h3>
@@ -58,7 +58,7 @@
 
                                     <script>
                                         var loadFile = function (event) {
-                                            var image = document.getElementById('MainContent_PFP');
+                                            var image = document.getElementById('MainContent_PFPC');
                                             image.src = URL.createObjectURL(event.target.files[0]);
                                         };
                                         /*if (document.getElementById('X').style.display == 'none') {
@@ -276,7 +276,7 @@
     </div>
         <div class="animated fadeIn" style="background-color:#ffffff !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="fadeIn animated" style="margin-top:-4px;vertical-align:middle;display:block !important;height:64px;overflow:hidden !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.7.1 Beta</p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.7.2 Beta</p>
                 <p class="" style="color:#8f8f8f;margin-left:28px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
             </div>
         </div>

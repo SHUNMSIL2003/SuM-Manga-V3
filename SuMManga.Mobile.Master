@@ -103,7 +103,7 @@
         }
 
 /* use a media query to filter small devices */
-        @media only screen and (min-width:780px) {
+        @media only screen and (min-width:1600px) {
             /* show the popup */
             div#popup {
                 display: block;
@@ -279,7 +279,7 @@
             border-radius: 1px;*/
         }
         .ForceMaxW {
-            max-width:1200px !important;
+            max-width:1600px !important;
             /*margin: 0 auto !important;*/
         }
         .PupShadow {/*
@@ -289,7 +289,7 @@
             max-width:calc(100vw - 120px) !important;
         }
     </style>
-    <form autocomplete="off" id="SuM" method="post" runat="server">
+    <form autocomplete="off" id="SuM" method="post" runat="server" >
     <div runat="server" id="wrapper" style="overflow:hidden;background-color:#ffffff !important;">
         <asp:ScriptManager ID="SuMScriptManager" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
        </asp:ScriptManager>

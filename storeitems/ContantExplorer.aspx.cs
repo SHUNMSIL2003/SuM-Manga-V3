@@ -15,56 +15,61 @@ namespace SuM_Manga_V3.storeitems
 {
     public partial class ContantExplorer : System.Web.UI.Page
     {
-        /*protected void Page_PreInit(object sender, EventArgs e)
-        {
-            if (Request.Browser.IsMobileDevice)
-                MasterPageFile = "~/SuMManga.Mobile.Master";
-        }*/
+        /*int LoadedChaptersTNum = 0;
+        bool ThereIsMoreCHs = false;
+        int CaptersNum = 0;*/
         protected void Page_Load(object sender, EventArgs e)
         {
-            //LastRefreshPross();   -- Needs work
-            /*HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-            if (GetUserInfoCookie == null)
-            {
-                Response.Redirect("~/AccountETC/LoginETC.aspx");
-            }*/
-            if (Request.QueryString["CN"] == null || Request.QueryString["Manga"] == null || Request.QueryString["VC"] == null) { backhome(); }
-            MTitle.InnerText = ShowName();//rgba(0,0,0,0.527)
+            /*if (!IsPostBack)
+            {*/
+            //LastRefreshPross();   -- Needs work  %-- No need now !
+            bool ThereIsMoreCHs = false;
+            if (Request.QueryString["Manga"] == null || Request.QueryString["VC"] == null) { backhome(); }
+            MTitle.InnerText = ShowName();
             string CardBG = ShowCover();
-            //Bitmap bMap = Bitmap.FromFile(Server.MapPath("~/" + CardBG + "")) as Bitmap;
             string ThemeColor = string.Empty;
             if (Request.QueryString["TC"] != null)
             {
-                ThemeColor = Request.QueryString["TC"].ToString();//RgbConverter(getDominantColor(bMap));
+                ThemeColor = Request.QueryString["TC"].ToString();
             }
-            else { ThemeColor = "#6840D9"; }//height:100vh !important;min-height:100% !important;
-            TheMangaPhotosF.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";padding-bottom:128px !important;";
+            else { ThemeColor = "#6840D9"; }
+            MangaChAMConta.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";padding-bottom:164px !important;min-height:calc(100vh + 6px) !important;";
             string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100vw;height:fit-content;float:left;";//ORgbConverter(getDominantColor(bMap));------background-color:" + ThemeColor + ";
-            string theme = ThemeColor;//RgbConverter(getDominantColor(bMap));
+            string theme = ThemeColor;
             infoCover.Attributes["style"] = "background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
-            string cn = Request.QueryString["CN"].ToString();
-            //MangaViewsAndChapters.InnerText = "Chapters: " + cn + "  -   Views:  "+ ShowViews() + "";
-            MdiscS.InnerText = ShowDis();
             int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
+            int cn1 = 0;
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = idfg0554;
+                var un = sqlCmd.ExecuteScalar();
+                cn1 = Convert.ToInt32(un);
+                sqlCon.Close();
+            }
+            //CaptersNum = cn1;
+            MdiscS.InnerText = ShowDis();
             GernsTags.InnerHtml = GetGerns(theme, idfg0554);
             string ThemeColorOp1 = ThemeColor.Substring(0, ThemeColor.Length - 6);
             ThemeColorOp1 += ")";
             GernsTags.Attributes["style"] = "border-top-right-radius:22px;border-top-left-radius:22px;width:100vw;height:fit-content;background-color:" + ThemeColorOp1 + ";align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;";
             string pathstartnochx = "/storeitems/";
-            //string btn2 = "btn";
-            //string btn3 = "btn-primary btn-sm";
             string extraexplore = "MangaExplorer.aspx";
             string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
-            //MainCardT.InnerText = Request.QueryString["Manga"].ToString();
             string identifynexthelper = "&Chapter=";
             string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
             if (Request.QueryString["Manga"] == null) { backhome(); }
             string M0path = epath + "\\storeitems\\" + Request.QueryString["Manga"] + "\\";
             if (System.IO.Directory.Exists(M0path) == false) { backhome(); }
-            string cn0 = Request.QueryString["CN"];
-            int cn1 = Convert.ToInt32(cn0);
+            if (cn1 > 12)
+            {
+                ThereIsMoreCHs = true;
+                cn1 = 12;
+            }
             string ChapterFixedForm = string.Empty;
-            //string btnclass = "btn"; //btn
             string RLink = string.Empty;
             string themecolor = ThemeColor;
             char sc = '"';
@@ -74,10 +79,10 @@ namespace SuM_Manga_V3.storeitems
             string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();
             string linktoupdatech = identifynexthelper + "ch";
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-            //string OptionToAddCurrFunc = "";
             string managtocheckexsis = Request.QueryString["Manga"].ToString();
             string rootpath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
             string checkifitexsistsStart = rootpath + "\\storeitems\\" + managtocheckexsis + "\\";
+            string AnimationOnScroll = "data-aos=" + '"'.ToString() + "fade-up" + '"'.ToString() + " data-aos-duration=" + '"'.ToString() + "50" + '"'.ToString() + " data-aos-once=" + '"'.ToString() + "true" + '"'.ToString() + " class=" + '"'.ToString() + "m-0 aos-init aos-animate" + '"'.ToString() + "";
             if (GetUserInfoCookie != null)
             {
                 int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
@@ -96,9 +101,9 @@ namespace SuM_Manga_V3.storeitems
                         RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
                         TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "if (!navigator.onLine) { fetch('" + RLink + "', { method: 'GET' }).then(res => { location.href = '" + RLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + RLink + "'; }" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
                     }
-                    else 
+                    else
                     {
-                        TheMangaPhotosF.InnerHtml += "<a onclick=" + sc.ToString() + "document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;opacity:0.36;" + "> <p style=" + "opacity:0.36;color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:right;margin-right:calc(100vw - 176px);margin-top:-4px;height:fit-content;width:fit-content;" + b12.ToString() + ">unavailable!</p></a>";
+                        TheMangaPhotosF.InnerHtml += "<a onclick=" + sc.ToString() + "document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;opacity:0.54;" + "> <p style=" + "opacity:0.64;color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:right;margin-right:calc(100vw - 176px);margin-top:-4px;height:fit-content;width:fit-content;" + b12.ToString() + ">unavailable!</p></a>";
                     }
                     if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:94vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
                 }
@@ -129,10 +134,18 @@ namespace SuM_Manga_V3.storeitems
                     }
                     else
                     {
-                        TheMangaPhotosF.InnerHtml += "<a onclick=" + sc.ToString() + "document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;opacity:0.36;" + "> <p style=" + "opacity:0.36;color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:right;margin-right:calc(100vw - 248px);margin-top:-4px;height:fit-content;width:fit-content;" + b12.ToString() + ">currency unavailable!</p></a>";
+                        TheMangaPhotosF.InnerHtml += "<a onclick=" + sc.ToString() + "document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;opacity:0.54;" + "> <p style=" + "opacity:0.64;color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:right;margin-right:calc(100vw - 176px);margin-top:-4px;height:fit-content;width:fit-content;" + b12.ToString() + ">unavailable!</p></a>";
                     }
                     if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
                 }
+            }
+            if (ThereIsMoreCHs == true)
+            {
+                ThreIsMoreACard.Attributes["style"] = "width:100%;height:fit-content;text-align:center !important;margin:0 auto !important;display:block;";
+            }
+            else
+            {
+                ThreIsMoreACard.Attributes["style"] = "display:none;";
             }
             ChapterUnavaliblePOPUP.Attributes["style"] = "background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
             ShowCreator();
@@ -143,6 +156,148 @@ namespace SuM_Manga_V3.storeitems
             {
                 AddOneView();
             }
+            /*}*//*
+            else
+            {
+                string OldHTML = TheMangaPhotosF.InnerHtml;
+                int cn1 = 0;
+                int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = idfg0554;
+                    var un = sqlCmd.ExecuteScalar();
+                    cn1 = Convert.ToInt32(un);
+                    sqlCon.Close();
+                }
+                if (cn1 > 12)
+                {
+                    ThereIsMoreCHs = true;
+                }
+
+            }*/
+        }
+        /*private void EnsureUpdatePanelFixups()
+        {
+            if (this.Page.Form != null)
+            {
+                string formOnSubmitAtt = this.Page.Form.Attributes["onsubmit"];
+
+                if (formOnSubmitAtt == "return _spFormOnSubmitWrapper();")
+                {
+                    this.Page.Form.Attributes["onsubmit"] = "_spFormOnSubmitWrapper();";
+                }
+            }
+
+            ScriptManager.RegisterStartupScript(this, typeof(void), "SomeStringToBeTheKey", "_spOriginalFormAction = document.forms[0].action;_spSuppressFormOnSubmitWrapper=true;", true);
+        }*/
+        protected void LOADMORECHAPTERS(object sender, EventArgs e)
+        {
+            /*if (ThereIsMoreCHs == true)
+            {*/
+            //LoadedChaptersTNum++;
+            int CSN = 1 * 12;
+            int CEN = 0;//(1 + 1) * 12;
+            int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = idfg0554;
+                var un = sqlCmd.ExecuteScalar();
+                CEN = Convert.ToInt32(un);
+                sqlCon.Close();
+            }
+            //int FCN = CaptersNum;
+            /*if (CEN > FCN)
+            {
+                ThereIsMoreCHs = false;
+                CEN = FCN;
+            }*/
+            //NormallCoderFromDownHere
+            string ThemeColor = Request.QueryString["TC"].ToString();
+            string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100vw;height:fit-content;float:left;";
+            string pathstartnochx = "/storeitems/";
+            string extraexplore = "MangaExplorer.aspx";
+            string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
+            string identifynexthelper = "&Chapter=";
+            string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+            string ChapterFixedForm = string.Empty;
+            string RLink = string.Empty;
+            string themecolor = ThemeColor;
+            char sc = '"';
+            char b12 = '"';
+            string btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
+            string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();
+            string linktoupdatech = identifynexthelper + "ch";
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            string managtocheckexsis = Request.QueryString["Manga"].ToString();
+            string rootpath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+            string checkifitexsistsStart = rootpath + "\\storeitems\\" + managtocheckexsis + "\\";
+            string AnimationOnScroll = "data-aos=" + '"'.ToString() + "fade-up" + '"'.ToString() + " data-aos-duration=" + '"'.ToString() + "50" + '"'.ToString() + " data-aos-once=" + '"'.ToString() + "true" + '"'.ToString() + " class=" + '"'.ToString() + "m-0 aos-init aos-animate" + '"'.ToString() + "";
+            TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:94vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">";
+            if (GetUserInfoCookie != null)
+            {
+                for (int c = (CSN + 1); c < (CEN + 1); c++)
+                {
+                    string chxC = c.ToString();
+                    if (c < 10 && c > 0) { ChapterFixedForm = "000" + chxC; }
+                    if (c > 9 && c < 100) { ChapterFixedForm = "00" + chxC; }
+                    if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
+                    if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
+                    if (c > 10000) { c = (CEN + 1); }
+                    string cpcover = "/storeitems/" + Request.QueryString["Manga"].ToString() + "/sumcp" + ChapterFixedForm + ".jpg";
+                    if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
+                    {
+                        RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
+                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "if (!navigator.onLine) { fetch('" + RLink + "', { method: 'GET' }).then(res => { location.href = '" + RLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + RLink + "'; }" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
+                    }
+                    else
+                    {
+                        TheMangaPhotosF.InnerHtml += "<a onclick=" + sc.ToString() + "document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;opacity:0.54;" + "> <p style=" + "opacity:0.64;color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:right;margin-right:calc(100vw - 176px);margin-top:-4px;height:fit-content;width:fit-content;" + b12.ToString() + ">unavailable!</p></a>";
+                    }
+                    if (c < CEN) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:94vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
+                }
+            }
+            else
+            {
+                string TC = Request.QueryString["TC"].ToString();
+                TC = TC.Substring(0, TC.Length - 6);
+                TC += ")";
+                SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;margin-top:-2px !important;";
+                MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">You need to Login!</p>";
+                MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
+                MRSC.Attributes["style"] = "overflow:hidden;margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;";
+                MRSW.Attributes["onclick"] = "document.getElementById('MainContent_SuMLoginUI').style.display = 'block';";
+                for (int c = (CSN + 1); c < (CEN + 1); c++)
+                {
+                    string chxC = c.ToString();
+                    if (c < 10 && c > 0) { ChapterFixedForm = "000" + chxC; }
+                    if (c > 9 && c < 100) { ChapterFixedForm = "00" + chxC; }
+                    if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
+                    if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
+                    if (c > 10000) { c = (CEN + 1); }
+                    string cpcover = "/storeitems/" + Request.QueryString["Manga"].ToString() + "/sumcp" + ChapterFixedForm + ".jpg";
+                    if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
+                    {
+                        RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
+                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "document.getElementById('MainContent_SuMLoginUI').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;" + "> <p style=" + "color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p></a>";
+                    }
+                    else
+                    {
+                        TheMangaPhotosF.InnerHtml += "<a onclick=" + sc.ToString() + "document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " src=" + cpcover + " style=" + "margin:4px;width:64px;height:64px;float:left;opacity:0.92;border-radius:4px;opacity:0.54;" + "> <p style=" + "opacity:0.64;color:#ffffff;float:left;margin-left:6px;" + ">Chapter " + chxC + "</p> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:right;margin-right:calc(100vw - 176px);margin-top:-4px;height:fit-content;width:fit-content;" + b12.ToString() + ">unavailable!</p></a>";
+                    }
+                    if (c < CEN) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
+                }
+            }
+            ThreIsMoreACard.Attributes["style"] = "display:none;";
+            LoadChapters.Update();
+            /*}*/
         }
         protected void ShareLink()
         {
@@ -165,7 +320,7 @@ namespace SuM_Manga_V3.storeitems
                 }
                 sqlCon.Close();
             }
-            string LINK = "https://sum-manga.azurewebsites.net/storeitems/ContantExplorer.aspx?Manga=" + Request.QueryString["Manga"].ToString() + "&CN=" + Request.QueryString["CN"].ToString() + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString();
+            string LINK = "https://sum-manga.azurewebsites.net/storeitems/ContantExplorer.aspx?Manga=" + Request.QueryString["Manga"].ToString() + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString();
             SuMShare.Attributes["onclick"] = "navigator.share({title:'SuM Manga',text:'Check out " + V.ToString() + " on SuM Manga.',url:'" + LINK + "'});";
         }
         protected bool IsItInCurr(int MID, int UID)
@@ -228,7 +383,7 @@ namespace SuM_Manga_V3.storeitems
             }
             return RS;
         }
-        protected void MangaUserStateV(int MID,string LinkToUpdate,string linktoupdatech)
+        protected void MangaUserStateV(int MID, string LinkToUpdate, string linktoupdatech)
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             int UID = Convert.ToInt32(Convert.ToString(GetUserInfoCookie["ID"]));
@@ -249,7 +404,7 @@ namespace SuM_Manga_V3.storeitems
                     bool foundit = false;
                     string Res = RawRes.ToString();
                     int[,] R = ST1(Res);
-                    for (int i = 0; i < R.GetLength(1); i++) 
+                    for (int i = 0; i < R.GetLength(1); i++)
                     {
                         if (R[0, i] == MID)
                         {
@@ -270,7 +425,7 @@ namespace SuM_Manga_V3.storeitems
                             sqlCon.Close();
                         }
                     }
-                    if (foundit == false) 
+                    if (foundit == false)
                     {
                         SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;margin-top:-2px !important;";
                         MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
@@ -384,7 +539,7 @@ namespace SuM_Manga_V3.storeitems
         {
             Response.Redirect("~/404.aspx");
         }
-        protected string ShowDis() 
+        protected string ShowDis()
         {
             string V = string.Empty;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
@@ -407,7 +562,7 @@ namespace SuM_Manga_V3.storeitems
             }
             return V;
         }
-        protected void ShowCreator() 
+        protected void ShowCreator()
         {
             string V = string.Empty;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
@@ -548,7 +703,7 @@ namespace SuM_Manga_V3.storeitems
             }
             return V;
         }
-        protected bool IsGernXCodeName(string X,int MangaID)
+        protected bool IsGernXCodeName(string X, int MangaID)
         {
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {

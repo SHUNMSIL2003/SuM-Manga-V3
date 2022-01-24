@@ -398,7 +398,7 @@ namespace SuM_Manga_V3.AccountETC
         {
             string PFP = string.Empty;
             Random random = new Random();
-            int index = random.Next(1, 7);
+            int index = random.Next(1, 14);
             PFP = "/AccountETC/DeafultPFP/" + index.ToString() + ".jpg";
             return PFP;
         }
