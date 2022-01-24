@@ -178,6 +178,6 @@ img {vertical-align: middle;}
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Slice of Life</h2>
             <div id="SliceofLife" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100vw !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
-        <br /><br /><br /><br /><br /><br />
+        <div style="display:block !important;width:100vw !important;height:164px !important;background-color:transparent !important;text-align:center;margin:0 auto !important;"></div>
     </div>
 </asp:Content>

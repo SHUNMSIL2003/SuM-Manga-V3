@@ -1536,6 +1536,7 @@
     <Content Include="svg\credit_score_white_36dp.svg" />
     <Content Include="svg\devices.svg" />
     <Content Include="svg\error.svg" />
+    <Content Include="svg\expandmore.svg" />
     <Content Include="svg\ExploreNAFME.svg" />
     <Content Include="svg\face.svg" />
     <Content Include="svg\feed.svg" />

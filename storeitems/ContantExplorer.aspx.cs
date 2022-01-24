@@ -141,7 +141,7 @@ namespace SuM_Manga_V3.storeitems
             }
             if (ThereIsMoreCHs == true)
             {
-                ThreIsMoreACard.Attributes["style"] = "width:100%;height:fit-content;text-align:center !important;margin:0 auto !important;display:block;";
+                ThreIsMoreACard.Attributes["style"] = "width:100%;height:fit-content;text-align:center !important;margin:0 auto !important;display:block;padding-bottom:2px !important;padding-top:60px !important;";
             }
             else
             {

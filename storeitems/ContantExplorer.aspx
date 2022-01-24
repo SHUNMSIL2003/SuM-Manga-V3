@@ -212,9 +212,9 @@
                     <asp:Panel runat="server">
                         <div id="TheMangaPhotosF" style="width:100%;height:fit-content;" runat="server">
                         </div>
-                        <a id="ThreIsMoreACard" runat="server" style="width:100%;height:fit-content;text-align:center !important;margin:0 auto !important;display:block;margin-bottom:160px !important;" >
-                            <img src="/svg/arrowup.svg" style="width:48px;height:48px;margin:0 auto !important;margin-top:8px !important;margin-bottom:6px !important;" />
-                            <p style="color:#FFFFFFEB !important;width:100%;text-align:center !important;margin:0 auto !important;font-size:90%;">scroll up for more</p>
+                        <a id="ThreIsMoreACard" onclick="document.getElementById('MainContent_LoadMOreChapters').click(); return false;" runat="server" style="width:100%;height:fit-content;text-align:center !important;margin:0 auto !important;display:block;padding-bottom:130px !important;padding-top:60px !important;" >
+                            <p style="color:#FFFFFFEB !important;width:100%;text-align:center !important;margin:0 auto !important;font-size:92%;"><b style="color:#FFFFFFEB;">Tap anywhere for more</b></p>
+                            <img src="/svg/expandmore.svg" style="width:46px;height:46px;margin:0 auto !important;margin-top:8px !important;margin-top:-12px !important;" />
                         </a>
                     </asp:Panel>
                 </ContentTemplate>
@@ -236,7 +236,7 @@
 
             }
         };
-        var UsedLoadMoreOne = false;
+        /*var UsedLoadMoreOne = false;
         var ChaptersELM = document.getElementById("MainContent_FakeBody");
         ChaptersELM.onscroll = function () {
 
@@ -246,5 +246,33 @@
             };
 
         };
+
+        ChaptersELM.ontouchmove = function () {
+
+            if (ChaptersELM.scrollHeight == (ChaptersELM.scrollTop + ChaptersELM.clientHeight) && UsedLoadMoreOne == false) {
+                document.getElementById('MainContent_LoadMOreChapters').click();
+                UsedLoadMoreOne = true;
+            };
+
+        };
+
+        ChaptersELM.on('touchmove', TuchMoveLOADMORE);
+        function TuchMoveLOADMORE() {
+
+            if (ChaptersELM.scrollHeight == (ChaptersELM.scrollTop + ChaptersELM.clientHeight) && UsedLoadMoreOne == false) {
+                document.getElementById('MainContent_LoadMOreChapters').click();
+                UsedLoadMoreOne = true;
+            };
+
+        };
+        ChaptersELM.on('scroll', scrollMoveLOADMORE);
+        function scrollMoveLOADMORE() {
+
+            if (ChaptersELM.scrollHeight == (ChaptersELM.scrollTop + ChaptersELM.clientHeight) && UsedLoadMoreOne == false) {
+                document.getElementById('MainContent_LoadMOreChapters').click();
+                UsedLoadMoreOne = true;
+            };
+
+        };*/
     </script>
 </asp:Content>
