@@ -15,28 +15,33 @@ namespace SuM_Manga_V3.storeitems
 {
     public partial class ContantExplorer : System.Web.UI.Page
     {
-        /*int LoadedChaptersTNum = 0;
-        bool ThereIsMoreCHs = false;
-        int CaptersNum = 0;*/
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*if (!IsPostBack)
-            {*/
             //LastRefreshPross();   -- Needs work  %-- No need now !
             bool ThereIsMoreCHs = false;
             if (Request.QueryString["Manga"] == null || Request.QueryString["VC"] == null) { backhome(); }
-            MTitle.InnerText = ShowName();
-            string CardBG = ShowCover();
+            string CardBG = string.Empty;
+            if (IsPostBack == false)
+            {
+                MTitle.InnerText = ShowName();
+                CardBG = ShowCover();
+            }
             string ThemeColor = string.Empty;
             if (Request.QueryString["TC"] != null)
             {
                 ThemeColor = Request.QueryString["TC"].ToString();
             }
             else { ThemeColor = "#6840D9"; }
-            MangaChAMConta.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";padding-bottom:164px !important;min-height:calc(100vh + 6px) !important;";
+            if (IsPostBack == false)
+            {
+                MangaChAMConta.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";padding-bottom:164px !important;min-height:calc(100vh + 6px) !important;";
+            }
             string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100vw;height:fit-content;float:left;";//ORgbConverter(getDominantColor(bMap));------background-color:" + ThemeColor + ";
             string theme = ThemeColor;
-            infoCover.Attributes["style"] = "background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
+            if (IsPostBack == false)
+            {
+                infoCover.Attributes["style"] = "background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:fit-content;";
+            }
             int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
             int cn1 = 0;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
@@ -50,12 +55,12 @@ namespace SuM_Manga_V3.storeitems
                 cn1 = Convert.ToInt32(un);
                 sqlCon.Close();
             }
-            //CaptersNum = cn1;
-            MdiscS.InnerText = ShowDis();
-            GernsTags.InnerHtml = GetGerns(theme, idfg0554);
-            string ThemeColorOp1 = ThemeColor.Substring(0, ThemeColor.Length - 6);
-            ThemeColorOp1 += ")";
-            GernsTags.Attributes["style"] = "border-top-right-radius:22px;border-top-left-radius:22px;width:100vw;height:fit-content;background-color:" + ThemeColorOp1 + ";align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;";
+            if (IsPostBack == false)
+            {
+                MdiscS.InnerText = ShowDis();
+                GernsTags.InnerHtml = GetGerns(idfg0554);
+                GernsTags.Attributes["style"] = "border-top-right-radius:22px;border-top-left-radius:22px;width:100vw;height:fit-content;background-color:" + ThemeColor.Replace("0.74", "1") + ";align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;padding-bottom:14px;padding-top:18px;";
+            }
             string pathstartnochx = "/storeitems/";
             string extraexplore = "MangaExplorer.aspx";
             string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
@@ -74,7 +79,10 @@ namespace SuM_Manga_V3.storeitems
             string themecolor = ThemeColor;
             char sc = '"';
             char b12 = '"';
-            SuMLoginUI.Attributes["style"] = "background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;";
+            if (IsPostBack == false)
+            {
+                SuMLoginUI.Attributes["style"] = "background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;";
+            }
             string btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
             string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();
             string linktoupdatech = identifynexthelper + "ch";
@@ -82,7 +90,6 @@ namespace SuM_Manga_V3.storeitems
             string managtocheckexsis = Request.QueryString["Manga"].ToString();
             string rootpath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
             string checkifitexsistsStart = rootpath + "\\storeitems\\" + managtocheckexsis + "\\";
-            string AnimationOnScroll = "data-aos=" + '"'.ToString() + "fade-up" + '"'.ToString() + " data-aos-duration=" + '"'.ToString() + "50" + '"'.ToString() + " data-aos-once=" + '"'.ToString() + "true" + '"'.ToString() + " class=" + '"'.ToString() + "m-0 aos-init aos-animate" + '"'.ToString() + "";
             if (GetUserInfoCookie != null)
             {
                 int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
@@ -147,58 +154,283 @@ namespace SuM_Manga_V3.storeitems
             {
                 ThreIsMoreACard.Attributes["style"] = "display:none;";
             }
-            ChapterUnavaliblePOPUP.Attributes["style"] = "background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
-            ShowCreator();
-            ShowViews();
-            ShowAgeRating();
-            ShareLink();
             if (IsPostBack == false)
             {
+                ChapterUnavaliblePOPUP.Attributes["style"] = "background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
+                ShowCreator();
+                ShowViews();
+                ShowAgeRating();
+                ShareLink();
+            }
+            if (GetUserInfoCookie != null)
+            {
+                FavListManager(Convert.ToInt32(GetUserInfoCookie["ID"].ToString()));
+                WannaListManager(Convert.ToInt32(GetUserInfoCookie["ID"].ToString()));
+            }
+            else 
+            {
+                AddToFavNWanna.Attributes.Add("onclick", "document.getElementById('MainContent_SuMLoginUI').style.display = 'block';");
+            }
+            if (IsPostBack == false)
+            {
+                AddToFavNWanna.Attributes["style"] = "overflow:hidden !important;animation-duration:0.26s !important;width:fit-content;height:36px;background-color:" + ThemeColor.Replace("0.74", "1") + ";border-radius:18px;padding:4px !important;margin-left:4px;float:left !important;margin-top:28px !important;";
                 AddOneView();
             }
-            /*}*//*
+        }
+        protected void WannaListManager(int UID)
+        {
+            int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
+            bool ItsAWanna = false;
+            object RawRes;
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT Wanna FROM SuMUsersAccounts WHERE UserID = @UID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd00.Parameters["@UID"].Value = UID;
+                RawRes = sqlCmd00.ExecuteScalar();
+                sqlCon.Close();
+            }
+            if (RawRes != null)
+            {
+                if (RawRes.ToString().Contains("#" + MID + "&") == true)
+                {
+                    ItsAWanna = true;
+                }
+            }
+            if (ItsAWanna == true) 
+            {
+                Wanna.Attributes["src"] = "/svg/check.svg";
+                Wanna.Attributes.Add("onclick", "RemoveFromWannaJava();");
+            }
+            else 
+            {
+                Wanna.Attributes["src"] = "/svg/add.svg";
+                Wanna.Attributes.Add("onclick", "AddToWannaJava();");
+            }
+        }
+        protected void FavListManager(int UID)
+        {
+            int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
+            bool ItsAFav = false;
+            object RawRes;
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT Fav FROM SuMUsersAccounts WHERE UserID = @UID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd00.Parameters["@UID"].Value = UID;
+                RawRes = sqlCmd00.ExecuteScalar();
+                sqlCon.Close();
+            }
+            if (RawRes != null)
+            {
+                if (RawRes.ToString().Contains("#" + MID + "&") == true)
+                {
+                    ItsAFav = true;
+                }
+            }
+            if (ItsAFav == true)
+            {
+                Fav.Attributes["src"] = "/svg/favorite.svg";
+                Fav.Attributes.Add("onclick", "RemoveFromFavJava();");
+            }
             else
             {
-                string OldHTML = TheMangaPhotosF.InnerHtml;
-                int cn1 = 0;
-                int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
+                Fav.Attributes["src"] = "/svg/favoriteNOTFILLED.svg";
+                Fav.Attributes.Add("onclick", "AddToFavJava();");
+            }
+        }
+        protected void AddToWannaList(object sender, EventArgs e)
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie != null)
+            {
+                int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                object RawRes;
+                string NewLIST = string.Empty;
+                bool NeedUpdate = false;
+                string Target = "#" + Request.QueryString["VC"].ToString() + "&";
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
-                    string query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
-                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                    sqlCmd.Parameters["@MangaID"].Value = idfg0554;
-                    var un = sqlCmd.ExecuteScalar();
-                    cn1 = Convert.ToInt32(un);
+                    string qwi = "SELECT Wanna FROM SuMUsersAccounts WHERE UserID = @UID";
+                    SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                    sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd00.Parameters["@UID"].Value = UID;
+                    RawRes = sqlCmd00.ExecuteScalar();
+                    if (RawRes != null)
+                    {
+                        if (RawRes.ToString().Contains(Target) == false)
+                        {
+                            NewLIST = RawRes.ToString() + Target;
+                            NeedUpdate = true;
+                        }
+                    }
+                    if (NeedUpdate == true)
+                    {
+                        qwi = "UPDATE SuMUsersAccounts SET Wanna = @NEWWanna WHERE UserID = @UID";
+                        sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                        sqlCmd00.Parameters.AddWithValue("@NEWWanna", NewLIST);
+                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        sqlCmd00.Parameters["@UID"].Value = UID;
+                        sqlCmd00.ExecuteNonQuery();
+                    }
                     sqlCon.Close();
                 }
-                if (cn1 > 12)
-                {
-                    ThereIsMoreCHs = true;
-                }
-
-            }*/
+            }
         }
-        /*private void EnsureUpdatePanelFixups()
+        protected void RemoveFromWannaList(object sender, EventArgs e)
         {
-            if (this.Page.Form != null)
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie != null)
             {
-                string formOnSubmitAtt = this.Page.Form.Attributes["onsubmit"];
-
-                if (formOnSubmitAtt == "return _spFormOnSubmitWrapper();")
+                int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                object RawRes;
+                string NewLIST = string.Empty;
+                bool NeedUpdate = false;
+                string Target = "#" + Request.QueryString["VC"].ToString() + "&";
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
-                    this.Page.Form.Attributes["onsubmit"] = "_spFormOnSubmitWrapper();";
+                    sqlCon.Open();
+                    string qwi = "SELECT Wanna FROM SuMUsersAccounts WHERE UserID = @UID";
+                    SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                    sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd00.Parameters["@UID"].Value = UID;
+                    RawRes = sqlCmd00.ExecuteScalar();
+                    if (RawRes != null)
+                    {
+                        if (RawRes.ToString().Contains(Target) == true)
+                        {
+                            NewLIST = RawRes.ToString().Replace(Target, "");
+                            NeedUpdate = true;
+                        }
+                    }
+                    if (NeedUpdate == true)
+                    {
+                        qwi = "UPDATE SuMUsersAccounts SET Wanna = @NEWWanna WHERE UserID = @UID";
+                        sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                        sqlCmd00.Parameters.AddWithValue("@NEWWanna", NewLIST);
+                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        sqlCmd00.Parameters["@UID"].Value = UID;
+                        sqlCmd00.ExecuteNonQuery();
+                    }
+                    sqlCon.Close();
                 }
             }
-
-            ScriptManager.RegisterStartupScript(this, typeof(void), "SomeStringToBeTheKey", "_spOriginalFormAction = document.forms[0].action;_spSuppressFormOnSubmitWrapper=true;", true);
-        }*/
+        }
+        protected void AddToFavList(object sender, EventArgs e)
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie != null)
+            {
+                int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                object RawRes;
+                string NewLIST = string.Empty;
+                bool NeedUpdate = false;
+                string Target = "#" + Request.QueryString["VC"].ToString() + "&";
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string qwi = "SELECT Fav FROM SuMUsersAccounts WHERE UserID = @UID";
+                    SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                    sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd00.Parameters["@UID"].Value = UID;
+                    RawRes = sqlCmd00.ExecuteScalar();
+                    if (RawRes != null)
+                    {
+                        if (RawRes.ToString().Contains(Target) == false)
+                        {
+                            NewLIST = RawRes.ToString() + Target;
+                            NeedUpdate = true;
+                        }
+                    }
+                    if (NeedUpdate == true)
+                    {
+                        qwi = "UPDATE SuMUsersAccounts SET Fav = @NEWFav WHERE UserID = @UID";
+                        sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                        sqlCmd00.Parameters.AddWithValue("@NEWFav", NewLIST);
+                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        sqlCmd00.Parameters["@UID"].Value = UID;
+                        sqlCmd00.ExecuteNonQuery();
+                    }
+                    sqlCon.Close();
+                }
+            }
+        }
+        protected void RemoveFromFavList(object sender, EventArgs e)
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie != null)
+            {
+                int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                object RawRes;
+                string NewLIST = string.Empty;
+                bool NeedUpdate = false;
+                string Target = "#" + Request.QueryString["VC"].ToString() + "&";
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string qwi = "SELECT Fav FROM SuMUsersAccounts WHERE UserID = @UID";
+                    SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                    sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd00.Parameters["@UID"].Value = UID;
+                    RawRes = sqlCmd00.ExecuteScalar();
+                    if (RawRes != null)
+                    {
+                        if (RawRes.ToString().Contains(Target) == true)
+                        {
+                            NewLIST = RawRes.ToString().Replace(Target, "");
+                            NeedUpdate = true;
+                        }
+                    }
+                    if (NeedUpdate == true)
+                    {
+                        qwi = "UPDATE SuMUsersAccounts SET Fav = @NEWFav WHERE UserID = @UID";
+                        sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                        sqlCmd00.Parameters.AddWithValue("@NEWFav", NewLIST);
+                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        sqlCmd00.Parameters["@UID"].Value = UID;
+                        sqlCmd00.ExecuteNonQuery();
+                    }
+                    sqlCon.Close();
+                }
+            }
+        }
+        protected int[] ST0(string x)
+        {
+            Queue<int> R1 = new Queue<int>();
+            bool fh = false;
+            string A1 = "";
+            char[] aa = x.ToCharArray();
+            for (int i = 0; i < aa.Length; i++)
+            {
+                if (aa[i] == '&')
+                {
+                    fh = false;
+                    R1.Enqueue(Convert.ToInt32(A1));
+                    A1 = "";
+                }
+                if (fh == true)
+                {
+                    A1 += aa[i].ToString();
+                }
+                if (aa[i] == '#') { fh = true; }
+            }
+            int RdL = R1.Count;
+            int[] RS = new int[RdL];
+            int RFDH = 0;
+            while (R1.Count > 0)
+            {
+                RS[RFDH] = R1.Dequeue();
+                RFDH++;
+            }
+            return RS;
+        }
         protected void LOADMORECHAPTERS(object sender, EventArgs e)
         {
-            /*if (ThereIsMoreCHs == true)
-            {*/
-            //LoadedChaptersTNum++;
             int CSN = 1 * 12;
             int CEN = 0;//(1 + 1) * 12;
             int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
@@ -213,12 +445,6 @@ namespace SuM_Manga_V3.storeitems
                 CEN = Convert.ToInt32(un);
                 sqlCon.Close();
             }
-            //int FCN = CaptersNum;
-            /*if (CEN > FCN)
-            {
-                ThereIsMoreCHs = false;
-                CEN = FCN;
-            }*/
             //NormallCoderFromDownHere
             string ThemeColor = Request.QueryString["TC"].ToString();
             string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100vw;height:fit-content;float:left;";
@@ -226,21 +452,22 @@ namespace SuM_Manga_V3.storeitems
             string extraexplore = "MangaExplorer.aspx";
             string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
             string identifynexthelper = "&Chapter=";
-            string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+            //string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
             string ChapterFixedForm = string.Empty;
             string RLink = string.Empty;
             string themecolor = ThemeColor;
             char sc = '"';
             char b12 = '"';
+            TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">";
             string btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
-            string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();
-            string linktoupdatech = identifynexthelper + "ch";
+            //string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();
+            //string linktoupdatech = identifynexthelper + "ch";
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             string managtocheckexsis = Request.QueryString["Manga"].ToString();
             string rootpath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
             string checkifitexsistsStart = rootpath + "\\storeitems\\" + managtocheckexsis + "\\";
-            string AnimationOnScroll = "data-aos=" + '"'.ToString() + "fade-up" + '"'.ToString() + " data-aos-duration=" + '"'.ToString() + "50" + '"'.ToString() + " data-aos-once=" + '"'.ToString() + "true" + '"'.ToString() + " class=" + '"'.ToString() + "m-0 aos-init aos-animate" + '"'.ToString() + "";
-            TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:94vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">";
+            //string AnimationOnScroll = "data-aos=" + '"'.ToString() + "fade-up" + '"'.ToString() + " data-aos-duration=" + '"'.ToString() + "50" + '"'.ToString() + " data-aos-once=" + '"'.ToString() + "true" + '"'.ToString() + " class=" + '"'.ToString() + "m-0 aos-init aos-animate" + '"'.ToString() + "";
+            //TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:94vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">";
             if (GetUserInfoCookie != null)
             {
                 for (int c = (CSN + 1); c < (CEN + 1); c++)
@@ -297,7 +524,6 @@ namespace SuM_Manga_V3.storeitems
             }
             ThreIsMoreACard.Attributes["style"] = "display:none;";
             LoadChapters.Update();
-            /*}*/
         }
         protected void ShareLink()
         {
@@ -717,15 +943,15 @@ namespace SuM_Manga_V3.storeitems
                 else { sqlCon.Close(); return false; }
             }
         }
-        protected string GetGerns(string ThemeColor, int ID)
+        protected string GetGerns(int ID)
         {
             char b12 = '"';
             string flashani = b12.ToString() + "fadeIn animated" + b12.ToString();
             bool un = false;
             string gernsincard = " ";
             //string TagViewer0 = "/storeitems/TagView.aspx";
-            ThemeColor = "rgba(225,225,225,0.36)";//DesignChange!
-            string DivACStyle = b12.ToString() + "height:fit-content !important;margin-left:6px;display:inline-block;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;" + b12.ToString();
+            string ThemeColor = "rgba(225,225,225,0.36)";//DesignChange!
+            string DivACStyle = b12.ToString() + "height:fit-content !important;margin-left:6px;display:inline-block;width:fit-content;height:38px;background-color:" + ThemeColor + ";border-radius:19px;padding:2px;" + b12.ToString();
             un = IsGernXCodeName("Action", ID);
             if (un == true)
             {
@@ -1250,5 +1476,6 @@ namespace SuM_Manga_V3.storeitems
             str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
             return "UPDATE=" + str;
         }
+
     }
 }

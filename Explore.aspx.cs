@@ -151,12 +151,12 @@ namespace SuM_Manga_V3
                             sqlCmd.Parameters["@MangaID"].Value = maxidf;
                             un = sqlCmd.ExecuteScalar();
                             CExplorerLink = un.ToString();
-                            query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
+                            /*query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
                             sqlCmd = new SqlCommand(query, sqlCon);
                             sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                             sqlCmd.Parameters["@MangaID"].Value = maxidf;
                             un = sqlCmd.ExecuteScalar();
-                            int ChaptersNum = Convert.ToInt32(un);
+                            int ChaptersNum = Convert.ToInt32(un);*/
                             //CExplorerLink += "&CN=" + ChaptersNum.ToString() + "&VC=" + maxidf.ToString() + "&T=" + Theme; moved down
                             query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
                             sqlCmd = new SqlCommand(query, sqlCon);
@@ -334,13 +334,7 @@ namespace SuM_Manga_V3
                                 sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
                                 un = sqlCmd.ExecuteScalar();
                                 CExplorerLink = un.ToString();
-                                query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
-                                sqlCmd = new SqlCommand(query, sqlCon);
-                                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                                sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
-                                un = sqlCmd.ExecuteScalar();
-                                int ChaptersNum = Convert.ToInt32(un);
-                                CExplorerLink += "&CN=" + ChaptersNum.ToString() + "&VC=" + MangaIDF.ToString();
+                                CExplorerLink += "&VC=" + MangaIDF.ToString();
                                 query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
                                 sqlCmd = new SqlCommand(query, sqlCon);
                                 sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
@@ -397,12 +391,12 @@ namespace SuM_Manga_V3
                 ViewsNumPart = String.Format("{0:0.00}", B);
                 ViewsLPart = "B";
             }
-            string divstyle = "overflow:hidden;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;max-height:420px !important;padding:12px;";
-            string DivContant = "<div style=" + b12.ToString() + "width:94vw;height:fit-content;position:relative;margin:0 auto;margin-top:2px;" + b12.ToString() + ">";
+            string divstyle = b12.ToString() + "overflow:hidden !important;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ") !important;background-size:cover;background-position:center !important;width:calc(100vw - 24px) !important;height:76vw;max-width:630px !important;max-height:420px !important;padding:12px;margin:0 auto !important;border-radius:12px !important;" + b12.ToString();
+            string DivContant = "<div style=" + b12.ToString() + "width:calc(98% - 24px);height:fit-content;position:relative;margin:0 auto;margin-top:2px;" + b12.ToString() + ">";
             DivContant += "<h1 style=" + b12.ToString() + "float:left;margin-top:12px;margin-left:12px;color:#ffffff;font-size:178%;margin-right:14px !important;width:100%;height:fit-content;" + b12.ToString() + ">" + cardtitle + "</h1>";
             DivContant += "<p style=" + b12.ToString() + "color:rgb(255, 255, 255, 0.82); float:right; margin-top:-18px; margin-right:10px;" + b12.ToString() + ">By <b style=" + "font-size:80%;" + ">" + CraetorName + "</b></p></div>";
             DivContant += "<hr style=" + b12.ToString() + "margin:0 auto!important;height:2.6px!important;border-width:0;color:#ffffff;background-color:#ffffff;width:82vw;opacity:0.32;margin:0px;margin-block:0px;border-radius:1.3px !important;margin-bottom:4px;margin-bottom:4px !important;margin-top:-6px;" + b12.ToString() + " />";
-            DivContant += "<p style=" + b12.ToString() + "text-align:center;height:36vw;max-height:135px !important;width:94vw;max-width:96vw;font-size:96%;color:#ffffff;margin:4px !important;margin-bottom:6px !important;margin-top:2px !important;text-overflow:ellipsis !important;display:inline-block;overflow:hidden;" + b12.ToString() + ">" + discr0 + "</p>";
+            DivContant += "<p style=" + b12.ToString() + "text-align:center;height:36vw;max-height:135px !important;width:calc(98% - 24px);max-width:96vw;font-size:96%;color:#ffffff;margin:4px !important;margin-bottom:6px !important;margin-top:2px !important;text-overflow:ellipsis !important;display:inline-block;overflow:hidden;" + b12.ToString() + ">" + discr0 + "</p>";
             DivContant += "<div style=" + b12.ToString() + "margin:0 auto;margin-bottom:8px;height:fit-content;width:100%;position:relative;" + b12.ToString() + "><a style=" + b12.ToString() + "display:block;float:right !important;margin-bottom:0px;margin-right:8px;bottom:0;position:relative;" + b12.ToString() + ">";
             DivContant += "<p style=" + b12.ToString() + "display:inline;color:rgba(255,255,255,0.74);" + b12.ToString() + "> " + AgeRating + " </p><img style=" + b12.ToString() + "width:20px;height:20px;display:inline;" + b12.ToString() + " src=" + b12.ToString() + "/svg/views.svg" + b12.ToString() + ">";
             DivContant += "<p style=" + "display:inline;color:#ffffff;" + "> " + ViewsNumPart + " </p><b style=" + "display:inline;color:#ffffff;" + ">" + ViewsLPart + "</b></a></div>";
@@ -461,7 +455,7 @@ namespace SuM_Manga_V3
             string zoominanim = b12.ToString() + "fadeIn animated" + b12.ToString();
             string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
             string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
-            string divs1 = "border-radius:8px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
+            string divs1 = "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
             string divstyle = "overflow:hidden;background-image:linear-gradient(rgba(0,0,0,0.527),rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;";
             string divs2 = "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;"; //rgb(104,64,217,0.64)
             string ps0 = "margin-top:8px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;";

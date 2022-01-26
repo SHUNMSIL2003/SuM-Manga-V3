@@ -196,7 +196,7 @@ namespace SuM_Manga_V3.AccountETC
             userInfo["SID"] = SessionID;
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
-            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx");
+            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)");
         }
         protected static void SaveSCCookie(string UserName, string craetorname, int ID, int CID, string SessionID)
         {
@@ -208,7 +208,7 @@ namespace SuM_Manga_V3.AccountETC
             userInfo["CID"] = CID.ToString();
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
-            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx");
+            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)");
         }
         protected void ResendConfLink(object sender, EventArgs e)
         {

@@ -2,10 +2,9 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        //PlaceHolder
-        //document.getElementById('MainContent_SuMLoginUI').style.display = 'block';
         document.getElementById('fullnavscont').style.display = 'block';
     </script>
+    <asp:Button ID="UpdateWannaNFavNCurr" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden !important;" />
     <div id="ChapterUnavaliblePOPUP" runat="server" style="background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center">
         <div id="SUAC000SP" class="animated zoomIn card shadow-sm" style="margin:0 auto !important;max-width:382px !important;animation-duration:0.28s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(50vh - 106px) !important;">
             <p style="font-size:146%;color:#232323;margin-bottom:0px;margin:0 auto;margin-top:6px !important;">Chapter is unavalible</p>
@@ -190,14 +189,93 @@
 </div>
 </div>
             </div>
-        <div class="animated fadeInUp" id="ChaptersAndFuncCard" style="opacity: 0;margin-top:-20px;background-color:#ffffff;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;">
+        <div class="animated fadeIn" style="animation-duration:0.18s;opacity:0;float:left !important;margin-top:20vh;width:100vw !important;height:64px !important;overflow:hidden !important;" id="FavNWannaContaner">
+            <div id="AddToFavNWanna" runat="server" style="animation-duration:0.26s !important;width:fit-content;height:36px;background-color:red;border-radius:18px;padding:4px !important;opacity:0;" class="animated pulse" >
+                <asp:Button ID="ADDTOFAV" runat="server" OnClick="AddToFavList" style="display:none;visibility:hidden;" />
+                <asp:Button ID="REMOVEFROMFAV" runat="server" OnClick="RemoveFromFavList" style="display:none;visibility:hidden;" />
+                <asp:Button ID="ADDTOWANNA" runat="server" OnClick="AddToWannaList" style="display:none;visibility:hidden;" />
+                <asp:Button ID="REMOVEFROMWANNA" runat="server" OnClick="RemoveFromWannaList" style="display:none;visibility:hidden;" />
+                <asp:UpdatePanel ID="CEFAVNWANNAUpdatepanel" runat="server" UpdateMode="Conditional">
+                <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="REMOVEFROMWANNA" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="ADDTOWANNA" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="REMOVEFROMFAV" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="ADDTOFAV" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="UpdateWannaNFavNCurr" EventName="Click" />
+                    </Triggers>
+                <ContentTemplate>
+                    <asp:Panel runat="server">
+                        <img id="Fav" runat="server" src="/svg/favoriteNOTFILLED.svg" style="margin-left:12px;margin-right:6px !important;pointer-events:all !important;" height="26" width="26" class="animated pulse" />
+                        <a style="display:inline-block !important;width:2px !important;height:18px !important;margin:0 auto !important;vertical-align:middle !important;background-color:#ffffff30 !important;border-radius:1px !important;overflow:hidden;"></a>
+                        <img id="Wanna" runat="server" src="/svg/add.svg" style="margin-right:-4px;display:inline !important;pointer-events:all !important;" height="30" width="30" class="animated pulse" />
+                        <p style="color:#FFFFFFAD !important;font-size:76%;margin-right:12px !important;display:inline !important;" class="animated pulse"><b>Wanna list</b></p>
+                    </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+                <script>
+                    var FAVIMGBTN = document.getElementById('<%= Fav.ClientID %>');
+                    var WANNAIMGBTN = document.getElementById('<%= Wanna.ClientID %>');
+                    var HIDDENFAVadd = document.getElementById('<%= ADDTOFAV.ClientID %>');
+                    var HIDDENFAVremove = document.getElementById('<%= REMOVEFROMFAV.ClientID %>');
+                    var HIDDENWANNAadd = document.getElementById('<%= ADDTOWANNA.ClientID %>');
+                    var HIDDENWANNAremove = document.getElementById('<%= REMOVEFROMWANNA.ClientID %>');
+
+                    function AddToFavJava() {
+                        FAVIMGBTN.src = '/svg/favorite.svg';
+                        HIDDENFAVadd.click();
+                        setTimeout(() => {
+                            document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
+                        }, 720);
+                        //return false;
+                    };
+
+                    function RemoveFromFavJava() {
+                        FAVIMGBTN.src = '/svg/favoriteNOTFILLED.svg';
+                        HIDDENFAVremove.click();
+                        setTimeout(() => {
+                            document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
+                        }, 720);
+                        //return false;
+                    };
+
+                    function AddToWannaJava() {
+                        WANNAIMGBTN.src = '/svg/check.svg';
+                        HIDDENWANNAadd.click();
+                        setTimeout(() => {
+                            document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
+                        }, 720);
+                        //return false;
+                    };
+
+                    function RemoveFromWannaJava() {
+                        WANNAIMGBTN.src = '/svg/add.svg';
+                        HIDDENWANNAremove.click();
+                        setTimeout(() => {
+                            document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
+                        }, 720);
+                        //return false;
+                    };
+                </script>
+            </div>
+        </div>
+        <div class="animated fadeInUp" id="ChaptersAndFuncCard" style="animation-duration:0.26s !important;opacity: 0;margin-top:-20px;background-color:#ffffff;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;">
         <div id="GernsTags" runat="server" style="border-top-right-radius:22px;border-top-left-radius:22px;width:100vw;height:fit-content;background-color:transparent;align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;">
             <div style="margin-left:6px;display:inline;width:fit-content;height:38px;background-color:rgba(0,0,0,0.36);border-radius:19px;"><a href="/storeitems/TagView.aspx" style="color:white;font-size:112%;">&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;</a></div>
         </div>
         <div style="background-color:aqua;margin:0 auto;height:fit-content;position:relative;margin-top:-2px !important;" id="SVC" runat="server">
-            <div class="animated pulse" id="MRSC" runat="server" style="margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;display:inline;">
-                <a id="MRSW" onclick="" runat="server" href="#" style="color:#6840D9;"></a>
-            </div>
+            <asp:UpdatePanel ID="CurrStateLoad" runat="server" UpdateMode="Conditional" >
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="UpdateWannaNFavNCurr" EventName="Click" />
+                </Triggers>
+                <ContentTemplate>
+                    <asp:Panel runat="server">
+                        <hr style="width:82vw;height:2px;border-radius:1px;color:#ffffff30;margin:0 auto !important;margin-top:-6px !important;margin-bottom:6px !important;position:absolute;z-index:998;margin-left:9vw !important;" />
+                        <div class="animated pulse" id="MRSC" runat="server" style="margin-top:2px !important;margin-bottom:8px !important; background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;display:inline;overflow:hidden !important;">
+                            <a id="MRSW" onclick="" runat="server" href="#" style="color:#6840D9;"></a>
+                        </div>
+                    </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
             <a id="SuMShare" runat="server" style="width:38px;width:38px;float:right;margin-top:-46px;padding:4px;margin-right:6px;display:inline !important;" class="animated fadeIn" onclick="#">
                 <img src="/svg/share.svg" style="width:28px;height:28px;" alt="Share" />
             </a>
@@ -225,15 +303,36 @@
         </div>
     <script>
 
+        var ELMChaptersAndFuncCard = document.getElementById("ChaptersAndFuncCard");
+        var ELMFavNWannaContaner = document.getElementById('FavNWannaContaner');
+        ELMChaptersAndFuncCard.style.opacity = "0";
+        ELMFavNWannaContaner.style.opacity = "0";//new
+        ELMChaptersAndFuncCard.style.display = "block";
+        ELMFavNWannaContaner.style.display = "block";//new
+
         document.onreadystatechange = function () {
             if (document.readyState == "interactive") {
 
-                var CatXHeight = document.getElementById('MainContent_CategoryX').getBoundingClientRect();
-                document.getElementById('ChaptersAndFuncCard').style.marginTop = (CatXHeight.height - 22) + "px";
-                document.getElementById("ChaptersAndFuncCard").style.display = "none";
-                document.getElementById("ChaptersAndFuncCard").style.opacity = null;
-                document.getElementById("ChaptersAndFuncCard").style.display = "block";
+                document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
 
+                var CatXHeight = document.getElementById('MainContent_CategoryX').getBoundingClientRect();
+
+                ELMFavNWannaContaner.style.marginTop = (CatXHeight.height - 100) + "px";
+                ELMFavNWannaContaner.style.display = "none";
+                ELMChaptersAndFuncCard.style.marginTop = (CatXHeight.height - 22) + "px";
+
+                setTimeout(() => {
+                    ELMChaptersAndFuncCard.style.display = "none";
+                    ELMChaptersAndFuncCard.style.opacity = "1";
+                    ELMChaptersAndFuncCard.style.display = "block";
+                }, 90);
+
+                setTimeout(() => {
+                    ELMFavNWannaContaner.style.marginTop = (CatXHeight.height - 90) + "px";//new
+                    //document.getElementById('FavNWannaContaner').style.display = "none";//new
+                    ELMFavNWannaContaner.style.opacity = "1";//new
+                    ELMFavNWannaContaner.style.display = "block";//new
+                }, 790);
             }
         };
         /*var UsedLoadMoreOne = false;

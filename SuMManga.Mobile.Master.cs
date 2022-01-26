@@ -158,7 +158,7 @@ namespace SuM_Manga_V3
             {
                 string ThemeColor = string.Empty;
                 if (Request.QueryString["TC"] != null) { ThemeColor = Request.QueryString["TC"].ToString().Replace("0.74", "0.92"); }
-                if (string.IsNullOrEmpty(ThemeColor) == true) { ThemeColor = "rgba(104,64,217,0.92)"; }
+                if (string.IsNullOrEmpty(ThemeColor) == true || ThemeColor.Contains("255,255,255") == true) { ThemeColor = "rgba(104,64,217,0.92)"; }
                 SuMUserNofifications.Attributes["style"] = "animation-duration:0.36s !important;background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:block;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;margin-left:-100vw !important;";
                 int ID = Convert.ToInt32(GetUserInfoCookie2["ID"].ToString());
                 string UserName = GetUserInfoCookie2["UserName"].ToString();
@@ -324,11 +324,11 @@ namespace SuM_Manga_V3
             {
                 if (ACCOUNTSTATUSKEY == "FREE")
                 {
-                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free trial has expired!", DateTime.Now.ToString("MMMM d yyyy"), "/AccountETC/Settings.aspx", "SuM System");
+                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free trial has expired!", DateTime.Now.ToString("MMMM d yyyy"), "/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)", "SuM System");
                 }
                 if (ACCOUNTSTATUSKEY == "PAID")
                 {
-                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free subscription has expired!", DateTime.Now.ToString("MMMM d yyyy"), "/AccountETC/Settings.aspx", "SuM System");
+                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free subscription has expired!", DateTime.Now.ToString("MMMM d yyyy"), "/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)", "SuM System");
                 }
             }
             //ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml += "<a>" + ACCOUNTSTATUSKEY + " MS:" + MembershipIsValid.ToString() + "</a>"; DEBUG

@@ -80,7 +80,12 @@ img {vertical-align: middle;}
     </style>
     <div class="fadeIn animated" style="height:100% !important;width:100% !important">
 <div class="slideshow-container" id="cardscontain" runat="server" style="width:100vw !important;height:fit-content !important;overflow:hidden !important;">
-    <div id="cardstoshow" runat="server">
+    <div style="background-color:#f2f2f2 !important;width:100% !important;height:fit-content !important;display:block;margin-bottom:-6px;padding-top:8px !important;">
+        <img style="display:inline;margin-left:16px;margin-top:8px;float:left;" width="42" height="42" src="/svg/awesomeTblack.svg" />
+        <p style="color:#000000f0 !important;font-size:128%;margin-top:8px;margin-left:6px;display:inline;float:left;">Latest of manga !</p>
+    </div>
+    <div style="background-color:#f2f2f2 !important;width:100%;height:fit-content;">
+    <div id="cardstoshow" runat="server" style="margin:0 auto !important;border-radius:12px !important;margin-bottom:12px !important;margin-top:12px !important;width:fit-content;height:fit-content;overflow:hidden !important;">
 <div class="mySlides fade" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:82vw !important;padding:12px;">
     <a style="width:100%;height:100%;" href="#">
     <h1 style="float:left;margin-top:8px;margin-left:8px;color:#ffffff;font-size:160%;display:block;">Blue Exorcist</h1>
@@ -103,7 +108,8 @@ img {vertical-align: middle;}
     </a>
 </div>
      </div>
-    <div id="cardsdots" runat="server" style="text-align:center;background-color:#f2f2f2;width:100vw;height:fit-content;margin-top:-4px !important;">
+        </div>
+    <div id="cardsdots" runat="server" style="text-align:center;background-color:#f2f2f2 !important;width:100vw;height:fit-content;margin-top:-6px !important;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
   <span class="dot"></span> 
   <span class="dot"></span> 
   <span class="dot"></span> 

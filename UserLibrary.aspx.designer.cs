@@ -15,6 +15,15 @@ namespace SuM_Manga_V3
     {
 
         /// <summary>
+        /// UpdatePageContant control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdatePageContant;
+
+        /// <summary>
         /// SettingsUnavaliblePOPUP control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace SuM_Manga_V3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl InfoAboutC;
+
+        /// <summary>
+        /// UpdateCOntant990 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateCOntant990;
 
         /// <summary>
         /// ShowReqContant control.

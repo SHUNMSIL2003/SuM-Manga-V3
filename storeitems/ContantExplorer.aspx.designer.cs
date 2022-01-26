@@ -15,6 +15,15 @@ namespace SuM_Manga_V3.storeitems
     {
 
         /// <summary>
+        /// UpdateWannaNFavNCurr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateWannaNFavNCurr;
+
+        /// <summary>
         /// ChapterUnavaliblePOPUP control.
         /// </summary>
         /// <remarks>
@@ -195,6 +204,78 @@ namespace SuM_Manga_V3.storeitems
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewsSutLater;
 
         /// <summary>
+        /// AddToFavNWanna control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddToFavNWanna;
+
+        /// <summary>
+        /// ADDTOFAV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ADDTOFAV;
+
+        /// <summary>
+        /// REMOVEFROMFAV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button REMOVEFROMFAV;
+
+        /// <summary>
+        /// ADDTOWANNA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ADDTOWANNA;
+
+        /// <summary>
+        /// REMOVEFROMWANNA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button REMOVEFROMWANNA;
+
+        /// <summary>
+        /// CEFAVNWANNAUpdatepanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel CEFAVNWANNAUpdatepanel;
+
+        /// <summary>
+        /// Fav control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage Fav;
+
+        /// <summary>
+        /// Wanna control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage Wanna;
+
+        /// <summary>
         /// GernsTags control.
         /// </summary>
         /// <remarks>
@@ -211,6 +292,15 @@ namespace SuM_Manga_V3.storeitems
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SVC;
+
+        /// <summary>
+        /// CurrStateLoad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel CurrStateLoad;
 
         /// <summary>
         /// MRSC control.
