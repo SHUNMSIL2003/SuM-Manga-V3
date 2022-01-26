@@ -79,6 +79,9 @@ img {vertical-align: middle;}
 }
     </style>
     <div class="fadeIn animated" style="height:100% !important;width:100% !important">
+        <script>
+            document.getElementById('').classList.add('animated pulse');
+        </script>
 <div class="slideshow-container" id="cardscontain" runat="server" style="width:100vw !important;height:fit-content !important;overflow:hidden !important;">
     <div style="background-color:#f2f2f2 !important;width:100% !important;height:fit-content !important;display:block;margin-bottom:-6px;padding-top:8px !important;">
         <img style="display:inline;margin-left:16px;margin-top:8px;float:left;" width="42" height="42" src="/svg/awesomeTblack.svg" />

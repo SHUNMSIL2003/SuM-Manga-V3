@@ -26,7 +26,7 @@
         </div>
     </div>
     <div style="height:100%;width:100%; padding:0px !important;padding-top:0px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
-    <div style="animation-duration:0.26s !important;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#ffffff !important;margin:0 auto !important; margin-top:0px !important;border-bottom-left-radius:18px;border-bottom-right-radius:18px;padding:0px !important;padding-bottom:12px !important;padding-top:8px !important;margin-bottom:22px !important;" class="animated slideInDown">
+    <div style="animation-duration:0.26s !important;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#ffffff !important;margin:0 auto !important; margin-top:0px !important;border-bottom-left-radius:20px;border-bottom-right-radius:20px;padding:0px !important;padding-bottom:12px !important;padding-top:8px !important;margin-bottom:22px !important;" class="animated slideInDown">
         <div style="width:100vw;height:22px;background-color:#ffffff;position:relative;z-index:998;margin-top:-8px !important;"></div>
         <div style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;">
             <a runat="server" id="AccountSettingsOrLogin" onclick="" href="/AccountETC/LoginETC.aspx" style="height:112px !important;width:calc(100vw - 56px) !important;background-color:transparent !important;display:block !important;margin-top:8px;margin-bottom:8px; margin-left:8px;position:relative;z-index:998;">
@@ -265,14 +265,14 @@
                                 <div class="fadeIn animated" style="vertical-align:middle;display:block !important;">
                                     <img src="/AccountETC/DarkMoon.svg" style="width:auto;height:32px;display:inline;float:left;" />
                                     <p style="color:#000000;display:inline;float:left;margin:8px;">Enable Dark Mode</p>
-                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;opacity:0.76 !important;" type="checkbox" onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block';document.getElementById('DarkModeS').checked = false; return false;" id="DarkModeS" ></div>
+                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;opacity:0.54 !important;" type="checkbox" onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block';document.getElementById('DarkModeS').checked = false; return false;" id="DarkModeS" ></div>
                                     <p style="font-size:60%;color:#808080;float:left;margin-left:36px;">Change SuM Theme to dark shades of color, This option is not recommended!</p>
                                 </div>
             <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;"/>
             <div class="fadeIn animated"  style="vertical-align:middle;display:block !important;margin-top:12px !important;">
         <img src="/AccountETC/Noti.svg" style="width:auto;height:32px;display:inline;float:left;" />
         <p style="color:#1d1d1d;display:inline;float:left;margin:8px;">Get The latest</p>
-        <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:36px;height:18px;float:right;opacity:0.76 !important;" onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block';document.getElementById('GetTheLatest').checked = false; return false;" type="checkbox" id="GetTheLatest" ></div>
+        <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:36px;height:18px;float:right;opacity:0.54 !important;" onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block';document.getElementById('GetTheLatest').checked = false; return false;" type="checkbox" id="GetTheLatest" ></div>
                <p style="font-size:60%;color:#808080;float:left;margin-left:36px;">Get The latest News about mangas in general</p>
             </div>
         <div class="fadeIn animated" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 4px !important;margin-top:6px !important;margin-top:12px;">
@@ -280,7 +280,7 @@
     </div>
         <div class="animated fadeIn" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="fadeIn animated" style="margin-top:-4px;vertical-align:middle;display:block !important;height:64px;overflow:hidden !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.7.3 Beta</p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.7.4 Beta</p>
                 <p class="" style="color:#8f8f8f;margin-left:28px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
             </div>
         </div>
