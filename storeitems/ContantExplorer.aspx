@@ -23,20 +23,18 @@
                 <ContentTemplate>
                     <asp:Panel runat="server">
                         <div id="SuMLoginUI" runat="server" style=" background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;" class="row justify-content-center">
-            <div id="SacondContForLogin" class="col-md-9 col-lg-12 col-xl-10">
-                <div style="border-radius:22px !important;" class="card shadow-lg o-hidden border-0 my-5 sumsmoothtrans">
+            <div id="SacondContForLogin" style="width:100vw !important;height:100vh !important;" class="col-md-9 col-lg-12 col-xl-10">
+                <div style="border-radius:22px !important;max-width:960px !important;margin:0 auto !important;margin-top:32px !important;" class="card shadow-lg o-hidden border-0 my-5 sumsmoothtrans">
                     <div class="card-body p-0">
                         <div class="row">
-                            <div style="width:100%;position:relative;">
-                                <a style="float:right;width:32px;height:32px;padding:4px;margin-right:12px;margin-top:12px;" onclick="document.getElementById('MainContent_SuMLoginUI').style.display = 'none'; document.getElementById('MainContent_SuMLoginUI').classList.add('fadeIn'); document.getElementById('MainContent_SuMLoginUI').classList.add('animated'); document.getElementById('SacondContForLogin').classList.add('pulse'); document.getElementById('SacondContForLogin').classList.add('animated'); document.getElementById('fullnavscont').style.display = 'none'; document.getElementById('fullnavscont').classList.remove('slideOutDown'); document.getElementById('fullnavscont').classList.add('slideInUp'); document.getElementById('fullnavscont').style.display = 'block';">
-                                    <img style="width:22px;height:22px;" src="/svg/close.svg" />
-                                </a>
-                            </div>
                             <div class="col-lg-6 d-none d-lg-flex">
                                 <div class="flex-grow-1 bg-login-image" style="background: url(&quot;/assets/img/dogs/SuM-Reader.jpg?h=0086b7bb234345281e92a417000e3a03&quot;);"></div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5 sumsmoothtrans">
+                                <a style="float:right;width:32px;height:32px;padding:4px;margin-right:-32px !important;margin-top:-32px !important;" onclick="document.getElementById('MainContent_SuMLoginUI').style.display = 'none'; document.getElementById('MainContent_SuMLoginUI').classList.add('fadeIn'); document.getElementById('MainContent_SuMLoginUI').classList.add('animated'); document.getElementById('SacondContForLogin').classList.add('pulse'); document.getElementById('SacondContForLogin').classList.add('animated'); document.getElementById('fullnavscont').style.display = 'none'; document.getElementById('fullnavscont').classList.remove('slideOutDown'); document.getElementById('fullnavscont').classList.add('slideInUp'); document.getElementById('fullnavscont').style.display = 'block';">
+                                    <img style="width:22px;height:22px;" src="/svg/close.svg" />
+                                </a>
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Login to start reading!</h4>
                                     </div>
@@ -168,16 +166,18 @@
         });
     </script>
     <div id="FakeBody" runat="server" style="width:100vw !important;height:100vh !important;max-height:100vh !important;position:absolute !important;">
-    <div id="background" style="background-color:rgba(225,225,225,0.50);">
-    <div class="fadeIn animated">
-    <div class="animated fadeIn" style="height:fit-content;width:100vw;overflow:hidden; background-color:transparent !important;position:fixed;" id="CategoryX" runat="server">
-    <div id="infoCover" runat="server" class="mySlides animated pulse" style="animation-duration:1.2s !important;overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/X/X.jpg); background-size: cover; background-position: center;width:100vw !important;height:fit-content;">
-    <div style="width:94vw;height:fit-content;position:relative;margin:0 auto;margin-top:32px;">
+    <div id="background" style="background-color:rgba(255,255,255,0.92);width:100vw !important;height:100vh !important;">
+    <div id="3rdGBLayer" style="background-color:rgba(255,255,255,0.64);width:100vw;height:100vh;">
+    <div id="CONTANERFROCONTANTEXPLORER" style="width:100vw !important;max-width:740px !important;margin:0 auto !important;">
+    <div class="fadeIn animated" style="width:100%;">
+    <div class="animated fadeIn" style="height:fit-content;width:100%;overflow:hidden; background-color:transparent !important;position:fixed;max-width:720px;overflow-x:hidden !important;" id="CategoryX" runat="server">
+    <div id="infoCover" runat="server" class="mySlides animated pulse" style="animation-duration:1.2s !important;overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/X/X.jpg); background-size: cover; background-position: center;width:100% !important;height:fit-content;">
+    <div style="width:94%;height:fit-content;position:relative;margin:0 auto;margin-top:32px;">
         <h1 id="MTitle" runat="server" style="float:left;margin-top:12px;margin-left:12px;color:#ffffff;font-size:186%;margin-right:14px !important;width:100%;height:fit-content;">#</h1>
         <p style="color:rgb(255, 255, 255, 0.82);float:right;margin-top:-18px;margin-right:10px;">By <b id="MangaCreator" style="font-size:80%;" runat="server"></b></p>
     </div>
-        <hr style="margin:0 auto !important;height:2.6px !important;border-width:0;color:#ffffff;background-color:#ffffff;width:82vw;opacity:0.26;margin:0px;margin-block:0px;border-radius:1.3px !important;margin-bottom:6px;margin-bottom:6px !important;">
-    <p style="text-align:center;height:fit-content;min-height:54vw !important; width:auto;max-width:96vw;font-size:96%;color:#ffffff;margin:14px !important;margin-bottom:26px !important;margin-top:2px !important;" id="MdiscS" runat="server">#</p>
+        <hr style="margin:0 auto !important;height:2.6px !important;border-width:0;color:#ffffff;background-color:#ffffff;width:82%;opacity:0.26;margin:0px;margin-block:0px;border-radius:1.3px !important;margin-bottom:6px;margin-bottom:6px !important;">
+    <p style="text-align:center;height:fit-content;width:auto;max-width:96%;font-size:96%;color:#ffffff;margin:14px !important;margin-bottom:26px !important;margin-top:2px !important;height:fit-content !important;min-height:280px !important;" id="MdiscS" runat="server">#</p>
     <div id="HiehtFixUpNCHxInfo" style="margin:0 auto;margin-bottom:32px !important;height:fit-content;width:100%;position:relative;">
         <a style="display:block;float:right !important;margin-right:22px;margin-top:-5px;">
             <p style="display:inline;color:rgba(255,255,255,0.74);" id="MangaRating" runat="server"></p>
@@ -190,7 +190,7 @@
 </div>
 </div>
             </div>
-        <div class="animated fadeIn" style="animation-duration:0.18s;opacity:0;float:left !important;margin-top:20vh;width:100vw !important;height:66px !important;overflow:hidden !important;position:fixed !important;" id="FavNWannaContaner">
+        <div class="animated fadeIn" style="animation-duration:0.18s;opacity:0;float:left !important;margin-top:20vh;width:100% !important;height:66px !important;overflow:hidden !important;position:fixed !important;" id="FavNWannaContaner">
             <div id="AddToFavNWanna" runat="server" style="animation-duration:0.26s !important;width:fit-content;height:38px;background-color:red;border-radius:18px;padding:4px !important;opacity:0;" class="animated pulse" >
                 <asp:Button ID="ADDTOFAV" runat="server" OnClick="AddToFavList" style="display:none;visibility:hidden;" />
                 <asp:Button ID="REMOVEFROMFAV" runat="server" OnClick="RemoveFromFavList" style="display:none;visibility:hidden;" />
@@ -220,6 +220,20 @@
                     var HIDDENFAVremove = document.getElementById('<%= REMOVEFROMFAV.ClientID %>');
                     var HIDDENWANNAadd = document.getElementById('<%= ADDTOWANNA.ClientID %>');
                     var HIDDENWANNAremove = document.getElementById('<%= REMOVEFROMWANNA.ClientID %>');
+
+                    var DetectedThemeColor = null;
+                    location.search.substring(1).split("&").forEach(function (val) {
+
+                        var currVal = val.split("=");
+                        if (currVal[0] == "TC") {
+
+                            DetectedThemeColor = decodeURI(currVal[1]);
+
+                        }
+
+                    });
+
+                    document.getElementById('3rdGBLayer').style.backgroundColor = DetectedThemeColor.replace("0.74", "0.32");
 
                     function AddToFavJava() {
                         FAVIMGBTN.src = '/svg/favorite.svg';
@@ -259,10 +273,10 @@
                 </script>
             </div>
         </div>
-        <div class="animated fadeInUp" id="ChaptersAndFuncCard" style="animation-duration:0.26s !important;opacity: 0;margin-top:-20px;height:fit-content;background-color:transparent !important;">
+        <div class="animated fadeInUp" id="ChaptersAndFuncCard" style="animation-duration:0.26s !important;opacity: 0;margin-top:-20px;height:fit-content;background-color:transparent !important;max-width:720px !important;">
             <div style="width:100% !important;height:32px !important;background-color:transparent !important;overflow:hidden !important;"></div>
             <div style="background-color:#ffffff;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;width:100%;">
-        <div id="GernsTags" runat="server" style="border-top-right-radius:22px;border-top-left-radius:22px;width:100vw;height:fit-content;background-color:transparent;align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;">
+        <div id="GernsTags" runat="server" style="border-top-right-radius:22px;border-top-left-radius:22px;width:100%;height:fit-content;background-color:transparent;align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;">
             <div style="margin-left:6px;display:inline;width:fit-content;height:38px;background-color:rgba(0,0,0,0.36);border-radius:19px;"><a href="/storeitems/TagView.aspx" style="color:white;font-size:112%;">&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;</a></div>
         </div>
         <div style="background-color:aqua;margin:0 auto;height:fit-content;position:relative;margin-top:-2px !important;" id="SVC" runat="server">
@@ -272,7 +286,7 @@
                 </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-                        <hr style="width:82vw;height:2px;border-radius:1px;color:#ffffff30;margin:0 auto !important;margin-top:-6px !important;margin-bottom:6px !important;position:absolute;z-index:998;margin-left:9vw !important;" />
+                        <hr style="width:82%;height:2px;border-radius:1px;color:#ffffff30;margin:0 auto !important;margin-top:-6px !important;margin-bottom:6px !important;position:absolute;z-index:998;margin-left:9% !important;" />
                         <div class="animated pulse" id="MRSC" runat="server" style="margin-top:3px !important;margin-bottom:13px !important;background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;display:inline;overflow:hidden !important;">
                             <a id="MRSW" onclick="" runat="server" href="#" style="color:#6840D9;"></a>
                         </div>
@@ -303,6 +317,8 @@
             </div>
             </div>
        </div>
+        </div>
+        </div>
         </div>
         </div>
     <script>

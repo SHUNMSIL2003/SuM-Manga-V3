@@ -25,7 +25,8 @@
             </div>
         </div>
     </div>
-    <div style="height:100%;width:100%; padding:0px !important;padding-top:0px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
+    <div style="height:100vh;width:100vw; padding:0px !important;padding-top:0px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
+    <div style="height:100vh !important;width:100vw;max-width:720px !important;margin:0 auto !important;">
     <div style="animation-duration:0.26s !important;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#ffffff !important;margin:0 auto !important; margin-top:0px !important;border-bottom-left-radius:20px;border-bottom-right-radius:20px;padding:0px !important;padding-bottom:12px !important;padding-top:8px !important;margin-bottom:22px !important;" class="animated slideInDown">
         <div style="width:100vw;height:22px;background-color:#ffffff;position:relative;z-index:998;margin-top:-8px !important;"></div>
         <div style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;">
@@ -283,6 +284,7 @@
                 <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.7.4 Beta</p>
                 <p class="" style="color:#8f8f8f;margin-left:28px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
             </div>
+        </div>
         </div>
         </div>
     <script>

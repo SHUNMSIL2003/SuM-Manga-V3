@@ -25,105 +25,114 @@ namespace SuM_Manga_V3.storeitems
             }
             else
             {
-                if (Request.QueryString["Chapter"] == null || Request.QueryString["Manga"] == null) { backhome(); }
-                else
+
+                if (IsPostBack == false)
                 {
-                    string MangaName = Request.QueryString["Manga"].ToString();
-                    string ChapterX = Request.QueryString["Chapter"].ToString();
-                    char[] chnum = ChapterX.ToCharArray();
-                    for (int i = 0; i < chnum.Length; i++) { if (Char.IsDigit(chnum[i]) == false) { chnum[i] = '0'; } }
-                    string chnumst = new string(chnum);
-                    int ab = Int32.Parse(chnumst);
-                    //MainCardT.InnerText = MangaName + " - Chapter " + ab.ToString();
-                    string help0136 = "\\";
-                    string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-                    string ActivePath = epath + "\\storeitems\\" + MangaName + help0136 + ChapterX + help0136;
-                    char[] ActivePatharr = ActivePath.ToCharArray();
-                    if (System.IO.Directory.Exists(ActivePath) == true)
+                    if (Request.QueryString["Chapter"] == null || Request.QueryString["Manga"] == null) { backhome(); }
+                    else
                     {
-                        TheMangaPhotos.InnerHtml = "";
-                        if (Request.QueryString["TC"] != null) { pfc.Attributes["style"] = "background-color:" + Request.QueryString["TC"].ToString() + ";"; }
-                        string[] filePaths = System.IO.Directory.GetFiles(ActivePath, "*.jpg");
-                        //string sendhtmlforchimges = "";
-                        string deafultstartitems = "/storeitems/";
-                        string slash0 = "/";
-                        string imgstyle = "width:100%;max-width:800px;";
-                        //string x = "lazy";
-                        for (int i = 0; i < filePaths.Length; i++)
+                        string MangaName = Request.QueryString["Manga"].ToString();
+                        string ChapterX = Request.QueryString["Chapter"].ToString();
+                        char[] chnum = ChapterX.ToCharArray();
+                        for (int i = 0; i < chnum.Length; i++) { if (Char.IsDigit(chnum[i]) == false) { chnum[i] = '0'; } }
+                        string chnumst = new string(chnum);
+                        int ab = Int32.Parse(chnumst);
+                        //MainCardT.InnerText = MangaName + " - Chapter " + ab.ToString();
+                        string help0136 = "\\";
+                        string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+                        string ActivePath = epath + "\\storeitems\\" + MangaName + help0136 + ChapterX + help0136;
+                        //char[] ActivePatharr = ActivePath.ToCharArray();
+                        if (System.IO.Directory.Exists(ActivePath) == true)
                         {
-                            string filename = System.IO.Path.GetFileName(filePaths[i]);
-                            TheMangaPhotos.InnerHtml += "<img class=" + "lazyload" + " style=" + imgstyle + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " /><br/>";
-                        }
-                        //string beforerelasecode = "";
-                        //beforerelasecode += sendhtmlforchimges;
-                        //TheMangaPhotos.InnerHtml = beforerelasecode;
-
-
-                        UpdateChapterNumInCurr();
-
-
-                        string pathstartnochx = "/storeitems/";
-                        string extraexplore = "MangaExplorer.aspx";
-                        string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
-                        string identifynexthelper = "Chapter=";
-                        char sc = '"';
-                        string NextCh = Request.QueryString["Chapter"].ToString();
-                        if (NextCh == null) { Response.Redirect("~/404.aspx"); }
-                        char[] NectChConvToInt = NextCh.ToCharArray();
-                        int countNumLength = 0;
-                        int PreFixedChapterNum = 0;
-                        string FixedChapterNum = string.Empty;
-                        int o = 0; int oo = 0; int ooo = 0; int oooo = 0;
-                        for (int nc = 0; nc < NextCh.Length; nc++)
-                        {
-                            if (NectChConvToInt[nc] == '0' || NectChConvToInt[nc] == '1' || NectChConvToInt[nc] == '2' || NectChConvToInt[nc] == '3' || NectChConvToInt[nc] == '4' || NectChConvToInt[nc] == '5' || NectChConvToInt[nc] == '6' || NectChConvToInt[nc] == '7' || NectChConvToInt[nc] == '8' || NectChConvToInt[nc] == '9')
+                            TheMangaPhotos.InnerHtml = "";
+                            LoadMangaInfo();
+                            if (Request.QueryString["TC"] != null) { pfc.Attributes["style"] = "background-color:" + Request.QueryString["TC"].ToString() + ";margin:0 auto !important;width:100vw !important;height:100vh !important;"; }
+                            string[] filePaths = System.IO.Directory.GetFiles(ActivePath, "*.jpg");
+                            //string sendhtmlforchimges = "";
+                            string deafultstartitems = "/storeitems/";
+                            string slash0 = "/";
+                            string imgstyle = '"'.ToString() + "width:100%;max-width:920px;margin-bottom:0px !important;display:block !important;" + '"'.ToString();
+                            //string x = "lazy";
+                            string LazyLoading = "loading=" + '"'.ToString() + "lazy" + '"'.ToString();
+                            for (int i = 0; i < (filePaths.Length - 1); i++)
                             {
-                                countNumLength++;
-                                if (countNumLength == 1) { oooo = (int)Char.GetNumericValue(NectChConvToInt[nc]); }
-                                if (countNumLength == 2) { ooo = (int)Char.GetNumericValue(NectChConvToInt[nc]); }
-                                if (countNumLength == 3) { oo = (int)Char.GetNumericValue(NectChConvToInt[nc]); }
-                                if (countNumLength == 4) { o = (int)Char.GetNumericValue(NectChConvToInt[nc]); }
+                                string filename = System.IO.Path.GetFileName(filePaths[i]);
+                                TheMangaPhotos.InnerHtml += "<img " + LazyLoading + " style=" + imgstyle + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " />";
                             }
-                        }
-                        PreFixedChapterNum = oooo * 1000 + ooo * 100 + oo * 10 + o * 1;
-                        PreFixedChapterNum = PreFixedChapterNum + 1;
-                        string ProccesingPreFixedChapterNum = Convert.ToString(PreFixedChapterNum);
-                        int fixcount = ProccesingPreFixedChapterNum.Length;
-                        if (fixcount == 1) { FixedChapterNum = "000" + ProccesingPreFixedChapterNum; }
-                        if (fixcount == 2) { FixedChapterNum = "00" + ProccesingPreFixedChapterNum; }
-                        if (fixcount == 3) { FixedChapterNum = "0" + ProccesingPreFixedChapterNum; }
-                        if (fixcount == 4) { FixedChapterNum = ProccesingPreFixedChapterNum; }
-                        string chaptertocheckexsis = Request.QueryString["Chapter"].ToString();
-                        chaptertocheckexsis = NextChapterNum(chaptertocheckexsis);
-                        string managtocheckexsis = Request.QueryString["Manga"].ToString();
-                        string rootpath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-                        string checkifitexsists = rootpath + "\\storeitems\\" + managtocheckexsis + "\\" + chaptertocheckexsis + "\\";
-                        string CurWorker = "";
-                        /*string NCN = chaptertocheckexsis;
-                        NCN = NCN.Remove(0, 2);
-                        if (Request.QueryString["UCICU"] == "T" && Request.QueryString["MID"] != null)
-                        {
-                            CurWorker = "&UCU=" + Request.QueryString["MID"] + "&CUUC=" + Convert.ToInt32(NCN);
-                        }*/
-                        if (Request.QueryString["UCU"] != null) { CurWorker = "&UCU=" + Request.QueryString["UCU"].ToString(); }
-                        if (Request.QueryString["ADTCU"] != null && Request.QueryString["UCU"] == null) { CurWorker = "&UCU=" + Request.QueryString["ADTCU"].ToString(); }
-                        if (System.IO.Directory.Exists(checkifitexsists) == true)
-                        {
-                            //"<a class="+"btn btn-primary btn-sm"+" href=" "> Next Chapter  &raquo;</a>"
-                            string sendNextChapter = "<a style=" + "border-radius:22px;padding:8px;background-color:rgb(255,255,255);margin:8px;margin-right:8px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + '"'.ToString() + "bg-white shadow btn animated fadeInUp" + '"'.ToString() + " onclick=" + sc.ToString() + "if (!navigator.onLine) { fetch('" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "', { method: 'GET' }).then(res => { location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "'; }" + sc.ToString() + " ><b>Next &raquo;</b></a>";
-                            NextChapter.InnerHtml = sendNextChapter;
+                            TheMangaPhotos.InnerHtml += "<img " + LazyLoading + " style=" + '"'.ToString() + "width:100%;max-width:920px;margin-bottom:0px !important;display:block !important;" + '"'.ToString() + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + System.IO.Path.GetFileName(filePaths[filePaths.Length - 1]) + " />";
+                            //string beforerelasecode = "";
+                            //beforerelasecode += sendhtmlforchimges;
+                            //TheMangaPhotos.InnerHtml = beforerelasecode;
+
+
+                            UpdateChapterNumInCurr();
+
+
+                            string pathstartnochx = "/storeitems/";
+                            string extraexplore = "MangaExplorer.aspx";
+                            string identifylast = "?Manga=" + Request.QueryString["Manga"].ToString();
+                            string identifynexthelper = "Chapter=";
+                            char sc = '"';
+                            string NextCh = Request.QueryString["Chapter"].ToString();
+                            if (NextCh == null) { Response.Redirect("~/404.aspx"); }
+                            char[] NectChConvToInt = NextCh.ToCharArray();
+                            int countNumLength = 0;
+                            int PreFixedChapterNum = 0;
+                            string FixedChapterNum = string.Empty;
+                            int o = 0; int oo = 0; int ooo = 0; int oooo = 0;
+                            for (int nc = 0; nc < NextCh.Length; nc++)
+                            {
+                                if (NectChConvToInt[nc] == '0' || NectChConvToInt[nc] == '1' || NectChConvToInt[nc] == '2' || NectChConvToInt[nc] == '3' || NectChConvToInt[nc] == '4' || NectChConvToInt[nc] == '5' || NectChConvToInt[nc] == '6' || NectChConvToInt[nc] == '7' || NectChConvToInt[nc] == '8' || NectChConvToInt[nc] == '9')
+                                {
+                                    countNumLength++;
+                                    if (countNumLength == 1) { oooo = (int)Char.GetNumericValue(NectChConvToInt[nc]); }
+                                    if (countNumLength == 2) { ooo = (int)Char.GetNumericValue(NectChConvToInt[nc]); }
+                                    if (countNumLength == 3) { oo = (int)Char.GetNumericValue(NectChConvToInt[nc]); }
+                                    if (countNumLength == 4) { o = (int)Char.GetNumericValue(NectChConvToInt[nc]); }
+                                }
+                            }
+                            PreFixedChapterNum = oooo * 1000 + ooo * 100 + oo * 10 + o * 1;
+                            PreFixedChapterNum = PreFixedChapterNum + 1;
+                            string ProccesingPreFixedChapterNum = Convert.ToString(PreFixedChapterNum);
+                            int fixcount = ProccesingPreFixedChapterNum.Length;
+                            if (fixcount == 1) { FixedChapterNum = "000" + ProccesingPreFixedChapterNum; }
+                            if (fixcount == 2) { FixedChapterNum = "00" + ProccesingPreFixedChapterNum; }
+                            if (fixcount == 3) { FixedChapterNum = "0" + ProccesingPreFixedChapterNum; }
+                            if (fixcount == 4) { FixedChapterNum = ProccesingPreFixedChapterNum; }
+                            string chaptertocheckexsis = Request.QueryString["Chapter"].ToString();
+                            chaptertocheckexsis = NextChapterNum(chaptertocheckexsis);
+                            string managtocheckexsis = Request.QueryString["Manga"].ToString();
+                            string rootpath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+                            string checkifitexsists = rootpath + "\\storeitems\\" + managtocheckexsis + "\\" + chaptertocheckexsis + "\\";
+                            string CurWorker = "";
+                            /*string NCN = chaptertocheckexsis;
+                            NCN = NCN.Remove(0, 2);
+                            if (Request.QueryString["UCICU"] == "T" && Request.QueryString["MID"] != null)
+                            {
+                                CurWorker = "&UCU=" + Request.QueryString["MID"] + "&CUUC=" + Convert.ToInt32(NCN);
+                            }*/
+                            if (Request.QueryString["UCU"] != null) { CurWorker = "&UCU=" + Request.QueryString["UCU"].ToString(); }
+                            if (Request.QueryString["ADTCU"] != null && Request.QueryString["UCU"] == null) { CurWorker = "&UCU=" + Request.QueryString["ADTCU"].ToString(); }
+                            if (System.IO.Directory.Exists(checkifitexsists) == true)
+                            {
+                                //"<a class="+"btn btn-primary btn-sm"+" href=" "> Next Chapter  &raquo;</a>"
+                                string sendNextChapter = "<a style=" + "border-radius:22px;padding:8px;background-color:rgb(255,255,255);margin:8px;margin-right:8px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + '"'.ToString() + "bg-white shadow btn animated fadeInUp" + '"'.ToString() + " onclick=" + sc.ToString() + "if (!navigator.onLine) { fetch('" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "', { method: 'GET' }).then(res => { location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "'; }" + sc.ToString() + " ><b>Next &raquo;</b></a>";
+                                NextChapter.InnerHtml = sendNextChapter;
+                            }
+                            else
+                            {
+                                NextChapter.InnerHtml = "<a style=" + "border-radius:22px;padding:8px;background-color:rgba(255,255,255,0.64);margin:8px;margin-right:8px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + '"'.ToString() + " shadow btn animated fadeInUp" + '"'.ToString() + "><b>Next &raquo;</b></a>";
+                            }
+                            AddToCurrIfNot();
                         }
                         else
                         {
-                            NextChapter.InnerHtml = "<a style=" + "border-radius:22px;padding:8px;background-color:rgba(255,255,255,0.64);margin:8px;margin-right:8px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + '"'.ToString() + " shadow btn animated fadeInUp" + '"'.ToString() + "><b>Next &raquo;</b></a>";
+                            Response.Redirect("~/404.aspx");
                         }
-                        AddToCurrIfNot();
-                    }
-                    else
-                    {
-                        Response.Redirect("~/404.aspx");
                     }
                 }
+                //NewFuncs-TONOTBEPREVENTFROMRELOAD
+                FavListManager(Convert.ToInt32(GetUserInfoCookie["ID"].ToString()));
                 //LoadCommentsSection(); Loads onclick now!
                 // New Code for parts outside the update panel
                 string ThemeColor = Request.QueryString["TC"].ToString();
@@ -132,6 +141,141 @@ namespace SuM_Manga_V3.storeitems
                 CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
                 dot1.Attributes["style"] = "transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:" + ThemeColor + ";margin-right:6px;";
             }
+        }
+        protected void AddToFavList(object sender, EventArgs e)
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie != null)
+            {
+                int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                object RawRes;
+                string NewLIST = string.Empty;
+                bool NeedUpdate = false;
+                string Target = "#" + Request.QueryString["VC"].ToString() + "&";
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string qwi = "SELECT Fav FROM SuMUsersAccounts WHERE UserID = @UID";
+                    SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                    sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd00.Parameters["@UID"].Value = UID;
+                    RawRes = sqlCmd00.ExecuteScalar();
+                    if (RawRes != null)
+                    {
+                        if (RawRes.ToString().Contains(Target) == false)
+                        {
+                            NewLIST = RawRes.ToString() + Target;
+                            NeedUpdate = true;
+                        }
+                    }
+                    if (NeedUpdate == true)
+                    {
+                        qwi = "UPDATE SuMUsersAccounts SET Fav = @NEWFav WHERE UserID = @UID";
+                        sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                        sqlCmd00.Parameters.AddWithValue("@NEWFav", NewLIST);
+                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        sqlCmd00.Parameters["@UID"].Value = UID;
+                        sqlCmd00.ExecuteNonQuery();
+                    }
+                    sqlCon.Close();
+                }
+            }
+        }
+        protected void FavListManager(int UID)
+        {
+            int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
+            bool ItsAFav = false;
+            object RawRes;
+            string ThemeColor = Request.QueryString["TC"].ToString();
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT Fav FROM SuMUsersAccounts WHERE UserID = @UID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd00.Parameters["@UID"].Value = UID;
+                RawRes = sqlCmd00.ExecuteScalar();
+                sqlCon.Close();
+            }
+            if (RawRes != null)
+            {
+                if (RawRes.ToString().Contains("#" + MID + "&") == true)
+                {
+                    ItsAFav = true;
+                }
+            }
+            if (ItsAFav == true)
+            {
+                AddToFavSHOWNBTN.InnerHtml = "<svg id=" + '"' + "FavSVG" + '"' + " xmlns=" + '"' + "http://www.w3.org/2000/svg" + '"' + " height=30px viewBox=" + '"' + "0 0 24 24" + '"' + " width=30px fill=" + '"' + ThemeColor.Replace("0.74", "1") + '"' + " ><path d=" + '"' + "M0 0h24v24H0V0z" + '"' + "fill=none /><path id=FavPath d=" + '"' + "M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z" + '"' + "/></svg>";
+                AddToFavSHOWNBTN.Attributes.Add("onclick", "REMOVEFROMFAV();");
+            }
+            else
+            {
+                AddToFavSHOWNBTN.InnerHtml = "<svg id=" + '"' + "FavSVG" + '"' + " xmlns=" + '"' + "http://www.w3.org/2000/svg" + '"' + " height=30px viewBox=" + '"' + "0 0 24 24" + '"' + " width=30px fill=" + '"' + ThemeColor.Replace("0.74", "1") + '"' + " ><path d=" + '"' + "M0 0h24v24H0V0z" + '"' + "fill=none /><path id=FavPath d=" + '"' + "M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" + '"' + "/></svg>";
+                AddToFavSHOWNBTN.Attributes.Add("onclick", "ADDTOFAV();");
+            }
+        }
+        protected void RemoveFromFavList(object sender, EventArgs e)
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie != null)
+            {
+                int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                object RawRes;
+                string NewLIST = string.Empty;
+                bool NeedUpdate = false;
+                string Target = "#" + Request.QueryString["VC"].ToString() + "&";
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string qwi = "SELECT Fav FROM SuMUsersAccounts WHERE UserID = @UID";
+                    SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                    sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd00.Parameters["@UID"].Value = UID;
+                    RawRes = sqlCmd00.ExecuteScalar();
+                    if (RawRes != null)
+                    {
+                        if (RawRes.ToString().Contains(Target) == true)
+                        {
+                            NewLIST = RawRes.ToString().Replace(Target, "");
+                            NeedUpdate = true;
+                        }
+                    }
+                    if (NeedUpdate == true)
+                    {
+                        qwi = "UPDATE SuMUsersAccounts SET Fav = @NEWFav WHERE UserID = @UID";
+                        sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                        sqlCmd00.Parameters.AddWithValue("@NEWFav", NewLIST);
+                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        sqlCmd00.Parameters["@UID"].Value = UID;
+                        sqlCmd00.ExecuteNonQuery();
+                    }
+                    sqlCon.Close();
+                }
+            }
+        }
+        protected void LoadMangaInfo() 
+        {
+            string ThemeColor = Request.QueryString["TC"].ToString();
+            string MangaID = Request.QueryString["VC"].ToString();
+            string CurrCH = Convert.ToInt32(Request.QueryString["Chapter"].ToString().Replace("ch", "")).ToString();
+            string CurrM = string.Empty;
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd00.Parameters["@MangaID"].Value = MangaID;
+                var Raw = sqlCmd00.ExecuteScalar();
+                CurrM = Raw.ToString();
+                sqlCon.Close();
+            }
+            string TCO1 = ThemeColor.Replace("0.74", "1");
+            MangaName.InnerText = CurrM;
+            ChapterNum.InnerText = CurrCH;
+            ChapterNum.Attributes["style"] = "color:" + TCO1 + ";";
+            MangaName.Attributes["style"] = "display:inline-block !important;font-size:118%;color:" + TCO1 + " !important;";
         }
         protected void SendComment(object sender, EventArgs e)
         {

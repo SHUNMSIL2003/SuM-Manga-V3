@@ -24,6 +24,69 @@ namespace SuM_Manga_V3.storeitems
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pfc;
 
         /// <summary>
+        /// MangaName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaName;
+
+        /// <summary>
+        /// ChapterNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ChapterNum;
+
+        /// <summary>
+        /// HIDDENADDTOFAV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button HIDDENADDTOFAV;
+
+        /// <summary>
+        /// HIDDEMREMOVEFROMFAV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button HIDDEMREMOVEFROMFAV;
+
+        /// <summary>
+        /// UpdateInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateInfo;
+
+        /// <summary>
+        /// FAVBTNUPDATE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel FAVBTNUPDATE;
+
+        /// <summary>
+        /// AddToFavSHOWNBTN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor AddToFavSHOWNBTN;
+
+        /// <summary>
         /// TheMangaPhotos control.
         /// </summary>
         /// <remarks>

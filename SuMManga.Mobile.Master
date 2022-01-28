@@ -105,9 +105,9 @@
 /* use a media query to filter small devices */
         @media only screen and (min-width:1600px) {
             /* show the popup */
-            div#popup {
+            /*div#popup {
                 display: block;
-            }
+            }*/
         }
         @font-face {
             font-family: 'VarelaRound';
@@ -230,7 +230,6 @@
             <p style="color:red;font-size:70%;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI, You can tap this popup to hide it!</p>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
     <style>
         html {
             scroll-behavior: smooth;
@@ -293,7 +292,7 @@
     <div runat="server" id="wrapper" style="overflow:hidden;background-color:#ffffff !important;">
         <asp:ScriptManager ID="SuMScriptManager" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
        </asp:ScriptManager>
-        <div class="d-flex flex-column" id="content-wrapper" style="overflow-x:hidden;">
+        <div class="d-flex flex-column" id="content-wrapper" style="">
             <div id="content">
                 <style>
                     .FNM5455511 {
@@ -304,7 +303,7 @@
                     }
                 </style>
                 <div style="width:100vw !important; height:100vh !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:#ffffff !important;" id="SuMMainBlock" runat="server" class="container-fluid">
-                    <div class="ForceMaxW" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:100vh !important;max-height:100vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;" id="mc" runat="server">
+                    <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:100vh !important;max-height:100vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;" id="mc" runat="server">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
                     </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>
@@ -457,20 +456,22 @@
                 <ContentTemplate>
                     <asp:Panel runat="server">
                         <div id="SuMUserNofifications" runat="server" style="animation-duration:0.36s !important;background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;padding-bottom:74px;padding-top:42px;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center animated fadeIn">
-                            <div style="width:calc(100vw - 24px) !important;height:68px;display:block !important;overflow:hidden !important;position:relative;margin-top:12px;">
+                         <div style="width:100vw;height:100vh;max-width:720px !important;margin:0 auto;" >
+                            <div style="width:calc(100% - 24px) !important;height:68px;display:block !important;overflow:hidden !important;position:relative;margin-top:12px; margin-left:-4px !important;">
                                 <img id="NotiUPFP" runat="server" src="/UserPFP/pfp.png" style="border-radius:50% !important;width:36px;height:36px;margin-top:2px;display:inline-block !important;margin-top:8px !important;" />
                                 <p style="color:rgba(255,255,255,0.92);display:inline !important;font-size:126%;margin-top:8px !important;" id="NotiUserName" runat="server">UserName</p><p style="display:inline !important;font-size:122%;color:#fffffff0;margin-top:12px !important;">'s</p>
-                                <img onclick="document.getElementById('SuMUserNofifications').style.display = 'none';return false;" src="/svg/closeWt.svg" style="float:right !important;margin-right:-10px;margin-top:10px;width:32px;height:32px;pointer-events:all !important;" />
+                                <img onclick="document.getElementById('SuMUserNofifications').style.display = 'none';return false;" src="/svg/closeWt.svg" style="float:right !important;margin-right:-2px;margin-top:10px;width:32px;height:32px;pointer-events:all !important;" />
                             </div>
-                        <a class="shadow-sm" style="color:rgba(255,255,255,92);margin-left:8px;margin-top:22px;margin-bottom:2px;font-size:130%;">SuM Account Info</a>
-                        <div id="ACCOUNTNOTOFICATIONSPaymentCard" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100vw - 18px) !important;height:fit-content;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;">
+                        <a class="shadow-sm" style="color:rgba(255,255,255,92);margin-left:12px;margin-top:22px;margin-bottom:2px;font-size:130%;">SuM Account Info</a>
+                        <div id="ACCOUNTNOTOFICATIONSPaymentCard" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:fit-content;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;margin-left:-4px !important;">
                         
                         </div>
-                        <div style="width:calc(100vw - 24px) !important;height:14px !important;display:block !important;"></div>
-                        <a class="shadow-sm" style="color:rgba(255,255,255,0.92);margin-left:8px;margin-top:16px;margin-bottom:3px;font-size:130%;">SuM Notifications</a>
-                        <div id="USERNOTIFICATIONS" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100vw - 18px) !important;height:calc(100vh - 342px) !important;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;min-height:62px !important;overflow-x:hidden !important;overflow-y:scroll !important;">
+                        <div style="width:calc(100% - 24px) !important;height:14px !important;display:block !important;margin-left:-4px !important;"></div>
+                        <a class="shadow-sm" style="color:rgba(255,255,255,0.92);margin-left:12px;margin-top:16px;margin-bottom:3px;font-size:130%;">SuM Notifications</a>
+                        <div id="USERNOTIFICATIONS" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:calc(100% - 342px) !important;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;min-height:62px !important;overflow-x:hidden !important;overflow-y:scroll !important;margin-left:-4px !important;">
                             
                         </div>
+                    </div>
                 </div>
                     </asp:Panel>
                 </ContentTemplate>
@@ -495,6 +496,7 @@
     <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>
     <script src="/assets/js/bs-init.js?h=cfc1cf2ac1407be801a1de7dc4705464"></script>
     <script src="/assets/js/theme.js?h=79f403485707cf2617c5bc5a2d386bb0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
         </form>
 </body>
 </html>
