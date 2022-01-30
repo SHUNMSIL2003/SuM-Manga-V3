@@ -425,9 +425,9 @@
                                     </a>
                                 </div>
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
-                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/Explore.aspx', { method: 'GET' }).then(res => { location.href = '/Explore.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Explore.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
-                                        <img src="/svg/MostSeenNA.svg" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;" />
-                                        <b style="font-size:64%;color:#636166;height:fit-content !important; text-align:center !important;display:block;">Hits</b>
+                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/Hits.aspx', { method: 'GET' }).then(res => { location.href = '/Hits.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Hits.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
+                                        <img id="HitsIMG" runat="server" src="/svg/MostSeenNA.svg" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;" />
+                                        <b id="HitsTEXT" runat="server" style="font-size:64%;color:#636166;height:fit-content !important; text-align:center !important;display:block;">Hits</b>
                                     </a>
                                 </div>
                         

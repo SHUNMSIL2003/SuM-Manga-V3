@@ -222,6 +222,24 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ExpText;
 
         /// <summary>
+        /// HitsIMG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage HitsIMG;
+
+        /// <summary>
+        /// HitsTEXT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HitsTEXT;
+
+        /// <summary>
         /// LibIMG control.
         /// </summary>
         /// <remarks>

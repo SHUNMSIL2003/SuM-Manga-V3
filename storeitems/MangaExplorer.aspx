@@ -65,7 +65,7 @@
                         </asp:UpdatePanel>
                     </div>
                 </div>
-                <div id="TheMangaPhotos" runat="server" style="width:calc(100% - 18px) !important;height:fit-content !important;margin:0 auto !important;padding:0px !important;border-radius:20px !important;margin-bottom:28px !important;border:2px solid rgba(0,0,0,0.12) !important;">
+                <div class="" id="TheMangaPhotos" runat="server" style="width:calc(100% - 18px) !important;height:fit-content !important;margin:0 auto !important;padding:0px !important;border-radius:20px !important;margin-bottom:28px !important;border:2px solid rgba(0,0,0,0.12) !important;">
 
                 </div>
                 <script>

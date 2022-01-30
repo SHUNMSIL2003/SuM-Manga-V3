@@ -74,12 +74,20 @@ namespace SuM_Manga_V3
                 LibIMG.Attributes["src"] = "/svg/bookmarks.svg"; LibText.Attributes["style"] = "font-size:64%;color:#6840D9;height:19px !important;text-align:center !important;display:block;position:relative;";
                 SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
             }
-            if (path.Contains("Settings") == true || path.Contains("SuMSettings") == true || path.Contains("SuMAccount") == true)
+            if (path.Contains("Settings"))
             {
                 foundit = true;
                 ExpIMG.Attributes["src"] = "/svg/ExploreNA.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
                 LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
                 SetIMG.Attributes["src"] = "/svg/settings.svg"; SetText.Attributes["style"] = "font-size:64%;color:#6840D9;height:19px !important;text-align:center !important;display:block;position:relative;";
+            }
+            if (path.Contains("Hits") == true)
+            {
+                foundit = true;
+                ExpIMG.Attributes["src"] = "/svg/ExploreNA.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
+                LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
+                SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
+                HitsIMG.Attributes["src"] = "/svg/MostSeen.svg"; HitsTEXT.Attributes["style"] = "font-size:64%;color:#6840D9;height:19px !important;text-align:center !important;display:block;position:relative;";
             }
             /*if (path.Contains("smth") == true) 
             {

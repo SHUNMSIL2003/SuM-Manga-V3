@@ -10,51 +10,110 @@ using System.Drawing;
 
 namespace SuM_Manga_V3
 {
-    public partial class Explore : System.Web.UI.Page
+    public partial class Hits : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //LastRefreshPross();
-            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-            if (GetUserInfoCookie != null)
-            {
-                int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
-                SussionProssINB(UID, GetUserInfoCookie["SID"].ToString());
-                LoadResents(UID);
-            }
-            else 
-            {
-                RecentsSuperCont.Attributes["style"] = "display:none !important;";
-            }
-            if (!IsPostBack)
-            {
-                ShowCardsCNew();
-                Action.InnerHtml = GetFromGarna("Action");// Comedy
-                Fantasy.InnerHtml = GetFromGarna("Fantasy");
-                Comedy.InnerHtml = GetFromGarna("Comedy");
-                Supernatural.InnerHtml = GetFromGarna("Supernatural");
-                SciFi.InnerHtml = GetFromGarna("Sci-Fi");
-                Drama.InnerHtml = GetFromGarna("Drama");
-                Mystery.InnerHtml = GetFromGarna("Mystery");
-                SliceofLife.InnerHtml = GetFromGarna("Slice of Life");
-                //.InnerHtml = GetFromGarna("");
-                //.InnerHtml = GetFromGarna("");
-                //.InnerHtml = GetFromGarna("");
-                //.InnerHtml = GetFromGarna("");
-                //.InnerHtml = GetFromGarna("");
-                //.InnerHtml = GetFromGarna("");
-                //.InnerHtml = GetFromGarna("");
-                //.InnerHtml = GetFromGarna("");
-            }
+            LoadTop10();
+            Action.InnerHtml = GetFromGarna("Action");
+            Fantasy.InnerHtml = GetFromGarna("Fantasy");
+            Comedy.InnerHtml = GetFromGarna("Comedy");
+            Supernatural.InnerHtml = GetFromGarna("Supernatural");
+            SciFi.InnerHtml = GetFromGarna("Sci-Fi");
+            Drama.InnerHtml = GetFromGarna("Drama");
+            Mystery.InnerHtml = GetFromGarna("Mystery");
+            SliceofLife.InnerHtml = GetFromGarna("Slice of Life");
         }
-        protected void SpasialCat() 
+        protected void LoadTop10()
         {
-
+            Top10Con.InnerHtml = "";
+            string[] tHEMEcOLORS = new string[10];
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string Name = string.Empty;
+                string Cover = string.Empty;
+                string Disc = string.Empty;
+                string CExplorerLink = string.Empty;
+                int views = 0;
+                string AgeRating = string.Empty;
+                string query = "SELECT TOP 10 MangaID from SuMManga order by MangaViews desc;";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                int MangaIDF = 0;
+                object un;
+                Queue<int> RawIDs = new Queue<int>();
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        RawIDs.Enqueue(Convert.ToInt32(reader[0].ToString()));
+                    }
+                }
+                int[] IDs = new int[RawIDs.Count];
+                int IDHELPER = 0;
+                while (RawIDs.Count > 0)
+                {
+                    IDs[IDHELPER] = RawIDs.Dequeue();
+                    IDHELPER++;
+                }
+                for (int i = 0; i < IDs.Length; i++)
+                {
+                    MangaIDF = IDs[i];
+                    query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                    un = sqlCmd.ExecuteScalar();
+                    Name = un.ToString();
+                    query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                    un = sqlCmd.ExecuteScalar();
+                    CExplorerLink = un.ToString();
+                    CExplorerLink += "&VC=" + MangaIDF.ToString();
+                    query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                    un = sqlCmd.ExecuteScalar();
+                    Cover = un.ToString();
+                    query = "SELECT SuMThemeColor FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                    string themecolor = sqlCmd.ExecuteScalar().ToString();
+                    CExplorerLink += "&TC=" + themecolor;
+                    query = "SELECT MangaViews FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                    un = sqlCmd.ExecuteScalar();
+                    views = Convert.ToInt32(un.ToString());
+                    query = "SELECT MangaAgeRating FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                    un = sqlCmd.ExecuteScalar();
+                    AgeRating = un.ToString();
+                    query = "SELECT MangaInfo FROM SuMManga WHERE MangaID = @MangaID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                    un = sqlCmd.ExecuteScalar();
+                    Disc = un.ToString();
+                    Top10Con.InnerHtml += BuildTopCard(i + 1, themecolor, Cover, Name, Disc, AgeRating, views, CExplorerLink);
+                    tHEMEcOLORS[i] = themecolor;
+                }
+                sqlCon.Close();
+            }
+            HitsStylePlaceHolder.InnerHtml = "<style> #HitsBG { animation: rainbow 11s linear infinite; } @keyframes rainbow { 0% { background-color: " + tHEMEcOLORS[0] + "; } 10% { background-color: " + tHEMEcOLORS[0] + "; } 20% { background-color: " + tHEMEcOLORS[1] + "; } 30% { background-color: " + tHEMEcOLORS[2] + "; } 40% { background-color: " + tHEMEcOLORS[3] + "; } 50% { background-color: " + tHEMEcOLORS[4] + "; } 60% { background-color: " + tHEMEcOLORS[5] + "; } 70% { background-color: " + tHEMEcOLORS[6] + "; } 80% { background-color: " + tHEMEcOLORS[7] + "; } 90% { background-color: " + tHEMEcOLORS[8] + "; } 100% { background-color: " + tHEMEcOLORS[9] + "; } } </style>";
         }
+
         protected void SussionPross(object sender, EventArgs e)
         {
             HttpCookie userInfo = Request.Cookies["SuMCurrentUser"];
-            if (userInfo != null) 
+            if (userInfo != null)
             {
                 string SID = userInfo["SID"].ToString();
                 object CMDRs;
@@ -68,20 +127,20 @@ namespace SuM_Manga_V3
                     CMDRs = sqlCmd.ExecuteScalar();
                     sqlCon.Close();
                 }
-                if (CMDRs != null) 
+                if (CMDRs != null)
                 {
                     if (CMDRs.ToString().Contains(SID) == false)
                     {
                         LogOut();
                     }
                 }
-                else 
+                else
                 {
                     LogOut();
                 }
             }
         }
-        protected string[] SIDsToStringArray(string SIDs) 
+        protected string[] SIDsToStringArray(string SIDs)
         {
             Queue<string> R1 = new Queue<string>();
             bool fh = false;
@@ -116,188 +175,6 @@ namespace SuM_Manga_V3
             HttpCookie GetUserInfoCookie = new HttpCookie("SuMCurrentUser");
             GetUserInfoCookie.Expires = DateTime.Now.AddDays(-100);
             Response.Cookies.Add(GetUserInfoCookie);
-        }
-        protected void LoadResents(int UID)
-        {
-            object ResultFromSQL;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
-            {
-                sqlCon.Open();
-                string qwi = "SELECT Resently FROM SuMUsersAccounts WHERE UserID = @UID";
-                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd00.Parameters["@UID"].Value = UID;
-                ResultFromSQL = sqlCmd00.ExecuteScalar();
-                sqlCon.Close();
-            }
-            if (ResultFromSQL != null)
-            {
-                if (string.IsNullOrEmpty(ResultFromSQL.ToString()) == false)
-                {
-                    Recent.InnerHtml = "";
-                    using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
-                    {
-                        sqlCon.Open();
-                        object un;
-                        string query = string.Empty;
-                        SqlCommand sqlCmd = new SqlCommand("", sqlCon);
-                        int[] MIDs = ST0(ResultFromSQL.ToString());
-                        for (int i = 0; i < MIDs.Length; i++)
-                        {
-                            int maxidf = MIDs[i];
-                            query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                            un = sqlCmd.ExecuteScalar();
-                            string MTitle = un.ToString();
-                            query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                            un = sqlCmd.ExecuteScalar();
-                            string CExplorerLink = un.ToString();
-                            query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                            un = sqlCmd.ExecuteScalar();
-                            string Cover = un.ToString();
-                            query = "SELECT SuMThemeColor FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                            string themecolor = sqlCmd.ExecuteScalar().ToString();
-                            CExplorerLink += "&VC=" + maxidf.ToString() + "&TC=" + themecolor;
-                            Recent.InnerHtml += BuildRecentCard(Cover, MTitle, themecolor, CExplorerLink);
-                        }
-                        sqlCon.Close();
-                    }
-                }
-                else
-                {
-                    RecentsSuperCont.Attributes["style"] = "display:none !important;";
-                }
-            }
-            else
-            {
-                RecentsSuperCont.Attributes["style"] = "display:none !important;";
-            }
-        }
-        protected string BuildRecentCard(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink)
-        {
-            string RS = "<div class=" + '"' + "animated fadeInRight" + '"' + " onclick=" + '"' + "if (!navigator.onLine) { fetch('" + ExplorerLink + "', { method: 'GET' }).then(res => { location.href = '" + ExplorerLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + ExplorerLink + "'; }" + '"' + " loading=lazy style=" + '"' + "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CoverLink + ");background-size:cover;background-position:center;width:96px;height:96px;overflow:hidden;margin-left:16px !important;" + '"' + "><div class=GoodBlur style=" + '"' + "background-color:" + ThemeColor + " !important;width:98px;margin-left:-1px;height:36px;position:absolute;bottom:0;border-radius:0px;" + '"' + "><p style=" + '"' + "margin-top:2px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" + '"' + ">" + MangaTitle + "</p></div></div>";
-            return RS;
-        }
-        protected int[] ST0(string x)
-        {
-            Queue<int> R1 = new Queue<int>();
-            bool fh = false;
-            string A1 = "";
-            char[] aa = x.ToCharArray();
-            for (int i = 0; i < aa.Length; i++)
-            {
-                if (aa[i] == '&')
-                {
-                    fh = false;
-                    R1.Enqueue(Convert.ToInt32(A1));
-                    A1 = "";
-                }
-                if (fh == true)
-                {
-                    A1 += aa[i].ToString();
-                }
-                if (aa[i] == '#') { fh = true; }
-            }
-            int RdL = R1.Count;
-            int[] RS = new int[RdL];
-            int RFDH = 0;
-            while (R1.Count > 0)
-            {
-                RS[RFDH] = R1.Dequeue();
-                RFDH++;
-            }
-            return RS;
-        }
-        protected void ShowCardsCNew()
-        {
-            string ResultS = " ";
-            int RN = 0;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
-            {
-                sqlCon.Open();
-                string qwi = "SELECT MAX(MangaID) FROM SuMManga";
-                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                var jdbvg = sqlCmd00.ExecuteScalar();
-                if (jdbvg != null)
-                {
-                    int maxidf = Convert.ToInt32(jdbvg);
-                    int vet = 0;
-                    while (vet < 6 && maxidf > 0)
-                    {
-                        string Name = string.Empty;
-                        string Cover = string.Empty;
-                        string Disc = string.Empty;
-                        string CExplorerLink = string.Empty;
-                        string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
-                        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                        sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                        sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                        var un = sqlCmd.ExecuteScalar();
-                        if (un != null)
-                        {
-                            Name = un.ToString();
-                            query = "SELECT MangaInfo FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                            un = sqlCmd.ExecuteScalar();
-                            Disc = un.ToString();
-                            query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                            un = sqlCmd.ExecuteScalar();
-                            CExplorerLink = un.ToString();
-                            query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                            un = sqlCmd.ExecuteScalar();
-                            Cover = un.ToString();
-                            query = "SELECT SuMThemeColor FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                            string themecolor = sqlCmd.ExecuteScalar().ToString();
-                            CExplorerLink += "&VC=" + maxidf.ToString() + "&TC=" + themecolor;
-                            query = "SELECT MangaCreator FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                            string MangaCReator = sqlCmd.ExecuteScalar().ToString();
-                            query = "SELECT MangaViews FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                            int Views = Convert.ToInt32(sqlCmd.ExecuteScalar().ToString());
-                            query = "SELECT MangaAgeRating FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
-                            string MangaAgeRating = sqlCmd.ExecuteScalar().ToString();
-                            ResultS += BuildCard(Cover, Name, Disc, CExplorerLink, themecolor, MangaCReator, MangaAgeRating, Views);
-                            vet++;
-                            RN = vet;
-                            maxidf = maxidf - 1;
-                        }
-                    }
-                    cardstoshow.InnerHtml = ResultS;
-                    cardsdots.InnerHtml = " ";
-                    for (int i = 0; i < RN; i++) { cardsdots.InnerHtml += "<span class=" + "dot" + "></span> "; }
-                }
-                sqlCon.Close();
-            }
         }
         protected string GetGarnas(int id)
         {
@@ -448,7 +325,7 @@ namespace SuM_Manga_V3
                     string Cover = string.Empty;
                     string Disc = string.Empty;
                     string CExplorerLink = string.Empty;
-                    string query = "SELECT TOP 12 MangaID from SuMManga WHERE " + Garna + " = 1  order by MangaID desc;";
+                    string query = "SELECT TOP 10 MangaID from SuMManga WHERE " + Garna + " = 1  order by MangaViews desc;";
                     SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                     int MangaIDF = 0;
                     object un;
@@ -583,6 +460,38 @@ namespace SuM_Manga_V3
 
             return Color.FromArgb(r, g, b);
         }
+        protected string BuildTopCard(int Num, string ThemeColor, string CoverURL, string ManagTitle, string ManagDisc, string AgeRating, int views, string ManagLink)
+        {
+            string ViewsNumPart = string.Empty;
+            string ViewsLPart = string.Empty;
+            if (views < 1000)
+            {
+                ViewsNumPart = views.ToString();
+                ViewsLPart = "";
+            }
+            if (views > 999 && views < 1000000)
+            {
+                double B = views / 1000.0;
+                ViewsNumPart = String.Format("{0:0.00}", B);
+                ViewsLPart = "K";
+            }
+            if (views > 999999 && views < 1000000000)
+            {
+                double B = views / 1000000.0;
+                ViewsNumPart = String.Format("{0:0.00}", B);
+                ViewsLPart = "M";
+            }
+            if (views > 999999999)
+            {
+                double B = views / 1000000000.0;
+                ViewsNumPart = String.Format("{0:0.00}", B);
+                ViewsLPart = "B";
+            }
+            string HerfingCode = "onclick=" + '"' + "if (!navigator.onLine) { fetch('" + ManagLink + "', { method: 'GET' }).then(res => { location.href = '" + ManagLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + ManagLink + "'; }" + '"';
+            string ExpandingCode = "onclick=" + '"' + "ExpandControler" + Num.ToString() + "()" + '"';
+            string RS = "<div id=NuM" + Num.ToString() + " style=" + '"' + "background-color:" + ThemeColor + ";padding:12px;padding-top:22px;padding-bottom:22px;background-image:linear-gradient(" + ThemeColor + ", rgba(0, 0, 0, 0.3)), url(" + CoverURL + ") !important;background-size: cover;background-position: center center !important;height:128px;width:100%;overflow:hidden;" + '"' + "> <div style=" + '"' + "height:fit-content;width:100%;margin:0 auto !important;display:inline !important;position:relative;" + '"' + "> <div style=height:fit-content; id=NuM" + Num.ToString()+"Expandor " + ExpandingCode + " ><p style=" + '"' + "float:right;margin-top:8px;margin-right:8px;font-size:240%;color:rgba(255,255,255,0.86);" + '"' + ">#" + Num.ToString() + "</p> <p id=NuM" + Num.ToString() + "Title style=" + '"' + "font-size:160%;color:#ffffff;width:calc(100% - 90px);overflow:hidden;margin-top:18px;height:fit-content;" + '"' + ">" + ManagTitle + "</p></div><div id=NuM" + Num.ToString() + "CardRest style=display:none; class=" + '"' + "animated fadeInDown" + '"' + " > <div " + HerfingCode + " > <p id=NuM" + Num.ToString() + "Disc style=" + '"' + "width:100%;overflow:hidden;font-size:92%;color:rgba(255,255,255,0.8);text-align:center;height:fit-content;" + '"' + ">" + ManagDisc + "</p> <div style=width:fit-content;float:right;> <p style=display:inline;color:rgba(255,255,255,0.74);>" + AgeRating + "</p> <img style=width:20px;height:20px;display:inline; src=" + '"' + "/svg/views.svg" + '"' + "> <p  style=display:inline;color:#ffffff;>" + ViewsNumPart + "</p> <b style=display:inline;color:#ffffff;>" + ViewsLPart + "</b> </div> </div> </div> </div> </div>";
+            return RS;
+        }
         protected string BuildGCard(string CardBG, string cardtitle, string G, string Link, string theme, int id)
         {
             string LazyLoading = "loading=" + '"'.ToString() + "lazy" + '"'.ToString();//New
@@ -598,29 +507,35 @@ namespace SuM_Manga_V3
             string result = "<div class=" + zoominanim + " style=" + divs0 + "><a onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div class=" + "GoodBlur" + " style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
             return result;
         }
-        protected void SussionProssINB(int UID, string SID)
+        protected void SussionPross()
         {
-            object CMDRs;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            HttpCookie userInfo = Request.Cookies["SuMCurrentUser"];
+            if (userInfo != null)
             {
-                sqlCon.Open();
-                string qwi = "SELECT SIDs FROM SuMUsersAccounts WHERE UserID = @UID";
-                SqlCommand sqlCmd = new SqlCommand(qwi, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd.Parameters["@UID"].Value = UID;
-                CMDRs = sqlCmd.ExecuteScalar();
-                sqlCon.Close();
-            }
-            if (CMDRs != null)
-            {
-                if (CMDRs.ToString().Contains(SID) == false)
+                string SID = userInfo["SID"].ToString();
+                int UID = Convert.ToInt32(userInfo["ID"].ToString());
+                object CMDRs;
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string qwi = "SELECT SIDs FROM SuMUsersAccounts WHERE UserID = @UID";
+                    SqlCommand sqlCmd = new SqlCommand(qwi, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UID"].Value = UID;
+                    CMDRs = sqlCmd.ExecuteScalar();
+                    sqlCon.Close();
+                }
+                if (CMDRs != null)
+                {
+                    if (CMDRs.ToString().Contains(SID) == false)
+                    {
+                        ForceLogOut();
+                    }
+                }
+                else
                 {
                     ForceLogOut();
                 }
-            }
-            else
-            {
-                ForceLogOut();
             }
         }
         protected void ForceLogOut()
@@ -628,106 +543,6 @@ namespace SuM_Manga_V3
             HttpCookie GetUserInfoCookie = new HttpCookie("SuMCurrentUser");
             GetUserInfoCookie.Expires = DateTime.Now.AddDays(-100);
             Response.Cookies.Add(GetUserInfoCookie);
-        }
-        protected void LastRefreshPross()
-        {
-            HttpCookie GetRefreshInfoCookie = Request.Cookies["SuMMangaRefreshProssHome"];
-            if (GetRefreshInfoCookie != null)
-            {
-                int Year = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedYear"].ToString());
-                int Month = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedMonth"].ToString());
-                int Day = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedDay"].ToString());
-                int Hour = Convert.ToInt32(GetRefreshInfoCookie["LatestUpdatedHour"].ToString());
-                int CurrYear = Convert.ToInt32(DateTime.UtcNow.ToString("yyyy"));
-                int CurrMonth = Convert.ToInt32(DateTime.UtcNow.ToString("MM"));
-                int CurrDay = Convert.ToInt32(DateTime.UtcNow.ToString("dd"));
-                int CurrHour = Convert.ToInt32(DateTime.UtcNow.ToString("HH"));
-                if ((Year - CurrYear) == 0)
-                {
-                    if ((Month - CurrMonth) == 0)
-                    {
-                        if ((CurrDay - Day) > 1)
-                        {
-                            HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssHome");
-                            UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
-                            UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
-                            UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
-                            UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
-                            UpdateInfo.Expires = DateTime.MaxValue;
-                            HttpContext.Current.Response.Cookies.Add(UpdateInfo);
-                            ReloadAndUpdate();
-                        }
-                    }
-                    else
-                    {
-                        HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssHome");
-                        UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
-                        UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
-                        UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
-                        UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
-                        UpdateInfo.Expires = DateTime.MaxValue;
-                        HttpContext.Current.Response.Cookies.Add(UpdateInfo);
-                        ReloadAndUpdate();
-                    }
-                }
-                else
-                {
-                    HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssHome");
-                    UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
-                    UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
-                    UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
-                    UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
-                    UpdateInfo.Expires = DateTime.MaxValue;
-                    HttpContext.Current.Response.Cookies.Add(UpdateInfo);
-                    ReloadAndUpdate();
-                }
-            }
-            else
-            {
-                HttpCookie UpdateInfo = new HttpCookie("SuMMangaRefreshProssHome");
-                UpdateInfo["LatestUpdatedYear"] = DateTime.UtcNow.ToString("yyyy");
-                UpdateInfo["LatestUpdatedMonth"] = DateTime.UtcNow.ToString("MM");
-                UpdateInfo["LatestUpdatedDay"] = DateTime.UtcNow.ToString("dd");
-                UpdateInfo["LatestUpdatedHour"] = DateTime.UtcNow.ToString("HH");
-                UpdateInfo.Expires = DateTime.MaxValue;
-                HttpContext.Current.Response.Cookies.Add(UpdateInfo);
-            }
-        }
-        protected void ReloadAndUpdate()
-        {
-            string CurrURL = Request.Url.ToString();
-            if (CurrURL.Contains("?") == true)
-            {
-                Response.Redirect(Request.Url.ToString() + "&" + RandomQuryForUpdate());
-            }
-            else
-            {
-                Response.Redirect(Request.Url.ToString() + "?" + RandomQuryForUpdate());
-            }
-        }
-        protected static string RandomQuryForUpdate()
-        {
-            int length = 9;
-            char[] chArray = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-            string str = string.Empty;
-            Random random = new Random();
-            for (int i = 0; i < length; i++)
-            {
-                int index = random.Next(1, chArray.Length);
-                if (!str.Contains(chArray.GetValue(index).ToString()))
-                {
-                    str = str + chArray.GetValue(index);
-                }
-                else
-                {
-                    i--;
-                }
-            }
-            Random r = new Random();
-            int randNum = r.Next(1000000);
-            string sixDigitNumber = randNum.ToString("D6");
-            str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
-            return "UPDATE=" + str;
         }
     }
 }

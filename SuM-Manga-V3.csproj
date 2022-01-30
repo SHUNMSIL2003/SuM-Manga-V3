@@ -317,6 +317,7 @@
     <Content Include="favicon.ico" />
     <Content Include="google139ca1b85e8d81e5.html" />
     <Content Include="google202f75c3bd92d10f.html" />
+    <Content Include="Hits.aspx" />
     <Content Include="images\128x128.png" />
     <Content Include="images\16x16.png" />
     <Content Include="images\180x180.png" />
@@ -1518,7 +1519,9 @@
     <Content Include="svg\favorite.svg" />
     <Content Include="svg\favoriteNOTFILLED.svg" />
     <Content Include="svg\feed.svg" />
+    <Content Include="svg\history.svg" />
     <Content Include="svg\info.svg" />
+    <Content Include="svg\MostSeenW.svg" />
     <Content Include="svg\notificationsNEW.svg" />
     <Content Include="svg\notifications.svg" />
     <Content Include="svg\payment.svg" />
@@ -3653,6 +3656,13 @@
     </Compile>
     <Compile Include="Explore.aspx.designer.cs">
       <DependentUpon>Explore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Hits.aspx.cs">
+      <DependentUpon>Hits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Hits.aspx.designer.cs">
+      <DependentUpon>Hits.aspx</DependentUpon>
     </Compile>
     <Compile Include="Library.aspx.cs">
       <DependentUpon>Library.aspx</DependentUpon>

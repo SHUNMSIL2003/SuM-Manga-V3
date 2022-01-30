@@ -166,10 +166,12 @@ namespace SuM_Manga_V3.storeitems
             }
             if (GetUserInfoCookie != null)
             {
-                FavListManager(Convert.ToInt32(GetUserInfoCookie["ID"].ToString()));
-                WannaListManager(Convert.ToInt32(GetUserInfoCookie["ID"].ToString()));
+                int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                FavListManager(UID);
+                WannaListManager(UID);
+                ReasentMarker(UID);
             }
-            else 
+            else
             {
                 AddToFavNWanna.Attributes.Add("onclick", "document.getElementById('MainContent_SuMLoginUI').style.display = 'block';");
             }
@@ -177,6 +179,43 @@ namespace SuM_Manga_V3.storeitems
             {
                 AddToFavNWanna.Attributes["style"] = "overflow:hidden !important;animation-duration:0.26s !important;width:fit-content;height:38px;background-color:" + ThemeColor.Replace("0.74", "0.92") + ";border-radius:18px;padding:4px !important;margin-left:0px;float:left !important;margin-top:28px !important;border-bottom-left-radius:0px !important;border-top-left-radius:0px !important;";
                 AddOneView();
+            }
+        }
+        protected void ReasentMarker(int UID)
+        {
+            object RawRes;
+            string NewSol = string.Empty;
+            string Target = "#" + Request.QueryString["VC"].ToString() + "&";
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT Resently FROM SuMUsersAccounts WHERE UserID = @UID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd00.Parameters["@UID"].Value = UID;
+                RawRes = sqlCmd00.ExecuteScalar();
+                if (RawRes != null)
+                {
+                    if (RawRes.ToString().Contains(Target) == true)
+                    {
+                        NewSol = Target + RawRes.ToString().Replace(Target, "");
+                    }
+                    else
+                    {
+                        NewSol = Target + RawRes.ToString();
+                    }
+                }
+                else
+                {
+                    NewSol = Target;
+                }
+                qwi = "UPDATE SuMUsersAccounts SET Resently = @NEWResently WHERE UserID = @UID";
+                sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@NEWResently", NewSol);
+                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd00.Parameters["@UID"].Value = UID;
+                sqlCmd00.ExecuteNonQuery();
+                sqlCon.Close();
             }
         }
         protected void WannaListManager(int UID)
@@ -929,17 +968,24 @@ namespace SuM_Manga_V3.storeitems
         }
         protected bool IsGernXCodeName(string X, int MangaID)
         {
+            bool Res = false;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
-                string qwi = "SELECT ID FROM " + X + " WHERE MangaID = @MangaID ";
+                string qwi = "SELECT " + X + " FROM SuMManga WHERE MangaID = @MangaID ";
                 SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
                 sqlCmd00.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                 sqlCmd00.Parameters["@MangaID"].Value = MangaID;
-                var R = sqlCmd00.ExecuteScalar();
-                if (R != null) { sqlCon.Close(); return true; }
-                else { sqlCon.Close(); return false; }
+                using (var reader = sqlCmd00.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Res = reader.GetBoolean(0);
+                    }
+                }
+                sqlCon.Close();
             }
+            return Res;
         }
         protected string GetGerns(int ID)
         {

@@ -120,9 +120,19 @@
     </style>
     <script>
         /* navigator.share({title:'SuM Manga',text:'Check out X on SuM Manga.',url:'LINK'}); */
+        if (fullnavscont.classList.contains('slideInUp')) {
+            fullnavscont.classList.remove('slideOutDown');
+            fullnavscont.classList.remove('slideInUp');
+            fullnavscont.style.display = 'block';
+        };
         document.addEventListener("DOMContentLoaded", function () {
 
             var fullnavscont = document.getElementById("fullnavscont");
+            if (fullnavscont.classList.contains('slideOutDown')) {
+                fullnavscont.classList.remove('slideOutDown');
+                fullnavscont.classList.add('slideInUp');
+                fullnavscont.style.display = 'block';
+            };
 
             // Check if there is a local storage item with tbe name "animate"
             /*if (window.localStorage.getItem("animate") != null) {

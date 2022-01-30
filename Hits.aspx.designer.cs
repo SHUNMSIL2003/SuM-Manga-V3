@@ -11,80 +11,35 @@ namespace SuM_Manga_V3
 {
 
 
-    public partial class Explore
+    public partial class Hits
     {
 
         /// <summary>
-        /// cardscontain control.
+        /// HitsStylePlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardscontain;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HitsStylePlaceHolder;
 
         /// <summary>
-        /// cardstoshow control.
+        /// Top10Con control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardstoshow;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Top10Con;
 
         /// <summary>
-        /// cardsdots control.
+        /// NuM1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardsdots;
-
-        /// <summary>
-        /// UPDATERESESNTS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UPDATERESESNTS;
-
-        /// <summary>
-        /// RESENTSUPATEPANLE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel RESENTSUPATEPANLE;
-
-        /// <summary>
-        /// RecentsSuperCont control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RecentsSuperCont;
-
-        /// <summary>
-        /// RescentBody control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RescentBody;
-
-        /// <summary>
-        /// Recent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Recent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NuM1;
 
         /// <summary>
         /// CategoryX control.

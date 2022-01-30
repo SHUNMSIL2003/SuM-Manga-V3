@@ -160,72 +160,117 @@ namespace SuM_Manga_V3
             string garns = " ";
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
+                bool IsIt = false;
                 sqlCon.Open();
-                string query = "SELECT ID FROM Fantasy WHERE MangaID = @MangaID";
+                string query = "SELECT Fantasy FROM SuMManga WHERE MangaID = @MangaID";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                 sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "Fantasy, "; }
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Fantasy, "; }
 
-                query = "SELECT ID FROM Comedy WHERE MangaID = @MangaID";
+                query = "SELECT Comedy FROM SuMManga WHERE MangaID = @MangaID";
                 sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                 sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "Comedy, "; }
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Comedy, "; }
 
-                query = "SELECT ID FROM Supernatural WHERE MangaID = @MangaID";
+                query = "SELECT Supernatural FROM SuMManga WHERE MangaID = @MangaID";
                 sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                 sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "Supernatural, "; }
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Supernatural, "; }
 
-                query = "SELECT ID FROM SciFi WHERE MangaID = @MangaID";
+                query = "SELECT SciFi FROM SuMManga WHERE MangaID = @MangaID";
                 sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                 sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "Sci-Fi, "; }
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Sci-Fi, "; }
 
-                query = "SELECT ID FROM Drama WHERE MangaID = @MangaID";
+                query = "SELECT Drama FROM SuMManga WHERE MangaID = @MangaID";
                 sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                 sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "Drama, "; }
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Drama, "; }
 
-                query = "SELECT ID FROM Mystery WHERE MangaID = @MangaID";
+                query = "SELECT Mystery FROM SuMManga WHERE MangaID = @MangaID";
                 sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                 sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "Mystery, "; }
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Mystery, "; }
 
-                query = "SELECT ID FROM SliceofLife WHERE MangaID = @MangaID";
+                query = "SELECT SliceofLife FROM SuMManga WHERE MangaID = @MangaID";
                 sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                 sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "Slice of Life, "; }
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Slice of Life, "; }
 
-                query = "SELECT ID FROM Action WHERE MangaID = @MangaID";
+                query = "SELECT Action FROM SuMManga WHERE MangaID = @MangaID";
                 sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                 sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "Action, "; }
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Action, "; }
 
-                /*query = "SELECT ID FROM smth WHERE MangaID = @MangaID";
+                /*query = "SELECT TYPE FROM SuMManga WHERE MangaID = @MangaID";
                 sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                 sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "smth, "; }
-
-                query = "SELECT ID FROM smth WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "smth, "; }
-
-                query = "SELECT ID FROM smth WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "smth, "; }*/
+                if (sqlCmd.ExecuteScalar() != null) { garns += "TYPE, "; }*/
 
                 //if (garns != null) { if (garns[garns.Length - 2] == ',' && garns[garns.Length - 1] == ' ') { garns.Substring(garns.Length - 3); } }
 
