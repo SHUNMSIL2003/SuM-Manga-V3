@@ -24,6 +24,15 @@ namespace SuM_Manga_V3.storeitems
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pfc;
 
         /// <summary>
+        /// FirstAniDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FirstAniDiv;
+
+        /// <summary>
         /// MangaName control.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,24 @@ namespace SuM_Manga_V3.storeitems
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor CommentsSecTopPartColor;
+
+        /// <summary>
+        /// ComSecTi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ComSecTi;
+
+        /// <summary>
+        /// SendCommentAria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SendCommentAria;
 
         /// <summary>
         /// UserComment control.

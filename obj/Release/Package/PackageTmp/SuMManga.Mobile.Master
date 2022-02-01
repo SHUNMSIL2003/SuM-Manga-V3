@@ -4,11 +4,24 @@
 <html lang="en" style="overflow: hidden;">
 <head id="SMHead" runat="server"><!--
     <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials"> -->
-    <script src="/runsw.js"></script>
-    <script type="module">
+    <!-- <script src="/runsw.js"></script> -->
+    <!-- <script type="module">
         import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
         const el = document.createElement('pwa-update');
         document.body.appendChild(el);
+    </script> -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/SuMManga-SW.js')
+                    .then(registration => {
+                        console.log(`Service Worker registered! Scope: ${registration.scope}`);
+                    })
+                    .catch(err => {
+                        console.log(`Service Worker registration failed: ${err}`);
+                    });
+            });
+        }
     </script>
     <meta name="google-signin-client_id" content="464504450730-iuk9hotshe7kjnq73p11mdvijc49ll5c.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -224,6 +237,7 @@
         //document.getElementById('popup').style.display = 'none';
     </script>
 </head>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <body id="page-top" style="overflow:hidden !important;height:100vh;width:100vw;"> 
     <div onclick="document.getElementById('popup').style.display = 'none';" id="popup" style="">
         <div class="animated slideInDown" style="width:fit-content !important; height:fit-content !important;background-color:rgb(242,242,242,0.6);display:block !important;float:left !important;">

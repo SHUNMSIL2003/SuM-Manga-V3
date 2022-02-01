@@ -24,6 +24,24 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl HitsStylePlaceHolder;
 
         /// <summary>
+        /// ScrollingDivHits control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ScrollingDivHits;
+
+        /// <summary>
+        /// HotsScrollHelper control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HotsScrollHelper;
+
+        /// <summary>
         /// Top10Con control.
         /// </summary>
         /// <remarks>
@@ -31,15 +49,6 @@ namespace SuM_Manga_V3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Top10Con;
-
-        /// <summary>
-        /// NuM1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NuM1;
 
         /// <summary>
         /// CategoryX control.

@@ -27,6 +27,12 @@ namespace SuM_Manga_V3
         protected void LoadTop10()
         {
             Top10Con.InnerHtml = "";
+            bool PreformanceMode = false;
+            HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
+            if (GetPerModeInfoCookie != null)
+            {
+                PreformanceMode = true;
+            }
             string[] tHEMEcOLORS = new string[10];
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
@@ -102,14 +108,29 @@ namespace SuM_Manga_V3
                     sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
                     un = sqlCmd.ExecuteScalar();
                     Disc = un.ToString();
-                    Top10Con.InnerHtml += BuildTopCard(i + 1, themecolor, Cover, Name, Disc, AgeRating, views, CExplorerLink);
+                    if (PreformanceMode == false)
+                    {
+                        Top10Con.InnerHtml += BuildTopCard(i + 1, themecolor, Cover, Name, Disc, AgeRating, views, CExplorerLink);
+                    }
+                    else
+                    {
+                        Top10Con.InnerHtml += BuildTopCardPerMode(i + 1, themecolor, Cover, Name, Disc, AgeRating, views, CExplorerLink);
+                    }
                     tHEMEcOLORS[i] = themecolor;
                 }
                 sqlCon.Close();
             }
-            HitsStylePlaceHolder.InnerHtml = "<style> #HitsBG { animation: rainbow 11s linear infinite; } @keyframes rainbow { 0% { background-color: " + tHEMEcOLORS[0] + "; } 10% { background-color: " + tHEMEcOLORS[0] + "; } 20% { background-color: " + tHEMEcOLORS[1] + "; } 30% { background-color: " + tHEMEcOLORS[2] + "; } 40% { background-color: " + tHEMEcOLORS[3] + "; } 50% { background-color: " + tHEMEcOLORS[4] + "; } 60% { background-color: " + tHEMEcOLORS[5] + "; } 70% { background-color: " + tHEMEcOLORS[6] + "; } 80% { background-color: " + tHEMEcOLORS[7] + "; } 90% { background-color: " + tHEMEcOLORS[8] + "; } 100% { background-color: " + tHEMEcOLORS[9] + "; } } </style>";
+            if (PreformanceMode == false)
+            {
+                HitsStylePlaceHolder.InnerHtml = "<style> #HitsBG { animation: rainbow 32s linear infinite !important; } @keyframes rainbow { 0% { background-color: " + tHEMEcOLORS[0] + "; } 10% { background-color: " + tHEMEcOLORS[0] + "; } 20% { background-color: " + tHEMEcOLORS[1] + "; } 30% { background-color: " + tHEMEcOLORS[2] + "; } 40% { background-color: " + tHEMEcOLORS[3] + "; } 50% { background-color: " + tHEMEcOLORS[4] + "; } 60% { background-color: " + tHEMEcOLORS[5] + "; } 70% { background-color: " + tHEMEcOLORS[6] + "; } 80% { background-color: " + tHEMEcOLORS[7] + "; } 90% { background-color: " + tHEMEcOLORS[8] + "; } 100% { background-color: " + tHEMEcOLORS[9] + "; } } </style>";
+            }
+            else
+            {
+                ScrollingDivHits.Attributes["class"] = "";
+                HotsScrollHelper.Attributes["style"] = "background-color:#ffffff;margin:0 auto !important;padding:0px;width:100%;height:fit-content;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;transition:none !important;";
+                HitsStylePlaceHolder.InnerHtml = "<style> #HitsBG { background-color:rgba(104,64,217,0.74) !important; } </style>";
+            }
         }
-
         protected void SussionPross(object sender, EventArgs e)
         {
             HttpCookie userInfo = Request.Cookies["SuMCurrentUser"];
@@ -318,6 +339,12 @@ namespace SuM_Manga_V3
             if (G == "Sci-Fi") { Garna = "SciFi"; }
             if (string.IsNullOrEmpty(G) == false)
             {
+                HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
+                bool PreformanceMode = false;
+                if (GetPerModeInfoCookie != null)
+                {
+                    PreformanceMode = true;
+                }
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
@@ -372,7 +399,14 @@ namespace SuM_Manga_V3
                         sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
                         string themecolor = sqlCmd.ExecuteScalar().ToString();
                         CExplorerLink += "&TC=" + themecolor;
-                        Result += BuildGCard(Cover, Name, G, CExplorerLink, themecolor, MangaIDF);
+                        if (PreformanceMode == false)
+                        {
+                            Result += BuildGCard(Cover, Name, G, CExplorerLink, themecolor, MangaIDF);
+                        }
+                        else
+                        {
+                            Result += BuildGCardPreMode(Cover, Name, G, CExplorerLink, themecolor, MangaIDF);
+                        }
                     }
                     sqlCon.Close();
                 }
@@ -489,7 +523,39 @@ namespace SuM_Manga_V3
             }
             string HerfingCode = "onclick=" + '"' + "if (!navigator.onLine) { fetch('" + ManagLink + "', { method: 'GET' }).then(res => { location.href = '" + ManagLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + ManagLink + "'; }" + '"';
             string ExpandingCode = "onclick=" + '"' + "ExpandControler" + Num.ToString() + "()" + '"';
-            string RS = "<div id=NuM" + Num.ToString() + " style=" + '"' + "background-color:" + ThemeColor + ";padding:12px;padding-top:22px;padding-bottom:22px;background-image:linear-gradient(" + ThemeColor + ", rgba(0, 0, 0, 0.3)), url(" + CoverURL + ") !important;background-size: cover;background-position: center center !important;height:128px;width:100%;overflow:hidden;" + '"' + "> <div style=" + '"' + "height:fit-content;width:100%;margin:0 auto !important;display:inline !important;position:relative;" + '"' + "> <div style=height:fit-content; id=NuM" + Num.ToString()+"Expandor " + ExpandingCode + " ><p style=" + '"' + "float:right;margin-top:8px;margin-right:8px;font-size:240%;color:rgba(255,255,255,0.86);" + '"' + ">#" + Num.ToString() + "</p> <p id=NuM" + Num.ToString() + "Title style=" + '"' + "font-size:160%;color:#ffffff;width:calc(100% - 90px);overflow:hidden;margin-top:18px;height:fit-content;" + '"' + ">" + ManagTitle + "</p></div><div id=NuM" + Num.ToString() + "CardRest style=display:none; class=" + '"' + "animated fadeInDown" + '"' + " > <div " + HerfingCode + " > <p id=NuM" + Num.ToString() + "Disc style=" + '"' + "width:100%;overflow:hidden;font-size:92%;color:rgba(255,255,255,0.8);text-align:center;height:fit-content;" + '"' + ">" + ManagDisc + "</p> <div style=width:fit-content;float:right;> <p style=display:inline;color:rgba(255,255,255,0.74);>" + AgeRating + "</p> <img style=width:20px;height:20px;display:inline; src=" + '"' + "/svg/views.svg" + '"' + "> <p  style=display:inline;color:#ffffff;>" + ViewsNumPart + "</p> <b style=display:inline;color:#ffffff;>" + ViewsLPart + "</b> </div> </div> </div> </div> </div>";
+            string RS = "<div id=NuM" + Num.ToString() + " style=" + '"' + "padding:12px;padding-top:22px;padding-bottom:22px;background-image:linear-gradient(" + ThemeColor + ", rgba(0, 0, 0, 0.3)), url(" + CoverURL + ") !important;background-size: cover;background-position: center center !important;height:0px;width:100%;overflow:hidden;" + '"' + "> <div style=" + '"' + "height:fit-content;width:100%;margin:0 auto !important;display:inline !important;position:relative;" + '"' + "> <div style=height:fit-content;margin-top:-26px; id=NuM" + Num.ToString()+"Expandor " + ExpandingCode + " ><p style=" + '"' + "float:right;margin-top:8px;margin-right:8px;font-size:240%;color:rgba(255,255,255,0.86);" + '"' + ">#" + Num.ToString() + "</p> <p id=NuM" + Num.ToString() + "Title style=" + '"' + "font-size:160%;color:#ffffff;width:calc(100% - 90px);overflow:hidden;margin-top:18px;height:fit-content;" + '"' + ">" + ManagTitle + "</p></div><div id=NuM" + Num.ToString() + "CardRest style=display:none; class=" + '"' + "animated fadeInDown" + '"' + " > <div " + HerfingCode + " > <p id=NuM" + Num.ToString() + "Disc style=" + '"' + "width:100%;overflow:hidden;font-size:92%;color:rgba(255,255,255,0.8);text-align:center;height:fit-content;" + '"' + ">" + ManagDisc + "</p> <div style=width:fit-content;float:right;margin-bottom:18px;margin-top:8px;> <p style=display:inline;color:rgba(255,255,255,0.74);>" + AgeRating + "</p> <img style=width:20px;height:20px;display:inline; src=" + '"' + "/svg/views.svg" + '"' + "> <p  style=display:inline;color:#ffffff;>" + ViewsNumPart + "</p> <b style=display:inline;color:#ffffff;>" + ViewsLPart + "</b> </div> </div> </div> </div> </div>";
+            return RS;
+        }
+        protected string BuildTopCardPerMode(int Num, string ThemeColor, string CoverURL, string ManagTitle, string ManagDisc, string AgeRating, int views, string ManagLink)
+        {
+            string ViewsNumPart = string.Empty;
+            string ViewsLPart = string.Empty;
+            if (views < 1000)
+            {
+                ViewsNumPart = views.ToString();
+                ViewsLPart = "";
+            }
+            if (views > 999 && views < 1000000)
+            {
+                double B = views / 1000.0;
+                ViewsNumPart = String.Format("{0:0.00}", B);
+                ViewsLPart = "K";
+            }
+            if (views > 999999 && views < 1000000000)
+            {
+                double B = views / 1000000.0;
+                ViewsNumPart = String.Format("{0:0.00}", B);
+                ViewsLPart = "M";
+            }
+            if (views > 999999999)
+            {
+                double B = views / 1000000000.0;
+                ViewsNumPart = String.Format("{0:0.00}", B);
+                ViewsLPart = "B";
+            }
+            string HerfingCode = "onclick=" + '"' + "if (!navigator.onLine) { fetch('" + ManagLink + "', { method: 'GET' }).then(res => { location.href = '" + ManagLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + ManagLink + "'; }" + '"';
+            string ExpandingCode = "onclick=" + '"' + "ExpandControler" + Num.ToString() + "()" + '"';
+            string RS = "<div id=NuM" + Num.ToString() + " style=" + '"' + "padding:12px;padding-top:22px;padding-bottom:22px;background-image:linear-gradient(" + ThemeColor + ", rgba(0, 0, 0, 0.3)), url(" + CoverURL + ") !important;background-size: cover;background-position: center center !important;height:0px;width:100%;overflow:hidden;transition:none !important;" + '"' + "> <div style=" + '"' + "height:fit-content;width:100%;margin:0 auto !important;display:inline !important;position:relative;" + '"' + "> <div style=" + '"' + "height:fit-content;margin-top:-26px;transition:none !important;" + '"' + " id=NuM" + Num.ToString() + "Expandor " + ExpandingCode + " ><p style=" + '"' + "float:right;margin-top:8px;margin-right:8px;font-size:240%;color:rgba(255,255,255,0.86);" + '"' + ">#" + Num.ToString() + "</p> <p id=NuM" + Num.ToString() + "Title style=" + '"' + "font-size:160%;color:#ffffff;width:calc(100% - 90px);overflow:hidden;margin-top:18px;height:fit-content;" + '"' + ">" + ManagTitle + "</p></div><div id=NuM" + Num.ToString() + "CardRest style=display:none; class=" + '"' + "fadeInDown" + '"' + " > <div " + HerfingCode + " > <p id=NuM" + Num.ToString() + "Disc style=" + '"' + "width:100%;overflow:hidden;font-size:92%;color:rgba(255,255,255,0.8);text-align:center;height:fit-content;" + '"' + ">" + ManagDisc + "</p> <div style=width:fit-content;float:right;margin-bottom:18px;margin-top:8px;> <p style=display:inline;color:rgba(255,255,255,0.74);>" + AgeRating + "</p> <img style=width:20px;height:20px;display:inline; src=" + '"' + "/svg/views.svg" + '"' + "> <p  style=display:inline;color:#ffffff;>" + ViewsNumPart + "</p> <b style=display:inline;color:#ffffff;>" + ViewsLPart + "</b> </div> </div> </div> </div> </div>";
             return RS;
         }
         protected string BuildGCard(string CardBG, string cardtitle, string G, string Link, string theme, int id)
@@ -500,11 +566,23 @@ namespace SuM_Manga_V3
             string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
             string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
             string divs1 = "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
-            //string divstyle = "overflow:hidden;background-image:linear-gradient(rgba(0,0,0,0.527),rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;";
             string divs2 = "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;"; //rgb(104,64,217,0.64)
             string ps0 = "margin-top:8px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;";
             string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
             string result = "<div class=" + zoominanim + " style=" + divs0 + "><a onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div class=" + "GoodBlur" + " style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
+            return result;
+        }
+        protected string BuildGCardPreMode(string CardBG, string cardtitle, string G, string Link, string theme, int id)
+        {
+            string LazyLoading = "loading=" + '"'.ToString() + "lazy" + '"'.ToString();//New
+            char b12 = '"';
+            string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
+            string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
+            string divs1 = "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
+            string divs2 = "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;"; //rgb(104,64,217,0.64)
+            string ps0 = "margin-top:8px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;";
+            string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
+            string result = "<div style=" + divs0 + "><a onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
             return result;
         }
         protected void SussionPross()

@@ -5,7 +5,20 @@
   
 <head runat="server">
     <link rel="manifest" href="/manifest.json">
-    <script src="/runsw.js"></script>
+    <!-- <script src="/runsw.js"></script> -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/SuMManga-SW.js')
+                    .then(registration => {
+                        console.log(`Service Worker registered! Scope: ${registration.scope}`);
+                    })
+                    .catch(err => {
+                        console.log(`Service Worker registration failed: ${err}`);
+                    });
+            });
+        }
+</script>
     <meta charset="utf-8" runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Login - SuM Manga</title>

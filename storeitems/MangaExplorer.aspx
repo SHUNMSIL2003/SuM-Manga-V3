@@ -40,7 +40,7 @@
         }
     </style>
     <div class="" id="pfc" runat="server" style="background-color:#6840D9;margin:0 auto !important;width:100vw !important;height:100vh !important;">
-        <div class="animated fadeInRight" style="margin:0 auto !important;width:100vw !important;">
+        <div id="FirstAniDiv" runat="server" class="animated fadeInRight" style="margin:0 auto !important;width:100vw !important;">
             <div id="ThisPageSubContaner" class="nospace ContantDivSuM" style="height:fit-content;width:calc(100vw - 18px) !important;margin:0 auto !important;max-width:720px !important;background-color:#ffffff !important;margin-top:32px !important;margin-bottom:164px !important;border-radius:20px !important;">
                 <div id="InfoCardBGForJAVA" style="background-color:rgba(0,0,0,0.12);width:calc(100% - 18px) !important;height:fit-content;border-radius:20px !important;margin:0 auto !important;margin-top:26px !important;margin-bottom:16px !important;">
                     <div style="width:100% !important;height:fit-content !important;font-size:96%;padding-left:16px !important;padding-top:22px !important;padding-bottom:8px !important;">
@@ -127,8 +127,8 @@
         </div>
         <div id="CommentsSecCont" runat="server" class="animated slideDown" style="border:4px rgba(225,225,225,0.75) solid;border-top:4px rgba(0,0,0,0) solid;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:rgba(255,255,255,0.74);display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:100vh;z-index:998;">
             <a id="CommentsSecTopPartColor" runat="server" style="margin-top:0px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background:rgba(0,0,0,0);padding:0px !important;">
-                <h5 class="animated fadeIn" style="color:#fff;padding-top:26px;padding-left:22px;padding-bottom:4px;font-size:96%;margin-top:calc(12px - 100vh);">Comments section</h5>
-                <div class="animated fadeIn" id="SendCommentAria" style="border-radius:12px;width:100%;height:fit-content;margin:0 auto;padding:6px;margin-top:8px;margin-bottom:6px;display:block;">
+                <h5 class="animated fadeIn" id="ComSecTi" runat="server" style="color:#fff;padding-top:26px;padding-left:22px;padding-bottom:4px;font-size:96%;margin-top:calc(12px - 100vh);">Comments section</h5>
+                <div class="animated fadeIn" runat="server" id="SendCommentAria" style="border-radius:12px;width:100%;height:fit-content;margin:0 auto;padding:6px;margin-top:8px;margin-bottom:6px;display:block;">
                     <!--<a style="display:inline;color:#141414;">add a comment...</a>-->
                     <asp:TextBox CssClass="form-control form-control-user" runat="server" ID="UserComment" BackColor="Transparent" BorderColor="Transparent" ForeColor="#ffffff" style="display:inline;width:84%;height:74px;" placeholder="add a comment..."></asp:TextBox>
                     <asp:ImageButton OnClick="SendComment" ID="SendBTN" style="background-color:#fff;border-radius:4px;width:38px;height:32px;margin:4px;" ImageAlign="AbsMiddle" ImageUrl="/svg/send.svg" runat="server" />

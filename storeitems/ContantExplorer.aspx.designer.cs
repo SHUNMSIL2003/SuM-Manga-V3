@@ -132,6 +132,15 @@ namespace SuM_Manga_V3.storeitems
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl FakeBody;
 
         /// <summary>
+        /// ACont0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ACont0;
+
+        /// <summary>
         /// CategoryX control.
         /// </summary>
         /// <remarks>
@@ -204,6 +213,15 @@ namespace SuM_Manga_V3.storeitems
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewsSutLater;
 
         /// <summary>
+        /// FavNWannaContaner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FavNWannaContaner;
+
+        /// <summary>
         /// AddToFavNWanna control.
         /// </summary>
         /// <remarks>
@@ -274,6 +292,15 @@ namespace SuM_Manga_V3.storeitems
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage Wanna;
+
+        /// <summary>
+        /// WannaListTXT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl WannaListTXT;
 
         /// <summary>
         /// GernsTags control.

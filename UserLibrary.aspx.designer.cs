@@ -33,6 +33,15 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SettingsUnavaliblePOPUP;
 
         /// <summary>
+        /// LibCatTopPart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LibCatTopPart;
+
+        /// <summary>
         /// cr control.
         /// </summary>
         /// <remarks>
@@ -60,6 +69,15 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlAnchor wr;
 
         /// <summary>
+        /// infocard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl infocard;
+
+        /// <summary>
         /// InfoAboutC control.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace SuM_Manga_V3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl InfoAboutC;
+
+        /// <summary>
+        /// ShowReqContantContaner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ShowReqContantContaner;
 
         /// <summary>
         /// UpdateCOntant990 control.

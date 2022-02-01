@@ -28,15 +28,32 @@ namespace SuM_Manga_V3
             }
             if (!IsPostBack)
             {
+                HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
+                if (GetPerModeInfoCookie != null)
+                {
+                    AnimatedMainContHEx.Attributes["class"] = "";
+                    RecentsCont.Attributes["class"] = "";
+                    Action.InnerHtml = GetFromGarnaPerMode("Action");
+                    Fantasy.InnerHtml = GetFromGarnaPerMode("Fantasy");
+                    Comedy.InnerHtml = GetFromGarnaPerMode("Comedy");
+                    Supernatural.InnerHtml = GetFromGarnaPerMode("Supernatural");
+                    SciFi.InnerHtml = GetFromGarnaPerMode("Sci-Fi");
+                    Drama.InnerHtml = GetFromGarnaPerMode("Drama");
+                    Mystery.InnerHtml = GetFromGarnaPerMode("Mystery");
+                    SliceofLife.InnerHtml = GetFromGarnaPerMode("Slice of Life");
+                }
+                else
+                {
+                    Action.InnerHtml = GetFromGarna("Action");// Comedy
+                    Fantasy.InnerHtml = GetFromGarna("Fantasy");
+                    Comedy.InnerHtml = GetFromGarna("Comedy");
+                    Supernatural.InnerHtml = GetFromGarna("Supernatural");
+                    SciFi.InnerHtml = GetFromGarna("Sci-Fi");
+                    Drama.InnerHtml = GetFromGarna("Drama");
+                    Mystery.InnerHtml = GetFromGarna("Mystery");
+                    SliceofLife.InnerHtml = GetFromGarna("Slice of Life");
+                }
                 ShowCardsCNew();
-                Action.InnerHtml = GetFromGarna("Action");// Comedy
-                Fantasy.InnerHtml = GetFromGarna("Fantasy");
-                Comedy.InnerHtml = GetFromGarna("Comedy");
-                Supernatural.InnerHtml = GetFromGarna("Supernatural");
-                SciFi.InnerHtml = GetFromGarna("Sci-Fi");
-                Drama.InnerHtml = GetFromGarna("Drama");
-                Mystery.InnerHtml = GetFromGarna("Mystery");
-                SliceofLife.InnerHtml = GetFromGarna("Slice of Life");
                 //.InnerHtml = GetFromGarna("");
                 //.InnerHtml = GetFromGarna("");
                 //.InnerHtml = GetFromGarna("");
@@ -46,10 +63,6 @@ namespace SuM_Manga_V3
                 //.InnerHtml = GetFromGarna("");
                 //.InnerHtml = GetFromGarna("");
             }
-        }
-        protected void SpasialCat() 
-        {
-
         }
         protected void SussionPross(object sender, EventArgs e)
         {
@@ -135,6 +148,12 @@ namespace SuM_Manga_V3
                 if (string.IsNullOrEmpty(ResultFromSQL.ToString()) == false)
                 {
                     Recent.InnerHtml = "";
+                    bool PreformanceMode = false;
+                    HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
+                    if (GetPerModeInfoCookie != null)
+                    {
+                        PreformanceMode = true;
+                    }
                     using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                     {
                         sqlCon.Open();
@@ -169,7 +188,14 @@ namespace SuM_Manga_V3
                             sqlCmd.Parameters["@MangaID"].Value = maxidf;
                             string themecolor = sqlCmd.ExecuteScalar().ToString();
                             CExplorerLink += "&VC=" + maxidf.ToString() + "&TC=" + themecolor;
-                            Recent.InnerHtml += BuildRecentCard(Cover, MTitle, themecolor, CExplorerLink);
+                            if (PreformanceMode == false)
+                            {
+                                Recent.InnerHtml += BuildRecentCard(Cover, MTitle, themecolor, CExplorerLink);
+                            }
+                            else
+                            {
+                                Recent.InnerHtml += BuildRecentCardPerMode(Cover, MTitle, themecolor, CExplorerLink);
+                            }
                         }
                         sqlCon.Close();
                     }
@@ -187,6 +213,11 @@ namespace SuM_Manga_V3
         protected string BuildRecentCard(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink)
         {
             string RS = "<div class=" + '"' + "animated fadeInRight" + '"' + " onclick=" + '"' + "if (!navigator.onLine) { fetch('" + ExplorerLink + "', { method: 'GET' }).then(res => { location.href = '" + ExplorerLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + ExplorerLink + "'; }" + '"' + " loading=lazy style=" + '"' + "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CoverLink + ");background-size:cover;background-position:center;width:96px;height:96px;overflow:hidden;margin-left:16px !important;" + '"' + "><div class=GoodBlur style=" + '"' + "background-color:" + ThemeColor + " !important;width:98px;margin-left:-1px;height:36px;position:absolute;bottom:0;border-radius:0px;" + '"' + "><p style=" + '"' + "margin-top:2px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" + '"' + ">" + MangaTitle + "</p></div></div>";
+            return RS;
+        }
+        protected string BuildRecentCardPerMode(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink)
+        {
+            string RS = "<div onclick=" + '"' + "if (!navigator.onLine) { fetch('" + ExplorerLink + "', { method: 'GET' }).then(res => { location.href = '" + ExplorerLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + ExplorerLink + "'; }" + '"' + " loading=lazy style=" + '"' + "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CoverLink + ");background-size:cover;background-position:center;width:96px;height:96px;overflow:hidden;margin-left:16px !important;" + '"' + "><div style=" + '"' + "background-color:" + ThemeColor + " !important;width:98px;margin-left:-1px;height:36px;position:absolute;bottom:0;border-radius:0px;" + '"' + "><p style=" + '"' + "margin-top:2px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" + '"' + ">" + MangaTitle + "</p></div></div>";
             return RS;
         }
         protected int[] ST0(string x)
@@ -223,6 +254,12 @@ namespace SuM_Manga_V3
         {
             string ResultS = " ";
             int RN = 0;
+            bool PreformanceMode = false;
+            HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
+            if (GetPerModeInfoCookie != null)
+            {
+                PreformanceMode = true;
+            }
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
@@ -286,7 +323,14 @@ namespace SuM_Manga_V3
                             sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                             sqlCmd.Parameters["@MangaID"].Value = maxidf;
                             string MangaAgeRating = sqlCmd.ExecuteScalar().ToString();
-                            ResultS += BuildCard(Cover, Name, Disc, CExplorerLink, themecolor, MangaCReator, MangaAgeRating, Views);
+                            if (PreformanceMode == false)
+                            {
+                                ResultS += BuildCard(Cover, Name, Disc, CExplorerLink, themecolor, MangaCReator, MangaAgeRating, Views);
+                            }
+                            else
+                            {
+                                ResultS += BuildCardPerMode(Cover, Name, Disc, CExplorerLink, themecolor, MangaCReator, MangaAgeRating, Views);
+                            }
                             vet++;
                             RN = vet;
                             maxidf = maxidf - 1;
@@ -503,6 +547,86 @@ namespace SuM_Manga_V3
             else { Result = " "; }
             return Result;
         }
+        protected string GetFromGarnaPerMode(string G)
+        {
+            string Result = string.Empty;
+            string Garna = string.Empty;
+            if (G == "Action") { Garna = "Action"; }
+            if (G == "Fantasy") { Garna = "Fantasy"; }
+            if (G == "Comedy") { Garna = "Comedy"; }
+            if (G == "Romance") { Garna = "Romance"; }
+            if (G == "BL") { Garna = "BL"; }
+            if (G == "GL") { Garna = "GL"; }
+            if (G == "Drama") { Garna = "Drama"; }
+            if (G == "Mystery") { Garna = "Mystery"; }
+            if (G == "Slice of Life") { Garna = "SliceofLife"; }
+            if (G == "Supernatural") { Garna = "Supernatural"; }
+            if (G == "Sport") { Garna = "Sport"; }
+            if (G == "Sci-Fi") { Garna = "SciFi"; }
+            if (string.IsNullOrEmpty(G) == false)
+            {
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string Name = string.Empty;
+                    string Cover = string.Empty;
+                    string Disc = string.Empty;
+                    string CExplorerLink = string.Empty;
+                    string query = "SELECT TOP 12 MangaID from SuMManga WHERE " + Garna + " = 1  order by MangaID desc;";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    int MangaIDF = 0;
+                    object un;
+                    Queue<int> RawIDs = new Queue<int>();
+                    using (var reader = sqlCmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            RawIDs.Enqueue(Convert.ToInt32(reader[0].ToString()));
+                        }
+                    }
+                    int[] IDs = new int[RawIDs.Count];
+                    int IDHELPER = 0;
+                    while (RawIDs.Count > 0)
+                    {
+                        IDs[IDHELPER] = RawIDs.Dequeue();
+                        IDHELPER++;
+                    }
+                    for (int i = 0; i < IDs.Length; i++)
+                    {
+                        MangaIDF = IDs[i];
+                        query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
+                        sqlCmd = new SqlCommand(query, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                        sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                        un = sqlCmd.ExecuteScalar();
+                        Name = un.ToString();
+                        query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
+                        sqlCmd = new SqlCommand(query, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                        sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                        un = sqlCmd.ExecuteScalar();
+                        CExplorerLink = un.ToString();
+                        CExplorerLink += "&VC=" + MangaIDF.ToString();
+                        query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
+                        sqlCmd = new SqlCommand(query, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                        sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                        un = sqlCmd.ExecuteScalar();
+                        Cover = un.ToString();
+                        query = "SELECT SuMThemeColor FROM SuMManga WHERE MangaID = @MangaID";
+                        sqlCmd = new SqlCommand(query, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                        sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                        string themecolor = sqlCmd.ExecuteScalar().ToString();
+                        CExplorerLink += "&TC=" + themecolor;
+                        Result += BuildGCard(Cover, Name, G, CExplorerLink, themecolor, MangaIDF);
+                    }
+                    sqlCon.Close();
+                }
+            }
+            else { Result = " "; }
+            return Result;
+        }
         protected string BuildCard(string CardBG, string cardtitle, string discr0, string Link, string theme, string CraetorName, string AgeRating, int V)
         {
             char b12 = '"';
@@ -542,6 +666,47 @@ namespace SuM_Manga_V3
             DivContant += "<p style=" + b12.ToString() + "display:inline;color:rgba(255,255,255,0.74);" + b12.ToString() + "> " + AgeRating + " </p><img style=" + b12.ToString() + "width:20px;height:20px;display:inline;" + b12.ToString() + " src=" + b12.ToString() + "/svg/views.svg" + b12.ToString() + ">";
             DivContant += "<p style=" + "display:inline;color:#ffffff;" + "> " + ViewsNumPart + " </p><b style=" + "display:inline;color:#ffffff;" + ">" + ViewsLPart + "</b></a></div>";
             string result = "<div onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " class=" + divclass + " style=" + divstyle + ">" + "<div class=" + b12.ToString() + "animated fadeIn" + b12.ToString() + " >" + DivContant + "</div>" + "</div>";
+            return result;
+        }
+        protected string BuildCardPerMode(string CardBG, string cardtitle, string discr0, string Link, string theme, string CraetorName, string AgeRating, int V)
+        {
+            char b12 = '"';
+            string divclass = b12.ToString() + "mySlides" + b12.ToString();
+            string ViewsNumPart = string.Empty;
+            string ViewsLPart = string.Empty;
+            if (V < 1000)
+            {
+                ViewsNumPart = V.ToString();
+                ViewsLPart = "";
+            }
+            if (V > 999 && V < 1000000)
+            {
+                double B = V / 1000.0;
+                ViewsNumPart = String.Format("{0:0.00}", B);
+                ViewsLPart = "K";
+            }
+            if (V > 999999 && V < 1000000000)
+            {
+                double B = V / 1000000.0;
+                ViewsNumPart = String.Format("{0:0.00}", B);
+                ViewsLPart = "M";
+            }
+            if (V > 999999999)
+            {
+                double B = V / 1000000000.0;
+                ViewsNumPart = String.Format("{0:0.00}", B);
+                ViewsLPart = "B";
+            }
+            string divstyle = b12.ToString() + "overflow:hidden !important;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ") !important;background-size:cover;background-position:center !important;width:calc(100vw - 24px) !important;height:76vw;max-width:630px !important;max-height:300px !important;padding:12px;margin:0 auto !important;border-radius:12px !important;" + b12.ToString();
+            string DivContant = "<div style=" + b12.ToString() + "width:calc(98% - 24px);height:fit-content;position:relative;margin:0 auto;margin-top:2px;" + b12.ToString() + ">";
+            DivContant += "<h1 style=" + b12.ToString() + "float:left;margin-top:12px;margin-left:12px;color:#ffffff;font-size:178%;margin-right:14px !important;width:calc(100% - 24px) !important;height:34.17px !important;white-space:nowrap !important;overflow:hidden !important;text-overflow:ellipsis !important;" + b12.ToString() + ">" + cardtitle + "</h1>";
+            DivContant += "<p style=" + b12.ToString() + "color:rgb(255, 255, 255, 0.82); float:right; margin-top:-18px; margin-right:10px;" + b12.ToString() + ">By <b style=" + "font-size:80%;" + ">" + CraetorName + "</b></p></div>";
+            DivContant += "<hr style=" + b12.ToString() + "margin:0 auto !important;height:2px!important;border-width:0;color:#ffffff;background-color:#ffffff;width:80%;opacity:0.32;margin:0px;margin-block:0px;border-radius:1.3px !important;margin-bottom:4px;margin-bottom:4px !important;margin-top:-8px !important;" + b12.ToString() + " />";
+            DivContant += "<p style=" + b12.ToString() + "text-align:center;height:135px;max-height:135px !important;width:calc(98% - 24px);max-width:98vw;font-size:96%;color:#ffffff;margin:4px !important;margin-bottom:6px !important;margin-top:8px !important;text-overflow:ellipsis !important;display:inline-block;overflow:hidden;" + b12.ToString() + ">" + discr0 + "</p>";
+            DivContant += "<div style=" + b12.ToString() + "margin:0 auto;margin-bottom:0px;height:fit-content;width:100%;position:relative;margin-top:0px !important;" + b12.ToString() + "><a style=" + b12.ToString() + "display:block;float:right !important;margin-bottom:0px;margin-right:8px;bottom:0;position:relative;" + b12.ToString() + ">";
+            DivContant += "<p style=" + b12.ToString() + "display:inline;color:rgba(255,255,255,0.74);" + b12.ToString() + "> " + AgeRating + " </p><img style=" + b12.ToString() + "width:20px;height:20px;display:inline;" + b12.ToString() + " src=" + b12.ToString() + "/svg/views.svg" + b12.ToString() + ">";
+            DivContant += "<p style=" + "display:inline;color:#ffffff;" + "> " + ViewsNumPart + " </p><b style=" + "display:inline;color:#ffffff;" + ">" + ViewsLPart + "</b></a></div>";
+            string result = "<div onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " class=" + divclass + " style=" + divstyle + ">" + "<div >" + DivContant + "</div>" + "</div>";
             return result;
         }
         /*
@@ -591,11 +756,23 @@ namespace SuM_Manga_V3
             string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
             string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
             string divs1 = "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
-            //string divstyle = "overflow:hidden;background-image:linear-gradient(rgba(0,0,0,0.527),rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;";
             string divs2 = "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;"; //rgb(104,64,217,0.64)
             string ps0 = "margin-top:8px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;";
             string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
             string result = "<div class=" + zoominanim + " style=" + divs0 + "><a onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div class=" + "GoodBlur" + " style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
+            return result;
+        }
+        protected string BuildGCardPerMode(string CardBG, string cardtitle, string G, string Link, string theme, int id)
+        {
+            string LazyLoading = "loading=" + '"'.ToString() + "lazy" + '"'.ToString();//New
+            char b12 = '"';
+            string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
+            string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
+            string divs1 = "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
+            string divs2 = "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;"; //rgb(104,64,217,0.64)
+            string ps0 = "margin-top:8px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;";
+            string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
+            string result = "<div style=" + divs0 + "><a onclick=" + b12.ToString() + "if (!navigator.onLine) { fetch('" + Link + "', { method: 'GET' }).then(res => { location.href = '" + Link + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + Link + "'; }" + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
             return result;
         }
         protected void SussionProssINB(int UID, string SID)

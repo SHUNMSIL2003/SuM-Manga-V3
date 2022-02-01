@@ -369,7 +369,7 @@
     <Content Include="mstile-70x70.png" />
     <Content Include="OfflineBETA.aspx" />
     <Content Include="pwabuilder-sw-register.js" />
-    <Content Include="pwabuilder-sw.js" />
+    <Content Include="SuMManga-SW.js" />
     <Content Include="pwabuilder-sw\pwabuilder-sw-register.js" />
     <Content Include="pwabuilder-sw\pwabuilder-sw.js" />
     <Content Include="runsw.js" />
@@ -1522,6 +1522,8 @@
     <Content Include="svg\history.svg" />
     <Content Include="svg\info.svg" />
     <Content Include="svg\MostSeenW.svg" />
+    <Content Include="svg\motionphotosAC.svg" />
+    <Content Include="svg\motionphotos.svg" />
     <Content Include="svg\notificationsNEW.svg" />
     <Content Include="svg\notifications.svg" />
     <Content Include="svg\payment.svg" />

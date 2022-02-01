@@ -78,7 +78,7 @@ img {vertical-align: middle;}
     height: 74px;
 }
     </style>
-    <div class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;">
+    <div id="AnimatedMainContHEx" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;">
 <div class="slideshow-container" id="cardscontain" runat="server" style="width:100% !important;height:fit-content !important;overflow:hidden !important;">
     <div style="background-color:#f2f2f2 !important;width:100% !important;height:fit-content !important;display:block;margin-bottom:-6px;padding-top:8px !important;">
         <img style="display:inline;margin-left:16px;margin-top:8px;float:left;" width="38" height="38" src="/svg/awesomeTblack.svg" />
@@ -136,7 +136,7 @@ img {vertical-align: middle;}
     }
 </script><!--
 <script src="/dragscroll.js"></script> -->
-        <div class="animated fadeIn">
+        <div id="RecentsCont" runat="server" class="animated fadeIn">
         <asp:Button ID="UPDATERESESNTS" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden;" />
         <asp:UpdatePanel ID="RESENTSUPATEPANLE" runat="server" UpdateMode="Conditional">
                 <Triggers>

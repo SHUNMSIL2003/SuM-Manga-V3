@@ -179,7 +179,7 @@
     <div id="background" style="background-color:rgba(255,255,255,0.92);width:100vw !important;height:100vh !important;">
     <div id="3rdGBLayer" style="background-color:rgba(255,255,255,0.64);width:100vw;height:100vh;">
     <div id="CONTANERFROCONTANTEXPLORER" style="width:100vw !important;max-width:740px !important;margin:0 auto !important;">
-    <div class="fadeIn animated" style="width:100%;">
+    <div id="ACont0" runat="server" class="fadeIn animated" style="width:100%;">
     <div class="animated fadeIn" style="height:fit-content;width:100%;overflow:hidden; background-color:transparent !important;position:fixed;max-width:720px;overflow-x:hidden !important;" id="CategoryX" runat="server">
     <div id="infoCover" runat="server" class="mySlides animated pulse" style="animation-duration:1.2s !important;overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/X/X.jpg); background-size: cover; background-position: center;width:100% !important;height:fit-content;">
     <div style="width:94%;height:fit-content;position:relative;margin:0 auto;margin-top:32px;">
@@ -200,7 +200,7 @@
 </div>
 </div>
             </div>
-        <div class="animated fadeIn" style="animation-duration:0.18s;opacity:0;float:left !important;margin-top:20vh;width:100% !important;height:66px !important;overflow:hidden !important;position:fixed !important;" id="FavNWannaContaner">
+        <div class="animated fadeIn" style="animation-duration:0.18s;opacity:0;float:left !important;margin-top:20vh;width:100% !important;height:66px !important;overflow:hidden !important;position:fixed !important;" id="FavNWannaContaner" runat="server">
             <div id="AddToFavNWanna" runat="server" style="animation-duration:0.26s !important;width:fit-content;height:38px;background-color:red;border-radius:18px;padding:4px !important;opacity:0;" class="animated pulse" >
                 <asp:Button ID="ADDTOFAV" runat="server" OnClick="AddToFavList" style="display:none;visibility:hidden;" />
                 <asp:Button ID="REMOVEFROMFAV" runat="server" OnClick="RemoveFromFavList" style="display:none;visibility:hidden;" />
@@ -219,7 +219,7 @@
                         <img id="Fav" runat="server" src="/svg/favoriteNOTFILLED.svg" style="margin-left:18px;margin-right:6px !important;pointer-events:all !important;" height="26" width="26" class="animated pulse" />
                         <a style="display:inline-block !important;width:2px !important;height:18px !important;margin:0 auto !important;vertical-align:middle !important;background-color:#ffffff30 !important;border-radius:1px !important;overflow:hidden;"></a>
                         <img id="Wanna" runat="server" src="/svg/add.svg" style="margin-right:-4px;display:inline !important;pointer-events:all !important;" height="30" width="30" class="animated pulse" />
-                        <p style="color:#FFFFFFAD !important;font-size:76%;margin-right:12px !important;display:inline !important;" class="animated pulse"><b>Wanna list</b></p>
+                        <p style="color:#FFFFFFAD !important;font-size:76%;margin-right:12px !important;display:inline !important;" id="WannaListTXT" runat="server" class="animated pulse"><b>Wanna list</b></p>
                     </asp:Panel>
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -334,7 +334,7 @@
     <script>
 
         var ELMChaptersAndFuncCard = document.getElementById("ChaptersAndFuncCard");
-        var ELMFavNWannaContaner = document.getElementById('FavNWannaContaner');
+        var ELMFavNWannaContaner = document.getElementById('<%= FavNWannaContaner.ClientID %>');
         ELMChaptersAndFuncCard.style.opacity = "0";
         ELMFavNWannaContaner.style.opacity = "0";
         ELMChaptersAndFuncCard.style.display = "block";

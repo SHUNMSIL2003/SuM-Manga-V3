@@ -22,7 +22,7 @@ namespace SuM_Manga_V3.AccountETC
                 // -Debug Start-
                 //RootDebug.InnerText = GetUserInfoCookie.Value;
                 // -Debug End-
-                AccountSettingsOrLogin.Attributes["onclick"] = "if (document.getElementById('UserSettingsCards').style.height == '0px') { document.getElementById('UserSettingsCards').style.height = '275px'; } else { document.getElementById('UserSettingsCards').style.height = '0px'; document.getElementById('PFPDiv').style.display = 'none'; document.getElementById('ChangeEmailDiv').style.display = 'none'; document.getElementById('SigAndMore').style.display = 'none'; document.getElementById('creatorsupmitform').style.display = 'none'; document.getElementById('MainContent_PaymentCard').style.display = 'none'; document.getElementById('ManageDevicesCard').style.display = 'none'; }"; //"if (document.getElementById('UserSettingsCards').style.height == '0px') { document.getElementById('UserSettingsCards').style.height = '232px'; } else { document.getElementById('UserSettingsCards').style.height = '0px'; }";
+                AccountSettingsOrLogin.Attributes["onclick"] = "if (document.getElementById('MainContent_UserSettingsCards').style.height == '0px') { document.getElementById('MainContent_UserSettingsCards').style.height = '275px'; document.getElementById('MainContent_TapForXText').innerText = 'Tap for less!'; } else { document.getElementById('MainContent_UserSettingsCards').style.height = '0px'; document.getElementById('MainContent_TapForXText').innerText = 'Tap for more!'; document.getElementById('MainContent_PFPDiv').style.display = 'none'; document.getElementById('MainContent_ChangeEmailDiv').style.display = 'none'; document.getElementById('MainContent_SigAndMore').style.display = 'none'; document.getElementById('MainContent_creatorsupmitform').style.display = 'none'; document.getElementById('MainContent_PaymentCard').style.display = 'none'; document.getElementById('MainContent_ManageDevicesCard').style.display = 'none'; }"; //"if (document.getElementById('UserSettingsCards').style.height == '0px') { document.getElementById('UserSettingsCards').style.height = '232px'; } else { document.getElementById('UserSettingsCards').style.height = '0px'; }";
                 //"document.getElementById('UserSettingsCards').style.display = (document.getElementById('UserSettingsCards').style.display == 'block') ? 'none' : 'block';";
                 AccountSettingsOrLogin.Attributes["href"] = "#";
                 string UserName = GetUserInfoCookie["UserName"].ToString();
@@ -78,7 +78,42 @@ namespace SuM_Manga_V3.AccountETC
                 LogOutBTN.Attributes["style"] = "display:none;";
                 LogOutBTN.Attributes["OnClick"] = "NULL";
                 PFP.Attributes["src"] = SuMRandomPFP();
+                TapForXText.Attributes["style"] = "color:rgba(0,0,0,0.32);margin-top:-18px;width:100%;text-align:center;font-size:76%;padding-bottom:-16px;";
+                TapForXText.InnerText = "Tap to login!";
             }
+            HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
+            if (GetPerModeInfoCookie != null)
+            {
+                StartSetAnim.Attributes["class"] = "";
+                SlideDownCard.Attributes["class"] = "";
+                PFP.Attributes["class"] = "";
+                UserInfoDiv.Attributes["class"] = "";
+                PFPDiv.Attributes["class"] = "card-body text-center";
+                ChangeEmailDiv.Attributes["class"] = "card-body";
+                SigAndMore.Attributes["class"] = "card-body";
+                PaymentCard.Attributes["class"] = "card-body";
+                creatorsupmitform.Attributes["class"] = "card-body";
+                UserSettingsCards.Attributes["style"] = "display:block;height:0px;overflow:hidden;transition:none;background-color:#ffffff;";
+                SlideDownCard.Attributes["style"] = "animation-duration:0s !important;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#ffffff !important;margin:0 auto !important; margin-top:0px !important;border-bottom-left-radius:20px;border-bottom-right-radius:20px;padding:0px !important;padding-bottom:12px !important;padding-top:8px !important;margin-bottom:22px !important;";
+                PerformanceModeCB.Attributes["onclick"] = "TurnPreModeOff();";
+                PerformanceModeCB.Attributes.Add("checked", "checked");
+            }
+            if (IsPostBack == true) 
+            {
+                SlideDownCard.Attributes["class"] = "";
+            }
+        }
+        protected void SavePreformanceSettingCookie(object sender, EventArgs e)
+        {
+            HttpCookie SetInfo = new HttpCookie("SuMPerformanceMode");
+            SetInfo.Expires = DateTime.MaxValue;
+            HttpContext.Current.Response.Cookies.Add(SetInfo);
+        }
+        protected void RemovePreformanceSettingCookie(object sender, EventArgs e)
+        {
+            HttpCookie SetInfo = new HttpCookie("SuMPerformanceMode");
+            SetInfo.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(SetInfo);
         }
         protected void SussionPross()
         {
@@ -405,7 +440,7 @@ namespace SuM_Manga_V3.AccountETC
         protected bool PFPIsNotADeafult(string PFP) 
         {
             bool Deafult = false;
-            for (int i = 1; i < 8; i++) 
+            for (int i = 1; i < 15; i++) 
             {
                 if (PFP == "/AccountETC/DeafultPFP/" + i.ToString() + ".jpg") { Deafult = true; }
             }

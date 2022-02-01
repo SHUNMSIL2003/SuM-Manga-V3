@@ -15,6 +15,15 @@ namespace SuM_Manga_V3
     {
 
         /// <summary>
+        /// AnimatedMainContHEx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AnimatedMainContHEx;
+
+        /// <summary>
         /// cardscontain control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace SuM_Manga_V3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardsdots;
+
+        /// <summary>
+        /// RecentsCont control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RecentsCont;
 
         /// <summary>
         /// UPDATERESESNTS control.

@@ -33,6 +33,42 @@ namespace SuM_Manga_V3.AccountETC
         protected global::System.Web.UI.HtmlControls.HtmlAnchor RootDebug;
 
         /// <summary>
+        /// EnablePreMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button EnablePreMode;
+
+        /// <summary>
+        /// DisablePreMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DisablePreMode;
+
+        /// <summary>
+        /// FixUpPageRe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button FixUpPageRe;
+
+        /// <summary>
+        /// SuMCustomPFP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload SuMCustomPFP;
+
+        /// <summary>
         /// SettingsUnavaliblePOPUP control.
         /// </summary>
         /// <remarks>
@@ -40,6 +76,24 @@ namespace SuM_Manga_V3.AccountETC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SettingsUnavaliblePOPUP;
+
+        /// <summary>
+        /// SlideDownCard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SlideDownCard;
+
+        /// <summary>
+        /// ProfileInfoUpdatepANEL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel ProfileInfoUpdatepANEL;
 
         /// <summary>
         /// AccountSettingsOrLogin control.
@@ -58,6 +112,15 @@ namespace SuM_Manga_V3.AccountETC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage PFP;
+
+        /// <summary>
+        /// UserInfoDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserInfoDiv;
 
         /// <summary>
         /// SuMUserName control.
@@ -87,6 +150,33 @@ namespace SuM_Manga_V3.AccountETC
         protected global::System.Web.UI.WebControls.ImageButton LogOutBTN;
 
         /// <summary>
+        /// TapForXText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TapForXText;
+
+        /// <summary>
+        /// UserSettingsCards control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserSettingsCards;
+
+        /// <summary>
+        /// PFPDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PFPDiv;
+
+        /// <summary>
         /// PFPC control.
         /// </summary>
         /// <remarks>
@@ -112,15 +202,6 @@ namespace SuM_Manga_V3.AccountETC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button RemovePFP;
-
-        /// <summary>
-        /// SuMCustomPFP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload SuMCustomPFP;
 
         /// <summary>
         /// DevicesNum control.
@@ -159,6 +240,15 @@ namespace SuM_Manga_V3.AccountETC
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SecDeviceDate;
 
         /// <summary>
+        /// ChangeEmailDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ChangeEmailDiv;
+
+        /// <summary>
         /// UserNameEP control.
         /// </summary>
         /// <remarks>
@@ -175,6 +265,15 @@ namespace SuM_Manga_V3.AccountETC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl EmailEP;
+
+        /// <summary>
+        /// SigAndMore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SigAndMore;
 
         /// <summary>
         /// SignaturePE control.
@@ -231,6 +330,15 @@ namespace SuM_Manga_V3.AccountETC
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PaymentCard;
 
         /// <summary>
+        /// creatorsupmitform control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl creatorsupmitform;
+
+        /// <summary>
         /// CreatorNameBAC control.
         /// </summary>
         /// <remarks>
@@ -274,5 +382,32 @@ namespace SuM_Manga_V3.AccountETC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox2;
+
+        /// <summary>
+        /// SuMSettingsUpdatepanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel SuMSettingsUpdatepanel;
+
+        /// <summary>
+        /// StartSetAnim control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl StartSetAnim;
+
+        /// <summary>
+        /// PerformanceModeCB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox PerformanceModeCB;
     }
 }

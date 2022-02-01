@@ -15,6 +15,10 @@
     <a id="RootDebug" runat="server">
 
     </a> -->
+    <asp:Button ID="EnablePreMode" runat="server" OnClick="SavePreformanceSettingCookie" style="display:none !important;visibility:hidden;" />
+    <asp:Button ID="DisablePreMode" runat="server" OnClick="RemovePreformanceSettingCookie" style="display:none !important;visibility:hidden;" />
+    <asp:Button ID="FixUpPageRe" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden;" />
+    <asp:FileUpload onchange="loadFile(event)" CssClass="hide" accept="image/*" AllowMultiple="false" style="display:none;" ID="SuMCustomPFP" runat="server" HiddenField="true" />
     <div id="SettingsUnavaliblePOPUP" runat="server" style="animation-duration:0.36s !important;background-color:rgba(0,0,0,0.32) !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:999 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center animated fadeIn">
         <div id="SUAC000SP" class="animated zoomIn card shadow-sm" style="margin:0 auto !important;max-width:382px !important;animation-duration:0.28s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(50vh - 106px) !important;">
             <p style="font-size:146%;color:#232323;margin-bottom:0px;margin:0 auto;margin-top:6px !important;">This option is unavalible</p>
@@ -25,32 +29,44 @@
             </div>
         </div>
     </div>
-    <div style="height:100vh;width:100vw; padding:0px !important;padding-top:0px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
-    <div style="height:100vh !important;width:100vw;max-width:720px !important;margin:0 auto !important;">
-    <div style="animation-duration:0.26s !important;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#ffffff !important;margin:0 auto !important; margin-top:0px !important;border-bottom-left-radius:20px;border-bottom-right-radius:20px;padding:0px !important;padding-bottom:12px !important;padding-top:8px !important;margin-bottom:22px !important;" class="animated slideInDown">
+                        <div style="height:100vh;width:100vw; padding:0px !important;padding-top:0px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
+    <div style="height:100% !important;width:100vw;max-width:720px !important;margin:0 auto !important;">
+    <div id="SlideDownCard" runat="server" style="animation-duration:0.26s !important;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#ffffff !important;margin:0 auto !important; margin-top:0px !important;border-bottom-left-radius:20px;border-bottom-right-radius:20px;padding:0px !important;padding-bottom:12px !important;padding-top:8px !important;margin-bottom:22px !important;" class="animated slideInDown">
         <div style="width:100vw;height:22px;background-color:#ffffff;position:relative;z-index:998;margin-top:-8px !important;"></div>
+        <asp:UpdatePanel ID="ProfileInfoUpdatepANEL" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
+                <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="EnablePreMode" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="DisablePreMode" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="FixUpPageRe" EventName="Click" />
+                    </Triggers>
+                <ContentTemplate>
+                    <asp:Panel runat="server">
         <div style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;">
             <a runat="server" id="AccountSettingsOrLogin" onclick="" href="/AccountETC/LoginETC.aspx" style="height:112px !important;width:calc(100% - 60px) !important;background-color:transparent !important;display:block !important;margin-top:8px;margin-bottom:8px; margin-left:8px;position:relative;z-index:998;">
             <div style="width:90px;height:90px;border-radius:45px;background-color:#ffffff;border:2px solid #1d1d1d !important;float:left;display:inline;margin-bottom:6px;padding:1px !important;">
                 <img class="animated pulse" id="PFP" runat="server" style="width:84px !important;height:84px !important;border-radius:50% !important;" src="/AccountETC/UsersUploads/DeafultPFP.jpg" />
             </div>
-                <div class="fadeIn animated" style="float:left;display:inline;margin-left:8px;">
+                <div id="UserInfoDiv" runat="server" class="fadeIn animated" style="float:left;display:inline;margin-left:8px;">
                     <h3 id="SuMUserName" runat="server" style="color:#1d1d1d;">Loging to SuM</h3>
                     <h6  id="SignedWith" runat="server" style="color:#919191;font-size:74%;"></h6>
                 </div>
             </a>
             <asp:ImageButton ID="LogOutBTN" runat="server" ImageUrl="/svg/logout.svg" Width="28px" Height="28px" BackColor="Transparent" ForeColor="Transparent" OnClick="LogOut" style="float:right !important;margin-right:8px;margin-top:-38px !important;" />
+            <p id="TapForXText" runat="server" style="color:rgba(0,0,0,0.32);margin-top:-18px;width:100%;text-align:center;font-size:76%;margin-left:42px;padding-bottom:-16px;">Tap for more!</p>
         </div>
-        <div id="UserSettingsCards" class="" style="display:block;height:0px;overflow:hidden;transition: height 0.4s;background-color:#ffffff;">
+        </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        <div runat="server" id="UserSettingsCards" class="" style="display:block;height:0px;overflow:hidden;transition: height 0.4s;background-color:#ffffff;">
             <div style="width:100% !important;height:100% !important;background-color:#ffffff !important;">
 
                         <div style="padding-top:0px !important;padding-bottom:0px !important;background-color:#ffffff !important;margin-top:0px !important;width:100vw;height:fit-content;">
                             <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;"/>
-                                <div onclick="if (document.getElementById('PFPDiv').style.display == 'none') { document.getElementById('PFPDiv').style.display = 'block'; document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight + document.getElementById('PFPDiv').offsetHeight + 'px'; } else { document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight - document.getElementById('PFPDiv').offsetHeight + 'px'; document.getElementById('PFPDiv').style.display = 'none'; }" class="card-header py-3" style="background-color:#ffffff !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;height:54px;overflow:hidden;border:none;">
+                                <div onclick="SuMSettingDivExpandor('PFPDiv');" class="card-header py-3" style="background-color:#ffffff !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;height:54px;overflow:hidden;border:none;">
                                     <img src="/svg/face.svg" style="width:26px;height:26px;display:inline;float:left;" />
                                     <p style="color:#000000 !important;display:inline;float:left;margin:8px;">Change profile pic</p>
                                 </div>
-                                <div id="PFPDiv" class="card-body text-center animated slideInDown" style="animation-duration: 0.4s !important;background-color:#ffffff !important;display:none;height:fit-content;position:relative;z-index:996;">
+                                <div id="PFPDiv" runat="server" class="card-body text-center animated slideInDown" style="animation-duration: 0.4s !important;background-color:#ffffff !important;display:none;height:fit-content;position:relative;z-index:996;">
                                     <a onclick="document.getElementById('MainContent_SuMCustomPFP').click();" style="width:fit-content;height:fit-content;">
                                     <img style="position:relative !important;z-index:999 !important;" class="rounded-circle mb-3 mt-4 lazyload" id="PFPC" src="/assets/img/avatars/DeafultPFP.jpg" width="160" height="160" runat="server">
                                     </a>
@@ -59,39 +75,12 @@
                                         <p style="display:inline-block !important;"> Or </p>
                                         <asp:Button CssClass="btn btn-primary btn-sm" ID="RemovePFP" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangePFPAtRandom" Text="Reset PFP" />
                                     </div>
-
                                     <script>
                                         var loadFile = function (event) {
                                             var image = document.getElementById('MainContent_PFPC');
                                             image.src = URL.createObjectURL(event.target.files[0]);
                                         };
-                                        /*if (document.getElementById('X').style.display == 'none') {
-                                            document.getElementById('X').style.display = 'block';
-                                            document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight + document.getElementById('X').offsetHeight + 'px';
-                                        }
-                                        else
-                                        {
-                                            document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight - document.getElementById('X').offsetHeight + 'px';
-                                            document.getElementById('X').style.display = 'none';
-                                        }*/
-                                        //document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight + document.getElementById('X').offsetHeight + 'px';
-                                        
-                                        /*if (document.getElementById('UserSettingsCards').style.height == '0px') {
-                                            document.getElementById('UserSettingsCards').style.height = '232px';
-                                        }
-                                        else {
-                                            document.getElementById('UserSettingsCards').style.height = '0px';
-                                            document.getElementById('PFPDiv').style.display = 'none';
-                                            document.getElementById('ChangeEmailDiv').style.display = 'none';
-                                            document.getElementById('SigAndMore').style.display = 'none';
-                                            document.getElementById('creatorsupmitform').style.display = 'none';
-                                            document.getElementById('MainContent_PaymentCard').style.display = 'none';
-                                            document.getElementById('ManageDevicesCard').style.display = 'none';
-                                        }*/
-                                        //document.getElementById('UserSettingsCards').style.height = (document.getElementById('UserSettingsCards').style.height == 'fit-content') ? '0px;' : 'fit-content';
-            </script>
-                                   <asp:FileUpload onchange="loadFile(event)" CssClass="hide" accept="image/*" AllowMultiple="false" style="display:none;" ID="SuMCustomPFP" runat="server" HiddenField="true" />
-
+                                    </script>
                                 </div>
                         </div>
                 <!-- Device Manege fucherdsafsd -->
@@ -101,7 +90,7 @@
                         <img src="/svg/devices.svg" style="width:26px;height:26px;display:inline;float:left;" />
                         <p style="color:#000000 !important;display:inline;float:left;margin:8px;">Manage Devices</p>
                     </div>
-                    <div class="animated fadeInDown" style="animation-duration: 0.4s !important;background-color:#ffffff !important;display:none;height:fit-content;position:relative;z-index:996" id="ManageDevicesCard">
+                    <div class=" " style="animation-duration: 0.4s !important;background-color:#ffffff !important;display:none;height:fit-content;position:relative;z-index:996" id="ManageDevicesCard">
                         <p id="DVsText" style="color:rgb(0,0,0);"><b id="DevicesNum" style="color:rgb(104,64,217);" runat="server" ></b> Device(s) loged in</p>
                         <div style="width:100vw;height:fit-content;" id="CurrDevice">
                             <img src="/svg/phonePR.svg" width="24" height="24" style="display:inline;" />
@@ -117,11 +106,11 @@
                 </div>
         <div style="padding-top:0px !important;padding-bottom:0px !important;background-color:#ffffff !important;margin-top:0px !important;" class="">
             <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;"/>
-                                        <div onclick="if (document.getElementById('ChangeEmailDiv').style.display == 'none') { document.getElementById('ChangeEmailDiv').style.display = 'block'; document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight + document.getElementById('ChangeEmailDiv').offsetHeight + 'px'; } else { document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight - document.getElementById('ChangeEmailDiv').offsetHeight + 'px'; document.getElementById('ChangeEmailDiv').style.display = 'none'; }" class="card-header py-3" style="background-color:#ffffff !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;height:54px;overflow:hidden;border:none;">
+                                        <div onclick="SuMSettingDivExpandor('ChangeEmailDiv');" class="card-header py-3" style="background-color:#ffffff !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;height:54px;overflow:hidden;border:none;">
                                             <img src="/svg/attachemail.svg" style="width:26px;height:26px;display:inline;float:left;" />
                                             <p style="color:#000000 !important;display:inline;float:left;margin:8px;">Change Email</p>
                                         </div>
-                                        <div id="ChangeEmailDiv" class="card-body animated fadeInDown" style="animation-duration: 0.4s !important;background-color:#ffffff !important;display:none;position:relative;z-index:996;">
+                                        <div runat="server" id="ChangeEmailDiv" class="card-body animated fadeInDown" style="animation-duration: 0.4s !important;background-color:#ffffff !important;display:none;position:relative;z-index:996;">
                                             <div>
                                                 <div class="row">
                                                     <div class="col">
@@ -146,11 +135,11 @@
 
                     <div style="padding-top:0px !important;padding-bottom:0px !important;background-color:#ffffff !important;margin-top:0px !important;">
                         <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;"/>
-                        <div onclick="if (document.getElementById('SigAndMore').style.display == 'none') { document.getElementById('SigAndMore').style.display = 'block'; document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight + document.getElementById('SigAndMore').offsetHeight + 'px'; } else { document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight - document.getElementById('SigAndMore').offsetHeight + 'px'; document.getElementById('SigAndMore').style.display = 'none'; }" class="card-header py-3" style="background-color:#ffffff !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;height:54px;overflow:hidden;border:none;">
+                        <div onclick="SuMSettingDivExpandor('SigAndMore');" class="card-header py-3" style="background-color:#ffffff !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;height:54px;overflow:hidden;border:none;">
                             <img src="/svg/feed.svg" style="width:26px;height:26px;display:inline;float:left;" />
                             <p style="color:#000000 !important;display:inline;float:left;margin:8px;">Signature & more</p>
                         </div>
-                        <div id="SigAndMore" class="card-body animated slideInDown" style="animation-duration: 0.4s !important;background-color:#ffffff !important;display:none;">
+                        <div id="SigAndMore" runat="server" class="card-body animated slideInDown" style="animation-duration: 0.4s !important;background-color:#ffffff !important;display:none;">
                             <div class="row">
                                 <div class="col-md-6">
                                         <div class="mb-3"><label class="form-label" for="signature"><strong>Signature</strong><br></label><textarea class="form-control" id="SignaturePE" rows="4" name="signature" placeholder="..." runat="server"></textarea></div>
@@ -187,7 +176,7 @@
         
                                     <div style="background-color:#ffffff !important;">
                                         <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;"/>
-                                        <div style="border:none;height:54px;overflow:hidden;background-color:#ffffff !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;" onclick="if (document.getElementById('MainContent_PaymentCard').style.display == 'none') { document.getElementById('MainContent_PaymentCard').style.display = 'block'; document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight + document.getElementById('MainContent_PaymentCard').offsetHeight + 'px'; } else { document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight - document.getElementById('MainContent_PaymentCard').offsetHeight + 'px'; document.getElementById('MainContent_PaymentCard').style.display = 'none'; }" class="card-header py-3">
+                                        <div style="border:none;height:54px;overflow:hidden;background-color:#ffffff !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;" onclick="SuMSettingDivExpandor('PaymentCard');" class="card-header py-3">
                                             <img src="/svg/payment.svg" style="width:26px;height:26px;display:inline;float:left;" />
                                             <p style="color:#000000 !important;display:inline;float:left;margin:8px;">Payment</p>
                                         </div>
@@ -223,11 +212,11 @@
         
                     <div class="" style="background-color:#ffffff !important;">
                         <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;"/>
-                        <div style="border:none;height:54px;overflow:hidden;background-color:#ffffff !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;" onclick="if (document.getElementById('creatorsupmitform').style.display == 'none') { document.getElementById('creatorsupmitform').style.display = 'block'; document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight + document.getElementById('creatorsupmitform').offsetHeight + 'px'; } else { document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight - document.getElementById('creatorsupmitform').offsetHeight + 'px'; document.getElementById('creatorsupmitform').style.display = 'none'; }" class="card-header py-3">
+                        <div style="border:none;height:54px;overflow:hidden;background-color:#ffffff !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;" onclick="SuMSettingDivExpandor('creatorsupmitform');" class="card-header py-3">
                             <img src="/svg/publish.svg" style="width:26px;height:26px;display:inline;float:left;" />
                             <p style="color:#000000 !important;display:inline;float:left;margin:8px;">Apply to be a creator</p>
                         </div>
-                        <div class="card-body animated slideInDown" style="display:none;animation-duration: 0.4s !important;" id="creatorsupmitform">
+                        <div class="card-body animated slideInDown" style="display:none;animation-duration: 0.4s !important;" id="creatorsupmitform" runat="server">
                             <div class="row">
                                 <div class="col">
                                     <div >
@@ -262,32 +251,146 @@
         </div>
         </div>
 </div>
-        <div style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 12px !important;margin-top:8px !important;">
-                                <div class="fadeIn animated" style="vertical-align:middle;display:block !important;">
-                                    <img src="/AccountETC/DarkMoon.svg" style="width:auto;height:32px;display:inline;float:left;" />
-                                    <p style="color:#000000;display:inline;float:left;margin:8px;">Enable Dark Mode</p>
-                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;opacity:0.54 !important;" type="checkbox" onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block';document.getElementById('DarkModeS').checked = false; return false;" id="DarkModeS" ></div>
-                                    <p style="font-size:60%;color:#808080;float:left;margin-left:36px;">Change SuM Theme to dark shades of color, This option is not recommended!</p>
+        <asp:UpdatePanel ID="SuMSettingsUpdatepanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
+                <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="EnablePreMode" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="DisablePreMode" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="FixUpPageRe" EventName="Click" />
+                    </Triggers>
+                <ContentTemplate>
+                    <asp:Panel runat="server">
+        <div id="StartSetAnim" runat="server" class="fadeIn animated" style="width:100%;height:fit-content;background-color:#f2f2f2 !important;border-radius:0px !important; padding: 12px !important;margin-top:8px !important;">
+            <div style="vertical-align:middle;display:block !important;">
+                                    <img src="/svg/motionphotos.svg" style="width:auto;height:32px;display:inline;float:left;" />
+                                    <p style="color:#000000;display:inline;float:left;margin:8px;font-size:112%;">Performance Mode</p>
+                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;" type="checkbox" onclick="TurnPreModeOn();" id="PerformanceModeCB" runat="server" /> </div>
+                                    <p style="font-size:82%;color:#808080;float:left;margin-left:36px;">This mode removes all animations from SuM Manga to improve performance on low-end devices.</p>
                                 </div>
-            <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;"/>
-            <div class="fadeIn animated"  style="vertical-align:middle;display:block !important;margin-top:12px !important;">
+            <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;margin-top:12px !important;margin-bottom:18px !important;">
+                                <div class="" style="vertical-align:middle;display:block !important;">
+                                    <img src="/AccountETC/DarkMoon.svg" style="width:32px;height:32px;display:inline;float:left;" />
+                                    <p style="color:#000000;display:inline;float:left;margin:8px;font-size:112%;">Dark Mode</p>
+                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;opacity:0.54 !important;" type="checkbox" onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block';document.getElementById('DarkModeS').checked = false; return false;" id="DarkModeS" ></div>
+                                    <p style="font-size:82%;color:#808080;float:left;margin-left:36px;">Change SuM Theme to dark shades of color, This option is not recommended!</p>
+                                </div>
+            <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;margin-top:12px !important;margin-bottom:18px !important;">
+            <div class=""  style="vertical-align:middle;display:block !important;margin-top:12px !important;">
         <img src="/AccountETC/Noti.svg" style="width:auto;height:32px;display:inline;float:left;" />
-        <p style="color:#1d1d1d;display:inline;float:left;margin:8px;">Get The latest</p>
+        <p style="color:#1d1d1d;display:inline;float:left;margin:8px;font-size:112%;">Get The latest</p>
         <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:36px;height:18px;float:right;opacity:0.54 !important;" onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block';document.getElementById('GetTheLatest').checked = false; return false;" type="checkbox" id="GetTheLatest" ></div>
-               <p style="font-size:60%;color:#808080;float:left;margin-left:36px;">Get The latest News about mangas in general</p>
+               <p style="font-size:82%;color:#808080;float:left;margin-left:36px;">Get The latest News about mangas in general</p>
             </div>
-        <div class="fadeIn animated" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 4px !important;margin-top:6px !important;margin-top:12px;">
+        <div class="" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 4px !important;margin-top:6px !important;margin-top:12px;">
+        </div>
+            <div class="" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
+            <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:132px;">
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.8.0 Beta</p>
+                <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">0</b><b style="display:inline;" id="cachesizeyunit">KB</b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:#ffffff;background: rgba(104,64,217,0.62);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
+                <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
+            </div>
         </div>
     </div>
-        <div class="animated fadeIn" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
-            <div class="fadeIn animated" style="margin-top:-4px;vertical-align:middle;display:block !important;height:64px;overflow:hidden !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 2.7.8 Beta</p>
-                <p class="" style="color:#8f8f8f;margin-left:28px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
-            </div>
-        </div>
+                        <script>
+                            CacheInfoLoading();
+                        </script>
+                        </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
         </div>
     <script>
-        document.getElementById('AccountOffline').style.display = 'block';
+        /*document.forms[0].addEventListener('submit', e => {
+            setTimeout(() => {
+                document.getElementById('MainContent_FixUpPageRe').click();
+            }, 1000);
+        });*/
+            async function getCacheStoragesAssetTotalSize() {
+
+                const cacheNames = await caches.keys();
+
+                let total = 0;
+
+                const sizePromises = cacheNames.map(async cacheName => {
+                    const cache = await caches.open(cacheName);
+                    const keys = await cache.keys();
+                    let cacheSize = 0;
+
+                    await Promise.all(keys.map(async key => {
+                        const response = await cache.match(key);
+                        const blob = await response.blob();
+                        total += blob.size;
+                        cacheSize += blob.size;
+                    }));
+                });
+
+                await Promise.all(sizePromises);
+
+                return (total / 1000);
+            };
+            function CacheInfoLoading() {
+                getCacheStoragesAssetTotalSize().then(function (result) {
+                    var currcachesizeinmb = result;
+                    var currcachesymb = 'KB';
+                    if (currcachesizeinmb > 1000) {
+                        currcachesizeinmb = (currcachesizeinmb / 1000);
+                        currcachesymb = 'MB';
+                        if (currcachesizeinmb > 1000) {
+                            currcachesizeinmb = (currcachesizeinmb / 1000);
+                            currcachesymb = 'GB';
+                            if (currcachesizeinmb > 1000) {
+                                currcachesizeinmb = (currcachesizeinmb / 1000);
+                                currcachesymb = 'TB';
+                            }
+                        }
+                    }
+                    if (currcachesizeinmb < 0.00499) {
+                        document.getElementById('ClearCacheBTN').style.background = 'rgba(0,0,0,0.16)';
+                    }
+                    document.getElementById('cachesizenum').innerText = currcachesizeinmb.toFixed(2);
+                    document.getElementById('cachesizeyunit').innerText = currcachesymb;
+                });
+            };
+        document.onreadystatechange = function () {
+            if (document.readyState == "interactive") {
+                setTimeout(() => {
+                    document.getElementById('<%= FixUpPageRe.ClientID %>').click();
+                }, 180);
+                setTimeout(() => {
+                    CacheInfoLoading();
+                }, 360);
+            }
+        };
+            function DeleteSuMCache() {
+                caches.delete('SuMMangaCache').then(function (boolean) { });
+                document.getElementById('ClearCacheBTN').style.background = 'rgba(0,0,0,0.16)';
+                CacheInfoLoading();
+            };
+            var PerModeSwitchElm = document.getElementById('<%= PerformanceModeCB.ClientID %>');
+            function TurnPreModeOn() {
+                document.getElementById('<%= EnablePreMode.ClientID %>').click();
+                setTimeout(() => {
+                    document.getElementById('<%= FixUpPageRe.ClientID %>').click();
+                }, 1200);
+                DeleteSuMCache();
+            };
+            function TurnPreModeOff() {
+                document.getElementById('<%= DisablePreMode.ClientID %>').click();
+                setTimeout(() => {
+                    document.getElementById('<%= FixUpPageRe.ClientID %>').click();
+                }, 1200);
+                DeleteSuMCache();
+            };
+            var UserSettingsCardsDiv = document.getElementById('<%= UserSettingsCards.ClientID %>');
+            function SuMSettingDivExpandor(NormallId) {
+                var ChangeDivv = document.getElementById('MainContent_' + NormallId);
+                if (ChangeDivv.style.display == 'none') {
+                    ChangeDivv.style.display = 'block';
+                    UserSettingsCardsDiv.style.height = UserSettingsCardsDiv.offsetHeight + ChangeDivv.offsetHeight + 'px';
+                }
+                else {
+                    UserSettingsCardsDiv.style.height = UserSettingsCardsDiv.offsetHeight - ChangeDivv.offsetHeight + 'px';
+                    ChangeDivv.style.display = 'none';
+                }
+            };
     </script>
 </asp:Content>
