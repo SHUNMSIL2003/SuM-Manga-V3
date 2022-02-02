@@ -1513,6 +1513,7 @@
     <Content Include="svg\error.svg" />
     <Content Include="svg\expandmoreTBlack.svg" />
     <Content Include="svg\expandmore.svg" />
+    <Content Include="svg\ExploreBook.svg" />
     <Content Include="svg\ExploreNAFME.svg" />
     <Content Include="svg\face.svg" />
     <Content Include="svg\favoriteTBlack.svg" />

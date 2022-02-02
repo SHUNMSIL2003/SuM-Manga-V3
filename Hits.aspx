@@ -79,7 +79,7 @@ img {vertical-align: middle;}
     height: 74px;
 }
     </style>
-    <div style="display:none" ID="HitsStylePlaceHolder" runat="server" >
+    <div style="display:none;" ID="HitsStylePlaceHolder" runat="server" >
         <style>
 
             @keyframes rainbow {
@@ -132,12 +132,12 @@ img {vertical-align: middle;}
     <div ontouchmove="moveTouch(event)" id="ScrollingDivHits" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;">
         <div style="background-color:#f2f2f2 !important;margin:0 auto !important;width:100%;height:fit-content;">
         <div id="HotsScrollHelper" runat="server" style="background-color:#ffffff;margin:0 auto !important;padding:0px;width:100%;height:fit-content;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;">
-        <div id="HitsBG" style="margin:0 auto !important;padding:0px !important;margin-bottom:0px !important;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;width:100% !important;height:fit-content !important;">
+        <div id="HitsBG" style="margin:0 auto !important;padding:0px !important;margin-bottom:0px !important;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;width:100% !important;height:fit-content !important;transition: background-color .3s !important; -webkit-transition: background-color .3s !important; -o-transition: background-color .3s !important; -moz-transition: background-color .3s !important;">
             <div style="width:100% !important;">
                 <h2 style="color:#ffffff;margin:0 auto !important;text-align:center;margin-top:18px !important;margin-bottom:16px !important;"><img src="/svg/MostSeenW.svg" width="36" height="36" style="display:inline;margin-top:-8px;" /> Top 10 on SuM Manga!</h2>
                 <p style="color:rgba(255,255,255,0.82);font-size:86%;text-align:center !important;width:100%;height:fit-content;margin:0 auto !important;margin-top:12px !important;margin-bottom:8px !important;display:none !important;visibility:hidden !important;">This section's purpose is to showcase the ten mangas with the highest views on this platform, ranked from the highest to the lowest. This section is updated live!</p>
             </div>
-            <div id="Top10Con" runat="server" style="margin:0 auto !important;width:100%;height:fit-content;background-color:#ffffff;position:relative;width:calc(100% - 24px);margin-bottom:18px !important;border-radius:18px;">
+            <div id="Top10Con" runat="server" style="margin:0 auto !important;width:100%;height:fit-content;background-color:#ffffff;position:relative;width:calc(100% - 24px);margin-bottom:26px !important;border-radius:18px;">
 
             </div>
             <script>
@@ -172,6 +172,21 @@ img {vertical-align: middle;}
                 var Top9Expandor = document.getElementById('NuM9Expandor');
                 var Top10Expandor = document.getElementById('NuM10Expandor');
 
+                var HitsBGElm = document.getElementById('HitsBG');
+                var HitsOrBGC = HitsBGElm.style.backgroundColor;
+                var HitsOrTran = HitsBGElm.style.transition;
+
+                var Top1ThemeC = document.getElementById('Top1ThemeColor').innerText;
+                var Top2ThemeC = document.getElementById('Top2ThemeColor').innerText;
+                var Top3ThemeC = document.getElementById('Top3ThemeColor').innerText;
+                var Top4ThemeC = document.getElementById('Top4ThemeColor').innerText;
+                var Top5ThemeC = document.getElementById('Top5ThemeColor').innerText;
+                var Top6ThemeC = document.getElementById('Top6ThemeColor').innerText;
+                var Top7ThemeC = document.getElementById('Top7ThemeColor').innerText;
+                var Top8ThemeC = document.getElementById('Top8ThemeColor').innerText;
+                var Top9ThemeC = document.getElementById('Top9ThemeColor').innerText;
+                var Top10ThemeC = document.getElementById('Top10ThemeColor').innerText;
+
                 document.onreadystatechange = function () {
                     if (document.readyState == "interactive") {
                         Top1elm.style.height = (Top1Expandor.offsetHeight - 10) + 'px';
@@ -187,20 +202,6 @@ img {vertical-align: middle;}
                     }
                 };
                 function UnexpandRestButThis(elm) {
-                    //var TopElms = new Array(Top1elm, Top2elm, Top3elm, Top4elm, Top5elm, Top6elm, Top7elm, Top8elm, Top9elm, Top10elm);
-                    //var TopRestElms = new Array(Top1RestElm, Top2RestElm, Top3RestElm, Top4RestElm, Top5RestElm, Top6RestElm, Top7RestElm, Top8RestElm, Top9RestElm, Top10RestElm);
-                    /*for (var i = 1; i < 11; i++) {
-                        if (TopElms[i] != elm) {
-                            if (TopRestElms[i].classList.contains('fadeInDown') == true) {
-                                TopElms[i].click();
-                            }
-                        }
-                        if (('NuM' + i) != elm) {
-                            if (document.getElementById('NuM' + i + 'CardRest').classList.contains('fadeInDown') == true) {
-                                document.getElementById('NuM' + i).click();
-                            }
-                        }
-                    }*/
                     if (elm != 'NuM1') {
                         if (Top1RestElm.style.display == 'block') {
                             ExpandControler1();
@@ -255,20 +256,24 @@ img {vertical-align: middle;}
 
                 function ExpandControler1() {
                     if (Top1RestElm.style.display == 'none') {
+                        UnexpandRestButThis('NuM1');
                         Top1RestElm.style.display = 'block';
                         Top1elm.style.height = (Top1elm.offsetHeight + Top1RestElm.offsetHeight + 78) + 'px';
                         Top1Expandor.style.marginTop = '18px';
+                        HitsBGElm.style.animation = 'none';
+                        HitsBGElm.style.backgroundColor = Top1ThemeC;
                         if (Top1RestElm.classList.contains('fadeInDown') == false) {
                             Top1RestElm.classList.remove('fadeOutUp');
                             Top1RestElm.classList.add('fadeInDown');
                         }
-                        UnexpandRestButThis('NuM1');
                     }
                     else {
                         Top1RestElm.classList.remove('fadeInDown');
                         Top1RestElm.classList.add('fadeOutUp');
                         Top1elm.style.height = (Top1elm.offsetHeight - Top1RestElm.offsetHeight - 78) + 'px';
                         Top1Expandor.style.marginTop = '-26px';
+                        HitsBGElm.style.backgroundColor = null;
+                        HitsBGElm.style.animation = null;
                         setTimeout(() => {
                             Top1RestElm.style.display = 'none';
                         }, 260);
@@ -276,20 +281,24 @@ img {vertical-align: middle;}
                 };
                 function ExpandControler2() {
                     if (Top2RestElm.style.display == 'none') {
+                        UnexpandRestButThis('NuM2');
                         Top2RestElm.style.display = 'block';
                         Top2elm.style.height = (Top2elm.offsetHeight + Top2RestElm.offsetHeight + 78) + 'px';
                         Top2Expandor.style.marginTop = '18px';
+                        HitsBGElm.style.animation = 'none';
+                        HitsBGElm.style.backgroundColor = Top2ThemeC;
                         if (Top2RestElm.classList.contains('fadeInDown') == false) {
                             Top2RestElm.classList.remove('fadeOutUp');
                             Top2RestElm.classList.add('fadeInDown');
                         }
-                        UnexpandRestButThis('NuM2');
                     }
                     else {
                         Top2RestElm.classList.remove('fadeInDown');
                         Top2RestElm.classList.add('fadeOutUp');
                         Top2elm.style.height = (Top2elm.offsetHeight - Top2RestElm.offsetHeight - 78) + 'px';
                         Top2Expandor.style.marginTop = '-26px';
+                        HitsBGElm.style.backgroundColor = null;
+                        HitsBGElm.style.animation = null;
                         setTimeout(() => {
                             Top2RestElm.style.display = 'none';
                         }, 260);
@@ -297,20 +306,24 @@ img {vertical-align: middle;}
                 };
                 function ExpandControler3() {
                     if (Top3RestElm.style.display == 'none') {
+                        UnexpandRestButThis('NuM3');
                         Top3RestElm.style.display = 'block';
                         Top3elm.style.height = (Top3elm.offsetHeight + Top3RestElm.offsetHeight + 78) + 'px';
                         Top3Expandor.style.marginTop = '18px';
+                        HitsBGElm.style.animation = 'none';
+                        HitsBGElm.style.backgroundColor = Top3ThemeC;
                         if (Top3RestElm.classList.contains('fadeInDown') == false) {
                             Top3RestElm.classList.remove('fadeOutUp');
                             Top3RestElm.classList.add('fadeInDown');
                         }
-                        UnexpandRestButThis('NuM3');
                     }
                     else {
                         Top3RestElm.classList.remove('fadeInDown');
                         Top3RestElm.classList.add('fadeOutUp');
                         Top3elm.style.height = (Top3elm.offsetHeight - Top3RestElm.offsetHeight - 78) + 'px';
                         Top3Expandor.style.marginTop = '-26px';
+                        HitsBGElm.style.backgroundColor = null;
+                        HitsBGElm.style.animation = null;
                         setTimeout(() => {
                             Top3RestElm.style.display = 'none';
                         }, 260);
@@ -318,20 +331,24 @@ img {vertical-align: middle;}
                 };
                 function ExpandControler4() {
                     if (Top4RestElm.style.display == 'none') {
+                        UnexpandRestButThis('NuM4');
                         Top4RestElm.style.display = 'block';
                         Top4elm.style.height = (Top4elm.offsetHeight + Top4RestElm.offsetHeight + 78) + 'px';
                         Top4Expandor.style.marginTop = '18px';
+                        HitsBGElm.style.animation = 'none';
+                        HitsBGElm.style.backgroundColor = Top4ThemeC;
                         if (Top4RestElm.classList.contains('fadeInDown') == false) {
                             Top4RestElm.classList.remove('fadeOutUp');
                             Top4RestElm.classList.add('fadeInDown');
                         }
-                        UnexpandRestButThis('NuM4');
                     }
                     else {
                         Top4RestElm.classList.remove('fadeInDown');
                         Top4RestElm.classList.add('fadeOutUp');
                         Top4elm.style.height = (Top4elm.offsetHeight - Top4RestElm.offsetHeight - 78) + 'px';
                         Top4Expandor.style.marginTop = '-26px';
+                        HitsBGElm.style.backgroundColor = null;
+                        HitsBGElm.style.animation = null;
                         setTimeout(() => {
                             Top4RestElm.style.display = 'none';
                         }, 260);
@@ -339,20 +356,24 @@ img {vertical-align: middle;}
                 };
                 function ExpandControler5() {
                     if (Top5RestElm.style.display == 'none') {
+                        UnexpandRestButThis('NuM5');
                         Top5RestElm.style.display = 'block';
                         Top5elm.style.height = (Top5elm.offsetHeight + Top5RestElm.offsetHeight + 78) + 'px';
                         Top5Expandor.style.marginTop = '18px';
+                        HitsBGElm.style.animation = 'none';
+                        HitsBGElm.style.backgroundColor = Top5ThemeC;
                         if (Top5RestElm.classList.contains('fadeInDown') == false) {
                             Top5RestElm.classList.remove('fadeOutUp');
                             Top5RestElm.classList.add('fadeInDown');
                         }
-                        UnexpandRestButThis('NuM5');
                     }
                     else {
                         Top5RestElm.classList.remove('fadeInDown');
                         Top5RestElm.classList.add('fadeOutUp');
                         Top5elm.style.height = (Top5elm.offsetHeight - Top5RestElm.offsetHeight - 78) + 'px';
                         Top5Expandor.style.marginTop = '-26px';
+                        HitsBGElm.style.backgroundColor = null;
+                        HitsBGElm.style.animation = null;
                         setTimeout(() => {
                             Top5RestElm.style.display = 'none';
                         }, 260);
@@ -360,20 +381,24 @@ img {vertical-align: middle;}
                 };
                 function ExpandControler6() {
                     if (Top6RestElm.style.display == 'none') {
+                        UnexpandRestButThis('NuM6');
                         Top6RestElm.style.display = 'block';
                         Top6elm.style.height = (Top6elm.offsetHeight + Top6RestElm.offsetHeight + 78) + 'px';
                         Top6Expandor.style.marginTop = '18px';
+                        HitsBGElm.style.animation = 'none';
+                        HitsBGElm.style.backgroundColor = Top6ThemeC;
                         if (Top6RestElm.classList.contains('fadeInDown') == false) {
                             Top6RestElm.classList.remove('fadeOutUp');
                             Top6RestElm.classList.add('fadeInDown');
                         }
-                        UnexpandRestButThis('NuM6');
                     }
                     else {
                         Top6RestElm.classList.remove('fadeInDown');
                         Top6RestElm.classList.add('fadeOutUp');
                         Top6elm.style.height = (Top6elm.offsetHeight - Top6RestElm.offsetHeight - 78) + 'px';
                         Top6Expandor.style.marginTop = '-26px';
+                        HitsBGElm.style.backgroundColor = null;
+                        HitsBGElm.style.animation = null;
                         setTimeout(() => {
                             Top6RestElm.style.display = 'none';
                         }, 260);
@@ -381,20 +406,24 @@ img {vertical-align: middle;}
                 };
                 function ExpandControler7() {
                     if (Top7RestElm.style.display == 'none') {
+                        UnexpandRestButThis('NuM7');
                         Top7RestElm.style.display = 'block';
                         Top7elm.style.height = (Top7elm.offsetHeight + Top7RestElm.offsetHeight + 78) + 'px';
                         Top7Expandor.style.marginTop = '18px';
+                        HitsBGElm.style.animation = 'none';
+                        HitsBGElm.style.backgroundColor = Top7ThemeC;
                         if (Top7RestElm.classList.contains('fadeInDown') == false) {
                             Top7RestElm.classList.remove('fadeOutUp');
                             Top7RestElm.classList.add('fadeInDown');
                         }
-                        UnexpandRestButThis('NuM7');
                     }
                     else {
                         Top7RestElm.classList.remove('fadeInDown');
                         Top7RestElm.classList.add('fadeOutUp');
                         Top7elm.style.height = (Top7elm.offsetHeight - Top7RestElm.offsetHeight - 78) + 'px';
                         Top7Expandor.style.marginTop = '-26px';
+                        HitsBGElm.style.backgroundColor = null;
+                        HitsBGElm.style.animation = null;
                         setTimeout(() => {
                             Top7RestElm.style.display = 'none';
                         }, 260);
@@ -402,20 +431,24 @@ img {vertical-align: middle;}
                 };
                 function ExpandControler8() {
                     if (Top8RestElm.style.display == 'none') {
+                        UnexpandRestButThis('NuM8');
                         Top8RestElm.style.display = 'block';
                         Top8elm.style.height = (Top8elm.offsetHeight + Top8RestElm.offsetHeight + 78) + 'px';
                         Top8Expandor.style.marginTop = '18px';
+                        HitsBGElm.style.animation = 'none';
+                        HitsBGElm.style.backgroundColor = Top8ThemeC;
                         if (Top8RestElm.classList.contains('fadeInDown') == false) {
                             Top8RestElm.classList.remove('fadeOutUp');
                             Top8RestElm.classList.add('fadeInDown');
                         }
-                        UnexpandRestButThis('NuM8');
                     }
                     else {
                         Top8RestElm.classList.remove('fadeInDown');
                         Top8RestElm.classList.add('fadeOutUp');
                         Top8elm.style.height = (Top8elm.offsetHeight - Top8RestElm.offsetHeight - 78) + 'px';
                         Top8Expandor.style.marginTop = '-26px';
+                        HitsBGElm.style.backgroundColor = null;
+                        HitsBGElm.style.animation = null;
                         setTimeout(() => {
                             Top8RestElm.style.display = 'none';
                         }, 260);
@@ -423,20 +456,24 @@ img {vertical-align: middle;}
                 };
                 function ExpandControler9() {
                     if (Top9RestElm.style.display == 'none') {
+                        UnexpandRestButThis('NuM9');
                         Top9RestElm.style.display = 'block';
                         Top9elm.style.height = (Top9elm.offsetHeight + Top9RestElm.offsetHeight + 78) + 'px';
                         Top9Expandor.style.marginTop = '18px';
+                        HitsBGElm.style.animation = 'none';
+                        HitsBGElm.style.backgroundColor = Top9ThemeC;
                         if (Top9RestElm.classList.contains('fadeInDown') == false) {
                             Top9RestElm.classList.remove('fadeOutUp');
                             Top9RestElm.classList.add('fadeInDown');
                         }
-                        UnexpandRestButThis('NuM9');
                     }
                     else {
                         Top9RestElm.classList.remove('fadeInDown');
                         Top9RestElm.classList.add('fadeOutUp');
                         Top9elm.style.height = (Top9elm.offsetHeight - Top9RestElm.offsetHeight - 78) + 'px';
                         Top9Expandor.style.marginTop = '-26px';
+                        HitsBGElm.style.backgroundColor = null;
+                        HitsBGElm.style.animation = null;
                         setTimeout(() => {
                             Top9RestElm.style.display = 'none';
                         }, 260);
@@ -444,20 +481,24 @@ img {vertical-align: middle;}
                 };
                 function ExpandControler10() {
                     if (Top10RestElm.style.display == 'none') {
+                        UnexpandRestButThis('NuM10');
                         Top10RestElm.style.display = 'block';
                         Top10elm.style.height = (Top10elm.offsetHeight + Top10RestElm.offsetHeight + 78) + 'px';
                         Top10Expandor.style.marginTop = '18px';
+                        HitsBGElm.style.animation = 'none';
+                        HitsBGElm.style.backgroundColor = Top10ThemeC;
                         if (Top10RestElm.classList.contains('fadeInDown') == false) {
                             Top10RestElm.classList.remove('fadeOutUp');
                             Top10RestElm.classList.add('fadeInDown');
                         }
-                        UnexpandRestButThis('NuM10');
                     }
                     else {
                         Top10RestElm.classList.remove('fadeInDown');
                         Top10RestElm.classList.add('fadeOutUp');
                         Top10elm.style.height = (Top10elm.offsetHeight - Top10RestElm.offsetHeight - 78) + 'px';
                         Top10Expandor.style.marginTop = '-26px';
+                        HitsBGElm.style.backgroundColor = null;
+                        HitsBGElm.style.animation = null;
                         setTimeout(() => {
                             Top10RestElm.style.display = 'none';
                         }, 260);
@@ -468,7 +509,7 @@ img {vertical-align: middle;}
         </div>
         </div>
         <div style="display:none !important;visibility:hidden !important;background-color:#f2f2f2 !important;width:100%;height:32px;border-bottom-left-radius:20px;border-bottom-right-radius:20px;margin:0 auto !important;margin-bottom:12px !important;"></div>
-        <h2 id="TopOfEachInfoCard" style="width:100%;text-align:center !important;background-color:#f2f2f2 !important;padding:8px;padding-top:12px;color:#000000f0;position:relative;top:0;z-index:997;border-bottom-left-radius:18px !important;border-bottom-right-radius:18px !important;">Top 10 for each by category</h2>
+        <h2 id="TopOfEachInfoCard" style="width:100%;text-align:center !important;background-color:#f2f2f2 !important;padding:12px;padding-top:18px;padding-bottom:12px;color:#000000f0;position:relative;top:0;z-index:997;border-bottom-left-radius:18px !important;border-bottom-right-radius:18px !important;">Top 10 for each by category</h2>
         <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
         <div style="height:fit-content;max-height:268px !important; width:100%;overflow:hidden; background-color:#ffffff !important;" id="CategoryX" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Action</h2>
