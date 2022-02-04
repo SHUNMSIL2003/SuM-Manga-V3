@@ -1,0 +1,6 @@
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "com.summanga.android.app",
+                     "sha256_cert_fingerprints": ["18:05:F0:0B:AC:B2:24:FA:F8:7C:65:74:D7:A7:52:81:60:5B:45:8E:F3:34:76:85:EF:28:2E:E0:8A:08:E0:1A"] }
+      }
+]

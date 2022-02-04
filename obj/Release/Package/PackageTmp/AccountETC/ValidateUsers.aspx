@@ -5,7 +5,21 @@
 
 <head runat="server">
     <link rel="manifest" href="/manifest.json">
-    <script src="/runsw.js"></script>
+    <script>
+        if ("androidAPIs" in window) {
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/SuMManga-SW.js')
+                        .then(registration => {
+                            console.log(`Service Worker registered! Scope: ${registration.scope}`);
+                        })
+                        .catch(err => {
+                            console.log(`Service Worker registration failed: ${err}`);
+                        });
+                });
+            }
+        }
+</script>
     <meta charset="utf-8" runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Verifying Account - SuM Manga</title>
@@ -18,8 +32,6 @@
     <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css?h=34f9b351b7076f97babcdac3c1081100">
     <link rel="stylesheet" href="../assets/fonts/fontawesome5-overrides.min.css?h=34f9b351b7076f97babcdac3c1081100">
     <link rel="stylesheet" href="../assets/animate.min.css">
-
-    >
     <meta name="description" content="Shun Manga">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/any_icon_x32.png?h=c6e95e86bee5c429ad96d74eb8a03d17">
@@ -177,6 +189,17 @@
             </div>
         </div>
     </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                if ("androidAPIs" in window) {
+
+                    androidAPIs.layoutDoneLoading();
+
+                }
+
+            });
+    </script>
     <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>
     <script src="/assets/js/bs-init.js?h=cfc1cf2ac1407be801a1de7dc4705464"></script>

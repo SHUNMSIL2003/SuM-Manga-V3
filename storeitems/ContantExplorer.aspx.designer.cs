@@ -33,6 +33,15 @@ namespace SuM_Manga_V3.storeitems
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ChapterUnavaliblePOPUP;
 
         /// <summary>
+        /// SUAC000SP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SUAC000SP;
+
+        /// <summary>
         /// UpdatePanelLogin control.
         /// </summary>
         /// <remarks>
@@ -346,15 +355,6 @@ namespace SuM_Manga_V3.storeitems
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor MRSW;
-
-        /// <summary>
-        /// SuMShare control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor SuMShare;
 
         /// <summary>
         /// LoadMOreChapters control.

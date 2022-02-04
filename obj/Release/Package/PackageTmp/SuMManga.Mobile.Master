@@ -11,16 +11,21 @@
         document.body.appendChild(el);
     </script> -->
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/SuMManga-SW.js')
-                    .then(registration => {
-                        console.log(`Service Worker registered! Scope: ${registration.scope}`);
-                    })
-                    .catch(err => {
-                        console.log(`Service Worker registration failed: ${err}`);
-                    });
-            });
+        if ("androidAPIs" in window) {
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/SuMManga-SW.js')
+                        .then(registration => {
+                            console.log(`Service Worker registered! Scope: ${registration.scope}`);
+                        })
+                        .catch(err => {
+                            console.log(`Service Worker registration failed: ${err}`);
+                        });
+                });
+            }
+        }
+        else {
+            location.href = '/SuMMangaInstallAPP.aspx';
         }
     </script>
     <meta name="google-signin-client_id" content="464504450730-iuk9hotshe7kjnq73p11mdvijc49ll5c.apps.googleusercontent.com">
@@ -166,7 +171,17 @@
             perspective: 1000 !important;
             transform: translate3d(0,0,0) !important;
             transform: translateZ(0) !important;
-            /*backdrop-filter:blur(1px) !important;*/
+            backdrop-filter:blur(1px) !important;
+        }
+        .GoodBlurAnim {
+            -webkit-backface-visibility: hidden !important;
+            -webkit-perspective: 1000 !important;
+            -webkit-transform: translate3d(0,0,0) !important;
+            -webkit-transform: translateZ(0) !important;
+            backface-visibility: hidden !important;
+            perspective: 1000 !important;
+            transform: translate3d(0,0,0) !important;
+            backdrop-filter:blur(1px) !important;
         }
         input, textarea {
             -webkit-user-select: text !important;
@@ -256,12 +271,6 @@
             overflow-x: hidden !important;
             font-family:VarelaRound !important;
         }
-        @media print {
-
-            html, body {
-                display: none;
-            }
-        }
 
         ::-webkit-scrollbar {
             display:none !important;
@@ -321,7 +330,37 @@
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
                     </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>
-                </div><!--
+                </div>
+                <script>
+                    var SuMMainBlockElm = document.getElementById('<%= SuMMainBlock.ClientID %>');
+                    var MCCONTANER = document.getElementById('<%= mc.ClientID %>');
+                    if ("androidAPIs" in window) {
+                        //
+                    }
+                    else
+                    {
+                        MCCONTANER.innerHTML = "";
+                        MCCONTANER.style.display = "none";
+                        MCCONTANER.style.visibility = "hidden";
+                        location.href = '/SuMMangaInstallAPP.aspx';
+                    }
+                    document.addEventListener("DOMContentLoaded", function () {
+
+                        if ("androidAPIs" in window) {
+
+                            androidAPIs.layoutDoneLoading();
+
+                        }
+                        else
+                        {
+                            MCCONTANER.innerHTML = "";
+                            MCCONTANER.style.display = "none";
+                            MCCONTANER.style.visibility = "hidden";
+                        }
+
+                    });
+                </script>
+                <!--
                 <div style="width:100vw !important; height:98vh !important;max-height:93vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;" id="Div1" runat="server" class="container-fluid">
                     <div class="ForceMaxW" style="width:100vw !important; height:98vh !important;max-height:98vh !important;margin-left:-24px !important;background-color:#F8F9FD;" id="Div2" runat="server">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -372,7 +411,7 @@
         </div>
         <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:50px !important;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px #f2f2f2 !important;z-index:999;display:none;">
                 <a name="no-animation" id="navb2" runat="server" href='javascript:history.go(-1)' style="float:left !important;width:fit-content;">
-                    <img src="/assets/img/SuM_TBrabd_x92.png" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
+                    <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p runat="server" id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;">Navigate Back</b>
                 </a>
@@ -420,7 +459,7 @@
         <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:#ffffff !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;">
             <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;overflow:clip;border-color:#ffffff;margin-bottom:-1px;">
                 <a name="no-animation" href='javascript:history.go(-1)' style="float:left !important;width:fit-content;">
-                    <img src="/assets/img/SuM_TBrabd_x92.png" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
+                    <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:#6840D9;margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;">Navigate Back</b>
                 </a>
@@ -471,6 +510,7 @@
                     <asp:Panel runat="server">
                         <div id="SuMUserNofifications" runat="server" style="animation-duration:0.36s !important;background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;padding-bottom:74px;padding-top:42px;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center animated fadeIn">
                          <div style="width:100vw;height:100vh;max-width:720px !important;margin:0 auto;" >
+                             <div style="display:block !important;margin:0 auto !important;overflow:hidden;width:100vw;max-width:720px;height:24px !important;"></div>
                             <div style="width:calc(100% - 24px) !important;height:68px;display:block !important;overflow:hidden !important;position:relative;margin-top:12px; margin-left:-4px !important;">
                                 <img id="NotiUPFP" runat="server" src="/UserPFP/pfp.png" style="border-radius:50% !important;width:36px;height:36px;margin-top:2px;display:inline-block !important;margin-top:8px !important;" />
                                 <p style="color:rgba(255,255,255,0.92);display:inline !important;font-size:126%;margin-top:8px !important;" id="NotiUserName" runat="server">UserName</p><p style="display:inline !important;font-size:122%;color:#fffffff0;margin-top:12px !important;">'s</p>
@@ -482,7 +522,7 @@
                         </div>
                         <div style="width:calc(100% - 24px) !important;height:14px !important;display:block !important;margin-left:-4px !important;"></div>
                         <a class="shadow-sm" style="color:rgba(255,255,255,0.92);margin-left:12px;margin-top:16px;margin-bottom:3px;font-size:130%;">SuM Notifications</a>
-                        <div id="USERNOTIFICATIONS" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:calc(100% - 342px) !important;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;min-height:62px !important;overflow-x:hidden !important;overflow-y:scroll !important;margin-left:-4px !important;">
+                        <div id="USERNOTIFICATIONS" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:calc(100% - 366px) !important;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;min-height:62px !important;overflow-x:hidden !important;overflow-y:scroll !important;margin-left:-4px !important;">
                             
                         </div>
                     </div>
@@ -505,6 +545,10 @@
                 document.getElementById('MainContent_AccountSettingsOrLogin').href = '#';
                 document.getElementById('SendCommentAria').style.display = 'none';
             };
+            if ("androidAPIs" in window == false) {
+
+                location.href = '/SuMMangaInstallAPP.aspx';
+            }
         </script>
     <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>

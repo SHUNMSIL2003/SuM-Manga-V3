@@ -7,16 +7,18 @@
     <link rel="manifest" href="/manifest.json">
     <!-- <script src="/runsw.js"></script> -->
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/SuMManga-SW.js')
-                    .then(registration => {
-                        console.log(`Service Worker registered! Scope: ${registration.scope}`);
-                    })
-                    .catch(err => {
-                        console.log(`Service Worker registration failed: ${err}`);
-                    });
-            });
+        if ("androidAPIs" in window) {
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/SuMManga-SW.js')
+                        .then(registration => {
+                            console.log(`Service Worker registered! Scope: ${registration.scope}`);
+                        })
+                        .catch(err => {
+                            console.log(`Service Worker registration failed: ${err}`);
+                        });
+                });
+            }
         }
 </script>
     <meta charset="utf-8">
@@ -240,6 +242,17 @@
             </div>
         </div>
     </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                if ("androidAPIs" in window) {
+
+                    androidAPIs.layoutDoneLoading();
+
+                }
+
+            });
+    </script>
         <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
             <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100vw !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
                  <div style="text-align:center;" class="text-center">

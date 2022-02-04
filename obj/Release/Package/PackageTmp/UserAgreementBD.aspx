@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="UserAgreementBD.aspx.cs" Inherits="SuM_Manga_V3.UserAgreementBD" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+        androidAPIs.SetLightStatusBarColor();
+    </script>
     <style>
         .forcecolor {
             color:#6840D9 !important;

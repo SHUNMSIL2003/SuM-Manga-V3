@@ -2,6 +2,9 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+        androidAPIs.SetLightStatusBarColor();
+    </script>
     <style>
                     .FNM5455511 {
                         margin-top:0px !important;

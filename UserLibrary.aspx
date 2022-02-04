@@ -1,6 +1,11 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="UserLibrary.aspx.cs" Inherits="SuM_Manga_V3.UserLibrary" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+        if ("androidAPIs" in window) {
+            androidAPIs.SemiTranStatusBar();
+        }
+    </script>
     <asp:Button ID="UpdatePageContant" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden !important" />
     <div id="SettingsUnavaliblePOPUP" runat="server" style="animation-duration:0.36s !important;background-color:rgba(0,0,0,0.32) !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:999 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center animated fadeIn">
         <div id="SUAC000SP" class="animated zoomIn card shadow-sm" style="margin:0 auto !important;max-width:382px !important;animation-duration:0.28s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(50vh - 106px) !important;">
@@ -12,7 +17,7 @@
             </div>
         </div>
     </div>
-    <div style="background-color:rgb(242,242,242) !important;width:100vw;height:100vh;">
+    <div style="background-color:rgb(242,242,242) !important;width:100vw;height:100vh;padding-top:24px !important;">
     <div id="LibCatTopPart" runat="server" class="animated fadeIn" style="animation-duration:0.32s !important;width:100vw;height:fit-content;background-color:rgb(242,242,242);text-align:center;padding-top:6px;padding-bottom:2px;position:fixed !important;">
         <div style="width:fit-content;height:fit-content;background-color:rgba(255,255,255,0.74);border:2px solid rgba(255,255,255,0.92);border-radius:23px;margin:0 auto !important;padding-top:3px;padding-bottom:3px;padding-left:8px;padding-right:8px;text-align:center;margin-top:8px !important;">
             <a class="" id="cr" style="display:inline-block; background-color:rgba(104,64,217,0.94);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(255,255,255,0.80);" runat="server" onclick="if (!navigator.onLine) { fetch('/UserLibrary.aspx?RT=Curr', { method: 'GET' }).then(res => { location.href = '/UserLibrary.aspx?RT=Curr'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/UserLibrary.aspx?RT=Curr'; }" href="#"><b style="font-size:90%">Currently</b></a>
@@ -42,7 +47,7 @@
             </asp:UpdatePanel>
    </div>
         <script>
-            document.getElementById('<%= ShowReqContantContaner.ClientID %>').style.marginTop = document.getElementById('<%= LibCatTopPart.ClientID %>').offsetHeight + 'px';
+            document.getElementById('<%= ShowReqContantContaner.ClientID %>').style.marginTop = (document.getElementById('<%= LibCatTopPart.ClientID %>').offsetHeight - 24) + 'px';
             document.getElementById('InfoIMG').marginTop = ((document.getElementById('<%= InfoAboutC.ClientID %>').offsetHeight / 2) - (document.getElementById('InfoIMG').offsetHeight / 2)) + 'px';
             setTimeout(() => {
                 document.getElementById('<%= UpdatePageContant.ClientID %>').click();

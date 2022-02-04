@@ -308,6 +308,7 @@
     <Content Include="assets\SuM_earch_Icon_W_x32.png" />
     <Content Include="Brand_x258.png" />
     <Content Include="Contact.aspx" />
+    <Content Include="DEBUG.html" />
     <Content Include="dist\magic.css" />
     <Content Include="dist\magic.min.css" />
     <Content Include="dragscroll.js" />
@@ -369,6 +370,7 @@
     <Content Include="mstile-70x70.png" />
     <Content Include="OfflineBETA.aspx" />
     <Content Include="pwabuilder-sw-register.js" />
+    <Content Include="SuMCreator\CreatorMangaPanel.aspx" />
     <Content Include="SuMManga-SW.js" />
     <Content Include="pwabuilder-sw\pwabuilder-sw-register.js" />
     <Content Include="pwabuilder-sw\pwabuilder-sw.js" />
@@ -1500,8 +1502,12 @@
     <Content Include="storeitems\UramichiOniisan\sumcp0006.jpg" />
     <Content Include="storeitems\UramichiOniisan\sumcp0007.jpg" />
     <Content Include="offline.html" />
+    <Content Include="SuMMangaInstallAPP.aspx" />
     <Content Include="svg\addTBlack.svg" />
     <Content Include="svg\add.svg" />
+    <Content Include="svg\closefullscreen.svg" />
+    <Content Include="svg\ioslogo.svg" />
+    <Content Include="svg\androidlogo.svg" />
     <Content Include="svg\arrowup.svg" />
     <Content Include="svg\attachemail.svg" />
     <Content Include="svg\awesomeTblack.svg" />
@@ -1525,8 +1531,10 @@
     <Content Include="svg\MostSeenW.svg" />
     <Content Include="svg\motionphotosAC.svg" />
     <Content Include="svg\motionphotos.svg" />
+    <Content Include="svg\NewSuMIconSVG.svg" />
     <Content Include="svg\notificationsNEW.svg" />
     <Content Include="svg\notifications.svg" />
+    <Content Include="svg\openinfull.svg" />
     <Content Include="svg\payment.svg" />
     <Content Include="svg\payment_white_36dp.svg" />
     <Content Include="svg\publish.svg" />
@@ -1629,6 +1637,7 @@
     <Content Include="results.json" />
     <Content Include="dist\magic.css.map" />
     <Content Include="dist\magic.min.css.map" />
+    <Content Include=".well-known\assetlinks.json" />
     <None Include="Properties\PublishProfiles\Sum-Manga - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\Sum-Manga - Web Deploy2.pubxml" />
     <None Include="Properties\PublishProfiles\Sum-Manga - Web Deploy3.pubxml" />
@@ -3724,6 +3733,13 @@
     <Compile Include="SuMAdmin\AdminLogin.aspx.designer.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SuMCreator\CreatorMangaPanel.aspx.cs">
+      <DependentUpon>CreatorMangaPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuMCreator\CreatorMangaPanel.aspx.designer.cs">
+      <DependentUpon>CreatorMangaPanel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SuMCreator\CreatorPanel.aspx.cs">
       <DependentUpon>CreatorPanel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3744,6 +3760,13 @@
     </Compile>
     <Compile Include="SuMManga.Mobile.Master.designer.cs">
       <DependentUpon>SuMManga.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SuMMangaInstallAPP.aspx.cs">
+      <DependentUpon>SuMMangaInstallAPP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuMMangaInstallAPP.aspx.designer.cs">
+      <DependentUpon>SuMMangaInstallAPP.aspx</DependentUpon>
     </Compile>
     <Compile Include="UploadConsole\CommentsSQLEDITOR.aspx.cs">
       <DependentUpon>CommentsSQLEDITOR.aspx</DependentUpon>
@@ -3844,6 +3867,7 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="SuMManga.Mobile.Master" />
+    <Content Include="SuM-Manga.apk" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

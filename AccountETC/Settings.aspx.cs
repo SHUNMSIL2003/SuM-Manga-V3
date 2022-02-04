@@ -72,6 +72,11 @@ namespace SuM_Manga_V3.AccountETC
                 UserNameEP.Attributes["placeholder"] = UserName;
                 EmailEP.Attributes["placeholder"] = currEmail;
                 PFPC.Attributes["src"] = ResolveUrl(CurrPFP);
+                if (GetUserInfoCookie["CreatorName"] != null) 
+                {
+                    CreatorClick.Attributes["onclick"] = "if (!navigator.onLine) { fetch('/SuMCreator/CreatorPanel.aspx', { method: 'GET' }).then(res => { location.href = '/SuMCreator/CreatorPanel.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/SuMCreator/CreatorPanel.aspx'; }";
+                    CraetorSecTitle.InnerText = "creator panel";
+                }
             }
             else
             {
@@ -84,6 +89,7 @@ namespace SuM_Manga_V3.AccountETC
             HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
             if (GetPerModeInfoCookie != null)
             {
+                SettingsUnavaliblePOPUP.Attributes["style"] = "animation-duration:0s !important;background-color:rgba(0,0,0,0.32) !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:999 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
                 StartSetAnim.Attributes["class"] = "";
                 SlideDownCard.Attributes["class"] = "";
                 PFP.Attributes["class"] = "";

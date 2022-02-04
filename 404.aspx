@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="404.aspx.cs" Inherits="SuM_Manga_V3._404" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+        androidAPIs.SetLightStatusBarColor();
+    </script>
     <style>
         body {
             overflow: hidden; /* Hide scrollbars */
@@ -19,6 +22,14 @@
             pointer-events: none;
         }
     </style>
+    <script>
+        if ("androidAPIs" in window) {
+            androidAPIs.SemiTranStatusBar();
+        }
+        else {
+            location.href = '/SuMMangaInstallAPP.aspx';
+        }
+    </script>
                      <div class="text-center mt-5 animated fadeIn" style="text-align:center;position:relative;vertical-align:middle;margin-top:24vh !important;">
                              <div class=" animated pulse" >
                                  <img src="/svg/error.svg" style="width:142px;height:142px;margin:0 auto !important;" />

@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="Explore.aspx.cs" Inherits="SuM_Manga_V3.Explore" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+        androidAPIs.SetLightStatusBarColor();
+    </script>
     <style>
         * {box-sizing: border-box;}
 .mySlides {display: none;}
@@ -80,10 +83,15 @@ img {vertical-align: middle;}
     </style>
     <div id="AnimatedMainContHEx" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;">
 <div class="slideshow-container" id="cardscontain" runat="server" style="width:100% !important;height:fit-content !important;overflow:hidden !important;">
-    <div style="background-color:#f2f2f2 !important;width:100% !important;height:fit-content !important;display:block;margin-bottom:-6px;padding-top:8px !important;">
-        <img style="display:inline;margin-left:16px;margin-top:8px;float:left;" width="38" height="38" src="/svg/awesomeTblack.svg" />
-        <p style="color:#000000f0 !important;font-size:128%;margin-top:12px;margin-left:6px;display:inline;float:left;">Latest of manga !</p>
+    <div id="ThisPageTopBarFixer" style="background-color:#f2f2f2 !important;width:100% !important;height:fit-content !important;display:block;margin-bottom:-6px;padding-top:8px !important;">
+        <img style="display:inline;margin-left:16px;margin-top:34px;float:left;" width="38" height="38" src="/svg/awesomeTblack.svg" />
+        <p style="color:#000000f0 !important;font-size:128%;margin-top:36px;margin-left:6px;display:inline;float:left;">Latest of manga !</p>
     </div>
+    <script>
+        if ("androidAPIs" in window) {
+            androidAPIs.SemiTranStatusBar();
+        }
+    </script>
     <div style="background-color:#f2f2f2 !important;width:100%;height:fit-content;">
     <div id="cardstoshow" runat="server" style="margin:0 auto !important;border-radius:12px !important;margin-bottom:12px !important;margin-top:12px !important;width:fit-content;height:fit-content;overflow:hidden !important;">
 <div class="mySlides fade" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:82vw !important;padding:12px;">

@@ -80,10 +80,21 @@ namespace SuM_Manga_V3.AccountETC
 
                             if (SIDsCountLessThanX(CMDRs.ToString(), 3) == true)
                             {
-                                string qc = "SELECT CreatorName FROM SuMCreators WHERE UserName = @UserName";
+                                string qc = "SELECT Creator FROM SuMUsersAccounts WHERE UserID = @UID";
                                 SqlCommand cv = new SqlCommand(qc, sqlCon);
-                                cv.Parameters.AddWithValue("@UserName", username);
-                                var ituac = cv.ExecuteScalar();
+                                cv.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                                cv.Parameters["@UID"].Value = ID;
+                                bool ituac = false;
+                                using (var reader = cv.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        if (reader != null)
+                                        {
+                                            ituac = reader.GetBoolean(0);
+                                        }
+                                    }
+                                }
                                 string GSID = GetNewSID(username);
                                 qc = "UPDATE SuMUsersAccounts SET SIDs = @NSID WHERE UserID = @UID";
                                 cv = new SqlCommand(qc, sqlCon);
@@ -91,7 +102,7 @@ namespace SuM_Manga_V3.AccountETC
                                 cv.Parameters["@UID"].Value = ID;
                                 cv.Parameters.AddWithValue("@NSID", CMDRs.ToString() + GSID);
                                 cv.ExecuteNonQuery();
-                                if (ituac == null)
+                                if (ituac == false)
                                 {
                                     SaveCookie(username, ID, GSID);
                                     sqlCon.Close();
@@ -99,11 +110,12 @@ namespace SuM_Manga_V3.AccountETC
                                 }
                                 else
                                 {
-                                    qc = "SELECT UserID FROM SuMCreators WHERE UserName = @UserName";
+                                    qc = "SELECT CreatorName FROM SuMCreators WHERE CreatorID = @CreatorID";
                                     cv = new SqlCommand(qc, sqlCon);
-                                    cv.Parameters.AddWithValue("@UserName", username);
-                                    int CID = Convert.ToInt32(cv.ExecuteScalar().ToString());
-                                    SaveSCCookie(username, ituac.ToString(), ID, CID, GSID);
+                                    cv.Parameters.AddWithValue("@CreatorID", SqlDbType.Int);
+                                    cv.Parameters["@CreatorID"].Value = ID;
+                                    string CreatorIDName = cv.ExecuteScalar().ToString();
+                                    SaveSCCookie(username, ID, CreatorIDName, GSID);
                                     sqlCon.Close();
                                     HttpContext.Current.Response.Redirect("~/Explore.aspx");
                                 }
@@ -121,18 +133,29 @@ namespace SuM_Manga_V3.AccountETC
                         }
                         else
                         {
-                            string qc = "SELECT CreatorName FROM SuMCreators WHERE UserName = @UserName";
+                            string qc = "SELECT Creator FROM SuMUsersAccounts WHERE UserID = @UID";
                             SqlCommand cv = new SqlCommand(qc, sqlCon);
-                            cv.Parameters.AddWithValue("@UserName", username);
-                            var ituac = cv.ExecuteScalar();
+                            cv.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                            cv.Parameters["@UID"].Value = ID;
+                            bool ituac = false;
+                            using (var reader = cv.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    if (reader != null)
+                                    {
+                                        ituac = reader.GetBoolean(0);
+                                    }
+                                }
+                            }
                             string GSID = GetNewSID(username);
                             qc = "UPDATE SuMUsersAccounts SET SIDs = @NSID WHERE UserID = @UID";
                             cv = new SqlCommand(qc, sqlCon);
                             cv.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                            cv.Parameters["UID"].Value = ID;
-                            cv.Parameters.AddWithValue("@NSID", GSID);
+                            cv.Parameters["@UID"].Value = ID;
+                            cv.Parameters.AddWithValue("@NSID", CMDRs.ToString() + GSID);
                             cv.ExecuteNonQuery();
-                            if (ituac == null)
+                            if (ituac == false)
                             {
                                 SaveCookie(username, ID, GSID);
                                 sqlCon.Close();
@@ -140,11 +163,12 @@ namespace SuM_Manga_V3.AccountETC
                             }
                             else
                             {
-                                qc = "SELECT UserID FROM SuMCreators WHERE UserName = @UserName";
+                                qc = "SELECT CreatorName FROM SuMCreators WHERE CreatorID = @CreatorID";
                                 cv = new SqlCommand(qc, sqlCon);
-                                cv.Parameters.AddWithValue("@UserName", username);
-                                int CID = Convert.ToInt32(cv.ExecuteScalar().ToString());
-                                SaveSCCookie(username, ituac.ToString(), ID, CID, GSID);
+                                cv.Parameters.AddWithValue("@CreatorID", SqlDbType.Int);
+                                cv.Parameters["@CreatorID"].Value = ID;
+                                string CreatorIDName = cv.ExecuteScalar().ToString();
+                                SaveSCCookie(username, ID, CreatorIDName, GSID);
                                 sqlCon.Close();
                                 HttpContext.Current.Response.Redirect("~/Explore.aspx");
                             }
@@ -198,14 +222,13 @@ namespace SuM_Manga_V3.AccountETC
             HttpContext.Current.Response.Cookies.Add(userInfo);
             HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)");
         }
-        protected static void SaveSCCookie(string UserName, string craetorname, int ID, int CID, string SessionID)
+        protected static void SaveSCCookie(string UserName, int ID, string CreatorName, string SessionID)
         {
             HttpCookie userInfo = new HttpCookie("SuMCurrentUser");
             userInfo["UserName"] = UserName;
-            userInfo["CreatorName"] = craetorname;
+            userInfo["CreatorName"] = CreatorName;
             userInfo["SID"] = SessionID;
             userInfo["ID"] = ID.ToString();
-            userInfo["CID"] = CID.ToString();
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
             HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)");

@@ -104,12 +104,6 @@
 </head>
 <body id="page-top" style="overflow: hidden;height:100vh;">
     <style>
-        @media print {
-
-            html, body {
-                display: none; /* hide whole page */
-            }
-        }
         ::-webkit-scrollbar {
             margin-top:26px !important;
             width: 3px;

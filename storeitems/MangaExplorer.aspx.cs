@@ -56,7 +56,7 @@ namespace SuM_Manga_V3.storeitems
                             //string sendhtmlforchimges = "";
                             string deafultstartitems = "/storeitems/";
                             string slash0 = "/";
-                            string imgstyle = '"'.ToString() + "width:100%;max-width:920px;margin-bottom:0px !important;display:block !important;" + '"'.ToString();
+                            string imgstyle = '"'.ToString() + "width:100%;margin-bottom:0px !important;display:block !important;" + '"'.ToString();
                             //string x = "lazy";
                             string LazyLoading = "loading=" + '"'.ToString() + "lazy" + '"'.ToString();
                             for (int i = 0; i < (filePaths.Length - 1); i++)
@@ -64,7 +64,7 @@ namespace SuM_Manga_V3.storeitems
                                 string filename = System.IO.Path.GetFileName(filePaths[i]);
                                 TheMangaPhotos.InnerHtml += "<img " + LazyLoading + " style=" + imgstyle + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + filename + " />";
                             }
-                            TheMangaPhotos.InnerHtml += "<img " + LazyLoading + " style=" + '"'.ToString() + "width:100%;max-width:920px;margin-bottom:0px !important;display:block !important;" + '"'.ToString() + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + System.IO.Path.GetFileName(filePaths[filePaths.Length - 1]) + " />";
+                            TheMangaPhotos.InnerHtml += "<img " + LazyLoading + " style=" + '"'.ToString() + "width:100%;margin-bottom:0px !important;display:block !important;" + '"'.ToString() + " src=" + deafultstartitems + MangaName + slash0 + ChapterX + slash0 + System.IO.Path.GetFileName(filePaths[filePaths.Length - 1]) + " />";
                             //string beforerelasecode = "";
                             //beforerelasecode += sendhtmlforchimges;
                             //TheMangaPhotos.InnerHtml = beforerelasecode;
@@ -151,16 +151,36 @@ namespace SuM_Manga_V3.storeitems
                 string ThemeColor = Request.QueryString["TC"].ToString();
                 CommentsSecTopPartColor.Attributes["style"] = "display:block;margin-top:18px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background-color:" + ThemeColor.Replace("0.74", "0.58") + ";padding:0px !important;";
                 SendBTN.Attributes["style"] = "background-color:rgba(0,0,0,0);border-radius:4px;width:40px;height:34px;margin:4px;";
-                CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
-                if (PreformanceMode == true)
+                if (PreformanceMode == false)
                 {
-                    Comments.Attributes["class"] = "fadeIn";
-                    dot1.Attributes["style"] = "transition: none !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:" + ThemeColor + ";margin-right:6px;";
+                    dot1.Attributes["style"] = "transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:" + ThemeColor + ";margin-right:6px;";
+                    CommentsSecCont.Attributes["style"] = " -webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
                 }
                 else
                 {
-                    dot1.Attributes["style"] = "transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:" + ThemeColor + ";margin-right:6px;";
+                    Comments.Attributes["class"] = "fadeIn";
+                    CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
+                    dot1.Attributes["style"] = "transition: none !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:" + ThemeColor + ";margin-right:6px;";
                 }
+                if (IsPostBack == false)
+                {
+                    AddOneView();
+                }
+            }
+        }
+        protected void AddOneView()
+        {
+            string x = Request.QueryString["VC"];
+            int y = Convert.ToInt32(x);
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "UPDATE SuMManga SET MangaViews = MangaViews + 1 WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = y;
+                sqlCmd.ExecuteNonQuery();
+                sqlCon.Close();
             }
         }
         protected void AddToFavList(object sender, EventArgs e)

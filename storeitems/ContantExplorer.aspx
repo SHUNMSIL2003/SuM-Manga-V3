@@ -3,10 +3,16 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
         document.getElementById('fullnavscont').style.display = 'block';
+        if ("androidAPIs" in window) {
+            androidAPIs.FullyTransStatusBar();
+        }
+        else {
+            location.href = '/SuMMangaInstallAPP.aspx';
+        }
     </script>
     <asp:Button ID="UpdateWannaNFavNCurr" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden !important;" />
-    <div id="ChapterUnavaliblePOPUP" runat="server" style="background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center">
-        <div id="SUAC000SP" class="animated zoomIn card shadow-sm" style="margin:0 auto !important;max-width:382px !important;animation-duration:0.28s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(50vh - 106px) !important;">
+    <div id="ChapterUnavaliblePOPUP" runat="server" style="background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center GoodBlurAnim">
+        <div id="SUAC000SP" runat="server" class="animated zoomIn card shadow-sm" style="margin:0 auto !important;max-width:382px !important;animation-duration:0.28s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(50vh - 106px) !important;">
             <p style="font-size:146%;color:#232323;margin-bottom:0px;margin:0 auto;margin-top:6px !important;">Chapter is unavalible</p>
             <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(0, 0, 0, 0.527);background-color:rgba(0, 0, 0, 0.527);width:84% !important;margin:0px;margin-block:0px;height:2px !important;margin-bottom:12px !important;margin-top:8px !important;border-radius:1px !important;">
             <p style="width:80% !important;margin:0 auto;color:rgba(0, 0, 0, 0.527);height:fit-content;text-align:center;display:block;font-size:112%;">The reason is eather the chapter is not Finished/Uploaded yet, or it is not sutable for audience from your contry or your age.</p>
@@ -22,9 +28,9 @@
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-                        <div id="SuMLoginUI" runat="server" style=" background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;" class="row justify-content-center">
+                        <div id="SuMLoginUI" runat="server" style=" background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;" class="row justify-content-center GoodBlur">
             <div id="SacondContForLogin" style="width:100vw !important;height:100vh !important;" class="col-md-9 col-lg-12 col-xl-10">
-                <div style="border-radius:22px !important;max-width:960px !important;margin:0 auto !important;margin-top:32px !important;" class="card shadow-lg o-hidden border-0 my-5 sumsmoothtrans">
+                <div style="border-radius:22px !important;max-width:960px !important;margin:0 auto !important;margin-top:64px !important;" class="card shadow-lg o-hidden border-0 my-5 sumsmoothtrans">
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-flex">
@@ -303,7 +309,7 @@
                     </asp:Panel>
                 </ContentTemplate>
             </asp:UpdatePanel>
-            <a id="SuMShare" runat="server" style="width:38px;width:38px;float:right;margin-top:-46px;padding:4px;margin-right:6px;display:inline !important;" class="animated fadeIn" onclick="#">
+            <a id="SuMShare" style="width:38px;width:38px;float:right;margin-top:-46px;padding:4px;margin-right:6px;display:inline !important;" class="animated fadeIn" onclick="androidAPIs.ShareThisPage();">
                 <img src="/svg/share.svg" style="width:28px;height:28px;" alt="Share" />
             </a>
         </div>
