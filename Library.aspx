@@ -2,9 +2,14 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        if ("androidAPIs" in window) {
-            androidAPIs.SemiTranStatusBar();
+        androidAPIs.SetLightStatusBarColor();
+        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        if (IsFullScreen == true) {
+            androidAPIs.DeactivateFullScreenMode();
         }
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+        }, 420);
 </script>
     <style>
         img {

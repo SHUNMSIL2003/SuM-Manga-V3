@@ -1,6 +1,10 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" Async="true" CodeBehind="MangaExplorer.aspx.cs" Inherits="SuM_Manga_V3.storeitems.MangaExplorer" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+        androidAPIs.SetDarkStatusBarColor();
+        androidAPIs.SetSuMSecureFlag();
+    </script>
     <style>
         .forcecolor {
             color:#6840D9 !important;
@@ -39,9 +43,10 @@
             box-shadow: inset 0 0px 0 #000 !important;
         }
     </style>
+    <a onclick="FullScreenModeManager();" style="pointer-events:all !important;width:42px;height:42px;display:block;position:fixed !important;z-index:999 !important;float:left !important;margin-left:calc(100% - 42px) !important;margin-top:74px !important;background-color:rgba(0,0,0,0.20) !important;border-top-left-radius:21px;border-bottom-left-radius:21px;border-top-right-radius:0px;border-bottom-right-radius:0px;padding-top:7px;padding-bottom:7px;padding-left:5px !important;padding-right:9px !important;"><img id="FullScStateIMG" src="/svg/openinfull.svg" style="width:28px;height:28px;margin:0 auto;" /></a>
     <div class="" id="pfc" runat="server" style="background-color:#6840D9;margin:0 auto !important;width:100vw !important;height:100vh !important;">
-        <div id="FirstAniDiv" runat="server" class="animated fadeInRight" style="margin:0 auto !important;width:100vw !important;">
-            <div id="ThisPageSubContaner" class="nospace ContantDivSuM" style="height:fit-content;width:calc(100vw - 18px) !important;margin:0 auto !important;max-width:720px !important;background-color:#ffffff !important;margin-top:32px !important;margin-bottom:164px !important;border-radius:20px !important;">
+        <div id="FirstAniDiv" runat="server" class="animated fadeInRight" style="margin:0 auto !important;width:100vw !important;height:100vh !important;overflow-y:scroll;">
+            <div id="ThisPageSubContaner" class="nospace ContantDivSuM" style="height:fit-content;width:calc(100vw - 18px) !important;margin:0 auto !important;max-width:720px !important;background-color:#ffffff !important;margin-top:64px !important;margin-bottom:164px !important;border-radius:20px !important;">
                 <div id="InfoCardBGForJAVA" style="background-color:rgba(0,0,0,0.12);width:calc(100% - 18px) !important;height:fit-content;border-radius:20px !important;margin:0 auto !important;margin-top:26px !important;margin-bottom:16px !important;">
                     <div style="width:100% !important;height:fit-content !important;font-size:96%;padding-left:16px !important;padding-top:22px !important;padding-bottom:8px !important;">
                         <p id="MangaName" runat="server" style="display:inline-block !important;font-size:118%;color:rgba(0,0,0,1) !important;">#name</p>
@@ -121,6 +126,7 @@
                     if (UPDATEDCONTANT == false) {
                         document.getElementById('<%= UpdateInfo.ClientID %>').click();
                         UPDATEDCONTANT = true;
+                        androidAPIs.SetSuMSecureFlag();
                     }
                 </script>
             </div>
@@ -142,10 +148,12 @@
             </style>
             <asp:Button ID="CommentsSecOpenBTN" runat="server" OnClick="LoadCommentsSection" CssClass="HiddenASPBTN" />
             <script type="text/javascript">
+                androidAPIs.SetSuMSecureFlag();
                 var CommentsSecIsloaded = false;
                 var CommentsSecFirstLoad = true;
                 var elm = document.getElementById("MainContent_CommentsSecCont");
-                elm.style.marginTop = (elm.style.marginTop - document.getElementById('subnavscont2').offsetHeight) + 'px';
+                var NavBarHeightValue6544dfhf645 = androidAPIs.SuMGetNavigationBarHeight();
+                elm.style.marginTop = (elm.style.marginTop - document.getElementById('subnavscont2').offsetHeight - NavBarHeightValue6544dfhf645) + 'px';
                 function FuncLoadCommentsSec() {
                     if (CommentsSecIsloaded == false) {
                         if (CommentsSecFirstLoad == true) {
@@ -219,6 +227,7 @@
                                     setTimeout(AnimationDots123, 1900);
                                 }
                                 AnimationDots123();
+                                androidAPIs.SetSuMSecureFlag();
                             </script>
                         </div>
                         <br />
@@ -230,4 +239,67 @@
                 <a style="" class="btn btn-primary btn-sm animated fadeInUp" href="#"></a>
             </div>
     </div>
+    <p style="display:none !important;visibility:hidden !important;" id="FullScInfoElmPLaceHolder" >0</p>
+    <script>
+        var FullScPlaceH = document.getElementById('FullScInfoElmPLaceHolder');
+        var ThisPageSubContanerElm = document.getElementById('ThisPageSubContaner');
+        var InfoCardBGForJAVAElmjusjd5 = document.getElementById('InfoCardBGForJAVA');
+        var MangasPhotsosElm = document.getElementById('<%= TheMangaPhotos.ClientID %>');
+        var FullScreenImgElm = document.getElementById('FullScStateIMG');
+        //
+        viewport = document.querySelector("meta[name=viewport]");
+        //var SubConOrWidth = ThisPageSubContanerElm.style.width;
+        var PhotosOrBorder = MangasPhotsosElm.style.border;
+        function FullScreenModeManager() {
+            if (FullScPlaceH.innerText.replace(/\s/g, '') == '0') {
+                ThisPageSubContanerElm.style.width = '100vw';
+                InfoCardBGForJAVAElmjusjd5.style.display = 'none';
+                MangasPhotsosElm.style.width = '100vw';
+                MangasPhotsosElm.style.border = null;
+                androidAPIs.ActivateFullScreenMode();
+                ThisPageSubContanerElm.style.marginTop = '0px';
+                ThisPageSubContanerElm.style.borderRadius = '0px';
+                MangasPhotsosElm.style.borderRadius = '0px';
+                FullScreenImgElm.src = '/svg/closefullscreen.svg';
+                FullScPlaceH.innerText = '1';
+                HideMangaExplorerBar();
+                HideCS5451();
+                NextBtnFullSState();
+                viewport.setAttribute('content', 'user-scalable=yes, initial-scale=1, maximum-scale=1.5, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
+                androidAPIs.SetSuMSecureFlag();
+            }
+            else {
+                androidAPIs.DeactivateFullScreenMode();
+                ThisPageSubContanerElm.style.width = 'calc(100% - 18px)';
+                InfoCardBGForJAVAElmjusjd5.style.display = null;
+                MangasPhotsosElm.style.width = 'calc(100% - 18px)';
+                MangasPhotsosElm.style.border = PhotosOrBorder;
+                ThisPageSubContanerElm.style.marginTop = '64px';
+                ThisPageSubContanerElm.style.borderRadius = '20px';
+                MangasPhotsosElm.style.borderRadius = '20px';
+                FullScreenImgElm.src = '/svg/openinfull.svg';
+                FullScPlaceH.innerText = '0';
+                ShowMangaExplorerBar();
+                NextBtnOrState();
+                androidAPIs.SetSuMSecureFlag();
+                viewport.setAttribute('content', 'user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
+            }
+        }
+        function HideCS5451() {
+            document.getElementById('<%= CommentsSecCont.ClientID %>').style.display = 'none';
+            CommentsSecIsloaded = false;
+            elm.style.display = 'none';
+            elm.classList.remove('slideInUp');
+            document.getElementById('MainContent_Comments').classList.remove('fadeIn');
+            elm.classList.add('slideDown');
+            document.getElementById('MainContent_Comments').classList.add('fadeIn');
+        }
+        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        if (IsFullScreen == true) {
+            FullScreenModeManager();
+            androidAPIs.ActivateFullScreenMode();
+            androidAPIs.SetSuMSecureFlag();
+        }
+        androidAPIs.SetSuMSecureFlag();
+    </script>
 </asp:Content>

@@ -2,9 +2,16 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        if ("androidAPIs" in window) {
-            androidAPIs.SemiTranStatusBar();
+        androidAPIs.SetLightStatusBarColor();
+        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        if (IsFullScreen == true) {
+            androidAPIs.DeactivateFullScreenMode();
+            androidAPIs.SetLightStatusBarColor();
         }
+        androidAPIs.SetLightStatusBarColor();
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+        }, 420);
     </script>
     <asp:Button ID="UpdatePageContant" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden !important" />
     <div id="SettingsUnavaliblePOPUP" runat="server" style="animation-duration:0.36s !important;background-color:rgba(0,0,0,0.32) !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:999 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center animated fadeIn">
@@ -17,8 +24,8 @@
             </div>
         </div>
     </div>
-    <div style="background-color:rgb(242,242,242) !important;width:100vw;height:100vh;padding-top:24px !important;">
-    <div id="LibCatTopPart" runat="server" class="animated fadeIn" style="animation-duration:0.32s !important;width:100vw;height:fit-content;background-color:rgb(242,242,242);text-align:center;padding-top:6px;padding-bottom:2px;position:fixed !important;">
+    <div id="ThisPageSBarFixUpPropElm" style="background-color:rgb(242,242,242) !important;width:100vw;height:100vh;padding-top:24px !important;">
+    <div id="LibCatTopPart" runat="server" class="animated fadeIn" style="animation-duration:0.32s !important;width:100vw;height:fit-content;background-color:rgb(242,242,242);text-align:center;padding-top:6px;padding-bottom:2px;position:fixed !important;padding-top:0px !important;">
         <div style="width:fit-content;height:fit-content;background-color:rgba(255,255,255,0.74);border:2px solid rgba(255,255,255,0.92);border-radius:23px;margin:0 auto !important;padding-top:3px;padding-bottom:3px;padding-left:8px;padding-right:8px;text-align:center;margin-top:8px !important;">
             <a class="" id="cr" style="display:inline-block; background-color:rgba(104,64,217,0.94);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(255,255,255,0.80);" runat="server" onclick="if (!navigator.onLine) { fetch('/UserLibrary.aspx?RT=Curr', { method: 'GET' }).then(res => { location.href = '/UserLibrary.aspx?RT=Curr'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/UserLibrary.aspx?RT=Curr'; }" href="#"><b style="font-size:90%">Currently</b></a>
             <a class="" id="mf" runat="server" style="background-color:rgb(104,64,217,0);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);" onclick="if (!navigator.onLine) { fetch('/UserLibrary.aspx?RT=Fav', { method: 'GET' }).then(res => { location.href = '/UserLibrary.aspx?RT=Fav'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/UserLibrary.aspx?RT=Fav'; }" href="#"><b style="font-size:98%">Favorites</b></a>
@@ -54,4 +61,9 @@
             }, 80);
         </script>
     </div>
+    <script>
+        var ThisPageSBarFixUpPropElmVar = document.getElementById('ThisPageSBarFixUpPropElm');
+        var StatusBarHeightValue = androidAPIs.getStatusBarHeight();
+        ThisPageSBarFixUpPropElmVar.style.paddingTop = (StatusBarHeightValue) + 'px !important';
+    </script>
 </asp:Content>

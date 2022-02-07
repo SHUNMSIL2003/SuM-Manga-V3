@@ -2,9 +2,15 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        if ("androidAPIs" in window) {
-            androidAPIs.SemiTranStatusBar();
+        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        if (IsFullScreen == true) {
+            androidAPIs.DeactivateFullScreenMode();
+            androidAPIs.SetLightStatusBarColor();
         }
+        androidAPIs.SetLightStatusBarColor();
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+        }, 420);
     </script>
     <style>
         a {
@@ -36,6 +42,12 @@
     </div>
                         <div style="height:100vh;width:100vw; padding:0px !important;padding-top:0px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
     <div style="height:100% !important;width:100vw;max-width:720px !important;margin:0 auto !important;">
+    <div id="ThisPageSBarFixUpPropElm" style="width:100%;height:0px;background-color:#ffffff !important;display:block;"></div>
+        <script>
+            var ThisPageSBarFixUpPropElmVar = document.getElementById('ThisPageSBarFixUpPropElm');
+            var StatusBarHeightValue = androidAPIs.getStatusBarHeight();
+            ThisPageSBarFixUpPropElmVar.style.height = (StatusBarHeightValue + 2) + 'px !important';
+        </script>
     <div id="SlideDownCard" runat="server" style="animation-duration:0.26s !important;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#ffffff !important;margin:0 auto !important; margin-top:0px !important;border-bottom-left-radius:20px;border-bottom-right-radius:20px;padding:0px !important;padding-bottom:12px !important;padding-top:8px !important;margin-bottom:22px !important;" class="animated slideInDown">
         <div style="width:100vw;height:22px;background-color:#ffffff;position:relative;z-index:998;margin-top:-8px !important;"></div>
         <asp:UpdatePanel ID="ProfileInfoUpdatepANEL" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
@@ -289,7 +301,7 @@
         </div>
             <div class="" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:132px;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.0.1 Beta</p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.0.2 Beta</p>
                 <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:#ffffff;background: rgba(104,64,217,0.62);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
             </div>

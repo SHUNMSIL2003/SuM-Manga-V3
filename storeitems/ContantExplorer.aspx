@@ -3,12 +3,17 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
         document.getElementById('fullnavscont').style.display = 'block';
+        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        if (IsFullScreen == true) {
+            androidAPIs.DeactivateFullScreenMode();
+        }
         if ("androidAPIs" in window) {
             androidAPIs.FullyTransStatusBar();
         }
         else {
             location.href = '/SuMMangaInstallAPP.aspx';
         }
+        androidAPIs.SetDarkStatusBarColor();
     </script>
     <asp:Button ID="UpdateWannaNFavNCurr" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden !important;" />
     <div id="ChapterUnavaliblePOPUP" runat="server" style="background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center GoodBlurAnim">
@@ -30,7 +35,7 @@
                     <asp:Panel runat="server">
                         <div id="SuMLoginUI" runat="server" style=" background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;" class="row justify-content-center GoodBlur">
             <div id="SacondContForLogin" style="width:100vw !important;height:100vh !important;" class="col-md-9 col-lg-12 col-xl-10">
-                <div style="border-radius:22px !important;max-width:960px !important;margin:0 auto !important;margin-top:64px !important;" class="card shadow-lg o-hidden border-0 my-5 sumsmoothtrans">
+                <div style="border-radius:22px !important;max-width:960px !important;margin:0 auto !important;margin-top:82px !important;" class="card shadow-lg o-hidden border-0 my-5 sumsmoothtrans">
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-flex">
@@ -187,7 +192,7 @@
     <div id="CONTANERFROCONTANTEXPLORER" style="width:100vw !important;max-width:740px !important;margin:0 auto !important;">
     <div id="ACont0" runat="server" class="fadeIn animated" style="width:100%;">
     <div class="animated fadeIn" style="height:fit-content;width:100%;overflow:hidden; background-color:transparent !important;position:fixed;max-width:720px;overflow-x:hidden !important;" id="CategoryX" runat="server">
-    <div id="infoCover" runat="server" class="mySlides animated pulse" style="animation-duration:1.2s !important;overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/X/X.jpg); background-size: cover; background-position: center;width:100% !important;height:fit-content;">
+    <div id="infoCover" runat="server" class="mySlides animated pulse" style="animation-duration:1.2s !important;overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/X/X.jpg); background-size: cover; background-position: center;width:100% !important;height:fit-content;padding-top:2px !important;">
     <div style="width:94%;height:fit-content;position:relative;margin:0 auto;margin-top:32px;">
         <h1 id="MTitle" runat="server" style="float:left;margin-top:12px;margin-left:12px;color:#ffffff;font-size:186%;margin-right:14px !important;width:100%;height:fit-content;">#</h1>
         <p style="color:rgb(255, 255, 255, 0.82);float:right;margin-top:-18px;margin-right:10px;">By <b id="MangaCreator" style="font-size:80%;" runat="server"></b></p>
@@ -204,6 +209,11 @@
     </div>
         <div style="margin:0 auto;margin-bottom:28px;height:12px !important;width:100%;position:fixed;"></div>
 </div>
+        <script>
+            var ThisPageSBarFixUpPropElmVar = document.getElementById('<%= infoCover.ClientID %>');
+            var StatusBarHeightValue = androidAPIs.getStatusBarHeight();
+            ThisPageSBarFixUpPropElmVar.style.paddingTop = (2 + StatusBarHeightValue) + 'px !important';
+        </script>
 </div>
             </div>
         <div class="animated fadeIn" style="animation-duration:0.18s;opacity:0;float:left !important;margin-top:20vh;width:100% !important;height:66px !important;overflow:hidden !important;position:fixed !important;" id="FavNWannaContaner" runat="server">

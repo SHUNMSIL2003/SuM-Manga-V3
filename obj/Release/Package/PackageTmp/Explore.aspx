@@ -3,6 +3,15 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
         androidAPIs.SetLightStatusBarColor();
+        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        if (IsFullScreen == true) {
+            androidAPIs.DeactivateFullScreenMode();
+            androidAPIs.SetLightStatusBarColor();
+        }
+        androidAPIs.SetLightStatusBarColor();
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+        }, 420);
     </script>
     <style>
         * {box-sizing: border-box;}
@@ -81,16 +90,18 @@ img {vertical-align: middle;}
     height: 74px;
 }
     </style>
-    <div id="AnimatedMainContHEx" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;">
+    <div id="AnimatedMainContHEx" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;overflow-y:scroll;">
 <div class="slideshow-container" id="cardscontain" runat="server" style="width:100% !important;height:fit-content !important;overflow:hidden !important;">
     <div id="ThisPageTopBarFixer" style="background-color:#f2f2f2 !important;width:100% !important;height:fit-content !important;display:block;margin-bottom:-6px;padding-top:8px !important;">
-        <img style="display:inline;margin-left:16px;margin-top:34px;float:left;" width="38" height="38" src="/svg/awesomeTblack.svg" />
-        <p style="color:#000000f0 !important;font-size:128%;margin-top:36px;margin-left:6px;display:inline;float:left;">Latest of manga !</p>
+        <img id="ThisPageSBarFixUpPropElm0" style="display:inline;margin-left:16px;margin-top:34px;float:left;" width="38" height="38" src="/svg/awesomeTblack.svg" />
+        <p id="ThisPageSBarFixUpPropElm1" style="color:#000000f0 !important;font-size:128%;margin-top:36px;margin-left:6px;display:inline;float:left;">Latest of manga !</p>
     </div>
     <script>
-        if ("androidAPIs" in window) {
-            androidAPIs.SemiTranStatusBar();
-        }
+        var ThisPageSBarFixUpPropElmVar0 = document.getElementById('ThisPageSBarFixUpPropElm0');
+        var ThisPageSBarFixUpPropElmVar1 = document.getElementById('ThisPageSBarFixUpPropElm1');
+        var StatusBarHeightValue = androidAPIs.getStatusBarHeight();
+        ThisPageSBarFixUpPropElmVar0.style.marginTop = (12 + StatusBarHeightValue) + 'px !important';
+        ThisPageSBarFixUpPropElmVar1.style.marginTop = (12 + StatusBarHeightValue) + 'px !important';
     </script>
     <div style="background-color:#f2f2f2 !important;width:100%;height:fit-content;">
     <div id="cardstoshow" runat="server" style="margin:0 auto !important;border-radius:12px !important;margin-bottom:12px !important;margin-top:12px !important;width:fit-content;height:fit-content;overflow:hidden !important;">
@@ -219,4 +230,25 @@ img {vertical-align: middle;}
         </div>
         <div style="display:block !important;width:100% !important;height:232px !important;background-color:transparent !important;text-align:center;margin:0 auto !important;"></div>
     </div>
+    <script>
+        androidAPIs.SetLightStatusBarColor();
+        var ThisPageScrollContaner = document.getElementById('<%= AnimatedMainContHEx.ClientID %>');
+        /*ThisPageScrollContaner.onscroll = function () {
+
+            if (ThisPageScrollContaner.scrollTop > 12) {
+
+                //androidAPIs.SemiTranStatusBar();
+                //alert(0);
+                androidAPIs.SetDarkStatusBarColor();
+
+            } else {
+
+                //androidAPIs.FullyTransStatusBar();
+                androidAPIs.SetLightStatusBarColor();
+
+            }
+
+        };*/
+
+    </script>
 </asp:Content>

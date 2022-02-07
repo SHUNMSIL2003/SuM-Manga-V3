@@ -2,8 +2,10 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        if ("androidAPIs" in window) {
-            androidAPIs.FullyTransStatusBar();
+        androidAPIs.SetDarkStatusBarColor();
+        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        if (IsFullScreen == true) {
+            androidAPIs.DeactivateFullScreenMode();
         }
     </script>
     <style>
@@ -133,14 +135,19 @@ img {vertical-align: middle;}
             }
         </style>
     </div>
-    <div ontouchmove="moveTouch(event)" id="ScrollingDivHits" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;">
+    <div id="ScrollingDivHits" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;">
         <div style="background-color:#f2f2f2 !important;margin:0 auto !important;width:100%;height:fit-content;">
         <div id="HotsScrollHelper" runat="server" style="background-color:#ffffff;margin:0 auto !important;padding:0px;width:100%;height:fit-content;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;">
         <div id="HitsBG" style="margin:0 auto !important;padding:0px;margin-bottom:0px !important;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;width:100% !important;height:fit-content !important;transition: background-color .3s !important; -webkit-transition: background-color .3s !important; -o-transition: background-color .3s !important; -moz-transition: background-color .3s !important;padding-top:28px !important;">
             <div style="width:100% !important;">
-                <h2 style="color:#ffffff;margin:0 auto !important;text-align:center;margin-top:18px !important;margin-bottom:16px !important;"><img src="/svg/MostSeenW.svg" width="36" height="36" style="display:inline;margin-top:-8px;" /> Top 10 on SuM Manga!</h2>
+                <h2 id="ThisPageSBarFixUpPropElm" style="color:#ffffff;margin:0 auto !important;text-align:center;margin-top:18px !important;margin-bottom:16px !important;"><img src="/svg/MostSeenW.svg" width="36" height="36" style="display:inline;margin-top:-8px;" /> Top 10 on SuM Manga!</h2>
                 <p style="color:rgba(255,255,255,0.82);font-size:86%;text-align:center !important;width:100%;height:fit-content;margin:0 auto !important;margin-top:12px !important;margin-bottom:8px !important;display:none !important;visibility:hidden !important;">This section's purpose is to showcase the ten mangas with the highest views on this platform, ranked from the highest to the lowest. This section is updated live!</p>
             </div>
+            <script>
+                var ThisPageSBarFixUpPropElmVar = document.getElementById('ThisPageSBarFixUpPropElm');
+                var StatusBarHeightValue = androidAPIs.getStatusBarHeight();
+                ThisPageSBarFixUpPropElmVar.style.marginTop = (12 + StatusBarHeightValue) + 'px !important';
+            </script>
             <div id="Top10Con" runat="server" style="margin:0 auto !important;width:100%;height:fit-content;background-color:#ffffff;position:relative;width:calc(100% - 24px);margin-bottom:26px !important;border-radius:18px;">
 
             </div>
@@ -565,37 +572,23 @@ img {vertical-align: middle;}
         <div style="display:block !important;width:100% !important;height:164px !important;background-color:transparent !important;text-align:center;margin:0 auto !important;"></div>
     </div>
     <script>
-        /*var Top10ShowCaseCon = document.getElementById('HotsScrollHelper');
-        var To10pByEachElm = document.getElementById('TopOfEachInfoCard');
-        var PageScrollElm = document.getElementById('ScrollingDivHits');
-        $(document).bind('touchmove mousemove', function (e) {
-            var currentY = e.originalEvent.touches ? e.originalEvent.touches[0].pageY : e.pageY;
-            var currentX = e.originalEvent.touches ? e.originalEvent.touches[0].pageX : e.pageX;
-            //do your stuff
-            if (currentY >= Top10ShowCaseCon.offsetHeight) {
-                To10pByEachElm.style.position = 'fixed';
+        var ThisPageScrollContaner = document.getElementById('<%= ScrollingDivHits.ClientID %>');
+        var ThisPageChangeStartElm = document.getElementById('<%= HotsScrollHelper.ClientID %>');
+        var MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
+        ThisPageScrollContaner.onscroll = function () {
+
+            if (ThisPageScrollContaner.scrollTop > MaxScrollHDetected) {
+
+                androidAPIs.SetLightStatusBarColor();
+                
+
+            } else {
+
+                androidAPIs.SetDarkStatusBarColor();
+
             }
-            else {
-                To10pByEachElm.style.position = 'relative';
-            }
-            return currentY
-        });
-        function moveTouch(ev) {
-            if (PageScrollElm.scrollHeight >= Top10ShowCaseCon.offsetHeight) {
-                To10pByEachElm.style.position = 'fixed';
-            }
-            else {
-                To10pByEachElm.style.position = 'relative';
-            }
+
         };
-        function init() {
-            var PageScrollElmSTCAV = document.getElementById('ScrollingDivHits');
-            PageScrollElmSTCAV.ontouchmove = moveTouch;
-        };*/
-        /*function ONTMF() {
-            
-        };
-        PageScrollElm.ontouchmove = ONTMF();*/
         init();
     </script>
 </asp:Content>

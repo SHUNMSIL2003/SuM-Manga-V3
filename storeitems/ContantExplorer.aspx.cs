@@ -47,7 +47,7 @@ namespace SuM_Manga_V3.storeitems
             string theme = ThemeColor;
             if (IsPostBack == false)
             {
-                infoCover.Attributes["style"] = "overflow:hidden !important;animation-duration:1.2s !important;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100%;max-width:720px !important;height:fit-content;padding-top:24px !important;";
+                infoCover.Attributes["style"] = "overflow:hidden !important;animation-duration:1.2s !important;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100%;max-width:720px !important;height:fit-content;padding-top:2px !important;";
             }
             int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
             int cn1 = 0;

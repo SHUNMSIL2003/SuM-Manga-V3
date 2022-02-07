@@ -190,6 +190,9 @@
         </div>
     </div>
         <script>
+            androidAPIs.SetDarkStatusBarColor();
+    </script>
+        <script>
             document.addEventListener("DOMContentLoaded", function () {
 
                 if ("androidAPIs" in window) {

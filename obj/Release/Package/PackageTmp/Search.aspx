@@ -4,6 +4,13 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
         androidAPIs.SetLightStatusBarColor();
+        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        if (IsFullScreen == true) {
+            androidAPIs.DeactivateFullScreenMode();
+        }
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+        }, 420);
     </script>
     <style>
                     .FNM5455511 {
@@ -68,7 +75,7 @@
                 viewwidth + "px, initial-scale=1.0");
         }, 300);
     </script>
-    <div class="STBSUMBAR2 bg-white shadow slideInDown animated">
+    <div id="ThisPageSBarFixUpPropElm" class="STBSUMBAR2 bg-white shadow slideInDown animated" style="padding-top:6px !important;">
         <nav style="height:64px;width:100% !important;" class="navbar navbar-light navbar-expand bg-white mb-4 FNM5455511">
                     <div class="container-fluid" style="text-align:center !important;">
                                 <div class="" style="display:inline !important;width:100vw !important;height:7vh !important;max-height:62px !important; min-height:56px !important; text-align:center !important;align-items:center;align-content:center;">
@@ -82,6 +89,11 @@
                     </div>
                 </nav>
             </div>
+    <script>
+        var ThisPageSBarFixUpPropElmVar = document.getElementById('ThisPageSBarFixUpPropElm');
+        var StatusBarHeightValue = androidAPIs.getStatusBarHeight();
+        ThisPageSBarFixUpPropElmVar.style.marginTop = (6 + StatusBarHeightValue) + 'px !important';
+    </script>
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <Triggers>

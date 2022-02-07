@@ -10,6 +10,9 @@
         const el = document.createElement('pwa-update');
         document.body.appendChild(el);
     </script> -->
+    <noscript>
+        <meta http-equiv="refresh" content="0; url = https://sum-manga.azurewebsites.net/SuMMangaInstallAPP.aspx" />
+    </noscript>
     <script>
         if ("androidAPIs" in window) {
             if ('serviceWorker' in navigator) {
@@ -27,6 +30,7 @@
         else {
             location.href = '/SuMMangaInstallAPP.aspx';
         }
+        androidAPIs.SuM0Manager();
     </script>
     <meta name="google-signin-client_id" content="464504450730-iuk9hotshe7kjnq73p11mdvijc49ll5c.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -171,9 +175,9 @@
             perspective: 1000 !important;
             transform: translate3d(0,0,0) !important;
             transform: translateZ(0) !important;
-            backdrop-filter:blur(1px) !important;
+            /*backdrop-filter:blur(1px) !important;*/
         }
-        .GoodBlurAnim {
+        .GoodBlurAnim {/*
             -webkit-backface-visibility: hidden !important;
             -webkit-perspective: 1000 !important;
             -webkit-transform: translate3d(0,0,0) !important;
@@ -181,7 +185,7 @@
             backface-visibility: hidden !important;
             perspective: 1000 !important;
             transform: translate3d(0,0,0) !important;
-            backdrop-filter:blur(1px) !important;
+            backdrop-filter:blur(1px) !important;*/
         }
         input, textarea {
             -webkit-user-select: text !important;
@@ -409,7 +413,7 @@
                 </div>
             </div>
         </div>
-        <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:50px !important;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px #f2f2f2 !important;z-index:999;display:none;">
+        <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:50px !important;width:100% !important;padding:2px !important;padding-bottom:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px #f2f2f2 !important;z-index:999;display:none;">
                 <a name="no-animation" id="navb2" runat="server" href='javascript:history.go(-1)' style="float:left !important;width:fit-content;">
                     <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p runat="server" id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
@@ -422,38 +426,20 @@
             <a href="/Explore.aspx" style="margin-right:-8px;float:right !important;vertical-align:middle !important;width:fit-content;margin-right:-6px;">
                 <img src="/svg/ExploreNAFME.svg" style="width:29px;height:29px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;"><br>
             </a>
-            <script>
-                        /*document.getElementById("ComAct").onclick = function () {
-
-                            var elm = document.getElementById("MainContent_CommentsSecCont");
-                            elm.style.marginTop = (elm.style.marginTop - document.getElementById('subnavscont2').offsetHeight) + 'px';
-                            if (elm.classList.contains("slideInUp")) {
-                                setTimeout(() => {
-                                    if (elm.classList.contains("slideInUp")) { elm.classList.remove("slideInUp"); elm.classList.add("slideDown"); }
-                                    else { elm.classList.remove("slideDown"); elm.classList.add("slideInUp"); }
-                                }, 10);
-                                setTimeout(() => {
-                                    elm.style.display = (elm.style.display == "block") ? "none" : "block";
-                                }, 800);
-                            }
-                            else {
-                                setTimeout(() => {
-                                    if (elm.classList.contains("slideInUp")) { elm.classList.remove("slideInUp"); elm.classList.add("slideDown"); }
-                                    else { elm.classList.remove("slideDown"); elm.classList.add("slideInUp"); }
-                                }, 10);
-                                setTimeout(() => {
-                                    elm.style.display = (elm.style.display == "block") ? "none" : "block";
-                                }, 10);
-                            }
-
-                };*/
-                //document.getElementById('X').style.display = (document.getElementById('X').style.display == "block") ? "none" : "block";
-                document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('subnavscont2').offsetHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 6) + 'px';
-            </script>
         </div>
         <script>
-            if (window.location.href.indexOf("MangaExplorer") > -1) {
-                    document.getElementById('subnavscont2').style.display = 'block';
+            //Fix Up navigation bar space 
+            var Navigation0Heightfromsum = androidAPIs.SuMGetNavigationBarHeight();
+            var SubCo2SuMElm = document.getElementById('<%= subnavscont2.ClientID %>');
+            SubCo2SuMElm.style.height = (50 + Navigation0Heightfromsum) + 'px';
+            SubCo2SuMElm.style.paddingBottom = (Navigation0Heightfromsum) + 'px !important';
+            //
+            document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('subnavscont2').offsetHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 6) + 'px';
+        </script>
+        <script>
+            var IsFullScreenNavBarForExFixer = androidAPIs.SuMIsFullScreen();
+            if (window.location.href.indexOf("MangaExplorer") > -1 && IsFullScreenNavBarForExFixer == false) {
+                document.getElementById('subnavscont2').style.display = 'block';
             };
         </script>
         <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:#ffffff !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;">
@@ -501,7 +487,19 @@
                 <a style="width:100vw !important;font-size:20%;color:#ffffff !important;background-color:#ffffff !important">NavBarHBF!</a>
             </div> -->
                 </nav>
+            <div id="NavigationBarFixer1" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:0px;background-color:#ffffff !important;width:100vw !important;bottom:0 !important;overflow:clip;border-color:#ffffff;border:0px !important;margin-bottom:-1px;">
+                
+        </div>
     </div>
+        <script>
+            //Fix Up navigation bar space 
+            var Navigation1Heightfromsum = androidAPIs.SuMGetNavigationBarHeight();
+            //var SubCoSuMElm = document.getElementById('<%= fullnavscont.ClientID %>');
+            document.getElementById('NavigationBarFixer1').style.height = Navigation1Heightfromsum + 'px';
+            //SubCoSuMElm.style.height = (100 + Navigation1Heightfromsum) + 'px';
+            //SubCoSuMElm.style.paddingBottom = (Navigation1Heightfromsum) + 'px !important';
+            //
+        </script>
         <asp:UpdatePanel ID="UpdatePanelNotificationSec" runat="server" UpdateMode="Conditional">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="StartNotificationProssForShowBTN" EventName="Click" />
@@ -548,6 +546,33 @@
             if ("androidAPIs" in window == false) {
 
                 location.href = '/SuMMangaInstallAPP.aspx';
+            }
+            var MangaExplorerBarElm = document.getElementById('<%= subnavscont2.ClientID %>');
+            function HideMangaExplorerBar() {
+                if (MangaExplorerBarElm.classList.contains('fadeInUp') == true || MangaExplorerBarElm.classList.contains('fadeOutDown') == false) {
+                    MangaExplorerBarElm.classList.remove('fadeInUp');
+                    if (MangaExplorerBarElm.classList.contains('fadeOutDown') == false) {
+                        MangaExplorerBarElm.classList.add('fadeOutDown');
+                    }
+                    setTimeout(() => {
+                        MangaExplorerBarElm.style.display = 'none';
+                    }, 360);
+                }
+            };
+            function ShowMangaExplorerBar() {
+                if (MangaExplorerBarElm.classList.contains('fadeInUp') == false || MangaExplorerBarElm.classList.contains('fadeOutDown') == true) {
+                    MangaExplorerBarElm.classList.remove('fadeOutDown');
+                    if (MangaExplorerBarElm.classList.contains('fadeInUp') == false) {
+                        MangaExplorerBarElm.classList.add('fadeInUp');
+                    }
+                    MangaExplorerBarElm.style.display = 'block';
+                }
+            };
+            function NextBtnOrState() {
+                document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('subnavscont2').offsetHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 6) + 'px';
+            };
+            function NextBtnFullSState() {
+                document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 12) + 'px';
             }
         </script>
     <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>

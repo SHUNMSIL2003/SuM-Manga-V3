@@ -59,7 +59,7 @@ namespace SuM_Manga_V3
             string path = HttpContext.Current.Request.Url.AbsolutePath;
             bool foundit = false;
             subnavscont2.Attributes["style"] = "display:none !important;";
-            fullnavscont.Attributes["style"] = "border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:transparent !important;z-index:999;position:fixed !important;max-height:100px !important;";
+            fullnavscont.Attributes["style"] = "border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:#ffffff !important;z-index:999;position:fixed !important;";
             if (path.Contains("Explore") == true || string.IsNullOrEmpty(path) == true || path == "/")
             {
                 foundit = true;

@@ -4,6 +4,9 @@
         if ("androidAPIs" in window) {
             androidAPIs.SemiTranStatusBar();
         }
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+        }, 420);
     </script>
     <p style="color:rgba(0,0,0,0.92);font-size:300%;width:100%;text-align:center;margin-top:36vh;">Coming soon!</p>
 </asp:Content>
