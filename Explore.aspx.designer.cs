@@ -15,6 +15,15 @@ namespace SuM_Manga_V3
     {
 
         /// <summary>
+        /// ScriptInjectorA000 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ScriptInjectorA000;
+
+        /// <summary>
         /// AnimatedMainContHEx control.
         /// </summary>
         /// <remarks>

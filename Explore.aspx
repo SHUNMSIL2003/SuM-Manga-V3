@@ -13,6 +13,11 @@
             androidAPIs.SetLightStatusBarColor();
         }, 420);
     </script>
+    <div id="ScriptInjectorA000" style="display:none !important;visibility:hidden !important;" runat="server">
+        <script>
+            androidAPIs.ShowSuMToastsOverview('welcome UserName!');
+        </script>
+    </div>
     <style>
         * {box-sizing: border-box;}
 .mySlides {display: none;}

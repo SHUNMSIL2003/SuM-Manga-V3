@@ -15,6 +15,7 @@
         }
         androidAPIs.SetDarkStatusBarColor();
     </script>
+    <div style="display:none !important;visibility:hidden !important;" id="ScriptInjectorB000" runat="server"></div>
     <asp:Button ID="UpdateWannaNFavNCurr" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden !important;" />
     <div id="ChapterUnavaliblePOPUP" runat="server" style="background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center GoodBlurAnim">
         <div id="SUAC000SP" runat="server" class="animated zoomIn card shadow-sm" style="margin:0 auto !important;max-width:382px !important;animation-duration:0.28s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:#ffffff;vertical-align:middle !important;margin-top:calc(50vh - 106px) !important;">

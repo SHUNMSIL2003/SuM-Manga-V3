@@ -26,6 +26,7 @@
                         });
                 });
             }
+            androidAPIs.SetSuMHardwareExl();
         }
         else {
             location.href = '/SuMMangaInstallAPP.aspx';

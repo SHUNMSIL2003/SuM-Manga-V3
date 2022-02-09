@@ -43,6 +43,7 @@
             box-shadow: inset 0 0px 0 #000 !important;
         }
     </style>
+    <div id="ScriptInjectorC000" style="display:none !important;visibility:hidden !important;"><script>androidAPIs.ShowSuMToastsOverview('Use full screen mode for a better experience!');</script></div>
     <a onclick="FullScreenModeManager();" style="pointer-events:all !important;width:42px;height:42px;display:block;position:fixed !important;z-index:999 !important;float:left !important;margin-left:calc(100% - 42px) !important;margin-top:74px !important;background-color:rgba(0,0,0,0.20) !important;border-top-left-radius:21px;border-bottom-left-radius:21px;border-top-right-radius:0px;border-bottom-right-radius:0px;padding-top:7px;padding-bottom:7px;padding-left:5px !important;padding-right:9px !important;"><img id="FullScStateIMG" src="/svg/openinfull.svg" style="width:28px;height:28px;margin:0 auto;" /></a>
     <div class="" id="pfc" runat="server" style="background-color:#6840D9;margin:0 auto !important;width:100vw !important;height:100vh !important;">
         <div id="FirstAniDiv" runat="server" class="animated fadeInRight" style="margin:0 auto !important;width:100vw !important;height:100vh !important;overflow-y:scroll;">

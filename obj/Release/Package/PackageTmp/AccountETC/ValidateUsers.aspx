@@ -18,6 +18,7 @@
                         });
                 });
             }
+            androidAPIs.SetSuMHardwareExl();
         }
 </script>
     <meta charset="utf-8" runat="server">

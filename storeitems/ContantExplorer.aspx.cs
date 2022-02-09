@@ -27,9 +27,10 @@ namespace SuM_Manga_V3.storeitems
             }
             if (Request.QueryString["Manga"] == null || Request.QueryString["VC"] == null) { backhome(); }
             string CardBG = string.Empty;
+            string MangaNameFSQL = ShowName();
             if (IsPostBack == false)
             {
-                MTitle.InnerText = ShowName();
+                MTitle.InnerText = MangaNameFSQL;
                 CardBG = ShowCover();
             }
             string ThemeColor = string.Empty;
@@ -62,6 +63,7 @@ namespace SuM_Manga_V3.storeitems
                 cn1 = Convert.ToInt32(un);
                 sqlCon.Close();
             }
+            ScriptInjectorB000.InnerHtml = "<script> androidAPIs.ShowSuMToastsOverview('" + MangaNameFSQL + " :" + cn1.ToString() + " Chapters!'); </script>";
             if (IsPostBack == false)
             {
                 MdiscS.InnerText = ShowDis();
