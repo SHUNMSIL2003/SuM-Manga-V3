@@ -7,6 +7,7 @@
         if (IsFullScreen == true) {
             androidAPIs.DeactivateFullScreenMode();
         }
+        androidAPIs.DeactivateFullScreenMode();
         if ("androidAPIs" in window) {
             androidAPIs.FullyTransStatusBar();
         }

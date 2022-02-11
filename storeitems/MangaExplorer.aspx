@@ -4,6 +4,16 @@
     <script>
         androidAPIs.SetDarkStatusBarColor();
         androidAPIs.SetSuMSecureFlag();
+        var IsFullScreenF248C467 = androidAPIs.SuMIsFullScreen();
+        if (IsFullScreenF248C467 == true) {
+            androidAPIs.DeactivateFullScreenMode();
+        }
+        androidAPIs.SetSuMSecureFlag();
+        var intervalId = setInterval(function () {
+            androidAPIs.SetSuMSecureFlag();
+        }, 3000);
+        FullScPlaceH.innerText = '1';
+        ActivateFuncPerposClickElmF204C90.click();
     </script>
     <style>
         .forcecolor {
@@ -44,7 +54,7 @@
         }
     </style>
     <div id="ScriptInjectorC000" style="display:none !important;visibility:hidden !important;"><script>androidAPIs.ShowSuMToastsOverview('Use full screen mode for a better experience!');</script></div>
-    <a onclick="FullScreenModeManager();" style="pointer-events:all !important;width:42px;height:42px;display:block;position:fixed !important;z-index:999 !important;float:left !important;margin-left:calc(100% - 42px) !important;margin-top:74px !important;background-color:rgba(0,0,0,0.20) !important;border-top-left-radius:21px;border-bottom-left-radius:21px;border-top-right-radius:0px;border-bottom-right-radius:0px;padding-top:7px;padding-bottom:7px;padding-left:5px !important;padding-right:9px !important;"><img id="FullScStateIMG" src="/svg/openinfull.svg" style="width:28px;height:28px;margin:0 auto;" /></a>
+    <a onclick="FullScreenModeManager();" id="SuMFullScreenManageBTNF204C90" style="pointer-events:all !important;width:42px;height:42px;display:block;position:fixed !important;z-index:999 !important;float:left !important;margin-left:calc(100% - 42px) !important;margin-top:74px !important;background-color:rgba(0,0,0,0.20) !important;border-top-left-radius:21px;border-bottom-left-radius:21px;border-top-right-radius:0px;border-bottom-right-radius:0px;padding-top:7px;padding-bottom:7px;padding-left:5px !important;padding-right:9px !important;display:none !important;visibility:hidden !important;"><img id="FullScStateIMG" src="/svg/openinfull.svg" style="width:28px;height:28px;margin:0 auto;" /></a>
     <div class="" id="pfc" runat="server" style="background-color:#6840D9;margin:0 auto !important;width:100vw !important;height:100vh !important;">
         <div id="FirstAniDiv" runat="server" class="animated fadeInRight" style="margin:0 auto !important;width:100vw !important;height:100vh !important;overflow-y:scroll;">
             <div id="ThisPageSubContaner" class="nospace ContantDivSuM" style="height:fit-content;width:calc(100vw - 18px) !important;margin:0 auto !important;max-width:720px !important;background-color:#ffffff !important;margin-top:64px !important;margin-bottom:164px !important;border-radius:20px !important;">
@@ -248,7 +258,7 @@
         var MangasPhotsosElm = document.getElementById('<%= TheMangaPhotos.ClientID %>');
         var FullScreenImgElm = document.getElementById('FullScStateIMG');
         //
-        viewport = document.querySelector("meta[name=viewport]");
+        var viewport = document.querySelector("meta[name=viewport]");
         //var SubConOrWidth = ThisPageSubContanerElm.style.width;
         var PhotosOrBorder = MangasPhotsosElm.style.border;
         function FullScreenModeManager() {
@@ -266,8 +276,9 @@
                 HideMangaExplorerBar();
                 HideCS5451();
                 NextBtnFullSState();
-                viewport.setAttribute('content', 'user-scalable=yes, initial-scale=1, maximum-scale=1.5, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
+                viewport.setAttribute('content', 'user-scalable=yes, initial-scale=1, maximum-scale=1.6, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
                 androidAPIs.SetSuMSecureFlag();
+                MakeSuMFullNavDisa();
             }
             else {
                 androidAPIs.DeactivateFullScreenMode();
@@ -295,12 +306,79 @@
             elm.classList.add('slideDown');
             document.getElementById('MainContent_Comments').classList.add('fadeIn');
         }
-        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        androidAPIs.SetSuMSecureFlag();
+        /*var IsFullScreen = androidAPIs.SuMIsFullScreen();
         if (IsFullScreen == true) {
+            document.getElementById('FullScInfoElmPLaceHolder').innerText = '0';
             FullScreenModeManager();
             androidAPIs.ActivateFullScreenMode();
             androidAPIs.SetSuMSecureFlag();
-        }
+            MakeSuMFullNavDisa();
+            setTimeout(() => {
+                MakeSuMFullNavDisa();
+            }, 10);
+            FullScreenModeManager();
+            FullScreenModeManager();
+        }*/
         androidAPIs.SetSuMSecureFlag();
+    </script>
+    <script>
+        var ReactimntIsPermitedF565C0 = true;
+        var ThisPageScrollContaner = document.getElementById('<%= FirstAniDiv.ClientID %>');
+        var ThisPageChangeStartElm = document.getElementById('InfoCardBGForJAVA');
+        var SuMMangaTopBarElm = document.getElementById('SuMMangaTopBar');
+        var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
+        var MangasContF212C01 = document.getElementById('<%= TheMangaPhotos.ClientID %>');
+        var MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight + StatusBarHeightValueFromAPIs + 2;
+        setTimeout(() => {
+            MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight + StatusBarHeightValueFromAPIs + 2;
+        }, 1200);
+        ThisPageScrollContaner.onscroll = function () {
+
+            //var ActivateFuncPerposClickElmF204C90 = document.getElementById('SuMFullScreenManageBTNF204C90');
+            MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
+
+            if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
+
+                ThisPageSubContanerElm.style.width = '100vw';
+                InfoCardBGForJAVAElmjusjd5.style.display = 'none';
+                MangasPhotsosElm.style.width = '100vw';
+                MangasPhotsosElm.style.border = null;
+                androidAPIs.ActivateFullScreenMode();
+                ThisPageSubContanerElm.style.marginTop = '0px';
+                ThisPageSubContanerElm.style.marginBottom = '0px';
+                ThisPageSubContanerElm.style.borderRadius = '0px';
+                MangasPhotsosElm.style.borderRadius = '0px';
+                MangasContF212C01.style.marginBottom = '0px !important';
+                FullScreenImgElm.src = '/svg/closefullscreen.svg';
+                FullScPlaceH.innerText = '1';
+                HideMangaExplorerBar();
+                HideCS5451();
+                NextBtnFullSState();
+                viewport.setAttribute('content', 'user-scalable=yes, initial-scale=1, maximum-scale=1.6, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
+                androidAPIs.SetSuMSecureFlag();
+                MakeSuMFullNavDisa();
+            }
+            else {
+                androidAPIs.DeactivateFullScreenMode();
+                ThisPageSubContanerElm.style.width = 'calc(100% - 18px)';
+                InfoCardBGForJAVAElmjusjd5.style.display = null;
+                MangasPhotsosElm.style.width = 'calc(100% - 18px)';
+                MangasPhotsosElm.style.border = PhotosOrBorder;
+                ThisPageSubContanerElm.style.marginTop = '64px';
+                ThisPageSubContanerElm.style.marginBottom = '164px';
+                ThisPageSubContanerElm.style.borderRadius = '20px';
+                MangasPhotsosElm.style.borderRadius = '20px';
+                FullScreenImgElm.src = '/svg/openinfull.svg';
+                FullScPlaceH.innerText = '0';
+                MangasContF212C01.style.marginBottom = '28px !important';
+                ShowMangaExplorerBar();
+                NextBtnOrState();
+                androidAPIs.SetSuMSecureFlag();
+                viewport.setAttribute('content', 'user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
+                ReactimntIsPermitedF565C0 = true;
+            }
+
+        };
     </script>
 </asp:Content>

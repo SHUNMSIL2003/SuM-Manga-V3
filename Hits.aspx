@@ -85,6 +85,10 @@ img {vertical-align: middle;}
     height: 74px;
 }
     </style>
+    <div style="background-color:rgba(255,255,255,0.86) !important;position:fixed !important;top:0 !important;animation-duration:0.16s !important;z-index:999 !important;height:fit-content !important;width:100% !important;display:none;padding-top:6px;padding-bottom:6px;padding-left:4px;" class="animated fadeInDown" id="SuMMangaTopBar">
+        <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;" id="SuMMangaTopBarHeightHelper"></div>
+        <p style="font-size:118%;margin-left:18px;margin-bottom:8px;display:block;height:fit-content;width:fit-content;" class="text-black"><img src="/svg/MostSeenB.svg" width="30" height="30" style="" /> SuM Hits</p>
+    </div>
     <div style="display:none;" ID="HitsStylePlaceHolder" runat="server" >
         <style>
 
@@ -136,7 +140,7 @@ img {vertical-align: middle;}
         </style>
     </div>
     <div id="ScrollingDivHits" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;">
-        <div style="background-color:#f2f2f2 !important;margin:0 auto !important;width:100%;height:fit-content;">
+        <div id="ScrollHelperFASET204CutG65" style="background-color:#f2f2f2 !important;margin:0 auto !important;width:100%;height:fit-content;">
         <div id="HotsScrollHelper" runat="server" style="background-color:#ffffff;margin:0 auto !important;padding:0px;width:100%;height:fit-content;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;">
         <div id="HitsBG" style="margin:0 auto !important;padding:0px;margin-bottom:0px !important;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;width:100% !important;height:fit-content !important;transition: background-color .3s !important; -webkit-transition: background-color .3s !important; -o-transition: background-color .3s !important; -moz-transition: background-color .3s !important;padding-top:28px !important;">
             <div style="width:100% !important;">
@@ -573,18 +577,31 @@ img {vertical-align: middle;}
     </div>
     <script>
         var ThisPageScrollContaner = document.getElementById('<%= ScrollingDivHits.ClientID %>');
-        var ThisPageChangeStartElm = document.getElementById('<%= HotsScrollHelper.ClientID %>');
+        var ThisPageChangeStartElm = document.getElementById('ScrollHelperFASET204CutG65');
+        var SuMMangaTopBarElm = document.getElementById('SuMMangaTopBar');
+        var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
+        var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
         var MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
+        setTimeout(() => {
+            MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
+        }, 1200);
+        document.onclick = function (event) {
+            MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
+        };
+        SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
         ThisPageScrollContaner.onscroll = function () {
 
-            if (ThisPageScrollContaner.scrollTop > MaxScrollHDetected) {
+            MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
+
+            if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
 
                 androidAPIs.SetLightStatusBarColor();
-                
+                SuMMangaTopBarElm.style.display = 'block';
 
             } else {
 
                 androidAPIs.SetDarkStatusBarColor();
+                SuMMangaTopBarElm.style.display = 'none';
 
             }
 

@@ -123,6 +123,7 @@
         body {
             width:100vw !important;
             height:100vh !important;
+            background-color:#ffffff !important;
         }
 
 /* use a media query to filter small devices */
@@ -441,7 +442,13 @@
             var IsFullScreenNavBarForExFixer = androidAPIs.SuMIsFullScreen();
             if (window.location.href.indexOf("MangaExplorer") > -1 && IsFullScreenNavBarForExFixer == false) {
                 document.getElementById('subnavscont2').style.display = 'block';
-            };
+                document.getElementById('<%= subnavscont.ClientID %>').style.display = 'none';
+                document.getElementById('<%= subnavscont.ClientID %>').style.visibility = 'hidden';
+            }
+            else
+            {
+                document.getElementById('subnavscont2').style.display = 'none';
+            }
         </script>
         <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:#ffffff !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;">
             <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;overflow:clip;border-color:#ffffff;margin-bottom:-1px;">
@@ -488,10 +495,19 @@
                 <a style="width:100vw !important;font-size:20%;color:#ffffff !important;background-color:#ffffff !important">NavBarHBF!</a>
             </div> -->
                 </nav>
-            <div id="NavigationBarFixer1" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:0px;background-color:#ffffff !important;width:100vw !important;bottom:0 !important;overflow:clip;border-color:#ffffff;border:0px !important;margin-bottom:-1px;">
+            <div id="NavigationBarFixer1" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:32px;background-color:#ffffff !important;width:100vw !important;bottom:0 !important;overflow:clip;border-color:#ffffff;border:0px !important;margin-bottom:-1px;">
                 
         </div>
     </div>
+    <script>
+        function MakeSuMFullNavDisa() {
+            var SuMFullNavBarElm = document.getElementById('<%= fullnavscont.ClientID %>');
+            SuMFullNavBarElm.style.display = 'none';
+            SuMFullNavBarElm.style.visibility = 'hidden';
+            SuMFullNavBarElm.style.height = '0px';
+            SuMFullNavBarElm.style.overflow = 'hidden';
+        };
+    </script>
         <script>
             //Fix Up navigation bar space 
             var Navigation1Heightfromsum = androidAPIs.SuMGetNavigationBarHeight();
@@ -581,6 +597,14 @@
     <script src="/assets/js/bs-init.js?h=cfc1cf2ac1407be801a1de7dc4705464"></script>
     <script src="/assets/js/theme.js?h=79f403485707cf2617c5bc5a2d386bb0"></script>
         <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+        <script>/*
+            if (window.location.href.indexOf("MangaExplorer") > -1)
+            {
+            }
+            var ClickFixerFasit20Cut90 = document.getElementById('SuMFullScreenManageBTNF204C90');
+            ClickFixerFasit20Cut90.click();
+            ClickFixerFasit20Cut90.click();*/
+        </script>
         </form>
 </body>
 </html>

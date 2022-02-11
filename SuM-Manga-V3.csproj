@@ -1528,6 +1528,7 @@
     <Content Include="svg\feed.svg" />
     <Content Include="svg\history.svg" />
     <Content Include="svg\info.svg" />
+    <Content Include="svg\MostSeenB.svg" />
     <Content Include="svg\MostSeenW.svg" />
     <Content Include="svg\motionphotosAC.svg" />
     <Content Include="svg\motionphotos.svg" />
