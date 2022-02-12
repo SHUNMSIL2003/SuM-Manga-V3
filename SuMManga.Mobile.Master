@@ -333,6 +333,142 @@
                 </style>
                 <div style="width:100vw !important; height:100vh !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:#ffffff !important;" id="SuMMainBlock" runat="server" class="container-fluid">
                     <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:100vh !important;max-height:100vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;" id="mc" runat="server">
+                    <div id="LoadingSuMInfoBub" style="text-align: center; display: none; height: fit-content; width: 280px; background-color: rgb(255, 255, 255); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 18px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important;padding-top:38px;padding-bottom:32px;text-align:center !important;" class="shadow-sm animated fadeIn">
+                        <svg id="SuMLoadingSVGPreview" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="rgba(255,255,255,0.92)"></svg>
+                        <p id="SuMLoadingTXT" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: rgba(255, 255, 255, 0.92); width: calc(100% - 64px) !important;margin-bottom:-8px;text-align:left;">INFO</p>
+                        <div id="SuMMovingLoadingCont" style="display: block; width: calc(100% - 32px); overflow: hidden; height: 26px; border-radius: 13px; background-color: rgba(255, 255, 255, 0.18); margin: 0px auto;margin-top:16px;">
+                            <div id="SuMMovingLoadingNID" style="background-color: rgba(255, 255, 255, 0.92); height: 26px; width: 40%; display: block; margin-left: 100%; transition-duration: 0.76s; transition-timing-function: ease !important; transition-delay: 0s !important; transition-property: all !important;"></div>
+                        </div>
+                        <p id="SuMLoadingFailedTXT" class="" style="font-size: 32px; width: 100%; display: block; text-align: center; margin-bottom: 32px; height: 26px; margin-top: 16px;  color: red !important;">Offline!</p>
+                    </div>
+                    <script>
+
+                        var SuMLoadingContElm = document.getElementById('LoadingSuMInfoBub');
+                        SuMLoadingContElm.style.display = 'none';
+                        var SuMLoadingTitleElm = document.getElementById('SuMLoadingTXT');
+                        var SuMLoadingAnElmF0C0 = document.getElementById('SuMMovingLoadingNID');
+                        var SuMLoadingAnConElmF0C0 = document.getElementById('SuMMovingLoadingCont');
+                        var SuMLoadingSVGPreviewElmF0C0 = document.getElementById('SuMLoadingSVGPreview');
+                        var SuMLoadingFailedTXTElm = document.getElementById('SuMLoadingFailedTXT');
+
+                        var SuMLoadHerfFailed = false;
+
+                        var SuMSettingsSVGPath = '<rect fill="none" height="24" width="24"/> <path d="M19.5,12c0-0.23-0.01-0.45-0.03-0.68l1.86-1.41c0.4-0.3,0.51-0.86,0.26-1.3l-1.87-3.23c-0.25-0.44-0.79-0.62-1.25-0.42 l-2.15,0.91c-0.37-0.26-0.76-0.49-1.17-0.68l-0.29-2.31C14.8,2.38,14.37,2,13.87,2h-3.73C9.63,2,9.2,2.38,9.14,2.88L8.85,5.19 c-0.41,0.19-0.8,0.42-1.17,0.68L5.53,4.96c-0.46-0.2-1-0.02-1.25,0.42L2.41,8.62c-0.25,0.44-0.14,0.99,0.26,1.3l1.86,1.41 C4.51,11.55,4.5,11.77,4.5,12s0.01,0.45,0.03,0.68l-1.86,1.41c-0.4,0.3-0.51,0.86-0.26,1.3l1.87,3.23c0.25,0.44,0.79,0.62,1.25,0.42 l2.15-0.91c0.37,0.26,0.76,0.49,1.17,0.68l0.29,2.31C9.2,21.62,9.63,22,10.13,22h3.73c0.5,0,0.93-0.38,0.99-0.88l0.29-2.31 c0.41-0.19,0.8-0.42,1.17-0.68l2.15,0.91c0.46,0.2,1,0.02,1.25-0.42l1.87-3.23c0.25-0.44,0.14-0.99-0.26-1.3l-1.86-1.41 C19.49,12.45,19.5,12.23,19.5,12z M12.04,15.5c-1.93,0-3.5-1.57-3.5-3.5s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.97,15.5,12.04,15.5z"/>';
+                        var SuMUserLibrarySVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 18l2 1V3c0-1.1-.9-2-2-2H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13zM15 5H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z"/>';
+                        var SuMHitsSVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 11.55c-1.82-1.7-4.12-2.89-6.68-3.35C4.11 7.99 3 8.95 3 10.18v6.24c0 1.68.72 2.56 1.71 2.69 2.5.32 4.77 1.35 6.63 2.87.35.29.92.32 1.27.04 1.87-1.53 4.16-2.58 6.68-2.9.94-.13 1.71-1.06 1.71-2.02v-6.92c0-1.23-1.11-2.19-2.32-1.98-2.56.46-4.86 1.65-6.68 3.35zM12 8c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/>';
+                        var SuMExploreSVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"/>';
+                        var SuMMangaNContantExpSVGPath = '<g><rect fill="none" height="24" width="24"/><rect fill="none" height="24" width="24"/></g><g><path d="M17.5,4.5c-1.95,0-4.05,0.4-5.5,1.5c-1.45-1.1-3.55-1.5-5.5-1.5c-1.45,0-2.99,0.22-4.28,0.79C1.49,5.62,1,6.33,1,7.14 l0,11.28c0,1.3,1.22,2.26,2.48,1.94C4.46,20.11,5.5,20,6.5,20c1.56,0,3.22,0.26,4.56,0.92c0.6,0.3,1.28,0.3,1.87,0 c1.34-0.67,3-0.92,4.56-0.92c1,0,2.04,0.11,3.02,0.36c1.26,0.33,2.48-0.63,2.48-1.94l0-11.28c0-0.81-0.49-1.52-1.22-1.85 C20.49,4.72,18.95,4.5,17.5,4.5z M21,17.23c0,0.63-0.58,1.09-1.2,0.98c-0.75-0.14-1.53-0.2-2.3-0.2c-1.7,0-4.15,0.65-5.5,1.5V8 c1.35-0.85,3.8-1.5,5.5-1.5c0.92,0,1.83,0.09,2.7,0.28c0.46,0.1,0.8,0.51,0.8,0.98V17.23z"/><g/><path d="M13.98,11.01c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.54-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,10.99,14.05,11.01,13.98,11.01z"/><path d="M13.98,13.67c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,13.66,14.05,13.67,13.98,13.67z"/><path d="M13.98,16.33c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.7-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,16.32,14.05,16.33,13.98,16.33z"/></g>';
+                       
+                        function SuMActivateAnimationF0C0() {
+                            /*setTimeout(() => {
+                                document.getElementById('SuMMovingLoadingNID').style.transitionDuration = '0s';
+                            }, 10);*/
+                            SuMLoadingAnElmF0C0.style.transitionDuration = '0s';
+                            /*setTimeout(() => {
+                                document.getElementById('SuMMovingLoadingNID').style.marginLeft = '-40%';
+                            }, 20);*/
+                            SuMLoadingAnElmF0C0.style.marginLeft = '-40%';
+                            setTimeout(() => {
+                                document.getElementById('SuMMovingLoadingNID').style.transitionDuration = '0.74s';
+                            }, 2);
+                            //SuMLoadingAnElmF0C0.style.transitionDuration = '1s';
+                            setTimeout(() => {
+                                document.getElementById('SuMMovingLoadingNID').style.marginLeft = '100%';
+                            }, 20);
+                            //SuMLoadingAnElmF0C0.style.marginLeft = '100%';
+                            setTimeout(() => {
+                                if (SuMLoadHerfFailed == false) {
+                                    SuMActivateAnimationF0C0();
+                                }
+                            }, 860);
+                        };
+
+                        function SuMLoadingPIMGLoad(IMGKey) {
+                            if (IMGKey == 'MangaExplorer' || IMGKey == 'ContantExplorer') {
+                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMMangaNContantExpSVGPath;
+                            }
+                            if (IMGKey == 'Explore') {
+                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMExploreSVGPath;
+                            }
+                            if (IMGKey == 'Settings') {
+                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMSettingsSVGPath;
+                            }
+                            if (IMGKey == 'UserLibrary') {
+                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMUserLibrarySVGPath;
+                            }
+                            if (IMGKey == 'Hits') {
+                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMHitsSVGPath;
+                            }
+                        };
+
+                        function SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, IMGID) {
+                            SuMLoadingAnConElmF0C0.style.display = 'block';
+                            SuMLoadingFailedTXTElm.style.display = 'none';
+                            SuMLoadHerfFailed = false;
+                            SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
+                            SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
+                            SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
+                            SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
+                            SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
+                            SuMLoadingPIMGLoad(IMGID);
+                            SuMLoadingTitleElm.innerText = HerfInfo;
+                            //SuMActivateAnimationF0C0();
+                            SuMLoadingContElm.style.display = 'block';
+                            SuMActivateAnimationF0C0();
+                            if (navigator.onLine == true) {
+                                setTimeout(() => {
+                                    location.href = HerfLink;
+                                }, 840);
+                            }
+                            else {
+                                fetch(HerfLink, { method: 'GET' }).then(res => { location.href = HerfLink; }).catch(err => { SuMLoadingAnConElmF0C0.style.display = 'none'; SuMLoadingFailedTXTElm.style.display = 'block'; setTimeout(() => { HideSuMLoadingPopUp(); }, 2040); });
+                                SuMLoadHerfFailed = true;
+                            }
+                        };
+
+                        function HideSuMLoadingPopUp() {
+                            if (SuMLoadingContElm.classList.contains('fadeIn') == true) {
+                                SuMLoadingContElm.classList.remove('fadeIn');
+                                SuMLoadingContElm.classList.add('fadeOut');
+                            }
+                            else {
+                                if (SuMLoadingContElm.classList.contains('fadeIn') == false) {
+                                    SuMLoadingContElm.classList.add('fadeIn');
+                                }
+                            }
+                            setTimeout(() => {
+                                SuMLoadingContElm.style.display = 'none';
+                                SuMLoadingContElm.classList.remove('fadeOut');
+                                SuMLoadingContElm.classList.add('fadeIn');
+                            }, 360);
+                        };
+
+                        function SuMTXTShowThis(SuMAlert, HerfThemeColor, HerfInfo, IMGID) {
+                            SuMLoadingAnConElmF0C0.style.display = 'block';
+                            SuMLoadingFailedTXTElm.style.display = 'none';
+                            SuMLoadHerfFailed = false;
+                            SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
+                            SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
+                            SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
+                            SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
+                            SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
+                            SuMLoadingPIMGLoad(IMGID);
+                            SuMLoadingTitleElm.innerText = HerfInfo;
+                            //SuMActivateAnimationF0C0();
+                            SuMLoadingContElm.style.display = 'block';
+                            SuMLoadingAnConElmF0C0.style.display = 'none';
+                            SuMLoadingFailedTXTElm.innerText = SuMAlert;
+                            SuMLoadingFailedTXTElm.style.display = 'block';
+                            setTimeout(() => {
+                                androidAPIs.VIBRATEPhone();
+                            }, 90);
+                            setTimeout(() => {
+                                HideSuMLoadingPopUp();
+                            }, 1320);
+                            SuMLoadHerfFailed = true;
+                        };
+
+                    </script>
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
                     </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>
@@ -425,7 +561,7 @@
             <a id="ComAct" onclick="FuncLoadCommentsSec()" style="float:right !important;vertical-align:middle !important;width:fit-content;margin-left:4px;">
                 <img src="/svg/chat.svg" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;">
             </a>
-            <a href="/Explore.aspx" style="margin-right:-8px;float:right !important;vertical-align:middle !important;width:fit-content;margin-right:-6px;">
+            <a onclick="SuMGoToThis('/Explore.aspx','rgba(104,64,217,0.74)','SuM Explore','Explore');" style="margin-right:-8px;float:right !important;vertical-align:middle !important;width:fit-content;margin-right:-6px;">
                 <img src="/svg/ExploreNAFME.svg" style="width:29px;height:29px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;"><br>
             </a>
         </div>
@@ -466,26 +602,26 @@
         <nav id="nav" runat="server" style="overflow:clip;height:72px !important;width:100% !important;max-height:64px !important;bottom:0 !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
                     <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;height:64px !important;overflow:hidden !important;margin-bottom:14px !important;">
                                 <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
-                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/Explore.aspx', { method: 'GET' }).then(res => { location.href = '/Explore.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Explore.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="SuMGoToThis('/Explore.aspx','rgba(104,64,217,0.74)','SuM Explore','Explore');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
                                         <img id="ExpIMG" runat="server" src="/svg/ExploreNA.svg" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;position:relative;" />
                                         <b id="ExpText" runat="server" style="font-size:64%;color:#6840D9;height:fit-content !important;text-align:center !important;display:block;position:relative;">Explore</b>
                                     </a>
                                 </div>
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
-                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/Hits.aspx', { method: 'GET' }).then(res => { location.href = '/Hits.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/Hits.aspx'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="SuMGoToThis('/Hits.aspx','rgba(104,64,217,0.74)','SuM Hits','Hits');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
                                         <img id="HitsIMG" runat="server" src="/svg/MostSeenNA.svg" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;" />
                                         <b id="HitsTEXT" runat="server" style="font-size:64%;color:#636166;height:fit-content !important; text-align:center !important;display:block;">Hits</b>
                                     </a>
                                 </div>
                         
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
-                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/UserLibrary.aspx?RT=Curr', { method: 'GET' }).then(res => { location.href = '/UserLibrary.aspx?RT=Curr'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/UserLibrary.aspx?RT=Curr'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="SuMGoToThis('/UserLibrary.aspx?RT=Curr','rgba(104,64,217,0.74)','Your Library','UserLibrary');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
                                         <img id="LibIMG" runat="server" src="/svg/bookmarks.svg" style="max-height:38px;max-width:38px; width:62px;height:62px;display:block;" />
                                         <b id="LibText" runat="server" style="font-size:64%;color:#6840D9;height:fit-content !important; text-align:center !important;display:block;">Library</b>
                                     </a>
                                 </div><!-- dropdown-toggle -->
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
-                                    <a name="no-animation" onclick="if (!navigator.onLine) { fetch('/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)', { method: 'GET' }).then(res => { location.href = '/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)'; }" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="SuMGoToThis('/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)','rgba(104,64,217,0.74)','SuM Settings','Settings');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
                                         <img id="SetIMG" runat="server" src="/svg/settings.svg" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;" />
                                         <b id="SetText" runat="server" style="font-size:64%;color:#6840D9;height:fit-content !important; text-align:center !important;display:block;">Settings</b>
                                     </a>

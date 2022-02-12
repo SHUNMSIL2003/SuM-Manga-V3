@@ -16,6 +16,7 @@ namespace SuM_Manga_V3.storeitems
             if (Request.Browser.IsMobileDevice)
                 MasterPageFile = "~/SuMManga.Mobile.Master";
         }*/
+        //public string DetectedMangaNameSQL = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
@@ -121,7 +122,7 @@ namespace SuM_Manga_V3.storeitems
                             if (System.IO.Directory.Exists(checkifitexsists) == true)
                             {
                                 //"<a class="+"btn btn-primary btn-sm"+" href=" "> Next Chapter  &raquo;</a>"
-                                string sendNextChapter = "<a style=" + "border-radius:22px;padding:8px;background-color:rgb(255,255,255);margin:8px;margin-right:8px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + '"'.ToString() + "bg-white shadow btn animated fadeInUp" + '"'.ToString() + " onclick=" + sc.ToString() + "if (!navigator.onLine) { fetch('" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "', { method: 'GET' }).then(res => { location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "'; }" + sc.ToString() + " ><b>Next &raquo;</b></a>";
+                                string sendNextChapter = "<a style=" + "border-radius:22px;padding:8px;background-color:rgb(255,255,255);margin:8px;margin-right:8px;color:" + Request.QueryString["TC"].ToString() + ";display:block;" + " class=" + '"'.ToString() + "bg-white shadow btn animated fadeInUp" + '"'.ToString() + " onclick=" + sc.ToString() + " SuMGoToThis('" + pathstartnochx + extraexplore + identifylast + "&" + identifynexthelper + "ch" + FixedChapterNum + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString() + CurWorker + "','" + Request.QueryString["TC"].ToString() + "','Chapter " + Convert.ToInt32(FixedChapterNum).ToString() + "','ContantExplorer'); " + sc.ToString() + " ><b>Next &raquo;</b></a>";
                                 NextChapter.InnerHtml = sendNextChapter;
                             }
                             else
@@ -314,6 +315,7 @@ namespace SuM_Manga_V3.storeitems
             }
             string TCO1 = ThemeColor.Replace("0.74", "1");
             MangaName.InnerText = CurrM;
+            //DetectedMangaNameSQL = CurrM;
             ChapterNum.InnerText = CurrCH;
             ChapterNum.Attributes["style"] = "color:" + TCO1 + ";";
             MangaName.Attributes["style"] = "display:inline-block !important;font-size:118%;color:" + TCO1 + " !important;";

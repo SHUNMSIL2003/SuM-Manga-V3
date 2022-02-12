@@ -51,6 +51,33 @@ namespace SuM_Manga_V3.storeitems
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SUAC000SP;
 
         /// <summary>
+        /// SuMMangaTopBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMMangaTopBar;
+
+        /// <summary>
+        /// SliderTXTFIll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SliderTXTFIll;
+
+        /// <summary>
+        /// SliderChaptersSta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SliderChaptersSta;
+
+        /// <summary>
         /// UpdatePanelLogin control.
         /// </summary>
         /// <remarks>

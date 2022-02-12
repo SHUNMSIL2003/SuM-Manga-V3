@@ -9,6 +9,7 @@
         }
         androidAPIs.DeactivateFullScreenMode();
         if ("androidAPIs" in window) {
+            androidAPIs.DeactivateFullScreenMode();
             androidAPIs.FullyTransStatusBar();
         }
         else {
@@ -28,7 +29,14 @@
             </div>
         </div>
     </div>
-    
+    <div id="SuMMangaTopBar" runat="server" style="background-color:rgba(135,56,65,0.82) !important;position:fixed !important;top:0 !important;animation-duration:0.16s !important;z-index:999 !important;height:fit-content !important;width:100% !important;display:block;padding-top:6px;padding-bottom:0px;padding-left:4px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;" class="animated fadeInDown">
+        <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;" id="SuMMangaTopBarHeightHelper"></div>
+        <div style="font-size:118%;margin-left:18px;margin-bottom:-18px;display:inline-block;height:fit-content;width:fit-content;color:#fffffff0;" class="">
+            <img src="/svg/ExploreBook.svg" width="30" height="30" style="display:inline;margin-top:-6px;">
+            <p style="display:inline;margin-left:8px;font-size:120%;" id="SliderTXTFIll" runat="server">#T</p>
+            <p style="display:inline-block;margin-right:28px;font-size:86%;color:#ffffffbd;float:right;margin-top:6px;margin-left:4px;" id="SliderChaptersSta" runat="server">- #CN chapters</p>
+        </div>
+    </div>
     <asp:UpdatePanel ID="UpdatePanelLogin" runat="server" UpdateMode="Conditional">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="LoginBTN" EventName="Click" />
@@ -422,5 +430,39 @@
             };
 
         };*/
+    </script>
+    <script>
+        var CatXHeightNCF248C672 = document.getElementById('<%= CategoryX.ClientID %>').getBoundingClientRect();
+
+
+        var ThisPageScrollContaner = document.getElementById('3rdGBLayer');
+        //var ThisPageChangeStartElm = document.getElementById('ScrollHelperFASET204CutG65');
+        var SuMMangaTopBarElm = document.getElementById('<%= SuMMangaTopBar.ClientID %>');
+        var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
+        var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
+        var MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
+        setTimeout(() => {
+            MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
+        }, 1200);
+        SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
+        ThisPageScrollContaner.onscroll = function () {
+
+            MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
+
+            if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
+
+                androidAPIs.DeactivateFullScreenMode();
+                androidAPIs.SetDarkStatusBarColor();
+                SuMMangaTopBarElm.style.display = 'block';
+
+            } else {
+
+                androidAPIs.DeactivateFullScreenMode();
+                androidAPIs.SetDarkStatusBarColor();
+                SuMMangaTopBarElm.style.display = 'none';
+
+            }
+
+        };
     </script>
 </asp:Content>

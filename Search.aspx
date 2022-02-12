@@ -92,7 +92,7 @@
     <script>
         var ThisPageSBarFixUpPropElmVar = document.getElementById('ThisPageSBarFixUpPropElm');
         var StatusBarHeightValue = androidAPIs.getStatusBarHeight();
-        ThisPageSBarFixUpPropElmVar.style.marginTop = (6 + StatusBarHeightValue) + 'px !important';
+        ThisPageSBarFixUpPropElmVar.style.marginTop = (24 + StatusBarHeightValue) + 'px !important';
     </script>
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
