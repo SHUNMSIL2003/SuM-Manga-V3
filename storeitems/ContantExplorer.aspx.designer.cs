@@ -15,6 +15,24 @@ namespace SuM_Manga_V3.storeitems
     {
 
         /// <summary>
+        /// SuMLoadingFHandBG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMLoadingFHandBG;
+
+        /// <summary>
+        /// SuMLoadingHandlerTXT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMLoadingHandlerTXT;
+
+        /// <summary>
         /// ScriptInjectorB000 control.
         /// </summary>
         /// <remarks>
@@ -76,6 +94,15 @@ namespace SuM_Manga_V3.storeitems
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SliderChaptersSta;
+
+        /// <summary>
+        /// SuMLogInAbsCon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMLogInAbsCon;
 
         /// <summary>
         /// UpdatePanelLogin control.
@@ -175,6 +202,15 @@ namespace SuM_Manga_V3.storeitems
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl FakeBody;
+
+        /// <summary>
+        /// background control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl background;
 
         /// <summary>
         /// ACont0 control.

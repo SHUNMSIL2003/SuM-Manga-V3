@@ -144,18 +144,18 @@
             -ms-user-select: none;
             -o-user-select: none;
             user-select: none;
-            -webkit-transition: all 0.5s;
+            /*-webkit-transition: all 0.5s;
             -moz-transition: all 0.5s;
             -ms-transition: all 0.5s;
             -o-transition: all 0.5s;
-            transition: all 0.5s;
+            transition: all 0.5s;*/
         }
         .sumsmoothtrans {
-            -webkit-transition: all 0.5s;
+            /*-webkit-transition: all 0.5s;
             -moz-transition: all 0.5s;
             -ms-transition: all 0.5s;
             -o-transition: all 0.5s;
-            transition: all 0.5s;
+            transition: all 0.5s;*/
         }
          text, h1, h2, h3, h4, h5, h6, p , b {
             pointer-events: none;
@@ -341,6 +341,11 @@
                         </div>
                         <p id="SuMLoadingFailedTXT" class="" style="font-size: 32px; width: 100%; display: block; text-align: center; margin-bottom: 32px; height: 26px; margin-top: 16px;  color: red !important;">Offline!</p>
                     </div>
+                    <div id="SuMLoadingExpandAnI" style="display:none;background-color:#ffffff;overflow:hidden;border-radius:50%;width:26px;height:26px;position:fixed !important;top:0 !important;z-index:998 !important;margin-left:calc(50vw - 13px) !important;margin-top:calc(50vh - 13px) !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
+                        <div id="SuMLoadingExpandingColorDiv" style="width:100%;height:100%;margin: 0 auto;background-color:#ffffff;"></div>
+                    </div>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
                     <script>
 
                         var SuMLoadingContElm = document.getElementById('LoadingSuMInfoBub');
@@ -351,14 +356,19 @@
                         var SuMLoadingSVGPreviewElmF0C0 = document.getElementById('SuMLoadingSVGPreview');
                         var SuMLoadingFailedTXTElm = document.getElementById('SuMLoadingFailedTXT');
 
+                        var SuMLoadingExpandAnIElm = document.getElementById('SuMLoadingExpandAnI');
+                        SuMLoadingExpandAnIElm.style.display = 'none';
+                        var SuMLoadingExpandingColorDivElm = document.getElementById('SuMLoadingExpandingColorDiv');
+
                         var SuMLoadHerfFailed = false;
+                        var SuMLoadingIsInPross = false;
 
                         var SuMSettingsSVGPath = '<rect fill="none" height="24" width="24"/> <path d="M19.5,12c0-0.23-0.01-0.45-0.03-0.68l1.86-1.41c0.4-0.3,0.51-0.86,0.26-1.3l-1.87-3.23c-0.25-0.44-0.79-0.62-1.25-0.42 l-2.15,0.91c-0.37-0.26-0.76-0.49-1.17-0.68l-0.29-2.31C14.8,2.38,14.37,2,13.87,2h-3.73C9.63,2,9.2,2.38,9.14,2.88L8.85,5.19 c-0.41,0.19-0.8,0.42-1.17,0.68L5.53,4.96c-0.46-0.2-1-0.02-1.25,0.42L2.41,8.62c-0.25,0.44-0.14,0.99,0.26,1.3l1.86,1.41 C4.51,11.55,4.5,11.77,4.5,12s0.01,0.45,0.03,0.68l-1.86,1.41c-0.4,0.3-0.51,0.86-0.26,1.3l1.87,3.23c0.25,0.44,0.79,0.62,1.25,0.42 l2.15-0.91c0.37,0.26,0.76,0.49,1.17,0.68l0.29,2.31C9.2,21.62,9.63,22,10.13,22h3.73c0.5,0,0.93-0.38,0.99-0.88l0.29-2.31 c0.41-0.19,0.8-0.42,1.17-0.68l2.15,0.91c0.46,0.2,1,0.02,1.25-0.42l1.87-3.23c0.25-0.44,0.14-0.99-0.26-1.3l-1.86-1.41 C19.49,12.45,19.5,12.23,19.5,12z M12.04,15.5c-1.93,0-3.5-1.57-3.5-3.5s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.97,15.5,12.04,15.5z"/>';
                         var SuMUserLibrarySVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 18l2 1V3c0-1.1-.9-2-2-2H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13zM15 5H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z"/>';
                         var SuMHitsSVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 11.55c-1.82-1.7-4.12-2.89-6.68-3.35C4.11 7.99 3 8.95 3 10.18v6.24c0 1.68.72 2.56 1.71 2.69 2.5.32 4.77 1.35 6.63 2.87.35.29.92.32 1.27.04 1.87-1.53 4.16-2.58 6.68-2.9.94-.13 1.71-1.06 1.71-2.02v-6.92c0-1.23-1.11-2.19-2.32-1.98-2.56.46-4.86 1.65-6.68 3.35zM12 8c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/>';
                         var SuMExploreSVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"/>';
                         var SuMMangaNContantExpSVGPath = '<g><rect fill="none" height="24" width="24"/><rect fill="none" height="24" width="24"/></g><g><path d="M17.5,4.5c-1.95,0-4.05,0.4-5.5,1.5c-1.45-1.1-3.55-1.5-5.5-1.5c-1.45,0-2.99,0.22-4.28,0.79C1.49,5.62,1,6.33,1,7.14 l0,11.28c0,1.3,1.22,2.26,2.48,1.94C4.46,20.11,5.5,20,6.5,20c1.56,0,3.22,0.26,4.56,0.92c0.6,0.3,1.28,0.3,1.87,0 c1.34-0.67,3-0.92,4.56-0.92c1,0,2.04,0.11,3.02,0.36c1.26,0.33,2.48-0.63,2.48-1.94l0-11.28c0-0.81-0.49-1.52-1.22-1.85 C20.49,4.72,18.95,4.5,17.5,4.5z M21,17.23c0,0.63-0.58,1.09-1.2,0.98c-0.75-0.14-1.53-0.2-2.3-0.2c-1.7,0-4.15,0.65-5.5,1.5V8 c1.35-0.85,3.8-1.5,5.5-1.5c0.92,0,1.83,0.09,2.7,0.28c0.46,0.1,0.8,0.51,0.8,0.98V17.23z"/><g/><path d="M13.98,11.01c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.54-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,10.99,14.05,11.01,13.98,11.01z"/><path d="M13.98,13.67c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,13.66,14.05,13.67,13.98,13.67z"/><path d="M13.98,16.33c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.7-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,16.32,14.05,16.33,13.98,16.33z"/></g>';
-                       
+
                         function SuMActivateAnimationF0C0() {
                             /*setTimeout(() => {
                                 document.getElementById('SuMMovingLoadingNID').style.transitionDuration = '0s';
@@ -383,6 +393,36 @@
                             }, 860);
                         };
 
+                        function ExpandTranStartF0C0(ExpAnThemeColor) {
+                            //AnPrep
+                            SuMLoadingExpandAnIElm.style.display = 'none';
+                            SuMLoadingExpandingColorDivElm.style.backgroundColor = ExpAnThemeColor;
+                            SuMLoadingExpandAnIElm.style.width = '26px';
+                            SuMLoadingExpandAnIElm.style.height = '26px';
+                            SuMLoadingExpandAnIElm.style.borderRadius = '13px';
+                            //AnStart
+                            SuMLoadingExpandAnIElm.style.display = 'block';
+                            setTimeout(() => {
+                                SuMLoadingExpandAnIElm.style.width = '360px';
+                                SuMLoadingExpandAnIElm.style.height = '360px';
+                                SuMLoadingExpandAnIElm.style.marginTop = 'calc(50vh - 220px)';
+                                SuMLoadingExpandAnIElm.style.marginLeft = 'calc(50vw - 180px)';
+                                SuMLoadingExpandAnIElm.style.borderRadius = '180px';
+                            }, 60);
+                            setTimeout(() => {
+                                SuMLoadingExpandAnIElm.style.width = '100vw';
+                                SuMLoadingExpandAnIElm.style.height = '100vw';
+                                SuMLoadingExpandAnIElm.style.marginTop = 'calc(50vh - 50vw - 40px)';
+                                SuMLoadingExpandAnIElm.style.marginLeft = '0px';
+                                SuMLoadingExpandAnIElm.style.borderRadius = '50vw';
+                            }, 260);
+                            setTimeout(() => {
+                                SuMLoadingExpandAnIElm.style.height = '100vh';
+                                SuMLoadingExpandAnIElm.style.marginTop = '0px';
+                                SuMLoadingExpandAnIElm.style.borderRadius = '0px';
+                            }, 640);
+                        };
+
                         function SuMLoadingPIMGLoad(IMGKey) {
                             if (IMGKey == 'MangaExplorer' || IMGKey == 'ContantExplorer') {
                                 SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMMangaNContantExpSVGPath;
@@ -402,26 +442,230 @@
                         };
 
                         function SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, IMGID) {
-                            SuMLoadingAnConElmF0C0.style.display = 'block';
-                            SuMLoadingFailedTXTElm.style.display = 'none';
-                            SuMLoadHerfFailed = false;
-                            SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
-                            SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
-                            SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
-                            SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
-                            SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
-                            SuMLoadingPIMGLoad(IMGID);
-                            SuMLoadingTitleElm.innerText = HerfInfo;
-                            //SuMActivateAnimationF0C0();
-                            SuMLoadingContElm.style.display = 'block';
-                            SuMActivateAnimationF0C0();
-                            if (navigator.onLine == true) {
-                                setTimeout(() => {
-                                    location.href = HerfLink;
-                                }, 840);
+                            if (SuMLoadingIsInPross == false && HerfLink.includes(document.URL) == false && document.URL.includes(HerfLink) == false) {
+                                SuMLoadingIsInPross = true;
+                                SuMLoadingAnConElmF0C0.style.display = 'block';
+                                SuMLoadingFailedTXTElm.style.display = 'none';
+                                SuMLoadHerfFailed = false;
+                                SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
+                                SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
+                                SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
+                                SuMLoadingPIMGLoad(IMGID);
+                                SuMLoadingTitleElm.innerText = HerfInfo;
+                                //SuMActivateAnimationF0C0();
+                                SuMLoadingContElm.style.display = 'block';
+                                SuMActivateAnimationF0C0();
+                                if (navigator.onLine == true) {
+                                    if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer') {
+                                        ExpandTranStartF0C0(HerfThemeColor);
+                                    }
+                                    setTimeout(() => {
+                                        //SuMLoadingIsInPross = false;
+                                        if ("androidAPIs" in window) {
+                                            androidAPIs.DeactivateFullScreenMode();
+                                        }
+                                        if (HerfLink != null) {
+                                            if (document.URL.includes('/MangaExplorer.aspx') == true) {
+                                                HideMangaExplorerTopPartBar();
+                                                HideMangaExplorerBar();
+                                            }
+                                            if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
+                                                SuMHideFullNavAnF0C0();
+                                            }
+                                            setTimeout(() => {
+                                                location.href = HerfLink;
+                                            }, 360);
+                                        }
+                                    }, 840);
+                                }
+                                else {
+                                    fetch(HerfLink, { method: 'GET' }).then(res => {
+                                        if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer') {
+                                            ExpandTranStartF0C0(HerfThemeColor);
+                                        }
+                                        setTimeout(() => {
+                                            if ("androidAPIs" in window) {
+                                                androidAPIs.DeactivateFullScreenMode();
+                                            }
+                                            if (HerfLink != null) {
+                                                if (document.URL.includes('/MangaExplorer.aspx') == true) {
+                                                    HideMangaExplorerTopPartBar();
+                                                    HideMangaExplorerBar();
+                                                }
+                                                if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
+                                                    SuMHideFullNavAnF0C0();
+                                                }
+                                                setTimeout(() => {
+                                                    location.href = HerfLink;
+                                                }, 360);
+                                            }
+                                        }, 840);
+                                    }).catch(err => {
+                                        SuMLoadingAnConElmF0C0.style.display = 'none';
+                                        SuMLoadingFailedTXTElm.style.display = 'block';
+                                        setTimeout(() => {
+                                            HideSuMLoadingPopUp();
+                                            SuMLoadingIsInPross = false;
+                                        }, 2040);
+                                    });
+                                    SuMLoadHerfFailed = true;
+                                }
                             }
-                            else {
-                                fetch(HerfLink, { method: 'GET' }).then(res => { location.href = HerfLink; }).catch(err => { SuMLoadingAnConElmF0C0.style.display = 'none'; SuMLoadingFailedTXTElm.style.display = 'block'; setTimeout(() => { HideSuMLoadingPopUp(); }, 2040); });
+                        };
+
+                        function SuMGoBack() {
+                            var HerfLink = document.referrer;
+                            var HerfThemeColor = null;
+                            var HerfInfo = null;
+                            var IMGID = null;
+                            if (HerfLink.includes('Explore.aspx') == true) {
+                                IMGID = 'Explore';
+                                HerfInfo = 'SuM Explore';
+                            }
+                            if (HerfLink.includes('Hits.aspx') == true) {
+                                IMGID = 'Hits';
+                                HerfInfo = 'SuM Hits';
+                            }
+                            if (HerfLink.includes('ContantExplorer.aspx') == true) {
+                                IMGID = 'ContantExplorer';
+                            }
+                            if (HerfLink.includes('MangaExplorer.aspx') == true) {
+                                IMGID = 'MangaExplorer';
+                            }
+                            if (HerfLink.includes('Settings.aspx') == true) {
+                                IMGID = 'Settings';
+                                HerfInfo = 'SuM Settings';
+                            }
+                            if (HerfLink.includes('UserLibrary.aspx') == true) {
+                                IMGID = 'UserLibrary';
+                                HerfInfo = 'My Library';
+                            }
+                            var SuMFoundThemeC = false;
+                            HerfLink.replace('/', '&').replace('?', '&').substring(1).split("&").forEach(function (val) {
+
+                                var currVal = val.split("=");
+                                if (currVal[0] == "TC") {
+                                    SuMFoundThemeC = true;
+                                    var SuMBackLoiadingDetectedThemeColor = decodeURI(currVal[1]);
+                                    if (SuMBackLoiadingDetectedThemeColor != null && SuMBackLoiadingDetectedThemeColor.replace(' ', '').includes('255,255,255') == false) {
+                                        HerfThemeColor = SuMBackLoiadingDetectedThemeColor;
+                                    }
+                                    else {
+                                        HerfThemeColor = 'rgba(104,64,217,0.74)';
+                                    }
+
+                                }
+                                if (currVal[0] == 'Manga') {
+                                    if (IMGID == 'ContantExplorer') {
+                                        HerfInfo = currVal[1];
+                                    }
+                                }
+                                if (currVal[0] == 'Chapter') {
+                                    if (IMGID == 'MangaExplorer') {
+                                        HerfInfo = 'Chapter ' + parseInt(currVal[1].replace('ch', ''));
+                                    }
+                                }
+
+                            });
+                            if (SuMFoundThemeC == false) {
+                                HerfThemeColor = 'rgba(104,64,217,0.74)';
+                            }
+                            if (SuMLoadingIsInPross == false && HerfLink != null && HerfLink != document.URL && HerfLink.includes(document.URL) == false && document.URL.includes(HerfLink) == false) {
+                                SuMLoadingIsInPross = true;
+                                SuMLoadingAnConElmF0C0.style.display = 'block';
+                                SuMLoadingFailedTXTElm.style.display = 'none';
+                                SuMLoadHerfFailed = false;
+                                SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
+                                SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
+                                SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
+                                SuMLoadingPIMGLoad(IMGID);
+                                SuMLoadingTitleElm.innerText = HerfInfo;
+                                //SuMActivateAnimationF0C0();
+                                SuMLoadingContElm.style.display = 'block';
+                                SuMActivateAnimationF0C0();
+                                if (navigator.onLine == true) {
+                                    if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer') {
+                                        ExpandTranStartF0C0(HerfThemeColor);
+                                    }
+                                    setTimeout(() => {
+                                        //SuMLoadingIsInPross = false;
+                                        if ("androidAPIs" in window) {
+                                            androidAPIs.DeactivateFullScreenMode();
+                                        }
+                                        if (document.URL.includes('/MangaExplorer.aspx') == true) {
+                                            HideMangaExplorerTopPartBar();
+                                            HideMangaExplorerBar();
+                                        }
+                                        if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
+                                            SuMHideFullNavAnF0C0();
+                                        }
+                                        setTimeout(() => {
+                                            history.back();
+                                        }, 360);
+                                    }, 840);
+                                }
+                                else {
+                                    fetch(HerfLink, { method: 'GET' }).then(res => {
+                                        if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer') {
+                                            ExpandTranStartF0C0(HerfThemeColor);
+                                        }
+                                        setTimeout(() => {
+                                            if ("androidAPIs" in window) {
+                                                androidAPIs.DeactivateFullScreenMode();
+                                            }
+                                            if (document.URL.includes('/MangaExplorer.aspx') == true) {
+                                                HideMangaExplorerTopPartBar();
+                                                HideMangaExplorerBar();
+                                            }
+                                            if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
+                                                SuMHideFullNavAnF0C0();
+                                            }
+                                            setTimeout(() => {
+                                                history.back();
+                                            }, 360);
+                                        }, 840);
+                                    }).catch(err => {
+                                        SuMLoadingAnConElmF0C0.style.display = 'none';
+                                        SuMLoadingFailedTXTElm.style.display = 'block';
+                                        setTimeout(() => {
+                                            HideSuMLoadingPopUp();
+                                            SuMLoadingIsInPross = false;
+                                        }, 2040);
+                                    });
+                                    SuMLoadHerfFailed = true;
+                                }
+                            }
+                        };
+
+                        var CISuMShowThisMIsActive = false;
+                        function SuMTXTShowThis(SuMAlert, HerfThemeColor, HerfInfo, IMGID) {
+                            if (CISuMShowThisMIsActive == false) {
+                                CISuMShowThisMIsActive = true;
+                                SuMLoadingAnConElmF0C0.style.display = 'block';
+                                SuMLoadingFailedTXTElm.style.display = 'none';
+                                SuMLoadHerfFailed = false;
+                                SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
+                                SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
+                                SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
+                                SuMLoadingPIMGLoad(IMGID);
+                                SuMLoadingTitleElm.innerText = HerfInfo;
+                                //SuMActivateAnimationF0C0();
+                                SuMLoadingContElm.style.display = 'block';
+                                SuMLoadingAnConElmF0C0.style.display = 'none';
+                                SuMLoadingFailedTXTElm.innerText = SuMAlert;
+                                SuMLoadingFailedTXTElm.style.display = 'block';
+                                setTimeout(() => {
+                                    androidAPIs.VIBRATEPhone();
+                                }, 90);
+                                setTimeout(() => {
+                                    HideSuMLoadingPopUp();
+                                }, 1320);
                                 SuMLoadHerfFailed = true;
                             }
                         };
@@ -440,37 +684,11 @@
                                 SuMLoadingContElm.style.display = 'none';
                                 SuMLoadingContElm.classList.remove('fadeOut');
                                 SuMLoadingContElm.classList.add('fadeIn');
+                                CISuMShowThisMIsActive = false;
                             }, 360);
                         };
 
-                        function SuMTXTShowThis(SuMAlert, HerfThemeColor, HerfInfo, IMGID) {
-                            SuMLoadingAnConElmF0C0.style.display = 'block';
-                            SuMLoadingFailedTXTElm.style.display = 'none';
-                            SuMLoadHerfFailed = false;
-                            SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
-                            SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
-                            SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
-                            SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
-                            SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
-                            SuMLoadingPIMGLoad(IMGID);
-                            SuMLoadingTitleElm.innerText = HerfInfo;
-                            //SuMActivateAnimationF0C0();
-                            SuMLoadingContElm.style.display = 'block';
-                            SuMLoadingAnConElmF0C0.style.display = 'none';
-                            SuMLoadingFailedTXTElm.innerText = SuMAlert;
-                            SuMLoadingFailedTXTElm.style.display = 'block';
-                            setTimeout(() => {
-                                androidAPIs.VIBRATEPhone();
-                            }, 90);
-                            setTimeout(() => {
-                                HideSuMLoadingPopUp();
-                            }, 1320);
-                            SuMLoadHerfFailed = true;
-                        };
-
                     </script>
-                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                    </asp:ContentPlaceHolder>
                     </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>
                 </div>
                 <script>
@@ -552,7 +770,7 @@
             </div>
         </div>
         <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:50px !important;width:100% !important;padding:2px !important;padding-bottom:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px #f2f2f2 !important;z-index:999;display:none;">
-                <a name="no-animation" id="navb2" runat="server" href='javascript:history.go(-1)' style="float:left !important;width:fit-content;">
+                <a name="no-animation" id="navb2" runat="server" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p runat="server" id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;">Navigate Back</b>
@@ -586,9 +804,9 @@
                 document.getElementById('subnavscont2').style.display = 'none';
             }
         </script>
-        <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:#ffffff !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;">
-            <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;overflow:clip;border-color:#ffffff;margin-bottom:-1px;">
-                <a name="no-animation" href='javascript:history.go(-1)' style="float:left !important;width:fit-content;">
+        <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:#ffffff !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
+            <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;overflow:clip;border-color:#ffffff;margin-bottom:-1px;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
+                <a name="no-animation" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:#6840D9;margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;">Navigate Back</b>
@@ -599,7 +817,7 @@
             </a>
                 <a style="display:block;width:100vw;height:2px;margin:0 auto !important;background-color:#ffffff;color:#ffffff;">   </a>
         </div>
-        <nav id="nav" runat="server" style="overflow:clip;height:72px !important;width:100% !important;max-height:64px !important;bottom:0 !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
+        <nav id="nav" runat="server" style="overflow:clip;height:72px !important;width:100% !important;max-height:64px !important;bottom:0 !important;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
                     <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;height:64px !important;overflow:hidden !important;margin-bottom:14px !important;">
                                 <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
                                     <a name="no-animation" onclick="SuMGoToThis('/Explore.aspx','rgba(104,64,217,0.74)','SuM Explore','Explore');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
@@ -615,7 +833,7 @@
                                 </div>
                         
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
-                                    <a name="no-animation" onclick="SuMGoToThis('/UserLibrary.aspx?RT=Curr','rgba(104,64,217,0.74)','Your Library','UserLibrary');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="SuMGoToThis('/UserLibrary.aspx?RT=Curr','rgba(104,64,217,0.74)','My Library','UserLibrary');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
                                         <img id="LibIMG" runat="server" src="/svg/bookmarks.svg" style="max-height:38px;max-width:38px; width:62px;height:62px;display:block;" />
                                         <b id="LibText" runat="server" style="font-size:64%;color:#6840D9;height:fit-content !important; text-align:center !important;display:block;">Library</b>
                                     </a>
@@ -636,12 +854,47 @@
         </div>
     </div>
     <script>
+        var SuMFullNavBarElm = document.getElementById('<%= fullnavscont.ClientID %>');
+        if (SuMFullNavBarElm.classList.contains('animated') == false) {
+            SuMFullNavBarElm.classList.add('animated');
+        }
+        SuMFullNavBarElm.classList.remove('fadeInUp');
+        SuMFullNavBarElm.classList.remove('fadeOutDown');
+        if (document.URL.includes('/MangaExplorer.aspx') == false) {
+            SuMFullNavBarElm.style.display = 'block';
+        }
+        else {
+            MakeSuMFullNavDisa();
+        }
+        SuMFullNavBarElm.style.visibility = null;
+
+        if (document.referrer.includes('/MangaExplorer.aspx?') == true) {
+            MakeSuMFullNavDisa();
+            if (SuMFullNavBarElm.classList.contains('animated') == false) {
+                SuMFullNavBarElm.classList.add('animated');
+            }
+            SuMFullNavBarElm.classList.add('fadeInUp');
+            SuMFullNavBarElm.classList.remove('fadeOutDown');
+            SuMFullNavBarElm.style.display = 'block';
+            SuMFullNavBarElm.style.visibility = null;
+        }
         function MakeSuMFullNavDisa() {
-            var SuMFullNavBarElm = document.getElementById('<%= fullnavscont.ClientID %>');
             SuMFullNavBarElm.style.display = 'none';
             SuMFullNavBarElm.style.visibility = 'hidden';
-            SuMFullNavBarElm.style.height = '0px';
             SuMFullNavBarElm.style.overflow = 'hidden';
+        };
+        function SuMHideFullNavAnF0C0() {
+            SuMFullNavBarElm.classList.remove('fadeInUp');
+            SuMFullNavBarElm.classList.remove('fadeOutDown');
+            if (SuMFullNavBarElm.classList.contains('animated') == false) {
+                SuMFullNavBarElm.classList.add('animated');
+            }
+
+            SuMFullNavBarElm.classList.add('fadeOutDown')
+            setTimeout(() => {
+                SuMFullNavBarElm.style.display = 'none !important';
+                SuMFullNavBarElm.style.visibility = 'hidden !important';
+            }, 360);
         };
     </script>
         <script>

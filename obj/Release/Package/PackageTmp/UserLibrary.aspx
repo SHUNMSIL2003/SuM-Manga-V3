@@ -64,6 +64,10 @@
     <script>
         var ThisPageSBarFixUpPropElmVar = document.getElementById('ThisPageSBarFixUpPropElm');
         var StatusBarHeightValue = androidAPIs.getStatusBarHeight();
+        if (StatusBarHeightValue == null) {
+            StatusBarHeightValue = 12;
+        }
         ThisPageSBarFixUpPropElmVar.style.paddingTop = (StatusBarHeightValue) + 'px !important';
+        document.getElementById('<%= ShowReqContantContaner.ClientID %>').style.minHeight = 'calc(100vh - ' + (76 + 24 + StatusBarHeightValue) + 'px) !important';
     </script>
 </asp:Content>

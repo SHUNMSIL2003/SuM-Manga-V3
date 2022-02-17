@@ -31,6 +31,7 @@ namespace SuM_Manga_V3.storeitems
             if (IsPostBack == false)
             {
                 MTitle.InnerText = MangaNameFSQL;
+                SuMLoadingHandlerTXT.InnerText = MangaNameFSQL;
                 CardBG = ShowCover();
             }
             string ThemeColor = string.Empty;
@@ -41,6 +42,9 @@ namespace SuM_Manga_V3.storeitems
             else { ThemeColor = "#6840D9"; }
             if (IsPostBack == false)
             {
+                background.Attributes["style"] = "background-color:" + ThemeColor + " !important;width:100vw !important;height:100vh !important;";
+                SuMLoadingFHandBG.Attributes["style"] = "width:100%;height:100%;background-color:" + ThemeColor + ";margin:0 auto;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;";
+                SuMLoadingHandlerTXT.Attributes["style"] = "display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: " + ThemeColor.Replace("0.74", "0.92") + "; margin-bottom: -8px; text-align: left; width: calc(100% - 64px) !important;";
                 MangaChAMConta.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";padding-bottom:164px !important;min-height:calc(100vh + 6px) !important;";
                 //BackgroundLayer3.Attributes["style"] = "background-color:" + ThemeColor.Replace("0.74", "0.32") + ";width:100%;height:100%;";
             }
@@ -140,6 +144,10 @@ namespace SuM_Manga_V3.storeitems
             string LazyLoading = "loading=" + '"'.ToString() + "lazy" + '"'.ToString();
             if (GetUserInfoCookie != null)
             {
+                if (IsPostBack == false)
+                {
+                    SuMLogInAbsCon.InnerHtml = "";
+                }
                 int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
                 MangaUserStateV(MID, linktoupdate, linktoupdatech);
                 for (int c = 1; c < (cn1 + 1); c++)
@@ -568,7 +576,7 @@ namespace SuM_Manga_V3.storeitems
             string themecolor = ThemeColor;
             char sc = '"';
             char b12 = '"';
-            TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:96vw;opacity:0.18;margin:0px;margin-block:0px;" + sc.ToString() + ">";
+            TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:90%;opacity:0.16;margin:0px;margin-block:0px;" + sc.ToString() + ">";
             string btnanimationclass = string.Empty;
             if (PreformanceMode == false)
             {
@@ -1018,7 +1026,7 @@ namespace SuM_Manga_V3.storeitems
             }
             //BodyStyle = "<style>body { background-image: url(" + V + "); }</style>";
             //Body.InnerText = "body { background-image: url(" + V + "); }";
-            FakeBody.Attributes["style"] = "background-image:url(" + V + ");width:100vw !important;height:100vh !important;max-height:100vh !important;position:absolute !important;";
+            //FakeBody.Attributes["style"] = "background-color:rgb(255,255,255);width:100vw !important;height:100vh !important;max-height:100vh !important;position:absolute !important;";
             return V;
         }
         protected string ShowName()

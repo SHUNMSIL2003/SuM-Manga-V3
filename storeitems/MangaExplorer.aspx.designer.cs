@@ -15,6 +15,24 @@ namespace SuM_Manga_V3.storeitems
     {
 
         /// <summary>
+        /// SuMLoadingFHandBG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMLoadingFHandBG;
+
+        /// <summary>
+        /// SuMLoadingHandlerTXT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMLoadingHandlerTXT;
+
+        /// <summary>
         /// pfc control.
         /// </summary>
         /// <remarks>
@@ -24,13 +42,13 @@ namespace SuM_Manga_V3.storeitems
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pfc;
 
         /// <summary>
-        /// FirstAniDiv control.
+        /// SuMExIMGSVG control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FirstAniDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor SuMExIMGSVG;
 
         /// <summary>
         /// MangaName control.
@@ -94,6 +112,15 @@ namespace SuM_Manga_V3.storeitems
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor AddToFavSHOWNBTN;
+
+        /// <summary>
+        /// FirstAniDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FirstAniDiv;
 
         /// <summary>
         /// TheMangaPhotos control.

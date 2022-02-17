@@ -3,19 +3,90 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
         document.getElementById('fullnavscont').style.display = 'block';
-        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        /*var IsFullScreen = androidAPIs.SuMIsFullScreen();
         if (IsFullScreen == true) {
             androidAPIs.DeactivateFullScreenMode();
-        }
+        }*/
         androidAPIs.DeactivateFullScreenMode();
         if ("androidAPIs" in window) {
-            androidAPIs.DeactivateFullScreenMode();
+            //androidAPIs.DeactivateFullScreenMode();
             androidAPIs.FullyTransStatusBar();
         }
         else {
             location.href = '/SuMMangaInstallAPP.aspx';
         }
         androidAPIs.SetDarkStatusBarColor();
+    </script>
+    <div id="SuMLoadingPIndHandler" class="" style="overflow:hidden !important;border-radius:0px;display:block;position:fixed !important;top:0 !important;z-index:998 !important;background-color:#ffffff;width:100%;height:100%;margin-top:0px;margin-left:0px;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
+        <div id="SuMLoadingFHandBG" runat="server" style="overflow:hidden !important;width:100%;height:100%;background-color:rgba(0,0,0,0.74);margin:0 auto;">
+            <div id="SuMLoadingHandDivConF0C0" style="transition:all 0.18s !important;display: block; height: fit-content; width: 280px; background-color: rgb(255, 255, 255); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 38px 32px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important; text-align: center !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;" class="shadow-sm">
+                <svg id="SuMLoadingSVGPreviewHandler" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="rgba(143,107,171,0.92)"><g><rect fill="none" height="24" width="24"></rect><rect fill="none" height="24" width="24"></rect></g><g><path d="M17.5,4.5c-1.95,0-4.05,0.4-5.5,1.5c-1.45-1.1-3.55-1.5-5.5-1.5c-1.45,0-2.99,0.22-4.28,0.79C1.49,5.62,1,6.33,1,7.14 l0,11.28c0,1.3,1.22,2.26,2.48,1.94C4.46,20.11,5.5,20,6.5,20c1.56,0,3.22,0.26,4.56,0.92c0.6,0.3,1.28,0.3,1.87,0 c1.34-0.67,3-0.92,4.56-0.92c1,0,2.04,0.11,3.02,0.36c1.26,0.33,2.48-0.63,2.48-1.94l0-11.28c0-0.81-0.49-1.52-1.22-1.85 C20.49,4.72,18.95,4.5,17.5,4.5z M21,17.23c0,0.63-0.58,1.09-1.2,0.98c-0.75-0.14-1.53-0.2-2.3-0.2c-1.7,0-4.15,0.65-5.5,1.5V8 c1.35-0.85,3.8-1.5,5.5-1.5c0.92,0,1.83,0.09,2.7,0.28c0.46,0.1,0.8,0.51,0.8,0.98V17.23z"></path><g></g><path d="M13.98,11.01c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.54-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,10.99,14.05,11.01,13.98,11.01z"></path><path d="M13.98,13.67c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,13.66,14.05,13.67,13.98,13.67z"></path><path d="M13.98,16.33c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.7-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,16.32,14.05,16.33,13.98,16.33z"></path></g></svg>
+                <p id="SuMLoadingHandlerTXT" runat="server" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: rgba(143, 107, 171, 0.92); margin-bottom: -8px; text-align: left; width: calc(100% - 64px) !important;">Chapter 1</p>
+                <p id="SuMLoadingHandlerComTXT" class="animated fadeIn" style="font-size: 26px; width: 100%; display: block; text-align: center; height: 26px;margin-top: 10px;margin-bottom:6px; color: rgba(143, 107, 171, 0.64);">loading complete</p>
+                <script>
+                    var LoadDetThemeColor = document.getElementById('<%= SuMLoadingHandlerTXT.ClientID %>').style.color;
+                    document.getElementById('SuMLoadingSVGPreviewHandler').setAttribute('fill', LoadDetThemeColor);
+                    document.getElementById('SuMLoadingHandlerComTXT').style.color = LoadDetThemeColor.replace('0.92', '0.64');
+            </script>
+            </div>
+        </div>
+    </div>
+    <script>
+        var SuMLoadingPIndHandlerElm = document.getElementById('SuMLoadingPIndHandler');
+        var SuMLoadingHandDivConF0C0Elm = document.getElementById('SuMLoadingHandDivConF0C0');
+        setTimeout(() => {
+            //FixAnimations While Caching
+            SuMLoadingPIndHandlerElm.style.height = '100%';
+            SuMLoadingPIndHandlerElm.style.width = '100%';
+            SuMLoadingPIndHandlerElm.style.marginTop = '0';
+            SuMLoadingPIndHandlerElm.style.marginLeft = '0';
+            SuMLoadingPIndHandlerElm.classList.remove('fadeOut');
+            SuMLoadingHandDivConF0C0Elm.classList.remove('fadeOut');
+            SuMLoadingPIndHandlerElm.style.display = 'block';
+            SuMLoadingPIndHandlerElm.style.visibility = null;
+            SuMLoadingPIndHandlerElm.style.borderRadius = null;
+            SuMLoadingHandDivConF0C0Elm.style.display = 'block';
+            SuMLoadingHandDivConF0C0Elm.style.visibility = null;
+            SuMLoadingHandDivConF0C0Elm.classList.remove('animated');
+            SuMLoadingPIndHandlerElm.classList.remove('animated');
+            SuMLoadingHandDivConF0C0Elm.style.marginLeft = 'calc(50vw - 140px)';
+            //SuMLoadingPIndHandlerElm.style.transition = 'all 0.6s !important';
+            //Animation Start from here
+            setTimeout(() => {
+                SuMLoadingPIndHandlerElm.style.height = '360px';
+                SuMLoadingPIndHandlerElm.style.width = '360px';
+                SuMLoadingPIndHandlerElm.style.marginTop = 'calc(50vh - 200px)';
+                SuMLoadingPIndHandlerElm.style.marginLeft = 'calc(50vw - 180px)';
+                SuMLoadingPIndHandlerElm.style.borderRadius = '180px';
+                SuMLoadingHandDivConF0C0Elm.style.marginLeft = 'calc(50% - 140px) !important';
+                //SuMLoadingHandDivConF0C0Elm.style.margin = '0 auto !important';
+            }, 80);
+            setTimeout(() => {
+                SuMLoadingHandDivConF0C0Elm.classList.add('animated');
+                SuMLoadingHandDivConF0C0Elm.classList.add('fadeOut');
+            }, 280);
+            setTimeout(() => {
+                SuMLoadingHandDivConF0C0Elm.style.display = 'none';
+                SuMLoadingHandDivConF0C0Elm.style.visibility = 'hidden';
+                SuMLoadingHandDivConF0C0Elm.style.margin = null;
+            }, 360);
+            setTimeout(() => {
+                //SuMLoadingPIndHandlerElm.style.transition = 'all 1s !important';
+                SuMLoadingPIndHandlerElm.style.height = '0px';
+                SuMLoadingPIndHandlerElm.style.width = '0px';
+                SuMLoadingPIndHandlerElm.style.marginTop = '50vh';
+                SuMLoadingPIndHandlerElm.style.marginLeft = '50vw';
+                SuMLoadingPIndHandlerElm.style.borderRadius = '12px';
+            }, 560);
+            setTimeout(() => {
+                SuMLoadingPIndHandlerElm.classList.add('animated');
+                SuMLoadingPIndHandlerElm.classList.add('fadeOut');
+            }, 540);
+            setTimeout(() => {
+                SuMLoadingPIndHandlerElm.style.display = 'none';
+                SuMLoadingPIndHandlerElm.style.visibility = 'hidden';
+            }, 820);
+        }, 960);
     </script>
     <div style="display:none !important;visibility:hidden !important;" id="ScriptInjectorB000" runat="server"></div>
     <asp:Button ID="UpdateWannaNFavNCurr" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden !important;" />
@@ -37,6 +108,7 @@
             <p style="display:inline-block;margin-right:28px;font-size:86%;color:#ffffffbd;float:right;margin-top:6px;margin-left:4px;" id="SliderChaptersSta" runat="server">- #CN chapters</p>
         </div>
     </div>
+    <div id="SuMLogInAbsCon" runat="server">
     <asp:UpdatePanel ID="UpdatePanelLogin" runat="server" UpdateMode="Conditional">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="LoginBTN" EventName="Click" />
@@ -104,6 +176,7 @@
         document.getElementById('fullnavscont').classList.add('slideInUp');
         document.getElementById('fullnavscont').style.display = 'block';*/
     </script>
+    </div>
     <style>
         /*# {
             animation: rainbow 10s linear infinite;
@@ -141,11 +214,12 @@
     </style>
     <script>
         /* navigator.share({title:'SuM Manga',text:'Check out X on SuM Manga.',url:'LINK'}); */
-        if (fullnavscont.classList.contains('slideInUp')) {
+        /*if (fullnavscont.classList.contains('slideInUp')) {
             fullnavscont.classList.remove('slideOutDown');
             fullnavscont.classList.remove('slideInUp');
             fullnavscont.style.display = 'block';
-        };
+        };*/
+        fullnavscont.style.display = 'block';
         document.addEventListener("DOMContentLoaded", function () {
 
             var fullnavscont = document.getElementById("fullnavscont");
@@ -169,7 +243,7 @@
 
             }*/
 
-            window.onclick = function (e) {
+            /*window.onclick = function (e) {
 
                 //console.log(e);
 
@@ -194,11 +268,11 @@
                 }
 
             };
-        });
+        });*/
     </script>
-    <div id="FakeBody" runat="server" style="width:100vw !important;height:100vh !important;max-height:100vh !important;position:absolute !important;">
-    <div id="background" style="background-color:rgba(255,255,255,0.92);width:100vw !important;height:100vh !important;">
-    <div id="3rdGBLayer" style="background-color:rgba(255,255,255,0.64);width:100vw;height:100vh;">
+    <div id="FakeBody" runat="server" style="background-color:rgb(255,255,255);width:100vw !important;height:100vh !important;max-height:100vh !important;position:absolute !important;">
+    <div id="background" runat="server"  style="background-color:rgba(0,0,0,0.74) !important;width:100vw !important;height:100vh !important;">
+    <div id="3rdGBLayer" style="background-color:transparent;width:100vw;height:100vh;">
     <div id="CONTANERFROCONTANTEXPLORER" style="width:100vw !important;max-width:740px !important;margin:0 auto !important;">
     <div id="ACont0" runat="server" class="fadeIn animated" style="width:100%;">
     <div class="animated fadeIn" style="height:fit-content;width:100%;overflow:hidden; background-color:transparent !important;position:fixed;max-width:720px;overflow-x:hidden !important;" id="CategoryX" runat="server">
@@ -269,7 +343,7 @@
 
                     });
 
-                    document.getElementById('3rdGBLayer').style.backgroundColor = DetectedThemeColor.replace("0.74", "0.32");
+                    //document.getElementById('3rdGBLayer').style.backgroundColor = DetectedThemeColor.replace("0.74", "0.32");
 
                     function AddToFavJava() {
                         FAVIMGBTN.src = '/svg/favorite.svg';
