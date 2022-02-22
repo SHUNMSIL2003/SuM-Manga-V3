@@ -11,7 +11,15 @@ namespace SuM_Manga_V3.SuMAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie != null)
+            {
+                if (GetUserInfoCookie["UserName"] != "Shun2003")
+                {
+                    Response.Redirect("~/AccountETC/Settings.aspx");
+                }
+            }
+            else { Response.Redirect("~/AccountETC/LoginETC.aspx"); }
         }
     }
 }

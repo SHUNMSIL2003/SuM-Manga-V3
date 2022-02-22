@@ -2,11 +2,11 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        /*var IsFullScreen = androidAPIs.SuMIsFullScreen();
         if (IsFullScreen == true) {
-            androidAPIs.DeactivateFullScreenMode();
-            androidAPIs.SetLightStatusBarColor();
-        }
+            androidAPIs.DeactivateFullScreenMode();*/
+        androidAPIs.SetLightStatusBarColor();
+        //}
         androidAPIs.SetLightStatusBarColor();
         setTimeout(() => {
             androidAPIs.SetLightStatusBarColor();
@@ -89,6 +89,16 @@
                                     </a>
                                     <div class="mb-3">
                                         <asp:Button CssClass="btn btn-primary btn-sm" ID="chpfp000" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangePFP" Text="Save Pic" />
+                                        <script>
+                                            const FilePuloadEndElement = document.getElementById('<%= chpfp000.ClientID %>');
+
+                                            // always checking if the element is clicked, if so, do alert('hello')
+                                            FilePuloadEndElement.addEventListener("click", () => {
+                                                setTimeout(() => {
+                                                    androidAPIs.SuMRestart();
+                                                }, 360);
+                                            });
+                                        </script>
                                         <p style="display:inline-block !important;"> Or </p>
                                         <asp:Button CssClass="btn btn-primary btn-sm" ID="RemovePFP" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangePFPAtRandom" Text="Reset PFP" />
                                     </div>
@@ -301,9 +311,23 @@
         </div>
             <div class="" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:132px;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.0.4 Beta</p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.1.0 Beta</p>
                 <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:#ffffff;background: rgba(104,64,217,0.62);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
+                <!-- <a onclick="UploadReplaceFunc">BETA UPLOAD ON ANDROID TESTING BTN</a>
+                <script>
+                    navigator.camera.getPicture(function () {
+                        // On Success logic
+                        that._onPhotoURISuccess.apply(that, arguments);
+                    }, function () {
+                        // On Failure logic
+                        cameraApp._onFail.apply(that, arguments);
+                    }, {
+                        quality: 50,
+                        destinationType: cameraApp._destinationType.FILE_URI,
+                        sourceType: PHOTOLIBRARY
+                    });
+            </script>-->
             </div>
         </div>
     </div>

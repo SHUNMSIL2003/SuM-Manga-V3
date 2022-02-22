@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Creator.Master" AutoEventWireup="true" CodeBehind="CreatorMangaPanel.aspx.cs" Async="true" Inherits="SuM_Manga_V3.SuMCreator.CreatorMangaPanel" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="CreatorMangaPanel.aspx.cs" Async="true" Inherits="SuM_Manga_V3.SuMCreator.CreatorMangaPanel" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>

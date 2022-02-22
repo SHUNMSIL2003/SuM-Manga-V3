@@ -3,11 +3,11 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
         androidAPIs.SetLightStatusBarColor();
-        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        /*var IsFullScreen = androidAPIs.SuMIsFullScreen();
         if (IsFullScreen == true) {
-            androidAPIs.DeactivateFullScreenMode();
-            androidAPIs.SetLightStatusBarColor();
-        }
+            androidAPIs.DeactivateFullScreenMode();*/
+        androidAPIs.SetLightStatusBarColor();
+        //}
         androidAPIs.SetLightStatusBarColor();
         setTimeout(() => {
             androidAPIs.SetLightStatusBarColor();

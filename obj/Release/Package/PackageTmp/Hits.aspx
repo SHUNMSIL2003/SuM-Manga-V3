@@ -3,10 +3,10 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
         androidAPIs.SetDarkStatusBarColor();
-        var IsFullScreen = androidAPIs.SuMIsFullScreen();
+        /*var IsFullScreen = androidAPIs.SuMIsFullScreen();
         if (IsFullScreen == true) {
             androidAPIs.DeactivateFullScreenMode();
-        }
+        }*/
     </script>
     <style>
         * {box-sizing: border-box;}

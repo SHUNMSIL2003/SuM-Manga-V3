@@ -327,9 +327,9 @@
     <Content Include="dist\magic.css" />
     <Content Include="dist\magic.min.css" />
     <Content Include="dragscroll.js" />
-    <Content Include="Explore.aspx" />
+    <Content Include="ExploreDisabled.aspx" />
     <Content Include="SuMExplore.aspx" />
-    <Content Include="ExploreO.aspx" />
+    <Content Include="Explore.aspx" />
     <Content Include="favicon-16x16.png" />
     <Content Include="favicon-32x32.png" />
     <Content Include="favicon.ico" />
@@ -392,8 +392,6 @@
     <Content Include="SuMAdmin\AcceptSuMUploads.aspx" />
     <Content Include="SuMAdmin\SuMManualPuplish.aspx" />
     <Content Include="SuMCreator\CreatorMangaPanel.aspx" />
-    <Content Include="SuMCreator\CreatorsDrafts\20220222031516-1-1157JWiluZkTn776.sum.png" />
-    <Content Include="SuMCreator\CreatorsDrafts\20220222031516-1-1157JWiluZkTn776.sum.xml" />
     <Content Include="SuMCreator\CreatorsDrafts\BF.aspx" />
     <Content Include="SuMManga-SW.js" />
     <Content Include="pwabuilder-sw\pwabuilder-sw-register.js" />
@@ -2861,12 +2859,12 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Explore.aspx.cs">
-      <DependentUpon>Explore.aspx</DependentUpon>
+    <Compile Include="ExploreDisabled.aspx.cs">
+      <DependentUpon>ExploreDisabled.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Explore.aspx.designer.cs">
-      <DependentUpon>Explore.aspx</DependentUpon>
+    <Compile Include="ExploreDisabled.aspx.designer.cs">
+      <DependentUpon>ExploreDisabled.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuMExplore.aspx.cs">
       <DependentUpon>SuMExplore.aspx</DependentUpon>
@@ -2875,12 +2873,12 @@
     <Compile Include="SuMExplore.aspx.designer.cs">
       <DependentUpon>SuMExplore.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExploreO.aspx.cs">
-      <DependentUpon>ExploreO.aspx</DependentUpon>
+    <Compile Include="Explore.aspx.cs">
+      <DependentUpon>Explore.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExploreO.aspx.designer.cs">
-      <DependentUpon>ExploreO.aspx</DependentUpon>
+    <Compile Include="Explore.aspx.designer.cs">
+      <DependentUpon>Explore.aspx</DependentUpon>
     </Compile>
     <Compile Include="Hits.aspx.cs">
       <DependentUpon>Hits.aspx</DependentUpon>

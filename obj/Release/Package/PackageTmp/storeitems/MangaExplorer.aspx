@@ -5,11 +5,11 @@
         androidAPIs.SetLightStatusBarColor();
         androidAPIs.SetSuMSecureFlag();
         androidAPIs.SetLightStatusBarColor();
-        var IsFullScreenF248C467 = androidAPIs.SuMIsFullScreen();
+        /*var IsFullScreenF248C467 = androidAPIs.SuMIsFullScreen();
         if (IsFullScreenF248C467 == true) {
-            androidAPIs.DeactivateFullScreenMode();
-            androidAPIs.SetLightStatusBarColor();
-        }
+            androidAPIs.DeactivateFullScreenMode();*/
+        androidAPIs.SetLightStatusBarColor();
+        //}
         androidAPIs.SetSuMSecureFlag();
         var intervalId = setInterval(function () {
             androidAPIs.SetLightStatusBarColor();

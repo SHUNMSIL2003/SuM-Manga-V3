@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SuMManga.Mobile.Creator.Master" CodeBehind="AcceptSuMUploads.aspx.cs" Inherits="SuM_Manga_V3.SuMAdmin.AcceptSuMUploads" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SuMManga.Mobile.Master" CodeBehind="AcceptSuMUploads.aspx.cs" Inherits="SuM_Manga_V3.SuMAdmin.AcceptSuMUploads" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- This Is Raw Code -->

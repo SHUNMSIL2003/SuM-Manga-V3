@@ -7,7 +7,7 @@
         if (IsFullScreen == true) {
             androidAPIs.DeactivateFullScreenMode();
         }*/
-        androidAPIs.DeactivateFullScreenMode();
+        //androidAPIs.DeactivateFullScreenMode();
         if ("androidAPIs" in window) {
             //androidAPIs.DeactivateFullScreenMode();
             androidAPIs.FullyTransStatusBar();
@@ -525,13 +525,13 @@
 
             if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
 
-                androidAPIs.DeactivateFullScreenMode();
+                //androidAPIs.DeactivateFullScreenMode();
                 androidAPIs.SetDarkStatusBarColor();
                 SuMMangaTopBarElm.style.display = 'block';
 
             } else {
 
-                androidAPIs.DeactivateFullScreenMode();
+                //androidAPIs.DeactivateFullScreenMode();
                 androidAPIs.SetDarkStatusBarColor();
                 SuMMangaTopBarElm.style.display = 'none';
 

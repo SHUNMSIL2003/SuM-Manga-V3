@@ -57,8 +57,12 @@ img {
             scrollbar-width: none; /* Firefox */
         }
     </style>
+    <div style="background-color:rgba(255,255,255,0.86) !important;position:fixed !important;top:0 !important;animation-duration:0.16s !important;z-index:997 !important;height:fit-content !important;width:100% !important;display:none;padding-top:6px;padding-bottom:6px;padding-left:4px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;" class="animated fadeInDown" id="SuMMangaTopBar">
+        <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;" id="SuMMangaTopBarHeightHelper"></div>
+        <p style="font-size:118%;margin-left:18px;margin-bottom:8px;display:block;height:fit-content;width:fit-content;" class="text-black"><img src="/svg/awesomeTblack.svg" width="30" height="30" style="" /> SuM's latest</p>
+    </div>
                     <div class="animated fadeIn ForceMaxW" style="width:100%;height:100vh;padding-bottom:132px;overflow:scroll;">
-                        <div class="card-body">
+                        <div id="SSElmF1C1" class="card-body">
                             <div id="MangasAvalibleDiv" runat="server" style="text-align:center;align-items:center; width:fit-content; margin:0 auto !important;margin-top:26px !important;">
                             </div>
                             <div class="row">
@@ -74,4 +78,55 @@ img {
                             </div>
                         </div>
                     </div>
+    <script>
+        androidAPIs.SetLightStatusBarColor();
+        var ThisPageScrollContaner = document.getElementById('SSElmF1C1'); 
+        var SuMMangaTopBarElm = document.getElementById('SuMMangaTopBar');
+        var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
+        var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
+        var MaxScrollHDetected = androidAPIs.getStatusBarHeight() + 12t;
+        setTimeout(() => {
+            MaxScrollHDetected = androidAPIs.getStatusBarHeight() + 12t;
+        }, 540);
+        SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
+        ThisPageScrollContaner.onscroll = function () {
+
+            if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
+
+                androidAPIs.SetLightStatusBarColor();
+                SuMMangaTopBarElm.style.display = 'block';
+
+            } else {
+
+                androidAPIs.SetLightStatusBarColor();
+                SuMMangaTopBarElm.style.display = 'none';
+
+            }
+
+        };
+
+        androidAPIs.SetLightStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+            setTimeout(() => {
+                androidAPIs.SetLightStatusBarColor();
+                setTimeout(() => {
+                    androidAPIs.SetLightStatusBarColor();
+                    setTimeout(() => {
+                        androidAPIs.SetLightStatusBarColor();
+                        setTimeout(() => {
+                            androidAPIs.SetLightStatusBarColor();
+                            setTimeout(() => {
+                                androidAPIs.SetLightStatusBarColor();
+                                setTimeout(() => {
+                                    androidAPIs.SetLightStatusBarColor();
+                                }, 1800);
+                            }, 45);
+                        }, 90);
+                    }, 180);
+                }, 360);
+            }, 640);
+        }, 960);
+    </script>
 </asp:Content>

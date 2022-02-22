@@ -781,7 +781,7 @@
                 <a name="no-animation" id="navb2" runat="server" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p runat="server" id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
-                    <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;">Navigate Back</b>
+                    <b class="pulse animated" id="NavigateBackF0C1" runat="server" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;">Navigate Back</b>
                 </a>
             <a class="" id="SubSearch" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="if (!navigator.onLine) { document.getElementById('SearchOffline').style.display = 'block'; } else { location.href = '/Search.aspx'; }" href="#"><img src="/svg/Search.svg" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:14px !important;"></a>
             <a id="ComAct" onclick="FuncLoadCommentsSec()" style="float:right !important;vertical-align:middle !important;width:fit-content;margin-left:4px;">
@@ -817,7 +817,7 @@
                 <a name="no-animation" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
                     <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:#6840D9;margin-top:8px !important;">Manga</p>
-                    <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;">Navigate Back</b>
+                    <b class="pulse animated" id="NavigateBackF0C0" runat="server" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;">Navigate Back</b>
                 </a>
             <a name="no-animation" id="FullSearch" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="if (!navigator.onLine) { document.getElementById('SearchOffline').style.display = 'block'; } else { location.href = '/Search.aspx'; }" href="#"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
             <a name="no-animation" id="SuMNotificationStart" runat="server" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;padding-top:4px !important;" >

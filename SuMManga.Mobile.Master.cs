@@ -40,10 +40,22 @@ namespace SuM_Manga_V3
                 meta.Name = "theme-color";
                 meta.Content = Request.QueryString["TC"].ToString();
                 MetaPlaceHolder.Controls.Add(meta);
+                if (Request.QueryString["TC"].ToString().Contains("255,255,255") == false)
+                {
+                    NavigateBackF0C0.Attributes["style"] = "font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;color:" + Request.QueryString["TC"].ToString() + ";";
+                    NavigateBackF0C1.Attributes["style"] = "font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;color:" + Request.QueryString["TC"].ToString() + ";";
+                }
+                else 
+                {
+                    NavigateBackF0C0.Attributes["style"] = "font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;color:#6840D9BD;";
+                    NavigateBackF0C1.Attributes["style"] = "font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;color:#6840D9BD;";
+                }
                 //fullnavscont
             }
             else
             {
+                NavigateBackF0C0.Attributes["style"] = "font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;color:#6840D9BD;";
+                NavigateBackF0C1.Attributes["style"] = "font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;color:#6840D9BD;";
                 //SMHead.InnerHtml += "<meta name=" + "theme-color" + " content=" + "rgb(242,242,242)" + ">";
                 System.Web.UI.HtmlControls.HtmlMeta meta = new System.Web.UI.HtmlControls.HtmlMeta();
                 meta.Name = "theme-color";
