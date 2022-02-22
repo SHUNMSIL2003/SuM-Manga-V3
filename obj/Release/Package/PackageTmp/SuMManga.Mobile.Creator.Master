@@ -1,0 +1,1004 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SuMManga.Mobile.Creator.Master.cs" Inherits="SuM_Manga_V3.SuMManga_MobileCreator" %>
+
+<!DOCTYPE html>
+<html lang="en" style="overflow: hidden;">
+<head id="SMHead" runat="server"><!--
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials"> -->
+    <!-- <script src="/runsw.js"></script> -->
+    <!-- <script type="module">
+        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+        const el = document.createElement('pwa-update');
+        document.body.appendChild(el);
+    </script> -->
+    <noscript>
+        <meta http-equiv="refresh" content="0; url = https://sum-manga.azurewebsites.net/SuMMangaInstallAPP.aspx" />
+    </noscript>
+    <script>/*
+        if ("androidAPIs" in window) {
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/SuMManga-SW.js')
+                        .then(registration => {
+                            console.log(`Service Worker registered! Scope: ${registration.scope}`);
+                        })
+                        .catch(err => {
+                            console.log(`Service Worker registration failed: ${err}`);
+                        });
+                });
+            }
+            androidAPIs.SetSuMHardwareExl();
+        }
+        else {
+            location.href = '/SuMMangaInstallAPP.aspx';
+        }
+        androidAPIs.SuM0Manager();*/
+    </script>
+    <meta name="google-signin-client_id" content="464504450730-iuk9hotshe7kjnq73p11mdvijc49ll5c.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta charset="utf-8">
+    <asp:PlaceHolder id="MetaPlaceHolder" runat="server" />
+    <meta name="robots" content="<%=GetMetaRobotsValueFromDatabase()%>" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <!--
+    <meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">--><!-- 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>SuM Manga</title>
+    <link rel="stylesheet" href="/dist/magic.min.css">
+    <meta name="description" content="Shun Manga - Readers Haven">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/any_icon_x32.png?h=c6e95e86bee5c429ad96d74eb8a03d17">
+    <link rel="icon" type="image/png" sizes="180x180" href="/assets/img/any_icon_x180.png?h=871c022ab54519fd72e751e1fb1e8b51">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/any_icon_x192.png?h=ce0f4944b0b251649d44e6c8399f6165">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/any_icon_x512.png?h=951d9a72d5c8436fe4694aec7383dc0a">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css?h=9c9410dd08c3e2433b1961c2a8a68b39">
+    <!-- <link rel="manifest" href="manifest.json?h=f7ca12cbff627266dac4280164023899" /> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css?h=34f9b351b7076f97babcdac3c1081100">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css?h=34f9b351b7076f97babcdac3c1081100">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css?h=34f9b351b7076f97babcdac3c1081100">
+    <link rel="stylesheet" href="/assets/animate.min.css">
+    <meta name="google-site-verification" content="mp9Vewhm3_3ddQfuO0zmgnIvZpKaygdMO36zmFOgzos" />
+    <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
+    <!-- VALID PWA START -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6840d9">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="SuM Manga">
+    <meta name="application-name" content="SuM Manga">
+    <meta name="msapplication-TileColor" content="#f2f2f2">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#f2f2f2">
+    <meta name="msapplication-TileColor" content="#f2f2f2">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="/assets/img/any_icon_x180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/ios/152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/ios/167.png">
+    <link rel="apple-touch-icon" sizes="100x100" href="/ios/100.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="/ios/1024.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/ios/114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/ios/120.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="/ios/128.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/ios/144.png">
+    <link rel="apple-touch-icon" sizes="16x16" href="/ios/16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/ios/192.png">
+    <link rel="apple-touch-icon" sizes="20x20" href="/ios/20.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="/ios/256.png">
+    <link rel="apple-touch-icon" sizes="29x29" href="/ios/29.png">
+    <link rel="apple-touch-icon" sizes="32x32" href="/ios/32.png">
+    <link rel="apple-touch-icon" sizes="40x40" href="/ios/40.png">
+    <link rel="apple-touch-icon" sizes="50x50" href="/ios/50.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="/ios/512.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/ios/57.png">
+    <link rel="apple-touch-icon" sizes="58x58" href="/ios/58.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/ios/60.png">
+    <link rel="apple-touch-icon" sizes="64x64" href="/ios/64.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/ios/72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/ios/76.png">
+    <link rel="apple-touch-icon" sizes="80x80" href="/ios/80.png">
+    <link rel="apple-touch-icon" sizes="87x87" href="/ios/87.png">
+    <link href="/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="/splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <!--  VALID PWA END  -->
+
+    <style>
+        div#popup {
+            display: none;
+        }
+        body {
+            width:100vw !important;
+            height:100vh !important;
+            background-color:#ffffff !important;
+        }
+
+/* use a media query to filter small devices */
+        @media only screen and (min-width:1600px) {
+            /* show the popup */
+            /*div#popup {
+                display: block;
+            }*/
+        }
+        @font-face {
+            font-family: 'VarelaRound';
+            src: url('/assets/VarelaRound.ttf');
+        }
+        * {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+            /*-webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;*/
+        }
+        .sumsmoothtrans {
+            /*-webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;*/
+        }
+         text, h1, h2, h3, h4, h5, h6, p , b {
+            pointer-events: none;
+            font-family:VarelaRound !important;
+            text-decoration:none;
+         }
+        text, a {
+            text-decoration:none !important;
+        }
+        img {
+            pointer-events:none;
+        }
+        .GoodBlur {
+            -webkit-backface-visibility: hidden !important;
+            -webkit-perspective: 1000 !important;
+            -webkit-transform: translate3d(0,0,0) !important;
+            -webkit-transform: translateZ(0) !important;
+            backface-visibility: hidden !important;
+            perspective: 1000 !important;
+            transform: translate3d(0,0,0) !important;
+            transform: translateZ(0) !important;
+            /*backdrop-filter:blur(1px) !important;*/
+        }
+        .GoodBlurAnim {/*
+            -webkit-backface-visibility: hidden !important;
+            -webkit-perspective: 1000 !important;
+            -webkit-transform: translate3d(0,0,0) !important;
+            -webkit-transform: translateZ(0) !important;
+            backface-visibility: hidden !important;
+            perspective: 1000 !important;
+            transform: translate3d(0,0,0) !important;
+            backdrop-filter:blur(1px) !important;*/
+        }
+        input, textarea {
+            -webkit-user-select: text !important;
+            -khtml-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+        }
+            /* clears the ‘X’ from Internet Explorer */
+            input[type=search]::-ms-clear {
+                display: none;
+                width: 0;
+                height: 0;
+            }
+            input[type=search]::-ms-reveal {
+                display: none;
+                width: 0;
+                height: 0;
+            }
+            /* clears the ‘X’ from Chrome */
+            input[type="search"]::-webkit-search-decoration,
+            input[type="search"]::-webkit-search-cancel-button,
+            input[type="search"]::-webkit-search-results-button,
+            input[type="search"]::-webkit-search-results-decoration {
+                display: none;
+            }
+            input[type=checkbox]:focus,
+            input[type=submit]:focus {
+                box-shadow: inset 0 0px 0 #000 !important;
+            }
+    </style>
+    <script>
+        /* */
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onkeydown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        function preventDefaultActivities(e) {
+            console.log("Suppressed default activity");
+            e.preventDefault();
+        }
+        console.log("this website is for a school project, It will be deleted soon! (By May)");
+        console.log("Content of this website is for public information. Usage of it without owners permission is strictly prohibited.");
+    </script>   
+    <script>
+        window.addEventListener('contextmenu', e => {
+            e.preventDefault();
+        });/*
+        (function () {
+            setInterval(() => {
+                debugger;
+            }, 100);
+        })();*/
+        //document.getElementById('popup').style.display = 'none';
+    </script>
+</head>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<body id="page-top" style="overflow:hidden !important;height:100vh;width:100vw;"> 
+    <div onclick="document.getElementById('popup').style.display = 'none';" id="popup" style="">
+        <div class="animated slideInDown" style="width:fit-content !important; height:fit-content !important;background-color:rgb(242,242,242,0.6);display:block !important;float:left !important;">
+            <p style="color:red;font-size:70%;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI, You can tap this popup to hide it!</p>
+        </div>
+    </div>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            scroll-behavior:smooth !important;
+        }
+        div {
+            box-shadow: 0px 0px #000000 !important;
+            overflow-x: hidden !important;
+            font-family:VarelaRound !important;
+        }
+
+        ::-webkit-scrollbar {
+            display:none !important;
+            /*margin-top:26px !important;
+            width: 3px;*/
+        }
+
+/* Track */
+        ::-webkit-scrollbar-track {
+            display:none !important;/*
+            margin-top:26px !important;
+            background: #ffffff;*/
+        }
+ 
+/* Handle */
+        ::-webkit-scrollbar-thumb {
+            display:none !important;/*
+            margin-top:26px !important;
+            background: #8a61ff;
+            border-radius: 1px;*/
+        }
+
+/* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            display:none !important;/*
+            margin-top:26px !important;
+            background: #6840D9;
+            border-radius: 1px;*/
+        }
+        .ForceMaxW {
+            max-width:1600px !important;
+            /*margin: 0 auto !important;*/
+        }
+        .PupShadow {/*
+            box-shadow: 0px 0px 1px 160vw rgba(104, 64, 217, 0.25) !important;*/
+        }
+        .NotifMaxWidth {
+            max-width:calc(100vw - 120px) !important;
+        }
+    </style>
+    <form autocomplete="off" id="SuM" method="post" runat="server" >
+    <div runat="server" id="wrapper" style="overflow:hidden;background-color:#ffffff !important;">
+        <asp:ScriptManager ID="SuMScriptManager" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
+       </asp:ScriptManager>
+        <div class="d-flex flex-column" id="content-wrapper" style="">
+            <div id="content">
+                <style>
+                    .FNM5455511 {
+                        margin-top:0px !important;
+                        margin-bottom:0px !important;
+                        height:7vh !important;
+                        /*background-color:rgb(240, 235, 255) !important;*/
+                    }
+                </style>
+                <div style="width:100vw !important; height:100vh !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:#ffffff !important;" id="SuMMainBlock" runat="server" class="container-fluid">
+                    <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:100vh !important;max-height:100vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;" id="mc" runat="server">
+                    <div id="LoadingSuMInfoBub" style="text-align: center; display: none; height: fit-content; width: 280px; background-color: rgb(255, 255, 255); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 18px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important;padding-top:38px;padding-bottom:32px;text-align:center !important;" class="shadow-sm animated fadeIn">
+                        <svg id="SuMLoadingSVGPreview" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="rgba(255,255,255,0.92)"></svg>
+                        <p id="SuMLoadingTXT" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: rgba(255, 255, 255, 0.92); width: calc(100% - 64px) !important;margin-bottom:-8px;text-align:left;">INFO</p>
+                        <div id="SuMMovingLoadingCont" style="display: block; width: calc(100% - 32px); overflow: hidden; height: 26px; border-radius: 13px; background-color: rgba(255, 255, 255, 0.18); margin: 0px auto;margin-top:16px;">
+                            <div id="SuMMovingLoadingNID" style="background-color: rgba(255, 255, 255, 0.92); height: 26px; width: 40%; display: block; margin-left: 100%; transition-duration: 0.76s; transition-timing-function: ease !important; transition-delay: 0s !important; transition-property: all !important;"></div>
+                        </div>
+                        <p id="SuMLoadingFailedTXT" class="" style="font-size: 32px; width: 100%; display: block; text-align: center; margin-bottom: 32px; height: 26px; margin-top: 16px;  color: red !important;">Offline!</p>
+                    </div>
+                    <div id="SuMLoadingExpandAnI" style="display:none;background-color:#ffffff;overflow:hidden;border-radius:50%;width:26px;height:26px;position:fixed !important;top:0 !important;z-index:998 !important;margin-left:calc(50vw - 13px) !important;margin-top:calc(50vh - 13px) !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
+                        <div id="SuMLoadingExpandingColorDiv" style="width:100%;height:100%;margin: 0 auto;background-color:#ffffff;"></div>
+                    </div>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <script>
+
+                        var SuMLoadingContElm = document.getElementById('LoadingSuMInfoBub');
+                        SuMLoadingContElm.style.display = 'none';
+                        var SuMLoadingTitleElm = document.getElementById('SuMLoadingTXT');
+                        var SuMLoadingAnElmF0C0 = document.getElementById('SuMMovingLoadingNID');
+                        var SuMLoadingAnConElmF0C0 = document.getElementById('SuMMovingLoadingCont');
+                        var SuMLoadingSVGPreviewElmF0C0 = document.getElementById('SuMLoadingSVGPreview');
+                        var SuMLoadingFailedTXTElm = document.getElementById('SuMLoadingFailedTXT');
+
+                        var SuMLoadingExpandAnIElm = document.getElementById('SuMLoadingExpandAnI');
+                        SuMLoadingExpandAnIElm.style.display = 'none';
+                        var SuMLoadingExpandingColorDivElm = document.getElementById('SuMLoadingExpandingColorDiv');
+
+                        var SuMLoadHerfFailed = false;
+                        var SuMLoadingIsInPross = false;
+
+                        var SuMSettingsSVGPath = '<rect fill="none" height="24" width="24"/> <path d="M19.5,12c0-0.23-0.01-0.45-0.03-0.68l1.86-1.41c0.4-0.3,0.51-0.86,0.26-1.3l-1.87-3.23c-0.25-0.44-0.79-0.62-1.25-0.42 l-2.15,0.91c-0.37-0.26-0.76-0.49-1.17-0.68l-0.29-2.31C14.8,2.38,14.37,2,13.87,2h-3.73C9.63,2,9.2,2.38,9.14,2.88L8.85,5.19 c-0.41,0.19-0.8,0.42-1.17,0.68L5.53,4.96c-0.46-0.2-1-0.02-1.25,0.42L2.41,8.62c-0.25,0.44-0.14,0.99,0.26,1.3l1.86,1.41 C4.51,11.55,4.5,11.77,4.5,12s0.01,0.45,0.03,0.68l-1.86,1.41c-0.4,0.3-0.51,0.86-0.26,1.3l1.87,3.23c0.25,0.44,0.79,0.62,1.25,0.42 l2.15-0.91c0.37,0.26,0.76,0.49,1.17,0.68l0.29,2.31C9.2,21.62,9.63,22,10.13,22h3.73c0.5,0,0.93-0.38,0.99-0.88l0.29-2.31 c0.41-0.19,0.8-0.42,1.17-0.68l2.15,0.91c0.46,0.2,1,0.02,1.25-0.42l1.87-3.23c0.25-0.44,0.14-0.99-0.26-1.3l-1.86-1.41 C19.49,12.45,19.5,12.23,19.5,12z M12.04,15.5c-1.93,0-3.5-1.57-3.5-3.5s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.97,15.5,12.04,15.5z"/>';
+                        var SuMUserLibrarySVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 18l2 1V3c0-1.1-.9-2-2-2H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13zM15 5H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z"/>';
+                        var SuMHitsSVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 11.55c-1.82-1.7-4.12-2.89-6.68-3.35C4.11 7.99 3 8.95 3 10.18v6.24c0 1.68.72 2.56 1.71 2.69 2.5.32 4.77 1.35 6.63 2.87.35.29.92.32 1.27.04 1.87-1.53 4.16-2.58 6.68-2.9.94-.13 1.71-1.06 1.71-2.02v-6.92c0-1.23-1.11-2.19-2.32-1.98-2.56.46-4.86 1.65-6.68 3.35zM12 8c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/>';
+                        var SuMExploreSVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"/>';
+                        var SuMMangaNContantExpSVGPath = '<g><rect fill="none" height="24" width="24"/><rect fill="none" height="24" width="24"/></g><g><path d="M17.5,4.5c-1.95,0-4.05,0.4-5.5,1.5c-1.45-1.1-3.55-1.5-5.5-1.5c-1.45,0-2.99,0.22-4.28,0.79C1.49,5.62,1,6.33,1,7.14 l0,11.28c0,1.3,1.22,2.26,2.48,1.94C4.46,20.11,5.5,20,6.5,20c1.56,0,3.22,0.26,4.56,0.92c0.6,0.3,1.28,0.3,1.87,0 c1.34-0.67,3-0.92,4.56-0.92c1,0,2.04,0.11,3.02,0.36c1.26,0.33,2.48-0.63,2.48-1.94l0-11.28c0-0.81-0.49-1.52-1.22-1.85 C20.49,4.72,18.95,4.5,17.5,4.5z M21,17.23c0,0.63-0.58,1.09-1.2,0.98c-0.75-0.14-1.53-0.2-2.3-0.2c-1.7,0-4.15,0.65-5.5,1.5V8 c1.35-0.85,3.8-1.5,5.5-1.5c0.92,0,1.83,0.09,2.7,0.28c0.46,0.1,0.8,0.51,0.8,0.98V17.23z"/><g/><path d="M13.98,11.01c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.54-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,10.99,14.05,11.01,13.98,11.01z"/><path d="M13.98,13.67c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,13.66,14.05,13.67,13.98,13.67z"/><path d="M13.98,16.33c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.7-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,16.32,14.05,16.33,13.98,16.33z"/></g>';
+                        var SuMCreatorSVGPath = '<rect fill="none" height="20" width="20"/><path d="M15.35,8.83l0.71-0.71c0.59-0.59,0.59-1.54,0-2.12L15,4.94c-0.59-0.59-1.54-0.59-2.12,0l-0.71,0.71L15.35,8.83z M11.11,6.71 l-6.96,6.96C4.05,13.77,4,13.89,4,14.03v2.47C4,16.78,4.22,17,4.5,17h2.47c0.13,0,0.26-0.05,0.35-0.15l6.96-6.96L11.11,6.71z M4.51,11.18C3.59,10.76,3,10.16,3,9.25c0-1.31,1.39-1.99,2.61-2.59C6.45,6.24,7.5,5.73,7.5,5.25C7.5,4.91,6.83,4.5,6,4.5 c-0.94,0-1.36,0.46-1.38,0.48C4.35,5.29,3.88,5.33,3.57,5.07C3.26,4.81,3.21,4.35,3.46,4.03C3.55,3.93,4.34,3,6,3 c1.47,0,3,0.84,3,2.25C9,6.66,7.55,7.37,6.27,8C5.56,8.35,4.5,8.87,4.5,9.25c0,0.3,0.48,0.56,1.17,0.78L4.51,11.18z M14.14,12.16 c0.83,0.48,1.36,1.14,1.36,2.09c0,1.94-2.44,2.75-3.75,2.75C11.34,17,11,16.66,11,16.25s0.34-0.75,0.75-0.75 c0.77,0,2.25-0.49,2.25-1.25c0-0.39-0.38-0.71-0.97-0.97L14.14,12.16z"/>';
+
+                        function SuMActivateAnimationF0C0() {
+                            /*setTimeout(() => {
+                                document.getElementById('SuMMovingLoadingNID').style.transitionDuration = '0s';
+                            }, 10);*/
+                            SuMLoadingAnElmF0C0.style.transitionDuration = '0s';
+                            /*setTimeout(() => {
+                                document.getElementById('SuMMovingLoadingNID').style.marginLeft = '-40%';
+                            }, 20);*/
+                            SuMLoadingAnElmF0C0.style.marginLeft = '-40%';
+                            setTimeout(() => {
+                                document.getElementById('SuMMovingLoadingNID').style.transitionDuration = '0.74s';
+                            }, 2);
+                            //SuMLoadingAnElmF0C0.style.transitionDuration = '1s';
+                            setTimeout(() => {
+                                document.getElementById('SuMMovingLoadingNID').style.marginLeft = '100%';
+                            }, 20);
+                            //SuMLoadingAnElmF0C0.style.marginLeft = '100%';
+                            setTimeout(() => {
+                                if (SuMLoadHerfFailed == false) {
+                                    SuMActivateAnimationF0C0();
+                                }
+                            }, 860);
+                        };
+
+                        function ExpandTranStartF0C0(ExpAnThemeColor) {
+                            //AnPrep
+                            SuMLoadingExpandAnIElm.style.display = 'none';
+                            SuMLoadingExpandingColorDivElm.style.backgroundColor = ExpAnThemeColor;
+                            SuMLoadingExpandAnIElm.style.width = '26px';
+                            SuMLoadingExpandAnIElm.style.height = '26px';
+                            SuMLoadingExpandAnIElm.style.borderRadius = '13px';
+                            //AnStart
+                            SuMLoadingExpandAnIElm.style.display = 'block';
+                            setTimeout(() => {
+                                SuMLoadingExpandAnIElm.style.width = '360px';
+                                SuMLoadingExpandAnIElm.style.height = '360px';
+                                SuMLoadingExpandAnIElm.style.marginTop = 'calc(50vh - 220px)';
+                                SuMLoadingExpandAnIElm.style.marginLeft = 'calc(50vw - 180px)';
+                                SuMLoadingExpandAnIElm.style.borderRadius = '180px';
+                            }, 60);
+                            setTimeout(() => {
+                                SuMLoadingExpandAnIElm.style.width = '100vw';
+                                SuMLoadingExpandAnIElm.style.height = '100vw';
+                                SuMLoadingExpandAnIElm.style.marginTop = 'calc(50vh - 50vw - 40px)';
+                                SuMLoadingExpandAnIElm.style.marginLeft = '0px';
+                                SuMLoadingExpandAnIElm.style.borderRadius = '50vw';
+                            }, 260);
+                            setTimeout(() => {
+                                SuMLoadingExpandAnIElm.style.height = '100vh';
+                                SuMLoadingExpandAnIElm.style.marginTop = '0px';
+                                SuMLoadingExpandAnIElm.style.borderRadius = '0px';
+                            }, 640);
+                        };
+
+                        function SuMLoadingPIMGLoad(IMGKey) {
+                            if (IMGKey == 'MangaExplorer' || IMGKey == 'ContantExplorer') {
+                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMMangaNContantExpSVGPath;
+                            }
+                            if (IMGKey == 'Explore') {
+                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMExploreSVGPath;
+                            }
+                            if (IMGKey == 'Settings') {
+                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMSettingsSVGPath;
+                            }
+                            if (IMGKey == 'UserLibrary') {
+                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMUserLibrarySVGPath;
+                            }
+                            if (IMGKey == 'Hits') {
+                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMHitsSVGPath;
+                            }
+                            if (IMGKey == 'Creator') {
+                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMCreatorSVGPath;
+                            }
+                        };
+
+                        function SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, IMGID) {
+                            if (SuMLoadingIsInPross == false && HerfLink.includes(document.URL) == false && document.URL.includes(HerfLink) == false) {
+                                SuMLoadingIsInPross = true;
+                                SuMLoadingAnConElmF0C0.style.display = 'block';
+                                SuMLoadingFailedTXTElm.style.display = 'none';
+                                SuMLoadHerfFailed = false;
+                                SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
+                                SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
+                                SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
+                                SuMLoadingPIMGLoad(IMGID);
+                                SuMLoadingTitleElm.innerText = HerfInfo;
+                                //SuMActivateAnimationF0C0();
+                                SuMLoadingContElm.style.display = 'block';
+                                SuMActivateAnimationF0C0();
+                                if (navigator.onLine == true) {
+                                    if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer' || IMGID == 'Creator') {
+                                        ExpandTranStartF0C0(HerfThemeColor);
+                                    }
+                                    setTimeout(() => {
+                                        //SuMLoadingIsInPross = false;
+                                        if ("androidAPIs" in window) {
+                                            androidAPIs.DeactivateFullScreenMode();
+                                        }
+                                        if (HerfLink != null) {
+                                            if (document.URL.includes('/MangaExplorer.aspx') == true) {
+                                                HideMangaExplorerTopPartBar();
+                                                HideMangaExplorerBar();
+                                            }
+                                            if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
+                                                SuMHideFullNavAnF0C0();
+                                            }
+                                            setTimeout(() => {
+                                                location.href = HerfLink;
+                                            }, 360);
+                                        }
+                                    }, 840);
+                                }
+                                else {
+                                    fetch(HerfLink, { method: 'GET' }).then(res => {
+                                        if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer' || IMGID == 'Creator') {
+                                            ExpandTranStartF0C0(HerfThemeColor);
+                                        }
+                                        setTimeout(() => {
+                                            if ("androidAPIs" in window) {
+                                                androidAPIs.DeactivateFullScreenMode();
+                                            }
+                                            if (HerfLink != null) {
+                                                if (document.URL.includes('/MangaExplorer.aspx') == true) {
+                                                    HideMangaExplorerTopPartBar();
+                                                    HideMangaExplorerBar();
+                                                }
+                                                if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
+                                                    SuMHideFullNavAnF0C0();
+                                                }
+                                                setTimeout(() => {
+                                                    location.href = HerfLink;
+                                                }, 360);
+                                            }
+                                        }, 840);
+                                    }).catch(err => {
+                                        SuMLoadingAnConElmF0C0.style.display = 'none';
+                                        SuMLoadingFailedTXTElm.style.display = 'block';
+                                        setTimeout(() => {
+                                            HideSuMLoadingPopUp();
+                                            SuMLoadingIsInPross = false;
+                                        }, 2040);
+                                    });
+                                    SuMLoadHerfFailed = true;
+                                }
+                            }
+                        };
+
+                        function SuMGoBack() {
+                            var HerfLink = document.referrer;
+                            var HerfThemeColor = null;
+                            var HerfInfo = null;
+                            var IMGID = null;
+                            if (HerfLink.includes('Explore.aspx') == true) {
+                                IMGID = 'Explore';
+                                HerfInfo = 'SuM Explore';
+                            }
+                            if (HerfLink.includes('Hits.aspx') == true) {
+                                IMGID = 'Hits';
+                                HerfInfo = 'SuM Hits';
+                            }
+                            if (HerfLink.includes('ContantExplorer.aspx') == true) {
+                                IMGID = 'ContantExplorer';
+                            }
+                            if (HerfLink.includes('MangaExplorer.aspx') == true) {
+                                IMGID = 'MangaExplorer';
+                            }
+                            if (HerfLink.includes('Settings.aspx') == true) {
+                                IMGID = 'Settings';
+                                HerfInfo = 'SuM Settings';
+                            }
+                            if (HerfLink.includes('UserLibrary.aspx') == true) {
+                                IMGID = 'UserLibrary';
+                                HerfInfo = 'My Library';
+                            }
+                            if (HerfLink.includes('CreatorPanel.aspx') == true || HerfLink.includes('CreatorMangaPanel.aspx') == true) {
+                                IMGID = 'Creator';
+                                HerfInfo = 'Creator Panel';
+                            }
+                            var SuMFoundThemeC = false;
+                            HerfLink.replace('/', '&').replace('?', '&').substring(1).split("&").forEach(function (val) {
+
+                                var currVal = val.split("=");
+                                if (currVal[0] == "TC") {
+                                    SuMFoundThemeC = true;
+                                    var SuMBackLoiadingDetectedThemeColor = decodeURI(currVal[1]);
+                                    if (SuMBackLoiadingDetectedThemeColor != null && SuMBackLoiadingDetectedThemeColor.replace(' ', '').includes('255,255,255') == false) {
+                                        HerfThemeColor = SuMBackLoiadingDetectedThemeColor;
+                                    }
+                                    else {
+                                        HerfThemeColor = 'rgba(104,64,217,0.74)';
+                                    }
+
+                                }
+                                if (currVal[0] == 'Manga') {
+                                    if (IMGID == 'ContantExplorer') {
+                                        HerfInfo = currVal[1];
+                                    }
+                                }
+                                if (currVal[0] == 'Chapter') {
+                                    if (IMGID == 'MangaExplorer') {
+                                        HerfInfo = 'Chapter ' + parseInt(currVal[1].replace('ch', ''));
+                                    }
+                                }
+
+                            });
+                            if (SuMFoundThemeC == false) {
+                                HerfThemeColor = 'rgba(104,64,217,0.74)';
+                            }
+                            if (SuMLoadingIsInPross == false && HerfLink != null && HerfLink != document.URL && HerfLink.includes(document.URL) == false && document.URL.includes(HerfLink) == false) {
+                                SuMLoadingIsInPross = true;
+                                SuMLoadingAnConElmF0C0.style.display = 'block';
+                                SuMLoadingFailedTXTElm.style.display = 'none';
+                                SuMLoadHerfFailed = false;
+                                SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
+                                SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
+                                SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
+                                SuMLoadingPIMGLoad(IMGID);
+                                SuMLoadingTitleElm.innerText = HerfInfo;
+                                //SuMActivateAnimationF0C0();
+                                SuMLoadingContElm.style.display = 'block';
+                                SuMActivateAnimationF0C0();
+                                if (navigator.onLine == true) {
+                                    if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer' || IMGID == 'Creator') {
+                                        ExpandTranStartF0C0(HerfThemeColor);
+                                    }
+                                    setTimeout(() => {
+                                        //SuMLoadingIsInPross = false;
+                                        if ("androidAPIs" in window) {
+                                            androidAPIs.DeactivateFullScreenMode();
+                                        }
+                                        if (document.URL.includes('/MangaExplorer.aspx') == true) {
+                                            HideMangaExplorerTopPartBar();
+                                            HideMangaExplorerBar();
+                                        }
+                                        if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
+                                            SuMHideFullNavAnF0C0();
+                                        }
+                                        setTimeout(() => {
+                                            history.back();
+                                        }, 360);
+                                    }, 840);
+                                }
+                                else {
+                                    fetch(HerfLink, { method: 'GET' }).then(res => {
+                                        if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer' || IMGID == 'Creator') {
+                                            ExpandTranStartF0C0(HerfThemeColor);
+                                        }
+                                        setTimeout(() => {
+                                            if ("androidAPIs" in window) {
+                                                androidAPIs.DeactivateFullScreenMode();
+                                            }
+                                            if (document.URL.includes('/MangaExplorer.aspx') == true) {
+                                                HideMangaExplorerTopPartBar();
+                                                HideMangaExplorerBar();
+                                            }
+                                            if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
+                                                SuMHideFullNavAnF0C0();
+                                            }
+                                            setTimeout(() => {
+                                                history.back();
+                                            }, 360);
+                                        }, 840);
+                                    }).catch(err => {
+                                        SuMLoadingAnConElmF0C0.style.display = 'none';
+                                        SuMLoadingFailedTXTElm.style.display = 'block';
+                                        setTimeout(() => {
+                                            HideSuMLoadingPopUp();
+                                            SuMLoadingIsInPross = false;
+                                        }, 2040);
+                                    });
+                                    SuMLoadHerfFailed = true;
+                                }
+                            }
+                        };
+
+                        var CISuMShowThisMIsActive = false;
+                        function SuMTXTShowThis(SuMAlert, HerfThemeColor, HerfInfo, IMGID) {
+                            if (CISuMShowThisMIsActive == false) {
+                                CISuMShowThisMIsActive = true;
+                                SuMLoadingAnConElmF0C0.style.display = 'block';
+                                SuMLoadingFailedTXTElm.style.display = 'none';
+                                SuMLoadHerfFailed = false;
+                                SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
+                                SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
+                                SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
+                                SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
+                                SuMLoadingPIMGLoad(IMGID);
+                                SuMLoadingTitleElm.innerText = HerfInfo;
+                                //SuMActivateAnimationF0C0();
+                                SuMLoadingContElm.style.display = 'block';
+                                SuMLoadingAnConElmF0C0.style.display = 'none';
+                                SuMLoadingFailedTXTElm.innerText = SuMAlert;
+                                SuMLoadingFailedTXTElm.style.display = 'block';
+                                setTimeout(() => {
+                                    androidAPIs.VIBRATEPhone();
+                                }, 90);
+                                setTimeout(() => {
+                                    HideSuMLoadingPopUp();
+                                }, 1320);
+                                SuMLoadHerfFailed = true;
+                            }
+                        };
+
+                        function HideSuMLoadingPopUp() {
+                            if (SuMLoadingContElm.classList.contains('fadeIn') == true) {
+                                SuMLoadingContElm.classList.remove('fadeIn');
+                                SuMLoadingContElm.classList.add('fadeOut');
+                            }
+                            else {
+                                if (SuMLoadingContElm.classList.contains('fadeIn') == false) {
+                                    SuMLoadingContElm.classList.add('fadeIn');
+                                }
+                            }
+                            setTimeout(() => {
+                                SuMLoadingContElm.style.display = 'none';
+                                SuMLoadingContElm.classList.remove('fadeOut');
+                                SuMLoadingContElm.classList.add('fadeIn');
+                                CISuMShowThisMIsActive = false;
+                            }, 360);
+                        };
+
+                    </script>
+                    </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>
+                </div>
+                <script>
+                    var SuMMainBlockElm = document.getElementById('<%= SuMMainBlock.ClientID %>');
+                    var MCCONTANER = document.getElementById('<%= mc.ClientID %>');
+                    /*if ("androidAPIs" in window) {
+                        //
+                    }
+                    else {
+                        MCCONTANER.innerHTML = "";
+                        MCCONTANER.style.display = "none";
+                        MCCONTANER.style.visibility = "hidden";
+                        location.href = '/SuMMangaInstallAPP.aspx';
+                    }*/
+                    document.addEventListener("DOMContentLoaded", function () {
+
+                        if ("androidAPIs" in window) {
+
+                            androidAPIs.layoutDoneLoading();
+
+                        }/*
+                        else {
+                            MCCONTANER.innerHTML = "";
+                            MCCONTANER.style.display = "none";
+                            MCCONTANER.style.visibility = "hidden";
+                        }*/
+
+                    });
+                </script>
+                <!--
+                <div style="width:100vw !important; height:98vh !important;max-height:93vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;" id="Div1" runat="server" class="container-fluid">
+                    <div class="ForceMaxW" style="width:100vw !important; height:98vh !important;max-height:98vh !important;margin-left:-24px !important;background-color:#F8F9FD;" id="Div2" runat="server">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                    </div><div style="height:36px !important;width:1px !important;display:none;"><p>PLaceHolder</p></div>
+                </div> -->
+            </div>
+        </div>
+        <style>
+            .STBSUMBAR {
+                position:fixed !important;
+                bottom:0 !important;
+                width:100% !important;
+                text-align:center !important;
+            }
+            .WAHFH021 {
+                display:inline !important;
+                max-height:64px !important;
+                max-height:7vh !important;
+            }
+        </style>
+        <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:174px;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+                 <div style="text-align:center;" class="text-center">
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:140%;color:#FFFFFF !important;">You are offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Only previously viewed pages are avalible.</b></p>
+                     <br />
+                </div>
+            </div>
+        </div>
+        <div id="SearchOffline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:174px;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+                 <div style="text-align:center;" class="text-center">
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:120%;color:#FFFFFF !important;">Search isn't avalible when offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Only previously viewed pages are avalible.</b></p>
+                     <br />
+                </div>
+            </div>
+        </div>
+        <div id="AccountOffline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:174px;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+                 <div style="text-align:center;" class="text-center">
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:100%;color:#FFFFFF !important;">Can't change account settings when offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Only previously viewed pages are avalible.</b></p>
+                     <br />
+                </div>
+            </div>
+        </div>
+        <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:50px !important;width:100% !important;padding:2px !important;padding-bottom:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px #f2f2f2 !important;z-index:999;display:none;">
+                <a name="no-animation" id="navb2" runat="server" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
+                    <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
+                    <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p runat="server" id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
+                    <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;">Navigate Back</b>
+                </a>
+            <a class="" id="SubSearch" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="if (!navigator.onLine) { document.getElementById('SearchOffline').style.display = 'block'; } else { location.href = '/Search.aspx'; }" href="#"><img src="/svg/Search.svg" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:14px !important;"></a>
+            <a id="ComAct" onclick="FuncLoadCommentsSec()" style="float:right !important;vertical-align:middle !important;width:fit-content;margin-left:4px;">
+                <img src="/svg/chat.svg" style="width:30px;height:30px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;">
+            </a>
+            <a onclick="SuMGoToThis('/Explore.aspx','rgba(104,64,217,0.74)','SuM Explore','Explore');" style="margin-right:-8px;float:right !important;vertical-align:middle !important;width:fit-content;margin-right:-6px;">
+                <img src="/svg/ExploreNAFME.svg" style="width:29px;height:29px; float:right !important;margin-top:4px !important;margin-right:8px !important;margin-left:8px;"><br>
+            </a>
+        </div>
+        <script>
+            //Fix Up navigation bar space 
+            var Navigation0Heightfromsum = androidAPIs.SuMGetNavigationBarHeight();
+            var SubCo2SuMElm = document.getElementById('<%= subnavscont2.ClientID %>');
+            SubCo2SuMElm.style.height = (50 + Navigation0Heightfromsum) + 'px';
+            SubCo2SuMElm.style.paddingBottom = (Navigation0Heightfromsum) + 'px !important';
+            //
+            document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('subnavscont2').offsetHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 6) + 'px';
+        </script>
+        <script>
+            var IsFullScreenNavBarForExFixer = androidAPIs.SuMIsFullScreen();
+            if (window.location.href.indexOf("MangaExplorer") > -1 && IsFullScreenNavBarForExFixer == false) {
+                document.getElementById('subnavscont2').style.display = 'block';
+                document.getElementById('<%= subnavscont.ClientID %>').style.display = 'none';
+                document.getElementById('<%= subnavscont.ClientID %>').style.visibility = 'hidden';
+            }
+            else {
+                document.getElementById('subnavscont2').style.display = 'none';
+            }
+        </script>
+        <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:#ffffff !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
+            <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;overflow:clip;border-color:#ffffff;margin-bottom:-1px;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
+                <a name="no-animation" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
+                    <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
+                    <p style="display:inline;color:#6840D9;margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:#6840D9;margin-top:8px !important;">Manga</p>
+                    <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;">Navigate Back</b>
+                </a>
+            <a name="no-animation" id="FullSearch" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="if (!navigator.onLine) { document.getElementById('SearchOffline').style.display = 'block'; } else { location.href = '/Search.aspx'; }" href="#"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
+            <a name="no-animation" id="SuMNotificationStart" runat="server" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;padding-top:4px !important;" >
+                <asp:ImageButton ID="StartNotificationProssForShowBTN" runat="server" Width="26" Height="26" ImageAlign="AbsMiddle" BackColor="Transparent" BorderColor="Transparent" ImageUrl="/svg/notifications.svg" OnClick="SuMAppAlertsStartsS" />
+            </a>
+                <a style="display:block;width:100vw;height:2px;margin:0 auto !important;background-color:#ffffff;color:#ffffff;">   </a>
+        </div>
+        <nav id="nav" runat="server" style="overflow:clip;height:72px !important;width:100% !important;max-height:64px !important;bottom:0 !important;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
+                    <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;height:64px !important;overflow:hidden !important;margin-bottom:14px !important;">
+                                <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="SuMGoToThis('/Explore.aspx','rgba(104,64,217,0.74)','SuM Explore','Explore');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
+                                        <img id="ExpIMG" runat="server" src="/svg/ExploreNA.svg" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;position:relative;" />
+                                        <b id="ExpText" runat="server" style="font-size:64%;color:#6840D9;height:fit-content !important;text-align:center !important;display:block;position:relative;">Explore</b>
+                                    </a>
+                                </div>
+                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="SuMGoToThis('/Hits.aspx','rgba(104,64,217,0.74)','SuM Hits','Hits');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
+                                        <img id="HitsIMG" runat="server" src="/svg/MostSeenNA.svg" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;" />
+                                        <b id="HitsTEXT" runat="server" style="font-size:64%;color:#636166;height:fit-content !important; text-align:center !important;display:block;">Hits</b>
+                                    </a>
+                                </div>
+                        
+                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="SuMGoToThis('/UserLibrary.aspx?RT=Curr','rgba(104,64,217,0.74)','My Library','UserLibrary');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
+                                        <img id="LibIMG" runat="server" src="/svg/bookmarks.svg" style="max-height:38px;max-width:38px; width:62px;height:62px;display:block;" />
+                                        <b id="LibText" runat="server" style="font-size:64%;color:#6840D9;height:fit-content !important; text-align:center !important;display:block;">Library</b>
+                                    </a>
+                                </div><!-- dropdown-toggle -->
+                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="SuMGoToThis('/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)','rgba(104,64,217,0.74)','SuM Settings','Settings');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
+                                        <img id="SetIMG" runat="server" src="/svg/settings.svg" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;" />
+                                        <b id="SetText" runat="server" style="font-size:64%;color:#6840D9;height:fit-content !important; text-align:center !important;display:block;">Settings</b>
+                                    </a>
+                                </div>
+                    </div>
+           <!-- <div style="width:100vw !important;height:8px !important;background-color:#ffffff !important;display:block !important;overflow:hidden !important;">
+                <a style="width:100vw !important;font-size:20%;color:#ffffff !important;background-color:#ffffff !important">NavBarHBF!</a>
+            </div> -->
+                </nav>
+            <div id="NavigationBarFixer1" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:32px;background-color:#ffffff !important;width:100vw !important;bottom:0 !important;overflow:clip;border-color:#ffffff;border:0px !important;margin-bottom:-1px;">
+                
+        </div>
+    </div>
+    <script>
+        var SuMFullNavBarElm = document.getElementById('<%= fullnavscont.ClientID %>');
+        if (SuMFullNavBarElm.classList.contains('animated') == false) {
+            SuMFullNavBarElm.classList.add('animated');
+        }
+        SuMFullNavBarElm.classList.remove('fadeInUp');
+        SuMFullNavBarElm.classList.remove('fadeOutDown');
+        if (document.URL.includes('/MangaExplorer.aspx') == false) {
+            SuMFullNavBarElm.style.display = 'block';
+        }
+        else {
+            MakeSuMFullNavDisa();
+        }
+        SuMFullNavBarElm.style.visibility = null;
+
+        if (document.referrer.includes('/MangaExplorer.aspx?') == true) {
+            MakeSuMFullNavDisa();
+            if (SuMFullNavBarElm.classList.contains('animated') == false) {
+                SuMFullNavBarElm.classList.add('animated');
+            }
+            SuMFullNavBarElm.classList.add('fadeInUp');
+            SuMFullNavBarElm.classList.remove('fadeOutDown');
+            SuMFullNavBarElm.style.display = 'block';
+            SuMFullNavBarElm.style.visibility = null;
+        }
+        function MakeSuMFullNavDisa() {
+            SuMFullNavBarElm.style.display = 'none';
+            SuMFullNavBarElm.style.visibility = 'hidden';
+            SuMFullNavBarElm.style.overflow = 'hidden';
+        };
+        function SuMHideFullNavAnF0C0() {
+            SuMFullNavBarElm.classList.remove('fadeInUp');
+            SuMFullNavBarElm.classList.remove('fadeOutDown');
+            if (SuMFullNavBarElm.classList.contains('animated') == false) {
+                SuMFullNavBarElm.classList.add('animated');
+            }
+
+            SuMFullNavBarElm.classList.add('fadeOutDown')
+            setTimeout(() => {
+                SuMFullNavBarElm.style.display = 'none !important';
+                SuMFullNavBarElm.style.visibility = 'hidden !important';
+            }, 360);
+        };
+    </script>
+        <script>
+            //Fix Up navigation bar space 
+            var Navigation1Heightfromsum = androidAPIs.SuMGetNavigationBarHeight();
+            //var SubCoSuMElm = document.getElementById('<%= fullnavscont.ClientID %>');
+            document.getElementById('NavigationBarFixer1').style.height = Navigation1Heightfromsum + 'px';
+            //SubCoSuMElm.style.height = (100 + Navigation1Heightfromsum) + 'px';
+            //SubCoSuMElm.style.paddingBottom = (Navigation1Heightfromsum) + 'px !important';
+            //
+        </script>
+        <asp:UpdatePanel ID="UpdatePanelNotificationSec" runat="server" UpdateMode="Conditional">
+                <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="StartNotificationProssForShowBTN" EventName="Click" />
+                    </Triggers>
+                <ContentTemplate>
+                    <asp:Panel runat="server">
+                        <div id="SuMUserNofifications" runat="server" style="animation-duration:0.36s !important;background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;padding-bottom:74px;padding-top:42px;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center animated fadeIn">
+                         <div style="width:100vw;height:100vh;max-width:720px !important;margin:0 auto;" >
+                             <div style="display:block !important;margin:0 auto !important;overflow:hidden;width:100vw;max-width:720px;height:24px !important;"></div>
+                            <div style="width:calc(100% - 24px) !important;height:68px;display:block !important;overflow:hidden !important;position:relative;margin-top:12px; margin-left:-4px !important;">
+                                <img id="NotiUPFP" runat="server" src="/UserPFP/pfp.png" style="border-radius:50% !important;width:36px;height:36px;margin-top:2px;display:inline-block !important;margin-top:8px !important;" />
+                                <p style="color:rgba(255,255,255,0.92);display:inline !important;font-size:126%;margin-top:8px !important;" id="NotiUserName" runat="server">UserName</p><p style="display:inline !important;font-size:122%;color:#fffffff0;margin-top:12px !important;">'s</p>
+                                <img onclick="document.getElementById('SuMUserNofifications').style.display = 'none';return false;" src="/svg/closeWt.svg" style="float:right !important;margin-right:-2px;margin-top:10px;width:32px;height:32px;pointer-events:all !important;" />
+                            </div>
+                        <a class="shadow-sm" style="color:rgba(255,255,255,92);margin-left:12px;margin-top:22px;margin-bottom:2px;font-size:130%;">SuM Account Info</a>
+                        <div id="ACCOUNTNOTOFICATIONSPaymentCard" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:fit-content;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;margin-left:-4px !important;">
+                        
+                        </div>
+                        <div style="width:calc(100% - 24px) !important;height:14px !important;display:block !important;margin-left:-4px !important;"></div>
+                        <a class="shadow-sm" style="color:rgba(255,255,255,0.92);margin-left:12px;margin-top:16px;margin-bottom:3px;font-size:130%;">SuM Notifications</a>
+                        <div id="USERNOTIFICATIONS" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:calc(100% - 366px) !important;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;min-height:62px !important;overflow-x:hidden !important;overflow-y:scroll !important;margin-left:-4px !important;">
+                            
+                        </div>
+                    </div>
+                </div>
+                    </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+    </div>
+        <script>
+            if (document.getElementById('subnavscont2').style.display == 'none') {
+                document.getElementById('fullnavscont').style.display = 'block';
+            };
+            if (document.getElementById('subnavscont2').style.display == 'block') {
+                document.getElementById('fullnavscont').style.display = 'none';
+            };
+
+            if (!navigator.onLine) {
+                document.getElementById('FullSearch').onclick = "document.getElementById('SearchOffline').style.display = 'block'";
+                document.getElementById('SubSearch').onclick = "document.getElementById('SearchOffline').style.display = 'block'";
+                document.getElementById('MainContent_AccountSettingsOrLogin').href = '#';
+                document.getElementById('SendCommentAria').style.display = 'none';
+            };
+            /*if ("androidAPIs" in window == false) {
+
+                location.href = '/SuMMangaInstallAPP.aspx';
+            }*/
+            var MangaExplorerBarElm = document.getElementById('<%= subnavscont2.ClientID %>');
+            function HideMangaExplorerBar() {
+                if (MangaExplorerBarElm.classList.contains('fadeInUp') == true || MangaExplorerBarElm.classList.contains('fadeOutDown') == false) {
+                    MangaExplorerBarElm.classList.remove('fadeInUp');
+                    if (MangaExplorerBarElm.classList.contains('fadeOutDown') == false) {
+                        MangaExplorerBarElm.classList.add('fadeOutDown');
+                    }
+                    setTimeout(() => {
+                        MangaExplorerBarElm.style.display = 'none';
+                    }, 360);
+                }
+            };
+            function ShowMangaExplorerBar() {
+                if (MangaExplorerBarElm.classList.contains('fadeInUp') == false || MangaExplorerBarElm.classList.contains('fadeOutDown') == true) {
+                    MangaExplorerBarElm.classList.remove('fadeOutDown');
+                    if (MangaExplorerBarElm.classList.contains('fadeInUp') == false) {
+                        MangaExplorerBarElm.classList.add('fadeInUp');
+                    }
+                    MangaExplorerBarElm.style.display = 'block';
+                }
+            };
+            function NextBtnOrState() {
+                document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('subnavscont2').offsetHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 6) + 'px';
+            };
+            function NextBtnFullSState() {
+                document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 12) + 'px';
+            }
+        </script>
+    <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>
+    <script src="/assets/js/bs-init.js?h=cfc1cf2ac1407be801a1de7dc4705464"></script>
+    <script src="/assets/js/theme.js?h=79f403485707cf2617c5bc5a2d386bb0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+        <script>/*
+                        if (window.location.href.indexOf("MangaExplorer") > -1)
+                        {
+                        }
+                        var ClickFixerFasit20Cut90 = document.getElementById('SuMFullScreenManageBTNF204C90');
+                        ClickFixerFasit20Cut90.click();
+                        ClickFixerFasit20Cut90.click();*/
+        </script>
+        </form>
+</body>
+</html>

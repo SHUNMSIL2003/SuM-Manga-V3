@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SuM_Manga_V3.storeitems
+namespace SuM_Manga_V3.SuMCreator
 {
 
 
@@ -15,165 +15,264 @@ namespace SuM_Manga_V3.storeitems
     {
 
         /// <summary>
-        /// CretorMangaPanel control.
+        /// SuMLoadingFHandBG control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel CretorMangaPanel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMLoadingFHandBG;
 
         /// <summary>
-        /// FakeBody control.
+        /// SuMLoadingHandlerTXT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FakeBody;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMLoadingHandlerTXT;
 
         /// <summary>
-        /// ACont0 control.
+        /// CreateProfileDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ACont0;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CreateProfileDiv;
 
         /// <summary>
-        /// CategoryX control.
+        /// MangaNameTXT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CategoryX;
+        protected global::System.Web.UI.WebControls.TextBox MangaNameTXT;
 
         /// <summary>
-        /// infoCover control.
+        /// AgeRatingDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl infoCover;
+        protected global::System.Web.UI.WebControls.DropDownList AgeRatingDDL;
 
         /// <summary>
-        /// MTitle control.
+        /// MangaPicUP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MTitle;
+        protected global::System.Web.UI.WebControls.FileUpload MangaPicUP;
 
         /// <summary>
-        /// MangaCreator control.
+        /// MangaImagePrevie control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaCreator;
+        protected global::System.Web.UI.HtmlControls.HtmlImage MangaImagePrevie;
 
         /// <summary>
-        /// MdiscS control.
+        /// MangaInfoTXT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MdiscS;
+        protected global::System.Web.UI.WebControls.TextBox MangaInfoTXT;
 
         /// <summary>
-        /// MangaRatingTextBox control.
+        /// ActionSDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox MangaRatingTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ActionSDiv;
 
         /// <summary>
-        /// FavNWannaContaner control.
+        /// Action control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FavNWannaContaner;
+        protected global::System.Web.UI.WebControls.CheckBox Action;
 
         /// <summary>
-        /// AddToFavNWanna control.
+        /// FantasySDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddToFavNWanna;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor FantasySDiv;
 
         /// <summary>
-        /// WannaListTXT control.
+        /// Fantasy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl WannaListTXT;
+        protected global::System.Web.UI.WebControls.CheckBox Fantasy;
 
         /// <summary>
-        /// GernsTags control.
+        /// SliceofLifeSDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl GernsTags;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor SliceofLifeSDiv;
 
         /// <summary>
-        /// SVC control.
+        /// SliceofLife control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SVC;
+        protected global::System.Web.UI.WebControls.CheckBox SliceofLife;
 
         /// <summary>
-        /// MRSC control.
+        /// ComedySDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MRSC;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ComedySDiv;
 
         /// <summary>
-        /// MRSW control.
+        /// Comedy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor MRSW;
+        protected global::System.Web.UI.WebControls.CheckBox Comedy;
 
         /// <summary>
-        /// MangaChAMConta control.
+        /// RomanceSDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaChAMConta;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor RomanceSDiv;
 
         /// <summary>
-        /// TheMangaPhotosF control.
+        /// Romance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TheMangaPhotosF;
+        protected global::System.Web.UI.WebControls.CheckBox Romance;
+
+        /// <summary>
+        /// DramaSDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor DramaSDiv;
+
+        /// <summary>
+        /// Drama control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Drama;
+
+        /// <summary>
+        /// MysterySDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor MysterySDiv;
+
+        /// <summary>
+        /// Mystery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Mystery;
+
+        /// <summary>
+        /// SportSDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor SportSDiv;
+
+        /// <summary>
+        /// Sport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Sport;
+
+        /// <summary>
+        /// SupernaturalSDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor SupernaturalSDiv;
+
+        /// <summary>
+        /// Supernatural control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Supernatural;
+
+        /// <summary>
+        /// SciFiSDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor SciFiSDiv;
+
+        /// <summary>
+        /// SciFi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox SciFi;
+
+        /// <summary>
+        /// SendItBTN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SendItBTN;
     }
 }

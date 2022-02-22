@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--Created with the XDocument class, SuM-Manga.-->
+<SuMReq>
+  <Name>Children of the Whales</Name>
+  <Description>Fourteen year-old Chakuro is the archivist for the Mud Whale, a floating island in an endless desert. He is one of the short-lived thymia users of the islands, and whose brief existence makes him all the more determined to leave behind a record for those to come. But when a scouting party discovers a mysterious young girl on another island, the once peaceful existence on the Mud Whale comes to an end.</Description>
+  <Genres>#Action&amp;#Fantasy&amp;#Drama&amp;</Genres>
+  <Creator>Shun</Creator>
+  <AgeID>14+</AgeID>
+  <Pic>20220222031516-1-1157JWiluZkTn776.sum.png</Pic>
+  <ThemeColor>rgba(187,184,178,0.74)</ThemeColor>
+  <CreatorID>1</CreatorID>
+  <ReqID>1157JWiluZkTn776</ReqID>
+</SuMReq>

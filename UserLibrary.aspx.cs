@@ -294,13 +294,7 @@ namespace SuM_Manga_V3
                                 sqlCmd.Parameters["@MangaID"].Value = R[0, i];
                                 g = sqlCmd.ExecuteScalar();
                                 string ExplorerLink = g.ToString();
-                                query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
-                                sqlCmd = new SqlCommand(query, sqlCon);
-                                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                                sqlCmd.Parameters["@MangaID"].Value = R[0, i];
-                                var un = sqlCmd.ExecuteScalar();
-                                int ChaptersNum = Convert.ToInt32(un);
-                                ExplorerLink += "&CN=" + ChaptersNum.ToString() + "&VC=" + R[0, i].ToString() + "&TC=" + MangaTheme;
+                                ExplorerLink += "&VC=" + R[0, i].ToString() + "&TC=" + MangaTheme;
 
                                 query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
                                 sqlCmd = new SqlCommand(query, sqlCon);
@@ -360,13 +354,7 @@ namespace SuM_Manga_V3
                                 sqlCmd.Parameters["@MangaID"].Value = R[i];
                                 g = sqlCmd.ExecuteScalar();
                                 string ExplorerLink = g.ToString();
-                                query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
-                                sqlCmd = new SqlCommand(query, sqlCon);
-                                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                                sqlCmd.Parameters["@MangaID"].Value = R[i];
-                                var un = sqlCmd.ExecuteScalar();
-                                int ChaptersNum = Convert.ToInt32(un);
-                                ExplorerLink += "&CN=" + ChaptersNum.ToString() + "&VC=" + R[i].ToString() + "&TC=" + MangaTheme;
+                                ExplorerLink += "&VC=" + R[i].ToString() + "&TC=" + MangaTheme;
 
                                 query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
                                 sqlCmd = new SqlCommand(query, sqlCon);

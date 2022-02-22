@@ -26,15 +26,17 @@ namespace SuM_Manga_V3.AccountETC
                 //"document.getElementById('UserSettingsCards').style.display = (document.getElementById('UserSettingsCards').style.display == 'block') ? 'none' : 'block';";
                 AccountSettingsOrLogin.Attributes["href"] = "#";
                 string UserName = GetUserInfoCookie["UserName"].ToString();
+                int UserID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
                 SuMUserName.InnerText = UserName;
                 string CurrPFP = string.Empty;
                 string currEmail = string.Empty;
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
-                    string query = "SELECT PFP FROM SuMUsersAccounts WHERE UserName = @UserName";
+                    string query = "SELECT PFP FROM SuMUsersAccounts WHERE UserID = @UID";
                     SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@UserName", UserName);
+                    sqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd.Parameters["@UID"].Value = UserID;
                     using (SqlDataReader dr = sqlCmd.ExecuteReader())
                     {
                         while (dr.Read())
@@ -42,9 +44,10 @@ namespace SuM_Manga_V3.AccountETC
                             CurrPFP = dr[0].ToString();
                         }
                     }
-                    string query4 = "SELECT Email FROM SuMUsersAccounts WHERE UserName = @UserName";
+                    string query4 = "SELECT Email FROM SuMUsersAccounts WHERE UserID = @UID";
                     SqlCommand sqlCmd4 = new SqlCommand(query4, sqlCon);
-                    sqlCmd4.Parameters.AddWithValue("@UserName", UserName);
+                    sqlCmd4.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd4.Parameters["@UID"].Value = UserID;
                     using (SqlDataReader dr = sqlCmd4.ExecuteReader())
                     {
                         while (dr.Read())
@@ -53,9 +56,10 @@ namespace SuM_Manga_V3.AccountETC
                         }
                     }
                     //Sig start
-                    string query3 = "SELECT Signetsure FROM SuMUsersAccounts WHERE UserName = @UserName";
+                    string query3 = "SELECT Signetsure FROM SuMUsersAccounts WHERE UserID = @UID";
                     SqlCommand sqlCmd3 = new SqlCommand(query3, sqlCon);
-                    sqlCmd3.Parameters.AddWithValue("@UserName", UserName);
+                    sqlCmd3.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd3.Parameters["@UID"].Value = UserID;
                     using (SqlDataReader dr = sqlCmd3.ExecuteReader())
                     {
                         while (dr.Read())
@@ -74,7 +78,7 @@ namespace SuM_Manga_V3.AccountETC
                 PFPC.Attributes["src"] = ResolveUrl(CurrPFP);
                 if (GetUserInfoCookie["CreatorName"] != null) 
                 {
-                    CreatorClick.Attributes["onclick"] = "if (!navigator.onLine) { fetch('/SuMCreator/CreatorPanel.aspx', { method: 'GET' }).then(res => { location.href = '/SuMCreator/CreatorPanel.aspx'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '/SuMCreator/CreatorPanel.aspx'; }";
+                    CreatorClick.Attributes["onclick"] = "SuMGoToThis('/SuMCreator/CreatorPanel.aspx','rgba(104,64,217,0.74)','Creator Panel','Creator');";
                     CraetorSecTitle.InnerText = "creator panel";
                 }
             }

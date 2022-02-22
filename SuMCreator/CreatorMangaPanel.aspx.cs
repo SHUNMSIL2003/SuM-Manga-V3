@@ -10,261 +10,123 @@ using System.Drawing;
 using System.Net.Mail;
 using System.IO;
 using System.Text;
+using System.Xml.Linq;
 
-namespace SuM_Manga_V3.storeitems
+namespace SuM_Manga_V3.SuMCreator
 {
     public partial class CreatorMangaPanel : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //CREATORS=draft/new
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-            if (GetUserInfoCookie == null || Request.QueryString["CREATORS"] == null) { Response.Redirect("~/404.aspx"); }
-            if (GetUserInfoCookie["CreatorName"] == null) { Response.Redirect("~/404.aspx"); }
-            string CreatorName = GetUserInfoCookie["CreatorName"].ToString();
-            bool PreformanceMode = false;
-            HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
-            if (GetPerModeInfoCookie != null)
-            {
-                PreformanceMode = true;
-            }
-            string CardBG = string.Empty;
-            string ThemeColor = "rgba(104,64,217,0.74)";
-            if (IsPostBack == false)
-            {
-                MangaChAMConta.Attributes["style"] = "display:block;height:fit-content;min-height:100vh !important;background-color:" + ThemeColor + ";padding-bottom:164px !important;min-height:calc(100vh + 6px) !important;";
-            }
-            string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100%;height:fit-content;float:left;";//ORgbConverter(getDominantColor(bMap));------background-color:" + ThemeColor + ";
-            string theme = ThemeColor;
-            if (IsPostBack == false)
-            {
-                infoCover.Attributes["style"] = "overflow:hidden !important;animation-duration:1.2s !important;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ");background-size:cover;background-position:center;width:100%;max-width:720px !important;height:fit-content;";
-            }
-            int cn1 = 0;
-            if (IsPostBack == false)
-            {
-                GernsTags.Attributes["style"] = "border-top-right-radius:22px;border-top-left-radius:22px;width:100%;height:fit-content;background-color:" + ThemeColor.Replace("0.74", "1") + ";align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;padding-bottom:12px;padding-top:18px;";
-            }
-            string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-            string M0path = epath + "\\storeitems\\" + "" + "\\";
-            /*if (System.IO.Directory.Exists(M0path) == false) 
-            { willneeditlater
-            }*/
-            string ChapterFixedForm = string.Empty;
-            string RLink = string.Empty;
-            string themecolor = ThemeColor;
-            char sc = '"';
-            char b12 = '"';
-            string btnanimationclass = string.Empty;
-            if (PreformanceMode == false)
-            {
-                btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
-            }
-            else
-            {
-                btnanimationclass = "btn";
-            }
-            string managtocheckexsis = "";
-            string rootpath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-            string checkifitexsistsStart = rootpath + "\\storeitems\\" + managtocheckexsis + "\\";
-            string LazyLoading = "loading=" + '"'.ToString() + "lazy" + '"'.ToString();
             if (GetUserInfoCookie != null)
             {
-                MangaUserStateV(ThemeColor);
-                MangaCreator.InnerText = CreatorName;
-                for (int c = 1; c < (cn1 + 1); c++)
+                if (GetUserInfoCookie["CreatorName"] == null || GetUserInfoCookie["CreatorName"] == string.Empty) { Response.Redirect("~/404.aspx"); }
+            }
+            else { Response.Redirect("~/AccountETC/LoginETC.aspx"); }
+        }
+        protected void CreateSUMXMLProfile(object sender, EventArgs e)
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            int UserID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+            //InfoFilled
+            string MangaName = MangaNameTXT.Text.ToString().Replace("<", "").Replace(">", "");//D
+            string MangaDiscription = MangaInfoTXT.Text.ToString().Replace("<", "").Replace(">", "");//D
+            string MangaGerns = "";//-PreGerns -PosibleCreationOfNewOne D
+            if (Action.Checked == true) { MangaGerns += "#Action&"; }
+            if (Fantasy.Checked == true) { MangaGerns += "#Fantasy&"; }
+            if (SliceofLife.Checked == true) { MangaGerns += "#SliceofLife&"; }
+            if (Comedy.Checked == true) { MangaGerns += "#Comedy&"; }
+            if (Romance.Checked == true) { MangaGerns += "#Romance&"; }
+            if (Drama.Checked == true) { MangaGerns += "#Drama&"; }
+            if (Mystery.Checked == true) { MangaGerns += "#Mystery&"; }
+            if (Sport.Checked == true) { MangaGerns += "#Sport&"; }
+            if (Supernatural.Checked == true) { MangaGerns += "#Supernatural&"; }
+            if (SciFi.Checked == true) { MangaGerns += "#SciFi&"; }
+            string MangaPuplisherName = GetUserInfoCookie["CreatorName"];//D
+            string MangaAgeID = AgeRatingDDL.SelectedItem.Text.ToString();//D
+            //FileReqInfo
+            string CurrentCreatorID = UserID.ToString();//AKA USERID D
+            string CreationDate = DateTime.Now.ToString("yyyyMMddHHmmss");//UTC Form D
+            string CreatorNameNID = MangaPuplisherName + UserID.ToString();//CreatorSpace D
+            string UserReqID = CurrentCreatorID + RandomID();//-AutoGen -DubliCheck D
+            UserReqID = UserReqID.Replace(" ", "");
+            string SUMProfileFileName = CreationDate + "-" + CurrentCreatorID + "-" + UserReqID + ".sum"; //D
+            SUMProfileFileName = SUMProfileFileName.Replace(" ", "");
+            string MangaPicRelativRoot = SUMProfileFileName + ".png";//D
+            Bitmap PicBitMap = new Bitmap(MangaPicUP.PostedFile.InputStream);
+            string MangaThemeColor = RgbConverter(getDominantColor(PicBitMap));//D
+            //ReqBuild
+            XDocument doc = new XDocument(
+                new XDeclaration("1.0", null, "yes"),
+                new XComment("Created with the XDocument class, SuM-Manga."),
+                new XElement("SuMReq",
+                new XElement("Name", MangaName),//D
+                new XElement("Description", MangaDiscription),//D
+                new XElement("Genres", MangaGerns),//D
+                new XElement("Creator", MangaPuplisherName),//A
+                new XElement("AgeID", MangaAgeID),//D
+                new XElement("Pic", MangaPicRelativRoot),//D
+                new XElement("ThemeColor", MangaThemeColor),//A
+                new XElement("CreatorID", GetUserInfoCookie["ID"].ToString()),
+                new XElement("ReqID", UserReqID)
+                )//A
+            );
+            //ReqSave
+            doc.Save(Server.MapPath(Path.Combine("CreatorsDrafts", SUMProfileFileName + ".xml")));
+            MangaPicUP.PostedFile.SaveAs(Server.MapPath(Path.Combine("CreatorsDrafts", SUMProfileFileName + ".png")));
+            //Save ReqID to CreatorProssDataBase and UserDataBase
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string NewReqIDs = string.Empty;
+
+                string query = "SELECT UnderProssReq FROM SuMCreators WHERE CreatorID = @UID";
+                SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
+                sqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd2.Parameters["@UID"].Value = UserID;
+                //var RR = sqlCmd2.ExecuteReader();
+                using (var reader = sqlCmd2.ExecuteReader())
                 {
-                    string chxC = c.ToString();
-                    if (c < 10 && c > 0) { ChapterFixedForm = "000" + chxC; }
-                    if (c > 9 && c < 100) { ChapterFixedForm = "00" + chxC; }
-                    if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
-                    if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
-                    if (c > 10000) { c = (cn1 + 1); }
-                    string cpcover = "/storeitems/" + "" + "/sumcp" + ChapterFixedForm + ".jpg";
-                    if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
+                    while (reader.Read())
                     {
-                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "if (!navigator.onLine) { fetch('" + RLink + "', { method: 'GET' }).then(res => { location.href = '" + RLink + "'; }).catch(err => { document.getElementById('Offline').style.display = 'block'; }); } else { location.href = '" + RLink + "'; }" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
+                        NewReqIDs = "#" + SUMProfileFileName + ".xml&" + reader[0].ToString();
                     }
-                    else
+                }/*
+                if (RR != null)
+                {
+                    if (string.IsNullOrEmpty(RR.ToString()) == false) 
                     {
-                        TheMangaPhotosF.InnerHtml += "<a onclick=" + sc.ToString() + "document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;opacity:0.54;" + b12.ToString() + "> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:right;margin-right:calc(100% - 188px);margin-top:-13px;height:fit-content;width:fit-content;" + b12.ToString() + ">unavailable!</p></a>";
+                        NewReqIDs = "#" + SUMProfileFileName + ".xml&" + RR.ToString();
                     }
-                    if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:90%;opacity:0.16;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
-                }
+                }*/
+
+                query = "UPDATE SuMCreators SET UnderProssReq = @NewUnderProssReq WHERE CreatorID = @UID";
+                sqlCmd2 = new SqlCommand(query, sqlCon);
+                sqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd2.Parameters["@UID"].Value = UserID;
+                sqlCmd2.Parameters.AddWithValue("@NewUnderProssReq", NewReqIDs);
+                sqlCmd2.ExecuteNonQuery();
+                sqlCon.Close();
             }
-            else
-            {
-                string TC = "";
-                TC = TC.Substring(0, TC.Length - 6);
-                TC += ")";
-                SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;margin-top:-2px !important;";
-                MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">You need to Login!</p>";
-                MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
-                MRSC.Attributes["style"] = "overflow:hidden;background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;margin-top:3px !important;margin-bottom:13px !important;";
-                MRSW.Attributes["onclick"] = "document.getElementById('MainContent_SuMLoginUI').style.display = 'block';";
-                for (int c = 1; c < (cn1 + 1); c++)
-                {
-                    string chxC = c.ToString();
-                    if (c < 10 && c > 0) { ChapterFixedForm = "000" + chxC; }
-                    if (c > 9 && c < 100) { ChapterFixedForm = "00" + chxC; }
-                    if (c > 99 && c < 1000) { ChapterFixedForm = "0" + chxC; }
-                    if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
-                    if (c > 10000) { c = (cn1 + 1); }
-                    string cpcover = "/storeitems/" + "" + "/sumcp" + ChapterFixedForm + ".jpg";
-                    if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
-                    {
-                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "document.getElementById('MainContent_SuMLoginUI').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
-                    }
-                    else
-                    {
-                        TheMangaPhotosF.InnerHtml += "<a onclick=" + sc.ToString() + "document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'block';" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;opacity:0.54;" + b12.ToString() + "> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%" + b12.ToString() + ">Chapter " + chxC + "</p> <p style=" + b12.ToString() + "opacity:0.64;color:#ffffff;float:right;margin-right:calc(100% - 188px);margin-top:-13px;height:fit-content;width:fit-content;" + b12.ToString() + ">unavailable!</p></a>";
-                    }
-                    if (c < cn1) { TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:90%;opacity:0.16;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
-                }
-            }
-            if (IsPostBack == false)
-            {
-                AddToFavNWanna.Attributes["style"] = "overflow:hidden !important;animation-duration:0.26s !important;width:fit-content;height:38px;background-color:" + ThemeColor.Replace("0.74", "0.92") + ";border-radius:18px;padding:4px !important;margin-left:0px;float:left !important;margin-top:28px !important;border-bottom-left-radius:0px !important;border-top-left-radius:0px !important;";
-            }
-            if (PreformanceMode == true)
-            {
-                ACont0.Attributes["class"] = "";
-                CategoryX.Attributes["class"] = "";
-                infoCover.Attributes["class"] = "";
-                FavNWannaContaner.Attributes["class"] = "";
-                AddToFavNWanna.Attributes["class"] = "";
-                WannaListTXT.Attributes["class"] = "";
-            }
+            Response.Redirect("~/SuMCreator/CreatorPanel.aspx");
         }
-        protected int[] ST0(string x)
+        protected void ReadSUMXMLProfile()
         {
-            Queue<int> R1 = new Queue<int>();
-            bool fh = false;
-            string A1 = "";
-            char[] aa = x.ToCharArray();
-            for (int i = 0; i < aa.Length; i++)
-            {
-                if (aa[i] == '&')
-                {
-                    fh = false;
-                    R1.Enqueue(Convert.ToInt32(A1));
-                    A1 = "";
-                }
-                if (fh == true)
-                {
-                    A1 += aa[i].ToString();
-                }
-                if (aa[i] == '#') { fh = true; }
-            }
-            int RdL = R1.Count;
-            int[] RS = new int[RdL];
-            int RFDH = 0;
-            while (R1.Count > 0)
-            {
-                RS[RFDH] = R1.Dequeue();
-                RFDH++;
-            }
-            return RS;
+            // Load the document.
+            string SUMProfileFileName = "";
+            XDocument doc = XDocument.Load(SUMProfileFileName);
+            string MangaName = doc.Element("Name").ToString();
+            string MangaPicRelativRoot = doc.Element("Pic").ToString();
+            string MangaThemeColor = doc.Element("ThemeColor").ToString();
+            string MangaDiscription = doc.Element("Description").ToString();
+            string MangaGerns = doc.Element("Genres").ToString();//-PreGerns -PosibleCreationOfNewOne
+            string MangaPuplisherName = doc.Element("Creator").ToString();
+            string MangaAgeID = doc.Element("AgeID").ToString();
+            string UserReqID = doc.Element("ReqID").ToString();
+            //UseIt
         }
-        protected int[] ST11(string x)
-        {
-            Queue<int> R1 = new Queue<int>();
-            bool fh = false;
-            bool fc = false;
-            string A1 = "";
-            char[] aa = x.ToCharArray();
-            for (int i = 0; i < aa.Length; i++)
-            {
-                if (aa[i] == '&')
-                {
-                    fh = false;
-                    fc = false;
-                    R1.Enqueue(Convert.ToInt32(A1));
-                    A1 = "";
-                }
-                if (aa[i] == ';') { fc = true; }
-                if (fh == true && fc == false)
-                {
-                    A1 += aa[i].ToString();
-                }
-                if (aa[i] == '#') { fh = true; }
-            }
-            int RdL = R1.Count;
-            int[] RS = new int[RdL];
-            int RFDH = 0;
-            while (R1.Count > 0)
-            {
-                RS[RFDH] = R1.Dequeue();
-                RFDH++;
-            }
-            return RS;
-        }
-        protected void MangaUserStateV(string TC)
-        {
-            //TC = TC.Substring(0, TC.Length - 6);
-            //TC += ")";
-            SVC.Attributes["style"] = "overflow:hidden;background-color:" + TC + ";margin:0 auto;height:fit-content;margin-top:-2px !important;";
-            MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
-            MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
-            MRSC.Attributes["style"] = "overflow:hidden;background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;margin-top:3px !important;margin-bottom:13px !important;";
-            MRSW.Attributes["onclick"] = "return false;";
-        }
-        protected int[,] ST1(string x)
-        {
-            Queue<int> R1 = new Queue<int>();
-            Queue<int> R2 = new Queue<int>();
-            bool fh = false;
-            bool fc = false;
-            string A1 = "";
-            string A2 = "";
-            char[] aa = x.ToCharArray();
-            for (int i = 0; i < aa.Length; i++)
-            {
-                if (aa[i] == '&')
-                {
-                    fh = false;
-                    fc = false;
-                    R1.Enqueue(Convert.ToInt32(A1));
-                    R2.Enqueue(Convert.ToInt32(A2));
-                    A1 = "";
-                    A2 = "";
-                }
-                if (fh == true && fc == true)
-                {
-                    A2 += aa[i].ToString();
-                }
-                if (aa[i] == ';') { fc = true; }
-                if (fh == true && fc == false)
-                {
-                    A1 += aa[i].ToString();
-                }
-                if (aa[i] == '#') { fh = true; }
-            }
-            int RdL = R1.Count;
-            int[,] RS = new int[2, RdL];
-            int RFDH = 0;
-            while (R1.Count > 0)
-            {
-                RS[0, RFDH] = R1.Dequeue();
-                RFDH++;
-            }
-            RFDH = 0;
-            while (R2.Count > 0)
-            {
-                RS[1, RFDH] = R2.Dequeue();
-                RFDH++;
-            }
-            return RS;
-        }
-        protected static string RgbConverter(Color c)
-        {
-            return String.Format("rgba({0},{1},{2},0.74)", c.R, c.G, c.B);
-        }
-        protected static string ORgbConverter(Color c)
-        {
-            return String.Format("rgba({0},{1},{2},1)", c.R, c.G, c.B);
-        }
-        protected static Color getDominantColor(Bitmap bmp)
+        protected Color getDominantColor(Bitmap bmp)
         {
             //Used for tally
             int r = 0;
@@ -294,7 +156,11 @@ namespace SuM_Manga_V3.storeitems
 
             return Color.FromArgb(r, g, b);
         }
-        protected static string RandomQuryForUpdate()
+        protected static string RgbConverter(Color c)
+        {
+            return String.Format("rgba({0},{1},{2},0.74)", c.R, c.G, c.B);
+        }
+        protected string RandomID()
         {
             int length = 9;
             char[] chArray = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
@@ -316,8 +182,7 @@ namespace SuM_Manga_V3.storeitems
             int randNum = r.Next(1000000);
             string sixDigitNumber = randNum.ToString("D6");
             str = sixDigitNumber[0] + sixDigitNumber[1] + sixDigitNumber[2] + str + sixDigitNumber[3] + sixDigitNumber[4] + sixDigitNumber[5];
-            return "UPDATE=" + str;
+            return str;
         }
-
     }
 }
