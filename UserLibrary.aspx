@@ -70,4 +70,32 @@
         ThisPageSBarFixUpPropElmVar.style.paddingTop = (StatusBarHeightValue) + 'px !important';
         document.getElementById('<%= ShowReqContantContaner.ClientID %>').style.minHeight = 'calc(100vh - ' + (76 + 24 + StatusBarHeightValue) + 'px) !important';
     </script>
+    <script>
+        androidAPIs.SetLightStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+            setTimeout(() => {
+                androidAPIs.SetLightStatusBarColor();
+                setTimeout(() => {
+                    androidAPIs.SetLightStatusBarColor();
+                    setTimeout(() => {
+                        androidAPIs.SetLightStatusBarColor();
+                        setTimeout(() => {
+                            androidAPIs.SetLightStatusBarColor();
+                            setTimeout(() => {
+                                androidAPIs.SetLightStatusBarColor();
+                                setTimeout(() => {
+                                    androidAPIs.SetLightStatusBarColor();
+                                    setTimeout(() => {
+                                        androidAPIs.SetLightStatusBarColor();
+                                    }, 10000);
+                                }, 1800);
+                            }, 45);
+                        }, 90);
+                    }, 180);
+                }, 360);
+            }, 640);
+        }, 960);
+    </script>
 </asp:Content>

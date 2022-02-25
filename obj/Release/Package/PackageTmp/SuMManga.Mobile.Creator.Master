@@ -149,6 +149,12 @@
             -ms-transition: all 0.5s;
             -o-transition: all 0.5s;
             transition: all 0.5s;*/
+            transform: translate3d(0,0,0) !important;
+            -webkit-transform: translate3d(0,0,0) !important;
+        }
+        div, a, p, h2, text, nav {
+            transform: translate3d(0,0,0) !important;
+            -webkit-transform: translate3d(0,0,0) !important;
         }
         .sumsmoothtrans {
             /*-webkit-transition: all 0.5s;

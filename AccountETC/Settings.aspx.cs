@@ -112,6 +112,18 @@ namespace SuM_Manga_V3.AccountETC
             {
                 SlideDownCard.Attributes["class"] = "";
             }
+            HttpCookie GetUserLockCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserLockCookie != null)
+            {
+                SuMLockSBTN.Attributes["onclick"] = "document.getElementById('" + SuMLockTuOffBTN.ClientID.ToString() + "').click(); setTimeout(() => { androidAPIs.SuMRestart(); }, 450);";
+                SuMLockSBTN.Attributes.Add("checked", "checked");
+            }
+            else
+            {
+                SuMLockSBTN.Attributes["onclick"] = "document.getElementById('" + SuMLockTuOnBTN.ClientID.ToString() + "').click(); setTimeout(() => { androidAPIs.SuMRestart(); }, 450);";
+                SuMLockSBTN.Attributes.Add("unchecked", "unchecked");
+            }
+
         }
         protected void SavePreformanceSettingCookie(object sender, EventArgs e)
         {
@@ -122,6 +134,18 @@ namespace SuM_Manga_V3.AccountETC
         protected void RemovePreformanceSettingCookie(object sender, EventArgs e)
         {
             HttpCookie SetInfo = new HttpCookie("SuMPerformanceMode");
+            SetInfo.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(SetInfo);
+        }
+        protected void SaveSuMLockSettingCookie(object sender, EventArgs e)
+        {
+            HttpCookie SetInfo = new HttpCookie("SuMLockMode");
+            SetInfo.Expires = DateTime.MaxValue;
+            HttpContext.Current.Response.Cookies.Add(SetInfo);
+        }
+        protected void RemoveSuMLockSettingCookie(object sender, EventArgs e)
+        {
+            HttpCookie SetInfo = new HttpCookie("SuMLockMode");
             SetInfo.Expires = DateTime.Now.AddDays(-100);
             HttpContext.Current.Response.Cookies.Add(SetInfo);
         }
@@ -214,6 +238,12 @@ namespace SuM_Manga_V3.AccountETC
                 }
                 sqlCon.Close();
             }
+            HttpCookie SetInfo = new HttpCookie("SuMPerformanceMode");
+            SetInfo.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(SetInfo);
+            HttpCookie SetInfo2 = new HttpCookie("SuMLockMode");
+            SetInfo2.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(SetInfo2);
             ReloadAndUpdate();
         }
         protected string RemoveAnSIDfromSIDsString(string SIDs, string SIDToRemove)
@@ -234,6 +264,12 @@ namespace SuM_Manga_V3.AccountETC
             HttpCookie GetUserInfoCookie = new HttpCookie("SuMCurrentUser");
             GetUserInfoCookie.Expires = DateTime.Now.AddDays(-100);
             Response.Cookies.Add(GetUserInfoCookie);
+            HttpCookie SetInfo = new HttpCookie("SuMPerformanceMode");
+            SetInfo.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(SetInfo);
+            HttpCookie SetInfo2 = new HttpCookie("SuMLockMode");
+            SetInfo2.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(SetInfo2);
             ReloadAndUpdate();
         }
         // UserSettingsStart     -imported from SuMAccount.aspx.cs-

@@ -1354,6 +1354,7 @@
     <Content Include="svg\payment.svg" />
     <Content Include="svg\payment_white_36dp.svg" />
     <Content Include="svg\publish.svg" />
+    <Content Include="svg\settingstBlack.svg" />
     <Content Include="svg\share.svg" />
     <Content Include="svg\under-maintenance.svg" />
     <Content Include="ToDo-replace-this-name.html" />

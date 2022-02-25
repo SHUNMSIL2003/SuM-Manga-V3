@@ -284,6 +284,9 @@ img {vertical-align: middle;}
                                 androidAPIs.SetLightStatusBarColor();
                                 setTimeout(() => {
                                     androidAPIs.SetLightStatusBarColor();
+                                    setTimeout(() => {
+                                        androidAPIs.SetLightStatusBarColor();
+                                    }, 10000);
                                 }, 1800);
                             }, 45);
                         }, 90);

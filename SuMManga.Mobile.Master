@@ -257,6 +257,7 @@
         })();*/
         //document.getElementById('popup').style.display = 'none';
     </script>
+    <!-- Google ads tag -->
 </head>
    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <body id="page-top" style="overflow:hidden !important;height:100vh;width:100vw;"> 
@@ -333,6 +334,7 @@
                 </style>
                 <div style="width:100vw !important; height:100vh !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:#ffffff !important;" id="SuMMainBlock" runat="server" class="container-fluid">
                     <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:100vh !important;max-height:100vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;" id="mc" runat="server">
+                    <div style="position:fixed !important;width:100vw;height:100vh;background-color:rgb(242,242,242) !important;pointer-events:none !important;top:0;margin:0 auto;z-index:1998 !important;display:none;" id="SuMLockViewBlock"></div>
                     <div id="LoadingSuMInfoBub" style="text-align: center; display: none; height: fit-content; width: 280px; background-color: rgb(255, 255, 255); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 18px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important;padding-top:38px;padding-bottom:32px;text-align:center !important;" class="shadow-sm animated fadeIn">
                         <svg id="SuMLoadingSVGPreview" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="rgba(255,255,255,0.92)"></svg>
                         <p id="SuMLoadingTXT" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: rgba(255, 255, 255, 0.92); width: calc(100% - 64px) !important;margin-bottom:-8px;text-align:left;">INFO</p>
@@ -727,6 +729,69 @@
                         }
 
                     });
+
+                    function SuMLockHandler() {
+                        var SuMCookieCopyF0C0 = document.cookie;
+                        var SuMLockViewBlockElm = document.getElementById('SuMLockViewBlock');
+                        if (SuMCookieCopyF0C0.includes('SuMLockMode') == true) {
+                            SuMLockViewBlockElm.style.display = 'block';
+                            var SuMAuthPrIsDF0C0 = androidAPIs.SUMAuthProssIsDone();
+                            if (SuMAuthPrIsDF0C0 == true) {
+                                var SuMAuthPrResF0C0 = androidAPIs.SUMAuthProssResult();
+                                if (SuMAuthPrResF0C0 == true) {
+                                    SuMLockViewBlockElm.style.display = 'none';
+                                }
+                                else {
+                                    SuMLockViewBlockElm.style.display = 'block';
+                                    androidAPIs.SUMVerification();
+                                    setTimeout(() => {
+                                        SuMAuthAcceptenceLooper(SuMAuthPrResF0C0, SuMAuthPrIsDF0C0);
+                                    }, 540);
+                                }
+                            }
+                            else {
+                                SuMLockViewBlockElm.style.display = 'block';
+                                androidAPIs.SUMVerification();
+                                setTimeout(() => {
+                                    SuMAuthAcceptenceLooper(androidAPIs.SUMAuthProssResult(), SuMAuthPrIsDF0C0);
+                                }, 540);
+                            }
+                        }
+                        else {
+                            SuMLockViewBlockElm.style.display = 'none';
+                            androidAPIs.SUMAuthReset();
+                        }
+                    };
+
+                    SuMLockHandler();
+
+                    function SuMAuthAcceptenceLooper(SuMAuthPrRSF0C1, SuMAuthPrIsDF0C1) {
+                        setTimeout(() => {
+                            SuMAuthPrIsDF0C1 = androidAPIs.SUMAuthProssIsDone();
+                            SuMAuthPrRSF0C1 = androidAPIs.SUMAuthProssResult();
+                            if (SuMAuthPrIsDF0C1 == false || SuMAuthPrRSF0C1 == false) {
+                                var SuMAuthIsStillInProssF0C0 = androidAPIs.SUMAuthIsUnderPross();
+                                if (SuMAuthIsStillInProssF0C0 == false) {
+                                    androidAPIs.SUMVerification();
+                                    SuMAuthAcceptenceLooper(androidAPIs.SUMAuthProssResult(), androidAPIs.SUMAuthProssIsDone());
+                                }
+                                else {
+                                    SuMAuthAcceptenceLooper(androidAPIs.SUMAuthProssResult(), androidAPIs.SUMAuthProssIsDone());
+                                }
+                                SuMLockViewBlockElmC1.style.display = 'block';
+                            }
+                            else {
+                                var SuMLockViewBlockElmC1 = document.getElementById('SuMLockViewBlock');
+                                SuMLockViewBlockElmC1.style.display = 'none';
+                            }
+                        }, 960);
+                    };
+
+                        //androidAPIs.SUMAuthIsUnderPross();
+                        //androidAPIs.SUMVerification();
+                        //androidAPIs.SUMAuthReset();
+                        //androidAPIs.SUMAuthProssIsDone();
+                        //androidAPIs.SUMAuthProssResult();
                 </script>
                 <!--
                 <div style="width:100vw !important; height:98vh !important;max-height:93vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;" id="Div1" runat="server" class="container-fluid">

@@ -11,6 +11,9 @@
         setTimeout(() => {
             androidAPIs.SetLightStatusBarColor();
         }, 420);
+        //androidAPIs.SUMAuthReset();
+        //androidAPIs.SUMAuthProssIsDone();
+        //androidAPIs.SUMAuthProssResult();
     </script>
     <style>
         a {
@@ -26,6 +29,10 @@
     <a id="RootDebug" runat="server">
 
     </a> -->
+    <div style="background-color:rgba(255,255,255,0.86) !important;position:fixed !important;top:0 !important;animation-duration:0.16s !important;z-index:997 !important;height:fit-content !important;width:100% !important;display:none;padding-top:6px;padding-bottom:6px;padding-left:4px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;" class="animated fadeInDown" id="SuMMangaTopBar">
+        <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;" id="SuMMangaTopBarHeightHelper"></div>
+        <p style="font-size:118%;margin-left:18px;margin-bottom:8px;display:block;height:fit-content;width:fit-content;" class="text-black"><img src="/svg/settingstBlack.svg" width="30" height="30" style="" /> SuM Settings</p>
+    </div>
     <asp:Button ID="EnablePreMode" runat="server" OnClick="SavePreformanceSettingCookie" style="display:none !important;visibility:hidden;" />
     <asp:Button ID="DisablePreMode" runat="server" OnClick="RemovePreformanceSettingCookie" style="display:none !important;visibility:hidden;" />
     <asp:Button ID="FixUpPageRe" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden;" />
@@ -40,7 +47,7 @@
             </div>
         </div>
     </div>
-                        <div style="height:100vh;width:100vw; padding:0px !important;padding-top:0px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
+                        <div id="SuMRnadomScrollHelper" style="height:100vh;width:100vw; padding:0px !important;padding-top:0px !important;padding-bottom:8px !important; background-color:#f2f2f2 !important;margin:0 auto !important; margin-top:0px !important;">
     <div style="height:100% !important;width:100vw;max-width:720px !important;margin:0 auto !important;">
     <div id="ThisPageSBarFixUpPropElm" style="width:100%;height:0px;background-color:#ffffff !important;display:block;"></div>
         <script>
@@ -58,7 +65,7 @@
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-        <div style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;">
+        <div id="ThisPageMaxNoShowScrool" style="background-color:#ffffff !important;border-radius:0px !important; padding: 4px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;">
             <a runat="server" id="AccountSettingsOrLogin" onclick="" href="/AccountETC/LoginETC.aspx" style="height:112px !important;width:calc(100% - 60px) !important;background-color:transparent !important;display:block !important;margin-top:8px;margin-bottom:8px; margin-left:8px;position:relative;z-index:998;">
             <div style="width:90px;height:90px;border-radius:45px;background-color:#ffffff;border:2px solid #1d1d1d !important;float:left;display:inline;margin-bottom:6px;padding:1px !important;">
                 <img class="animated pulse" id="PFP" runat="server" style="width:84px !important;height:84px !important;border-radius:50% !important;" src="/AccountETC/UsersUploads/DeafultPFP.jpg" />
@@ -294,6 +301,28 @@
                                     <p style="font-size:82%;color:#808080;float:left;margin-left:36px;">This mode removes all animations and blur from SuM Manga to improve performance on low-end devices.</p>
                                 </div>
             <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;margin-top:12px !important;margin-bottom:18px !important;">
+            <div style="vertical-align:middle;display:block !important;">
+                                    <svg style="display:inline;float:left;" xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 0 24 24" width="32px" id="SuMLockIcon" fill="#231f20"><g fill="none"><path d="M0 0h24v24H0V0z"/><path d="M0 0h24v24H0V0z" opacity=".87"/></g><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"/></svg>
+                                    <p style="color:#000000;display:inline;float:left;margin:8px;font-size:112%;">SuM Lock</p>
+                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;" type="checkbox" onclick="document.getElementById('<%= SuMLockTuOnBTN.ClientID %>').click(); setTimeout(() => { androidAPIs.SuMRestart(); }, 450);" runat="server" id="SuMLockSBTN" /> </div>
+                <p style="font-size:82%;color:#808080;float:left;margin-left:36px;">more privacy accomplished by requiring a biometric scan when opening the app.</p>
+                <asp:Button style="display:none !important;visibility:hidden !important;" ID="SuMLockTuOnBTN" OnClick="SaveSuMLockSettingCookie" runat="server" />
+                <asp:Button style="display:none !important;visibility:hidden !important;" ID="SuMLockTuOffBTN" OnClick="RemoveSuMLockSettingCookie" runat="server" />
+                <script>
+                    var SuMCookieCopyF3C0 = document.cookie;
+                    //var SuMLockIconElm = document.getElementById('SuMLockIcon');
+                    var SuMLockSBTNElm = document.getElementById('<%= SuMLockSBTN.ClientID %>');
+                    if (SuMCookieCopyF3C0.includes('SuMLockMode') == true) {
+                        SuMLockSBTNElm.setAttribute("checked", "checked");
+                        SuMLockSBTNElm.setAttribute("onclick", "document.getElementById('<%= SuMLockTuOffBTN.ClientID %>').click(); setTimeout(() => { androidAPIs.SuMRestart(); }, 450);");
+                    }
+                    else {
+                        SuMLockSBTNElm.setAttribute("unchecked", "unchecked");
+                        SuMLockSBTNElm.setAttribute("onclick", "document.getElementById('<%= SuMLockTuOnBTN.ClientID %>').click(); setTimeout(() => { androidAPIs.SuMRestart(); }, 450);");
+                    }
+                </script>
+                                </div>
+            <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:86vw;opacity:0.26;margin:0px;margin-block:0px;margin-top:12px !important;margin-bottom:18px !important;">
                                 <div class="" style="vertical-align:middle;display:block !important;">
                                     <img src="/AccountETC/DarkMoon.svg" style="width:32px;height:32px;display:inline;float:left;" />
                                     <p style="color:#000000;display:inline;float:left;margin:8px;font-size:112%;">Dark Mode</p>
@@ -310,10 +339,12 @@
         <div class="" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 4px !important;margin-top:6px !important;margin-top:12px;">
         </div>
             <div class="" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
-            <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:132px;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.1.0 Beta</p>
+            <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:280px !important;">
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.1.1 Beta</p>
                 <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:#ffffff;background: rgba(104,64,217,0.62);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
+                <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:0px;width:100%;height:164px;"></p>
+                <!-- <a style="width:80vw;height:26vh;background-color:#000;display:block;position:fixed !important;margin-top:32vh;top:0;z-index:1999 !important;pointer-events:all !important;" onclick="androidAPIs.SUMVerification();" ></a> -->
                 <!-- <a onclick="UploadReplaceFunc">BETA UPLOAD ON ANDROID TESTING BTN</a>
                 <script>
                     navigator.camera.getPicture(function () {
@@ -408,6 +439,7 @@
                     document.getElementById('<%= FixUpPageRe.ClientID %>').click();
                 }, 1200);
                 DeleteSuMCache();
+                setTimeout(() => { androidAPIs.SuMRestart(); }, 450);
             };
             function TurnPreModeOff() {
                 document.getElementById('<%= DisablePreMode.ClientID %>').click();
@@ -415,6 +447,7 @@
                     document.getElementById('<%= FixUpPageRe.ClientID %>').click();
                 }, 1200);
                 DeleteSuMCache();
+                setTimeout(() => { androidAPIs.SuMRestart(); }, 450);
             };
             var UserSettingsCardsDiv = document.getElementById('<%= UserSettingsCards.ClientID %>');
             function SuMSettingDivExpandor(NormallId) {
@@ -433,5 +466,62 @@
                 CacheInfoLoading();
             }, 820);
         });
+    </script>
+    <script>
+
+        androidAPIs.SetLightStatusBarColor();
+        var ThisPageScrollContaner = document.getElementById('SuMRnadomScrollHelper');
+        var ThisPageChangeStartElm = document.getElementById('ThisPageMaxNoShowScrool');
+        var SuMMangaTopBarElm = document.getElementById('SuMMangaTopBar');
+        var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
+        var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
+        var MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
+        setTimeout(() => {
+            MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
+        }, 540);
+        SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
+        ThisPageScrollContaner.onscroll = function () {
+
+            if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
+
+                androidAPIs.SetLightStatusBarColor();
+                SuMMangaTopBarElm.style.display = 'block';
+
+            } else {
+
+                androidAPIs.SetLightStatusBarColor();
+                SuMMangaTopBarElm.style.display = 'none';
+
+            }
+
+        };
+
+
+        androidAPIs.SetLightStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+            setTimeout(() => {
+                androidAPIs.SetLightStatusBarColor();
+                setTimeout(() => {
+                    androidAPIs.SetLightStatusBarColor();
+                    setTimeout(() => {
+                        androidAPIs.SetLightStatusBarColor();
+                        setTimeout(() => {
+                            androidAPIs.SetLightStatusBarColor();
+                            setTimeout(() => {
+                                androidAPIs.SetLightStatusBarColor();
+                                setTimeout(() => {
+                                    androidAPIs.SetLightStatusBarColor();
+                                    setTimeout(() => {
+                                        androidAPIs.SetLightStatusBarColor();
+                                    }, 10000);
+                                }, 1800);
+                            }, 45);
+                        }, 90);
+                    }, 180);
+                }, 360);
+            }, 640);
+        }, 960);
     </script>
 </asp:Content>
