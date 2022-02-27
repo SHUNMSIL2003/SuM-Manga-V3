@@ -1320,7 +1320,9 @@
     <Content Include="svg\addTBlack.svg" />
     <Content Include="svg\add.svg" />
     <Content Include="svg\addTTC.svg" />
+    <Content Include="svg\awesomeTW.svg" />
     <Content Include="svg\closefullscreen.svg" />
+    <Content Include="svg\CreatorPanel.svg" />
     <Content Include="svg\ioslogo.svg" />
     <Content Include="svg\androidlogo.svg" />
     <Content Include="svg\arrowup.svg" />
@@ -1341,7 +1343,7 @@
     <Content Include="svg\favorite.svg" />
     <Content Include="svg\favoriteNOTFILLED.svg" />
     <Content Include="svg\feed.svg" />
-    <Content Include="svg\history.svg" />
+    <Content Include="svg\historyTW.svg" />
     <Content Include="svg\info.svg" />
     <Content Include="svg\MostSeenB.svg" />
     <Content Include="svg\MostSeenW.svg" />
@@ -2791,7 +2793,7 @@
     <Content Include="svg\LibraryNA.svg" />
     <Content Include="svg\Library.svg" />
     <Content Include="svg\librarybooks.svg" />
-    <Content Include="svg\logout.svg" />
+    <Content Include="svg\logoutW.svg" />
     <Content Include="svg\manageaccount.svg" />
     <Content Include="svg\MostSeenNA.svg" />
     <Content Include="svg\MostSeen.svg" />

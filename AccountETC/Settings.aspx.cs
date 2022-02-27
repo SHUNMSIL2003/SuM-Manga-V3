@@ -22,7 +22,7 @@ namespace SuM_Manga_V3.AccountETC
                 // -Debug Start-
                 //RootDebug.InnerText = GetUserInfoCookie.Value;
                 // -Debug End-
-                AccountSettingsOrLogin.Attributes["onclick"] = "if (document.getElementById('MainContent_UserSettingsCards').style.height == '0px') { document.getElementById('MainContent_UserSettingsCards').style.height = '275px'; document.getElementById('MainContent_TapForXText').innerText = 'Tap for less!'; } else { document.getElementById('MainContent_UserSettingsCards').style.height = '0px'; document.getElementById('MainContent_TapForXText').innerText = 'Tap for more!'; document.getElementById('MainContent_PFPDiv').style.display = 'none'; document.getElementById('MainContent_ChangeEmailDiv').style.display = 'none'; document.getElementById('MainContent_SigAndMore').style.display = 'none'; document.getElementById('MainContent_creatorsupmitform').style.display = 'none'; document.getElementById('MainContent_PaymentCard').style.display = 'none'; document.getElementById('MainContent_ManageDevicesCard').style.display = 'none'; }"; //"if (document.getElementById('UserSettingsCards').style.height == '0px') { document.getElementById('UserSettingsCards').style.height = '232px'; } else { document.getElementById('UserSettingsCards').style.height = '0px'; }";
+                AccountSettingsOrLogin.Attributes["onclick"] = "if (document.getElementById('MainContent_UserSettingsCards').style.height == '0px') { document.getElementById('MainContent_UserSettingsCards').style.height = '308px'; document.getElementById('MainContent_TapForXText').innerText = 'Tap for less!'; } else { document.getElementById('MainContent_UserSettingsCards').style.height = '0px'; document.getElementById('MainContent_TapForXText').innerText = 'Tap for more!'; document.getElementById('MainContent_PFPDiv').style.display = 'none'; document.getElementById('MainContent_ChangeEmailDiv').style.display = 'none'; document.getElementById('MainContent_SigAndMore').style.display = 'none'; document.getElementById('MainContent_creatorsupmitform').style.display = 'none'; document.getElementById('MainContent_PaymentCard').style.display = 'none'; document.getElementById('MainContent_ManageDevicesCard').style.display = 'none'; }"; //"if (document.getElementById('UserSettingsCards').style.height == '0px') { document.getElementById('UserSettingsCards').style.height = '232px'; } else { document.getElementById('UserSettingsCards').style.height = '0px'; }";
                 //"document.getElementById('UserSettingsCards').style.display = (document.getElementById('UserSettingsCards').style.display == 'block') ? 'none' : 'block';";
                 AccountSettingsOrLogin.Attributes["href"] = "#";
                 string UserName = GetUserInfoCookie["UserName"].ToString();
@@ -30,6 +30,7 @@ namespace SuM_Manga_V3.AccountETC
                 SuMUserName.InnerText = UserName;
                 string CurrPFP = string.Empty;
                 string currEmail = string.Empty;
+                string CurrBanner = string.Empty;
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
@@ -55,6 +56,22 @@ namespace SuM_Manga_V3.AccountETC
                             currEmail = dr[0].ToString();
                         }
                     }
+                    //Banner start
+                    string query5 = "SELECT UserBanner FROM SuMUsersAccounts WHERE UserID = @UID";
+                    SqlCommand sqlCmd5 = new SqlCommand(query5, sqlCon);
+                    sqlCmd5.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    sqlCmd5.Parameters["@UID"].Value = UserID;
+                    using (SqlDataReader dr = sqlCmd5.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            object TIIIS = dr[0];
+                            if (TIIIS != null)
+                            {
+                                CurrBanner = TIIIS.ToString();
+                            }
+                        }
+                    }
                     //Sig start
                     string query3 = "SELECT Signetsure FROM SuMUsersAccounts WHERE UserID = @UID";
                     SqlCommand sqlCmd3 = new SqlCommand(query3, sqlCon);
@@ -71,6 +88,11 @@ namespace SuM_Manga_V3.AccountETC
                 }
                 SignedWith.InnerText = currEmail;
                 PFP.Attributes["src"] = ResolveUrl(CurrPFP);
+                if (string.IsNullOrEmpty(CurrBanner) == false)
+                {
+                    ThisPageMaxNoShowScrool.Attributes["style"] = "background-color:rgba(104,64,217,0.74) !important;border-radius:20px !important;width:100%;margin:0 auto !important;padding:16px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;background-image:linear-gradient(rgba(0, 0, 0, 0.32),rgba(0, 0, 0, 0.32)) , url(" + CurrBanner + "); background-size: cover; background-position: center;";
+                    CurrUserBannerPlaceHolder.InnerText = CurrBanner;
+                }
                 //Imported code from SuMAccount.aspx.cs + Sig from above
                 SignaturePE.Attributes["placeholder"] = currSignetsure;
                 UserNameEP.Attributes["placeholder"] = UserName;
@@ -87,7 +109,7 @@ namespace SuM_Manga_V3.AccountETC
                 LogOutBTN.Attributes["style"] = "display:none;";
                 LogOutBTN.Attributes["OnClick"] = "NULL";
                 PFP.Attributes["src"] = SuMRandomPFP();
-                TapForXText.Attributes["style"] = "color:rgba(0,0,0,0.32);margin-top:-18px;width:100%;text-align:center;font-size:76%;padding-bottom:-16px;";
+                TapForXText.Attributes["style"] = "color:rgba(255,255,255,0.64);margin-top:-18px;width:100%;text-align:center;font-size:76%;padding-bottom:-16px;";
                 TapForXText.InnerText = "Tap to login!";
             }
             HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
@@ -319,6 +341,50 @@ namespace SuM_Manga_V3.AccountETC
                 ReloadAndUpdate();
             }
         }
+        protected void ChangeUserBanner(object sender, EventArgs e)
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            string UserID = GetUserInfoCookie["ID"].ToString();
+            string UserName = GetUserInfoCookie["UserName"].ToString();
+            if (SuMCustomBanner.HasFile == true)
+            {
+                string oldimg = CurrUserBannerPlaceHolder.InnerText.ToString();
+                char[] fixing = oldimg.ToCharArray();
+                string OrPATH = string.Empty;
+                for (int i = 0; i < fixing.Length; i++)
+                {
+                    if (fixing[i] == '/')
+                    {
+                        if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = "\\"; }
+                        else { OrPATH += "\\"; }
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = fixing[i].ToString(); }
+                        else { OrPATH += fixing[i].ToString(); }
+                    }
+                }
+                bool fixer = File.Exists(Server.MapPath(OrPATH));
+                //bool Deafult = PFPIsNotADeafult(oldimg);
+                if (fixer == true && OrPATH.Contains(".svg") == false) { File.Delete(Server.MapPath(OrPATH)); }
+                string fileName = System.IO.Path.GetFileName(SuMCustomBanner.PostedFile.FileName);
+                string ffn = DateTime.Now.ToString("yyyyMMddHHmmss") + UserName + fileName;
+                SuMCustomBanner.PostedFile.SaveAs(Server.MapPath(Path.Combine("UsersUploads", ffn)));
+                string pfppath = "/AccountETC/UsersUploads/" + ffn;
+                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE SuMUsersAccounts SET UserBanner = @SuMCustomPFP WHERE UserID = @ID";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@ID", SqlDbType.Int);
+                    sqlCmd.Parameters["@ID"].Value = Convert.ToInt32(UserID);
+                    sqlCmd.Parameters.AddWithValue("@SuMCustomPFP", pfppath);
+                    sqlCmd.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+                ReloadAndUpdate();
+            }
+        }
         protected void ChangeSIG(object sender, EventArgs e)
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
@@ -520,6 +586,42 @@ namespace SuM_Manga_V3.AccountETC
             {
                 sqlCon.Open();
                 string query = "UPDATE SuMUsersAccounts SET PFP = @SuMCustomPFP WHERE UserID = @ID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@ID", SqlDbType.Int);
+                sqlCmd.Parameters["@ID"].Value = Convert.ToString(UserID);
+                sqlCmd.Parameters.AddWithValue("@SuMCustomPFP", pfppath);
+                sqlCmd.ExecuteNonQuery();
+                sqlCon.Close();
+            }
+            ReloadAndUpdate();
+        }
+        protected void RemoveBanner(object sender, EventArgs e)
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            string UserID = GetUserInfoCookie["ID"].ToString();
+            string oldimg = CurrUserBannerPlaceHolder.InnerText.ToString();
+            char[] fixing = oldimg.ToCharArray();
+            string OrPATH = string.Empty;
+            for (int i = 0; i < fixing.Length; i++)
+            {
+                if (fixing[i] == '/')
+                {
+                    if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = "\\"; }
+                    else { OrPATH += "\\"; }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = fixing[i].ToString(); }
+                    else { OrPATH += fixing[i].ToString(); }
+                }
+            }
+            bool fixer = File.Exists(Server.MapPath(OrPATH));
+            if (fixer == true&& OrPATH.Contains(".svg") == false) { File.Delete(Server.MapPath(OrPATH)); }
+            string pfppath = string.Empty;
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "UPDATE SuMUsersAccounts SET UserBanner = @SuMCustomPFP WHERE UserID = @ID";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@ID", SqlDbType.Int);
                 sqlCmd.Parameters["@ID"].Value = Convert.ToString(UserID);

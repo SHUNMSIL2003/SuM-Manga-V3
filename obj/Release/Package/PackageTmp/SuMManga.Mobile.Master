@@ -27,6 +27,7 @@
                 });
             }
             androidAPIs.SetSuMHardwareExl();
+            androidAPIs.SetLightStatusBarColor();
         }
         else {
             location.href = '/SuMMangaInstallAPP.aspx';
@@ -123,7 +124,7 @@
         body {
             width:100vw !important;
             height:100vh !important;
-            background-color:#ffffff !important;
+            background-color:rgb(242,242,242) !important;
         }
 
 /* use a media query to filter small devices */
@@ -260,7 +261,7 @@
     <!-- Google ads tag -->
 </head>
    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-<body id="page-top" style="overflow:hidden !important;height:100vh;width:100vw;"> 
+<body id="page-top" style="overflow:hidden !important;height:100vh;width:100vw;background-color:rgb(242,242,242) !important;"> 
     <div onclick="document.getElementById('popup').style.display = 'none';" id="popup" style="">
         <div class="animated slideInDown" style="width:fit-content !important; height:fit-content !important;background-color:rgb(242,242,242,0.6);display:block !important;float:left !important;">
             <p style="color:red;font-size:70%;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI, You can tap this popup to hide it!</p>
@@ -764,6 +765,8 @@
                     };
 
                     SuMLockHandler();
+                    var SuMLockViewBlockElm = document.getElementById('SuMLockViewBlock');//TMP -DEBUGING
+                    SuMLockViewBlockElm.style.display = 'none';//TMP -DEBUGING
 
                     function SuMAuthAcceptenceLooper(SuMAuthPrRSF0C1, SuMAuthPrIsDF0C1) {
                         setTimeout(() => {
@@ -968,6 +971,10 @@
                 SuMFullNavBarElm.style.display = 'none !important';
                 SuMFullNavBarElm.style.visibility = 'hidden !important';
             }, 360);
+        };
+        function GetSuMWebNavBarHeight() {
+            var resultX = document.getElementById('<%= fullnavscont.ClientID %>').getBoundingClientRect().height + 2;
+            return resultX;
         };
     </script>
         <script>

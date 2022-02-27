@@ -69,6 +69,15 @@ namespace SuM_Manga_V3.AccountETC
         protected global::System.Web.UI.WebControls.FileUpload SuMCustomPFP;
 
         /// <summary>
+        /// SuMCustomBanner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload SuMCustomBanner;
+
+        /// <summary>
         /// SettingsUnavaliblePOPUP control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace SuM_Manga_V3.AccountETC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel ProfileInfoUpdatepANEL;
+
+        /// <summary>
+        /// ThisPageMaxNoShowScrool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ThisPageMaxNoShowScrool;
 
         /// <summary>
         /// AccountSettingsOrLogin control.
@@ -159,6 +177,15 @@ namespace SuM_Manga_V3.AccountETC
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TapForXText;
 
         /// <summary>
+        /// CurrUserBannerPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CurrUserBannerPlaceHolder;
+
+        /// <summary>
         /// UserSettingsCards control.
         /// </summary>
         /// <remarks>
@@ -202,6 +229,33 @@ namespace SuM_Manga_V3.AccountETC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button RemovePFP;
+
+        /// <summary>
+        /// BannerPr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage BannerPr;
+
+        /// <summary>
+        /// ChangeBannerBTN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ChangeBannerBTN;
+
+        /// <summary>
+        /// RemoveBannerBTN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button RemoveBannerBTN;
 
         /// <summary>
         /// DevicesNum control.

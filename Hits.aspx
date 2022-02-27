@@ -2,7 +2,18 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        androidAPIs.SetDarkStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+            setTimeout(() => {
+                androidAPIs.SetLightStatusBarColor();
+                setTimeout(() => {
+                    androidAPIs.SetLightStatusBarColor();
+                }, 180);
+            }, 180);
+        }, 180);
         /*var IsFullScreen = androidAPIs.SuMIsFullScreen();
         if (IsFullScreen == true) {
             androidAPIs.DeactivateFullScreenMode();
@@ -75,6 +86,9 @@ img {vertical-align: middle;}
   to {opacity: 1}
 }
 
+        body {
+            background-color:rgb(242,242,242) !important;
+        }
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .text {font-size: 16px}
@@ -92,6 +106,8 @@ img {vertical-align: middle;}
             transition: all 0.5s !important;*/
         }
     </style>
+    <div style="background-color:rgb(242,242,242) !important;width:100%;height:100%;margin:0 auto !important;">
+    <!-- <div style="display:block;margin:0 auto;width:100%;height:24px;background-color:transparent;" id="ThisPageSBarFixUpPropElmF8C0" ></div> -->
     <div style="background-color:rgba(255,255,255,0.86) !important;position:fixed !important;top:0 !important;animation-duration:0.16s !important;z-index:997 !important;height:fit-content !important;width:100% !important;display:none;padding-top:6px;padding-bottom:6px;padding-left:4px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;" class="animated fadeInDown" id="SuMMangaTopBar">
         <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;" id="SuMMangaTopBarHeightHelper"></div>
         <p style="font-size:118%;margin-left:18px;margin-bottom:8px;display:block;height:fit-content;width:fit-content;" class="text-black"><img src="/svg/MostSeenB.svg" width="30" height="30" style="" /> SuM Hits</p>
@@ -146,19 +162,19 @@ img {vertical-align: middle;}
             }
         </style>
     </div>
-    <div id="ScrollingDivHits" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;-webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;">
+    <div id="ScrollingDivHits" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;margin-top:12px !important; -webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;">
         <div id="ScrollHelperFASET204CutG65" style="background-color:#f2f2f2 !important;margin:0 auto !important;width:100%;height:fit-content;-webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;">
-        <div id="HotsScrollHelper" runat="server" style="background-color:#ffffff;margin:0 auto !important;padding:0px;width:100%;height:fit-content;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;-webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;">
-        <div id="HitsBG" style="margin:0 auto !important;padding:0px;margin-bottom:0px !important;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;width:100% !important;height:fit-content !important;transition: background-color .3s !important; -webkit-transition: background-color .3s !important; -o-transition: background-color .3s !important; -moz-transition: background-color .3s !important;padding-top:28px !important;-webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;">
+        <div id="HotsScrollHelper" runat="server" style="background-color:#f2f2f2;margin:0 auto !important;padding:0px;width:100%;height:fit-content;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;-webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;">
+        <div style="width:100% !important;height:12px;margin:0 auto !important;" id="SuMStatusBarHeightFixUpF0C0"></div>
+        <script>
+        var StatusBarHeightValueFromSuMAndroidAPIsF0C0 = androidAPIs.getStatusBarHeight();
+        document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C0 + 12) + 'px';
+        </script>
+        <div id="HitsBG" style="padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin: 12px auto 0px !important; border-radius: 20px !important; display: block !important; width: calc(100% - 24px) !important; height: fit-content !important; padding-top: 28px !important; transition: all 0.5s ease 0s !important;transition: background-color 0.26s ease !important;">
             <div style="width:100% !important;">
-                <h2 id="ThisPageSBarFixUpPropElm" style="color:#ffffff;margin:0 auto !important;text-align:center;margin-top:18px !important;margin-bottom:16px !important;"><img src="/svg/MostSeenW.svg" width="36" height="36" style="display:inline;margin-top:-8px;" /> Top 10 on SuM Manga!</h2>
+                <h2 style="color:#ffffff;margin:0 auto !important;text-align:center;margin-top:4px !important;margin-bottom:16px !important;"><img src="/svg/MostSeenW.svg" width="36" height="36" style="display:inline;margin-top:-8px;" /> Top 10 on SuM Manga!</h2>
                 <p style="color:rgba(255,255,255,0.82);font-size:86%;text-align:center !important;width:100%;height:fit-content;margin:0 auto !important;margin-top:12px !important;margin-bottom:8px !important;display:none !important;visibility:hidden !important;">This section's purpose is to showcase the ten mangas with the highest views on this platform, ranked from the highest to the lowest. This section is updated live!</p>
             </div>
-            <script>
-                var ThisPageSBarFixUpPropElmVar = document.getElementById('ThisPageSBarFixUpPropElm');
-                var StatusBarHeightValue = androidAPIs.getStatusBarHeight();
-                ThisPageSBarFixUpPropElmVar.style.marginTop = (12 + StatusBarHeightValue) + 'px !important';
-            </script>
             <div id="Top10Con" runat="server" style="margin:0 auto !important;width:100%;height:fit-content;background-color:#ffffff;position:relative;width:calc(100% - 24px);margin-bottom:26px !important;border-radius:18px;-webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;">
 
             </div>
@@ -531,88 +547,152 @@ img {vertical-align: middle;}
         </div>
         </div>
         <div style="display:none !important;visibility:hidden !important;background-color:#f2f2f2 !important;width:100%;height:32px;border-bottom-left-radius:20px;border-bottom-right-radius:20px;margin:0 auto !important;margin-bottom:12px !important;"></div>
-        <h2 id="TopOfEachInfoCard" style="width:100%;text-align:center !important;background-color:#f2f2f2 !important;padding:12px;padding-top:18px;padding-bottom:12px;color:#000000f0;position:relative;top:0;z-index:997;border-bottom-left-radius:18px !important;border-bottom-right-radius:18px !important;">Top 10 for each by category</h2>
-        <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important; width:100%;overflow:hidden; background-color:#ffffff !important;" id="CategoryX" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Action</h2>
+        <!-- <h2 id="TopOfEachInfoCard" style="width:100%;text-align:center !important;background-color:#f2f2f2 !important;padding:12px;padding-top:18px;padding-bottom:12px;color:#000000f0;position:relative;top:0;z-index:997;border-bottom-left-radius:18px !important;border-bottom-right-radius:18px !important;">Top 10 for each by category</h2> -->
+
+        <!-- br placeholder -->
+        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="CategoryX" runat="server">
+            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Action</h2>
+            <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Action" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;" >
             </div>
         </div>
 
-        <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important; width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div1" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Fantasy</h2>
+        <!-- br placeholder -->
+        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div1" runat="server">
+            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Fantasy</h2>
+            <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Fantasy" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
-        <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div2" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Comedy</h2>
+        <!-- br placeholder -->
+        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div2" runat="server">
+            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Comedy</h2>
+            <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Comedy" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
-        <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div3" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Supernatural</h2>
+        <!-- br placeholder -->
+        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div3" runat="server">
+            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Supernatural</h2>
+            <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Supernatural" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
-        <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div4" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Sci-Fi</h2>
+        <!-- br placeholder -->
+        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div4" runat="server">
+            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Sci-Fi</h2>
+            <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="SciFi" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
-        <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div5" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Drama</h2>
+        <!-- br placeholder -->
+        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div5" runat="server">
+            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Drama</h2>
+            <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Drama" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
-        <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div6" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Mystery</h2>
+        <!-- br placeholder -->
+        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div6" runat="server">
+            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Mystery</h2>
+            <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Mystery" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
-        <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div7" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Slice of Life</h2>
+        <!-- br placeholder -->
+        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div7" runat="server">
+            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Slice of Life</h2>
+            <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="SliceofLife" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         <div style="display:block !important;width:100% !important;height:164px !important;background-color:transparent !important;text-align:center;margin:0 auto !important;"></div>
     </div>
+    <script>
+        var ThisPageSBarFixUpPropElmVarF8C0 = document.getElementById('ScrollingDivHits');
+        var StatusBarHeightValueF8C0 = androidAPIs.getStatusBarHeight();
+        if (StatusBarHeightValueF8C0 != null) {
+            ThisPageSBarFixUpPropElmVarF8C0.style.marginTop = (18 + StatusBarHeightValueF8C0) + 'px !important';
+        } else {
+            ThisPageSBarFixUpPropElmVarF8C0.style.marginTop = (18 + 24) + 'px !important';
+        }
+    </script>
     <script>
         var ThisPageScrollContaner = document.getElementById('<%= ScrollingDivHits.ClientID %>');
         var ThisPageChangeStartElm = document.getElementById('ScrollHelperFASET204CutG65');
         var SuMMangaTopBarElm = document.getElementById('SuMMangaTopBar');
         var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
         var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
-        var MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
-        setTimeout(() => {
+        var MaxScrollHDetected = 24; //ThisPageChangeStartElm.offsetHeight;
+        /*setTimeout(() => {
             MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
-        }, 1200);
-        document.onclick = function (event) {
+        }, 1200);*/
+        /*document.onclick = function (event) {
             MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
-        };
+        };*/
         SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
         ThisPageScrollContaner.onscroll = function () {
 
-            MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
+            //MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
 
             if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
 
-                androidAPIs.SetLightStatusBarColor();
                 SuMMangaTopBarElm.style.display = 'block';
+                androidAPIs.SetLightStatusBarColor();
 
             } else {
 
-                androidAPIs.SetDarkStatusBarColor();
                 SuMMangaTopBarElm.style.display = 'none';
+                androidAPIs.SetLightStatusBarColor();
 
             }
 
         };
         init();
+
+        androidAPIs.SetLightStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        var StatusBarHeightValueFromSuMAndroidAPIsF0C1 = androidAPIs.getStatusBarHeight();
+        document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+            document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
+            setTimeout(() => {
+                androidAPIs.SetLightStatusBarColor();
+                document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
+                setTimeout(() => {
+                    androidAPIs.SetLightStatusBarColor();
+                    setTimeout(() => {
+                        androidAPIs.SetLightStatusBarColor();
+                        setTimeout(() => {
+                            androidAPIs.SetLightStatusBarColor();
+                            document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
+                            setTimeout(() => {
+                                androidAPIs.SetLightStatusBarColor();
+                                setTimeout(() => {
+                                    androidAPIs.SetLightStatusBarColor();
+                                    document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
+                                }, 1800);
+                            }, 45);
+                        }, 90);
+                    }, 180);
+                }, 360);
+            }, 640);
+        }, 960);
+        androidAPIs.SetLightStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        androidAPIs.SetLightStatusBarColor();
+        setTimeout(() => {
+            androidAPIs.SetLightStatusBarColor();
+            setTimeout(() => {
+                androidAPIs.SetLightStatusBarColor();
+                setTimeout(() => {
+                    androidAPIs.SetLightStatusBarColor();
+                }, 180);
+            }, 180);
+        }, 180);
     </script>
+    </div>
 </asp:Content>
