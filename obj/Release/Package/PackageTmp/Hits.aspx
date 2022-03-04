@@ -108,9 +108,8 @@ img {vertical-align: middle;}
     </style>
     <div style="background-color:rgb(242,242,242) !important;width:100%;height:100%;margin:0 auto !important;">
     <!-- <div style="display:block;margin:0 auto;width:100%;height:24px;background-color:transparent;" id="ThisPageSBarFixUpPropElmF8C0" ></div> -->
-    <div style="background-color:rgba(255,255,255,0.86) !important;position:fixed !important;top:0 !important;animation-duration:0.16s !important;z-index:997 !important;height:fit-content !important;width:100% !important;display:none;padding-top:6px;padding-bottom:6px;padding-left:4px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;" class="animated fadeInDown" id="SuMMangaTopBar">
-        <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;" id="SuMMangaTopBarHeightHelper"></div>
-        <p style="font-size:118%;margin-left:18px;margin-bottom:8px;display:block;height:fit-content;width:fit-content;" class="text-black"><img src="/svg/MostSeenB.svg" width="30" height="30" style="" /> SuM Hits</p>
+    <div style="background-color:rgba(242,242,242,0.74) !important;position:fixed !important;top:0 !important;z-index:997 !important;height:fit-content !important;width:100vw !important;display:block;padding:0px !important;" class="" id="SuMMangaTopBar">
+        <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;overflow:hidden !important;" id="SuMMangaTopBarHeightHelper"></div>
     </div>
     <div style="display:none;" ID="HitsStylePlaceHolder" runat="server" >
         <style>
@@ -170,7 +169,7 @@ img {vertical-align: middle;}
         var StatusBarHeightValueFromSuMAndroidAPIsF0C0 = androidAPIs.getStatusBarHeight();
         document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C0 + 12) + 'px';
         </script>
-        <div id="HitsBG" style="padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin: 12px auto 0px !important; border-radius: 20px !important; display: block !important; width: calc(100% - 24px) !important; height: fit-content !important; padding-top: 28px !important; transition: all 0.5s ease 0s !important;transition: background-color 0.26s ease !important;">
+        <div id="HitsBG" style="border:0.5px #dfdfdf solid !important;padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin: 12px auto 0px !important; border-radius: 20px !important; display: block !important; width: calc(100% - 24px) !important; height: fit-content !important; padding-top: 28px !important; transition: all 0.5s ease 0s !important;transition: background-color 0.26s ease !important;">
             <div style="width:100% !important;">
                 <h2 style="color:#ffffff;margin:0 auto !important;text-align:center;margin-top:4px !important;margin-bottom:16px !important;"><img src="/svg/MostSeenW.svg" width="36" height="36" style="display:inline;margin-top:-8px;" /> Top 10 on SuM Manga!</h2>
                 <p style="color:rgba(255,255,255,0.82);font-size:86%;text-align:center !important;width:100%;height:fit-content;margin:0 auto !important;margin-top:12px !important;margin-bottom:8px !important;display:none !important;visibility:hidden !important;">This section's purpose is to showcase the ten mangas with the highest views on this platform, ranked from the highest to the lowest. This section is updated live!</p>
@@ -550,7 +549,7 @@ img {vertical-align: middle;}
         <!-- <h2 id="TopOfEachInfoCard" style="width:100%;text-align:center !important;background-color:#f2f2f2 !important;padding:12px;padding-top:18px;padding-bottom:12px;color:#000000f0;position:relative;top:0;z-index:997;border-bottom-left-radius:18px !important;border-bottom-right-radius:18px !important;">Top 10 for each by category</h2> -->
 
         <!-- br placeholder -->
-        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="CategoryX" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="CategoryX" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Action</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Action" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;" >
@@ -558,49 +557,49 @@ img {vertical-align: middle;}
         </div>
 
         <!-- br placeholder -->
-        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div1" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div1" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Fantasy</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Fantasy" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div2" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div2" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Comedy</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Comedy" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div3" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div3" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Supernatural</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Supernatural" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div4" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div4" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Sci-Fi</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="SciFi" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div5" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div5" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Drama</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Drama" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div6" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div6" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Mystery</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Mystery" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:6px;padding-top:22px;" id="Div7" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div7" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Slice of Life</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="SliceofLife" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
@@ -630,7 +629,7 @@ img {vertical-align: middle;}
             MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
         };*/
         SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
-        ThisPageScrollContaner.onscroll = function () {
+        /*ThisPageScrollContaner.onscroll = function () {
 
             //MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
 
@@ -646,7 +645,7 @@ img {vertical-align: middle;}
 
             }
 
-        };
+        };*/
         init();
 
         androidAPIs.SetLightStatusBarColor();

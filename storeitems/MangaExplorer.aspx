@@ -230,7 +230,7 @@
                 <h5 class="animated fadeIn" id="ComSecTi" runat="server" style="color:#fff;padding-top:26px;padding-left:22px;padding-bottom:4px;font-size:96%;margin-top:calc(12px - 100vh);">Comments section</h5>
                 <div class="animated fadeIn" runat="server" id="SendCommentAria" style="border-radius:12px;width:100%;height:fit-content;margin:0 auto;padding:6px;margin-top:8px;margin-bottom:6px;display:block;">
                     <!--<a style="display:inline;color:#141414;">add a comment...</a>-->
-                    <asp:TextBox CssClass="form-control form-control-user" runat="server" ID="UserComment" BackColor="Transparent" BorderColor="Transparent" ForeColor="#ffffff" style="display:inline;width:84%;height:74px;" placeholder="add a comment..."></asp:TextBox>
+                    <asp:TextBox CssClass="form-control form-control-user" MaxLength="150" runat="server" ID="UserComment" BackColor="Transparent" BorderColor="Transparent" ForeColor="#ffffff" style="display:inline;width:84%;height:74px;" placeholder="add a comment..."></asp:TextBox>
                     <asp:ImageButton OnClick="SendComment" ID="SendBTN" style="background-color:#fff;border-radius:4px;width:38px;height:32px;margin:4px;" ImageAlign="AbsMiddle" ImageUrl="/svg/send.svg" runat="server" />
                 </div>
             </a>
@@ -423,60 +423,61 @@
         ThisPageChangeStartElm.style.display = 'block';
 
         var SuMLastScrollTop = 0;
-        ThisPageScrollContaner.onscroll = function () {
+        var isScrollingSuMRecentsFuncF3CS;
+        document.getElementById('<%= FirstAniDiv.ClientID %>').onscroll = function () {
 
-            if (ThisPageScrollContaner.scrollTop > SuMLastScrollTop) {
-                if (SuMReadingModeIsApplyed == false) {
-                    ThisPageSubContanerElm.style.width = '100vw';
-                    InfoCardBGForJAVAElmjusjd5.style.display = 'none';
-                    MangasPhotsosElm.style.width = '100vw';
-                    MangasPhotsosElm.style.border = null;
-                    ThisPageSubContanerElm.style.marginTop = '0px';
-                    ThisPageSubContanerElm.style.marginBottom = '0px';
-                    ThisPageSubContanerElm.style.borderRadius = '0px';
-                    MangasPhotsosElm.style.borderRadius = '0px';
-                    MangasContF212C01.style.marginBottom = '0px !important';
-                    FullScreenImgElm.src = '/svg/closefullscreen.svg';
-                    androidAPIs.ActivateFullScreenMode();
-                    FullScPlaceH.innerText = '1';
-                    HideMangaExplorerBar();
-                    HideMangaExplorerTopPartBar();
-                    HideCS5451();
-                    NextBtnFullSState();
-                    viewport.setAttribute('content', 'user-scalable=yes, initial-scale=1, maximum-scale=1.6, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
-                    androidAPIs.SetSuMSecureFlag();
-                    androidAPIs.SetLightStatusBarColor();
-                    MakeSuMFullNavDisa();
-                    androidAPIs.ActivateFullScreenMode();
-                    SuMReadingModeIsApplyed = true;
+            window.clearTimeout(isScrollingSuMRecentsFuncF3CS);
+
+            isScrollingSuMRecentsFuncF3CS = setTimeout(function () {
+
+                if (ThisPageScrollContaner.scrollTop > SuMLastScrollTop) {
+                    if (SuMReadingModeIsApplyed == false) {
+                        ThisPageSubContanerElm.style.width = '100vw';
+                        InfoCardBGForJAVAElmjusjd5.style.display = 'none';
+                        MangasPhotsosElm.style.width = '100vw';
+                        MangasPhotsosElm.style.border = null;
+                        ThisPageSubContanerElm.style.marginTop = '0px';
+                        ThisPageSubContanerElm.style.marginBottom = '0px';
+                        ThisPageSubContanerElm.style.borderRadius = '0px';
+                        MangasPhotsosElm.style.borderRadius = '0px';
+                        MangasContF212C01.style.marginBottom = '0px !important';
+                        FullScreenImgElm.src = '/svg/closefullscreen.svg';
+                        androidAPIs.ActivateFullScreenMode();
+                        FullScPlaceH.innerText = '1';
+                        HideMangaExplorerBar();
+                        HideMangaExplorerTopPartBar();
+                        HideCS5451();
+                        NextBtnFullSState();
+                        viewport.setAttribute('content', 'user-scalable=yes, initial-scale=1, maximum-scale=1.6, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
+                        androidAPIs.SetSuMSecureFlag();
+                        androidAPIs.SetLightStatusBarColor();
+                        MakeSuMFullNavDisa();
+                        androidAPIs.ActivateFullScreenMode();
+                        SuMReadingModeIsApplyed = true;
+                    }
                 }
-            }
-            else {
-                if (SuMReadingModeIsApplyed == true) {
-                    androidAPIs.DeactivateFullScreenMode();
-                    //InfoCardBGForJAVAElmjusjd5.style.display = null;
-                    /*ThisPageSubContanerElm.style.marginTop = '64px';
-                    ThisPageSubContanerElm.style.marginBottom = '164px';*/
-                    ThisPageSubContanerElm.style.borderRadius = '20px';
-                    //MangasPhotsosElm.style.borderRadius = '20px';
-                    FullScPlaceH.innerText = '0';
-                    MangasContF212C01.style.marginBottom = '28px !important';
-                    //
-                    InfoCardBGForJAVAElmjusjd5.classList.remove('fadeOutUp');
-                    InfoCardBGForJAVAElmjusjd5.classList.add('fadeInDown');
-                    InfoCardBGForJAVAElmjusjd5.style.visibility = null;
-                    InfoCardBGForJAVAElmjusjd5.style.display = 'block';
-                    //
-                    ShowMangaExplorerBar();
-                    NextBtnOrState();
-                    androidAPIs.SetSuMSecureFlag();
-                    androidAPIs.SetLightStatusBarColor();
-                    viewport.setAttribute('content', 'user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
-                    ReactimntIsPermitedF565C0 = true;
-                    SuMReadingModeIsApplyed = false;
+                else {
+                    if (SuMReadingModeIsApplyed == true) {
+                        androidAPIs.DeactivateFullScreenMode();
+                        ThisPageSubContanerElm.style.borderRadius = '20px';
+                        FullScPlaceH.innerText = '0';
+                        MangasContF212C01.style.marginBottom = '28px !important';
+                        InfoCardBGForJAVAElmjusjd5.classList.remove('fadeOutUp');
+                        InfoCardBGForJAVAElmjusjd5.classList.add('fadeInDown');
+                        InfoCardBGForJAVAElmjusjd5.style.visibility = null;
+                        InfoCardBGForJAVAElmjusjd5.style.display = 'block';
+                        ShowMangaExplorerBar();
+                        NextBtnOrState();
+                        androidAPIs.SetSuMSecureFlag();
+                        androidAPIs.SetLightStatusBarColor();
+                        viewport.setAttribute('content', 'user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
+                        ReactimntIsPermitedF565C0 = true;
+                        SuMReadingModeIsApplyed = false;
+                    }
                 }
-            }
-            SuMLastScrollTop = ThisPageScrollContaner.scrollTop;
+                SuMLastScrollTop = ThisPageScrollContaner.scrollTop;
+
+            }, 20);
 
         };
         var MangaExplorerTopPartBarElm = document.getElementById('InfoCardBGForJAVA');

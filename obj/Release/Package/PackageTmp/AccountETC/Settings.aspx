@@ -67,7 +67,7 @@
                 ThisPageSBarFixUpPropElmVar.style.height = (24 + 12) + 'px !important';
             }
         </script>
-    <div id="SlideDownCard" runat="server" style="animation-duration:0.26s !important;width:calc(100% - 24px); padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:rgb(255,255,255) !important;margin:0 auto !important;margin:12px !important;border-radius:20px !important;padding:0px !important;margin-bottom:0px !important;" class="animated slideInDown">
+    <div id="SlideDownCard" runat="server" style="animation-duration:0.26s !important;width:calc(100% - 24px); padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:rgb(255,255,255) !important;margin:0 auto !important;margin:12px !important;border-radius:20px !important;padding:0px !important;margin-bottom:0px !important;border:0.5px #dfdfdf solid !important;" class="animated slideInDown">
         <asp:UpdatePanel ID="ProfileInfoUpdatepANEL" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="EnablePreMode" EventName="Click" />
@@ -133,7 +133,7 @@
                                     </script>
                                     <!-- New Banner -->
                                     <a onclick="document.getElementById('MainContent_SuMCustomBanner').click();" style="width:fit-content;height:fit-content;">
-                                    <img style="position:relative !important;z-index:999 !important;width:calc(100% - 64px);border-radius:18px;background-color:rgb(104,64,217,0.32);height:132px;margin-bottom:18px;margin-top:32px;" class="lazyload" id="BannerPr" runat="server" src="/svg/add.svg">
+                                    <img style="position:relative !important;z-index:999 !important;width:calc(100% - 64px);border-radius:18px;background-color:rgb(104,64,217,0.32);height:132px;margin-bottom:18px;margin-top:32px;background-size:cover; background-position:center;" class="lazyload" id="BannerPr" runat="server" src="/svg/add.svg">
                                         <script>
                                             document.getElementById('<%= BannerPr.ClientID %>').src = document.getElementById('<%= CurrUserBannerPlaceHolder.ClientID %>').innerText;
                                         </script>
@@ -341,7 +341,7 @@
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-        <div id="StartSetAnim" runat="server" class="fadeIn animated" style="width:calc(100% - 24px) !important;height:fit-content;background-color:rgb(255,255,255) !important;border-radius:20px !important;padding: 20px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;">
+        <div id="StartSetAnim" runat="server" class="fadeIn animated" style="width:calc(100% - 24px) !important;height:fit-content;background-color:rgb(255,255,255) !important;border-radius:20px !important;padding: 20px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;border:0.5px #dfdfdf solid !important;">
             <div style="vertical-align:middle;display:block !important;">
                                     <img src="/svg/motionphotos.svg" style="width:auto;height:30px;display:inline;float:left;" />
                                     <p style="color:#000000;display:inline;float:left;margin:8px;font-size:112%;margin-top:4px;">Performance Mode</p>
@@ -357,10 +357,10 @@
                 <asp:Button style="display:none !important;visibility:hidden !important;" ID="SuMLockTuOnBTN" OnClick="SaveSuMLockSettingCookie" runat="server" />
                 <asp:Button style="display:none !important;visibility:hidden !important;" ID="SuMLockTuOffBTN" OnClick="RemoveSuMLockSettingCookie" runat="server" />
                 <script>
-                    var SuMCookieCopyF3C0 = document.cookie;
+                    //var SuMCookieCopyF3C0 = document.cookie;
                     //var SuMLockIconElm = document.getElementById('SuMLockIcon');
-                    var SuMLockSBTNElm = document.getElementById('<%= SuMLockSBTN.ClientID %>');
-                    var SuMCookieCopyF3C0 = document.cookie;
+                    //var SuMLockSBTNElm = document.getElementById('<%= SuMLockSBTN.ClientID %>');
+                    //var SuMCookieCopyF3C0 = document.cookie;
                 </script>
                                 </div>
             <hr style="margin:0 auto !important;height:2px;border-width:0;color:rgb(0,0,0);background-color:rgb(0,0,0);width:calc(100% - 36px);opacity:0.06;margin:0px;margin-block:0px;margin-top:12px !important;margin-bottom:18px !important;border-radius:1px;margin:0 auto;" />
@@ -382,7 +382,7 @@
         </div>
             <div class="" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:280px !important;padding-left:8px !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.1.2 Beta</p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.1.3 Beta</p>
                 <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:#ffffff;background: rgba(104,64,217,0.62);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:0px;width:100%;height:164px;"></p>

@@ -341,13 +341,15 @@ namespace SuM_Manga_V3.storeitems
                 int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
                 char[] RawComment = UserComment.Text.ToCharArray();
                 string ProssesedComment = "";
-                for (int i = 0; i < RawComment.Length; i++)
+                /*for (int i = 0; i < RawComment.Length; i++)
                 {
                     if (RawComment[i] != '#' && RawComment[i] != ';' && RawComment[i] != '&')
                     {
                         ProssesedComment += RawComment[i];
                     }
-                }
+                }*/
+                //ProssesedComment = BadWordsFilter(ProssesedComment).Replace(">", "").Replace("<", "").Replace("#", "").Replace("&", "").Replace(";", "");
+                ProssesedComment = ProssesedComment.Replace(">", "").Replace("<", "").Replace("#", "").Replace("&", "").Replace(";", "");
                 string NewComment = "#" + UID.ToString() + ";" + ProssesedComment + "&";
                 int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
@@ -834,6 +836,51 @@ namespace SuM_Manga_V3.storeitems
             string nnum = (xnum).ToString();
             cname = "ch" + zeros + nnum;
             return cname;
+        }
+        protected string BadWordsFilter(string Target) 
+        {
+            Target = RemoveXFromTarget(Target, "fuck");
+            Target = RemoveXFromTarget(Target, "shit");
+            Target = RemoveXFromTarget(Target, "dick");
+            Target = RemoveXFromTarget(Target, "vagina");
+            Target = RemoveXFromTarget(Target, "bitch");
+            Target = RemoveXFromTarget(Target, "cunt");
+            Target = RemoveXFromTarget(Target, "ass");
+            Target = RemoveXFromTarget(Target, "fag");
+            Target = RemoveXFromTarget(Target, "faggot");
+            Target = RemoveXFromTarget(Target, "nigger");
+            Target = RemoveXFromTarget(Target, "nigga");
+            return Target;
+        }
+        public string RemoveXFromTarget(string Target,string X)
+        {
+            X = X.ToLower();
+            if (Target.ToLower().Contains(X) == true)
+            {
+                string[] TargetPross = Target.Split(' ');
+                Target = "";
+                string Y = new String('*', X.Length);
+                for (int i = 0; i < TargetPross.Length; i++) 
+                {
+                    if (TargetPross[i].ToLower() != X)
+                    {
+                        if (TargetPross[i].ToLower().Contains(X) == false)
+                        {
+                            Target += TargetPross[i] + " ";
+                        }
+                        else 
+                        {
+                            Target += TargetPross[i].ToLower().Replace(X, Y) + " ";
+                        }
+                    }
+                    else 
+                    {
+
+                        Target += Y + " ";
+                    }
+                }
+            }
+            return Target;
         }
     }
 }

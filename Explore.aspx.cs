@@ -192,7 +192,7 @@ namespace SuM_Manga_V3
                             CExplorerLink += "&VC=" + maxidf.ToString() + "&TC=" + themecolor;
                             if (PreformanceMode == false)
                             {
-                                Recent.InnerHtml += BuildRecentCard(Cover, MTitle, themecolor, CExplorerLink);
+                                Recent.InnerHtml += BuildRecentCard(Cover, MTitle, themecolor, CExplorerLink, (i + 1));
                             }
                             else
                             {
@@ -212,9 +212,9 @@ namespace SuM_Manga_V3
                 RecentsSuperCont.Attributes["style"] = "display:none !important;";
             }
         }
-        protected string BuildRecentCard(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink)
+        protected string BuildRecentCard(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink,int Num)
         {
-            string RS = "<div class=" + '"' + "animated fadeInRight" + '"' + " onclick=" + '"' + "SuMGoToThis('" + ExplorerLink + "','" + ThemeColor + "','" + MangaTitle.Replace("'", "") + "','ContantExplorer');" + '"' + " loading=lazy style=" + '"' + "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CoverLink + ");background-size:cover;background-position:center;width:96px;height:96px;overflow:hidden !important;margin-left:16px !important;" + '"' + "><div class=GoodBlur style=" + '"' + "background-color:" + ThemeColor + " !important;width:98px;margin-left:-1px;height:36px;position:absolute;bottom:0;border-radius:0px;overflow:hidden !important;" + '"' + "><p style=" + '"' + "margin-top:2px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" + '"' + ">" + MangaTitle + "</p></div></div>";
+            string RS = "<div class=" + '"' + "animated fadeInRight" + '"' + " onclick=" + '"' + "SuMGoToThis('" + ExplorerLink + "','" + ThemeColor + "','" + MangaTitle.Replace("'", "") + "','ContantExplorer');" + '"' + " loading=lazy style=" + '"' + "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CoverLink + ");background-size:cover;background-position:center;width:96px;height:96px;overflow:hidden !important;margin-left:16px !important;" + '"' + "><div id=RecentItem" + Num.ToString() + " class=GoodBlur style=" + '"' + "background-color:" + ThemeColor + " !important;width:98px;margin-left:-1px;height:36px;position:absolute;bottom:0;border-radius:0px;overflow:hidden !important;" + '"' + "><p style=" + '"' + "margin-top:2px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" + '"' + ">" + MangaTitle + "</p></div></div>";
             return RS;
         }
         protected string BuildRecentCardPerMode(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink)
@@ -346,7 +346,7 @@ namespace SuM_Manga_V3
                     }
                     if (i == 0) 
                     {
-                        cardscontain.Attributes["style"] = "border-radius:20px;width:calc(100% - 24px) !important;height:fit-content !important;overflow:hidden !important;margin-top:12px;margin-left:12px;display:block;background-color:" + themecolor + " !important;transition: background-color 0.32s ease !important;";
+                        cardscontain.Attributes["style"] = "scroll-margin-top:24px !important;scroll-snap-align:start;border-radius:20px;width:calc(100% - 24px) !important;height:fit-content !important;overflow:hidden !important;margin-top:12px;margin-left:12px;display:block;background-color:" + themecolor + " !important;transition: background-color 0.32s ease !important;";
                     }
                 }
                 cardstoshow.InnerHtml = ResultS;
@@ -769,7 +769,7 @@ namespace SuM_Manga_V3
             string LazyLoading = "loading=" + '"'.ToString() + "lazy" + '"'.ToString();//New
             char b12 = '"';
             string zoominanim = b12.ToString() + "fadeIn animated" + b12.ToString();
-            string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
+            string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;scroll-snap-align:start;";
             string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
             string divs1 = "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
             string divs2 = '"' + "background-color:" + theme + " !important; width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;" + '"'; //rgb(104,64,217,0.64)
@@ -782,7 +782,7 @@ namespace SuM_Manga_V3
         {
             string LazyLoading = "loading=" + '"'.ToString() + "lazy" + '"'.ToString();//New
             char b12 = '"';
-            string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
+            string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;scroll-snap-align:start;";
             string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
             string divs1 = "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
             string divs2 = '"' + "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;" + '"'; //rgb(104,64,217,0.64)

@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-   <div runat="server" class="animated fadeInUp" id="ShowReqContantContaner" style="margin: 206px auto 0px; overflow-x: clip; border-radius: 20px; padding-top: 12px; padding-left: 6px; padding-right: 6px; animation-duration: 0.96s !important; background-color: rgb(255, 255, 255) !important;overflow-y: scroll !important;height:calc(100vh - 386px); max-width: 720px !important; position: relative !important;width:calc(100% - 24px);margin-left:12px;" >
+   <div runat="server" class="animated fadeInUp" id="ShowReqContantContaner" style="margin:0 auto !important;margin-top:206px !important; overflow-x: clip; border-radius: 20px; padding-top: 12px; padding-left: 6px; padding-right: 6px; animation-duration: 0.96s !important; background-color: rgb(255, 255, 255) !important;overflow-y: scroll !important;height:calc(100vh - 386px); max-width: 720px !important; position: relative !important;width:calc(100% - 24px);margin-left:12px;border:0.5px #dfdfdf solid !important;" >
         <asp:UpdatePanel ID="UpdateCOntant990" runat="server" UpdateMode="Conditional">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="UpdatePageContant" EventName="Click" />
@@ -61,7 +61,7 @@
             </asp:UpdatePanel>
    </div>
         <script>
-            document.getElementById('<%= ShowReqContantContaner.ClientID %>').style.marginTop = (document.getElementById('<%= LibCatTopPart.ClientID %>').offsetHeight - 24) + 'px';
+            document.getElementById('<%= ShowReqContantContaner.ClientID %>').style.marginTop = (document.getElementById('<%= LibCatTopPart.ClientID %>').offsetHeight - 24) + 'px !important';
             document.getElementById('InfoIMG').marginTop = ((document.getElementById('<%= InfoAboutC.ClientID %>').offsetHeight / 2) - (document.getElementById('InfoIMG').offsetHeight / 2)) + 'px';
             setTimeout(() => {
                 document.getElementById('<%= UpdatePageContant.ClientID %>').click();

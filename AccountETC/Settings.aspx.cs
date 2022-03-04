@@ -134,16 +134,18 @@ namespace SuM_Manga_V3.AccountETC
             {
                 SlideDownCard.Attributes["class"] = "";
             }
-            HttpCookie GetUserLockCookie = Request.Cookies["SuMCurrentUser"];
+            HttpCookie GetUserLockCookie = Request.Cookies["SuMLockMode"];
             if (GetUserLockCookie != null)
             {
                 SuMLockSBTN.Attributes["onclick"] = "document.getElementById('" + SuMLockTuOffBTN.ClientID.ToString() + "').click(); setTimeout(() => { androidAPIs.SuMRestart(); }, 450);";
                 SuMLockSBTN.Attributes.Add("checked", "checked");
+                SuMLockSBTN.Checked = true;
             }
             else
             {
                 SuMLockSBTN.Attributes["onclick"] = "document.getElementById('" + SuMLockTuOnBTN.ClientID.ToString() + "').click(); setTimeout(() => { androidAPIs.SuMRestart(); }, 450);";
                 SuMLockSBTN.Attributes.Add("unchecked", "unchecked");
+                SuMLockSBTN.Checked = false;
             }
 
         }

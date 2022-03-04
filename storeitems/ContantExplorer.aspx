@@ -276,6 +276,34 @@
     <div id="CONTANERFROCONTANTEXPLORER" style="width:100vw !important;max-width:740px !important;margin:0 auto !important;">
     <div id="ACont0" runat="server" class="fadeIn animated" style="width:100%;">
     <div class="animated fadeIn" style="height:fit-content;width:100%;overflow:hidden; background-color:transparent !important;position:fixed;max-width:720px;overflow-x:hidden !important;" id="CategoryX" runat="server">
+        <style>
+            .ZoomInBackground {
+                -webkit-animation: SuMZoomInBG 5s linear !important;
+                animation: SuMZoomInBG 5s linear !important;
+            }
+            .ZoomOutFromInBackground {
+                -webkit-animation: SuMZoomOutFromInBG 5s linear !important;
+                animation: SuMZoomOutFromInBG 5s linear !important;
+            }
+            @-webkit-keyframes SuMZoomInBG {
+                0% {
+                    background-size: 100%;
+                }
+
+                100% {
+                    background-size: 180%;
+                }
+            }
+            @-webkit-keyframes SuMZoomOutFromInBG {
+                0% {
+                    background-size: 180%;
+                }
+
+                100% {
+                    background-size: 100%;
+                }
+            }
+        </style>
     <div id="infoCover" runat="server" class="mySlides animated pulse" style="animation-duration:1.2s !important;overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/X/X.jpg); background-size: cover; background-position: center;width:100% !important;height:fit-content;padding-top:2px !important;">
     <div style="width:94%;height:fit-content;position:relative;margin:0 auto;margin-top:32px;">
         <h1 id="MTitle" runat="server" style="float:left;margin-top:12px;margin-left:12px;color:#ffffff;font-size:186%;margin-right:14px !important;width:100%;height:fit-content;">#</h1>
@@ -512,31 +540,65 @@
         var ThisPageScrollContaner = document.getElementById('3rdGBLayer');
         //var ThisPageChangeStartElm = document.getElementById('ScrollHelperFASET204CutG65');
         var SuMMangaTopBarElm = document.getElementById('<%= SuMMangaTopBar.ClientID %>');
-        var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
+            var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
+            var InfoCoverWBGF2CSElm = document.getElementById('<%= infoCover.ClientID %>');
         var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
         var MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
         setTimeout(() => {
             MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
         }, 1200);
+
+
+            //var MidWayScrollHDetected = document.getElementById('<%= infoCover.ClientID %>').getBoundingClientRect().height;
+
+
         SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
-        ThisPageScrollContaner.onscroll = function () {
+        /*ThisPageScrollContaner.onscroll = function () {
 
             MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
+
+            //MidWayScrollHDetected = InfoCoverWBGF2CSElm.getBoundingClientRect().height;
 
             if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
 
                 //androidAPIs.DeactivateFullScreenMode();
                 androidAPIs.SetDarkStatusBarColor();
                 SuMMangaTopBarElm.style.display = 'block';
+                InfoCoverWBGF2CSElm.classList.remove('ZoomOutFromInBackground');
+                InfoCoverWBGF2CSElm.classList.add('ZoomInBackground');
 
             } else {
 
                 //androidAPIs.DeactivateFullScreenMode();
                 androidAPIs.SetDarkStatusBarColor();
                 SuMMangaTopBarElm.style.display = 'none';
-
+                InfoCoverWBGF2CSElm.classList.remove('ZoomInBackground');
+                InfoCoverWBGF2CSElm.classList.add('ZoomOutFromInBackground');
             }
 
-        };
+            };*/
+
+            var isScrollingSuMRecentsFuncF2CS;
+            document.getElementById('3rdGBLayer').onscroll = function () {
+
+                window.clearTimeout(isScrollingSuMRecentsFuncF2CS);
+
+                isScrollingSuMRecentsFuncF2CS = setTimeout(function () {
+
+                    MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
+                    if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
+                        androidAPIs.SetDarkStatusBarColor();
+                        SuMMangaTopBarElm.style.display = 'block';
+                        InfoCoverWBGF2CSElm.classList.remove('pulse');
+                        //InfoCoverWBGF2CSElm.classList.add('pulse');
+                    } else {
+                        androidAPIs.SetDarkStatusBarColor();
+                        SuMMangaTopBarElm.style.display = 'none';
+                        InfoCoverWBGF2CSElm.classList.remove('pulse');
+                        InfoCoverWBGF2CSElm.classList.add('pulse');
+                    }
+                }, 30);
+
+            };
     </script>
 </asp:Content>
