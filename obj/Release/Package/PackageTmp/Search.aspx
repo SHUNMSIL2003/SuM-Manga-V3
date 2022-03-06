@@ -15,8 +15,6 @@
     <style>
                     .FNM5455511 {
                         margin-top:0px !important;
-                        margin-bottom:0px !important;
-                        height:7vh !important;
                         /*background-color:rgb(240, 235, 255) !important;*/
                     }
         .form-control :focus {
@@ -75,13 +73,14 @@
                 viewwidth + "px, initial-scale=1.0");
         }, 300);
     </script>
-    <div id="ThisPageSBarFixUpPropElm" class="STBSUMBAR2 bg-white shadow slideInDown animated" style="padding-top:6px !important;">
-        <nav style="height:64px;width:100% !important;" class="navbar navbar-light navbar-expand bg-white mb-4 FNM5455511">
-                    <div class="container-fluid" style="text-align:center !important;">
-                                <div class="" style="display:inline !important;width:100vw !important;height:7vh !important;max-height:62px !important; min-height:56px !important; text-align:center !important;align-items:center;align-content:center;">
-                                    <div class="me-auto navbar-search w-100" style="vertical-align:middle !important;max-width:720px !important;margin:0 auto;">
+    <div id="ThisPageSBarFixUpPropElm" class="STBSUMBAR2 bg-white shadow slideInDown animated" style="padding-top:6px !important;position:fixed !important;top:0 !important;z-index:994 !important;height:fit-content !important;">
+        <nav style="width:100% !important;height:fit-content !important;" class="navbar navbar-light navbar-expand bg-white mb-4 FNM5455511">
+                    <div class="container-fluid" style="text-align:center !important;height:fit-content !important;">
+                                <div class="" style="display:inline-block !important;width:100vw !important;height:fit-content !important;text-align:center !important;align-items:center;align-content:center;padding-top:8px;padding-bottom:-8px;height:fit-content !important;">
+                                    <div class="me-auto navbar-search w-100" style="vertical-align:middle !important;max-width:720px !important;margin:0 auto;height:fit-content !important;">
+                                        <div style="width:100% !important;height:24px !important;display:block !important;margin:0 auto !important;height:fit-content !important;"></div>
                                         <div class="input-group" style="vertical-align:middle !important;">
-                                            <a style="margin-top:2px;width:38px;height:7vh;display:inline-block !important;float:right;vertical-align:middle !important;" href='javascript:history.go(-1)'><img src="/svg/arrowback.svg" style="height:5vh;width:5vh;max-height:32px;max-width:32px;display:inline-block !important;margin-top:1vh !important;margin-bottom:1vh !important;" /></a>
+                                            <a style="margin-top:2px;width:38px;height:7vh;display:inline-block !important;float:right;vertical-align:middle !important;" href='javascript:history.go(-1)'><img src="/svg/arrowback.svg" style="height:5vh;width:5vh;max-height:32px;max-width:32px;display:inline-block !important;margin-top:12px !important;margin-bottom:12px !important;" /></a>
                                             <asp:TextBox AutoPostBack="true" OnTextChanged="ShowResults" onkeyup="this.onchange();" ID="TextBoxForSuM" runat="server" CssClass="bg-light form-control border-0 small" style="background-color:#ffffff !important;border:solid 0px #ffffff !important;height:7vh !important;width:calc(90% - 84px) !important;display:inline !important;float:right;max-height:62px !important;" AutoCompleteType="Search" TextMode="Search" placeholder="Search for..."></asp:TextBox>
                                         </div>
                                     </div>
@@ -89,12 +88,7 @@
                     </div>
                 </nav>
             </div>
-    <script>
-        var ThisPageSBarFixUpPropElmVar = document.getElementById('ThisPageSBarFixUpPropElm');
-        var StatusBarHeightValue = androidAPIs.getStatusBarHeight();
-        ThisPageSBarFixUpPropElmVar.style.marginTop = (24 + StatusBarHeightValue) + 'px !important';
-    </script>
-        <div>
+        <div id="FUEF6CS" style="width:fit-content;height:fit-content;padding-top:12px;">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="TextBoxForSuM" />
@@ -110,4 +104,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
+    <script>
+        document.getElementById('FUEF6CS').style.paddingTop = (document.getElementById('ThisPageSBarFixUpPropElm').getBoundingClientRect().height + 12) + 'px';
+    </script>
 </asp:Content>

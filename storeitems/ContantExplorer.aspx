@@ -597,7 +597,7 @@
                         InfoCoverWBGF2CSElm.classList.remove('pulse');
                         InfoCoverWBGF2CSElm.classList.add('pulse');
                     }
-                }, 30);
+                }, 10);
 
             };
     </script>

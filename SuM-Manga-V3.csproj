@@ -322,6 +322,7 @@
     <Content Include="assets\SuM_earch_Icon_W.png" />
     <Content Include="assets\SuM_earch_Icon_W_x32.png" />
     <Content Include="Brand_x258.png" />
+    <Content Include="BTNTesting.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="DEBUG.html" />
     <Content Include="dist\magic.css" />
@@ -1320,6 +1321,7 @@
     <Content Include="svg\addTBlack.svg" />
     <Content Include="svg\add.svg" />
     <Content Include="svg\addTTC.svg" />
+    <Content Include="svg\arrowforward.svg" />
     <Content Include="svg\awesomeTW.svg" />
     <Content Include="svg\closefullscreen.svg" />
     <Content Include="svg\CreatorPanel.svg" />
@@ -2854,6 +2856,13 @@
     <Compile Include="AccountETC\ValidateUsers.aspx.designer.cs">
       <DependentUpon>ValidateUsers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BTNTesting.aspx.cs">
+      <DependentUpon>BTNTesting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BTNTesting.aspx.designer.cs">
+      <DependentUpon>BTNTesting.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -3125,6 +3134,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Start\" />
     <Folder Include="SlideShowCards\" />
   </ItemGroup>
   <PropertyGroup>

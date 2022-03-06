@@ -16,10 +16,12 @@ namespace SuM_Manga_V3
             if (Request.QueryString["TC"] != null)
             {
                 //SMHead.InnerHtml += "<meta name=" + "theme-color" + " content=" + Request.QueryString["TC"].ToString() + ">";
+                string DTC = Request.QueryString["TC"].ToString();
                 System.Web.UI.HtmlControls.HtmlMeta meta = new System.Web.UI.HtmlControls.HtmlMeta();
                 meta.Name = "theme-color";
-                meta.Content = Request.QueryString["TC"].ToString();
+                meta.Content = DTC;
                 MetaPlaceHolder.Controls.Add(meta);
+                SuMLockViewBlockInnerColor.Attributes["style"] = "width:100%;height:100%;margin:0 auto;background-color:" + DTC + ";";
                 //fullnavscont
             }
             else

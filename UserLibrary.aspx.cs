@@ -312,11 +312,11 @@ namespace SuM_Manga_V3
 
                                 if (PreformanceMode == false)
                                 {
-                                    ShowReqContant.InnerHtml += BuildCurrCard(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink, CreatorName);
+                                    ShowReqContant.InnerHtml += BuildCurrCard(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink, CreatorName, R[0, i]);
                                 }
                                 else 
                                 {
-                                    ShowReqContant.InnerHtml += BuildCurrCardPerMode(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink, CreatorName);
+                                    ShowReqContant.InnerHtml += BuildCurrCardPerMode(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink, CreatorName, R[0, i]);
                                 }
                                 if (i != 0) { ShowReqContant.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;color:rgba(242,242,242,1);width:calc(100vw - 36px);margin:0 auto important;" + sc.ToString() + ">"; }
                             }
@@ -372,11 +372,11 @@ namespace SuM_Manga_V3
 
                                 if (PreformanceMode == false)
                                 {
-                                    ShowReqContant.InnerHtml += BuildRestCard(MangaName, MangaTheme, ExplorerLink, CoverLink, CreatorName);
+                                    ShowReqContant.InnerHtml += BuildRestCard(MangaName, MangaTheme, ExplorerLink, CoverLink, CreatorName, R[i]);
                                 }
                                 else
                                 {
-                                    ShowReqContant.InnerHtml += BuildRestCardPerMode(MangaName, MangaTheme, ExplorerLink, CoverLink, CreatorName);
+                                    ShowReqContant.InnerHtml += BuildRestCardPerMode(MangaName, MangaTheme, ExplorerLink, CoverLink, CreatorName, R[i]);
                                 }
                                 if (i != 0) { ShowReqContant.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;color:rgba(242,242,242,1);width:calc(100vw - 36px);margin:0 auto important;" + sc.ToString() + ">"; }
                             }
@@ -400,7 +400,7 @@ namespace SuM_Manga_V3
                 ShowReqContant.InnerHtml = "<p style=" + '"'.ToString() + "color:rgb(104,64,217,0.74);font-size:112%;width:100%;text-align:center;margin:0 auto !important;margin-top:36px !important;" + '"'.ToString() + ">Nothing Yet!</p>";
             }
         }
-        protected string BuildCurrCard(string MangaName, string MangaTheme, string ExplorerLink, string chapter,string CoverLink,string MangaCreator) 
+        protected string BuildCurrCard(string MangaName, string MangaTheme, string ExplorerLink, string chapter,string CoverLink,string MangaCreator,int MangaID) 
         {
             char sc = '"'; string scfu = sc.ToString();
             string divST = "<div style=" + "overflow:clip;width:fit-content;height:fit-content;" + ">";
@@ -409,10 +409,10 @@ namespace SuM_Manga_V3
             string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:12px;float:left;margin:8px;" + scfu;
             string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
             string AuthString = "<p style=" + "color:rgb(0,0,0,0.50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
-            string RS = divST + "<a onclick=" + sc.ToString() + "SuMGoToThis('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName.Replace("'", "") + "','ContantExplorer');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">Chapter: " + chapter + "</p></div></a></div>"; // + hr;
+            string RS = divST + "<a onclick=" + sc.ToString() + "SuMApplyInfoToUltraCard('" + MangaID + "', '" + CoverLink + "', '" + MangaName.Replace("'", "") + "', '" + ExplorerLink + "', 'ContantExplorer', '" + MangaName.Replace("'", "") + "', '" + MangaTheme + "');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">Chapter: " + chapter + "</p></div></a></div>"; // + hr;
             return RS;
         }
-        protected string BuildCurrCardPerMode(string MangaName, string MangaTheme, string ExplorerLink, string chapter, string CoverLink, string MangaCreator)
+        protected string BuildCurrCardPerMode(string MangaName, string MangaTheme, string ExplorerLink, string chapter, string CoverLink, string MangaCreator,int MangaID)
         {
             char sc = '"'; string scfu = sc.ToString();
             string divST = "<div style=" + "overflow:clip;width:fit-content;height:fit-content;" + ">";
@@ -421,10 +421,10 @@ namespace SuM_Manga_V3
             string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:12px;float:left;margin:8px;" + scfu;
             string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
             string AuthString = "<p style=" + "color:rgb(0,0,0,0.50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
-            string RS = divST + "<a onclick=" + sc.ToString() + "SuMGoToThis('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName.Replace("'", "") + "','ContantExplorer');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">Chapter: " + chapter + "</p></div></a></div>";// + hr;
+            string RS = divST + "<a onclick=" + sc.ToString() + "SuMApplyInfoToUltraCard('" + MangaID + "', '" + CoverLink + "', '" + MangaName.Replace("'", "") + "', '" + ExplorerLink + "', 'ContantExplorer', '" + MangaName.Replace("'", "") + "', '" + MangaTheme + "');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">Chapter: " + chapter + "</p></div></a></div>";// + hr;
             return RS;
         }
-        protected string BuildRestCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink, string MangaCreator)
+        protected string BuildRestCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink, string MangaCreator,int MangaID)
         {
             char sc = '"'; string scfu = sc.ToString();
             string divST = "<div style=" + "overflow:clip;width:fit-content;height:fit-content;" + ">";
@@ -433,10 +433,10 @@ namespace SuM_Manga_V3
             string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:12px;float:left;margin:8px;" + scfu;
             string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
             string AuthString = "<p style=" + "color:rgb(0,0,0,0.50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
-            string RS = divST + "<a onclick=" + sc.ToString() + "SuMGoToThis('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName.Replace("'", "") + "','ContantExplorer');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + "> </p></div></a></div>";// + hr;
+            string RS = divST + "<a onclick=" + sc.ToString() + "SuMApplyInfoToUltraCard('" + MangaID + "', '" + CoverLink + "', '" + MangaName.Replace("'", "") + "', '" + ExplorerLink + "', 'ContantExplorer', '" + MangaName.Replace("'", "") + "', '" + MangaTheme + "');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + "> </p></div></a></div>";// + hr;
             return RS;
         }
-        protected string BuildRestCardPerMode(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink, string MangaCreator)
+        protected string BuildRestCardPerMode(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink, string MangaCreator,int MangaID)
         {
             char sc = '"'; string scfu = sc.ToString();
             string divST = "<div style=" + "overflow:clip;width:fit-content;height:fit-content;" + ">";
@@ -445,7 +445,7 @@ namespace SuM_Manga_V3
             string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:12px;float:left;margin:8px;" + scfu;
             string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
             string AuthString = "<p style=" + "color:rgb(0,0,0,0.50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
-            string RS = divST + "<a onclick=" + sc.ToString() + "SuMGoToThis('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName.Replace("'", "") + "','ContantExplorer');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + "> </p></div></a></div>";// + hr;
+            string RS = divST + "<a onclick=" + sc.ToString() + "SuMApplyInfoToUltraCard('" + MangaID + "', '" + CoverLink + "', '" + MangaName.Replace("'", "") + "', '" + ExplorerLink + "', 'ContantExplorer', '" + MangaName.Replace("'", "") + "', '" + MangaTheme + "');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + "> </p></div></a></div>";// + hr;
             return RS;
         }
         protected void SussionPross()

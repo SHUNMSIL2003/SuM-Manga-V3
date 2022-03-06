@@ -192,11 +192,11 @@ namespace SuM_Manga_V3
                             CExplorerLink += "&VC=" + maxidf.ToString() + "&TC=" + themecolor;
                             if (PreformanceMode == false)
                             {
-                                Recent.InnerHtml += BuildRecentCard(Cover, MTitle, themecolor, CExplorerLink, (i + 1));
+                                Recent.InnerHtml += BuildRecentCard(Cover, MTitle, themecolor, CExplorerLink, (i + 1), maxidf);
                             }
                             else
                             {
-                                Recent.InnerHtml += BuildRecentCardPerMode(Cover, MTitle, themecolor, CExplorerLink);
+                                Recent.InnerHtml += BuildRecentCardPerMode(Cover, MTitle, themecolor, CExplorerLink, maxidf);
                             }
                         }
                         sqlCon.Close();
@@ -212,14 +212,14 @@ namespace SuM_Manga_V3
                 RecentsSuperCont.Attributes["style"] = "display:none !important;";
             }
         }
-        protected string BuildRecentCard(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink,int Num)
+        protected string BuildRecentCard(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink,int Num,int MangaID)
         {
-            string RS = "<div class=" + '"' + "animated fadeInRight" + '"' + " onclick=" + '"' + "SuMGoToThis('" + ExplorerLink + "','" + ThemeColor + "','" + MangaTitle.Replace("'", "") + "','ContantExplorer');" + '"' + " loading=lazy style=" + '"' + "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CoverLink + ");background-size:cover;background-position:center;width:96px;height:96px;overflow:hidden !important;margin-left:16px !important;" + '"' + "><div id=RecentItem" + Num.ToString() + " class=GoodBlur style=" + '"' + "background-color:" + ThemeColor + " !important;width:98px;margin-left:-1px;height:36px;position:absolute;bottom:0;border-radius:0px;overflow:hidden !important;" + '"' + "><p style=" + '"' + "margin-top:2px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" + '"' + ">" + MangaTitle + "</p></div></div>";
+            string RS = "<div class=" + '"' + "animated fadeInRight" + '"' + " onclick=" + '"' + "SuMApplyInfoToUltraCard('" + MangaID + "', '" + CoverLink + "', '" + MangaTitle.Replace("'", "") + "', '" + ExplorerLink + "', 'ContantExplorer', '" + MangaTitle.Replace("'", "") + "', '" + ThemeColor + "');" + '"' + " loading=lazy style=" + '"' + "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CoverLink + ");background-size:cover;background-position:center;width:96px;height:96px;overflow:hidden !important;margin-left:16px !important;" + '"' + "><div id=RecentItem" + Num.ToString() + " class=GoodBlur style=" + '"' + "background-color:" + ThemeColor + " !important;width:98px;margin-left:-1px;height:36px;position:absolute;bottom:0;border-radius:0px;overflow:hidden !important;" + '"' + "><p style=" + '"' + "margin-top:2px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" + '"' + ">" + MangaTitle + "</p></div></div>";
             return RS;
         }
-        protected string BuildRecentCardPerMode(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink)
+        protected string BuildRecentCardPerMode(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink,int MangaID)
         {
-            string RS = "<div onclick=" + '"' + "SuMGoToThis('" + ExplorerLink + "','" + ThemeColor + "','" + MangaTitle.Replace("'", "") + "','ContantExplorer');" + '"' + " loading=lazy style=" + '"' + "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CoverLink + ");background-size:cover;background-position:center;width:96px;height:96px;overflow:hidden !important;margin-left:16px !important;" + '"' + "><div style=" + '"' + "background-color:" + ThemeColor + " !important;width:98px;margin-left:-1px;height:36px;position:absolute;bottom:0;border-radius:0px;overflow:hidden !important;" + '"' + "><p style=" + '"' + "margin-top:2px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" + '"' + ">" + MangaTitle + "</p></div></div>";
+            string RS = "<div onclick=" + '"' + "SuMApplyInfoToUltraCard('" + MangaID + "', '" + CoverLink + "', '" + MangaTitle.Replace("'", "") + "', '" + ExplorerLink + "', 'ContantExplorer', '" + MangaTitle.Replace("'", "") + "', '" + ThemeColor + "');" + '"' + " loading=lazy style=" + '"' + "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CoverLink + ");background-size:cover;background-position:center;width:96px;height:96px;overflow:hidden !important;margin-left:16px !important;" + '"' + "><div style=" + '"' + "background-color:" + ThemeColor + " !important;width:98px;margin-left:-1px;height:36px;position:absolute;bottom:0;border-radius:0px;overflow:hidden !important;" + '"' + "><p style=" + '"' + "margin-top:2px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" + '"' + ">" + MangaTitle + "</p></div></div>";
             return RS;
         }
         protected int[] ST0(string x)
@@ -338,11 +338,11 @@ namespace SuM_Manga_V3
                     string MangaAgeRating = sqlCmd.ExecuteScalar().ToString();
                     if (PreformanceMode == false)
                     {
-                        ResultS += BuildCard(Cover, Name, Disc, CExplorerLink, themecolor, MangaCReator, MangaAgeRating, Views, i);
+                        ResultS += BuildCard(Cover, Name, Disc, CExplorerLink, themecolor, MangaCReator, MangaAgeRating, Views, i, IDs[i]);
                     }
                     else
                     {
-                        ResultS += BuildCardPerMode(Cover, Name, Disc, CExplorerLink, themecolor, MangaCReator, MangaAgeRating, Views, i);
+                        ResultS += BuildCardPerMode(Cover, Name, Disc, CExplorerLink, themecolor, MangaCReator, MangaAgeRating, Views, i, IDs[i]);
                     }
                     if (i == 0) 
                     {
@@ -640,7 +640,7 @@ namespace SuM_Manga_V3
             else { Result = " "; }
             return Result;
         }
-        protected string BuildCard(string CardBG, string cardtitle, string discr0, string Link, string theme, string CraetorName, string AgeRating, int V,int Num)
+        protected string BuildCard(string CardBG, string cardtitle, string discr0, string Link, string theme, string CraetorName, string AgeRating, int V,int Num,int MangaID)
         {
             Num++;
             char b12 = '"';
@@ -679,11 +679,11 @@ namespace SuM_Manga_V3
             DivContant += "<div style=" + b12.ToString() + "margin:0 auto;margin-bottom:0px;height:fit-content;width:100%;position:relative;margin-top:0px !important;" + b12.ToString() + "><a style=" + b12.ToString() + "display:block;float:right !important;margin-bottom:0px;margin-right:8px;bottom:0;position:relative;" + b12.ToString() + ">";
             DivContant += "<p style=" + b12.ToString() + "display:inline;color:rgba(255,255,255,0.74);" + b12.ToString() + "> " + AgeRating + " </p><img style=" + b12.ToString() + "width:20px;height:20px;display:inline;" + b12.ToString() + " src=" + b12.ToString() + "/svg/views.svg" + b12.ToString() + ">";
             DivContant += "<p style=" + "display:inline;color:#ffffff;" + "> " + ViewsNumPart + " </p><b style=" + "display:inline;color:#ffffff;" + ">" + ViewsLPart + "</b></a></div>";
-            string result = "<div onclick=" + b12.ToString() + "SuMGoToThis('" + Link + "','" + theme + "','" + cardtitle.Replace("'", "") + "','ContantExplorer');" + b12.ToString() + " class=" + divclass + " style=" + divstyle + ">" + "<div class=" + b12.ToString() + "animated fadeIn" + b12.ToString() + " >" + DivContant + "</div>" + "</div>";
+            string result = "<div onclick=" + b12.ToString() + "SuMApplyInfoToUltraCard('" + MangaID + "', '" + CardBG + "', '" + cardtitle.Replace("'", "") + "', '" + Link + "', 'ContantExplorer', '" + cardtitle.Replace("'", "") + "', '" + theme + "');" + b12.ToString() + " class=" + divclass + " style=" + divstyle + ">" + "<div class=" + b12.ToString() + "animated fadeIn" + b12.ToString() + " >" + DivContant + "</div>" + "</div>";
             result += "<p id=CardNuM" + Num.ToString() + "Theme style=display:none;visibility:hidden; >" + theme + "</p>";
             return result;
         }
-        protected string BuildCardPerMode(string CardBG, string cardtitle, string discr0, string Link, string theme, string CraetorName, string AgeRating, int V,int Num)
+        protected string BuildCardPerMode(string CardBG, string cardtitle, string discr0, string Link, string theme, string CraetorName, string AgeRating, int V,int Num,int MangaID)
         {
             char b12 = '"';
             string divclass = b12.ToString() + "mySlides" + b12.ToString();
@@ -721,7 +721,7 @@ namespace SuM_Manga_V3
             DivContant += "<div style=" + b12.ToString() + "margin:0 auto;margin-bottom:0px;height:fit-content;width:100%;position:relative;margin-top:0px !important;" + b12.ToString() + "><a style=" + b12.ToString() + "display:block;float:right !important;margin-bottom:0px;margin-right:8px;bottom:0;position:relative;" + b12.ToString() + ">";
             DivContant += "<p style=" + b12.ToString() + "display:inline;color:rgba(255,255,255,0.74);" + b12.ToString() + "> " + AgeRating + " </p><img style=" + b12.ToString() + "width:20px;height:20px;display:inline;" + b12.ToString() + " src=" + b12.ToString() + "/svg/views.svg" + b12.ToString() + ">";
             DivContant += "<p style=" + "display:inline;color:#ffffff;" + "> " + ViewsNumPart + " </p><b style=" + "display:inline;color:#ffffff;" + ">" + ViewsLPart + "</b></a></div>";
-            string result = "<div onclick=" + b12.ToString() + "SuMGoToThis('" + Link + "','" + theme + "','" + cardtitle.Replace("'", "") + "','ContantExplorer');" + b12.ToString() + " class=" + divclass + " style=" + divstyle + ">" + "<div >" + DivContant + "</div>" + "</div>";
+            string result = "<div onclick=" + b12.ToString() + "SuMApplyInfoToUltraCard('" + MangaID + "', '" + CardBG + "', '" + cardtitle.Replace("'", "") + "', '" + Link + "', 'ContantExplorer', '" + cardtitle.Replace("'", "") + "', '" + theme + "');" + b12.ToString() + " class=" + divclass + " style=" + divstyle + ">" + "<div >" + DivContant + "</div>" + "</div>";
             result += "<p id=CardNuM" + Num.ToString() + "Theme style=display:none;visibility:hidden; >" + theme + "</p>";
             return result;
         }
@@ -775,7 +775,7 @@ namespace SuM_Manga_V3
             string divs2 = '"' + "background-color:" + theme + " !important; width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;" + '"'; //rgb(104,64,217,0.64)
             string ps0 = "margin-top:8px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;";
             string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
-            string result = "<div class=" + zoominanim + " style=" + divs0 + "><a onclick=" + b12.ToString() + "SuMGoToThis('" + Link + "','" + theme + "','" + cardtitle.Replace("'", "") + "','ContantExplorer');" + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div class=" + "GoodBlur" + " style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
+            string result = "<div class=" + zoominanim + " style=" + divs0 + "><a onclick=" + b12.ToString() + "SuMApplyInfoToUltraCard('" + id + "', '" + CardBG + "', '" + cardtitle.Replace("'", "") + "', '" + Link + "', 'ContantExplorer', '" + cardtitle.Replace("'", "") + "', '" + theme + "');" + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div class=" + "GoodBlur" + " style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
             return result;
         }
         protected string BuildGCardPerMode(string CardBG, string cardtitle, string G, string Link, string theme, int id)
@@ -788,7 +788,7 @@ namespace SuM_Manga_V3
             string divs2 = '"' + "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;" + '"'; //rgb(104,64,217,0.64)
             string ps0 = "margin-top:8px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;";
             string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
-            string result = "<div style=" + divs0 + "><a onclick=" + b12.ToString() + "SuMGoToThis('" + Link + "','" + theme + "','" + cardtitle.Replace("'", "") + "','ContantExplorer');" + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
+            string result = "<div style=" + divs0 + "><a onclick=" + b12.ToString() + "SuMApplyInfoToUltraCard('" + id + "', '" + CardBG + "', '" + cardtitle.Replace("'", "") + "', '" + Link + "', 'ContantExplorer', '" + cardtitle.Replace("'", "") + "', '" + theme + "');" + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
             return result;
         }
         protected void SussionProssINB(int UID, string SID)

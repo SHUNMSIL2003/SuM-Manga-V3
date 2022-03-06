@@ -477,7 +477,7 @@
                 }
                 SuMLastScrollTop = ThisPageScrollContaner.scrollTop;
 
-            }, 20);
+            }, 10);
 
         };
         var MangaExplorerTopPartBarElm = document.getElementById('InfoCardBGForJAVA');
