@@ -112,16 +112,6 @@
                                     </a>
                                     <div class="mb-3">
                                         <asp:Button CssClass="btn btn-primary btn-sm" ID="chpfp000" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangePFP" Text="Save Pic" />
-                                        <script>
-                                            const FilePuloadEndElement = document.getElementById('<%= chpfp000.ClientID %>');
-
-                                            // always checking if the element is clicked, if so, do alert('hello')
-                                            FilePuloadEndElement.addEventListener("click", () => {
-                                                setTimeout(() => {
-                                                    androidAPIs.SuMRestart();
-                                                }, 360);
-                                            });
-                                        </script>
                                         <p style="display:inline-block !important;"> Or </p>
                                         <asp:Button CssClass="btn btn-primary btn-sm" ID="RemovePFP" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangePFPAtRandom" Text="Reset PFP" />
                                     </div>
@@ -140,16 +130,6 @@
                                     </a>
                                     <div class="mb-3">
                                         <asp:Button CssClass="btn btn-primary btn-sm" ID="ChangeBannerBTN" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangeUserBanner" Text="Save Banner" />
-                                        <script>
-                                            const FilePuloadEndElement2 = document.getElementById('<%= ChangeBannerBTN.ClientID %>');
-
-                                            // always checking if the element is clicked, if so, do alert('hello')
-                                            FilePuloadEndElement2.addEventListener("click", () => {
-                                                setTimeout(() => {
-                                                    androidAPIs.SuMRestart();
-                                                }, 360);
-                                            });
-                                        </script>
                                         <p style="display:inline-block !important;"> Or </p>
                                         <asp:Button CssClass="btn btn-primary btn-sm" ID="RemoveBannerBTN" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="RemoveBanner" Text="Remove Banner" />
                                     </div>

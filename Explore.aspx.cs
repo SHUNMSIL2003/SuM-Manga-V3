@@ -255,7 +255,7 @@ namespace SuM_Manga_V3
         protected void ShowCardsCNew()
         {
             string ResultS = " ";
-            int RN = 0;
+            //int RN = 0;
             bool PreformanceMode = false;
             HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
             if (GetPerModeInfoCookie != null)
@@ -346,7 +346,7 @@ namespace SuM_Manga_V3
                     }
                     if (i == 0) 
                     {
-                        cardscontain.Attributes["style"] = "scroll-margin-top:24px !important;scroll-snap-align:start;border-radius:20px;width:calc(100% - 24px) !important;height:fit-content !important;overflow:hidden !important;margin-top:12px;margin-left:12px;display:block;background-color:" + themecolor + " !important;transition: background-color 0.32s ease !important;";
+                        cardscontain.Attributes["style"] = "scroll-margin-top:24px !important;scroll-snap-align:start;border-radius:20px;width:calc(100% - 24px) !important;height:fit-content !important;overflow:hidden !important;margin-top:12px;margin-left:12px;display:block;background-color:" + themecolor + " !important;transition: background-color 0.32s ease !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;";
                     }
                 }
                 cardstoshow.InnerHtml = ResultS;

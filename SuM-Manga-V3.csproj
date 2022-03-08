@@ -3120,6 +3120,7 @@
     <Content Include="SuMManga.Mobile.Master" />
     <Content Include="SuM-Manga.apk" />
     <Content Include="SuMManga.Mobile.Creator.Master" />
+    <Content Include="SuM-Manga-330.apk" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

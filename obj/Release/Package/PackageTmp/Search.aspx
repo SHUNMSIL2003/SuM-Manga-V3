@@ -95,7 +95,7 @@
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-                        <div class="animated fadeIn" id="ShowSuMResults" style="margin:0 auto;height:fit-content !important;width:100vw !important;overflow-y:scroll;margin-top:6px !important;max-width:720px !important;" runat="server">
+                        <div class="animated fadeIn" id="ShowSuMResults" style="margin:0 auto;height:fit-content !important;width:100vw !important;overflow-y:scroll;margin-top:6px !important;max-width:720px !important;padding-bottom:182px;" runat="server">
                         </div>
                         <br />
                         <br />

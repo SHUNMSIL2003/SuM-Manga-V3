@@ -99,13 +99,13 @@ img {vertical-align: middle;}
     <div style="background-color:rgba(242,242,242,0.74) !important;position:fixed !important;top:0 !important;z-index:997 !important;height:fit-content !important;width:100vw !important;display:block;padding:0px !important;" class="" id="SuMMangaTopBar">
         <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;overflow:hidden !important;" id="SuMMangaTopBarHeightHelper"></div>
     </div>
-    <div id="AnimatedMainContHEx" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;overflow-y:scroll;height: 100vh;   scroll-snap-type: y mandatory;">
+    <div id="AnimatedMainContHEx" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;overflow-y:scroll;height: 100vh;   scroll-snap-type: y mandatory !important; scroll-behavior: smooth !important; scroll-padding-top:32px !important;scroll-padding-bottom:32px !important">
         <div style="width:100% !important;height:12px;margin:0 auto !important;" id="SuMStatusBarHeightFixUpF0C0"></div>
         <script>
         var StatusBarHeightValueFromSuMAndroidAPIsF0C0 = androidAPIs.getStatusBarHeight();
         document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C0 + 12) + 'px';
         </script>
-<div class="slideshow-container" id="cardscontain" runat="server" style="border:0.5px #dfdfdf solid !important;scroll-margin-top:38px; border-radius:20px;width:calc(100% - 24px) !important;height:fit-content !important;overflow:hidden !important;margin-top:12px;margin-left:12px;display:block;background-color:rgba(0,0,0,0.74) !important;transition: background-color 0.32s ease !important;scroll-snap-align:start !important;">
+<div class="slideshow-container" id="cardscontain" runat="server" style="border:0.5px #dfdfdf solid !important;scroll-margin-top:38px; border-radius:20px;width:calc(100% - 24px) !important;height:fit-content !important;overflow:hidden !important;margin-top:12px;margin-left:12px;display:block;background-color:rgba(0,0,0,0.74) !important;transition: background-color 0.32s ease !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
     <div id="ThisPageTopBarFixer" style="background-color:transparent !important;width:100% !important;height:fit-content !important;display:block;margin-bottom:-16px;padding-top:8px !important;">
         <img id="ThisPageSBarFixUpPropElm0" style="display:inline;margin-left:16px;margin-top:8px;float:left;" width="38" height="38" src="/svg/awesomeTW.svg" />
         <p id="ThisPageSBarFixUpPropElm1" style="color:#fffffff0 !important;font-size:128%;margin-top:12px;margin-left:6px;display:inline;float:left;">The latest of manga !</p>
@@ -177,7 +177,7 @@ img {vertical-align: middle;}
                 height:fit-content !important;
             }
         </style>
-        <div id="RecentsCont" runat="server" style="scroll-snap-align: start;" class="animated fadeInRight">
+        <div id="RecentsCont" runat="server" style="scroll-snap-align:start !important;scroll-snap-stop: always !important;" class="animated fadeInRight">
         <asp:Button ID="UPDATERESESNTS" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden;" />
                         <div id="RecentsSuperCont" runat="server" style="display:block;">
                             <div id="RescentBody" runat="server" style="border:0.5px #dfdfdf solid !important;height:168px!important; width:calc(100% - 24px);overflow:hidden;border-radius:20px;background-color:rgba(104,64,217,0.74) !important;margin:0 auto !important;padding:18px;padding-left:4px;margin-top:2px !important;overflow-x:scroll !important;overflow-y:hidden !important;margin-top:16px !important;transition: background-color 0.32s ease !important;">
@@ -237,7 +237,7 @@ img {vertical-align: middle;}
         </script>
         </div>
          <!-- br placeholder -->
-        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align: start;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="CategoryX" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="CategoryX" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Action</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Newest 12</h6>
             <div id="Action" runat="server" style="  scroll-snap-type: x mandatory;padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;" >
@@ -245,49 +245,49 @@ img {vertical-align: middle;}
         </div>
 
         <!-- br placeholder -->
-        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align: start;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div1" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div1" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Fantasy</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Newest 12</h6>
             <div id="Fantasy" runat="server" style="  scroll-snap-type: x mandatory;padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align: start;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div2" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div2" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Comedy</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Newest 12</h6>
             <div id="Comedy" runat="server" style="  scroll-snap-type: x mandatory;padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align: start;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div3" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div3" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Supernatural</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Newest 12</h6>
             <div id="Supernatural" runat="server" style="  scroll-snap-type: x mandatory;padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align: start;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div4" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div4" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Sci-Fi</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Newest 12</h6>
             <div id="SciFi" runat="server" style="  scroll-snap-type: x mandatory;padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align: start;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div5" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div5" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Drama</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Newest 12</h6>
             <div id="Drama" runat="server" style="  scroll-snap-type: x mandatory;padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align: start;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div6" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div6" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Mystery</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Newest 12</h6>
             <div id="Mystery" runat="server" style="  scroll-snap-type: x mandatory;padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align: start;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div7" runat="server">
+        <div style="border:0.5px #dfdfdf solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:#ffffff !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div7" runat="server">
             <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;display:inline;">Slice of Life</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:rgba(0,0,0,0.32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:rgba(0,0,0,0.64);margin-left:2px;margin-bottom:-18px;display:inline;">Newest 12</h6>
             <div id="SliceofLife" runat="server" style="  scroll-snap-type: x mandatory;padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>

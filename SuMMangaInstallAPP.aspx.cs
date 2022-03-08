@@ -16,8 +16,8 @@ namespace SuM_Manga_V3
         protected void AndroidDownloadAppStart(object sender, EventArgs e)
         {
             Response.ContentType = "application/apk";
-            Response.AppendHeader("Content-Disposition", "attachment; filename=SuM-Manga.apk");
-            Response.TransmitFile(Server.MapPath("~/SuM-Manga.apk"));
+            Response.AppendHeader("Content-Disposition", "attachment; filename=SuM-Manga-330.apk");
+            Response.TransmitFile(Server.MapPath("~/SuM-Manga-330.apk"));
             Response.End();
         }
     }

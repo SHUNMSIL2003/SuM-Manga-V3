@@ -268,13 +268,14 @@ namespace SuM_Manga_V3
             if (PCS.Length == 1) { PCS = "000" + PCS; }
             if (PCS.Length == 2) { PCS = "00" + PCS; }
             if (PCS.Length == 3) { PCS = "0" + PCS; }
-            Link += "&Chapter=ch" + PCS + "&VC=" + MID + "&TC=" + ThemeColor;
             if (CN > 0)
             {
+                Link += "&Chapter=ch" + PCS + "&VC=" + MID + "&TC=" + ThemeColor;
                 Link = "SuMGoToThis('" + Link + "&UCU=" + MID.ToString() + "','" + ThemeColor + "','Chapter " + CN.ToString() + "','ContantExplorer');";
             }
             else
             {
+                Link += "&Chapter=ch0001&VC=" + MID + "&TC=" + ThemeColor;
                 Link = "SuMGoToThis('" + Link + "&ADTCU=" + MID + "','" + ThemeColor + "','Chapter 1','ContantExplorer');";
             }
             return Link;

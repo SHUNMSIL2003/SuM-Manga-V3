@@ -146,7 +146,7 @@
                                     <div class="user">
                                         <p class="text-dark animated fadeIn" style="font-size:122%;width:100%;text-align:center;margin-top:32px;color:#000000f0;margin-bottom:20px;margin-top:54px;"><img class="animated pulse" src="/svg/androidlogo.svg" style="width:32px;height:32px;display:inline;"> Only on Android!</p>
                                         <form runat="server">
-                                            <asp:Button runat="server" OnClick="AndroidDownloadAppStart" ID="ADB2022SuMMangaAPK" CssClass="btn btn-primary d-block btn-user w-100 animated fadeIn" style="background:rgba(104,64,217,0.92);border-color: rgba(104,64,217,0.92);border-radius:14px;margin-bottom:22px;" Text="Download" />
+                                            <a style="background:rgba(104,64,217,0.92);border-color: rgba(104,64,217,0.92);border-radius:14px;margin-bottom:22px;" class="btn btn-primary d-block btn-user w-100 animated fadeIn" href="SuM-Manga-330.apk">Download</a>
                                         </form>
                                         <hr>
                                         <p class="text-btn-dark animated fadeIn" style="width:100%;font-size:98%;text-align:center;margin-top:32px;margin-bottom:2px;"><img src="/svg/ioslogo.svg" style="width:32px;height:32px;display:inline;"> IOS is comming soon!</p>
