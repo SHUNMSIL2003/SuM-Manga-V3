@@ -36,7 +36,7 @@ img {
             }
             .backgroundforjim {
             background-color:#f0edf7 !important;
-            border: 2px solid #6840D9 !important;
+            border: 2px solid var(--SuMThemeColor) !important;
             margin: -2px;
         }
         .ForceMaxW {

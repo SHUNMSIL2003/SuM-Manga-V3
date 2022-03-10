@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Drawing;
 
 namespace SuM_Manga_V3.AccountETC
 {
@@ -90,7 +91,7 @@ namespace SuM_Manga_V3.AccountETC
                 PFP.Attributes["src"] = ResolveUrl(CurrPFP);
                 if (string.IsNullOrEmpty(CurrBanner) == false)
                 {
-                    ThisPageMaxNoShowScrool.Attributes["style"] = "background-color:rgba(104,64,217,0.74) !important;border-radius:20px !important;width:100%;margin:0 auto !important;padding:16px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;background-image:linear-gradient(rgba(0, 0, 0, 0.32),rgba(0, 0, 0, 0.32)) , url(" + CurrBanner + "); background-size: cover; background-position: center;";
+                    ThisPageMaxNoShowScrool.Attributes["style"] = "background-color:var(--SuMThemeColorOP74) !important;border-radius:20px !important;width:100%;margin:0 auto !important;padding:16px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;background-image:linear-gradient(rgba(0, 0, 0, 0.32),rgba(0, 0, 0, 0.32)) , url(" + CurrBanner + "); background-size: cover; background-position: center;";
                     CurrUserBannerPlaceHolder.InnerText = CurrBanner;
                 }
                 //Imported code from SuMAccount.aspx.cs + Sig from above
@@ -100,7 +101,7 @@ namespace SuM_Manga_V3.AccountETC
                 PFPC.Attributes["src"] = ResolveUrl(CurrPFP);
                 if (GetUserInfoCookie["CreatorName"] != null) 
                 {
-                    CreatorClick.Attributes["onclick"] = "SuMGoToThis('/SuMCreator/CreatorPanel.aspx','rgba(104,64,217,0.74)','Creator Panel','Creator');";
+                    CreatorClick.Attributes["onclick"] = "SuMGoToThis('/SuMCreator/CreatorPanel.aspx','var(--SuMThemeColorOP74)','Creator Panel','Creator');";
                     CraetorSecTitle.InnerText = "creator panel";
                 }
             }
@@ -238,9 +239,6 @@ namespace SuM_Manga_V3.AccountETC
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             string CurrSID = GetUserInfoCookie["SID"].ToString();
             int CurrUID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
-            GetUserInfoCookie = new HttpCookie("SuMCurrentUser");
-            GetUserInfoCookie.Expires = DateTime.Now.AddDays(-100);
-            Response.Cookies.Add(GetUserInfoCookie);
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
@@ -262,12 +260,7 @@ namespace SuM_Manga_V3.AccountETC
                 }
                 sqlCon.Close();
             }
-            HttpCookie SetInfo = new HttpCookie("SuMPerformanceMode");
-            SetInfo.Expires = DateTime.Now.AddDays(-100);
-            HttpContext.Current.Response.Cookies.Add(SetInfo);
-            HttpCookie SetInfo2 = new HttpCookie("SuMLockMode");
-            SetInfo2.Expires = DateTime.Now.AddDays(-100);
-            HttpContext.Current.Response.Cookies.Add(SetInfo2);
+            ForceLogOut();
             ReloadAndUpdate();
         }
         protected string RemoveAnSIDfromSIDsString(string SIDs, string SIDToRemove)
@@ -294,6 +287,9 @@ namespace SuM_Manga_V3.AccountETC
             HttpCookie SetInfo2 = new HttpCookie("SuMLockMode");
             SetInfo2.Expires = DateTime.Now.AddDays(-100);
             HttpContext.Current.Response.Cookies.Add(SetInfo2);
+            HttpCookie userInfo0 = new HttpCookie("SuMUserThemeColor");
+            userInfo0.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(userInfo0);
             ReloadAndUpdate();
         }
         // UserSettingsStart     -imported from SuMAccount.aspx.cs-
@@ -373,6 +369,10 @@ namespace SuM_Manga_V3.AccountETC
                 string ffn = DateTime.Now.ToString("yyyyMMddHHmmss") + UserName + fileName;
                 SuMCustomBanner.PostedFile.SaveAs(Server.MapPath(Path.Combine("UsersUploads", ffn)));
                 string pfppath = "/AccountETC/UsersUploads/" + ffn;
+                //New User Theme
+                Bitmap PicBitMap = new Bitmap(SuMCustomBanner.PostedFile.InputStream);
+                string BannerThemeColorRGBRoot = RgbConverter(getDominantColor(PicBitMap));
+                SaveUserThemeCookie(BannerThemeColorRGBRoot);
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
@@ -382,10 +382,57 @@ namespace SuM_Manga_V3.AccountETC
                     sqlCmd.Parameters["@ID"].Value = Convert.ToInt32(UserID);
                     sqlCmd.Parameters.AddWithValue("@SuMCustomPFP", pfppath);
                     sqlCmd.ExecuteNonQuery();
+                    query = "UPDATE SuMUsersAccounts SET UserTheme = @SuMUserColor WHERE UserID = @ID";
+                    sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@ID", SqlDbType.Int);
+                    sqlCmd.Parameters["@ID"].Value = Convert.ToInt32(UserID);
+                    sqlCmd.Parameters.AddWithValue("@SuMUserColor", BannerThemeColorRGBRoot);
+                    sqlCmd.ExecuteNonQuery();
                     sqlCon.Close();
                 }
                 ReloadAndUpdate();
             }
+        }
+        protected static void SaveUserThemeCookie(string RGBRootString)
+        {
+            HttpCookie userInfo = new HttpCookie("SuMUserThemeColor");
+            userInfo["RGBRoot"] = RGBRootString;
+            userInfo.Expires = DateTime.MaxValue;
+            HttpContext.Current.Response.Cookies.Add(userInfo);
+        }
+        protected Color getDominantColor(Bitmap bmp)
+        {
+            //Used for tally
+            int r = 0;
+            int g = 0;
+            int b = 0;
+
+            int total = 0;
+
+            for (int x = 0; x < bmp.Width; x++)
+            {
+                for (int y = 0; y < bmp.Height; y++)
+                {
+                    Color clr = bmp.GetPixel(x, y);
+
+                    r += clr.R;
+                    g += clr.G;
+                    b += clr.B;
+
+                    total++;
+                }
+            }
+
+            //Calculate average
+            r /= total;
+            g /= total;
+            b /= total;
+
+            return Color.FromArgb(r, g, b);
+        }
+        protected static string RgbConverter(Color c)
+        {
+            return String.Format("{0},{1},{2}", c.R, c.G, c.B);
         }
         protected void ChangeSIG(object sender, EventArgs e)
         {
@@ -629,8 +676,16 @@ namespace SuM_Manga_V3.AccountETC
                 sqlCmd.Parameters["@ID"].Value = Convert.ToString(UserID);
                 sqlCmd.Parameters.AddWithValue("@SuMCustomPFP", pfppath);
                 sqlCmd.ExecuteNonQuery();
+                query = "UPDATE SuMUsersAccounts SET UserBanner = NULL WHERE UserID = @ID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@ID", SqlDbType.Int);
+                sqlCmd.Parameters["@ID"].Value = Convert.ToString(UserID);
+                sqlCmd.ExecuteNonQuery();
                 sqlCon.Close();
             }
+            HttpCookie userInfo = new HttpCookie("SuMUserThemeColor");
+            userInfo.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(userInfo);
             ReloadAndUpdate();
         }
     }

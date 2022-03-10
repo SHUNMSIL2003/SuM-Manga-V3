@@ -39,7 +39,7 @@ namespace SuM_Manga_V3.storeitems
             {
                 ThemeColor = Request.QueryString["TC"].ToString();
             }
-            else { ThemeColor = "#6840D9"; }
+            else { ThemeColor = "var(--SuMThemeColor)"; }
             if (IsPostBack == false)
             {
                 background.Attributes["style"] = "background-color:" + ThemeColor + " !important;width:100vw !important;height:100vh !important;";

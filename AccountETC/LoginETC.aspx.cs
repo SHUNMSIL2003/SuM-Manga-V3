@@ -52,9 +52,21 @@ namespace SuM_Manga_V3.AccountETC
                 if (Res != null)
                 {
                     int ID = Convert.ToInt32(Res.ToString());
-                    string query2 = "SELECT AccountStatus FROM SuMUsersAccounts WHERE UserName = @UserName";
+                    //New -s
+                    string queryRGB = "SELECT UserTheme FROM SuMUsersAccounts WHERE UserID = @UserID";
+                    SqlCommand sqlCmdRGB = new SqlCommand(queryRGB, sqlCon);
+                    sqlCmdRGB.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmdRGB.Parameters["@UserID"].Value = ID;
+                    object RGBRS = sqlCmdRGB.ExecuteScalar();
+                    if (RGBRS != null) 
+                    {
+                        SaveUserThemeCookie(RGBRS.ToString());
+                    }
+                    //New -e
+                    string query2 = "SELECT AccountStatus FROM SuMUsersAccounts WHERE UserID = @UserID";
                     SqlCommand sqlCmd2 = new SqlCommand(query2, sqlCon);
-                    sqlCmd2.Parameters.AddWithValue("@UserName", username);
+                    sqlCmd2.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    sqlCmd2.Parameters["@UserID"].Value = ID;
                     using (SqlDataReader dr = sqlCmd2.ExecuteReader())
                     {
                         while (dr.Read())
@@ -232,6 +244,13 @@ namespace SuM_Manga_V3.AccountETC
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
             HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)");
+        }
+        protected static void SaveUserThemeCookie(string RGBRootString)
+        {
+            HttpCookie userInfo = new HttpCookie("SuMUserThemeColor");
+            userInfo["RGBRoot"] = RGBRootString;
+            userInfo.Expires = DateTime.MaxValue;
+            HttpContext.Current.Response.Cookies.Add(userInfo);
         }
         protected void ResendConfLink(object sender, EventArgs e)
         {

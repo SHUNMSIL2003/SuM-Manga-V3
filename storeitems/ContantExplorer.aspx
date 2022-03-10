@@ -96,7 +96,7 @@
             <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(0, 0, 0, 0.527);background-color:rgba(0, 0, 0, 0.527);width:84% !important;margin:0px;margin-block:0px;height:2px !important;margin-bottom:12px !important;margin-top:8px !important;border-radius:1px !important;">
             <p style="width:80% !important;margin:0 auto;color:rgba(0, 0, 0, 0.527);height:fit-content;text-align:center;display:block;font-size:112%;">The reason is eather the chapter is not Finished/Uploaded yet, or it is not sutable for audience from your contry or your age.</p>
             <div style="text-align:center;margin-top:16px;">
-                <a onclick="document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'none';" class="btn" style="margin:0 auto !important;background-color:rgb(104,64,217);color:#ffffff;border-radius:12px;width:fit-content;height:fit-content;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px;margin-bottom:8px !important;">OK</a>
+                <a onclick="document.getElementById('MainContent_ChapterUnavaliblePOPUP').style.display = 'none';" class="btn" style="margin:0 auto !important;background-color:var(--SuMThemeColor);color:#ffffff;border-radius:12px;width:fit-content;height:fit-content;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px;margin-bottom:8px !important;">OK</a>
             </div>
         </div>
     </div>
@@ -137,8 +137,8 @@
                                         <div style="text-align:center;width:100%;height:fit-content;margin-bottom:16px;">
                                             <div class="animated fadeInDown" runat="server" id="LogInProssInfo" style="display:none;">
                                                 <h6 class="animated pulse" style="color:rgb(255,90,69);padding:8px;" id="LoginStatus" runat="server"></h6>
-                                                <asp:Button CssClass="btn btn-primary d-block btn-user w-100" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-radius:14px;" OnClick="ResendConfLink" Visible="false" ID="ResendConf" Text="Re-Send Email" />
-                                                <asp:Button CssClass="btn btn-primary d-block btn-user w-100" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-radius:14px;" OnClick="LogOutOffAll" Visible="false" ID="LogOutOffAllBTN" Text="Logout of all devices" />
+                                                <asp:Button CssClass="btn btn-primary d-block btn-user w-100" runat="server" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);border-radius:14px;" OnClick="ResendConfLink" Visible="false" ID="ResendConf" Text="Re-Send Email" />
+                                                <asp:Button CssClass="btn btn-primary d-block btn-user w-100" runat="server" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);border-radius:14px;" OnClick="LogOutOffAll" Visible="false" ID="LogOutOffAllBTN" Text="Logout of all devices" />
                                             </div>
                                         </div>
                                         <div class="mb-3 sumsmoothtrans">
@@ -146,14 +146,14 @@
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" checked="checked" id="formCheck-1"><label id="rem" runat="server" class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
                                             </div> 
                                         </div>
-                                        <asp:Button ID="LoginBTN" CssClass="btn btn-primary d-block btn-user w-100 sumsmoothtrans" style="background: rgb(104,64,217);border-color: rgb(104,64,217);border-radius:14px;" OnClick="LoginToSuM" runat="server" Text="Login" />
+                                        <asp:Button ID="LoginBTN" CssClass="btn btn-primary d-block btn-user w-100 sumsmoothtrans" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);border-radius:14px;" OnClick="LoginToSuM" runat="server" Text="Login" />
                                         <hr class="sumsmoothtrans">
                                         <a style="border-radius:14px !important;" class="sumsmoothtrans btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Login with Google</a>
                                         <a style="border-radius:14px !important;" class="sumsmoothtrans btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
                                         <hr class="sumsmoothtrans">
                                     </div>
-                                    <div class="text-center sumsmoothtrans"><a class="small" href="/AccountETC/PassRecovryETC.aspx" style="color: rgb(104,64,217);">Forgot Password?</a></div>
-                                    <div class="text-center sumsmoothtrans"><a class="small" href="/AccountETC/RegisterETC.aspx" style="color: rgb(104,64,217);">Create an Account!</a></div>
+                                    <div class="text-center sumsmoothtrans"><a class="small" href="/AccountETC/PassRecovryETC.aspx" style="color: var(--SuMThemeColor);">Forgot Password?</a></div>
+                                    <div class="text-center sumsmoothtrans"><a class="small" href="/AccountETC/RegisterETC.aspx" style="color: var(--SuMThemeColor);">Create an Account!</a></div>
                                 </div>
                             </div>
                         </div>
@@ -208,7 +208,7 @@
             margin: 0 auto;
         }
         .forcecolor {
-            color:#6840D9 !important;
+            color:var(--SuMThemeColor) !important;
         }
 
     </style>
@@ -359,7 +359,7 @@
                     var HIDDENWANNAadd = document.getElementById('<%= ADDTOWANNA.ClientID %>');
                     var HIDDENWANNAremove = document.getElementById('<%= REMOVEFROMWANNA.ClientID %>');
 
-                    var DetectedThemeColor = null;
+                    /*var DetectedThemeColor = null;
                     location.search.substring(1).split("&").forEach(function (val) {
 
                         var currVal = val.split("=");
@@ -369,7 +369,7 @@
 
                         }
 
-                    });
+                    });*/
 
                     //document.getElementById('3rdGBLayer').style.backgroundColor = DetectedThemeColor.replace("0.74", "0.32");
 
@@ -426,7 +426,7 @@
                     <asp:Panel runat="server">
                         <hr style="width:82%;height:2px;border-radius:1px;color:#ffffff30;margin:0 auto !important;margin-top:-6px !important;margin-bottom:6px !important;position:absolute;z-index:998;margin-left:9% !important;" />
                         <div class="animated pulse" id="MRSC" runat="server" style="margin-top:3px !important;margin-bottom:13px !important;background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;display:inline;overflow:hidden !important;">
-                            <a id="MRSW" onclick="" runat="server" href="#" style="color:#6840D9;"></a>
+                            <a id="MRSW" onclick="" runat="server" href="#" style="color:var(--SuMThemeColor);"></a>
                         </div>
                     </asp:Panel>
                 </ContentTemplate>

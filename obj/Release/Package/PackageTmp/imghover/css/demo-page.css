@@ -14,7 +14,7 @@ body {
     color: #333;
     line-height: 140%;
     background-color: #F5F3F5;
-    border-top: 10px solid #6840D9;
+    border-top: 10px solid var(--SuMThemeColor);
     border-radius: 10px;
      
 }
@@ -82,14 +82,14 @@ p {
   border-radius: 10px;
 }
 a {
-    color: #6840D9;
+    color: var(--SuMThemeColor);
      
     text-decoration: none;
     border-radius: 10px;
 }
 .footer a:hover,
 .nav:hover {
-    color: #6840D9;
+    color: var(--SuMThemeColor);
     opacity: 1;
     border-radius: 10px;
 }
@@ -116,7 +116,7 @@ a {
     vertical-align: top;
 }
 .download a.download-btn {
-  background-color: #6840D9;
+  background-color: var(--SuMThemeColor);
    
   width: 100%;
   padding: 12px 0;
@@ -127,7 +127,7 @@ a {
   transition: all 0.2s ease;
 }
     .download a.download-btn:hover {
-        background-color: #6840D9;
+        background-color: var(--SuMThemeColor);
         border-radius: 10px;
         opacity: 1;
     }
@@ -252,7 +252,7 @@ pre.prettyprint {
 #forkongithub a:hover,
 #forkongithub a:focus,
 #forkongithub a:active {
-  background: #6840D9;
+  background: var(--SuMThemeColor);
   color: #fff;
   opacity: 1;
   border-radius: 10px;

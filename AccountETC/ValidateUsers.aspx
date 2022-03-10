@@ -21,6 +21,26 @@
             androidAPIs.SetSuMHardwareExl();
         }
 </script>
+    <style>
+            :root {
+                --SuMBack: rgb(242,242,242);
+                --SuMCardBack: rgb(255,255,255);
+                --SuMThemeColor: rgb(104,64,217);
+                --SuMThemeColorOP94: rgba(104,64,217,0.940);
+                --SuMThemeColorOP92: rgba(104,64,217,0.920);
+                --SuMThemeColorOP86: rgba(104,64,217,0.860);
+                --SuMThemeColorOP84: rgba(104,64,217,0.840);
+                --SuMThemeColorOP74: rgba(104,64,217,0.740);
+                --SuMThemeColorOP64: rgba(104,64,217,0.640);
+                --SuMThemeColorOP62: rgba(104,64,217,0.620);
+                --SuMThemeColorOP54: rgba(104,64,217,0.540);
+                --SuMThemeColorOP32: rgba(104,64,217,0.320);
+                --SuMThemeColorOP14: rgba(104,64,217,0.140);
+                --SuMThemeColorOP08: rgba(104,64,217,0.080);
+                --SuMThemeColorOP00: rgba(104,64,217,0.000);
+                --SuMThemeColorSec: rgb(136, 136, 136);
+            }
+    </style>
     <meta charset="utf-8" runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Verifying Account - SuM Manga</title>
@@ -178,9 +198,9 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 style="color:rgb(104,64,217)" id="vtitle" runat="server" class="text-dark mb-2">Please Waite!</h4>
+                                        <h4 style="color:var(--SuMThemeColor)" id="vtitle" runat="server" class="text-dark mb-2">Please Waite!</h4>
                                         <p style="" id="vp" runat="server" class="mb-4">The server is configuring your account and saving it,You will be automaticly redirected to login page...</p>
-                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="ReSendLink2" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="ResendConfLink" Visible="false" Text="Re-Send Email" />
+                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="ReSendLink2" runat="server" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);" OnClick="ResendConfLink" Visible="false" Text="Re-Send Email" />
                                     </div>
                                 </div>
                             </div>

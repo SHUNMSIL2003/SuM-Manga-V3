@@ -758,7 +758,7 @@ namespace SuM_Manga_V3
             string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
             string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
             string divs1 = "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
-            string divs2 = '"' + "background-color:" + theme + " !important; width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;" + '"'; //rgb(104,64,217,0.64)
+            string divs2 = '"' + "background-color:" + theme + " !important; width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;" + '"'; //var(--SuMThemeColorOP64)
             string ps0 = "margin-top:8px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;";
             string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
             string result = "<div class=" + zoominanim + " style=" + divs0 + "><a onclick=" + b12.ToString() + "SuMGoToThis('" + Link + "','" + theme + "','" + cardtitle.Replace("'", "") + "','ContantExplorer');" + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div class=" + "GoodBlur" + " style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
@@ -771,7 +771,7 @@ namespace SuM_Manga_V3
             string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;";
             string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
             string divs1 = "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
-            string divs2 = '"' + "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;" + '"'; //rgb(104,64,217,0.64)
+            string divs2 = '"' + "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;" + '"'; //var(--SuMThemeColorOP64)
             string ps0 = "margin-top:8px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;";
             string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:#2e2e2e;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
             string result = "<div style=" + divs0 + "><a onclick=" + b12.ToString() + "SuMGoToThis('" + Link + "','" + theme + "','" + cardtitle.Replace("'", "") + "','ContantExplorer');" + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>"; //GetGarnas(id)
@@ -807,6 +807,15 @@ namespace SuM_Manga_V3
             HttpCookie GetUserInfoCookie = new HttpCookie("SuMCurrentUser");
             GetUserInfoCookie.Expires = DateTime.Now.AddDays(-100);
             Response.Cookies.Add(GetUserInfoCookie);
+            HttpCookie SetInfo = new HttpCookie("SuMPerformanceMode");
+            SetInfo.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(SetInfo);
+            HttpCookie SetInfo2 = new HttpCookie("SuMLockMode");
+            SetInfo2.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(SetInfo2);
+            HttpCookie userInfo0 = new HttpCookie("SuMUserThemeColor");
+            userInfo0.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(userInfo0);
         }
         protected void LastRefreshPross()
         {

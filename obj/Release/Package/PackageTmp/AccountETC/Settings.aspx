@@ -45,7 +45,7 @@
             <hr style="margin:0 auto !important;height:1px;border-width:0;color:rgba(0, 0, 0, 0.527);background-color:rgba(0, 0, 0, 0.527);width:84% !important;margin:0px;margin-block:0px;height:2px !important;margin-bottom:12px !important;margin-top:8px !important;border-radius:1px !important;">
             <p style="width:80% !important;margin:0 auto;color:rgba(0, 0, 0, 0.527);height:fit-content;text-align:center;display:block;font-size:112%;">The reason is eather there is a bug therefore its temporarily disabled or your device does not support it.</p>
             <div style="text-align:center;margin-top:16px;">
-                <a onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'none';" class="btn" style="margin:0 auto !important;background-color:rgb(104,64,217);color:#ffffff;border-radius:12px;width:fit-content;height:fit-content;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px;margin-bottom:8px !important;">OK</a>
+                <a onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'none';" class="btn" style="margin:0 auto !important;background-color:var(--SuMThemeColor);color:#ffffff;border-radius:12px;width:fit-content;height:fit-content;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px;margin-bottom:8px !important;">OK</a>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-        <div id="ThisPageMaxNoShowScrool" runat="server" style="background-color:rgba(104,64,217,0.74) !important;border-radius:20px !important;width:100%;margin:0 auto !important;padding:16px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;">
+        <div id="ThisPageMaxNoShowScrool" runat="server" style="background-color:var(--SuMThemeColorOP74) !important;border-radius:20px !important;width:100%;margin:0 auto !important;padding:16px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;">
             <a runat="server" id="AccountSettingsOrLogin" onclick="" href="/AccountETC/LoginETC.aspx" style="height:112px !important;width:calc(100% - 60px) !important;background-color:transparent !important;display:block !important;margin-top:8px;margin-bottom:8px; margin-left:8px;position:relative;z-index:998;">
             <div style="width:86px;height:86px;border-radius:50%;background-color:rgb(255,255,255);border:2px solid rgb(255,255,255) !important;float:left;display:inline;margin-bottom:4px;padding:0px !important;">
                 <img class="animated pulse" id="PFP" runat="server" style="width:82px !important;height:82px !important;border-radius:50% !important;" src="/AccountETC/UsersUploads/DeafultPFP.jpg" />
@@ -89,7 +89,7 @@
             <asp:ImageButton ID="LogOutBTN" runat="server" ImageUrl="/svg/logoutW.svg" Width="28px" Height="28px" BackColor="Transparent" ForeColor="Transparent" OnClick="LogOut" style="float:right !important;margin-right:8px;margin-top:-22px !important;" />
             <p id="TapForXText" runat="server" style="color:rgba(255,255,255,0.64);margin-top:-18px;width:100%;text-align:center;font-size:76%;margin-left:42px;padding-bottom:-16px;">Tap for more!</p>
         </div>
-                        <p style="display:none !important;visibility:hidden !important;" id="CurrUserBannerPlaceHolder" runat="server">/svg/add.svg</p>
+                        <p style="display:none !important;visibility:hidden !important;object-fit: cover;" id="CurrUserBannerPlaceHolder" runat="server">/svg/add.svg</p>
         </asp:Panel>
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -111,9 +111,9 @@
                                         </script>
                                     </a>
                                     <div class="mb-3">
-                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="chpfp000" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangePFP" Text="Save Pic" />
+                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="chpfp000" runat="server" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangePFP" Text="Save Pic" />
                                         <p style="display:inline-block !important;"> Or </p>
-                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="RemovePFP" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangePFPAtRandom" Text="Reset PFP" />
+                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="RemovePFP" runat="server" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangePFPAtRandom" Text="Reset PFP" />
                                     </div>
                                     <script>
                                         var loadFile = function (event) {
@@ -123,17 +123,27 @@
                                     </script>
                                     <!-- New Banner -->
                                     <a onclick="document.getElementById('MainContent_SuMCustomBanner').click();" style="width:fit-content;height:fit-content;">
-                                    <img style="position:relative !important;z-index:999 !important;width:calc(100% - 64px);border-radius:18px;background-color:rgb(104,64,217,0.32);height:132px;margin-bottom:18px;margin-top:32px;background-size:cover; background-position:center;" class="lazyload" id="BannerPr" runat="server" src="/svg/add.svg">
+                                    <img style="position:relative !important;z-index:999 !important;width:calc(100% - 64px);border-radius:18px;background-color:var(--SuMThemeColorOP32);height:132px;margin-bottom:18px;margin-top:32px;background-size:cover; background-position:center;object-fit: cover;" class="lazyload" id="BannerPr" runat="server" src="/svg/add.svg">
                                         <script>
                                             document.getElementById('<%= BannerPr.ClientID %>').src = document.getElementById('<%= CurrUserBannerPlaceHolder.ClientID %>').innerText;
                                         </script>
                                     </a>
                                     <div class="mb-3">
-                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="ChangeBannerBTN" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangeUserBanner" Text="Save Banner" />
+                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="ChangeBannerBTN" runat="server" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="ChangeUserBanner" Text="Save Banner" />
                                         <p style="display:inline-block !important;"> Or </p>
-                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="RemoveBannerBTN" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="RemoveBanner" Text="Remove Banner" />
+                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="RemoveBannerBTN" runat="server" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" OnClick="RemoveBanner" Text="Remove Banner" />
                                     </div>
                                     <script>
+                                        document.getElementById('<%= ChangeBannerBTN.ClientID %>').addEventListener("click", function () {
+                                            setTimeout(() => {
+                                                DeleteSuMCache();
+                                            }, 180);
+                                        });
+                                        document.getElementById('<%= RemoveBannerBTN.ClientID %>').addEventListener("click", function () {
+                                            setTimeout(() => {
+                                                DeleteSuMCache();
+                                            }, 20);
+                                        });
                                         var loadFile2 = function (event) {
                                             var image2 = document.getElementById('<%= BannerPr.ClientID %>');
                                             image2.src = URL.createObjectURL(event.target.files[0]);
@@ -152,15 +162,15 @@
                         <p style="color:#000000 !important;display:inline;float:left;margin:8px;">Manage Devices</p>
                     </div>
                     <div class=" " style="animation-duration: 0.4s !important;background-color:#ffffff !important;display:none;height:fit-content;position:relative;z-index:996" id="ManageDevicesCard">
-                        <p id="DVsText" style="color:rgb(0,0,0);"><b id="DevicesNum" style="color:rgb(104,64,217);" runat="server" ></b> Device(s) loged in</p>
+                        <p id="DVsText" style="color:rgb(0,0,0);"><b id="DevicesNum" style="color:var(--SuMThemeColor);" runat="server" ></b> Device(s) loged in</p>
                         <div style="width:100vw;height:fit-content;" id="CurrDevice">
                             <img src="/svg/phonePR.svg" width="24" height="24" style="display:inline;" />
-                            <p style="color:rgb(104,64,217);display:inline;">Current Device</p>
+                            <p style="color:var(--SuMThemeColor);display:inline;">Current Device</p>
                             <p style="color:#251d37b2;font-size:80%;" id="CurrDeviceDate" runat="server"></p>
                         </div>
                          <div style="width:100vw;height:fit-content;" id="SecDevice" runat="server">
                             <img src="/svg/phone.svg" width="24" height="24" style="display:inline;" />
-                            <p style="color:rgb(104,64,217);display:inline;">Second Device</p>
+                            <p style="color:var(--SuMThemeColor);display:inline;">Second Device</p>
                             <p style="color:#251d37b2;font-size:80%;" id="SecDeviceDate" runat="server"></p>
                         </div>
                     </div>
@@ -187,8 +197,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <!-- <asp:Button OnClientClick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'none'; return false;" CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;" Text="Change Email" /> -->
-                                                    <button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; androidAPIs.VIBRATEPhone(); return false;" class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" runat="server">Change Email</button>
+                                                    <!-- <asp:Button OnClientClick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'none'; return false;" CssClass="btn btn-primary btn-sm" runat="server" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);float:right;" Text="Change Email" /> -->
+                                                    <button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; androidAPIs.VIBRATEPhone(); return false;" class="btn btn-primary btn-sm" type="submit" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);float:right;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" runat="server">Change Email</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -208,7 +218,7 @@
                                             <div class="form-check form-switch"><input onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; androidAPIs.VIBRATEPhone(); this.checked = false; return false;" class="form-check-input" type="checkbox" id="NofifyCheckEP" runat="server"><label class="form-check-label" for="formCheck-1"><strong>Notify me about new replies</strong></label></div>
                                         </div>
                                         <div class="mb-3">
-                                            <asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: rgb(104,64,217);border-color: rgb(104,64,217);width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;float:right;" OnClick="ChangeSIG" Text="Change signature" />
+                                            <asp:Button CssClass="btn btn-primary btn-sm" runat="server" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;float:right;" OnClick="ChangeSIG" Text="Change signature" />
 
                                         </div>
                                 </div>
@@ -225,7 +235,7 @@
                                                         <div class="mb-3"><label class="form-label" for="country"><strong>Country (optional!)</strong></label><input class="form-control" type="text" id="CountryPE" placeholder="Israel" name="country" runat="server"></div>
                                                     </div>
                                                 </div>
-                                                <div class="mb-3"><button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; androidAPIs.VIBRATEPhone(); return false;" class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" runat="server">Save&nbsp;Adress</button></div>
+                                                <div class="mb-3"><button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; androidAPIs.VIBRATEPhone(); return false;" class="btn btn-primary btn-sm" type="submit" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);float:right;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" runat="server">Save&nbsp;Adress</button></div>
                                             </div>
                                         </div>
                                     </div>
@@ -244,7 +254,7 @@
                                         <div id="PaymentCard" runat="server" style="display:none;animation-duration: 0.4s !important;" class="card-body animated slideInDown">
                                             <div style="width:100%;">          
                     <div style="width:100%;text-align:center;">
-                        <p style="color:#6840D9;"><b>You will be charged 14.99$ once evry month</b></p>
+                        <p style="color:var(--SuMThemeColor);"><b>You will be charged 14.99$ once evry month</b></p>
                     </div>
                     <div class="col-md-6" style="width:100%;">
                         <div class="row" style="width:100%;">
@@ -263,7 +273,7 @@
                                 <div class="mb-3"><label class="form-label" for="cvc">CVC</label><input class="form-control" type="text" id="cvc" placeholder="CVC" name="cvc"></div>
                             </div>
                             <div class="col-sm-12">
-                                <div class="mb-3"><button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; androidAPIs.VIBRATEPhone(); return false;" class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" runat="server"> Save! </button></div>
+                                <div class="mb-3"><button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; androidAPIs.VIBRATEPhone(); return false;" class="btn btn-primary btn-sm" type="submit" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);float:right;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" runat="server"> Save! </button></div>
                             </div>
                         </div>
                     </div>
@@ -303,7 +313,7 @@
                                         </div>
                                         <div class="mb-3">
                                             
-                                            <div class="mb-3"><button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; androidAPIs.VIBRATEPhone(); return false;" class="btn btn-primary btn-sm" type="submit" style="background: rgb(104,64,217);border-color: rgb(104,64,217);float:right;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" runat="server">Apply&nbsp;Now</button></div>
+                                            <div class="mb-3"><button onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'block'; androidAPIs.VIBRATEPhone(); return false;" class="btn btn-primary btn-sm" type="submit" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);float:right;width:fit-content;border-radius:16px;padding-top:5px;padding-bottom:5px;padding-left:16px;padding-right:16px;" runat="server">Apply&nbsp;Now</button></div>
                                         </div>
                                 </div>
                             </div>
@@ -347,14 +357,14 @@
                                 <div class="" style="vertical-align:middle;display:block !important;">
                                     <img src="/AccountETC/DarkMoon.svg" style="width:30px;height:30px;display:inline;float:left;" />
                                     <p style="color:#000000;display:inline;float:left;margin:8px;font-size:112%;margin-top:4px;">Dark Mode</p>
-                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;opacity:0.32 !important;margin-right:8px;margin-top:6px;" type="checkbox" onclick="SuMTXTShowThis('Unavailable','rgba(104,64,217,0.74)','Dark Mode','Settings'); document.getElementById('DarkModeS').checked = false; return false;" id="DarkModeS" ></div>
+                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;opacity:0.32 !important;margin-right:8px;margin-top:6px;" type="checkbox" onclick="SuMTXTShowThis('Unavailable','var(--SuMThemeColorOP74)','Dark Mode','Settings'); document.getElementById('DarkModeS').checked = false; return false;" id="DarkModeS" ></div>
                                     <p style="font-size:82%;color:#808080;float:left;margin-left:36px;">Change SuM Theme to dark shades of color, This option is not recommended!</p>
                                 </div>
             <hr style="margin:0 auto !important;height:2px;border-width:0;color:rgb(0,0,0);background-color:rgb(0,0,0);width:calc(100% - 36px);opacity:0.06;margin:0px;margin-block:0px;margin-top:12px !important;margin-bottom:18px !important;border-radius:1px;margin:0 auto;" />
             <div class=""  style="vertical-align:middle;display:block !important;margin-top:12px !important;">
         <img src="/AccountETC/Noti.svg" style="width:auto;height:30px;display:inline;float:left;" />
         <p style="color:#1d1d1d;display:inline;float:left;margin:8px;font-size:112%;margin-top:4px;">Get The latest</p>
-        <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:36px;height:18px;float:right;opacity:0.32 !important;margin-right:8px;margin-top:6px;" onclick="SuMTXTShowThis('Unavailable','rgba(104,64,217,0.74)','Get The latest','Settings'); document.getElementById('GetTheLatest').checked = false; return false;" type="checkbox" id="GetTheLatest" ></div>
+        <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:36px;height:18px;float:right;opacity:0.32 !important;margin-right:8px;margin-top:6px;" onclick="SuMTXTShowThis('Unavailable','var(--SuMThemeColorOP74)','Get The latest','Settings'); document.getElementById('GetTheLatest').checked = false; return false;" type="checkbox" id="GetTheLatest" ></div>
                <p style="font-size:82%;color:#808080;float:left;margin-left:36px;">Get The latest News about mangas in general</p>
             </div>
     </div>
@@ -362,8 +372,8 @@
         </div>
             <div class="" style="background-color:#f2f2f2 !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:280px !important;padding-left:8px !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.1.4 Beta</p>
-                <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:#ffffff;background: rgba(104,64,217,0.62);border-color: rgb(104,64,217);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.1.5 Beta</p>
+                <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:#ffffff;background: var(--SuMThemeColorOP62);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:0px;width:100%;height:164px;"></p>
                 <!-- <a style="width:80vw;height:26vh;background-color:#000;display:block;position:fixed !important;margin-top:32vh;top:0;z-index:1999 !important;pointer-events:all !important;" onclick="androidAPIs.SUMVerification();" ></a> -->
@@ -448,11 +458,12 @@
                 }, 360);
             }
         };
-            function DeleteSuMCache() {
-                caches.delete('SuMMangaCache').then(function (boolean) { });
-                document.getElementById('ClearCacheBTN').style.background = 'rgba(0,0,0,0.16)';
-                CacheInfoLoading();
-            };
+        function DeleteSuMCache() {
+            caches.delete('SuMMangaCache').then(function (boolean) { });
+            androidAPIs.DeleteSuMCache();
+            document.getElementById('ClearCacheBTN').style.background = 'rgba(0,0,0,0.16)';
+            CacheInfoLoading();
+        };
             var PerModeSwitchElm = document.getElementById('<%= PerformanceModeCB.ClientID %>');
             function TurnPreModeOn() {
                 document.getElementById('<%= EnablePreMode.ClientID %>').click();

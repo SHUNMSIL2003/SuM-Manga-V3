@@ -62,7 +62,7 @@ namespace SuM_Manga_V3
             if (path.Contains("Explore") == true || string.IsNullOrEmpty(path) == true || path == "/")
             {
                 foundit = true;
-                ExpIMG.Attributes["src"] = "/svg/Explore.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#6840D9;height:19px !important;text-align:center !important;display:block;position:relative;";
+                ExpIMG.Attributes["src"] = "/svg/Explore.svg"; ExpText.Attributes["style"] = "font-size:64%;color:var(--SuMThemeColor);height:19px !important;text-align:center !important;display:block;position:relative;";
                 LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
                 SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
             }
@@ -70,7 +70,7 @@ namespace SuM_Manga_V3
             {
                 foundit = true;
                 ExpIMG.Attributes["src"] = "/svg/ExploreNA.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
-                LibIMG.Attributes["src"] = "/svg/bookmarks.svg"; LibText.Attributes["style"] = "font-size:64%;color:#6840D9;height:19px !important;text-align:center !important;display:block;position:relative;";
+                LibIMG.Attributes["src"] = "/svg/bookmarks.svg"; LibText.Attributes["style"] = "font-size:64%;color:var(--SuMThemeColor);height:19px !important;text-align:center !important;display:block;position:relative;";
                 SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
             }
             if (path.Contains("Settings"))
@@ -78,7 +78,7 @@ namespace SuM_Manga_V3
                 foundit = true;
                 ExpIMG.Attributes["src"] = "/svg/ExploreNA.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
                 LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
-                SetIMG.Attributes["src"] = "/svg/settings.svg"; SetText.Attributes["style"] = "font-size:64%;color:#6840D9;height:19px !important;text-align:center !important;display:block;position:relative;";
+                SetIMG.Attributes["src"] = "/svg/settings.svg"; SetText.Attributes["style"] = "font-size:64%;color:var(--SuMThemeColor);height:19px !important;text-align:center !important;display:block;position:relative;";
             }
             if (path.Contains("Hits") == true)
             {
@@ -86,11 +86,11 @@ namespace SuM_Manga_V3
                 ExpIMG.Attributes["src"] = "/svg/ExploreNA.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
                 LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
                 SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#636166;height:19px !important;text-align:center !important;display:block;position:relative;";
-                HitsIMG.Attributes["src"] = "/svg/MostSeen.svg"; HitsTEXT.Attributes["style"] = "font-size:64%;color:#6840D9;height:19px !important;text-align:center !important;display:block;position:relative;";
+                HitsIMG.Attributes["src"] = "/svg/MostSeen.svg"; HitsTEXT.Attributes["style"] = "font-size:64%;color:var(--SuMThemeColor);height:19px !important;text-align:center !important;display:block;position:relative;";
             }
             /*if (path.Contains("smth") == true) 
             {
-                ExpIMG.Attributes["src"] = "/svg/Explore.svg"; ExpText.Attributes["style"] = "font-size:64%;color:#6840D9;height:2vh !important;text-align:center !important;display:block;position:relative;";
+                ExpIMG.Attributes["src"] = "/svg/Explore.svg"; ExpText.Attributes["style"] = "font-size:64%;color:var(--SuMThemeColor);height:2vh !important;text-align:center !important;display:block;position:relative;";
                 LibIMG.Attributes["src"] = "/svg/bookmarksNA.svg"; LibText.Attributes["style"] = "font-size:64%;color:#a3a3a3;height:2vh !important;text-align:center !important;display:block;position:relative;";
                 SetIMG.Attributes["src"] = "/svg/settingsNA.svg"; SetText.Attributes["style"] = "font-size:64%;color:#a3a3a3;height:2vh !important;text-align:center !important;display:block;position:relative;";
             }*/
@@ -164,7 +164,7 @@ namespace SuM_Manga_V3
             {
                 string ThemeColor = string.Empty;
                 if (Request.QueryString["TC"] != null) { ThemeColor = Request.QueryString["TC"].ToString().Replace("0.74", "0.92"); }
-                if (string.IsNullOrEmpty(ThemeColor) == true || ThemeColor.Contains("255,255,255") == true) { ThemeColor = "rgba(104,64,217,0.92)"; }
+                if (string.IsNullOrEmpty(ThemeColor) == true || ThemeColor.Contains("255,255,255") == true) { ThemeColor = "var(--SuMThemeColorOP92)"; }
                 SuMUserNofifications.Attributes["style"] = "animation-duration:0.36s !important;background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:block;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;margin-left:-100vw !important;";
                 int ID = Convert.ToInt32(GetUserInfoCookie2["ID"].ToString());
                 string UserName = GetUserInfoCookie2["UserName"].ToString();
@@ -521,7 +521,7 @@ namespace SuM_Manga_V3
             string cn = ChaptersNum.ToString();
             CExplorerLink += "&CN=" + cn + "&VC=" + id;
             string figureclass = "imghvr-fade box";//width:160px;
-            string figurestyle = "margin-left:2.6px;margin-right:2.6px;margin-top:3px;width:136px;height:204px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;border:-2px solid #6840D9;";
+            string figurestyle = "margin-left:2.6px;margin-right:2.6px;margin-top:3px;width:136px;height:204px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;border:-2px solid var(--SuMThemeColor);";
             string astyle = "border-radius:10px;margin:10px;width:142px;";//mw
             //string vstyle = "margin-left:4px;width:24px;height:24px;position:relative;z-index:1;display:block;";
             //string vimage = "/storeitems/view.png";

@@ -22,6 +22,26 @@
             androidAPIs.SetSuMHardwareExl();
         }
 </script>
+    <style>
+            :root {
+                --SuMBack: rgb(242,242,242);
+                --SuMCardBack: rgb(255,255,255);
+                --SuMThemeColor: rgb(104,64,217);
+                --SuMThemeColorOP94: rgba(104,64,217,0.940);
+                --SuMThemeColorOP92: rgba(104,64,217,0.920);
+                --SuMThemeColorOP86: rgba(104,64,217,0.860);
+                --SuMThemeColorOP84: rgba(104,64,217,0.840);
+                --SuMThemeColorOP74: rgba(104,64,217,0.740);
+                --SuMThemeColorOP64: rgba(104,64,217,0.640);
+                --SuMThemeColorOP62: rgba(104,64,217,0.620);
+                --SuMThemeColorOP54: rgba(104,64,217,0.540);
+                --SuMThemeColorOP32: rgba(104,64,217,0.320);
+                --SuMThemeColorOP14: rgba(104,64,217,0.140);
+                --SuMThemeColorOP08: rgba(104,64,217,0.080);
+                --SuMThemeColorOP00: rgba(104,64,217,0.000);
+                --SuMThemeColorSec: rgb(136, 136, 136);
+            }
+    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Register - SuM Manga</title>
@@ -230,13 +250,13 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" style="border-radius:14px;" type="password" id="PasswordR" placeholder="Password" name="password" runat="server"></div>
                                     <div class="col-sm-6"><input class="form-control form-control-user" style="border-radius:14px;" type="password" id="PasswordRc" placeholder="Repeat Password" name="password_repeat" runat="server"></div>
                                     <div style="text-align:center;"><p style="color:red;" id="PasswordSWM" runat="server"></p></div>
-                                </div><asp:Button CssClass="btn btn-primary d-block btn-user w-100" style="background: rgb(104,64,217);border-radius:14px;" runat="server" OnClick="RegisterProsss" Text="Register Account" />
-                                <!-- <button class="btn btn-primary d-block btn-user w-100" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" type="submit" style="background: rgb(104,64,217);" runat="server">Register Account</button> -->
+                                </div><asp:Button CssClass="btn btn-primary d-block btn-user w-100" style="background: var(--SuMThemeColor);border-radius:14px;" runat="server" OnClick="RegisterProsss" Text="Register Account" />
+                                <!-- <button class="btn btn-primary d-block btn-user w-100" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" type="submit" style="background: var(--SuMThemeColor);" runat="server">Register Account</button> -->
                                 <hr><a style="border-radius:14px;" class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Register with Google</a><a style="border-radius:14px;" class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Register with Facebook</a>
                                 <hr>
                             </div>
-                            <div class="text-center"><a class="small" href="../AccountETC/PassRecovryETC.aspx" style="color: rgb(104,64,217);">Forgot Password?</a></div>
-                            <div class="text-center"><a class="small" href="../AccountETC/LoginETC.aspx" style="color: rgb(104,64,217);">Already have an account? Login!</a></div>
+                            <div class="text-center"><a class="small" href="../AccountETC/PassRecovryETC.aspx" style="color: var(--SuMThemeColor);">Forgot Password?</a></div>
+                            <div class="text-center"><a class="small" href="../AccountETC/LoginETC.aspx" style="color: var(--SuMThemeColor);">Already have an account? Login!</a></div>
                         </div>
                     </div>
                 </div>
@@ -257,8 +277,8 @@
 
             });
     </script>
-        <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
-            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100vw !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+        <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:var(--SuMThemeColor) !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100vw !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMThemeColor) !important;bottom:0 !important;overflow:clip;background-color:var(--SuMThemeColor) !important;">
                  <div style="text-align:center;" class="text-center">
                     <p class="lead animated fadeIn" style="margin-top:6px;font-size:140%;color:#FFFFFF !important;">You are offline!</p>
                     <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Login is not avalibe...</b></p>

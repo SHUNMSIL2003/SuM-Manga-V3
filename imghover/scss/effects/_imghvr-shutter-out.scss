@@ -3,7 +3,7 @@
 [class^="imghvr-shutter-out-"],
 [class*=" imghvr-shutter-out-"] {
   &:before {
-    background:#6840D9;
+    background:var(--SuMThemeColor);
     position: absolute;
     content: "";
     transition-delay: $transition-duration * 0.3;

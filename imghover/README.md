@@ -63,7 +63,7 @@ For example, to change out the `background-color` and `color` for the `<figcapti
   //
   // Copy variables from `_variables.scss` to this file to override default values without modifying source files.
   
- #6840D9:  #1a480a; // Green
+ var(--SuMThemeColor):  #1a480a; // Green
   $text-color:     #9C3636; // Red
   ```
 
@@ -73,11 +73,11 @@ You can find and customize these variables in the `_variables.scss` file.
 
 | Variable                    | Values                             | Description                                                                            |
 | --------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------- |
-| `#6840D9`                   | `#6840D9` (default), or any valid CSS color value | Specifies the `background-color` for the image.                           |
-| `$figcaption-bg`           | `#6840D9` (default), or any valid CSS color value        | Specifies the `background-color` for the figcaption element.                       |
+| `var(--SuMThemeColor)`                   | `var(--SuMThemeColor)` (default), or any valid CSS color value | Specifies the `background-color` for the image.                           |
+| `$figcaption-bg`           | `var(--SuMThemeColor)` (default), or any valid CSS color value        | Specifies the `background-color` for the figcaption element.                       |
 | `$figcaption-padding`           | `30px` (default), or any length or percentage        | Sets the `padding` on the figcaption element.                         |
 | `$text-color`         | `#ffffff` (default), or any valid CSS color value       | Sets the text `color` for the figcaption element and any child `<h*> elements`.      |
-| `#6840D9`       | `#ffffff` (default), or any valid CSS color value        | Sets the text `border-color` for ...                                |
+| `var(--SuMThemeColor)`       | `#ffffff` (default), or any valid CSS color value        | Sets the text `border-color` for ...                                |
 | `$border-margin` | `5px` (default), or any valid length        | ...                                                                                    |
 | `$border-width`      | `4px` (default), or any valid length        | ...     |
 | `$transition-duration`      | `0.35s` (default), or any valid time value        | Sets the transition duration for the animation.                                |

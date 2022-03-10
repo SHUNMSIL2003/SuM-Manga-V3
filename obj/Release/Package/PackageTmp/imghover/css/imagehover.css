@@ -14,7 +14,7 @@
     display: inline-block;
     margin: 0;
     max-width: 100%;
-    background-color: #6840D9;
+    background-color: var(--SuMThemeColor);
      
     border-radius: 10px;
     color: #fff;
@@ -34,7 +34,7 @@
 
 [class^="imghvr-"] figcaption,
 [class*=" imghvr-"] figcaption {
-        background-color: #6840D9;
+        background-color: var(--SuMThemeColor);
          
         padding: 30px;
         position: absolute;
@@ -269,7 +269,7 @@
     right: 0;
     border-radius: 10px;
     content: "";
-    background-color: #6840D9;
+    background-color: var(--SuMThemeColor);
      
 }
 
@@ -574,7 +574,7 @@
    ----------------------------- */
 [class^="imghvr-shutter-out-"]:before,
 [class*=" imghvr-shutter-out-"]:before {
-    background: #6840D9;
+    background: var(--SuMThemeColor);
      
     border-radius: 10px;
     position: absolute;
@@ -664,7 +664,7 @@
 [class^="imghvr-shutter-in-"]:after, [class^="imghvr-shutter-in-"]:before,
 [class*=" imghvr-shutter-in-"]:after,
 [class*=" imghvr-shutter-in-"]:before {
-    background: #6840D9;
+    background: var(--SuMThemeColor);
      
     border-radius: 10px;
     position: absolute;
@@ -866,7 +866,7 @@
    ----------------------------- */
 [class^='imghvr-pivot-in'] figcaption,
 [class*=' imghvr-pivot-in'] figcaption {
-    background-color: #6840D9;
+    background-color: var(--SuMThemeColor);
      
     border-radius: 10px;
 }
@@ -923,7 +923,7 @@
 
 [class^='imghvr-pivot-out'] figcaption,
 [class*=' imghvr-pivot-out'] figcaption {
-    background-color: #6840D9;
+    background-color: var(--SuMThemeColor);
      
     border-radius: 10px;
     z-index: -1;
@@ -1371,7 +1371,7 @@
     [class^='imghvr-fall-away-'] figcaption,
     [class*=' imghvr-fall-away-'] figcaption {
         opacity: 0;
-        background-color: #6840D9;
+        background-color: var(--SuMThemeColor);
         border-radius: 10px;
     }
 

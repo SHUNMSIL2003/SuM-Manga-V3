@@ -45,8 +45,8 @@
             box-shadow: none !important;
         }
         input[type=text]::-ms-clear {
-            border: 2px solid #6840D9 !important;
-            color:#6840D9 !important;
+            border: 2px solid var(--SuMThemeColor) !important;
+            color:var(--SuMThemeColor) !important;
             background-color:transparent !important;
         }
         </style>

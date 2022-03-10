@@ -518,7 +518,7 @@ namespace SuM_Manga_V3
             string cn = ChaptersNum.ToString();
             CExplorerLink += "&CN=" + cn + "&VC=" + id;
             string figureclass = "imghvr-fade box";//width:160px;
-            string figurestyle = "margin-left:2.6px;margin-right:2.6px;margin-top:3px;width:136px;height:204px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;border:-2px solid #6840D9;";
+            string figurestyle = "margin-left:2.6px;margin-right:2.6px;margin-top:3px;width:136px;height:204px;border-radius:10px;border-top-left-radius:10px;border-bottom-right-radius:10px;border:-2px solid var(--SuMThemeColor);";
             string astyle = "border-radius:10px;margin:10px;width:142px;";//mw
             //string vstyle = "margin-left:4px;width:24px;height:24px;position:relative;z-index:1;display:block;";
             //string vimage = "/storeitems/view.png";

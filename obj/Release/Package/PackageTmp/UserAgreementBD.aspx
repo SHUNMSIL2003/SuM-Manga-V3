@@ -6,7 +6,7 @@
     </script>
     <style>
         .forcecolor {
-            color:#6840D9 !important;
+            color:var(--SuMThemeColor) !important;
         }
         img {
             pointer-events: none;

@@ -5,7 +5,7 @@
   &:before {
     @include fill;
     content: "";
-    background-color:#6840D9;
+    background-color:var(--SuMThemeColor);
   }
 
   figcaption {

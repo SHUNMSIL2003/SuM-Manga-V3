@@ -2,7 +2,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
         .forcecolor {
-            color:#6840D9 !important;
+            color:var(--SuMThemeColor) !important;
         }
         body {
             overflow: hidden; /* Hide scrollbars */

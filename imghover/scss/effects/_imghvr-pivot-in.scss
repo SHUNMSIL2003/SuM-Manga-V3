@@ -3,7 +3,7 @@
 [class^='imghvr-pivot-in'], 
 [class*=' imghvr-pivot-in'] { 
 	figcaption {
-		background-color:#6840D9;
+		background-color:var(--SuMThemeColor);
 	}
 	&:hover {
 		figcaption {

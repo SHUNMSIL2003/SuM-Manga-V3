@@ -26,7 +26,7 @@ namespace SuM_Manga_V3.UploadConsole
         protected void LoadUploads(string CreatorName,int CID)
         {
             ADDB.Attributes["style"] = "display:none;";
-            upl.Attributes["style"] = "color:#6840D9;margin-left:12px;";
+            upl.Attributes["style"] = "color:var(--SuMThemeColor);margin-left:12px;";
             dra.Attributes["style"] = "color:#636166;";
             inp.Attributes["style"] = "color:#636166;margin-right:12px;";
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
@@ -85,9 +85,9 @@ namespace SuM_Manga_V3.UploadConsole
         protected void LoadDrafs(string CreatorName,int CID)
         {
             upl.Attributes["style"] = "color:#636166;margin-left:12px;";
-            dra.Attributes["style"] = "color:#6840D9;";
+            dra.Attributes["style"] = "color:var(--SuMThemeColor);";
             inp.Attributes["style"] = "color:#636166;margin-right:12px;";
-            ADDB.Attributes["style"] = "background-color:#6840D9;color:#ffffff;border-radius:16px;height:fit-content;width:fit-content;font-size:160%;";
+            ADDB.Attributes["style"] = "background-color:var(--SuMThemeColor);color:#ffffff;border-radius:16px;height:fit-content;width:fit-content;font-size:160%;";
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 string q = "SELECT Drafs FROM SuMCreators WHERE UserID=@CID";
@@ -100,8 +100,8 @@ namespace SuM_Manga_V3.UploadConsole
         {
             upl.Attributes["style"] = "color:#636166;margin-left:12px;";
             dra.Attributes["style"] = "color:#636166;";
-            inp.Attributes["style"] = "color:#6840D9;margin-right:12px;";
-            ADDB.Attributes["style"] = "background-color:#6840D9;color:#ffffff;border-radius:16px;height:fit-content;width:fit-content;font-size:160%;";
+            inp.Attributes["style"] = "color:var(--SuMThemeColor);margin-right:12px;";
+            ADDB.Attributes["style"] = "background-color:var(--SuMThemeColor);color:#ffffff;border-radius:16px;height:fit-content;width:fit-content;font-size:160%;";
         }
         protected string BuildRestCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink)
         {

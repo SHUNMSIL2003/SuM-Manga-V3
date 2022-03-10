@@ -25,7 +25,26 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6840d9"><link rel="shortcut icon" href="/favicon.ico"><meta name="apple-mobile-web-app-title" content="SuM Manga"><meta name="application-name" content="SuM Manga"><meta name="msapplication-TileColor" content="#f2f2f2"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><meta name="theme-color" content="#f2f2f2"><meta name="msapplication-TileColor" content="#f2f2f2"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" href="/assets/img/any_icon_x180.png"><link rel="apple-touch-icon" sizes="152x152" href="/ios/152.png"><link rel="apple-touch-icon" sizes="167x167" href="/ios/167.png"><link rel="apple-touch-icon" sizes="100x100" href="/ios/100.png"><link rel="apple-touch-icon" sizes="1024x1024" href="/ios/1024.png"><link rel="apple-touch-icon" sizes="114x114" href="/ios/114.png"><link rel="apple-touch-icon" sizes="120x120" href="/ios/120.png"><link rel="apple-touch-icon" sizes="128x128" href="/ios/128.png"><link rel="apple-touch-icon" sizes="144x144" href="/ios/144.png"><link rel="apple-touch-icon" sizes="16x16" href="/ios/16.png"><link rel="apple-touch-icon" sizes="192x192" href="/ios/192.png"><link rel="apple-touch-icon" sizes="20x20" href="/ios/20.png"><link rel="apple-touch-icon" sizes="256x256" href="/ios/256.png"><link rel="apple-touch-icon" sizes="29x29" href="/ios/29.png"><link rel="apple-touch-icon" sizes="32x32" href="/ios/32.png"><link rel="apple-touch-icon" sizes="40x40" href="/ios/40.png"><link rel="apple-touch-icon" sizes="50x50" href="/ios/50.png"><link rel="apple-touch-icon" sizes="512x512" href="/ios/512.png"><link rel="apple-touch-icon" sizes="57x57" href="/ios/57.png"><link rel="apple-touch-icon" sizes="58x58" href="/ios/58.png"><link rel="apple-touch-icon" sizes="60x60" href="/ios/60.png"><link rel="apple-touch-icon" sizes="64x64" href="/ios/64.png"><link rel="apple-touch-icon" sizes="72x72" href="/ios/72.png"><link rel="apple-touch-icon" sizes="76x76" href="/ios/76.png"><link rel="apple-touch-icon" sizes="80x80" href="/ios/80.png"><link rel="apple-touch-icon" sizes="87x87" href="/ios/87.png"><link href="/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"><link href="/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"><link href="/splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"><link href="/splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image"><link href="/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image"><link href="/splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"><link href="/splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image"><link href="/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"><link href="/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"><link href="/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"><link href="/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
     <!--  VALID PWA END  -->
 
-
+        <style>
+            :root {
+                --SuMBack: rgb(242,242,242);
+                --SuMCardBack: rgb(255,255,255);
+                --SuMThemeColor: rgb(104,64,217);
+                --SuMThemeColorOP94: rgba(104,64,217,0.940);
+                --SuMThemeColorOP92: rgba(104,64,217,0.920);
+                --SuMThemeColorOP86: rgba(104,64,217,0.860);
+                --SuMThemeColorOP84: rgba(104,64,217,0.840);
+                --SuMThemeColorOP74: rgba(104,64,217,0.740);
+                --SuMThemeColorOP64: rgba(104,64,217,0.640);
+                --SuMThemeColorOP62: rgba(104,64,217,0.620);
+                --SuMThemeColorOP54: rgba(104,64,217,0.540);
+                --SuMThemeColorOP32: rgba(104,64,217,0.320);
+                --SuMThemeColorOP14: rgba(104,64,217,0.140);
+                --SuMThemeColorOP08: rgba(104,64,217,0.080);
+                --SuMThemeColorOP00: rgba(104,64,217,0.000);
+                --SuMThemeColorSec: rgb(136, 136, 136);
+            }
+    </style>
 </head>
 
 <body class="bg-gradient-primary" style="background: rgb(242,242,242);">
@@ -141,12 +160,12 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4" style="color:rgba(104,64,217,0.92) !important;"><b>Installing our App is required to use SuM!</b></h4>
+                                        <h4 class="text-dark mb-4" style="color:var(--SuMThemeColorOP92) !important;"><b>Installing our App is required to use SuM!</b></h4>
                                     </div>
                                     <div class="user">
                                         <p class="text-dark animated fadeIn" style="font-size:122%;width:100%;text-align:center;margin-top:32px;color:#000000f0;margin-bottom:20px;margin-top:54px;"><img class="animated pulse" src="/svg/androidlogo.svg" style="width:32px;height:32px;display:inline;"> Only on Android!</p>
                                         <form runat="server">
-                                            <a style="background:rgba(104,64,217,0.92);border-color: rgba(104,64,217,0.92);border-radius:14px;margin-bottom:22px;" class="btn btn-primary d-block btn-user w-100 animated fadeIn" href="SuM-Manga-330.apk">Download</a>
+                                            <a style="background:var(--SuMThemeColorOP92);border-color: var(--SuMThemeColorOP92);border-radius:14px;margin-bottom:22px;" class="btn btn-primary d-block btn-user w-100 animated fadeIn" href="SuM-Manga-331.apk">Download</a>
                                         </form>
                                         <hr>
                                         <p class="text-btn-dark animated fadeIn" style="width:100%;font-size:98%;text-align:center;margin-top:32px;margin-bottom:2px;"><img src="/svg/ioslogo.svg" style="width:32px;height:32px;display:inline;"> IOS is comming soon!</p>
@@ -170,8 +189,8 @@
 
             });
         </script>
-        <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
-            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100vw !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+        <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:var(--SuMThemeColor) !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100vw !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMThemeColor) !important;bottom:0 !important;overflow:clip;background-color:var(--SuMThemeColor) !important;">
                  <div style="text-align:center;" class="text-center">
                     <p class="lead animated fadeIn" style="margin-top:6px;font-size:140%;color:#FFFFFF !important;">You are offline!</p>
                     <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Login is not avalibe ...</b></p>

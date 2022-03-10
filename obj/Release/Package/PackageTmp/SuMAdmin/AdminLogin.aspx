@@ -9,7 +9,7 @@
     <meta charset="utf-8" runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Login - SuM Manga</title>
-    <meta name="theme-color" content="rgb(104,64,217)">
+    <meta name="theme-color" content="var(--SuMThemeColor)">
     <meta name="description" content="Shun Manga Shop">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../assets/img/SuM-180.png?h=470ab06da498d6fc442f5928b61025aa">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/SuM-16.png?h=0feb0de48de04a3db9816426bc4d5316">
@@ -28,7 +28,7 @@
     <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
 </head>
 
-<body class="bg-gradient-primary" style="background: rgb(104,64,217);">
+<body class="bg-gradient-primary" style="background: var(--SuMThemeColor);">
     <style>
          * {
              -moz-user-select: none;
@@ -107,8 +107,8 @@
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" checked="checked" id="formCheck-1"><label id="rem" runat="server" class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
                                             </div> 
-                                        </div><!-- <button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: rgb(104,64,217);" onclick="LoginToSuM" runat="server">Login</button> -->
-                                        <asp:Button CssClass="btn btn-primary d-block btn-user w-100" style="background: rgb(104,64,217);border-color: rgb(104,64,217);" OnClick="LoginToSuM" runat="server" Text="Login" />
+                                        </div><!-- <button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: var(--SuMThemeColor);" onclick="LoginToSuM" runat="server">Login</button> -->
+                                        <asp:Button CssClass="btn btn-primary d-block btn-user w-100" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);" OnClick="LoginToSuM" runat="server" Text="Login" />
                                         <hr>
                                     </div>
                                 </div>

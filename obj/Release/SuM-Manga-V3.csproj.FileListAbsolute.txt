@@ -99,8 +99,8 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Text.Encodings.Web.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Threading.Tasks.Extensions.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.ValueTuple.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Optimization.xml
+D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.AssemblyReference.cache
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.CoreCompileInputs.cache
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.CopyComplete
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.pdb
-D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.AssemblyReference.cache

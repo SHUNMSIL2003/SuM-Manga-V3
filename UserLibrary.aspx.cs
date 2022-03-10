@@ -42,13 +42,13 @@ namespace SuM_Manga_V3
                             LoadReqContant("Curr", UID);
                             if (IsPostBack == false)
                             {
-                                cr.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:rgb(104,64,217,0.94);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(255,255,255,0.96);";
+                                cr.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:var(--SuMThemeColor);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(255,255,255,0.96);";
                                 if (GetPerModeInfoCookie == null)
                                 {
                                     cr.Attributes["class"] = "animated pulse";
                                 }
-                                wr.Attributes["style"] = "display:inline-block;background-color:rgb(104,64,217,0);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
-                                mf.Attributes["style"] = "display:inline-block;background-color:rgb(104,64,217,0);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
+                                wr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
+                                mf.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
                                 InfoAboutC.InnerHtml = "This library is to ease access to the mangas you are currently reading and track your process, you can <b>add mangas by clicking the " + '"'.ToString() + "Start Reading" + '"'.ToString() + " button</b> in the desired manga page.";
                             }
                         }
@@ -59,13 +59,13 @@ namespace SuM_Manga_V3
                                 LoadReqContant("Fav", UID);
                                 if (IsPostBack == false)
                                 {
-                                    mf.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:rgb(104,64,217,0.94);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(255,255,255,0.96);";
+                                    mf.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:var(--SuMThemeColor);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(255,255,255,0.96);";
                                     if (GetPerModeInfoCookie == null)
                                     {
                                         mf.Attributes["class"] = "animated pulse";
                                     }
-                                    cr.Attributes["style"] = "display:inline-block;background-color:rgb(104,64,217,0);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
-                                    wr.Attributes["style"] = "display:inline-block;background-color:rgb(104,64,217,0);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
+                                    cr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
+                                    wr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
                                     string FavIMG = "<img style=" + '"'.ToString() + "display:inline !important;width:20px;height:20px;margin:0 auto;" + '"'.ToString() + " src=" + '"'.ToString() + "/svg/favoriteTBlack.svg" + '"'.ToString() + " />";
                                     InfoAboutC.InnerHtml = "This library is to ease access to your favorite mangas, you can <b>add mangas by clicking the " + '"'.ToString() + "" + FavIMG + "" + '"'.ToString() + " button</b> in the desired manga page.";
                                 }
@@ -75,13 +75,13 @@ namespace SuM_Manga_V3
                                 LoadReqContant("Wanna", UID);
                                 if (IsPostBack == false)
                                 {
-                                    wr.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:rgb(104,64,217,0.94);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(255,255,255,0.96);";
+                                    wr.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:var(--SuMThemeColor);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(255,255,255,0.96);";
                                     if (GetPerModeInfoCookie == null)
                                     {
                                         wr.Attributes["class"] = "animated pulse";
                                     }
-                                    cr.Attributes["style"] = "display:inline-block;background-color:rgb(104,64,217,0);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
-                                    mf.Attributes["style"] = "display:inline-block;background-color:rgb(104,64,217,0);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
+                                    cr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
+                                    mf.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:rgba(0,0,0,0.60);";
                                     string AddIMG = "<img style=" + '"'.ToString() + "display:inline !important;width:20px;height:20px;margin:0 auto;" + '"'.ToString() + " src=" + '"'.ToString() + "/svg/addTBlack.svg" + '"'.ToString() + " />";
                                     InfoAboutC.InnerHtml = "This library is to access mangas that peaked your interest, you can <b>add mangas by clicking the " + '"'.ToString() + "" + AddIMG + "" + '"'.ToString() + " button</b> in the desired manga page.";
                                 }
@@ -397,7 +397,7 @@ namespace SuM_Manga_V3
             if (fail == true)
             {
                 //Response.Redirect("~/404.aspx");
-                ShowReqContant.InnerHtml = "<p style=" + '"'.ToString() + "color:rgb(104,64,217,0.74);font-size:112%;width:100%;text-align:center;margin:0 auto !important;margin-top:36px !important;" + '"'.ToString() + ">Nothing Yet!</p>";
+                ShowReqContant.InnerHtml = "<p style=" + '"'.ToString() + "color:var(--SuMThemeColorOP74);font-size:112%;width:100%;text-align:center;margin:0 auto !important;margin-top:36px !important;" + '"'.ToString() + ">Nothing Yet!</p>";
             }
         }
         protected string BuildCurrCard(string MangaName, string MangaTheme, string ExplorerLink, string chapter,string CoverLink,string MangaCreator,int MangaID) 
@@ -484,6 +484,15 @@ namespace SuM_Manga_V3
             HttpCookie GetUserInfoCookie = new HttpCookie("SuMCurrentUser");
             GetUserInfoCookie.Expires = DateTime.Now.AddDays(-100);
             Response.Cookies.Add(GetUserInfoCookie);
+            HttpCookie SetInfo = new HttpCookie("SuMPerformanceMode");
+            SetInfo.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(SetInfo);
+            HttpCookie SetInfo2 = new HttpCookie("SuMLockMode");
+            SetInfo2.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(SetInfo2);
+            HttpCookie userInfo0 = new HttpCookie("SuMUserThemeColor");
+            userInfo0.Expires = DateTime.Now.AddDays(-100);
+            HttpContext.Current.Response.Cookies.Add(userInfo0);
         }
     }
 }

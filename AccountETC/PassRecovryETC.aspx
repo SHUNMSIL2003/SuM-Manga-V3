@@ -22,6 +22,26 @@
             androidAPIs.SetSuMHardwareExl();
         }
 </script>
+    <style>
+            :root {
+                --SuMBack: rgb(242,242,242);
+                --SuMCardBack: rgb(255,255,255);
+                --SuMThemeColor: rgb(104,64,217);
+                --SuMThemeColorOP94: rgba(104,64,217,0.940);
+                --SuMThemeColorOP92: rgba(104,64,217,0.920);
+                --SuMThemeColorOP86: rgba(104,64,217,0.860);
+                --SuMThemeColorOP84: rgba(104,64,217,0.840);
+                --SuMThemeColorOP74: rgba(104,64,217,0.740);
+                --SuMThemeColorOP64: rgba(104,64,217,0.640);
+                --SuMThemeColorOP62: rgba(104,64,217,0.620);
+                --SuMThemeColorOP54: rgba(104,64,217,0.540);
+                --SuMThemeColorOP32: rgba(104,64,217,0.320);
+                --SuMThemeColorOP14: rgba(104,64,217,0.140);
+                --SuMThemeColorOP08: rgba(104,64,217,0.080);
+                --SuMThemeColorOP00: rgba(104,64,217,0.000);
+                --SuMThemeColorSec: rgb(136, 136, 136);
+            }
+    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Forgotten Password - SuM Manga</title>
@@ -228,20 +248,20 @@
                                             <input style="display:none;border-radius:14px;" class="form-control form-control-user" type="password" id="PasswordRes" placeholder="New Password" name="password" runat="server">
                                             <input style="display:none;border-radius:14px;" class="form-control form-control-user" type="password" id="PasswordResC" placeholder="New Password Confirm" name="passwordconf" runat="server">
                                             <p id="errormsg" runat="server" style="color:red;"></p>
-                                            <p style="display:none;color:rgb(104,64,217);" id="SuMRP" runat="server"></p>
+                                            <p style="display:none;color:var(--SuMThemeColor);" id="SuMRP" runat="server"></p>
                                             <p id="debug454540d2" runat="server"></p>
                                             <br />
-                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnP" Visible="true" runat="server" OnClick="PassResetStart" style="background: rgb(104,64,217);border-radius:14px;" Text="Reset Password" />
-                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnC" Visible="false" runat="server" OnClick="ConfirmCode" style="background: rgb(104,64,217);border-radius:14px;" Text="Confirm Code" />
-                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnS" Visible="false" runat="server" OnClick="SaveNewPass" style="background: rgb(104,64,217);border-radius:14px;" Text="Change Password" />
+                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnP" Visible="true" runat="server" OnClick="PassResetStart" style="background: var(--SuMThemeColor);border-radius:14px;" Text="Reset Password" />
+                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnC" Visible="false" runat="server" OnClick="ConfirmCode" style="background: var(--SuMThemeColor);border-radius:14px;" Text="Confirm Code" />
+                                            <asp:Button CssClass="btn btn-primary d-block btn-user w-100" ID="BtnS" Visible="false" runat="server" OnClick="SaveNewPass" style="background: var(--SuMThemeColor);border-radius:14px;" Text="Change Password" />
                                             
-                                       <!-- <button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: rgb(104,64,217);" runat="server">Reset Password</button> -->
+                                       <!-- <button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: var(--SuMThemeColor);" runat="server">Reset Password</button> -->
                                         </div>
                                     </form>
                                     <div class="text-center">
-                                        <hr><a class="small" href="../AccountETC/RegisterETC.aspx" style="color: rgb(104,64,217);">Create an Account!</a>
+                                        <hr><a class="small" href="../AccountETC/RegisterETC.aspx" style="color: var(--SuMThemeColor);">Create an Account!</a>
                                     </div>
-                                    <div class="text-center"><a class="small" href="../AccountETC/LoginETC.aspx" style="color: rgb(104,64,217);">Already have an account? Login!</a></div>
+                                    <div class="text-center"><a class="small" href="../AccountETC/LoginETC.aspx" style="color: var(--SuMThemeColor);">Already have an account? Login!</a></div>
                                 </div>
                             </div>
                         </div>
@@ -264,8 +284,8 @@
 
         });
         </script>
-    <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:#6840D9 !important;bottom:0 !important;">
-            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100vw !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #6840D9 !important;bottom:0 !important;overflow:clip;background-color:#6840D9 !important;">
+    <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content;overflow:hidden !important;background-color:var(--SuMThemeColor) !important;bottom:0 !important;">
+            <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100vw !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMThemeColor) !important;bottom:0 !important;overflow:clip;background-color:var(--SuMThemeColor) !important;">
                  <div style="text-align:center;" class="text-center">
                     <p class="lead animated fadeIn" style="margin-top:6px;font-size:140%;color:#FFFFFF !important;">You are offline!</p>
                     <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Password reset is not avalibe...</b></p>

@@ -28,7 +28,7 @@
   display: inline-block;
   margin: 0;
   max-width: 100%;
-  background-color: #6840D9;
+  background-color: var(--SuMThemeColor);
   color: #fff;
   overflow: hidden;
   -webkit-backface-visibility: hidden;
@@ -42,7 +42,7 @@
   }
 
   figcaption {
-    background-color:#6840D9;
+    background-color:var(--SuMThemeColor);
     padding: $figcaption-padding;
     @include fill;
     color: $text-color;
