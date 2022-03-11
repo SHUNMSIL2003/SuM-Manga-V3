@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>SuM Manga</title>
-    <meta name="theme-color" content="rgb(242,242,242)">
+    <meta name="theme-color" content="var(--SuMDGray)">
     <meta name="description" content="Shun Manga Shop">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/img/SuM-180.png?h=470ab06da498d6fc442f5928b61025aa">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
@@ -112,7 +112,7 @@
 /* Track */
         ::-webkit-scrollbar-track {
             margin-top:26px !important;
-            background: #ffffff;
+            background: var(--SuMDWhite);
         }
  
 /* Handle */
@@ -175,7 +175,7 @@
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in PupShadow" aria-labelledby="searchDropdown">
                                     <div class="me-auto navbar-search w-100">
                                         <div class="input-group"><input class="bg-light form-control border-0 small" id="LookUpMobile" runat="server" type="text" placeholder="Search for ...">
-                                            <div class="input-group-append"><button class="btn btn-primary py-0" id="SerchBTN1" style="width:36px;height:36px;background-color:#ffffff;border-color:#ffffff;" runat="server" type="button"><i style="color:var(--SuMThemeColor);" class="fas fa-search"></i></button><!-- <asp:Button CssClass="btn btn-primary py-0" runat="server" Text="Serch for..." />--></div><!--                        a btn                       -->
+                                            <div class="input-group-append"><button class="btn btn-primary py-0" id="SerchBTN1" style="width:36px;height:36px;background-color:var(--SuMDWhite);border-color:var(--SuMDWhite);" runat="server" type="button"><i style="color:var(--SuMThemeColor);" class="fas fa-search"></i></button><!-- <asp:Button CssClass="btn btn-primary py-0" runat="server" Text="Serch for..." />--></div><!--                        a btn                       -->
                                         </div>
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@
 
                             <li class="nav-item dropdown no-arrow mx-1">                                                                                                                                                        <!--  fas fa-download fa-sm text-white-50 -->
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" ><span class="badge bg-danger badge-counter" id="Span1" runat="server">N</span><i class="fas fa-download fa-fw" style="color:#8a61ff"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in PupShadow" style="background-color:#ffffff;max-width:280px;">
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in PupShadow" style="background-color:var(--SuMDWhite);max-width:280px;">
                                         <h6 class="dropdown-header"><b>Install SuM Manga PWA App</b></h6>
                                         <div id="Div1" runat="server" style="height:fit-content;">
                                             <a class="dropdown-item d-flex align-items-center" href="#">

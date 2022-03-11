@@ -69,10 +69,10 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <meta name="apple-mobile-web-app-title" content="SuM Manga">
     <meta name="application-name" content="SuM Manga">
-    <meta name="msapplication-TileColor" content="#f2f2f2">
+    <meta name="msapplication-TileColor" content="var(--SuMDGray)">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#f2f2f2">
-    <meta name="msapplication-TileColor" content="#f2f2f2">
+    <meta name="theme-color" content="var(--SuMDGray)">
+    <meta name="msapplication-TileColor" content="var(--SuMDGray)">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -123,7 +123,7 @@
         body {
             width:100vw !important;
             height:100vh !important;
-            background-color:#ffffff !important;
+            background-color:var(--SuMDWhite) !important;
         }
 
 /* use a media query to filter small devices */
@@ -222,7 +222,7 @@
             }
             input[type=checkbox]:focus,
             input[type=submit]:focus {
-                box-shadow: inset 0 0px 0 #000 !important;
+                box-shadow: inset 0 0px 0 var(--SuMDBlack) !important;
             }
     </style>
     <script>
@@ -267,7 +267,7 @@
    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <body id="page-top" style="overflow:hidden !important;height:100vh;width:100vw;"> 
     <div onclick="document.getElementById('popup').style.display = 'none';" id="popup" style="">
-        <div class="animated slideInDown" style="width:fit-content !important; height:fit-content !important;background-color:rgb(242,242,242,0.6);display:block !important;float:left !important;">
+        <div class="animated slideInDown" style="width:fit-content !important; height:fit-content !important;background-color:var(--SuMDGrayOP60);display:block !important;float:left !important;">
             <p style="color:red;font-size:70%;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI, You can tap this popup to hide it!</p>
         </div>
     </div>
@@ -279,7 +279,7 @@
             scroll-behavior:smooth !important;
         }
         div {
-            box-shadow: 0px 0px #000000 !important;
+            box-shadow: 0px 0px var(--SuMDBlack) !important;
             overflow-x: hidden !important;
             font-family:VarelaRound !important;
         }
@@ -294,7 +294,7 @@
         ::-webkit-scrollbar-track {
             display:none !important;/*
             margin-top:26px !important;
-            background: #ffffff;*/
+            background: var(--SuMDWhite);*/
         }
  
 /* Handle */
@@ -324,7 +324,7 @@
         }
     </style>
     <form autocomplete="off" id="SuM" method="post" runat="server" >
-    <div runat="server" id="wrapper" style="overflow:hidden;background-color:#ffffff !important;">
+    <div runat="server" id="wrapper" style="overflow:hidden;background-color:var(--SuMDWhite) !important;">
         <asp:ScriptManager ID="SuMScriptManager" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
        </asp:ScriptManager>
         <div class="d-flex flex-column" id="content-wrapper" style="">
@@ -337,18 +337,18 @@
                         /*background-color:rgb(240, 235, 255) !important;*/
                     }
                 </style>
-                <div style="width:100vw !important; height:100vh !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:#ffffff !important;" id="SuMMainBlock" runat="server" class="container-fluid">
-                    <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:100vh !important;max-height:100vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;" id="mc" runat="server">
-                    <div id="LoadingSuMInfoBub" style="text-align: center; display: none; height: fit-content; width: 280px; background-color: rgb(255, 255, 255); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 18px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important;padding-top:38px;padding-bottom:32px;text-align:center !important;" class="shadow-sm animated fadeIn">
-                        <svg id="SuMLoadingSVGPreview" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="rgba(255,255,255,0.92)"></svg>
-                        <p id="SuMLoadingTXT" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: rgba(255, 255, 255, 0.92); width: calc(100% - 64px) !important;margin-bottom:-8px;text-align:left;">INFO</p>
-                        <div id="SuMMovingLoadingCont" style="display: block; width: calc(100% - 32px); overflow: hidden; height: 26px; border-radius: 13px; background-color: rgba(255, 255, 255, 0.18); margin: 0px auto;margin-top:16px;">
-                            <div id="SuMMovingLoadingNID" style="background-color: rgba(255, 255, 255, 0.92); height: 26px; width: 40%; display: block; margin-left: 100%; transition-duration: 0.76s; transition-timing-function: ease !important; transition-delay: 0s !important; transition-property: all !important;"></div>
+                <div style="width:100vw !important; height:100vh !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:var(--SuMDWhite) !important;" id="SuMMainBlock" runat="server" class="container-fluid">
+                    <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:100vh !important;max-height:100vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:var(--SuMDWhite) !important;" id="mc" runat="server">
+                    <div id="LoadingSuMInfoBub" style="text-align: center; display: none; height: fit-content; width: 280px; background-color: var(--SuMDWhite); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 18px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important;padding-top:38px;padding-bottom:32px;text-align:center !important;" class="shadow-sm animated fadeIn">
+                        <svg id="SuMLoadingSVGPreview" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="var(--SuMDWhiteOP92)"></svg>
+                        <p id="SuMLoadingTXT" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: var(--SuMDWhiteOP92); width: calc(100% - 64px) !important;margin-bottom:-8px;text-align:left;">INFO</p>
+                        <div id="SuMMovingLoadingCont" style="display: block; width: calc(100% - 32px); overflow: hidden; height: 26px; border-radius: 13px; background-color: var(--SuMDWhiteOP18); margin: 0px auto;margin-top:16px;">
+                            <div id="SuMMovingLoadingNID" style="background-color: var(--SuMDWhiteOP92); height: 26px; width: 40%; display: block; margin-left: 100%; transition-duration: 0.76s; transition-timing-function: ease !important; transition-delay: 0s !important; transition-property: all !important;"></div>
                         </div>
                         <p id="SuMLoadingFailedTXT" class="" style="font-size: 32px; width: 100%; display: block; text-align: center; margin-bottom: 32px; height: 26px; margin-top: 16px;  color: red !important;">Offline!</p>
                     </div>
-                    <div id="SuMLoadingExpandAnI" style="display:none;background-color:#ffffff;overflow:hidden;border-radius:50%;width:26px;height:26px;position:fixed !important;top:0 !important;z-index:998 !important;margin-left:calc(50vw - 13px) !important;margin-top:calc(50vh - 13px) !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
-                        <div id="SuMLoadingExpandingColorDiv" style="width:100%;height:100%;margin: 0 auto;background-color:#ffffff;"></div>
+                    <div id="SuMLoadingExpandAnI" style="display:none;background-color:var(--SuMDWhite);overflow:hidden;border-radius:50%;width:26px;height:26px;position:fixed !important;top:0 !important;z-index:998 !important;margin-left:calc(50vw - 13px) !important;margin-top:calc(50vh - 13px) !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
+                        <div id="SuMLoadingExpandingColorDiv" style="width:100%;height:100%;margin: 0 auto;background-color:var(--SuMDWhite);"></div>
                     </div>
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
@@ -757,8 +757,8 @@
         <div id="Offline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:174px;overflow:hidden !important;background-color:var(--SuMThemeColor) !important;bottom:0 !important;">
             <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMThemeColor) !important;bottom:0 !important;overflow:clip;background-color:var(--SuMThemeColor) !important;">
                  <div style="text-align:center;" class="text-center">
-                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:140%;color:#FFFFFF !important;">You are offline!</p>
-                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Only previously viewed pages are avalible.</b></p>
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:140%;color:var(--SuMDWhite) !important;">You are offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:var(--SuMDWhiteOP64) !important;"><b>Only previously viewed pages are avalible.</b></p>
                      <br />
                 </div>
             </div>
@@ -766,8 +766,8 @@
         <div id="SearchOffline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:174px;overflow:hidden !important;background-color:var(--SuMThemeColor) !important;bottom:0 !important;">
             <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMThemeColor) !important;bottom:0 !important;overflow:clip;background-color:var(--SuMThemeColor) !important;">
                  <div style="text-align:center;" class="text-center">
-                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:120%;color:#FFFFFF !important;">Search isn't avalible when offline!</p>
-                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Only previously viewed pages are avalible.</b></p>
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:120%;color:var(--SuMDWhite) !important;">Search isn't avalible when offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:var(--SuMDWhiteOP64) !important;"><b>Only previously viewed pages are avalible.</b></p>
                      <br />
                 </div>
             </div>
@@ -775,13 +775,13 @@
         <div id="AccountOffline" class="STBSUMBAR bg-white shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:174px;overflow:hidden !important;background-color:var(--SuMThemeColor) !important;bottom:0 !important;">
             <div class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:fit-content;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMThemeColor) !important;bottom:0 !important;overflow:clip;background-color:var(--SuMThemeColor) !important;">
                  <div style="text-align:center;" class="text-center">
-                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:100%;color:#FFFFFF !important;">Can't change account settings when offline!</p>
-                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:rgba(255,255,255,0.64) !important;"><b>Only previously viewed pages are avalible.</b></p>
+                    <p class="lead animated fadeIn" style="margin-top:6px;font-size:100%;color:var(--SuMDWhite) !important;">Can't change account settings when offline!</p>
+                    <p class="lead animated fadeIn" style="margin-top:-18px;font-size:80%;color:var(--SuMDWhiteOP64) !important;"><b>Only previously viewed pages are avalible.</b></p>
                      <br />
                 </div>
             </div>
         </div>
-        <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:50px !important;width:100% !important;padding:2px !important;padding-bottom:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px #f2f2f2 !important;z-index:999;display:none;">
+        <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:50px !important;width:100% !important;padding:2px !important;padding-bottom:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px var(--SuMDGray) !important;z-index:999;display:none;">
                 <a name="no-animation" id="navb2" runat="server" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                     <p style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">SuM </p><p runat="server" id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
@@ -815,8 +815,8 @@
                 document.getElementById('subnavscont2').style.display = 'none';
             }
         </script>
-        <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:#ffffff !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
-            <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;overflow:clip;border-color:#ffffff;margin-bottom:-1px;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
+        <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:var(--SuMDWhite) !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
+            <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMDGray) !important;bottom:0 !important;overflow:clip;border-color:var(--SuMDWhite);margin-bottom:-1px;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
                 <a name="no-animation" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
                     <p style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">Manga</p>
@@ -826,7 +826,7 @@
             <a name="no-animation" id="SuMNotificationStart" runat="server" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;padding-top:4px !important;" >
                 <asp:ImageButton ID="StartNotificationProssForShowBTN" runat="server" Width="26" Height="26" ImageAlign="AbsMiddle" BackColor="Transparent" BorderColor="Transparent" ImageUrl="/svg/notifications.svg" OnClick="SuMAppAlertsStartsS" />
             </a>
-                <a style="display:block;width:100vw;height:2px;margin:0 auto !important;background-color:#ffffff;color:#ffffff;">   </a>
+                <a style="display:block;width:100vw;height:2px;margin:0 auto !important;background-color:var(--SuMDWhite);color:var(--SuMDWhite);">   </a>
         </div>
         <nav id="nav" runat="server" style="overflow:clip;height:72px !important;width:100% !important;max-height:64px !important;bottom:0 !important;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;" class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top FNM5455511">
                     <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;height:64px !important;overflow:hidden !important;margin-bottom:14px !important;">
@@ -850,17 +850,17 @@
                                     </a>
                                 </div><!-- dropdown-toggle -->
                         <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
-                                    <a name="no-animation" onclick="SuMGoToThis('/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)','var(--SuMThemeColorOP74)','SuM Settings','Settings');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
+                                    <a name="no-animation" onclick="SuMGoToThis('/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)','var(--SuMThemeColorOP74)','SuM Settings','Settings');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
                                         <img id="SetIMG" runat="server" src="/svg/settings.svg" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;" />
                                         <b id="SetText" runat="server" style="font-size:64%;color:var(--SuMThemeColor);height:fit-content !important; text-align:center !important;display:block;">Settings</b>
                                     </a>
                                 </div>
                     </div>
-           <!-- <div style="width:100vw !important;height:8px !important;background-color:#ffffff !important;display:block !important;overflow:hidden !important;">
-                <a style="width:100vw !important;font-size:20%;color:#ffffff !important;background-color:#ffffff !important">NavBarHBF!</a>
+           <!-- <div style="width:100vw !important;height:8px !important;background-color:var(--SuMDWhite) !important;display:block !important;overflow:hidden !important;">
+                <a style="width:100vw !important;font-size:20%;color:var(--SuMDWhite) !important;background-color:var(--SuMDWhite) !important">NavBarHBF!</a>
             </div> -->
                 </nav>
-            <div id="NavigationBarFixer1" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:32px;background-color:#ffffff !important;width:100vw !important;bottom:0 !important;overflow:clip;border-color:#ffffff;border:0px !important;margin-bottom:-1px;">
+            <div id="NavigationBarFixer1" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:32px;background-color:var(--SuMDWhite) !important;width:100vw !important;bottom:0 !important;overflow:clip;border-color:var(--SuMDWhite);border:0px !important;margin-bottom:-1px;">
                 
         </div>
     </div>
@@ -928,16 +928,16 @@
                              <div style="display:block !important;margin:0 auto !important;overflow:hidden;width:100vw;max-width:720px;height:24px !important;"></div>
                             <div style="width:calc(100% - 24px) !important;height:68px;display:block !important;overflow:hidden !important;position:relative;margin-top:12px; margin-left:-4px !important;">
                                 <img id="NotiUPFP" runat="server" src="/UserPFP/pfp.png" style="border-radius:50% !important;width:36px;height:36px;margin-top:2px;display:inline-block !important;margin-top:8px !important;" />
-                                <p style="color:rgba(255,255,255,0.92);display:inline !important;font-size:126%;margin-top:8px !important;" id="NotiUserName" runat="server">UserName</p><p style="display:inline !important;font-size:122%;color:#fffffff0;margin-top:12px !important;">'s</p>
+                                <p style="color:var(--SuMDWhiteOP92);display:inline !important;font-size:126%;margin-top:8px !important;" id="NotiUserName" runat="server">UserName</p><p style="display:inline !important;font-size:122%;color:var(--SuMDWhiteOP94);margin-top:12px !important;">'s</p>
                                 <img onclick="document.getElementById('SuMUserNofifications').style.display = 'none';return false;" src="/svg/closeWt.svg" style="float:right !important;margin-right:-2px;margin-top:10px;width:32px;height:32px;pointer-events:all !important;" />
                             </div>
-                        <a class="shadow-sm" style="color:rgba(255,255,255,92);margin-left:12px;margin-top:22px;margin-bottom:2px;font-size:130%;">SuM Account Info</a>
-                        <div id="ACCOUNTNOTOFICATIONSPaymentCard" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:fit-content;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;margin-left:-4px !important;">
+                        <a class="shadow-sm" style="color:var(--SuMDWhiteOP92);margin-left:12px;margin-top:22px;margin-bottom:2px;font-size:130%;">SuM Account Info</a>
+                        <div id="ACCOUNTNOTOFICATIONSPaymentCard" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:fit-content;padding:6px;border-radius:16px;background-color:var(--SuMDWhiteOP94);vertical-align:middle !important;margin:0 auto !important;margin-left:-4px !important;">
                         
                         </div>
                         <div style="width:calc(100% - 24px) !important;height:14px !important;display:block !important;margin-left:-4px !important;"></div>
-                        <a class="shadow-sm" style="color:rgba(255,255,255,0.92);margin-left:12px;margin-top:16px;margin-bottom:3px;font-size:130%;">SuM Notifications</a>
-                        <div id="USERNOTIFICATIONS" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:calc(100% - 366px) !important;padding:6px;border-radius:16px;background-color:#fffffff0;vertical-align:middle !important;margin:0 auto !important;min-height:62px !important;overflow-x:hidden !important;overflow-y:scroll !important;margin-left:-4px !important;">
+                        <a class="shadow-sm" style="color:var(--SuMDWhiteOP92);margin-left:12px;margin-top:16px;margin-bottom:3px;font-size:130%;">SuM Notifications</a>
+                        <div id="USERNOTIFICATIONS" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:calc(100% - 366px) !important;padding:6px;border-radius:16px;background-color:var(--SuMDWhiteOP94);vertical-align:middle !important;margin:0 auto !important;min-height:62px !important;overflow-x:hidden !important;overflow-y:scroll !important;margin-left:-4px !important;">
                             
                         </div>
                     </div>

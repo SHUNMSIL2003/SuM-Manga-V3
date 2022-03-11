@@ -6,8 +6,8 @@
 var(--SuMThemeColor): var(--SuMThemeColor);
 $figcaption-bg: var(--SuMThemeColor);
 $figcaption-padding: 30px !default;
-$text-color: #ffffff !default;
-var(--SuMThemeColor): #ffffff !default;
+$text-color: var(--SuMDWhite) !default;
+var(--SuMThemeColor): var(--SuMDWhite) !default;
 $border-margin: 5px !default;
 $border-width: 4px !default;
 $transition-duration: 0.35s !default;

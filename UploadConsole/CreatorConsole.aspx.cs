@@ -87,7 +87,7 @@ namespace SuM_Manga_V3.UploadConsole
             upl.Attributes["style"] = "color:#636166;margin-left:12px;";
             dra.Attributes["style"] = "color:var(--SuMThemeColor);";
             inp.Attributes["style"] = "color:#636166;margin-right:12px;";
-            ADDB.Attributes["style"] = "background-color:var(--SuMThemeColor);color:#ffffff;border-radius:16px;height:fit-content;width:fit-content;font-size:160%;";
+            ADDB.Attributes["style"] = "background-color:var(--SuMThemeColor);color:var(--SuMDWhite);border-radius:16px;height:fit-content;width:fit-content;font-size:160%;";
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 string q = "SELECT Drafs FROM SuMCreators WHERE UserID=@CID";
@@ -101,12 +101,12 @@ namespace SuM_Manga_V3.UploadConsole
             upl.Attributes["style"] = "color:#636166;margin-left:12px;";
             dra.Attributes["style"] = "color:#636166;";
             inp.Attributes["style"] = "color:var(--SuMThemeColor);margin-right:12px;";
-            ADDB.Attributes["style"] = "background-color:var(--SuMThemeColor);color:#ffffff;border-radius:16px;height:fit-content;width:fit-content;font-size:160%;";
+            ADDB.Attributes["style"] = "background-color:var(--SuMThemeColor);color:var(--SuMDWhite);border-radius:16px;height:fit-content;width:fit-content;font-size:160%;";
         }
         protected string BuildRestCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink)
         {
             char sc = '"'; string scfu = sc.ToString();
-            string astyle = scfu + "width:100vw;height:74px;background-color:#ffffff;border-bottom:#f2f2f2 1px solid;border-top:#f2f2f2 1px solid;position:relative;margin-left:0px;display:block;" + scfu;
+            string astyle = scfu + "width:100vw;height:74px;background-color:var(--SuMDWhite);border-bottom:var(--SuMDGray) 1px solid;border-top:var(--SuMDGray) 1px solid;position:relative;margin-left:0px;display:block;" + scfu;
             string imgstyle = scfu + "height:74px;width:74px;object-fit:cover;display:inline;margin-left:0px;border-radius:0px;float:left;margin-left:0px;" + scfu;
             string h3style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;" + scfu;
             string RS = "<a style=" + astyle + " href=" + ExplorerLink + "><img src=" + CoverLink + " style=" + imgstyle + "><h3 style=" + h3style + ">" + MangaName + "</h3><br style=" + "float:left;" + "></a>";

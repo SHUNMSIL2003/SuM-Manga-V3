@@ -474,15 +474,6 @@ namespace SuM_Manga_V3.AccountETC
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl StartSetAnim;
 
         /// <summary>
-        /// PerformanceModeCB control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox PerformanceModeCB;
-
-        /// <summary>
         /// SuMLockSBTN control.
         /// </summary>
         /// <remarks>
@@ -508,5 +499,14 @@ namespace SuM_Manga_V3.AccountETC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SuMLockTuOffBTN;
+
+        /// <summary>
+        /// PerformanceModeCB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox PerformanceModeCB;
     }
 }

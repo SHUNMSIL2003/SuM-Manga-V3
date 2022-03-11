@@ -91,7 +91,7 @@ namespace SuM_Manga_V3.AccountETC
                 PFP.Attributes["src"] = ResolveUrl(CurrPFP);
                 if (string.IsNullOrEmpty(CurrBanner) == false)
                 {
-                    ThisPageMaxNoShowScrool.Attributes["style"] = "background-color:var(--SuMThemeColorOP74) !important;border-radius:20px !important;width:100%;margin:0 auto !important;padding:16px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;background-image:linear-gradient(rgba(0, 0, 0, 0.32),rgba(0, 0, 0, 0.32)) , url(" + CurrBanner + "); background-size: cover; background-position: center;";
+                    ThisPageMaxNoShowScrool.Attributes["style"] = "background-color:var(--SuMThemeColorOP74) !important;border-radius:20px !important;width:100%;margin:0 auto !important;padding:16px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;background-image:linear-gradient(rgba(0,0,0,0.16),rgba(0,0,0,0.16)) , url(" + CurrBanner + "); background-size: cover; background-position: center;";
                     CurrUserBannerPlaceHolder.InnerText = CurrBanner;
                 }
                 //Imported code from SuMAccount.aspx.cs + Sig from above
@@ -110,13 +110,13 @@ namespace SuM_Manga_V3.AccountETC
                 LogOutBTN.Attributes["style"] = "display:none;";
                 LogOutBTN.Attributes["OnClick"] = "NULL";
                 PFP.Attributes["src"] = SuMRandomPFP();
-                TapForXText.Attributes["style"] = "color:rgba(255,255,255,0.64);margin-top:-18px;width:100%;text-align:center;font-size:76%;padding-bottom:-16px;";
+                TapForXText.Attributes["style"] = "color:var(--SuMDWhiteOP64);margin-top:-18px;width:100%;text-align:center;font-size:76%;padding-bottom:-16px;";
                 TapForXText.InnerText = "Tap to login!";
             }
             HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
             if (GetPerModeInfoCookie != null)
             {
-                SettingsUnavaliblePOPUP.Attributes["style"] = "animation-duration:0s !important;background-color:rgba(0,0,0,0.32) !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:999 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
+                SettingsUnavaliblePOPUP.Attributes["style"] = "animation-duration:0s !important;background-color:var(--SuMDBlackOP32) !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:999 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
                 StartSetAnim.Attributes["class"] = "";
                 SlideDownCard.Attributes["class"] = "";
                 PFP.Attributes["class"] = "";
@@ -126,8 +126,8 @@ namespace SuM_Manga_V3.AccountETC
                 SigAndMore.Attributes["class"] = "card-body";
                 PaymentCard.Attributes["class"] = "card-body";
                 creatorsupmitform.Attributes["class"] = "card-body";
-                UserSettingsCards.Attributes["style"] = "display:block;height:0px;overflow:hidden;transition:none;background-color:#ffffff;";
-                SlideDownCard.Attributes["style"] = "animation-duration:0s !important;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:#ffffff !important;margin:0 auto !important; margin-top:0px !important;border-bottom-left-radius:20px;border-bottom-right-radius:20px;padding:0px !important;padding-bottom:12px !important;padding-top:8px !important;margin-bottom:22px !important;";
+                UserSettingsCards.Attributes["style"] = "display:block;height:0px;overflow:hidden;transition:none;background-color:var(--SuMDWhite);";
+                SlideDownCard.Attributes["style"] = "animation-duration:0s !important;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:var(--SuMDWhite) !important;margin:0 auto !important; margin-top:0px !important;border-bottom-left-radius:20px;border-bottom-right-radius:20px;padding:0px !important;padding-bottom:12px !important;padding-top:8px !important;margin-bottom:22px !important;";
                 PerformanceModeCB.Attributes["onclick"] = "TurnPreModeOff();";
                 PerformanceModeCB.Attributes.Add("checked", "checked");
             }

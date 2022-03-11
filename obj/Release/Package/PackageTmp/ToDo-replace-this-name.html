@@ -7,7 +7,7 @@
     <meta name="google-signin-client_id" content="464504450730-iuk9hotshe7kjnq73p11mdvijc49ll5c.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async="" defer="" gapi_processed="true"></script>
     <meta charset="utf-8">
-    <meta name="theme-color" content="rgb(242,242,242)">
+    <meta name="theme-color" content="var(--SuMDGray)">
     <meta name="robots" content="<%=GetMetaRobotsValueFromDatabase()%>">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
     <!--
@@ -43,10 +43,10 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <meta name="apple-mobile-web-app-title" content="SuM Manga">
     <meta name="application-name" content="SuM Manga">
-    <meta name="msapplication-TileColor" content="#f2f2f2">
+    <meta name="msapplication-TileColor" content="var(--SuMDGray)">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#f2f2f2">
-    <meta name="msapplication-TileColor" content="#f2f2f2">
+    <meta name="theme-color" content="var(--SuMDGray)">
+    <meta name="msapplication-TileColor" content="var(--SuMDGray)">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -184,7 +184,7 @@
 </head>
 <body id="page-top" style="overflow:hidden;height:100vh;width:100vw;">
     <div id="popup" style="">
-        <div class="animated slideInDown" style="width:fit-content !important; height:fit-content !important;background-color:rgb(242,242,242,0.6);display:block !important;float:left !important;">
+        <div class="animated slideInDown" style="width:fit-content !important; height:fit-content !important;background-color:var(--SuMDGrayOP60);display:block !important;float:left !important;">
             <p style="color:red;">( Resize Window For better experience ! )This Site is meant for Mobile Users!You should expect a very instable and buggy UI</p>
         </div>
     </div>
@@ -199,7 +199,7 @@
         }
 
         div {
-            box-shadow: 0px 0px #000000 !important;
+            box-shadow: 0px 0px var(--SuMDBlack) !important;
             overflow-x: hidden !important;
             font-family: VarelaRound !important;
         }
@@ -215,7 +215,7 @@
         ::-webkit-scrollbar-track {
             display: none !important; /*
             margin-top:26px !important;
-            background: #ffffff;*/
+            background: var(--SuMDWhite);*/
         }
 
         /* Handle */
@@ -252,7 +252,7 @@
 
             <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="75EB7BC4">
         </div>
-        <div id="wrapper" style="overflow:hidden;background-color:#ffffff !important;">
+        <div id="wrapper" style="overflow:hidden;background-color:var(--SuMDWhite) !important;">
             <div class="d-flex flex-column" id="content-wrapper" style="overflow-x:hidden;">
                 <div id="content">
                     <style>
@@ -263,8 +263,8 @@
                             /*background-color:rgb(240, 235, 255) !important;*/
                         }
                     </style>
-                    <div id="SuMMainBlock" style="width:100vw !important; height:99vh !important;max-height:98vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;background-color:#ffffff !important;" class="container-fluid">
-                        <div id="mc" class="ForceMaxW" style="width:100vw !important; height:99vh !important;max-height:99vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:#ffffff !important;">
+                    <div id="SuMMainBlock" style="width:100vw !important; height:99vh !important;max-height:98vh;margin-top:0px !important;overflow-y:auto;overflow-x:hidden;align-items:center !important;background-color:var(--SuMDWhite) !important;" class="container-fluid">
+                        <div id="mc" class="ForceMaxW" style="width:100vw !important; height:99vh !important;max-height:99vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:var(--SuMDWhite) !important;">
 
                             <style>
                                 body {
@@ -358,7 +358,7 @@
                 </script>
             </div>
             <div id="fullnavscont" class="STBSUMBAR bg-white shadow" style="border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:transparent !important;">
-                <div id="subnavscont" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px #f2f2f2 !important;bottom:0 !important;overflow:clip;">
+                <div id="subnavscont" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMDGray) !important;bottom:0 !important;overflow:clip;">
                     <a name="no-animation" href="javascript:history.go(-1)" style="float:left !important;width:fit-content;">
                         <img src="/assets/img/SuM_TBrabd_x92.png" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                         <p style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">SuM </p><p id="mangacolor" style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">Manga</p>
@@ -395,7 +395,7 @@
                         </div>
                     </div>
                 </nav>
-                <div style="width:100% !important;height:8px !important;background-color:#ffffff !important;float:left;bottom:0 !important;"></div>
+                <div style="width:100% !important;height:8px !important;background-color:var(--SuMDWhite) !important;float:left;bottom:0 !important;"></div>
             </div>
         </div>
         <script src="/assets/js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638"></script>

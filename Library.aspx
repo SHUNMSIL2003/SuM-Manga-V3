@@ -2,13 +2,13 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         var IsFullScreen = androidAPIs.SuMIsFullScreen();
         if (IsFullScreen == true) {
             androidAPIs.DeactivateFullScreenMode();
         }
         setTimeout(() => {
-            androidAPIs.SetLightStatusBarColor();
+            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         }, 420);
 </script>
     <style>
@@ -57,7 +57,7 @@ img {
             scrollbar-width: none; /* Firefox */
         }
     </style>
-    <div style="background-color:rgba(255,255,255,0.86) !important;position:fixed !important;top:0 !important;animation-duration:0.16s !important;z-index:997 !important;height:fit-content !important;width:100% !important;display:none;padding-top:6px;padding-bottom:6px;padding-left:4px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;" class="animated fadeInDown" id="SuMMangaTopBar">
+    <div style="background-color:var(--SuMDWhiteOP86) !important;position:fixed !important;top:0 !important;animation-duration:0.16s !important;z-index:997 !important;height:fit-content !important;width:100% !important;display:none;padding-top:6px;padding-bottom:6px;padding-left:4px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;" class="animated fadeInDown" id="SuMMangaTopBar">
         <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;" id="SuMMangaTopBarHeightHelper"></div>
         <p style="font-size:118%;margin-left:18px;margin-bottom:8px;display:block;height:fit-content;width:fit-content;" class="text-black"><img src="/svg/awesomeTblack.svg" width="30" height="30" style="" /> SuM's latest</p>
     </div>
@@ -79,7 +79,7 @@ img {
                         </div>
                     </div>
     <script>
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         var ThisPageScrollContaner = document.getElementById('SSElmF1C1'); 
         var SuMMangaTopBarElm = document.getElementById('SuMMangaTopBar');
         var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
@@ -93,34 +93,34 @@ img {
 
             if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
 
-                androidAPIs.SetLightStatusBarColor();
+                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                 SuMMangaTopBarElm.style.display = 'block';
 
             } else {
 
-                androidAPIs.SetLightStatusBarColor();
+                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                 SuMMangaTopBarElm.style.display = 'none';
 
             }
 
         };
 
-        androidAPIs.SetLightStatusBarColor();
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         setTimeout(() => {
-            androidAPIs.SetLightStatusBarColor();
+            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
             setTimeout(() => {
-                androidAPIs.SetLightStatusBarColor();
+                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                 setTimeout(() => {
-                    androidAPIs.SetLightStatusBarColor();
+                    if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                     setTimeout(() => {
-                        androidAPIs.SetLightStatusBarColor();
+                        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                         setTimeout(() => {
-                            androidAPIs.SetLightStatusBarColor();
+                            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                             setTimeout(() => {
-                                androidAPIs.SetLightStatusBarColor();
+                                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                                 setTimeout(() => {
-                                    androidAPIs.SetLightStatusBarColor();
+                                    if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                                 }, 1800);
                             }, 45);
                         }, 90);

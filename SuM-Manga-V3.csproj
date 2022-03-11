@@ -329,6 +329,7 @@
     <Content Include="dist\magic.min.css" />
     <Content Include="dragscroll.js" />
     <Content Include="ExploreDisabled.aspx" />
+    <Content Include="SE.html" />
     <Content Include="SuMExplore.aspx" />
     <Content Include="Explore.aspx" />
     <Content Include="favicon-16x16.png" />

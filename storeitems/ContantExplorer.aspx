@@ -27,7 +27,7 @@
                     var LoadDetThemeColor = document.getElementById('<%= SuMLoadingHandlerTXT.ClientID %>').style.color;
                     document.getElementById('SuMLoadingSVGPreviewHandler').setAttribute('fill', LoadDetThemeColor);
                     document.getElementById('SuMLoadingHandlerComTXT').style.color = LoadDetThemeColor.replace('0.92', '0.64');
-            </script>
+                </script>
             </div>
         </div>
     </div>
@@ -230,45 +230,45 @@
             };
 
             // Check if there is a local storage item with tbe name "animate"
-            /*if (window.localStorage.getItem("animate") != null) {
+        /*if (window.localStorage.getItem("animate") != null) {
 
-                fullnavscont.style.display = "none";
-                */
+            fullnavscont.style.display = "none";
+            */
                 // Remove the item
-                /*window.localStorage.removeItem("animate");
+        /*window.localStorage.removeItem("animate");
 
-                fullnavscont.classList.add("animated", "slideInUp");
+        fullnavscont.classList.add("animated", "slideInUp");
 
-                fullnavscont.style.display = null;
+        fullnavscont.style.display = null;
 
-            }*/
+    }*/
 
-            /*window.onclick = function (e) {
+        /*window.onclick = function (e) {
 
-                //console.log(e);
+            //console.log(e);
 
-                // Check if this action was triggered by clicking an <a> element
-                if (document.activeElement.tagName == "A" && document.activeElement.getAttribute("name") != "no-animation") {
+            // Check if this action was triggered by clicking an <a> element
+            if (document.activeElement.tagName == "A" && document.activeElement.getAttribute("name") != "no-animation") {
 
-                    // Get the element's href
-                    var redirectLink = document.activeElement.getAttribute("href");
+                // Get the element's href
+                var redirectLink = document.activeElement.getAttribute("href");
 
-                    // Prevent the page from being redirected
-                    e.preventDefault();
+                // Prevent the page from being redirected
+                e.preventDefault();
 
-                    // Add the slide down animation
-                    fullnavscont.classList.add("animated", "slideOutDown");
+                // Add the slide down animation
+                fullnavscont.classList.add("animated", "slideOutDown");
 
-                    setTimeout(function () {
+                setTimeout(function () {
 
-                        window.location.href = redirectLink;
+                    window.location.href = redirectLink;
 
-                    }, 480);
+                }, 480);
 
-                }
+            }
 
-            };
-        });*/
+        };
+    });*/
     </script>
     <div id="FakeBody" runat="server" style="background-color:rgb(255,255,255);width:100vw !important;height:100vh !important;max-height:100vh !important;position:absolute !important;">
     <div id="background" runat="server"  style="background-color:rgba(0,0,0,0.74) !important;width:100vw !important;height:100vh !important;">
@@ -352,62 +352,62 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
                 <script>
-                    var FAVIMGBTN = document.getElementById('<%= Fav.ClientID %>');
-                    var WANNAIMGBTN = document.getElementById('<%= Wanna.ClientID %>');
-                    var HIDDENFAVadd = document.getElementById('<%= ADDTOFAV.ClientID %>');
-                    var HIDDENFAVremove = document.getElementById('<%= REMOVEFROMFAV.ClientID %>');
-                    var HIDDENWANNAadd = document.getElementById('<%= ADDTOWANNA.ClientID %>');
-                    var HIDDENWANNAremove = document.getElementById('<%= REMOVEFROMWANNA.ClientID %>');
+            var FAVIMGBTN = document.getElementById('<%= Fav.ClientID %>');
+            var WANNAIMGBTN = document.getElementById('<%= Wanna.ClientID %>');
+            var HIDDENFAVadd = document.getElementById('<%= ADDTOFAV.ClientID %>');
+            var HIDDENFAVremove = document.getElementById('<%= REMOVEFROMFAV.ClientID %>');
+            var HIDDENWANNAadd = document.getElementById('<%= ADDTOWANNA.ClientID %>');
+            var HIDDENWANNAremove = document.getElementById('<%= REMOVEFROMWANNA.ClientID %>');
 
-                    /*var DetectedThemeColor = null;
-                    location.search.substring(1).split("&").forEach(function (val) {
+            /*var DetectedThemeColor = null;
+            location.search.substring(1).split("&").forEach(function (val) {
 
-                        var currVal = val.split("=");
-                        if (currVal[0] == "TC") {
+                var currVal = val.split("=");
+                if (currVal[0] == "TC") {
 
-                            DetectedThemeColor = decodeURI(currVal[1]);
+                    DetectedThemeColor = decodeURI(currVal[1]);
 
-                        }
+                }
 
-                    });*/
+            });*/
 
-                    //document.getElementById('3rdGBLayer').style.backgroundColor = DetectedThemeColor.replace("0.74", "0.32");
+            //document.getElementById('3rdGBLayer').style.backgroundColor = DetectedThemeColor.replace("0.74", "0.32");
 
-                    function AddToFavJava() {
-                        FAVIMGBTN.src = '/svg/favorite.svg';
-                        HIDDENFAVadd.click();
-                        setTimeout(() => {
-                            document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
+            function AddToFavJava() {
+                FAVIMGBTN.src = '/svg/favorite.svg';
+                HIDDENFAVadd.click();
+                setTimeout(() => {
+                    document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
                         }, 720);
-                        //return false;
-                    };
+                //return false;
+            };
 
-                    function RemoveFromFavJava() {
-                        FAVIMGBTN.src = '/svg/favoriteNOTFILLED.svg';
-                        HIDDENFAVremove.click();
-                        setTimeout(() => {
-                            document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
+            function RemoveFromFavJava() {
+                FAVIMGBTN.src = '/svg/favoriteNOTFILLED.svg';
+                HIDDENFAVremove.click();
+                setTimeout(() => {
+                    document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
                         }, 720);
-                        //return false;
-                    };
+                //return false;
+            };
 
-                    function AddToWannaJava() {
-                        WANNAIMGBTN.src = '/svg/check.svg';
-                        HIDDENWANNAadd.click();
-                        setTimeout(() => {
-                            document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
+            function AddToWannaJava() {
+                WANNAIMGBTN.src = '/svg/check.svg';
+                HIDDENWANNAadd.click();
+                setTimeout(() => {
+                    document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
                         }, 720);
-                        //return false;
-                    };
+                //return false;
+            };
 
-                    function RemoveFromWannaJava() {
-                        WANNAIMGBTN.src = '/svg/add.svg';
-                        HIDDENWANNAremove.click();
-                        setTimeout(() => {
-                            document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
+            function RemoveFromWannaJava() {
+                WANNAIMGBTN.src = '/svg/add.svg';
+                HIDDENWANNAremove.click();
+                setTimeout(() => {
+                    document.getElementById('<%= UpdateWannaNFavNCurr.ClientID %>').click();
                         }, 720);
-                        //return false;
-                    };
+                //return false;
+            };
                 </script>
             </div>
         </div>
@@ -542,41 +542,41 @@
         var SuMMangaTopBarElm = document.getElementById('<%= SuMMangaTopBar.ClientID %>');
             var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
             var InfoCoverWBGF2CSElm = document.getElementById('<%= infoCover.ClientID %>');
-        var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
-        var MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
-        setTimeout(() => {
-            MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
-        }, 1200);
+            var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
+            var MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
+            setTimeout(() => {
+                MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
+            }, 1200);
 
 
             //var MidWayScrollHDetected = document.getElementById('<%= infoCover.ClientID %>').getBoundingClientRect().height;
 
 
-        SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
-        /*ThisPageScrollContaner.onscroll = function () {
-
-            MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
-
-            //MidWayScrollHDetected = InfoCoverWBGF2CSElm.getBoundingClientRect().height;
-
-            if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
-
-                //androidAPIs.DeactivateFullScreenMode();
-                androidAPIs.SetDarkStatusBarColor();
-                SuMMangaTopBarElm.style.display = 'block';
-                InfoCoverWBGF2CSElm.classList.remove('ZoomOutFromInBackground');
-                InfoCoverWBGF2CSElm.classList.add('ZoomInBackground');
-
-            } else {
-
-                //androidAPIs.DeactivateFullScreenMode();
-                androidAPIs.SetDarkStatusBarColor();
-                SuMMangaTopBarElm.style.display = 'none';
-                InfoCoverWBGF2CSElm.classList.remove('ZoomInBackground');
-                InfoCoverWBGF2CSElm.classList.add('ZoomOutFromInBackground');
-            }
-
-            };*/
+            SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
+            /*ThisPageScrollContaner.onscroll = function () {
+    
+                MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
+    
+                //MidWayScrollHDetected = InfoCoverWBGF2CSElm.getBoundingClientRect().height;
+    
+                if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
+    
+                    //androidAPIs.DeactivateFullScreenMode();
+                    androidAPIs.SetDarkStatusBarColor();
+                    SuMMangaTopBarElm.style.display = 'block';
+                    InfoCoverWBGF2CSElm.classList.remove('ZoomOutFromInBackground');
+                    InfoCoverWBGF2CSElm.classList.add('ZoomInBackground');
+    
+                } else {
+    
+                    //androidAPIs.DeactivateFullScreenMode();
+                    androidAPIs.SetDarkStatusBarColor();
+                    SuMMangaTopBarElm.style.display = 'none';
+                    InfoCoverWBGF2CSElm.classList.remove('ZoomInBackground');
+                    InfoCoverWBGF2CSElm.classList.add('ZoomOutFromInBackground');
+                }
+    
+                };*/
 
             var isScrollingSuMRecentsFuncF2CS;
             document.getElementById('3rdGBLayer').onscroll = function () {

@@ -2,19 +2,19 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         androidAPIs.SetSuMSecureFlag();
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         /*var IsFullScreenF248C467 = androidAPIs.SuMIsFullScreen();
         if (IsFullScreenF248C467 == true) {
             androidAPIs.DeactivateFullScreenMode();*/
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         //}
         androidAPIs.SetSuMSecureFlag();
         var intervalId = setInterval(function () {
-            androidAPIs.SetLightStatusBarColor();
+            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
             androidAPIs.SetSuMSecureFlag();
-            androidAPIs.SetLightStatusBarColor();
+            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         }, 6000);
         FullScPlaceH.innerText = '1';
         ActivateFuncPerposClickElmF204C90.click();
@@ -31,16 +31,16 @@
             max-width:806px !important;
         }
         ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-            color: #ffffff !important;
+            color: var(--SuMDWhite) !important;
             opacity: 0.8 !important; /* Firefox */
         }
 
         :-ms-input-placeholder { /* Internet Explorer 10-11 */
-            color: rgba(255,255,255,0.8) !important;
+            color: var(--SuMDWhiteOP80) !important;
         }
 
         ::-ms-input-placeholder { /* Microsoft Edge */
-            color: rgba(255,255,255,0.8) !important;
+            color: var(--SuMDWhiteOP80) !important;
         }
         textarea:focus,
         textarea.form-control:focus,
@@ -54,12 +54,12 @@
         [type=email].form-control:focus,
         [type=tel].form-control:focus,
         [contenteditable].form-control:focus {
-            box-shadow: inset 0 0px 0 #000 !important;
+            box-shadow: inset 0 0px 0 var(--SuMDBlack) !important;
         }
     </style>
-    <div id="SuMLoadingPIndHandler" class="" style="overflow:hidden !important;border-radius:0px;display:block;position:fixed !important;top:0 !important;z-index:998 !important;background-color:#ffffff;width:100%;height:100%;margin-top:0px;margin-left:0px;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
-        <div id="SuMLoadingFHandBG" runat="server" style="overflow:hidden !important;width:100%;height:100%;background-color:rgba(0,0,0,0.74);margin:0 auto;">
-            <div id="SuMLoadingHandDivConF0C0" style="transition:all 0.18s !important;display: block; height: fit-content; width: 280px; background-color: rgb(255, 255, 255); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 38px 32px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important; text-align: center !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;" class="shadow-sm">
+    <div id="SuMLoadingPIndHandler" class="" style="overflow:hidden !important;border-radius:0px;display:block;position:fixed !important;top:0 !important;z-index:998 !important;background-color:var(--SuMDWhite);width:100%;height:100%;margin-top:0px;margin-left:0px;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
+        <div id="SuMLoadingFHandBG" runat="server" style="overflow:hidden !important;width:100%;height:100%;background-color:var(--SuMDBlackOP74);margin:0 auto;">
+            <div id="SuMLoadingHandDivConF0C0" style="transition:all 0.18s !important;display: block; height: fit-content; width: 280px; background-color: var(--SuMDWhite); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 38px 32px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important; text-align: center !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;" class="shadow-sm">
                 <svg id="SuMLoadingSVGPreviewHandler" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="rgba(143,107,171,0.92)"><g><rect fill="none" height="24" width="24"></rect><rect fill="none" height="24" width="24"></rect></g><g><path d="M17.5,4.5c-1.95,0-4.05,0.4-5.5,1.5c-1.45-1.1-3.55-1.5-5.5-1.5c-1.45,0-2.99,0.22-4.28,0.79C1.49,5.62,1,6.33,1,7.14 l0,11.28c0,1.3,1.22,2.26,2.48,1.94C4.46,20.11,5.5,20,6.5,20c1.56,0,3.22,0.26,4.56,0.92c0.6,0.3,1.28,0.3,1.87,0 c1.34-0.67,3-0.92,4.56-0.92c1,0,2.04,0.11,3.02,0.36c1.26,0.33,2.48-0.63,2.48-1.94l0-11.28c0-0.81-0.49-1.52-1.22-1.85 C20.49,4.72,18.95,4.5,17.5,4.5z M21,17.23c0,0.63-0.58,1.09-1.2,0.98c-0.75-0.14-1.53-0.2-2.3-0.2c-1.7,0-4.15,0.65-5.5,1.5V8 c1.35-0.85,3.8-1.5,5.5-1.5c0.92,0,1.83,0.09,2.7,0.28c0.46,0.1,0.8,0.51,0.8,0.98V17.23z"></path><g></g><path d="M13.98,11.01c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.54-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,10.99,14.05,11.01,13.98,11.01z"></path><path d="M13.98,13.67c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,13.66,14.05,13.67,13.98,13.67z"></path><path d="M13.98,16.33c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.7-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,16.32,14.05,16.33,13.98,16.33z"></path></g></svg>
                 <p id="SuMLoadingHandlerTXT" runat="server" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: rgba(143, 107, 171, 0.92); margin-bottom: -8px; text-align: left; width: calc(100% - 64px) !important;">Chapter 1</p>
                 <p id="SuMLoadingHandlerComTXT" class="animated fadeIn" style="font-size: 26px; width: 100%; display: block; text-align: center; height: 26px;margin-top: 10px;margin-bottom:6px; color: rgba(143, 107, 171, 0.64);">loading complete</p>
@@ -129,14 +129,14 @@
         }, 960);
     </script>
     <div id="ScriptInjectorC000" style="display:none !important;visibility:hidden !important;"><script>//androidAPIs.ShowSuMToastsOverview('Use full screen mode for a better experience!');</script></div>
-    <a onclick="FullScreenModeManager();" id="SuMFullScreenManageBTNF204C90" style="pointer-events:all !important;width:42px;height:42px;display:block;position:fixed !important;z-index:999 !important;float:left !important;margin-left:calc(100% - 42px) !important;margin-top:74px !important;background-color:rgba(0,0,0,0.20) !important;border-top-left-radius:21px;border-bottom-left-radius:21px;border-top-right-radius:0px;border-bottom-right-radius:0px;padding-top:7px;padding-bottom:7px;padding-left:5px !important;padding-right:9px !important;display:none !important;visibility:hidden !important;"><img id="FullScStateIMG" src="/svg/openinfull.svg" style="width:28px;height:28px;margin:0 auto;" /></a>
+    <a onclick="FullScreenModeManager();" id="SuMFullScreenManageBTNF204C90" style="pointer-events:all !important;width:42px;height:42px;display:block;position:fixed !important;z-index:999 !important;float:left !important;margin-left:calc(100% - 42px) !important;margin-top:74px !important;background-color:var(--SuMDBlackOP20) !important;border-top-left-radius:21px;border-bottom-left-radius:21px;border-top-right-radius:0px;border-bottom-right-radius:0px;padding-top:7px;padding-bottom:7px;padding-left:5px !important;padding-right:9px !important;display:none !important;visibility:hidden !important;"><img id="FullScStateIMG" src="/svg/openinfull.svg" style="width:28px;height:28px;margin:0 auto;" /></a>
     <div class="" id="pfc" runat="server" style="background-color:var(--SuMThemeColor);margin:0 auto !important;width:100vw !important;height:100vh !important;">
-        <div class="animated fadeInDown shadow-sm" id="InfoCardBGForJAVA" style="position:fixed !important;top:0 !important;z-index:999 !important;background-color:rgb(255,255,255) !important;width:100% !important;height:fit-content;border-radius:20px !important;margin: 0px !important;background-color:#FFF;padding-top:24px;border-top-left-radius:0px !important;border-top-right-radius:0px !important;width:100%;">
+        <div class="animated fadeInDown shadow-sm" id="InfoCardBGForJAVA" style="position:fixed !important;top:0 !important;z-index:999 !important;background-color:var(--SuMDWhite) !important;width:100% !important;height:fit-content;border-radius:20px !important;margin: 0px !important;background-color:var(--SuMDWhite);padding-top:24px;border-top-left-radius:0px !important;border-top-right-radius:0px !important;width:100%;">
                     <div style="width:100% !important;height:fit-content !important;font-size:96%;padding-left:16px !important;padding-top:22px !important;padding-bottom:8px !important;">
-                        <a style="display:inline-block !important;font-size:118%;color:rgba(255,255,255,1) !important;" id="SuMExIMGSVG" runat="server"></a>
-                        <p id="MangaName" runat="server" style="display:inline-block !important;font-size:118%;color:rgba(0,0,0,1) !important;"></p>
-                        <a id="InfoDividerForJAVA" style="width:2px;height:16px;display:inline-block;background-color:rgba(0,0,0,0.54);border-radius:1px;margin-bottom:-2px;margin-right:2px;margin-left:1px;"></a>
-                        <p id="ChapterWordForJAVA" style="display:inline-block !important;font-size:98%;color:rgba(0,0,0,0.54) !important;"><b style="font-size:80%;">Chapter</b></p>
+                        <a style="display:inline-block !important;font-size:118%;color:var(--SuMDWhiteOP100) !important;" id="SuMExIMGSVG" runat="server"></a>
+                        <p id="MangaName" runat="server" style="display:inline-block !important;font-size:118%;color:var(--SuMDBlackOP100) !important;"></p>
+                        <a id="InfoDividerForJAVA" style="width:2px;height:16px;display:inline-block;background-color:var(--SuMDBlackOP54);border-radius:1px;margin-bottom:-2px;margin-right:2px;margin-left:1px;"></a>
+                        <p id="ChapterWordForJAVA" style="display:inline-block !important;font-size:98%;color:var(--SuMDBlackOP54) !important;"><b style="font-size:80%;">Chapter</b></p>
                         <p style="display:inline-block !important;font-size:120%;"><b id="ChapterNum" runat="server" style="color:rgba(132,145,162,1);">#num</b></p>
                         <asp:Button ID="HIDDENADDTOFAV" OnClick="AddToFavList" runat="server" style="display:none !important;visibility:hidden;" />
                         <asp:Button ID="HIDDEMREMOVEFROMFAV" OnClick="RemoveFromFavList" runat="server" style="display:none !important;visibility:hidden;" />
@@ -149,7 +149,7 @@
                             </Triggers>
                             <ContentTemplate>
                                 <asp:Panel runat="server">
-                                    <a class="animated pulse" id="AddToFavSHOWNBTN" runat="server" style="float:right !important;width:fit-content !important;height:fit-content !important;padding:2px;margin-right:12px !important;"><svg id="FavSVG" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 24 24" width="30px" fill="#fffffff0" ><path d="M0 0h24v24H0V0z" fill="none"/><path id="FavPath" d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg></a>
+                                    <a class="animated pulse" id="AddToFavSHOWNBTN" runat="server" style="float:right !important;width:fit-content !important;height:fit-content !important;padding:2px;margin-right:12px !important;"><svg id="FavSVG" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 24 24" width="30px" fill="var(--SuMDWhiteOP94)" ><path d="M0 0h24v24H0V0z" fill="none"/><path id="FavPath" d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg></a>
                                 </asp:Panel>
                             </ContentTemplate>
                         </asp:UpdatePanel>
@@ -163,7 +163,7 @@
                     document.getElementById('InfoCardBGForJAVA').style.paddingTop = (SuMSBarHeightFromAndroidAPIsValueF3C1 + 8) + 'px !important';
                 </script>
         <div id="FirstAniDiv" runat="server" class="animated fadeInRight" style="margin:0 auto !important;width:100vw !important;height:100vh !important;overflow-y:scroll;">
-            <div id="ThisPageSubContaner" class="nospace ContantDivSuM" style="height:fit-content;width:100vw !important;margin:0 auto !important;max-width:720px !important;background-color:#ffffff !important;margin-top:64px !important;margin-bottom:164px !important;border-radius:20px !important;">
+            <div id="ThisPageSubContaner" class="nospace ContantDivSuM" style="height:fit-content;width:100vw !important;margin:0 auto !important;max-width:720px !important;background-color:var(--SuMDWhite) !important;margin-top:64px !important;margin-bottom:164px !important;border-radius:20px !important;">
                 <div class="" id="TheMangaPhotos" runat="server" style="width:100% !important;height:fit-content !important;margin:0 auto !important;padding:0px !important;border-radius:0px !important;margin-bottom:28px !important;border:none;">
 
                 </div>
@@ -225,13 +225,13 @@
                 </script>
             </div>
         </div>
-        <div id="CommentsSecCont" runat="server" class="animated slideDown GoodBlur" style=" border:4px rgba(225,225,225,0.75) solid;border-top:4px rgba(0,0,0,0) solid;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:rgba(255,255,255,0.74);display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:100vh;z-index:998;">
-            <a id="CommentsSecTopPartColor" runat="server" style="margin-top:0px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background:rgba(0,0,0,0);padding:0px !important;">
-                <h5 class="animated fadeIn" id="ComSecTi" runat="server" style="color:#fff;padding-top:26px;padding-left:22px;padding-bottom:4px;font-size:96%;margin-top:calc(12px - 100vh);">Comments section</h5>
+        <div id="CommentsSecCont" runat="server" class="animated slideDown GoodBlur" style=" border:4px rgba(225,225,225,0.75) solid;border-top:4px var(--SuMDBlackOP100) solid;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:var(--SuMDWhiteOP74);display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:100vh;z-index:998;">
+            <a id="CommentsSecTopPartColor" runat="server" style="margin-top:0px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background:var(--SuMDBlackOP100);padding:0px !important;">
+                <h5 class="animated fadeIn" id="ComSecTi" runat="server" style="color:var(--SuMDWhite);padding-top:26px;padding-left:22px;padding-bottom:4px;font-size:96%;margin-top:calc(12px - 100vh);">Comments section</h5>
                 <div class="animated fadeIn" runat="server" id="SendCommentAria" style="border-radius:12px;width:100%;height:fit-content;margin:0 auto;padding:6px;margin-top:8px;margin-bottom:6px;display:block;">
                     <!--<a style="display:inline;color:#141414;">add a comment...</a>-->
                     <asp:TextBox CssClass="form-control form-control-user" MaxLength="150" runat="server" ID="UserComment" BackColor="Transparent" BorderColor="Transparent" ForeColor="#ffffff" style="display:inline;width:84%;height:74px;" placeholder="add a comment..."></asp:TextBox>
-                    <asp:ImageButton OnClick="SendComment" ID="SendBTN" style="background-color:#fff;border-radius:4px;width:38px;height:32px;margin:4px;" ImageAlign="AbsMiddle" ImageUrl="/svg/send.svg" runat="server" />
+                    <asp:ImageButton OnClick="SendComment" ID="SendBTN" style="background-color:var(--SuMDWhite);border-radius:4px;width:38px;height:32px;margin:4px;" ImageAlign="AbsMiddle" ImageUrl="/svg/send.svg" runat="server" />
                 </div>
             </a>
             <style>
@@ -289,18 +289,18 @@
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-                        <div class="animated fadeIn" id="Comments" style="width:calc(100vw - 20px) !important;max-height:calc(70vh - 208px) !important;height:calc(70vh - 208px) !important;overflow-x:hidden;overflow-y:scroll;background-color:#ffffff !important;border-radius:18px;padding-left:12px;padding-right:12px;padding-top:18px;padding-bottom:18px;margin-left:10px;margin-right:10px;margin-top:10px;" runat="server">
+                        <div class="animated fadeIn" id="Comments" style="width:calc(100vw - 20px) !important;max-height:calc(70vh - 208px) !important;height:calc(70vh - 208px) !important;overflow-x:hidden;overflow-y:scroll;background-color:var(--SuMDWhite) !important;border-radius:18px;padding-left:12px;padding-right:12px;padding-top:18px;padding-bottom:18px;margin-left:10px;margin-right:10px;margin-top:10px;" runat="server">
                             <div class="animated fadeIn" style="width:100%;height:fit-content;margin-top:calc(35vh - 128px) !important;text-align:center !important;">
-                                <a id="dot1" runat="server" style="transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:#00000066;margin-right:12px;"></a>
-                                <a id="dot2" style="transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:#00000029;margin-left:6px;margin-right:6px;"></a>
-                                <a id="dot3" style="transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:#00000029;margin-left:6px;"></a>
+                                <a id="dot1" runat="server" style="transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:var(--SuMDBlackOP40);margin-right:12px;"></a>
+                                <a id="dot2" style="transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:var(--SuMDBlackOP16);margin-left:6px;margin-right:6px;"></a>
+                                <a id="dot3" style="transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:var(--SuMDBlackOP16);margin-left:6px;"></a>
                             </div>
                             <script>
                                 var dot1 = document.getElementById('MainContent_dot1');
                                 var dot2 = document.getElementById('dot2');
                                 var dot3 = document.getElementById('dot3');
                                 var DotsThemeColor = dot1.style.backgroundColor;
-                                var Deafultcolor = '#00000029';
+                                var Deafultcolor = 'var(--SuMDBlackOP16)';
                                 function AnimationDots123() {
                                     setTimeout(() => {
                                         dot2.style.backgroundColor = DotsThemeColor;
@@ -450,7 +450,7 @@
                         NextBtnFullSState();
                         viewport.setAttribute('content', 'user-scalable=yes, initial-scale=1, maximum-scale=1.6, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
                         androidAPIs.SetSuMSecureFlag();
-                        androidAPIs.SetLightStatusBarColor();
+                        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                         MakeSuMFullNavDisa();
                         androidAPIs.ActivateFullScreenMode();
                         SuMReadingModeIsApplyed = true;
@@ -469,7 +469,7 @@
                         ShowMangaExplorerBar();
                         NextBtnOrState();
                         androidAPIs.SetSuMSecureFlag();
-                        androidAPIs.SetLightStatusBarColor();
+                        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                         viewport.setAttribute('content', 'user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
                         ReactimntIsPermitedF565C0 = true;
                         SuMReadingModeIsApplyed = false;
@@ -500,21 +500,21 @@
             //}
         }
 
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         setTimeout(() => {
-            androidAPIs.SetLightStatusBarColor();
+            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
             setTimeout(() => {
-                androidAPIs.SetLightStatusBarColor();
+                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                 setTimeout(() => {
-                    androidAPIs.SetLightStatusBarColor();
+                    if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                     setTimeout(() => {
-                        androidAPIs.SetLightStatusBarColor();
+                        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                         setTimeout(() => {
-                            androidAPIs.SetLightStatusBarColor();
+                            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                             setTimeout(() => {
-                                androidAPIs.SetLightStatusBarColor();
+                                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                                 setTimeout(() => {
-                                    androidAPIs.SetLightStatusBarColor();
+                                    if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                                 }, 1800);
                             }, 45);
                         }, 90);

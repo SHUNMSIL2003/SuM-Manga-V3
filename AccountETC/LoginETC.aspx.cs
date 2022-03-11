@@ -232,7 +232,7 @@ namespace SuM_Manga_V3.AccountETC
             userInfo["SID"] = SessionID;
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
-            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)");
+            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)");
         }
         protected static void SaveSCCookie(string UserName, int ID, string CreatorName, string SessionID)
         {
@@ -243,7 +243,7 @@ namespace SuM_Manga_V3.AccountETC
             userInfo["ID"] = ID.ToString();
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
-            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)");
+            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)");
         }
         protected static void SaveUserThemeCookie(string RGBRootString)
         {

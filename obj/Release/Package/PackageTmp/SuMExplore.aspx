@@ -2,15 +2,15 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         var IsFullScreen = androidAPIs.SuMIsFullScreen();
         if (IsFullScreen == true) {
             androidAPIs.DeactivateFullScreenMode();
-            androidAPIs.SetLightStatusBarColor();
+            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         }
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         setTimeout(() => {
-            androidAPIs.SetLightStatusBarColor();
+            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         }, 420);
     </script>
     <div id="ScriptInjectorA000" style="display:none !important;visibility:hidden !important;" runat="server">
@@ -33,7 +33,7 @@ img {vertical-align: middle;}
 
 /* Caption text */
 .text {
-  color: #f2f2f2;
+  color: var(--SuMDGray);
   font-size: 16px;
   padding: 8px 12px;
   position: absolute;
@@ -45,7 +45,7 @@ img {vertical-align: middle;}
 
 /* Number text (1/3 etc) */
 .numbertext {
-  color: #f2f2f2;
+  color: var(--SuMDGray);
   font-size: 12px;
   padding: 8px 12px;
   position: absolute;
@@ -95,15 +95,15 @@ img {vertical-align: middle;}
     height: 74px;
 }
     </style>
-    <div style="background-color:rgba(255,255,255,0.86) !important;position:fixed !important;top:0 !important;animation-duration:0.16s !important;z-index:997 !important;height:fit-content !important;width:100% !important;display:none;padding-top:6px;padding-bottom:6px;padding-left:4px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;" class="animated fadeInDown" id="SuMMangaTopBar">
+    <div style="background-color:var(--SuMDWhiteOP86) !important;position:fixed !important;top:0 !important;animation-duration:0.16s !important;z-index:997 !important;height:fit-content !important;width:100% !important;display:none;padding-top:6px;padding-bottom:6px;padding-left:4px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;" class="animated fadeInDown" id="SuMMangaTopBar">
         <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;" id="SuMMangaTopBarHeightHelper"></div>
         <p style="font-size:118%;margin-left:18px;margin-bottom:8px;display:block;height:fit-content;width:fit-content;" class="text-black"><img src="/svg/awesomeTblack.svg" width="30" height="30" style="" /> SuM's latest</p>
     </div>
     <div id="AnimatedMainContHEx" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;overflow-y:scroll;">
 <div class="slideshow-container" id="cardscontain" runat="server" style="width:100% !important;height:fit-content !important;overflow:hidden !important;">
-    <div id="ThisPageTopBarFixer" style="background-color:#f2f2f2 !important;width:100% !important;height:fit-content !important;display:block;margin-bottom:-6px;padding-top:8px !important;">
+    <div id="ThisPageTopBarFixer" style="background-color:var(--SuMDGray) !important;width:100% !important;height:fit-content !important;display:block;margin-bottom:-6px;padding-top:8px !important;">
         <img id="ThisPageSBarFixUpPropElm0" style="display:inline;margin-left:16px;margin-top:34px;float:left;" width="38" height="38" src="/svg/awesomeTblack.svg" />
-        <p id="ThisPageSBarFixUpPropElm1" style="color:#000000f0 !important;font-size:128%;margin-top:36px;margin-left:6px;display:inline;float:left;">Latest of manga !</p>
+        <p id="ThisPageSBarFixUpPropElm1" style="color:var(--SuMDBlackOP94) !important;font-size:128%;margin-top:36px;margin-left:6px;display:inline;float:left;">Latest of manga !</p>
     </div>
     <script>
         var ThisPageSBarFixUpPropElmVar0 = document.getElementById('ThisPageSBarFixUpPropElm0');
@@ -112,32 +112,32 @@ img {vertical-align: middle;}
         ThisPageSBarFixUpPropElmVar0.style.marginTop = (12 + StatusBarHeightValue) + 'px !important';
         ThisPageSBarFixUpPropElmVar1.style.marginTop = (12 + StatusBarHeightValue) + 'px !important';
     </script>
-    <div style="background-color:#f2f2f2 !important;width:100%;height:fit-content;">
+    <div style="background-color:var(--SuMDGray) !important;width:100%;height:fit-content;">
     <div id="cardstoshow" runat="server" style="margin:0 auto !important;border-radius:12px !important;margin-bottom:12px !important;margin-top:12px !important;width:fit-content;height:fit-content;overflow:hidden !important;">
-<div class="mySlides fade" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:82vw !important;padding:12px;">
+<div class="mySlides fade" style="overflow: hidden; background-image:linear-gradient(var(--SuMDBlackOP527),var(--SuMDBlackOP30)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:82vw !important;padding:12px;">
     <a style="width:100%;height:100%;" href="#">
-    <h1 style="float:left;margin-top:8px;margin-left:8px;color:#ffffff;font-size:160%;display:block;">Blue Exorcist</h1>
-    <p style="color:#f2f2f2"></p>
+    <h1 style="float:left;margin-top:8px;margin-left:8px;color:var(--SuMDWhite);font-size:160%;display:block;">Blue Exorcist</h1>
+    <p style="color:var(--SuMDGray)"></p>
     </a>
     <div style="background-color:rgba(145, 114, 227, 0.58);width:94px;height:42px;border-top-right-radius:16px;float:right;margin-bottom:0px;margin-right:0px;">
         <a href="#">Read Now</a>
     </div>
 </div>
-        <div class="mySlides fade" style="overflow:hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:82vw !important;">
+        <div class="mySlides fade" style="overflow:hidden; background-image:linear-gradient(var(--SuMDBlackOP527),var(--SuMDBlackOP30)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:82vw !important;">
     <a style="width:100%;height:100%;" href="#">
-    <h1 style="float:left;margin-top:8px;margin-left:8px;color:#ffffff;font-size:160%;">Blue Exorcist</h1>
+    <h1 style="float:left;margin-top:8px;margin-left:8px;color:var(--SuMDWhite);font-size:160%;">Blue Exorcist</h1>
     <p style="text-align:center;vertical-align:middle;"></p>
     </a>
 </div>
-        <div class="mySlides fade" style="overflow: hidden; background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.3)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:82vw !important;">
+        <div class="mySlides fade" style="overflow: hidden; background-image:linear-gradient(var(--SuMDBlackOP527),var(--SuMDBlackOP30)) , url(/SlideShowCards/BlueExorcist.jpg); background-size: cover; background-position: center;width:100vw !important;height:82vw !important;">
     <a style="width:100%;height:100%;" href="#">
-    <h1 style="float:left;margin-top:8px;margin-left:8px;color:#ffffff;font-size:160%;">Blue Exorcist</h1>
+    <h1 style="float:left;margin-top:8px;margin-left:8px;color:var(--SuMDWhite);font-size:160%;">Blue Exorcist</h1>
     <p></p>
     </a>
 </div>
      </div>
         </div>
-    <div id="cardsdots" runat="server" style="text-align:center;background-color:#f2f2f2 !important;width:100%;height:fit-content;margin-top:-6px !important;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
+    <div id="cardsdots" runat="server" style="text-align:center;background-color:var(--SuMDGray) !important;width:100%;height:fit-content;margin-top:-6px !important;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
   <span class="dot"></span> 
   <span class="dot"></span> 
   <span class="dot"></span> 
@@ -190,57 +190,57 @@ img {vertical-align: middle;}
         </script>
         </div>
         <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important; width:100%;overflow:hidden; background-color:#ffffff !important;" id="CategoryX" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Action</h2>
+        <div style="height:fit-content;max-height:268px !important; width:100%;overflow:hidden; background-color:var(--SuMDWhite) !important;" id="CategoryX" runat="server">
+            <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;">Action</h2>
             <div id="Action" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;" >
             </div>
         </div>
 
         <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important; width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div1" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Fantasy</h2>
+        <div style="height:fit-content;max-height:268px !important; width:100%;overflow-y:hidden;overflow-x:auto;background-color:var(--SuMDWhite) !important;" id="Div1" runat="server">
+            <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;">Fantasy</h2>
             <div id="Fantasy" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div2" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Comedy</h2>
+        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:var(--SuMDWhite) !important;" id="Div2" runat="server">
+            <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;">Comedy</h2>
             <div id="Comedy" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div3" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Supernatural</h2>
+        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:var(--SuMDWhite) !important;" id="Div3" runat="server">
+            <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;">Supernatural</h2>
             <div id="Supernatural" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div4" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Sci-Fi</h2>
+        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:var(--SuMDWhite) !important;" id="Div4" runat="server">
+            <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;">Sci-Fi</h2>
             <div id="SciFi" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div5" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Drama</h2>
+        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:var(--SuMDWhite) !important;" id="Div5" runat="server">
+            <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;">Drama</h2>
             <div id="Drama" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div6" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Mystery</h2>
+        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:var(--SuMDWhite) !important;" id="Div6" runat="server">
+            <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;">Mystery</h2>
             <div id="Mystery" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <br style="height:4px !important;width:100% !important; margin:0 auto !important;" />
-        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:#ffffff !important;" id="Div7" runat="server">
-            <h2 style="color:#000000;margin-left:8px;margin-bottom:-18px;">Slice of Life</h2>
+        <div style="height:fit-content;max-height:268px !important;width:100%;overflow-y:hidden;overflow-x:auto;background-color:var(--SuMDWhite) !important;" id="Div7" runat="server">
+            <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;">Slice of Life</h2>
             <div id="SliceofLife" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         <div style="display:block !important;width:100% !important;height:232px !important;background-color:transparent !important;text-align:center;margin:0 auto !important;"></div>
     </div>
     <script>
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         var ThisPageScrollContaner = document.getElementById('<%= AnimatedMainContHEx.ClientID %>');
         var ThisPageChangeStartElm = document.getElementById('<%= cardscontain.ClientID %>');
         var HeightFixrFASIT208CutJK3 = document.getElementById('<%= cardstoshow.ClientID %>').offsetHeight + 2;
@@ -256,36 +256,36 @@ img {vertical-align: middle;}
 
             if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
 
-                androidAPIs.SetLightStatusBarColor();
+                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                 SuMMangaTopBarElm.style.display = 'block';
 
             } else {
 
-                androidAPIs.SetLightStatusBarColor();
+                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                 SuMMangaTopBarElm.style.display = 'none';
 
             }
 
         };
 
-        androidAPIs.SetLightStatusBarColor();
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         setTimeout(() => {
-            androidAPIs.SetLightStatusBarColor();
+            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
             setTimeout(() => {
-                androidAPIs.SetLightStatusBarColor();
+                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                 setTimeout(() => {
-                    androidAPIs.SetLightStatusBarColor();
+                    if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                     setTimeout(() => {
-                        androidAPIs.SetLightStatusBarColor();
+                        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                         setTimeout(() => {
-                            androidAPIs.SetLightStatusBarColor();
+                            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                             setTimeout(() => {
-                                androidAPIs.SetLightStatusBarColor();
+                                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                                 setTimeout(() => {
-                                    androidAPIs.SetLightStatusBarColor();
+                                    if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                                     setTimeout(() => {
-                                        androidAPIs.SetLightStatusBarColor();
+                                        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
                                     }, 10000);
                                 }, 1800);
                             }, 45);

@@ -17,7 +17,7 @@
     background-color: var(--SuMThemeColor);
      
     border-radius: 10px;
-    color: #fff;
+    color: var(--SuMDWhite);
     overflow: hidden;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -43,7 +43,7 @@
         border-radius: 10px;
         left: 0;
         right: 0;
-        color: #ffffff;
+        color: var(--SuMDWhite);
     }
 
 [class^="imghvr-"] figcaption h1,
@@ -58,7 +58,7 @@
 [class*=" imghvr-"] figcaption h4,
 [class*=" imghvr-"] figcaption h5,
 [class*=" imghvr-"] figcaption h6 {
-    color: #ffffff;
+    color: var(--SuMDWhite);
 }
 
 [class^="imghvr-"] a,

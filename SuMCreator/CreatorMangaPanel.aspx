@@ -28,7 +28,7 @@
             outline: none;
         }
         .form-control:focus {
-            border-color: #ffffff !important;
+            border-color: var(--SuMDWhite) !important;
             -webkit-box-shadow: none !important;
             box-shadow: none !important;
         }
@@ -38,9 +38,9 @@
             background-color:transparent !important;
         }
     </style>
-    <div id="SuMLoadingPIndHandler" class="" style="overflow:hidden !important;border-radius:0px;display:block;position:fixed !important;top:0 !important;z-index:998 !important;background-color:#ffffff;width:100%;height:100%;margin-top:0px;margin-left:0px;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
+    <div id="SuMLoadingPIndHandler" class="" style="overflow:hidden !important;border-radius:0px;display:block;position:fixed !important;top:0 !important;z-index:998 !important;background-color:var(--SuMDWhite);width:100%;height:100%;margin-top:0px;margin-left:0px;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
         <div id="SuMLoadingFHandBG" runat="server" style="overflow:hidden !important;width:100%;height:100%;background-color:var(--SuMThemeColorOP74);margin:0 auto;">
-            <div id="SuMLoadingHandDivConF0C0" style="transition:all 0.18s !important;display: block; height: fit-content; width: 280px; background-color: rgb(255, 255, 255); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 38px 32px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important; text-align: center !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;" class="shadow-sm">
+            <div id="SuMLoadingHandDivConF0C0" style="transition:all 0.18s !important;display: block; height: fit-content; width: 280px; background-color: var(--SuMDWhite); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 38px 32px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important; text-align: center !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;" class="shadow-sm">
                 <svg id="SuMLoadingSVGPreviewHandler" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="var(--SuMThemeColorOP92)"><rect fill="none" height="20" width="20"/><path d="M15.35,8.83l0.71-0.71c0.59-0.59,0.59-1.54,0-2.12L15,4.94c-0.59-0.59-1.54-0.59-2.12,0l-0.71,0.71L15.35,8.83z M11.11,6.71 l-6.96,6.96C4.05,13.77,4,13.89,4,14.03v2.47C4,16.78,4.22,17,4.5,17h2.47c0.13,0,0.26-0.05,0.35-0.15l6.96-6.96L11.11,6.71z M4.51,11.18C3.59,10.76,3,10.16,3,9.25c0-1.31,1.39-1.99,2.61-2.59C6.45,6.24,7.5,5.73,7.5,5.25C7.5,4.91,6.83,4.5,6,4.5 c-0.94,0-1.36,0.46-1.38,0.48C4.35,5.29,3.88,5.33,3.57,5.07C3.26,4.81,3.21,4.35,3.46,4.03C3.55,3.93,4.34,3,6,3 c1.47,0,3,0.84,3,2.25C9,6.66,7.55,7.37,6.27,8C5.56,8.35,4.5,8.87,4.5,9.25c0,0.3,0.48,0.56,1.17,0.78L4.51,11.18z M14.14,12.16 c0.83,0.48,1.36,1.14,1.36,2.09c0,1.94-2.44,2.75-3.75,2.75C11.34,17,11,16.66,11,16.25s0.34-0.75,0.75-0.75 c0.77,0,2.25-0.49,2.25-1.25c0-0.39-0.38-0.71-0.97-0.97L14.14,12.16z"/></svg>
                 <p id="SuMLoadingHandlerTXT" runat="server" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: var(--SuMThemeColorOP92); margin-bottom: -8px; text-align: left; width: calc(100% - 64px) !important;">add a manga</p>
                 <p id="SuMLoadingHandlerComTXT" class="animated fadeIn" style="font-size: 26px; width: 100%; display: block; text-align: center; height: 26px;margin-top: 10px;margin-bottom:6px; color: var(--SuMThemeColorOP64);">loading complete</p>
@@ -110,7 +110,7 @@
         }, 960);
     </script>
     <div style="width:100%;height:100%;padding-bottom:280px !important;background-color:var(--SuMThemeColorOP92);padding:16px;" class="animated fadeIn" id="CreateProfileDiv" runat="server">
-        <div style="background-color:rgb(255,255,255);margin:0 auto;width:100%;height:fit-content;border-radius:20px;">
+        <div style="background-color:var(--SuMDWhite);margin:0 auto;width:100%;height:fit-content;border-radius:20px;">
            <div style="background-color:var(--SuMThemeColorOP14);border-radius:18px;width:calc(100% - 24px);height:fit-content;margin:12px;">
                 <div style="width:100%;display:block;padding:8px;padding-left:18px;margin-bottom:-12px;">
                     <p style="display:inline;font-size:120%;color:var(--SuMThemeColorOP92);" >Title: </p>
@@ -129,7 +129,7 @@
                            background-color:var(--SuMThemeColorOP32) !important;
                        }
                    </style>
-                   <asp:DropDownList runat="server" Width="98" Height="38" style="text-align:center;display:inline-block;background-color:rgba(255,255,255,0.6);color:var(--SuMThemeColorOP92);border-radius:19px;border:2px solid var(--SuMThemeColorOP32) !important;" ID="AgeRatingDDL" CssClass="dropdown-list form-control" > 
+                   <asp:DropDownList runat="server" Width="98" Height="38" style="text-align:center;display:inline-block;background-color:var(--SuMDWhiteOP60);color:var(--SuMThemeColorOP92);border-radius:19px;border:2px solid var(--SuMThemeColorOP32) !important;" ID="AgeRatingDDL" CssClass="dropdown-list form-control" > 
                        <asp:ListItem>Everyone</asp:ListItem>
                        <asp:ListItem>12+</asp:ListItem>
                        <asp:ListItem>13+</asp:ListItem>
@@ -146,7 +146,7 @@
                        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="32px" viewBox="0 0 24 24" width="32px" fill="var(--SuMThemeColorOP92)"><g><rect fill="none" height="24" width="24"/></g><g><path d="M19.41,7.41l-4.83-4.83C14.21,2.21,13.7,2,13.17,2H6C4.9,2,4.01,2.9,4.01,4L4,20c0,1.1,0.89,2,1.99,2H18c1.1,0,2-0.9,2-2 V8.83C20,8.3,19.79,7.79,19.41,7.41z M14.8,15H13v3c0,0.55-0.45,1-1,1s-1-0.45-1-1v-3H9.21c-0.45,0-0.67-0.54-0.35-0.85l2.8-2.79 c0.2-0.19,0.51-0.19,0.71,0l2.79,2.79C15.46,14.46,15.24,15,14.8,15z M14,9c-0.55,0-1-0.45-1-1V3.5L18.5,9H14z"/></g></svg>
                    </a>
                    <asp:FileUpload onchange="loadFile(event)" CssClass="hide" accept="image/*" AllowMultiple="false" style="display:none;visibility:hidden;" ID="MangaPicUP" runat="server" HiddenField="true" />
-                   <img src="/FakeIMG/FI.png" class="animated fadeIn" onerror="this.style.display='none';return false;" id="MangaImagePrevie" runat="server" style="width:calc(100% - 24px);max-width:420px !important;margin:0 auto;height:auto;border-radius:18px;border:2px solid rgba(255,255,255,0.32);pointer-events:all !important;" onclick="UploadHiddenBTNHelpterF6C0.click();" />
+                   <img src="/FakeIMG/FI.png" class="animated fadeIn" onerror="this.style.display='none';return false;" id="MangaImagePrevie" runat="server" style="width:calc(100% - 24px);max-width:420px !important;margin:0 auto;height:auto;border-radius:18px;border:2px solid var(--SuMDWhiteOP32);pointer-events:all !important;" onclick="UploadHiddenBTNHelpterF6C0.click();" />
                    <script>
                        function SuMUploadPic() {
                            var SuMDocUploader = document.getElementById('<%= MangaPicUP.ClientID %>');

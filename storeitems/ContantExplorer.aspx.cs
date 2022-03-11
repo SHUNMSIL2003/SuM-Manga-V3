@@ -312,12 +312,12 @@ namespace SuM_Manga_V3.storeitems
                     ItsAWanna = true;
                 }
             }
-            if (ItsAWanna == true) 
+            if (ItsAWanna == true)
             {
                 Wanna.Attributes["src"] = "/svg/check.svg";
                 Wanna.Attributes.Add("onclick", "RemoveFromWannaJava();");
             }
-            else 
+            else
             {
                 Wanna.Attributes["src"] = "/svg/add.svg";
                 Wanna.Attributes.Add("onclick", "AddToWannaJava();");

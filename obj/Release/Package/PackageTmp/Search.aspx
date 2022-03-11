@@ -3,13 +3,13 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        androidAPIs.SetLightStatusBarColor();
+        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         var IsFullScreen = androidAPIs.SuMIsFullScreen();
         if (IsFullScreen == true) {
             androidAPIs.DeactivateFullScreenMode();
         }
         setTimeout(() => {
-            androidAPIs.SetLightStatusBarColor();
+            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
         }, 420);
     </script>
     <style>
@@ -40,7 +40,7 @@
             outline: none;
         }
         .form-control:focus {
-            border-color: #ffffff !important;
+            border-color: var(--SuMDWhite) !important;
             -webkit-box-shadow: none !important;
             box-shadow: none !important;
         }
@@ -73,15 +73,17 @@
                 viewwidth + "px, initial-scale=1.0");
         }, 300);
     </script>
-    <div id="ThisPageSBarFixUpPropElm" class="STBSUMBAR2 bg-white shadow slideInDown animated" style="padding-top:6px !important;position:fixed !important;top:0 !important;z-index:994 !important;height:fit-content !important;">
-        <nav style="width:100% !important;height:fit-content !important;" class="navbar navbar-light navbar-expand bg-white mb-4 FNM5455511">
+    <div id="ThisPageSBarFixUpPropElm" class="STBSUMBAR2   shadow slideInDown animated" style="padding-top:6px !important;position:fixed !important;top:0 !important;z-index:994 !important;height:fit-content !important;background-color:var(--SuMDWhite) !important;">
+        <nav style="width:100% !important;height:fit-content !important;" class="navbar navbar-light navbar-expand   mb-4 FNM5455511">
                     <div class="container-fluid" style="text-align:center !important;height:fit-content !important;">
                                 <div class="" style="display:inline-block !important;width:100vw !important;height:fit-content !important;text-align:center !important;align-items:center;align-content:center;padding-top:8px;padding-bottom:-8px;height:fit-content !important;">
                                     <div class="me-auto navbar-search w-100" style="vertical-align:middle !important;max-width:720px !important;margin:0 auto;height:fit-content !important;">
                                         <div style="width:100% !important;height:24px !important;display:block !important;margin:0 auto !important;height:fit-content !important;"></div>
                                         <div class="input-group" style="vertical-align:middle !important;">
-                                            <a style="margin-top:2px;width:38px;height:7vh;display:inline-block !important;float:right;vertical-align:middle !important;" href='javascript:history.go(-1)'><img src="/svg/arrowback.svg" style="height:5vh;width:5vh;max-height:32px;max-width:32px;display:inline-block !important;margin-top:12px !important;margin-bottom:12px !important;" /></a>
-                                            <asp:TextBox AutoPostBack="true" OnTextChanged="ShowResults" onkeyup="this.onchange();" ID="TextBoxForSuM" runat="server" CssClass="bg-light form-control border-0 small" style="background-color:#ffffff !important;border:solid 0px #ffffff !important;height:7vh !important;width:calc(90% - 84px) !important;display:inline !important;float:right;max-height:62px !important;" AutoCompleteType="Search" TextMode="Search" placeholder="Search for..."></asp:TextBox>
+                                            <a style="margin-top:2px;width:38px;height:7vh;display:inline-block !important;float:right;vertical-align:middle !important;" href='javascript:history.go(-1)'>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:5vh;width:5vh;max-height:32px;max-width:32px;display:inline-block !important;margin-top:12px !important;margin-bottom:12px !important;" fill="var(--SuMThemeColor)"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
+                                            </a>
+                                            <asp:TextBox AutoPostBack="true" OnTextChanged="ShowResults" onkeyup="this.onchange();" ID="TextBoxForSuM" runat="server" CssClass="bg-light form-control border-0 small" style="background-color:var(--SuMDWhite) !important;border:solid 0px var(--SuMDWhite) !important;height:7vh !important;width:calc(90% - 84px) !important;display:inline !important;float:right;max-height:62px !important;" AutoCompleteType="Search" TextMode="Search" placeholder="Search for..."></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>

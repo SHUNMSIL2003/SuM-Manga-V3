@@ -24,10 +24,10 @@ namespace SuM_Manga_V3
             }
             else
             {
-                //SMHead.InnerHtml += "<meta name=" + "theme-color" + " content=" + "rgb(242,242,242)" + ">";
+                //SMHead.InnerHtml += "<meta name=" + "theme-color" + " content=" + "var(--SuMDGray)" + ">";
                 System.Web.UI.HtmlControls.HtmlMeta meta = new System.Web.UI.HtmlControls.HtmlMeta();
                 meta.Name = "theme-color";
-                meta.Content = "rgb(242,242,242)";
+                meta.Content = "var(--SuMDGray)";
                 MetaPlaceHolder.Controls.Add(meta);
             }
         }
@@ -44,10 +44,10 @@ namespace SuM_Manga_V3
             }
             else
             {
-                //SMHead.InnerHtml += "<meta name=" + "theme-color" + " content=" + "rgb(242,242,242)" + ">";
+                //SMHead.InnerHtml += "<meta name=" + "theme-color" + " content=" + "var(--SuMDGray)" + ">";
                 System.Web.UI.HtmlControls.HtmlMeta meta = new System.Web.UI.HtmlControls.HtmlMeta();
                 meta.Name = "theme-color";
-                meta.Content = "rgb(242,242,242)";
+                meta.Content = "var(--SuMDGray)";
                 MetaPlaceHolder.Controls.Add(meta);
             }
             //HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
@@ -58,7 +58,7 @@ namespace SuM_Manga_V3
             //}
             string path = HttpContext.Current.Request.Url.AbsolutePath;
             bool foundit = false;
-            fullnavscont.Attributes["style"] = "border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:#ffffff !important;z-index:999;position:fixed !important;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;";
+            fullnavscont.Attributes["style"] = "border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:var(--SuMDWhite) !important;z-index:999;position:fixed !important;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;";
             if (path.Contains("Explore") == true || string.IsNullOrEmpty(path) == true || path == "/")
             {
                 foundit = true;
@@ -124,7 +124,7 @@ namespace SuM_Manga_V3
         {
             /*string ThemeColor = string.Empty;
             if (Request.QueryString["TC"] != null) { ThemeColor = Request.QueryString["TC"].ToString(); }
-            if (string.IsNullOrEmpty(ThemeColor) == true) { ThemeColor = "rgba(242,242,242,0.74)"; }*/
+            if (string.IsNullOrEmpty(ThemeColor) == true) { ThemeColor = "var(--SuMDGrayOP74)"; }*/
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             //SuMUserNofifications.Attributes["style"] = "background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
             if (GetUserInfoCookie != null)
@@ -330,11 +330,11 @@ namespace SuM_Manga_V3
             {
                 if (ACCOUNTSTATUSKEY == "FREE")
                 {
-                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free trial has expired!", DateTime.Now.ToString("MMMM d yyyy"), "/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)", "SuM System");
+                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free trial has expired!", DateTime.Now.ToString("MMMM d yyyy"), "/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)", "SuM System");
                 }
                 if (ACCOUNTSTATUSKEY == "PAID")
                 {
-                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free subscription has expired!", DateTime.Now.ToString("MMMM d yyyy"), "/AccountETC/Settings.aspx?TC=rgba(255,255,255,1)", "SuM System");
+                    ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml = BuildYellowCard("payment is needed, your free subscription has expired!", DateTime.Now.ToString("MMMM d yyyy"), "/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)", "SuM System");
                 }
             }
             //ACCOUNTNOTOFICATIONSPaymentCard.InnerHtml += "<a>" + ACCOUNTSTATUSKEY + " MS:" + MembershipIsValid.ToString() + "</a>"; DEBUG
@@ -353,7 +353,7 @@ namespace SuM_Manga_V3
             string SC = '"'.ToString();
             string DATERES = DATE + "";
             string RS = "";
-            RS = "<a class=" + SC + "d-flex align-items-center" + SC + " style=" + SC + "padding-left:6px;padding-top:6px;padding-bottom:6px;" + SC + " ><div class=" + SC + "dropdown-list-image" + SC + "><div class=me-3 ><div class=" + SC + "bg-success icon-circle" + SC + "><i class=" + SC + "fas fa-donate text-white" + SC + "></i></div></div></div><div class=" + '"'.ToString() + "fw-bold NotifMaxWidth" + '"'.ToString() + " ><div class=" + "text-truncate" + "><span style=" + "color:#000000B3;" + " >" + INFO + "</span></div><p class=" + SC + "small mb-0" + SC + " style=color:#00000080; >" + SENDER + " - " + DATERES + "</p></div></a>";
+            RS = "<a class=" + SC + "d-flex align-items-center" + SC + " style=" + SC + "padding-left:6px;padding-top:6px;padding-bottom:6px;" + SC + " ><div class=" + SC + "dropdown-list-image" + SC + "><div class=me-3 ><div class=" + SC + "bg-success icon-circle" + SC + "><i class=" + SC + "fas fa-donate text-white" + SC + "></i></div></div></div><div class=" + '"'.ToString() + "fw-bold NotifMaxWidth" + '"'.ToString() + " ><div class=" + "text-truncate" + "><span style=" + "color:var(--SuMDBlackOP70);" + " >" + INFO + "</span></div><p class=" + SC + "small mb-0" + SC + " style=color:var(--SuMDBlackOP50); >" + SENDER + " - " + DATERES + "</p></div></a>";
             //RS = "";
             return RS;
         }
@@ -362,7 +362,7 @@ namespace SuM_Manga_V3
             string SC = '"'.ToString();
             string DATERES = DATE + "";
             string RS = "";
-            RS = "<a href=" + SC + LINK + SC + " class=" + SC + "d-flex align-items-center" + SC + " style=" + SC + "padding-left:6px;padding-top:6px;padding-bottom:6px;" + SC + " ><div class=" + SC + "dropdown-list-image" + SC + "><div class=me-3 ><div class=" + SC + "bg-warning icon-circle" + SC + "><i class=" + SC + "fas fa-exclamation-triangle text-white" + SC + "></i></div></div></div><div class=" + '"'.ToString() + "fw-bold NotifMaxWidth" + '"'.ToString() + " ><div class=" + "text-truncate" + "><span style=" + "color:#000000B3;" + " >" + INFO + "</span></div><p class=" + SC + "small mb-0" + SC + " style=color:#00000080; >" + SENDER + " - " + DATERES + "</p></div></a>";
+            RS = "<a href=" + SC + LINK + SC + " class=" + SC + "d-flex align-items-center" + SC + " style=" + SC + "padding-left:6px;padding-top:6px;padding-bottom:6px;" + SC + " ><div class=" + SC + "dropdown-list-image" + SC + "><div class=me-3 ><div class=" + SC + "bg-warning icon-circle" + SC + "><i class=" + SC + "fas fa-exclamation-triangle text-white" + SC + "></i></div></div></div><div class=" + '"'.ToString() + "fw-bold NotifMaxWidth" + '"'.ToString() + " ><div class=" + "text-truncate" + "><span style=" + "color:var(--SuMDBlackOP70);" + " >" + INFO + "</span></div><p class=" + SC + "small mb-0" + SC + " style=color:var(--SuMDBlackOP50); >" + SENDER + " - " + DATERES + "</p></div></a>";
             //RS = "";
             return RS;
         }

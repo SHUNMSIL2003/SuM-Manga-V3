@@ -1221,7 +1221,7 @@ window.Modernizr = (function( window, document, undefined ) {
                                           // corrects block display not defined in IE6/7/8/9
                                           'article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}' +
                                             // adds styling not present in IE6/7/8/9
-                                            'mark{background:#FF0;color:#000}' +
+                                            'mark{background:#FF0;color:var(--SuMDBlack)}' +
                                             // hides non-rendered elements
                                             'template{display:none}'
                                          );

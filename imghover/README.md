@@ -76,8 +76,8 @@ You can find and customize these variables in the `_variables.scss` file.
 | `var(--SuMThemeColor)`                   | `var(--SuMThemeColor)` (default), or any valid CSS color value | Specifies the `background-color` for the image.                           |
 | `$figcaption-bg`           | `var(--SuMThemeColor)` (default), or any valid CSS color value        | Specifies the `background-color` for the figcaption element.                       |
 | `$figcaption-padding`           | `30px` (default), or any length or percentage        | Sets the `padding` on the figcaption element.                         |
-| `$text-color`         | `#ffffff` (default), or any valid CSS color value       | Sets the text `color` for the figcaption element and any child `<h*> elements`.      |
-| `var(--SuMThemeColor)`       | `#ffffff` (default), or any valid CSS color value        | Sets the text `border-color` for ...                                |
+| `$text-color`         | `var(--SuMDWhite)` (default), or any valid CSS color value       | Sets the text `color` for the figcaption element and any child `<h*> elements`.      |
+| `var(--SuMThemeColor)`       | `var(--SuMDWhite)` (default), or any valid CSS color value        | Sets the text `border-color` for ...                                |
 | `$border-margin` | `5px` (default), or any valid length        | ...                                                                                    |
 | `$border-width`      | `4px` (default), or any valid length        | ...     |
 | `$transition-duration`      | `0.35s` (default), or any valid time value        | Sets the transition duration for the animation.                                |
