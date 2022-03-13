@@ -1,22 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="ContantExplorer.aspx.cs" Async="true" Inherits="SuM_Manga_V3.storeitems.ContantExplorer" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <script>
-        document.getElementById('fullnavscont').style.display = 'block';
-        /*var IsFullScreen = androidAPIs.SuMIsFullScreen();
-        if (IsFullScreen == true) {
-            androidAPIs.DeactivateFullScreenMode();
-        }*/
-        //androidAPIs.DeactivateFullScreenMode();
-        if ("androidAPIs" in window) {
-            //androidAPIs.DeactivateFullScreenMode();
-            androidAPIs.FullyTransStatusBar();
-        }
-        else {
-            location.href = '/SuMMangaInstallAPP.aspx';
-        }
-        androidAPIs.SetDarkStatusBarColor();
-    </script>
     <div id="SuMLoadingPIndHandler" class="" style="overflow:hidden !important;border-radius:0px;display:block;position:fixed !important;top:0 !important;z-index:998 !important;background-color:#ffffff;width:100%;height:100%;margin-top:0px;margin-left:0px;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
         <div id="SuMLoadingFHandBG" runat="server" style="overflow:hidden !important;width:100%;height:100%;background-color:rgba(0,0,0,0.74);margin:0 auto;">
             <div id="SuMLoadingHandDivConF0C0" style="transition:all 0.18s !important;display: block; height: fit-content; width: 280px; background-color: rgb(255, 255, 255); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 38px 32px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important; text-align: center !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;" class="shadow-sm">
@@ -553,30 +537,6 @@
 
 
             SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
-            /*ThisPageScrollContaner.onscroll = function () {
-    
-                MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
-    
-                //MidWayScrollHDetected = InfoCoverWBGF2CSElm.getBoundingClientRect().height;
-    
-                if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
-    
-                    //androidAPIs.DeactivateFullScreenMode();
-                    androidAPIs.SetDarkStatusBarColor();
-                    SuMMangaTopBarElm.style.display = 'block';
-                    InfoCoverWBGF2CSElm.classList.remove('ZoomOutFromInBackground');
-                    InfoCoverWBGF2CSElm.classList.add('ZoomInBackground');
-    
-                } else {
-    
-                    //androidAPIs.DeactivateFullScreenMode();
-                    androidAPIs.SetDarkStatusBarColor();
-                    SuMMangaTopBarElm.style.display = 'none';
-                    InfoCoverWBGF2CSElm.classList.remove('ZoomInBackground');
-                    InfoCoverWBGF2CSElm.classList.add('ZoomOutFromInBackground');
-                }
-    
-                };*/
 
             var isScrollingSuMRecentsFuncF2CS;
             document.getElementById('3rdGBLayer').onscroll = function () {
@@ -587,12 +547,12 @@
 
                     MaxScrollHDetected = (CatXHeightNCF248C672.height - 32);
                     if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
-                        androidAPIs.SetDarkStatusBarColor();
+                          
                         SuMMangaTopBarElm.style.display = 'block';
                         InfoCoverWBGF2CSElm.classList.remove('pulse');
                         //InfoCoverWBGF2CSElm.classList.add('pulse');
                     } else {
-                        androidAPIs.SetDarkStatusBarColor();
+                          
                         SuMMangaTopBarElm.style.display = 'none';
                         InfoCoverWBGF2CSElm.classList.remove('pulse');
                         InfoCoverWBGF2CSElm.classList.add('pulse');

@@ -3,13 +3,13 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+          
         var IsFullScreen = androidAPIs.SuMIsFullScreen();
         if (IsFullScreen == true) {
-            androidAPIs.DeactivateFullScreenMode();
+              
         }
         setTimeout(() => {
-            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+              
         }, 420);
     </script>
     <style>
@@ -73,7 +73,8 @@
                 viewwidth + "px, initial-scale=1.0");
         }, 300);
     </script>
-    <div id="ThisPageSBarFixUpPropElm" class="STBSUMBAR2   shadow slideInDown animated" style="padding-top:6px !important;position:fixed !important;top:0 !important;z-index:994 !important;height:fit-content !important;background-color:var(--SuMDWhite) !important;">
+    <div style="width:100%;height:100vh !important;background-color:var(--SuMBack) !important;">
+    <div id="ThisPageSBarFixUpPropElm" class="STBSUMBAR2   shadow slideInDown animated" style="padding-top:6px !important;position:fixed !important;top:0 !important;z-index:994 !important;height:fit-content !important;background-color:var(--SuMDWhite) !important;border-bottom-left-radius:22px !important;border-bottom-right-radius:22px !important;">
         <nav style="width:100% !important;height:fit-content !important;" class="navbar navbar-light navbar-expand   mb-4 FNM5455511">
                     <div class="container-fluid" style="text-align:center !important;height:fit-content !important;">
                                 <div class="" style="display:inline-block !important;width:100vw !important;height:fit-content !important;text-align:center !important;align-items:center;align-content:center;padding-top:8px;padding-bottom:-8px;height:fit-content !important;">
@@ -109,4 +110,5 @@
     <script>
         document.getElementById('FUEF6CS').style.paddingTop = (document.getElementById('ThisPageSBarFixUpPropElm').getBoundingClientRect().height + 12) + 'px';
     </script>
+    </div>
 </asp:Content>

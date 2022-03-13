@@ -113,7 +113,7 @@ namespace SuM_Manga_V3.AccountETC
                 TapForXText.Attributes["style"] = "color:var(--SuMDWhiteOP64);margin-top:-18px;width:100%;text-align:center;font-size:76%;padding-bottom:-16px;";
                 TapForXText.InnerText = "Tap to login!";
             }
-            HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
+            /*HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
             if (GetPerModeInfoCookie != null)
             {
                 SettingsUnavaliblePOPUP.Attributes["style"] = "animation-duration:0s !important;background-color:var(--SuMDBlackOP32) !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:999 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
@@ -128,26 +128,7 @@ namespace SuM_Manga_V3.AccountETC
                 creatorsupmitform.Attributes["class"] = "card-body";
                 UserSettingsCards.Attributes["style"] = "display:block;height:0px;overflow:hidden;transition:none;background-color:var(--SuMDWhite);";
                 SlideDownCard.Attributes["style"] = "animation-duration:0s !important;width:100%; padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:var(--SuMDWhite) !important;margin:0 auto !important; margin-top:0px !important;border-bottom-left-radius:20px;border-bottom-right-radius:20px;padding:0px !important;padding-bottom:12px !important;padding-top:8px !important;margin-bottom:22px !important;";
-                PerformanceModeCB.Attributes["onclick"] = "TurnPreModeOff();";
-                PerformanceModeCB.Attributes.Add("checked", "checked");
-            }
-            if (IsPostBack == true) 
-            {
-                SlideDownCard.Attributes["class"] = "";
-            }
-            HttpCookie GetUserLockCookie = Request.Cookies["SuMLockMode"];
-            if (GetUserLockCookie != null)
-            {
-                SuMLockSBTN.Attributes["onclick"] = "document.getElementById('" + SuMLockTuOffBTN.ClientID.ToString() + "').click(); setTimeout(() => { androidAPIs.SuMRestart(); }, 450);";
-                SuMLockSBTN.Attributes.Add("checked", "checked");
-                SuMLockSBTN.Checked = true;
-            }
-            else
-            {
-                SuMLockSBTN.Attributes["onclick"] = "document.getElementById('" + SuMLockTuOnBTN.ClientID.ToString() + "').click(); setTimeout(() => { androidAPIs.SuMRestart(); }, 450);";
-                SuMLockSBTN.Attributes.Add("unchecked", "unchecked");
-                SuMLockSBTN.Checked = false;
-            }
+            }*/
 
         }
         protected void SavePreformanceSettingCookie(object sender, EventArgs e)

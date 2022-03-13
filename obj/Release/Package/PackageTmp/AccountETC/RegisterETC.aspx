@@ -504,7 +504,7 @@
         </div>
     </div>
         <script>
-            androidAPIs.SetDarkStatusBarColor();
+              
     </script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {

@@ -4,9 +4,9 @@
     <script>
         if ("androidAPIs" in window) {
             androidAPIs.SemiTranStatusBar();
-            androidAPIs.SetDarkStatusBarColor();
+              
             setTimeout(() => {
-                androidAPIs.SetDarkStatusBarColor();
+                  
             }, 630);
         }
     </script>

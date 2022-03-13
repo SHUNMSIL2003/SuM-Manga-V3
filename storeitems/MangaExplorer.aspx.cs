@@ -26,12 +26,6 @@ namespace SuM_Manga_V3.storeitems
             }
             else
             {
-                bool PreformanceMode = false;
-                HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
-                if (GetPerModeInfoCookie != null)
-                {
-                    PreformanceMode = true;
-                }
                 if (IsPostBack == false)
                 {
                     if (Request.QueryString["Chapter"] == null || Request.QueryString["Manga"] == null) { backhome(); }
@@ -141,14 +135,6 @@ namespace SuM_Manga_V3.storeitems
                         {
                             Response.Redirect("~/404.aspx");
                         }
-                        if (PreformanceMode == true)
-                        {
-                            FirstAniDiv.Attributes["class"] = "";
-                            AddToFavSHOWNBTN.Attributes["class"] = "";
-                            CommentsSecCont.Attributes["class"] = "slideDown";
-                            ComSecTi.Attributes["class"] = "";
-                            SendCommentAria.Attributes["class"] = "";
-                        }
                     }
                 }
                 //NewFuncs-TONOTBEPREVENTFROMRELOAD
@@ -158,17 +144,8 @@ namespace SuM_Manga_V3.storeitems
                 string ThemeColor = Request.QueryString["TC"].ToString();
                 CommentsSecTopPartColor.Attributes["style"] = "display:block;margin-top:18px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background-color:" + ThemeColor.Replace("0.74", "0.58") + ";padding:0px !important;";
                 SendBTN.Attributes["style"] = "background-color:var(--SuMDBlackOP100);border-radius:4px;width:40px;height:34px;margin:4px;";
-                if (PreformanceMode == false)
-                {
-                    dot1.Attributes["style"] = "transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:" + ThemeColor + ";margin-right:6px;";
-                    CommentsSecCont.Attributes["style"] = " -webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
-                }
-                else
-                {
-                    Comments.Attributes["class"] = "fadeIn";
-                    CommentsSecCont.Attributes["style"] = "-webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
-                    dot1.Attributes["style"] = "transition: none !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:" + ThemeColor + ";margin-right:6px;";
-                }
+                dot1.Attributes["style"] = "transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:" + ThemeColor + ";margin-right:6px;";
+                CommentsSecCont.Attributes["style"] = " -webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
                 if (IsPostBack == false)
                 {
                     AddOneView();

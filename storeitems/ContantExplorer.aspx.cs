@@ -19,12 +19,6 @@ namespace SuM_Manga_V3.storeitems
         {
             //LastRefreshPross();   -- Needs work  %-- No need now !
             bool ThereIsMoreCHs = false;
-            bool PreformanceMode = false;
-            HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
-            if (GetPerModeInfoCookie != null)
-            {
-                PreformanceMode = true;
-            }
             if (Request.QueryString["Manga"] == null || Request.QueryString["VC"] == null) { backhome(); }
             string CardBG = string.Empty;
             string MangaNameFSQL = ShowName();
@@ -71,14 +65,7 @@ namespace SuM_Manga_V3.storeitems
             if (IsPostBack == false)
             {
                 MdiscS.InnerText = ShowDis();
-                if (PreformanceMode == false)
-                {
-                    GernsTags.InnerHtml = GetGerns(idfg0554);
-                }
-                else
-                {
-                    GernsTags.InnerHtml = GetGernsPerMode(idfg0554);
-                }
+                GernsTags.InnerHtml = GetGerns(idfg0554);
                 GernsTags.Attributes["style"] = "border-top-right-radius:22px;border-top-left-radius:22px;width:100%;height:fit-content;background-color:" + ThemeColor.Replace("0.74", "1") + ";align-content:center;justify-content:center;padding:8px;align-content:center;text-align:center !important;padding-bottom:12px;padding-top:18px;";
                 //New
                 string ThemeSBM = Request.QueryString["TC"].ToString().Replace("0.74", "0.86");
@@ -117,24 +104,10 @@ namespace SuM_Manga_V3.storeitems
             char b12 = '"';
             if (IsPostBack == false)
             {
-                if (PreformanceMode == false)
-                {
-                    SuMLoginUI.Attributes["style"] = " background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;";
-                }
-                else
-                {
-                    SuMLoginUI.Attributes["style"] = "background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;";
-                }
+                SuMLoginUI.Attributes["style"] = " background-color:" + ThemeColor + ";overflow:hidden;width:100vw;height:100vh;display:block;z-index:999 !important;margin:0 auto !important;position:absolute !important;";
             }
             string btnanimationclass = string.Empty;
-            if (PreformanceMode == false)
-            {
-                btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
-            }
-            else
-            {
-                btnanimationclass = "btn";
-            }
+            btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
             string linktoupdate = pathstartnochx + extraexplore + identifylast + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();
             string linktoupdatech = identifynexthelper + "ch";
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
@@ -212,15 +185,7 @@ namespace SuM_Manga_V3.storeitems
             }
             if (IsPostBack == false)
             {
-                if (PreformanceMode == false)
-                {
-                    ChapterUnavaliblePOPUP.Attributes["style"] = " background-color:" + ThemeColor + ";overflow:hidden;width:100%;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
-                }
-                else
-                {
-                    ChapterUnavaliblePOPUP.Attributes["style"] = "background-color:" + ThemeColor + ";overflow:hidden;width:100%;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
-                    SUAC000SP.Attributes["class"] = "";
-                }
+                ChapterUnavaliblePOPUP.Attributes["style"] = " background-color:" + ThemeColor + ";overflow:hidden;width:100%;height:100vh;display:none;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;";
                 ShowCreator();
                 ShowViews();
                 ShowAgeRating();
@@ -240,17 +205,6 @@ namespace SuM_Manga_V3.storeitems
             if (IsPostBack == false)
             {
                 AddToFavNWanna.Attributes["style"] = "overflow:hidden !important;animation-duration:0.26s !important;width:fit-content;height:38px;background-color:" + ThemeColor.Replace("0.74", "0.92") + ";border-radius:18px;padding:4px !important;margin-left:0px;float:left !important;margin-top:28px !important;border-bottom-left-radius:0px !important;border-top-left-radius:0px !important;";
-            }
-            if (PreformanceMode == true)
-            {
-                ACont0.Attributes["class"] = "";
-                CategoryX.Attributes["class"] = "";
-                infoCover.Attributes["class"] = "";
-                FavNWannaContaner.Attributes["class"] = "";
-                AddToFavNWanna.Attributes["class"] = "";
-                Fav.Attributes["class"] = "";
-                Wanna.Attributes["class"] = "";
-                WannaListTXT.Attributes["class"] = "";
             }
         }
         protected void ReasentMarker(int UID)
@@ -547,12 +501,6 @@ namespace SuM_Manga_V3.storeitems
             int CSN = 1 * 12;
             int CEN = 0;
             int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
-            HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
-            bool PreformanceMode = false;
-            if (GetPerModeInfoCookie != null)
-            {
-                PreformanceMode = true;
-            }
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
@@ -578,14 +526,7 @@ namespace SuM_Manga_V3.storeitems
             char b12 = '"';
             TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#ffffff;width:90%;opacity:0.16;margin:0px;margin-block:0px;" + sc.ToString() + ">";
             string btnanimationclass = string.Empty;
-            if (PreformanceMode == false)
-            {
-                btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
-            }
-            else
-            {
-                btnanimationclass = "btn";
-            }
+            btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             string managtocheckexsis = Request.QueryString["Manga"].ToString();
             string rootpath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);

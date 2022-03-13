@@ -3,10 +3,10 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
         if ("androidAPIs" in window == true) {
-            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
-            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+              
+              
             setTimeout(() => {
-                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+                  
             }, 420);
         }
     </script>
@@ -25,10 +25,6 @@
 
     </a> -->
     <div style="background-color:var(--SuMDGrayOP82) !important;width:100% !important;height:24px;position:fixed !important;top:0 !important;z-index:997 !important;" id="SuMSettingStatausBarHelperF000C000"></div>
-    <div style="background-color:var(--SuMDWhiteOP86) !important;position:fixed !important;top:0 !important;animation-duration:0.16s !important;z-index:997 !important;height:fit-content !important;width:100% !important;display:none;padding-top:6px;padding-bottom:6px;padding-left:4px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;" class="animated fadeInDown" id="SuMMangaTopBar">
-        <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;" id="SuMMangaTopBarHeightHelper"></div>
-        <p style="font-size:118%;margin-left:18px;margin-bottom:8px;display:block;height:fit-content;width:fit-content;" class="text-black"><img src="/svg/settingstBlack.svg" width="30" height="30" style="" /> SuM Settings</p>
-    </div>
     <asp:Button ID="EnablePreMode" runat="server" OnClick="SavePreformanceSettingCookie" style="display:none !important;visibility:hidden;" />
     <asp:Button ID="DisablePreMode" runat="server" OnClick="RemovePreformanceSettingCookie" style="display:none !important;visibility:hidden;" />
     <asp:Button ID="FixUpPageRe" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden;" />
@@ -45,14 +41,14 @@
         </div>
     </div>
                         <div id="SuMRnadomScrollHelper" style="scroll-snap-type: y mandatory;height:100vh;width:100vw; padding:0px !important;padding-top:0px !important;padding-bottom:8px !important; background-color:var(--SuMDGray) !important;margin:0 auto !important; margin-top:0px !important;">
-    <div style="scroll-margin-top:32px !important;scroll-margin-bottom:32px !important; height:100vh !important;width:100vw;max-width:720px !important;margin:0 auto !important;">
+    <div style="scroll-margin-top:32px !important;scroll-margin-bottom:32px !important; height:100vh !important;width:100vw;max-width:720px !important;margin:0 auto !important;height: 100vh;scroll-snap-type: y proximity !important; scroll-behavior: smooth !important; scroll-padding-top:32px !important;scroll-padding-bottom:32px !important;padding-bottom:164px !important;padding-top:64px !important;">
         <div style="width:100% !important;height:12px;margin:0 auto !important;" id="SuMStatusBarHeightFixUpF0C0"></div>
     <script>
-        var StatusBarHeightValueFromSuMAndroidAPIsF0C0 = 64;
+        var StatusBarHeightValueFromSuMAndroidAPIsF0C0 = 24;
         if ("androidAPIs" in window == true) {
             StatusBarHeightValueFromSuMAndroidAPIsF0C0 = androidAPIs.getStatusBarHeight();
         }
-        document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C0 + 12) + 'px';
+        document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C0) + 'px';
     </script>
     <div id="ThisPageSBarFixUpPropElm" style="width:100%;height:0px;background-color:transparent !important;display:block;"></div>
         <script>
@@ -68,7 +64,7 @@
                 ThisPageSBarFixUpPropElmVar.style.height = (24 + 12) + 'px !important';
             }
         </script>
-    <div id="SlideDownCard" runat="server" style="animation-duration:0.26s !important;width:calc(100% - 24px); padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:var(--SuMDWhite) !important;margin:0 auto !important;margin:12px !important;border-radius:20px !important;padding:0px !important;margin-bottom:0px !important;border:0.5px var(--SuMDBroderC) solid !important;" class="animated slideInDown">
+    <div id="SlideDownCard" runat="server" style="animation-duration:0.26s !important;width:calc(100% - 24px); padding:0px !important;padding-top:8px !important;padding-bottom:8px !important; background-color:var(--SuMDWhite) !important;margin:0 auto !important;margin:12px !important;border-radius:20px !important;padding:0px !important;margin-bottom:0px !important;border:0.5px var(--SuMDBroderC) solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;" class="animated slideInDown">
         <asp:UpdatePanel ID="ProfileInfoUpdatepANEL" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="EnablePreMode" EventName="Click" />
@@ -324,25 +320,76 @@
         </div>
         </div>
 </div>
-        <asp:UpdatePanel ID="SuMSettingsUpdatepanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
-                <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="EnablePreMode" EventName="Click" />
-                        <asp:AsyncPostBackTrigger ControlID="DisablePreMode" EventName="Click" />
-                        <asp:AsyncPostBackTrigger ControlID="FixUpPageRe" EventName="Click" />
-                    </Triggers>
-                <ContentTemplate>
-                    <asp:Panel runat="server">
-        <div id="StartSetAnim" runat="server" class="fadeIn animated" style="width:calc(100% - 24px) !important;height:fit-content;background-color:var(--SuMDWhite) !important;border-radius:20px !important;padding: 20px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;border:0.5px var(--SuMDBroderC) solid !important;">
+        <div id="StartSetAnim" runat="server" class="fadeIn animated" style="width:calc(100% - 24px) !important;height:fit-content;background-color:var(--SuMDWhite) !important;border-radius:20px !important;padding: 20px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;border:0.5px var(--SuMDBroderC) solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
             <div style="vertical-align:middle;display:block !important;">
                                     <svg style="display:inline;float:left;" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 24 24" width="30px" id="SuMLockIcon" fill="var(--SuMDBlack)"><g fill="none"><path d="M0 0h24v24H0V0z"/><path d="M0 0h24v24H0V0z" opacity=".87"/></g><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"/></svg>
                                     <p style="color:var(--SuMDBlack);display:inline;float:left;margin:8px;font-size:112%;margin-top:4px;">SuM Lock</p>
-                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;margin-right:8px;margin-top:6px;opacity:0.86;" type="checkbox" onclick="document.getElementById('<%= SuMLockTuOnBTN.ClientID %>').click(); setTimeout(() => { androidAPIs.SuMRestart(); }, 640);" runat="server" id="SuMLockSBTN" /> </div>
+                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;margin-right:8px;margin-top:6px;opacity:0.86;" type="checkbox" onclick="SuMLockModeM(1);" id="SuMLockSwitchT" /> </div>
                 <p style="font-size:82%;color:var(--SuMDSubTextC);float:left;margin-left:36px;">more privacy accomplished by requiring a biometric scan when opening the app.</p>
-                <asp:Button style="display:none !important;visibility:hidden !important;" ID="SuMLockTuOnBTN" OnClick="SaveSuMLockSettingCookie" runat="server" />
-                <asp:Button style="display:none !important;visibility:hidden !important;" ID="SuMLockTuOffBTN" OnClick="RemoveSuMLockSettingCookie" runat="server" />
+                <script>
+                    var SuMStateBit = getCookie('SuMLockMode').replace(' ', '');
+                    if (SuMStateBit == 0 || SuMStateBit == '0' || SuMStateBit == null || SuMStateBit == ' ' || SuMStateBit == '') {
+                        document.getElementById('SuMLockSwitchT').checked = false;
+                        document.getElementById('SuMLockSwitchT').setAttribute('onclick', 'SuMLockModeM(1);');
+                    }
+                    if (SuMStateBit == 1 || SuMStateBit == '1') {
+                        document.getElementById('SuMLockSwitchT').checked = true;
+                        document.getElementById('SuMLockSwitchT').setAttribute('onclick', 'SuMLockModeM(0);');
+                    }
+                    function SuMLockModeM(BITX) {
+                        if (BITX == 1 || BITX == '1') {
+                            document.cookie = "SuMLockMode=" + BITX + "; expires=Thu, 18 Dec 9999 12:00:00 UTC; path=/";
+                            androidAPIs.SuMRestart();
+                        }
+                        else {
+                            document.cookie = "SuMLockMode=0; expires=Thu, 18 Dec 1000 12:00:00 UTC; path=/";
+                            androidAPIs.SuMRestart();
+                        }
+                        if (BITX == 0) {
+                            document.getElementById('SuMLockSwitchT').checked = false;
+                            document.getElementById('SuMLockSwitchT').setAttribute('onclick', 'SuMLockModeM(1);');
+                        }
+                        if (BITX == 1) {
+                            document.getElementById('SuMLockSwitchT').checked = true;
+                            document.getElementById('SuMLockSwitchT').setAttribute('onclick', 'SuMLockModeM(0);');
+                        }
+                    };
+                </script>
                                 </div>
             <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 36px);opacity:0.06;margin:0px;margin-block:0px;margin-top:12px !important;margin-bottom:18px !important;border-radius:1px;margin:0 auto;" />
-                                <div class="" style="vertical-align:middle;display:block !important;">
+                                <div style="vertical-align:middle;display:block !important;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 20 20" style="width:auto;height:30px;display:inline;float:left;" viewBox="0 0 20 20" fill="var(--SuMDBlack)"><rect fill="none" height="20" width="20"/><path d="M3.5,4.75c0-0.69,0.56-1.25,1.25-1.25S6,4.06,6,4.75S5.44,6,4.75,6S3.5,5.44,3.5,4.75z M10,2C9.26,2,8.55,2.1,7.87,2.29 C7.32,2.45,7.13,3.13,7.54,3.54l0,0c0.19,0.19,0.47,0.27,0.73,0.2C8.82,3.59,9.4,3.5,10,3.5c3.69,0,6.67,3.09,6.49,6.81 c-0.16,3.33-2.86,6.03-6.18,6.18C6.59,16.67,3.5,13.69,3.5,10c0-0.6,0.09-1.18,0.24-1.73c0.07-0.26-0.01-0.54-0.2-0.73l0,0 c-0.41-0.41-1.1-0.22-1.25,0.33C2.1,8.55,2,9.26,2,10c0,4.48,3.69,8.1,8.19,8c4.24-0.1,7.71-3.56,7.81-7.8C18.1,5.69,14.48,2,10,2z M5,10c0-2.76,2.24-5,5-5s5,2.24,5,5c0,2.76-2.24,5-5,5S5,12.76,5,10z"/></svg>
+                                    <p style="color:var(--SuMDBlack);display:inline;float:left;margin:8px;font-size:112%;margin-top:4px;">Performance Mode</p><a style="display:inline-block !important;height:fit-content;width:fit-content;padding-top:2px;padding-left:6px;padding-right:6px;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP64);margin-left:2px;border-radius:8px;font-size:60%;">Beta !</a>
+                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;margin-right:8px;margin-top:6px;opacity:0.86;" type="checkbox" onclick="SuMPerfModeM(1);" id="PerformanceModeSwitch" /> </div>
+                                    <script>
+                                        var SuMStateBit = getCookie('SuMPerformanceMode').replace(' ', '');
+                                        if (SuMStateBit == 0 || SuMStateBit == '0' || SuMStateBit == null || SuMStateBit == ' ' || SuMStateBit == '') {
+                                            document.getElementById('PerformanceModeSwitch').checked = false;
+                                            document.getElementById('PerformanceModeSwitch').setAttribute('onclick', 'SuMPerfModeM(1);');
+                                        }
+                                        if (SuMStateBit == 1 || SuMStateBit == '1') {
+                                            document.getElementById('PerformanceModeSwitch').checked = true;
+                                            document.getElementById('PerformanceModeSwitch').setAttribute('onclick', 'SuMPerfModeM(0);');
+                                        }
+                                        function SuMPerfModeM(BITX) {
+                                            document.cookie = "SuMPerformanceMode=" + BITX + "; expires=Thu, 18 Dec 9999 12:00:00 UTC; path=/";
+                                            if (BITX == 0) {
+                                                document.getElementById('PerformanceModeSwitch').checked = false;
+                                                document.getElementById('PerformanceModeSwitch').setAttribute('onclick', 'SuMPerfModeM(1);');
+                                                SuMPerfModeHandler();
+                                            }
+                                            if (BITX == 1) {
+                                                document.getElementById('PerformanceModeSwitch').checked = true;
+                                                document.getElementById('PerformanceModeSwitch').setAttribute('onclick', 'SuMPerfModeM(0);');
+                                                SuMPerfModeHandler();
+                                            }
+                                        };
+                                    </script>
+                <p style="font-size:82%;color:var(--SuMDSubTextC);float:left;margin-left:36px;">This mode removes all animations SuM-Theme-Set to improve performance on low-end devices.</p>
+                                </div>
+            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 36px);opacity:0.06;margin:0px;margin-block:0px;margin-top:12px !important;margin-bottom:18px !important;border-radius:1px;margin:0 auto;" />
+            
+            <div class="" style="vertical-align:middle;display:block !important;">
                                     <svg xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px;display:inline;float:left;" viewBox="0 0 24 24">
 	<g id="Layer_2" data-name="Layer 2">
 		<g id="moon">
@@ -385,13 +432,6 @@
                                 </div>
             <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 36px);opacity:0.06;margin:0px;margin-block:0px;margin-top:12px !important;margin-bottom:18px !important;border-radius:1px;margin:0 auto;" />
             
-            <div style="vertical-align:middle;display:block !important;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 20 20" style="width:auto;height:30px;display:inline;float:left;" viewBox="0 0 20 20" fill="var(--SuMDBlack)"><rect fill="none" height="20" width="20"/><path d="M3.5,4.75c0-0.69,0.56-1.25,1.25-1.25S6,4.06,6,4.75S5.44,6,4.75,6S3.5,5.44,3.5,4.75z M10,2C9.26,2,8.55,2.1,7.87,2.29 C7.32,2.45,7.13,3.13,7.54,3.54l0,0c0.19,0.19,0.47,0.27,0.73,0.2C8.82,3.59,9.4,3.5,10,3.5c3.69,0,6.67,3.09,6.49,6.81 c-0.16,3.33-2.86,6.03-6.18,6.18C6.59,16.67,3.5,13.69,3.5,10c0-0.6,0.09-1.18,0.24-1.73c0.07-0.26-0.01-0.54-0.2-0.73l0,0 c-0.41-0.41-1.1-0.22-1.25,0.33C2.1,8.55,2,9.26,2,10c0,4.48,3.69,8.1,8.19,8c4.24-0.1,7.71-3.56,7.81-7.8C18.1,5.69,14.48,2,10,2z M5,10c0-2.76,2.24-5,5-5s5,2.24,5,5c0,2.76-2.24,5-5,5S5,12.76,5,10z"/></svg>
-                                    <p style="color:var(--SuMDBlack);display:inline;float:left;margin:8px;font-size:112%;margin-top:4px;">Performance Mode</p><a style="display:inline-block !important;height:fit-content;width:fit-content;padding-top:2px;padding-left:6px;padding-right:6px;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP64);margin-left:2px;border-radius:8px;font-size:60%;">Beta !</a>
-                                    <div class="form-check form-switch" style="display:inline;width:auto;height:32px;float:right;"><input class="form-check-input" style="display:inline;width:38px;height:18px;float:right;margin-right:8px;margin-top:6px;opacity:0.86;" type="checkbox" onclick="TurnPreModeOn();" id="PerformanceModeCB" runat="server" /> </div>
-                                    <p style="font-size:82%;color:var(--SuMDSubTextC);float:left;margin-left:36px;">This mode removes all animations and blur from SuM Manga to improve performance on low-end devices.</p>
-                                </div>
-            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 36px);opacity:0.06;margin:0px;margin-block:0px;margin-top:12px !important;margin-bottom:18px !important;border-radius:1px;margin:0 auto;" />
             <div class=""  style="vertical-align:middle;display:block !important;margin-top:12px !important;">
 <svg style="width:auto;height:30px;display:inline;float:left;" viewBox="0 0 16 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
@@ -419,8 +459,8 @@
         </div>
             <div class="" style="background-color:var(--SuMDGray) !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:280px !important;padding-left:8px !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.1.6 Beta</p>
-                <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:var(--SuMDWhite);background: var(--SuMThemeColorOP62);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.1.7 Beta</p>
+                <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:rgba(255,255,255,0.9) !important;background: var(--SuMThemeColorOP62);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:0px;width:100%;height:164px;"></p>
             </div>
@@ -428,9 +468,6 @@
                         <script>
                             CacheInfoLoading();
                         </script>
-                        </asp:Panel>
-                </ContentTemplate>
-            </asp:UpdatePanel>
         </div>
         </div>
     <script>
@@ -496,23 +533,6 @@
             document.getElementById('ClearCacheBTN').style.background = 'var(--SuMDBlackOP16)';
             CacheInfoLoading();
         };
-            var PerModeSwitchElm = document.getElementById('<%= PerformanceModeCB.ClientID %>');
-            function TurnPreModeOn() {
-                document.getElementById('<%= EnablePreMode.ClientID %>').click();
-                setTimeout(() => {
-                    document.getElementById('<%= FixUpPageRe.ClientID %>').click();
-                }, 1200);
-                DeleteSuMCache();
-                setTimeout(() => { androidAPIs.SuMRestart(); }, 450);
-            };
-            function TurnPreModeOff() {
-                document.getElementById('<%= DisablePreMode.ClientID %>').click();
-                setTimeout(() => {
-                    document.getElementById('<%= FixUpPageRe.ClientID %>').click();
-                }, 1200);
-                DeleteSuMCache();
-                setTimeout(() => { androidAPIs.SuMRestart(); }, 450);
-            };
             var UserSettingsCardsDiv = document.getElementById('<%= UserSettingsCards.ClientID %>');
             function SuMSettingDivExpandor(NormallId) {
                 var ChangeDivv = document.getElementById('MainContent_' + NormallId);
@@ -533,11 +553,10 @@
     </script>
     <script>
         if ("androidAPIs" in window == true) {
-            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+              
         }
         var ThisPageScrollContaner = document.getElementById('SuMRnadomScrollHelper');
         var ThisPageChangeStartElm = document.getElementById('<%= ThisPageMaxNoShowScrool.ClientID %>');
-        var SuMMangaTopBarElm = document.getElementById('SuMMangaTopBar');
         var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
         var StatusBarHeightValueFromAPIs = 24;
         if ("androidAPIs" in window == true) {
@@ -548,21 +567,6 @@
             MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
         }, 540);
         SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
-        ThisPageScrollContaner.onscroll = function () {
-
-            if (ThisPageScrollContaner.scrollTop >= MaxScrollHDetected) {
-
-                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
-                SuMMangaTopBarElm.style.display = 'block';
-
-            } else {
-
-                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
-                SuMMangaTopBarElm.style.display = 'none';
-
-            }
-
-        };
 
         function UpdateDrakModeState() {
             var SuMStateBit = getCookie('SuMUserThemeState').replace(' ', '');
@@ -576,55 +580,72 @@
             }
         };
 
+        function UpdateLockModeState() {
+            var SuMStateBit = getCookie('SuMLockMode').replace(' ', '');
+            if (SuMStateBit == 0 || SuMStateBit == '0' || SuMStateBit == null || SuMStateBit == ' ' || SuMStateBit == '') {
+                document.getElementById('SuMLockSwitchT').checked = false;
+                document.getElementById('SuMLockSwitchT').setAttribute('onclick', 'SuMLockModeM(1);');
+            }
+            if (SuMStateBit == 1 || SuMStateBit == '1') {
+                document.getElementById('SuMLockSwitchT').checked = true;
+                document.getElementById('SuMLockSwitchT').setAttribute('onclick', 'SuMLockModeM(0);');
+            }
+        };
+
         var StatusBarHeightValueFromSuMAndroidAPIsF0C1 = 24;
         if ("androidAPIs" in window == true) {
-            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
-            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
             StatusBarHeightValueFromSuMAndroidAPIsF0C1 = androidAPIs.getStatusBarHeight();
         }
-        document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
-        document.getElementById('SuMSettingStatausBarHelperF000C000').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 2) + 'px';
+        document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1) + 'px';
+        //document.getElementById('SuMSettingStatausBarHelperF000C000').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1) + 'px';
         UpdateDrakModeState();
+        UpdateLockModeState();
         setTimeout(() => {
             if ("androidAPIs" in window == true) {
-                if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+                  
             }
             UpdateDrakModeState();
+            UpdateLockModeState();
             document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
-            document.getElementById('SuMSettingStatausBarHelperF000C000').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 2) + 'px';
+            //document.getElementById('SuMSettingStatausBarHelperF000C000').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 2) + 'px';
             setTimeout(() => {
                 if ("androidAPIs" in window == true) {
-                    if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+                      
                 }
                 UpdateDrakModeState();
+                UpdateLockModeState();
                 document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
-                document.getElementById('SuMSettingStatausBarHelperF000C000').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 2) + 'px';
+                //document.getElementById('SuMSettingStatausBarHelperF000C000').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 2) + 'px';
                 setTimeout(() => {
                     if ("androidAPIs" in window == true) {
-                        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+                          
                     }
                     UpdateDrakModeState();
+                    UpdateLockModeState();
                     setTimeout(() => {
                         if ("androidAPIs" in window == true) {
-                            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+                              
                         }
                         UpdateDrakModeState();
+                        UpdateLockModeState();
                         setTimeout(() => {
-                            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+                              
                             document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
-                            document.getElementById('SuMSettingStatausBarHelperF000C000').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 2) + 'px';
+                            //document.getElementById('SuMSettingStatausBarHelperF000C000').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 2) + 'px';
                             setTimeout(() => {
                                 if ("androidAPIs" in window == true) {
-                                    if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+                                      
                                 }
                                 UpdateDrakModeState();
+                                UpdateLockModeState();
                                 setTimeout(() => {
                                     if ("androidAPIs" in window == true) {
-                                        if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+                                          
                                     }
                                     UpdateDrakModeState();
+                                    UpdateLockModeState();
                                     document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
-                                    document.getElementById('SuMSettingStatausBarHelperF000C000').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 2) + 'px';
+                                    //document.getElementById('SuMSettingStatausBarHelperF000C000').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 2) + 'px';
                                 }, 1800);
                             }, 45);
                         }, 90);

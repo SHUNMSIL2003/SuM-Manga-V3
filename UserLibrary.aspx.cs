@@ -25,13 +25,6 @@ namespace SuM_Manga_V3
             else
             {
                 int UID = Convert.ToInt32(Convert.ToString(GetUserInfoCookie["ID"]));
-                HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
-                if (GetPerModeInfoCookie != null)
-                {
-                    ShowReqContantContaner.Attributes["class"] = "";
-                    LibCatTopPart.Attributes["class"] = "";
-                    infocard.Attributes["class"] = "";
-                }
                 var CT = Request.QueryString["RT"];
                 if (CT != null)
                 {
@@ -43,10 +36,7 @@ namespace SuM_Manga_V3
                             if (IsPostBack == false)
                             {
                                 cr.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:var(--SuMThemeColor);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDWhiteOP96);";
-                                if (GetPerModeInfoCookie == null)
-                                {
-                                    cr.Attributes["class"] = "animated pulse";
-                                }
+                                cr.Attributes["class"] = "animated pulse";
                                 wr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
                                 mf.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
                                 InfoAboutC.InnerHtml = "This library is to ease access to the mangas you are currently reading and track your process, you can <b>add mangas by clicking the " + '"'.ToString() + "Start Reading" + '"'.ToString() + " button</b> in the desired manga page.";
@@ -60,10 +50,7 @@ namespace SuM_Manga_V3
                                 if (IsPostBack == false)
                                 {
                                     mf.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:var(--SuMThemeColor);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDWhiteOP96);";
-                                    if (GetPerModeInfoCookie == null)
-                                    {
-                                        mf.Attributes["class"] = "animated pulse";
-                                    }
+                                    mf.Attributes["class"] = "animated pulse";
                                     cr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
                                     wr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
                                     string FavIMG = "<img style=" + '"'.ToString() + "display:inline !important;width:20px;height:20px;margin:0 auto;" + '"'.ToString() + " src=" + '"'.ToString() + "/svg/favoriteTBlack.svg" + '"'.ToString() + " />";
@@ -76,10 +63,7 @@ namespace SuM_Manga_V3
                                 if (IsPostBack == false)
                                 {
                                     wr.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:var(--SuMThemeColor);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDWhiteOP96);";
-                                    if (GetPerModeInfoCookie == null)
-                                    {
-                                        wr.Attributes["class"] = "animated pulse";
-                                    }
+                                    wr.Attributes["class"] = "animated pulse";
                                     cr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
                                     mf.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
                                     string AddIMG = "<img style=" + '"'.ToString() + "display:inline !important;width:20px;height:20px;margin:0 auto;" + '"'.ToString() + " src=" + '"'.ToString() + "/svg/addTBlack.svg" + '"'.ToString() + " />";
@@ -261,12 +245,6 @@ namespace SuM_Manga_V3
                 {
                     string Res = RawRes.ToString();
                     if (string.IsNullOrEmpty(Res) == true) { fail = true; }
-                    bool PreformanceMode = false;
-                    HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
-                    if (GetPerModeInfoCookie != null)
-                    {
-                        PreformanceMode = true;
-                    }
                     if (Type == "Curr")
                     {
                         int[,] R = ST1(Res);
@@ -310,14 +288,8 @@ namespace SuM_Manga_V3
                                 g = sqlCmd.ExecuteScalar();
                                 string CreatorName = g.ToString();
 
-                                if (PreformanceMode == false)
-                                {
-                                    ShowReqContant.InnerHtml += BuildCurrCard(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink, CreatorName, R[0, i]);
-                                }
-                                else 
-                                {
-                                    ShowReqContant.InnerHtml += BuildCurrCardPerMode(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink, CreatorName, R[0, i]);
-                                }
+                                ShowReqContant.InnerHtml += BuildCurrCard(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink, CreatorName, R[0, i]);
+
                                 if (i != 0) { ShowReqContant.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;color:var(--SuMDGrayOP100);width:calc(100vw - 36px);margin:0 auto important;" + sc.ToString() + ">"; }
                             }
                         }
@@ -370,14 +342,8 @@ namespace SuM_Manga_V3
                                 g = sqlCmd.ExecuteScalar();
                                 string CreatorName = g.ToString();
 
-                                if (PreformanceMode == false)
-                                {
-                                    ShowReqContant.InnerHtml += BuildRestCard(MangaName, MangaTheme, ExplorerLink, CoverLink, CreatorName, R[i]);
-                                }
-                                else
-                                {
-                                    ShowReqContant.InnerHtml += BuildRestCardPerMode(MangaName, MangaTheme, ExplorerLink, CoverLink, CreatorName, R[i]);
-                                }
+                                ShowReqContant.InnerHtml += BuildRestCard(MangaName, MangaTheme, ExplorerLink, CoverLink, CreatorName, R[i]);
+
                                 if (i != 0) { ShowReqContant.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;color:var(--SuMDGrayOP100);width:calc(100vw - 36px);margin:0 auto important;" + sc.ToString() + ">"; }
                             }
                         }

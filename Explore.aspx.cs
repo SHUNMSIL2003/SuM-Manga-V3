@@ -30,31 +30,14 @@ namespace SuM_Manga_V3
             }
             if (IsPostBack == false)
             {
-                HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
-                if (GetPerModeInfoCookie != null)
-                {
-                    AnimatedMainContHEx.Attributes["class"] = "";
-                    RecentsCont.Attributes["class"] = "";
-                    Action.InnerHtml = GetFromGarnaPerMode("Action");
-                    Fantasy.InnerHtml = GetFromGarnaPerMode("Fantasy");
-                    Comedy.InnerHtml = GetFromGarnaPerMode("Comedy");
-                    Supernatural.InnerHtml = GetFromGarnaPerMode("Supernatural");
-                    SciFi.InnerHtml = GetFromGarnaPerMode("Sci-Fi");
-                    Drama.InnerHtml = GetFromGarnaPerMode("Drama");
-                    Mystery.InnerHtml = GetFromGarnaPerMode("Mystery");
-                    SliceofLife.InnerHtml = GetFromGarnaPerMode("Slice of Life");
-                }
-                else
-                {
-                    Action.InnerHtml = GetFromGarna("Action");// Comedy
-                    Fantasy.InnerHtml = GetFromGarna("Fantasy");
-                    Comedy.InnerHtml = GetFromGarna("Comedy");
-                    Supernatural.InnerHtml = GetFromGarna("Supernatural");
-                    SciFi.InnerHtml = GetFromGarna("Sci-Fi");
-                    Drama.InnerHtml = GetFromGarna("Drama");
-                    Mystery.InnerHtml = GetFromGarna("Mystery");
-                    SliceofLife.InnerHtml = GetFromGarna("Slice of Life");
-                }
+                Action.InnerHtml = GetFromGarna("Action");// Comedy
+                Fantasy.InnerHtml = GetFromGarna("Fantasy");
+                Comedy.InnerHtml = GetFromGarna("Comedy");
+                Supernatural.InnerHtml = GetFromGarna("Supernatural");
+                SciFi.InnerHtml = GetFromGarna("Sci-Fi");
+                Drama.InnerHtml = GetFromGarna("Drama");
+                Mystery.InnerHtml = GetFromGarna("Mystery");
+                SliceofLife.InnerHtml = GetFromGarna("Slice of Life");
                 ShowCardsCNew();
                 //.InnerHtml = GetFromGarna("");
                 //.InnerHtml = GetFromGarna("");
@@ -150,12 +133,6 @@ namespace SuM_Manga_V3
                 if (string.IsNullOrEmpty(ResultFromSQL.ToString()) == false)
                 {
                     Recent.InnerHtml = "";
-                    bool PreformanceMode = false;
-                    HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
-                    if (GetPerModeInfoCookie != null)
-                    {
-                        PreformanceMode = true;
-                    }
                     using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                     {
                         sqlCon.Open();
@@ -190,14 +167,7 @@ namespace SuM_Manga_V3
                             sqlCmd.Parameters["@MangaID"].Value = maxidf;
                             string themecolor = sqlCmd.ExecuteScalar().ToString();
                             CExplorerLink += "&VC=" + maxidf.ToString() + "&TC=" + themecolor;
-                            if (PreformanceMode == false)
-                            {
-                                Recent.InnerHtml += BuildRecentCard(Cover, MTitle, themecolor, CExplorerLink, (i + 1), maxidf);
-                            }
-                            else
-                            {
-                                Recent.InnerHtml += BuildRecentCardPerMode(Cover, MTitle, themecolor, CExplorerLink, maxidf);
-                            }
+                            Recent.InnerHtml += BuildRecentCard(Cover, MTitle, themecolor, CExplorerLink, (i + 1), maxidf);
                         }
                         sqlCon.Close();
                     }
@@ -255,13 +225,6 @@ namespace SuM_Manga_V3
         protected void ShowCardsCNew()
         {
             string ResultS = " ";
-            //int RN = 0;
-            bool PreformanceMode = false;
-            HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
-            if (GetPerModeInfoCookie != null)
-            {
-                PreformanceMode = true;
-            }
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
@@ -333,14 +296,7 @@ namespace SuM_Manga_V3
                     sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                     sqlCmd.Parameters["@MangaID"].Value = IDs[i];
                     string MangaAgeRating = sqlCmd.ExecuteScalar().ToString();
-                    if (PreformanceMode == false)
-                    {
-                        ResultS += BuildCard(Cover, Name, Disc, CExplorerLink, themecolor, MangaCReator, MangaAgeRating, Views, i, IDs[i]);
-                    }
-                    else
-                    {
-                        ResultS += BuildCardPerMode(Cover, Name, Disc, CExplorerLink, themecolor, MangaCReator, MangaAgeRating, Views, i, IDs[i]);
-                    }
+                    ResultS += BuildCard(Cover, Name, Disc, CExplorerLink, themecolor, MangaCReator, MangaAgeRating, Views, i, IDs[i]);
                     if (i == 0) 
                     {
                         cardscontain.Attributes["style"] = "scroll-margin-top:24px !important;scroll-snap-align:start;border-radius:20px;width:calc(100% - 24px) !important;height:fit-content !important;overflow:hidden !important;margin-top:12px;margin-left:12px;display:block;background-color:" + themecolor + " !important;transition: background-color 0.32s ease !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;";

@@ -20,7 +20,7 @@
                 });
             }
             androidAPIs.SetSuMHardwareExl();
-            if ("androidAPIs" in window == true) { var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', ''); if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) { androidAPIs.SetLightStatusBarColor(); } else { androidAPIs.SetDarkStatusBarColor(); } }
+              
         }
         else {
             location.href = '/SuMMangaInstallAPP.aspx';
@@ -51,7 +51,7 @@
     <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css?h=34f9b351b7076f97babcdac3c1081100">
     <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css?h=34f9b351b7076f97babcdac3c1081100">
     <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css?h=34f9b351b7076f97babcdac3c1081100">
-    <link rel="stylesheet" href="/assets/animate.min.css">
+    <!-- <link rel="stylesheet" href="/assets/animate.min.css"> --moveditfurtherdown  -->
     <meta name="google-site-verification" content="mp9Vewhm3_3ddQfuO0zmgnIvZpKaygdMO36zmFOgzos" />
     <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -89,11 +89,6 @@
             -ms-user-select: none;
             -o-user-select: none;
             user-select: none;
-            /*-webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-            -ms-transition: all 0.5s;
-            -o-transition: all 0.5s;
-            transition: all 0.5s;*/
         }
         .sumsmoothtrans {
             /*-webkit-transition: all 0.18s;
@@ -343,7 +338,9 @@
             }
         </style>
     </div>
+    <div id="SuMAnimationConroleDiv" style="display:none !important;visibility:hidden !important"></div>
     <script>
+        if ("androidAPIs" in window == true) { androidAPIs.SuM0Manager(); }
         function getCookie(cname) {
             let name = cname + "=";
             let decodedCookie = document.cookie;
@@ -359,6 +356,16 @@
             }
             return "";
         };
+        function SuMPerfModeHandler() {
+            var SuMPerfMode = getCookie('SuMPerformanceMode').replace(' ', '');
+            if (SuMPerfMode == 0 || SuMPerfMode == '0' || SuMPerfMode == '' || SuMPerfMode == null) {
+                document.getElementById('SuMAnimationConroleDiv').innerHTML = '<link rel="stylesheet" href="/assets/animate.min.css">';
+            }
+            if (SuMPerfMode == 1 || SuMPerfMode == '1') {
+                document.getElementById('SuMAnimationConroleDiv').innerHTML = ' ';
+            }
+        };
+        SuMPerfModeHandler();
         function MixTwoRGBsWStaticOpacityAndR(SuMColor1, SuMColor2, R1, R2) {
             SuMColor1 = SuMColor1.replace('rgb', '').replace('a', '').replace('(', '').replace(')', '').replace(' ', '');
             SuMColor2 = SuMColor2.replace('rgb', '').replace('a', '').replace('(', '').replace(')', '').replace(' ', '');
@@ -436,7 +443,36 @@
                 SuMDarkModeControleDiv.innerHTML = SuMDarkModeBackUp;
                 SuMThemeColorControleDiv.innerHTML = ApplySuMThemeStyleForm(MixTwoRGBsWStaticOpacityAndR(SuMThemeColorRoot, '255,255,255', 4, 1));
             }
+            //lighten or darken the rgbroot color to fit the chooses theme
             SuMCurrPageThemeColorGen(SuMStateBit);
+            //prevent fullscreen mode from statying activated
+            var PreSuMURL = document.referrer;
+            if (PreSuMURL.includes('/MangaExplorer.aspx') == true) {
+                if ("androidAPIs" in window) {
+                    androidAPIs.DeactivateFullScreenMode();
+                }
+            }
+            //Change StatusBarColor to fit dark mode or light mode --defultcoloredpages
+            var CurrSuMURL = document.URL;
+            if ("androidAPIs" in window) {
+                androidAPIs.FullyTransStatusBar();
+            }
+            if (CurrSuMURL.includes('/ContantExplorer.aspx') == false) {
+                if ("androidAPIs" in window == true) {
+                    var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', '');
+                    if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) {
+                        androidAPIs.SetLightStatusBarColor();
+                    }
+                    else {
+                        androidAPIs.SetDarkStatusBarColor();
+                    }
+                }
+            }
+            else {
+                if ("androidAPIs" in window == true) {
+                    androidAPIs.SetDarkStatusBarColor();
+                }
+            }
         };
         SuMSetThemeState(SuMThemeStateBit);
 
@@ -487,7 +523,7 @@
     </style>
     <style>
         html {
-            scroll-behavior: smooth;
+            scroll-behavior: smooth !important;
         }
         body {
             scroll-behavior:smooth !important;
@@ -500,31 +536,25 @@
 
         ::-webkit-scrollbar {
             display:none !important;
-            /*margin-top:26px !important;
-            width: 3px;*/
+            visibility:hidden !important;
         }
 
 /* Track */
         ::-webkit-scrollbar-track {
-            display:none !important;/*
-            margin-top:26px !important;
-            background: var(--SuMDWhite);*/
+            display:none !important;
+            visibility:hidden !important;
         }
  
 /* Handle */
         ::-webkit-scrollbar-thumb {
-            display:none !important;/*
-            margin-top:26px !important;
-            background: #8a61ff;
-            border-radius: 1px;*/
+            display:none !important;
+            visibility:hidden !important;
         }
 
 /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
-            display:none !important;/*
-            margin-top:26px !important;
-            background: var(--SuMThemeColor);
-            border-radius: 1px;*/
+            display:none !important;
+            visibility:hidden !important;
         }
         .ForceMaxW {
             max-width:1600px !important;
@@ -570,7 +600,7 @@
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
                     <script>
-
+                        SuMSetThemeState(getCookie('SuMUserThemeState').replace(' ', ''));
                         var SuMLoadingContElm = document.getElementById('LoadingSuMInfoBub');
                         SuMLoadingContElm.style.display = 'none';
                         var SuMLoadingTitleElm = document.getElementById('SuMLoadingTXT');
@@ -698,10 +728,6 @@
                                         ExpandTranStartF0C0(HerfThemeColor);
                                     }
                                     setTimeout(() => {
-                                        //SuMLoadingIsInPross = false;
-                                        if ("androidAPIs" in window) {
-                                            androidAPIs.DeactivateFullScreenMode();
-                                        }
                                         if (HerfLink != null) {
                                             if (document.URL.includes('/MangaExplorer.aspx') == true) {
                                                 HideMangaExplorerTopPartBar();
@@ -723,9 +749,6 @@
                                             ExpandTranStartF0C0(HerfThemeColor);
                                         }
                                         setTimeout(() => {
-                                            if ("androidAPIs" in window) {
-                                                androidAPIs.DeactivateFullScreenMode();
-                                            }
                                             if (HerfLink != null) {
                                                 if (document.URL.includes('/MangaExplorer.aspx') == true) {
                                                     HideMangaExplorerTopPartBar();
@@ -834,10 +857,6 @@
                                         ExpandTranStartF0C0(HerfThemeColor);
                                     }
                                     setTimeout(() => {
-                                        //SuMLoadingIsInPross = false;
-                                        if ("androidAPIs" in window) {
-                                            androidAPIs.DeactivateFullScreenMode();
-                                        }
                                         if (document.URL.includes('/MangaExplorer.aspx') == true) {
                                             HideMangaExplorerTopPartBar();
                                             HideMangaExplorerBar();
@@ -856,9 +875,6 @@
                                             ExpandTranStartF0C0(HerfThemeColor);
                                         }
                                         setTimeout(() => {
-                                            if ("androidAPIs" in window) {
-                                                androidAPIs.DeactivateFullScreenMode();
-                                            }
                                             if (document.URL.includes('/MangaExplorer.aspx') == true) {
                                                 HideMangaExplorerTopPartBar();
                                                 HideMangaExplorerBar();
@@ -1479,7 +1495,7 @@
             </div>
         </div>
         <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand   shadow  topbar static-top" style="height:50px !important;width:100% !important;padding:2px !important;padding-bottom:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px var(--SuMDGray) !important;z-index:999;display:none;background-color:var(--SuMDWhite) !important;">
-                <a name="no-animation" id="navb2" runat="server" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
+                <a name="no-animation" id="navb2" runat="server" onclick="if ('androidAPIs' in window) {  } SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                     <p style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">SuM </p><p id="mangacolor2" style="display:inline;color:var(--SuMThemeColorThisPage);margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" id="NavigateBackF0C1" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;color:var(--SuMThemeColorThisPage);">Navigate Back</b>
@@ -1514,9 +1530,9 @@
                 document.getElementById('subnavscont2').style.display = 'none';
             }
         </script>
-        <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:var(--SuMDWhite) !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
-            <div id="subnavscont" runat="server" class=" navbar-light navbar-expand   shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMDGray) !important;bottom:0 !important;overflow:clip;border-color:var(--SuMDWhite);margin-bottom:-1px;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
-                <a name="no-animation" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
+        <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:var(--SuMDWhite) !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;">
+            <div id="subnavscont" runat="server" class=" navbar-light navbar-expand   shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMDGray) !important;bottom:0 !important;overflow:clip;border-color:var(--SuMDWhite);margin-bottom:-1px;">
+                <a name="no-animation" onclick="if ('androidAPIs' in window) {  } SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
                     <p style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:var(--SuMThemeColorThisPage);margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" id="NavigateBackF0C0" runat="server" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;color:var(--SuMThemeColorThisPage);">Navigate Back</b>
@@ -1527,7 +1543,7 @@
             </a>
                 <a style="display:block;width:100vw;height:2px;margin:0 auto !important;background-color:var(--SuMDWhite);color:var(--SuMDWhite);">   </a>
         </div>
-        <nav id="nav" runat="server" style="overflow:clip;height:72px !important;width:100% !important;max-height:64px !important;bottom:0 !important;background-color:var(--SuMDWhite) !important; -webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;" class="navbar navbar-light navbar-expand   mb-4 topbar static-top FNM5455511">
+        <nav id="nav" runat="server" style="overflow:clip;height:72px !important;width:100% !important;max-height:64px !important;bottom:0 !important;background-color:var(--SuMDWhite) !important;" class="navbar navbar-light navbar-expand   mb-4 topbar static-top FNM5455511">
                     <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;height:64px !important;overflow:hidden !important;margin-bottom:14px !important;">
                                 <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
                                     <a name="no-animation" onclick="SuMGoToThis('/Explore.aspx','var(--SuMThemeColorOP74)','SuM Explore','Explore');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
@@ -1749,9 +1765,14 @@
     <script src="/assets/js/theme.js?h=79f403485707cf2617c5bc5a2d386bb0"></script>
         <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
         </form>
-     <link href=
-"https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
-              rel="stylesheet" />
+    <script>
+        SuMSetThemeState(getCookie('SuMUserThemeState').replace(' ', ''));
+        SuMSetThemeState(getCookie('SuMUserThemeState').replace(' ', ''));
+        setTimeout(() => {
+            SuMSetThemeState(getCookie('SuMUserThemeState').replace(' ', ''));
+        }, 280);
+    </script>
+     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet" />
     <style>
         .custom-control-input:focus ~ .custom-control-label::before {
             /* when the button is toggled off 

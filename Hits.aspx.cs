@@ -27,12 +27,6 @@ namespace SuM_Manga_V3
         protected void LoadTop10()
         {
             Top10Con.InnerHtml = "";
-            bool PreformanceMode = false;
-            HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
-            if (GetPerModeInfoCookie != null)
-            {
-                PreformanceMode = true;
-            }
             string[] tHEMEcOLORS = new string[10];
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
@@ -108,28 +102,12 @@ namespace SuM_Manga_V3
                     sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
                     un = sqlCmd.ExecuteScalar();
                     Disc = un.ToString();
-                    if (PreformanceMode == false)
-                    {
-                        Top10Con.InnerHtml += BuildTopCard(i + 1, themecolor, Cover, Name, Disc, AgeRating, views, CExplorerLink);
-                    }
-                    else
-                    {
-                        Top10Con.InnerHtml += BuildTopCardPerMode(i + 1, themecolor, Cover, Name, Disc, AgeRating, views, CExplorerLink);
-                    }
+                    Top10Con.InnerHtml += BuildTopCard(i + 1, themecolor, Cover, Name, Disc, AgeRating, views, CExplorerLink);
                     tHEMEcOLORS[i] = themecolor;
                 }
                 sqlCon.Close();
             }
-            if (PreformanceMode == false)
-            {
-                HitsStylePlaceHolder.InnerHtml = "<style> #HitsBG { animation: rainbow 12s linear infinite; } @keyframes rainbow { 0% { background-color: " + tHEMEcOLORS[0] + "; } 10% { background-color: " + tHEMEcOLORS[0] + "; } 20% { background-color: " + tHEMEcOLORS[1] + "; } 30% { background-color: " + tHEMEcOLORS[2] + "; } 40% { background-color: " + tHEMEcOLORS[3] + "; } 50% { background-color: " + tHEMEcOLORS[4] + "; } 60% { background-color: " + tHEMEcOLORS[5] + "; } 70% { background-color: " + tHEMEcOLORS[6] + "; } 80% { background-color: " + tHEMEcOLORS[7] + "; } 90% { background-color: " + tHEMEcOLORS[8] + "; } 100% { background-color: " + tHEMEcOLORS[9] + "; } } </style>";
-            }
-            else
-            {
-                ScrollingDivHits.Attributes["class"] = "";
-                HotsScrollHelper.Attributes["style"] = "background-color:var(--SuMDWhite);margin:0 auto !important;padding:0px;width:100%;height:fit-content;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;transition:none !important;";
-                HitsStylePlaceHolder.InnerHtml = "<style> #HitsBG { background-color:var(--SuMThemeColorOP74); } </style>";
-            }
+            HitsStylePlaceHolder.InnerHtml = "<style> #HitsBG { animation: rainbow 12s linear infinite; } @keyframes rainbow { 0% { background-color: " + tHEMEcOLORS[0] + "; } 10% { background-color: " + tHEMEcOLORS[0] + "; } 20% { background-color: " + tHEMEcOLORS[1] + "; } 30% { background-color: " + tHEMEcOLORS[2] + "; } 40% { background-color: " + tHEMEcOLORS[3] + "; } 50% { background-color: " + tHEMEcOLORS[4] + "; } 60% { background-color: " + tHEMEcOLORS[5] + "; } 70% { background-color: " + tHEMEcOLORS[6] + "; } 80% { background-color: " + tHEMEcOLORS[7] + "; } 90% { background-color: " + tHEMEcOLORS[8] + "; } 100% { background-color: " + tHEMEcOLORS[9] + "; } } </style>";
         }
         protected void SussionPross(object sender, EventArgs e)
         {
@@ -339,12 +317,6 @@ namespace SuM_Manga_V3
             if (G == "Sci-Fi") { Garna = "SciFi"; }
             if (string.IsNullOrEmpty(G) == false)
             {
-                HttpCookie GetPerModeInfoCookie = Request.Cookies["SuMPerformanceMode"];
-                bool PreformanceMode = false;
-                if (GetPerModeInfoCookie != null)
-                {
-                    PreformanceMode = true;
-                }
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
@@ -399,14 +371,7 @@ namespace SuM_Manga_V3
                         sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
                         string themecolor = sqlCmd.ExecuteScalar().ToString();
                         CExplorerLink += "&TC=" + themecolor;
-                        if (PreformanceMode == false)
-                        {
-                            Result += BuildGCard(Cover, Name, G, CExplorerLink, themecolor, MangaIDF);
-                        }
-                        else
-                        {
-                            Result += BuildGCardPreMode(Cover, Name, G, CExplorerLink, themecolor, MangaIDF);
-                        }
+                        Result += BuildGCard(Cover, Name, G, CExplorerLink, themecolor, MangaIDF);
                     }
                     sqlCon.Close();
                 }

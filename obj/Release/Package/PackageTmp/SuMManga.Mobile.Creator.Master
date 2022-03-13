@@ -474,7 +474,7 @@
                                     setTimeout(() => {
                                         //SuMLoadingIsInPross = false;
                                         if ("androidAPIs" in window) {
-                                            androidAPIs.DeactivateFullScreenMode();
+                                              
                                         }
                                         if (HerfLink != null) {
                                             if (document.URL.includes('/MangaExplorer.aspx') == true) {
@@ -497,7 +497,7 @@
                                         }
                                         setTimeout(() => {
                                             if ("androidAPIs" in window) {
-                                                androidAPIs.DeactivateFullScreenMode();
+                                                  
                                             }
                                             if (HerfLink != null) {
                                                 if (document.URL.includes('/MangaExplorer.aspx') == true) {
@@ -608,7 +608,7 @@
                                     setTimeout(() => {
                                         //SuMLoadingIsInPross = false;
                                         if ("androidAPIs" in window) {
-                                            androidAPIs.DeactivateFullScreenMode();
+                                              
                                         }
                                         if (document.URL.includes('/MangaExplorer.aspx') == true) {
                                             HideMangaExplorerTopPartBar();
@@ -629,7 +629,7 @@
                                         }
                                         setTimeout(() => {
                                             if ("androidAPIs" in window) {
-                                                androidAPIs.DeactivateFullScreenMode();
+                                                  
                                             }
                                             if (document.URL.includes('/MangaExplorer.aspx') == true) {
                                                 HideMangaExplorerTopPartBar();
@@ -782,7 +782,7 @@
             </div>
         </div>
         <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:50px !important;width:100% !important;padding:2px !important;padding-bottom:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px var(--SuMDGray) !important;z-index:999;display:none;">
-                <a name="no-animation" id="navb2" runat="server" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
+                <a name="no-animation" id="navb2" runat="server" onclick="if ('androidAPIs' in window) {  } SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                     <p style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">SuM </p><p runat="server" id="mangacolor2" style="display:inline;color:rgba(142,129,131,0.74);margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;">Navigate Back</b>
@@ -817,7 +817,7 @@
         </script>
         <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:var(--SuMDWhite) !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
             <div id="subnavscont" runat="server" class=" navbar-light navbar-expand bg-white shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMDGray) !important;bottom:0 !important;overflow:clip;border-color:var(--SuMDWhite);margin-bottom:-1px;-webkit-transition: all 0.18s !important; -moz-transition: all 0.18s !important; -ms-transition: all 0.18s !important; -o-transition: all 0.18s !important; transition: all 0.18s !important;">
-                <a name="no-animation" onclick="if ('androidAPIs' in window) {androidAPIs.DeactivateFullScreenMode();} SuMGoBack();" style="float:left !important;width:fit-content;">
+                <a name="no-animation" onclick="if ('androidAPIs' in window) {  } SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
                     <p style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;">Navigate Back</b>
