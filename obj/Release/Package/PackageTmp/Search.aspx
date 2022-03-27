@@ -70,7 +70,7 @@
             var viewwidth = $(window).width();
             var viewport = $("meta[name=viewport]");
             viewport.attr("content", "height=" + viewheight + "px, width=" +
-                viewwidth + "px, initial-scale=1.0");
+                viewwidth + "px, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi");
         }, 300);
     </script>
     <div style="width:100%;height:100vh !important;background-color:var(--SuMBack) !important;">
@@ -98,7 +98,7 @@
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-                        <div class="animated fadeIn" id="ShowSuMResults" style="margin:0 auto;height:fit-content !important;width:100vw !important;overflow-y:scroll;margin-top:6px !important;max-width:720px !important;padding-bottom:182px;" runat="server">
+                        <div class="animated fadeIn" id="ShowSuMResults" style="margin:0 auto;height:fit-content !important;width:100vw !important;overflow-y:scroll;margin-top:6px !important;max-width:720px !important;padding:12px;padding-bottom:182px;" runat="server">
                         </div>
                         <br />
                         <br />

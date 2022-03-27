@@ -135,7 +135,7 @@ namespace SuM_Manga_V3.storeitems
                     if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
                     {
                         RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
-                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "SuMGoToThis('" + RLink + "','" + themecolor + "','Chapter " + chxC + "','ContantExplorer');" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
+                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "SuMGoToThis('" + RLink + "','" + themecolor + "','Chapter " + chxC + "','MangaExplorer');" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
                     }
                     else
                     {
@@ -546,7 +546,7 @@ namespace SuM_Manga_V3.storeitems
                     if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
                     {
                         RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
-                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "SuMGoToThis('" + RLink + "','" + themecolor + "','Chapter " + chxC + "','ContantExplorer');" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
+                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "SuMGoToThis('" + RLink + "','" + themecolor + "','Chapter " + chxC + "','MangaExplorer');" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
                     }
                     else
                     {
@@ -711,7 +711,7 @@ namespace SuM_Manga_V3.storeitems
                             MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                             MRSC.Attributes["style"] = "overflow:hidden;background-color:rgb(255, 255, 255, 0.84);border-radius:13px;width:160px;height:46px;margin:0 auto;text-align:center;justify-content:center;margin-top:4px !important;margin-bottom:12px !important;padding:4px;";
                             string WorkerHelp = "&UCU=" + MID.ToString();
-                            MRSW.Attributes["onclick"] = " SuMGoToThis('" + LinkToUpdate + linktoupdatech + ChapterFixedForm + WorkerHelp + "','" + Request.QueryString["TC"].ToString() + "','Chapter" + c.ToString() + "','ContantExplorer'); ";
+                            MRSW.Attributes["onclick"] = " SuMGoToThis('" + LinkToUpdate + linktoupdatech + ChapterFixedForm + WorkerHelp + "','" + Request.QueryString["TC"].ToString() + "','Chapter" + c.ToString() + "','MangaExplorer'); ";
                             sqlCon.Close();
                         }
                     }
@@ -721,7 +721,7 @@ namespace SuM_Manga_V3.storeitems
                         MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
                         MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                         MRSC.Attributes["style"] = "overflow:hidden;background-color:rgb(255, 255, 255, 0.84);border-radius:13px;width:160px;height:46px;margin:0 auto;text-align:center;justify-content:center;margin-top:4px !important;margin-bottom:12px !important;padding:4px;";
-                        MRSW.Attributes["onclick"] = " SuMGoToThis('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "','" + Request.QueryString["TC"].ToString() + "','Chapter 1','ContantExplorer'); ";
+                        MRSW.Attributes["onclick"] = " SuMGoToThis('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "','" + Request.QueryString["TC"].ToString() + "','Chapter 1','MangaExplorer'); ";
                         sqlCon.Close();
                     }
                 }
@@ -734,7 +734,7 @@ namespace SuM_Manga_V3.storeitems
                     MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
                     MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                     MRSC.Attributes["style"] = "overflow:hidden;background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;margin-top:3px !important;margin-bottom:13px !important;";
-                    MRSW.Attributes["onclick"] = " SuMGoToThis('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "','" + Request.QueryString["TC"].ToString() + "','Chapter 1','ContantExplorer'); ";
+                    MRSW.Attributes["onclick"] = " SuMGoToThis('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "','" + Request.QueryString["TC"].ToString() + "','Chapter 1','MangaExplorer'); ";
                     sqlCon.Close();
                 }
             }

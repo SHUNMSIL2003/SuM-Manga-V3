@@ -108,7 +108,7 @@ img {vertical-align: middle;}
     </style>
     <div style="background-color:var(--SuMDGray) !important;width:100%;height:100vh !important;margin:0 auto !important;">
     <!-- <div style="display:block;margin:0 auto;width:100%;height:24px;background-color:transparent;" id="ThisPageSBarFixUpPropElmF8C0" ></div> -->
-    <div style="background-color:var(--SuMDGrayOP74) !important;position:fixed !important;top:0 !important;z-index:997 !important;height:fit-content !important;width:100vw !important;display:block;padding:0px !important;" class="" id="SuMMangaTopBar">
+    <div style="background-color:var(--SuMDGrayOP74) !important;position:fixed !important;top:0 !important;z-index:994 !important;height:fit-content !important;width:100vw !important;display:block;padding:0px !important;" class="" id="SuMMangaTopBar">
         <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;overflow:hidden !important;" id="SuMMangaTopBarHeightHelper"></div>
     </div>
     <div style="display:none;" ID="HitsStylePlaceHolder" runat="server" >

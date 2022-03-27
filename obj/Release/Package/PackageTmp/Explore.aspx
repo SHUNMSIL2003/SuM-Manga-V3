@@ -97,7 +97,7 @@ img {vertical-align: middle;}
 }
     </style>
 <div style="background-color:var(--SuMDGray) !important;width:100% !important;height:100% !important;margin:0 auto !important">
-    <div style="background-color:var(--SuMDGrayOP74) !important;position:fixed !important;top:0 !important;z-index:997 !important;height:fit-content !important;width:100vw !important;display:block;padding:0px !important;" class="" id="SuMMangaTopBar">
+    <div style="background-color:var(--SuMDGrayOP74) !important;position:fixed !important;top:0 !important;z-index:994 !important;height:fit-content !important;width:100vw !important;display:block;padding:0px !important;" class="" id="SuMMangaTopBar">
         <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;overflow:hidden !important;" id="SuMMangaTopBarHeightHelper"></div>
     </div>
     <div id="AnimatedMainContHEx" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;overflow-y:scroll;height: 100vh;scroll-snap-type: y proximity !important; scroll-behavior: smooth !important; scroll-padding-top:32px !important;scroll-padding-bottom:32px !important;padding-top:164px !important;padding-bottom:164px !important;">
@@ -174,17 +174,17 @@ img {vertical-align: middle;}
         <div id="RecentsCont" runat="server" style="scroll-snap-align:start !important;scroll-snap-stop: always !important;" class="animated fadeInRight">
         <asp:Button ID="UPDATERESESNTS" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden;" />
                         <div id="RecentsSuperCont" runat="server" style="display:block;">
-                            <div id="RescentBody" runat="server" style="border:0.5px var(--SuMDBroderC) solid !important;height:168px!important; width:calc(100% - 24px);overflow:hidden;border-radius:20px;background-color:var(--SuMThemeColorOP74) !important;margin:0 auto !important;padding:18px;padding-left:4px;margin-top:2px !important;overflow-x:scroll !important;overflow-y:hidden !important;margin-top:16px !important;transition: background-color 0.32s ease !important;">
+                            <div id="RescentBody" style="border:0.5px var(--SuMDBroderC) solid !important;height:168px!important; width:calc(100% - 24px);overflow:hidden;border-radius:20px;background-color:var(--SuMThemeColorOP74) !important;margin:0 auto !important;padding:18px;padding-left:4px;margin-top:2px !important;overflow-x:scroll !important;overflow-y:hidden !important;margin-top:16px !important;transition: background-color 0.32s ease !important;padding-right:4px !important;">
                                 <img src="/svg/historyTW.svg" width="30" height="30" style="display:inline;float:left !important;margin-left:12px !important;margin-right:2px !important;margin-top:0px !important;" />
                                 <p style="font-size:132%;height:fit-content;width:calc(100% - 50px) !important;color:rgba(255,255,255,0.92);float:left !important;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;overflow: hidden;text-align:center !important;display:block !important;margin-bottom:6px !important;text-align:left !important;margin-top:0px !important;margin-left:2px;">Recently viewed</p>
-                                <div id="RecentScrollContS" style="width:calc(100% + 15px);margin:0 auto !important;margin-left:0px !important;overflow-y:hidden;overflow-x:scroll !important;">
+                                <div id="RecentScrollContS" style="width:100% !important;margin:0 auto !important;margin-left:0px !important;overflow-y:hidden;overflow-x:scroll !important;">
                                     <asp:UpdatePanel ID="RESENTSUPATEPANLE" runat="server" UpdateMode="Conditional" style="width:fit-content;height:fit-content;">
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="UPDATERESESNTS" EventName="Click" />
                                         </Triggers>
                                         <ContentTemplate>
                                             <asp:Panel runat="server" style="width:fit-content;height:fit-content;">
-                                                <div class=" " id="Recent" runat="server" style="padding-left:-8px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;height:100%;display:flex !important;width:fit-content !important;overflow-x:scroll !important;overflow-y:hidden !important;">
+                                                <div class=" " id="Recent" runat="server" style="padding-left:-8px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:calc(100% + 15px) !important;height:100%;display:flex !important;width:fit-content !important;overflow-x:scroll !important;overflow-y:hidden !important;">
                                                 </div>
                                             </asp:Panel>
                                         </ContentTemplate>
@@ -207,25 +207,70 @@ img {vertical-align: middle;}
             setTimeout(() => {
                 var currRecentItemThemeColorFS = document.getElementById('RecentItem1').style.backgroundColor;
                 if (currRecentItemThemeColorFS != null) {
-                    document.getElementById('<%= RescentBody.ClientID %>').style.backgroundColor = currRecentItemThemeColorFS;
+                    document.getElementById('RescentBody').style.backgroundColor = currRecentItemThemeColorFS;
                 }
             }, 360);
+            function SuMLoadXRecents(DUID, ReqSize, ReqNum) {
+                $.ajax({
+                    dataType: "json",
+                    method: 'post',
+                    url: '/BTNTesting.aspx/GetLoadResents',
+                    data: JSON.stringify({ UID: DUID, HowMany: ReqSize, IndexOfSend: ReqNum }),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (msg) {
+                        var SRR = msg.d;
+                        return SRR;
+                    },
+                    error: function (e) {
+                        return null;
+                    }
+                });
+            };
             var isScrollingSuMRecentsFuncF0CS;
+
+            //var currReqS = Math.round((window.screen.width - 74) / (112)) + 1;
+            //var currReqN = 1;
+            //var UPROSSR0 = SuMLoadXRecents(SuMGlobalCurrUID, currReqS, currReqN);
+            //document.getElementById('Recent').innerHTML = UPROSSR0;
+            /*if ((currReqS * currReqN) < 32) {
+                currReqN++;
+            }*/
+
             document.getElementById('RecentScrollContS').onscroll = function () {
 
-                window.clearTimeout(isScrollingSuMRecentsFuncF0CS);
+                //var SW = document.getElementById('RecentScrollContS').scrollWidth;
+                //var CS = document.getElementById('RecentScrollContS').scrollLeft;
+                //if (CS < SW) {
 
-                isScrollingSuMRecentsFuncF0CS = setTimeout(function () {
+                    window.clearTimeout(isScrollingSuMRecentsFuncF0CS);
 
-                    var RecentF0CSElm = document.getElementById('RecentScrollContS');
-                    var RescentBodyF0CSElm = document.getElementById('<%= RescentBody.ClientID %>');
-                    var currLeftID = Math.round(RecentF0CSElm.scrollLeft / 112) + 1;
-                    var currRecentItemThemeColor = document.getElementById('RecentItem' + currLeftID).style.backgroundColor;
-                    if (currRecentItemThemeColor != null) {
-                        RescentBodyF0CSElm.style.backgroundColor = currRecentItemThemeColor;
+                    isScrollingSuMRecentsFuncF0CS = setTimeout(function () {
+
+                        var RecentF0CSElm = document.getElementById('RecentScrollContS');
+                        var RescentBodyF0CSElm = document.getElementById('RescentBody');
+                        var currLeftID = Math.round(RecentF0CSElm.scrollLeft / 112) + 1;
+                        var currRecentItemThemeColor = document.getElementById('RecentItem' + currLeftID).style.backgroundColor;
+                        if (currRecentItemThemeColor != null) {
+
+                            RescentBodyF0CSElm.style.backgroundColor = currRecentItemThemeColor;
+
+                        }
+
+                    }, 32);
+
+                /*}
+                else {
+
+                    if (SuMGlobalCurrUID != null) {
+
+                        var UPROSSR = SuMLoadXRecents(SuMGlobalCurrUID, currReqS, currReqN);
+                        document.getElementById('Recent.ClientID').innerHTML += UPROSSR;
+                        if ((currReqS * currReqN) < 32) {
+                            currReqN++;
+                        }
                     }
 
-                }, 32);
+                }*/
 
             };
         </script>

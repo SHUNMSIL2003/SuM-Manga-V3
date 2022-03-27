@@ -20,12 +20,11 @@
                 });
             }
             androidAPIs.SetSuMHardwareExl();
-              
+            androidAPIs.SuM0Manager();
         }
         else {
             location.href = '/SuMMangaInstallAPP.aspx';
         }
-        androidAPIs.SuM0Manager();
     </script>
     <meta name="google-signin-client_id" content="464504450730-iuk9hotshe7kjnq73p11mdvijc49ll5c.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -339,8 +338,168 @@
         </style>
     </div>
     <div id="SuMAnimationConroleDiv" style="display:none !important;visibility:hidden !important"></div>
+    <style>
+        .ripple {
+            width: 32px;
+            height: 32px;
+            background-color: var(--SuMThemeColorOP32);
+            border: none !important;
+            position: fixed !important;
+            border-radius: 50%;
+            z-index:10000 !important;
+        }
+
+        @keyframes ripple-effect {
+            0% {
+                opacity:0;
+            }
+            25% {
+                opacity:1;
+            }
+            50% {
+                transform:scale(2);
+            }
+            90% {
+                transform:scale(1);
+            }
+            100%{
+                opacity:0;
+            }
+        }
+
+        @keyframes ripple-hold-effect {
+            0% {
+                opacity:0;
+                width:32px;
+                height:32px;
+                border-radius:50%;
+            }
+            25% {
+                opacity:1;
+                border-radius:50%;
+                width:64px;
+                height:64px;
+                margin-top:calc(50vh - 32px);
+                margin-left:calc(50vw - 32px);
+            }
+            50%{
+                width:75vw;
+                height:75vw;
+                border-radius:25%;
+                margin-top:calc(50vh - 37.5vw);
+                margin-left:12.5vw;
+                background-color: var(--SuMThemeColorOP64);
+            }
+            100% {
+                margin-top:0px;
+                margin-left:0px;
+                width:100vw;
+                height:100vh;
+                border-radius:0px;
+                background-color: var(--SuMThemeColorOP86);
+            }
+        }
+    </style>
     <script>
+        var timer;
+        var touchduration = 860; //length of time we want the user to touch before we do something
+        var AtouchHoldisBeingCommanded = false;
+        var spamdetect = 0;
+
+        var SuMMainCardIsOpen = false;
+
+        function SuMMainCardManager(StateBit) {
+            var SuMMainCardElmF0CFCont = document.getElementById('SuMMainCardCon');
+            if (StateBit == 0) {
+                SuMMainCardElmF0CFCont.classList.remove('fadeIn');
+                SuMMainCardElmF0CFCont.classList.add('fadeOut');
+                setTimeout(function () {
+                    SuMMainCardElmF0CFCont.style.display = 'none';
+                    SuMMainCardIsOpen = false;
+                }, 200);
+            }
+            if (StateBit == 1) {
+                SuMMainCardElmF0CFCont.classList.remove('fadeOut');
+                SuMMainCardElmF0CFCont.classList.add('fadeIn');
+                SuMMainCardElmF0CFCont.style.display = 'block';
+                SuMMainCardIsOpen = true;
+            }
+        };
+
+        function touchstart(e) {
+
+            setTimeout(function () {
+                if (spamdetect > 2) {
+                    AtouchHoldisBeingCommanded = true;
+                    spamdetect = 0;
+                }
+            }, 200);
+            setTimeout(function () {
+                if (spamdetect > 2) {
+                    AtouchHoldisBeingCommanded = true;
+                    spamdetect = 0;
+                }
+            }, touchduration);
+
+            if (spamdetect > 2) {
+                AtouchHoldisBeingCommanded = true;
+                spamdetect = 0;
+            }
+
+            setTimeout(function () {
+
+                const ripple = document.createElement("div");
+                ripple.className = "ripple";
+                document.body.appendChild(ripple);
+                ripple.style.left = `${e.touches[0].clientX - 16}px`;
+                ripple.style.top = `${e.touches[0].clientY - 16}px`;
+                ripple.style.animation = "ripple-effect .16s  linear";
+                ripple.onanimationend = () => document.body.removeChild(ripple);
+                spamdetect++
+
+            }, 100);
+
+            if (AtouchHoldisBeingCommanded == false) {
+                timer = setTimeout(
+                    function () {
+                        //call sum options
+                        AtouchHoldisBeingCommanded = false;
+                        if (spamdetect > 2) {
+                            AtouchHoldisBeingCommanded = true;
+                            spamdetect = 0;
+                        }
+                        if (AtouchHoldisBeingCommanded == false) {
+                            if (SuMMainCardIsOpen == false) {
+                                SuMMainCardManager(1);
+                                spamdetect = 0;
+                            }
+                        }
+                    }, touchduration);
+            }
+            AtouchHoldisBeingCommanded = true;
+
+        };
+        function touchend(e) {
+            //stops short touches from firing the event
+            if (timer)
+                clearTimeout(timer); // clearTimeout, not cleartimeout..
+            AtouchHoldisBeingCommanded = false;
+        };
+        //document.ontouchstart = () => touchstart(event);
+        //document.ontouchend = () => touchend(event);
+
+        document.addEventListener('click', function (event) {
+            const ripple = document.createElement("div");
+            ripple.className = "ripple";
+            document.body.appendChild(ripple);
+            ripple.style.left = `${event.clientX - 16}px`;
+            ripple.style.top = `${event.clientY - 16}px`;
+            ripple.style.animation = "ripple-effect .16s  linear";
+            ripple.onanimationend = () => document.body.removeChild(ripple);
+        });
+
         if ("androidAPIs" in window == true) { androidAPIs.SuM0Manager(); }
+
         function getCookie(cname) {
             let name = cname + "=";
             let decodedCookie = document.cookie;
@@ -356,6 +515,17 @@
             }
             return "";
         };
+        function getUIDFrUserCo() {
+            var SUC = getCookie('SuMCurrentUser');
+            var SUCPross = SUC.split('&');
+            for (var iii = 0; iii < SUCPross.length; iii++) {
+                if (SUCPross[iii].includes('ID=') == true && SUCPross[iii][0] == 'I' && SUCPross[iii][1] == 'D' && SUCPross[iii][2] == '=') {
+                    return SUCPross[iii].replace('ID=', '');
+                }
+            }
+            return null;
+        };
+        var SuMGlobalCurrUID = getUIDFrUserCo();
         function SuMPerfModeHandler() {
             var SuMPerfMode = getCookie('SuMPerformanceMode').replace(' ', '');
             if (SuMPerfMode == 0 || SuMPerfMode == '0' || SuMPerfMode == '' || SuMPerfMode == null) {
@@ -571,6 +741,97 @@
     <div runat="server" id="wrapper" style="overflow:hidden;background-color:var(--SuMDWhite) !important;">
         <asp:ScriptManager ID="SuMScriptManager" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
        </asp:ScriptManager>
+        <!-- -sumads -start  -->
+        <div id="SuMAdsAbsCon" class="animated fadeIn" style="display:none;width:100vw !important;height:100vh !important;position:fixed !important;z-index:998 !important;top:0;background-color:var(--SuMThemeColorOP92);">
+            <div style="height:calc(30vh - 32px);width:100%;margin:0 auto;display:flex;justify-content:center;align-items:center;">
+                <div style="display:block;height:fit-content;width:100%;display:block;padding:12px;">
+                    <p style="width:fit-content;height:fit-content;color:rgba(255,255,255,0.86);margin:0 auto;display:block;text-align:center;font-size:118%;">rewards will be claimed after the ads duration ends.</p>
+                </div>
+            </div>
+            <a id="SuMAdBTN" onclick="null;" style="width:132px;height:36px;display:block;color:var(--SuMThemeColorOP94);background-color:var(--SuMDWhiteOP94);border-radius:18px;margin-left:calc(100% - 146px);margin-bottom:6px;font-size:108%;padding-top:6px;text-align:center;">x seconds</a>
+            <div style="width:calc(100vw - 24px);height:calc(70vh - 186px);background-color:var(--SuMDWhiteOP94);border-radius:22px;margin:0 auto;margin-top:0px !important;max-height:calc(70vh - 186px) !important;max-width:calc(100vh - 24px) !important;display:block;">
+                <!-- Homepage Leaderboard -->
+                <div id="SuMAdSlot0" style="width:100%;height:100%;text-align:center;margin:0 auto;display:block;display:flex;justify-content:center;align-items:center;">
+                    <p style="width:100%;height:fit-content;text-align:center;color:var(--SuMDBlackOP32);font-size:740%;">AD</p>
+                </div>
+            </div>
+        </div>
+        <p id="DtataParserF0CPush" style="display:none !important;visibility:hidden !important;"></p>
+        <script>
+            var CurrSuMCoinsCount;
+            function SuMPushAnAd(SuMDuration) {
+                var SuMODu = SuMDuration;
+                var SuMAdSucF0CF = false;
+                var SuMAdBTNElm = document.getElementById('SuMAdBTN');
+                if (SuMDuration == null) { SuMDuration = 3; }
+                SuMAdBTNElm.innerText = SuMDuration + ' seconds';
+                SuMAdBTNElm.style.opacity = '0.64';
+                SuMAdBTNElm.removeAttribute('onclick');
+                //document.getElementById('SuMAdSlot0').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:100%;height:100%" data-ad-client="ca-pub-6383094890036271" data-ad-slot="6383094890036271"></ins>';
+                //(adsbygoogle = window.adsbygoogle || []).push({});
+                document.getElementById("SuMAdsAbsCon").style.display = 'block';
+                const SuMAdsInterval = setInterval(function () {
+                    SuMDuration--;
+                    if (SuMDuration > 0) {
+                        SuMAdBTNElm.innerText = SuMDuration + ' seconds';
+                    }
+                    if (SuMDuration == 0) {
+                        SuMAdBTNElm.innerText = 'claim reward';
+                        SuMAdBTNElm.style.opacity = null;
+                        SuMAdBTNElm.setAttribute('onclick', "document.getElementById('SuMAdsAbsCon').style.display = 'none'; document.getElementById('SuMAdSlot0').innerHTML = ' '; SuMRewardVoucherFD(" + SuMODu + ");");
+                        SuMAdSucF0CF = true;
+                    }
+                    if (SuMDuration < 0) {
+                        clearInterval(SuMAdsInterval);
+                    }
+                }, 1000);
+                /*var ad = document.querySelector('ins.adsbygoogle');
+                if (ad && ad.innerHTML.replace(/\s/g, '').length == 0) {
+                    ad.style.display = 'display:block !important';
+                    ad.innerHTML = '<p>You seem to be blocking Google AdSense ads.</p>';
+                    SuMAdSucF0CF = false;
+                }*/
+                return SuMAdSucF0CF;
+            };
+            function SuMCoinsCount(FUID) {
+                document.getElementById('CoinsCount').innerText = 'loading';
+                $.ajax({
+                    dataType: "json",
+                    method: 'post',
+                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %>',
+                    data: JSON.stringify({ UID: FUID }),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (msg) {
+                        document.getElementById('CoinsCount').innerText = '';
+                        $("#CoinsCount").append(msg.d);
+                        CurrSuMCoinsCount = msg.d;
+                    },
+                    error: function (e) {
+                        document.getElementById('CoinsCount').innerText = '';
+                        $("#CoinsCount").append('error');
+                    }
+                });
+            };
+            function SuMUpdateCoinsCount(FUID, FToken) {
+                if (document.URL.includes('Settings.aspx') == true) {
+                    document.getElementById('CoinsCount').innerText = 'loading';
+                }
+                $.ajax({
+                    dataType: "json",
+                    method: 'post',
+                    url: '<%= ResolveUrl("BTNTesting.aspx/UpdateCoinsCountFSQL") %>',
+                    data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (msg) {
+                        return true;
+                    },
+                    error: function (e) {
+                        return false;
+                    }
+                });
+            };
+        </script>
+        <!-- -sumads -end -->
         <div class="d-flex flex-column" id="content-wrapper" style="">
             <div id="content">
                 <style>
@@ -589,7 +850,16 @@
                     <div id="LoadingSuMInfoBub" style="text-align: center; display: none; height: fit-content; width: 280px; background-color: var(--SuMDWhite); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 18px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important;padding-top:38px;padding-bottom:32px;text-align:center !important;" class="shadow-sm animated fadeIn">
                         <svg id="SuMLoadingSVGPreview" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="var(--SuMDWhiteOP92)"></svg>
                         <p id="SuMLoadingTXT" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: var(--SuMDWhiteOP92); width: calc(100% - 64px) !important;margin-bottom:-8px;text-align:left;">INFO</p>
-                        <div id="SuMMovingLoadingCont" style="display: block; width: calc(100% - 32px); overflow: hidden; height: 26px; border-radius: 13px; background-color: var(--SuMDWhiteOP18); margin: 0px auto;margin-top:16px;">
+                        <div id="SuMShowCoinMCardBTN" class="btn" style="border-radius:16px;background-color:var(--SuMBack);display:block;color:var(--SuMDBlackOP32);width: calc(100% - 32px);overflow:hidden;height:32px;margin:16px auto -6px;padding:0px;">
+                            <a id="SuMCoinUnlockBTN" style="background-color:rgba(135, 56, 65, 0.86); display:inline-block; color:rgba(255,255,255,0.92);width:calc(100% - 56px); overflow: hidden;height:32px;padding-top: 4px;">Unlock!</a>
+                            <div style="width:56px;height:32px;display:inline-block;">
+                                <div style="width:100%;height:100%;display:flex;justify-content:center;align-items:center;">
+                                    <p id="CoinsCountF0CMF" style="width:fit-content;height:fit-content;display:inline-block;margin-top:14px;">0</p>
+                                    <img src="/svg/sumtokencoin.svg" style="display:inline-block;width:20px;height:20px;margin-left:3px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="SuMMovingLoadingCont" style="display:block;width:calc(100% - 32px);overflow:hidden;height:26px;border-radius: 13px; background-color: var(--SuMDWhiteOP18); margin: 0px auto;margin-top:16px;">
                             <div id="SuMMovingLoadingNID" style="background-color: var(--SuMDWhiteOP92); height: 26px; width: 40%; display: block; margin-left: 100%; transition-duration: 0.76s; transition-timing-function: ease !important; transition-delay: 0s !important; transition-property: all !important;"></div>
                         </div>
                         <p id="SuMLoadingFailedTXT" class="" style="font-size: 32px; width: 100%; display: block; text-align: center; margin-bottom: 32px; height: 26px; margin-top: 16px;  color: red !important;">Offline!</p>
@@ -597,8 +867,11 @@
                     <div id="SuMLoadingExpandAnI" style="display:none;background-color:var(--SuMDWhite);overflow:hidden;border-radius:50%;width:26px;height:26px;position:fixed !important;top:0 !important;z-index:998 !important;margin-left:calc(50vw - 13px) !important;margin-top:calc(50vh - 13px) !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
                         <div id="SuMLoadingExpandingColorDiv" style="width:100%;height:100%;margin: 0 auto;background-color:var(--SuMDWhite);"></div>
                     </div>
+                    <div id="SuMUnlockCancelDiv" onclick="SuMCoinMasterCloseAllCS();" style="display:none;position:fixed;top:0;z-index:997 !important;height:100vh;width:100vw;background-color:rgba(0,0,0,0.08);"></div>
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
+                    <p id="CurrCoinsCountPlaceHolderHD" style="display:none !important;visibility:hidden !important;"></p>
+                    <div id="UltraCardBGCloseDiv" onclick="SuMUltraCloseCard();" style="width:100vw;height:100vh;display:none;position:fixed !important;top:0 !important;z-index:994 !important;background-color:rgba(0,0,0,0.08);"></div>
                     <script>
                         SuMSetThemeState(getCookie('SuMUserThemeState').replace(' ', ''));
                         var SuMLoadingContElm = document.getElementById('LoadingSuMInfoBub');
@@ -698,11 +971,73 @@
                             }
                         };
 
+                        var SuMCoinsReq = 0;
+                        var CuurCoinsCountF0CGSF = 0;
+
+                        function SuMReqCoinsCountFU(FMID) {
+                            document.getElementById('CoinsCountF0CMF').innerText = '...';
+                            $.ajax({
+                                dataType: "json",
+                                method: 'post',
+                                url: '<%= ResolveUrl("BTNTesting.aspx/GetMangaCoinsCountFSQL") %>',
+                                data: JSON.stringify({ MID: FMID }),
+                                contentType: "application/json; charset=utf-8",
+                                success: function (msg) {
+                                    document.getElementById('CoinsCountF0CMF').innerText = '';
+                                    $("#CoinsCountF0CMF").append(msg.d);
+                                    SuMCoinsReq = msg.d;
+                                },
+                                error: function (e) {
+                                    document.getElementById('CoinsCountF0CMF').innerText = '';
+                                    $("#CoinsCountF0CMF").append('!');
+                                    SuMCoinsReq = null;
+                                }
+                            });
+                        };
+
+                        function SuMCoinsCountFU(FUID) {
+                            $.ajax({
+                                dataType: "json",
+                                method: 'post',
+                                url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %>',
+                                data: JSON.stringify({ UID: FUID }),
+                                contentType: "application/json; charset=utf-8",
+                                success: function (msg) {
+                                    $("#CuurCoinsCountF0CGSF").append(msg.d);
+                                    CuurCoinsCountF0CGSF = msg.d;
+                                },
+                                error: function (e) {
+                                    $("#CuurCoinsCountF0CGSF").append('!');
+                                    CuurCoinsCountF0CGSF = null;
+                                }
+                            });
+                        };
+
+                        function SuMCoinMasterCard(HerfLink, CurrUIDF0CGF, HerfInfo, HerfThemeColor) {
+                            SuMLoadingIsInPross = false;
+                            if (CuurCoinsCountF0CGSF >= SuMCoinsReq) {
+                                SuMUpdateCoinsCount(CurrUIDF0CGF, SuMCoinsReq * (-1));
+                                SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, 'ContantExplorer');
+                            } else {
+                                SuMGoToThis('/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)', 'var(--SuMThemeColorOP74)', 'SuM Settings', 'Settings');
+                            }
+                        };
+
+                        function SuMCoinMasterCloseAllCS() {
+                            SuMLoadingIsInPross = false;
+                            document.getElementById('LoadingSuMInfoBub').style.display = 'none';
+                            document.getElementById('SuMUnlockCancelDiv').style.display = 'none';
+                        };
+
                         function SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, IMGID) {
                             if (SuMLoadingIsInPross == false && HerfLink.includes(document.URL) == false && document.URL.includes(HerfLink) == false) {
                                 SuMLoadingIsInPross = true;
                                 SuMLoadingAnConElmF0C0.style.display = 'block';
                                 SuMLoadingFailedTXTElm.style.display = 'none';
+                                document.getElementById('SuMUnlockCancelDiv').style.display = 'none';
+                                document.getElementById('SuMShowCoinMCardBTN').style.display = 'none';
+                                document.getElementById('SuMCoinUnlockBTN').removeAttribute('onclick');
+                                document.getElementById('SuMCoinUnlockBTN').innerText = 'loading...';
                                 SuMLoadHerfFailed = false;
                                 if (HerfThemeColor.includes('--') == false) {
                                     SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
@@ -710,6 +1045,7 @@
                                     SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
                                     SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
                                     SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
+                                    document.getElementById('SuMCoinUnlockBTN').style.backgroundColor = HerfThemeColor.replace('0.74', '0.86');
                                 }
                                 else {
                                     SuMLoadingTitleElm.style.color = 'var(--SuMThemeColorOP92)';
@@ -717,37 +1053,21 @@
                                     SuMLoadingAnElmF0C0.style.backgroundColor = 'var(--SuMThemeColorOP92)';
                                     SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', 'var(--SuMThemeColorOP92)');
                                     SuMLoadingFailedTXTElm.style.color = 'var(--SuMThemeColorOP64)';
+                                    document.getElementById('SuMCoinUnlockBTN').style.backgroundColor = 'var(--SuMThemeColorOP86)';
                                 }
                                 SuMLoadingPIMGLoad(IMGID);
                                 SuMLoadingTitleElm.innerText = HerfInfo;
-                                //SuMActivateAnimationF0C0();
                                 SuMLoadingContElm.style.display = 'block';
-                                SuMActivateAnimationF0C0();
                                 if (navigator.onLine == true) {
-                                    if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer' || IMGID == 'Creator') {
+                                    if (IMGID == 'ContantExplorer' || IMGID == 'Creator') {
                                         ExpandTranStartF0C0(HerfThemeColor);
+                                        SuMActivateAnimationF0C0();
+                                    } else {
+                                        if (IMGID != 'MangaExplorer') {
+                                            SuMActivateAnimationF0C0();
+                                        }
                                     }
-                                    setTimeout(() => {
-                                        if (HerfLink != null) {
-                                            if (document.URL.includes('/MangaExplorer.aspx') == true) {
-                                                HideMangaExplorerTopPartBar();
-                                                HideMangaExplorerBar();
-                                            }
-                                            if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
-                                                SuMHideFullNavAnF0C0();
-                                            }
-                                            SuMUltraCloseCard();
-                                            setTimeout(() => {
-                                                location.href = HerfLink;
-                                            }, 360);
-                                        }
-                                    }, 840);
-                                }
-                                else {
-                                    fetch(HerfLink, { method: 'GET' }).then(res => {
-                                        if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer' || IMGID == 'Creator') {
-                                            ExpandTranStartF0C0(HerfThemeColor);
-                                        }
+                                    if (IMGID != 'MangaExplorer') {
                                         setTimeout(() => {
                                             if (HerfLink != null) {
                                                 if (document.URL.includes('/MangaExplorer.aspx') == true) {
@@ -763,15 +1083,71 @@
                                                 }, 360);
                                             }
                                         }, 840);
-                                    }).catch(err => {
+                                    } else {
+                                        //-sumcoinpross
+                                        document.getElementById('SuMShowCoinMCardBTN').style.display = 'flex';
+                                        SuMLoadingAnConElmF0C0.style.display = 'none';
+                                        var FDMID = 0;
+                                        var CurrUIDF0CGF = getUIDFrUserCo();
+                                        var MIDEXTRaw = HerfLink.split('&');
+                                        for (var ic = 0; ic < MIDEXTRaw.length; ic++) {
+                                            if (MIDEXTRaw[ic].includes('VC=') == true) {
+                                                FDMID = MIDEXTRaw[ic].replace('VC=', '').replace(' ', '');
+                                                ic = MIDEXTRaw;
+                                            }
+                                        }
+                                        SuMReqCoinsCountFU(FDMID);
+                                        SuMCoinsCountFU(CurrUIDF0CGF);
+                                        if (CuurCoinsCountF0CGSF >= SuMCoinsReq) {
+                                            document.getElementById('SuMCoinUnlockBTN').innerText = 'Unlock!';
+                                        } else {
+                                            document.getElementById('SuMCoinUnlockBTN').innerText = 'Get SuM Coins';
+                                        }
+                                        document.getElementById('SuMCoinUnlockBTN').setAttribute('onclick', "SuMCoinMasterCard('" + HerfLink + "'," + CurrUIDF0CGF + ",'" + HerfInfo + "','" + HerfThemeColor + "');");
+                                        document.getElementById('CoinsCountF0CMF').innerText = SuMCoinsReq;
+                                        document.getElementById('SuMUnlockCancelDiv').style.display = 'block';
+                                    }
+                                }
+                                else {
+                                    if (IMGID != 'MangaExplorer') {
+                                        fetch(HerfLink, { method: 'GET' }).then(res => {
+                                            SuMActivateAnimationF0C0();
+                                            if (IMGID == 'ContantExplorer' || IMGID == 'Creator') {
+                                                ExpandTranStartF0C0(HerfThemeColor);
+                                            }
+                                            setTimeout(() => {
+                                                if (HerfLink != null) {
+                                                    if (document.URL.includes('/MangaExplorer.aspx') == true) {
+                                                        HideMangaExplorerTopPartBar();
+                                                        HideMangaExplorerBar();
+                                                    }
+                                                    if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
+                                                        SuMHideFullNavAnF0C0();
+                                                    }
+                                                    SuMUltraCloseCard();
+                                                    setTimeout(() => {
+                                                        location.href = HerfLink;
+                                                    }, 360);
+                                                }
+                                            }, 840);
+                                        }).catch(err => {
+                                            SuMLoadingAnConElmF0C0.style.display = 'none';
+                                            SuMLoadingFailedTXTElm.style.display = 'block';
+                                            setTimeout(() => {
+                                                HideSuMLoadingPopUp();
+                                                SuMLoadingIsInPross = false;
+                                            }, 2040);
+                                        });
+                                        SuMLoadHerfFailed = true;
+                                    } else {
+                                        //--sumcoainpross -fail
                                         SuMLoadingAnConElmF0C0.style.display = 'none';
                                         SuMLoadingFailedTXTElm.style.display = 'block';
                                         setTimeout(() => {
                                             HideSuMLoadingPopUp();
                                             SuMLoadingIsInPross = false;
                                         }, 2040);
-                                    });
-                                    SuMLoadHerfFailed = true;
+                                    }
                                 }
                             }
                         };
@@ -905,6 +1281,7 @@
                                 CISuMShowThisMIsActive = true;
                                 SuMLoadingAnConElmF0C0.style.display = 'block';
                                 SuMLoadingFailedTXTElm.style.display = 'none';
+                                document.getElementById('SuMShowCoinMCardBTN').style.display = 'none';
                                 SuMLoadHerfFailed = false;
                                 if (HerfThemeColor.includes('--') == false) {
                                     SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
@@ -1138,6 +1515,7 @@
             setTimeout(() => {
                 UltraAbsConClElm.style.display = 'none';
             }, 360);
+            document.getElementById('UltraCardBGCloseDiv').style.display = 'none';
             setTimeout(() => {
                 document.getElementById('SuMUltraMDisc').innerText = 'loading';
                 document.getElementById('SuMUltarProdYear').innerText = 'loading';
@@ -1155,6 +1533,7 @@
             }, 380);
         };
         function SuMApplyInfoToUltraCard(UltraID, UltraCover, UltraTitle, UltraMELink, IMGID, HerfInfo, HerfThemeColor) {
+            document.getElementById('UltraCardBGCloseDiv').style.display = 'block';
             if (SuMUltraIsLoading == false) {
                 SuMUltraIsLoading = true;
                 var UltraAbsConElm = document.getElementById('SuMUltraInfoCard');
@@ -1450,15 +1829,6 @@
                 }
             });
         };
-        function getUIDFrUserCo() {
-            var SUC = getCookie('SuMCurrentUser');
-            var SUCPross = SUC.split('&');
-            for (var iii = 0; iii < SUCPross.length; iii++) {
-                if (SUCPross[iii].includes('ID=') == true && SUCPross[iii][0] == 'I' && SUCPross[iii][1] == 'D' && SUCPross[iii][2] == '=') {
-                    return SUCPross[iii].replace('ID=', '');
-                }
-            }
-        };
         function SetSuMShareBTN(SuMLINK) {
             if (SuMLINK.includes('sum-manga.azurewebsites.net') == false) {
                 SuMLINK = 'https://sum-manga.azurewebsites.net/' + SuMLINK;
@@ -1467,6 +1837,26 @@
             document.getElementById('SuMUltraShareClick').setAttribute('onclick', OnclickShare);
         };
     </script>
+        <div id="SuMMainCardCon" class="animated fadeIn" style="backdrop-filter:blur(0.5px) !important;display: none; height: 100vh; width: 100vw; padding: 8px; animation-duration: 0.18s !important; background-color: rgba(0, 0, 0, 0.46) !important; margin: 0px auto !important; position: fixed !important; top: 0px !important; z-index: 998 !important;">
+            <div style="width:100%;height:fit-content;padding:12px;">
+                <a onclick="SuMMainCardManager(0);" style="pointer-events:all;display:block;padding:4px;width:fit-content;height:fit-content;float:right !important;border-radius:50%;background-color:var(--SuMDWhiteOP18);">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="24px" fill="rgba(255,255,255,0.92)"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"></path></svg>
+                </a>
+            </div>
+            <!-- <a id="SuMMainULogOrSetClick" style="margin:12px !important;background-color:var(--SuMDWhite);border-radius:20px;width:calc(100% - 130px) !important;height:96px !important;margin:0 auto;padding:12px !important;display:inline-block !important;float:left;border:2px var(--SuMThemeColorOP74) solid;">
+                <img id="SuMMainPFP" style="border-radius:50%;width:64px;height:64px;background-color:var(--SuMThemeColorOP64);padding:1px !important;display:inline;margin-top:4px;margin-left:8px;" src="/AccountETC/DeafultPFP/1.jpg">
+                <p id="SuMMainUserNameOrTXT" style="margin-left:12px;color:var(--SuMThemeColor) !important;font-size:118%;display:inline-block;width:calc(100% - 92px);overflow:hidden;text-overflow:ellipsis !important;float:right;margin-top:20px;">UserName</p>
+            </a>
+            <a style="display:inline-block !important;margin:12px !important;width:92px !important;height:96px;border-radius:20px;background-color:var(--SuMThemeColor);margin-left:0px !important;float:right;">
+
+            </a>
+            <div style="width:100%;height:calc(100vh - 400px);margin:0 auto;">
+<div style="background-color:var(--SuMDWhiteOP64);border-radius:20px;height:100%;width:calc(100% - 24px);padding:8px;margin:0 auto;backdrop-filter: blur(3px) !important;">
+    
+</div>
+            </div> -->
+            <p style="color:white;width:100%;display:block;font-size:124%;opacity:0.86;text-align:center;margin:0 auto;margin-top:calc(50vh - 164px) !important;">comming soon!</p>
+        </div>
         <div id="Offline" class="STBSUMBAR   shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:174px;overflow:hidden !important;background-color:var(--SuMThemeColor) !important;bottom:0 !important;">
             <div class=" navbar-light navbar-expand   shadow  topbar static-top" style="height:fit-content;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMThemeColor) !important;bottom:0 !important;overflow:clip;background-color:var(--SuMThemeColor) !important;">
                  <div style="text-align:center;" class="text-center">

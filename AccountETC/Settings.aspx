@@ -1,15 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="Settings.aspx.cs" Inherits="SuM_Manga_V3.AccountETC.Settings" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <script>
-        if ("androidAPIs" in window == true) {
-              
-              
-            setTimeout(() => {
-                  
-            }, 420);
-        }
-    </script>
     <style>
         a {
             pointer-events: all;
@@ -320,6 +311,54 @@
         </div>
         </div>
 </div>
+        <div class="animated fadeIn" id="SuMCoinsManagerCard" style="width:calc(100% - 24px) !important;height:fit-content;background-color:var(--SuMDWhite) !important;border-radius:20px !important;padding: 32px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;border:0.5px var(--SuMDBroderC) solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
+            <div style="width:100%;height:fit-content;display:block;">
+                <p style="font-size:138%;color:var(--SuMDBlack);display:inline-block;">SuM-Coins</p>
+                <div style="float:right;display:inline-block;border-radius:16px;width:fit-content;height:32px;padding-top:3px;padding-left:8px;padding-right:12px;overflow:hidden;">
+                    <img src="/svg/sumtokencoin.svg" style="display:inline-block;width:20px;height:20px;margin-right:3px;">
+                    <p id="CoinsCount" style="width:fit-content;height:fit-content;display:inline-block;">0</p>
+                </div>
+                <p style="font-size:92%;width:100%;margin-top:-18px;">Watch ads for coins!</p>
+            </div>
+            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-top:18px !important;">
+            <div style="width:100%;height:fit-content;display:block;padding-top:26px;">
+                <div style="width:100%;height:fit-content;margin:0 auto;padding:12px;">
+                    <p style="display:inline-block;color:var(--SuMThemeColorOP74);font-size:132%;">1 Coin</p>
+                    <p style="display:inline-block;color:var(--SuMDBlackOP32);font-size:86%;">6 seconds AD</p>
+                    <a class="btn" onclick="SuMPushAnAd(6);" style="float:right;display:inline-block;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP74);height:28px;padding-top:1px;border-radius:15px;margin-top:2px;">claim</a>
+                </div>
+                <div style="width:100%;height:fit-content;margin:0 auto;padding:12px;">
+                    <p style="display:inline-block;color:var(--SuMThemeColorOP74);font-size:132%;">2 Coins</p>
+                    <p style="display:inline-block;color:var(--SuMDBlackOP32);font-size:86%;">12 seconds AD</p>
+                    <a class="btn" onclick="SuMPushAnAd(12);" style="float:right;display:inline-block;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP74);height:28px;padding-top:1px;border-radius:15px;margin-top:2px;">claim</a>
+                </div>
+                <div style="width:100%;height:fit-content;margin:0 auto;padding:12px;">
+                    <p style="display:inline-block;color:var(--SuMThemeColorOP74);font-size:132%;">4 Coins</p>
+                    <p style="display:inline-block;color:var(--SuMDBlackOP32);font-size:86%;">32 seconds AD</p>
+                    <a class="btn" onclick="SuMPushAnAd(32);" style="float:right;display:inline-block;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP74);height:28px;padding-top:1px;border-radius:15px;margin-top:2px;">claim</a>
+                </div>
+            </div>
+        </div>
+        <script>
+            var TTDUIDF5C0 = getUIDFrUserCo();
+            if (TTDUIDF5C0 != null && TTDUIDF5C0 != '') {
+                document.getElementById('SuMCoinsManagerCard').style.display = 'block';
+                SuMCoinsCount(TTDUIDF5C0);
+            }
+            else {
+                document.getElementById('SuMCoinsManagerCard').style.display = 'none';
+            }
+            function SuMRewardVoucherFD(duration) {
+                var SuMToken = 0;
+                if (duration == 6) { SuMToken = 1; }
+                if (duration == 12) { SuMToken = 2; }
+                if (duration == 32) { SuMToken = 4; }
+                SuMUpdateCoinsCount(TTDUIDF5C0, SuMToken);
+                document.getElementById('CoinsCount').innerText = (CurrSuMCoinsCount + SuMToken);
+                CurrSuMCoinsCount = CurrSuMCoinsCount + SuMToken;
+                //SuMCoinsCount(TTDUIDF5C0);
+            }
+        </script>
         <div id="StartSetAnim" runat="server" class="fadeIn animated" style="width:calc(100% - 24px) !important;height:fit-content;background-color:var(--SuMDWhite) !important;border-radius:20px !important;padding: 20px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;border:0.5px var(--SuMDBroderC) solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
             <div style="vertical-align:middle;display:block !important;">
                                     <svg style="display:inline;float:left;" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 24 24" width="30px" id="SuMLockIcon" fill="var(--SuMDBlack)"><g fill="none"><path d="M0 0h24v24H0V0z"/><path d="M0 0h24v24H0V0z" opacity=".87"/></g><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"/></svg>
@@ -459,7 +498,7 @@
         </div>
             <div class="" style="background-color:var(--SuMDGray) !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:280px !important;padding-left:8px !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.1.7 Beta</p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.2.0 Beta</p>
                 <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:rgba(255,255,255,0.9) !important;background: var(--SuMThemeColorOP62);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:0px;width:100%;height:164px;"></p>

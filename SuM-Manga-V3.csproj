@@ -1361,6 +1361,8 @@
     <Content Include="svg\publish.svg" />
     <Content Include="svg\settingstBlack.svg" />
     <Content Include="svg\share.svg" />
+    <Content Include="svg\sumcoin.svg" />
+    <Content Include="svg\sumtokencoin.svg" />
     <Content Include="svg\under-maintenance.svg" />
     <Content Include="ToDo-replace-this-name.html" />
     <Content Include="SuMOffline.html" />
@@ -3137,6 +3139,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
     <Folder Include="SlideShowCards\" />
   </ItemGroup>
