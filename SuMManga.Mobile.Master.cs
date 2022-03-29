@@ -78,8 +78,9 @@ namespace SuM_Manga_V3
                 subnavscont2.Attributes["style"] = "margin-bottom:-2px;z-index:999;height:50px !important;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px var(--SuMDGray) !important; display:block;background-color:var(--SuMDWhite) !important;";
                 NavItems.InnerHtml = ""; nav.Attributes["style"] = "height:1vh !important;width:100% !important; ";
             }
-            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-            if (GetUserInfoCookie == null) { SuMNotificationStart.Visible = false; }
+            /*HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie == null) { SuMNotificationStart.Visible = false; }*/
+            SuMNotificationStart.Visible = false;//TMP --sumnotifications
         }
         protected string BuildSuMUserThemeCSS(string RGBRoot)
         {

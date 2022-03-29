@@ -850,7 +850,7 @@
                     <div id="LoadingSuMInfoBub" style="text-align: center; display: none; height: fit-content; width: 280px; background-color: var(--SuMDWhite); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 18px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important;padding-top:38px;padding-bottom:32px;text-align:center !important;" class="shadow-sm animated fadeIn">
                         <svg id="SuMLoadingSVGPreview" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="var(--SuMDWhiteOP92)"></svg>
                         <p id="SuMLoadingTXT" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: var(--SuMDWhiteOP92); width: calc(100% - 64px) !important;margin-bottom:-8px;text-align:left;">INFO</p>
-                        <div id="SuMShowCoinMCardBTN" class="btn" style="border-radius:16px;background-color:var(--SuMBack);display:block;color:var(--SuMDBlackOP32);width: calc(100% - 32px);overflow:hidden;height:32px;margin:16px auto -6px;padding:0px;">
+                        <div id="SuMShowCoinMCardBTN" class="btn" style="border-radius:16px;background-color:var(--SuMBack);display:block;color:var(--SuMDBlackOP32);width: calc(100% - 32px);overflow:hidden;height:32px;margin:16px auto -6px;padding:0px;border:none !important;">
                             <a id="SuMCoinUnlockBTN" style="background-color:rgba(135, 56, 65, 0.86); display:inline-block; color:rgba(255,255,255,0.92);width:calc(100% - 56px); overflow: hidden;height:32px;padding-top: 4px;">Unlock!</a>
                             <div style="width:56px;height:32px;display:inline-block;">
                                 <div style="width:100%;height:100%;display:flex;justify-content:center;align-items:center;">
@@ -867,7 +867,7 @@
                     <div id="SuMLoadingExpandAnI" style="display:none;background-color:var(--SuMDWhite);overflow:hidden;border-radius:50%;width:26px;height:26px;position:fixed !important;top:0 !important;z-index:998 !important;margin-left:calc(50vw - 13px) !important;margin-top:calc(50vh - 13px) !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
                         <div id="SuMLoadingExpandingColorDiv" style="width:100%;height:100%;margin: 0 auto;background-color:var(--SuMDWhite);"></div>
                     </div>
-                    <div id="SuMUnlockCancelDiv" onclick="SuMCoinMasterCloseAllCS();" style="display:none;position:fixed;top:0;z-index:997 !important;height:100vh;width:100vw;background-color:rgba(0,0,0,0.08);"></div>
+                    <div class="animated fadeIn" id="SuMUnlockCancelDiv" onclick="SuMCoinMasterCloseAllCS();" style="display:none;position:fixed;top:0;z-index:997 !important;height:100vh;width:100vw;background-color:rgba(0,0,0,0.08);"></div>
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
                     <p id="CurrCoinsCountPlaceHolderHD" style="display:none !important;visibility:hidden !important;"></p>
@@ -974,7 +974,7 @@
                         var SuMCoinsReq = 0;
                         var CuurCoinsCountF0CGSF = 0;
 
-                        function SuMReqCoinsCountFU(FMID) {
+                        function SuMReqCoinsCountFU(FMID, callback) {
                             document.getElementById('CoinsCountF0CMF').innerText = '...';
                             $.ajax({
                                 dataType: "json",
@@ -986,11 +986,13 @@
                                     document.getElementById('CoinsCountF0CMF').innerText = '';
                                     $("#CoinsCountF0CMF").append(msg.d);
                                     SuMCoinsReq = msg.d;
+                                    callback();
                                 },
                                 error: function (e) {
                                     document.getElementById('CoinsCountF0CMF').innerText = '';
                                     $("#CoinsCountF0CMF").append('!');
-                                    SuMCoinsReq = null;
+                                    SuMCoinsReq = '!';
+                                    callback();
                                 }
                             });
                         };
@@ -1028,6 +1030,10 @@
                             document.getElementById('LoadingSuMInfoBub').style.display = 'none';
                             document.getElementById('SuMUnlockCancelDiv').style.display = 'none';
                         };
+
+                        /* SuM Coins Count FixUP */
+                        var CurrUIDF0CFixUp0 = getUIDFrUserCo();
+                        SuMCoinsCountFU(CurrUIDF0CFixUp0);
 
                         function SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, IMGID) {
                             if (SuMLoadingIsInPross == false && HerfLink.includes(document.URL) == false && document.URL.includes(HerfLink) == false) {
@@ -1096,16 +1102,19 @@
                                                 ic = MIDEXTRaw;
                                             }
                                         }
-                                        SuMReqCoinsCountFU(FDMID);
-                                        SuMCoinsCountFU(CurrUIDF0CGF);
-                                        if (CuurCoinsCountF0CGSF >= SuMCoinsReq) {
-                                            document.getElementById('SuMCoinUnlockBTN').innerText = 'Unlock!';
-                                        } else {
-                                            document.getElementById('SuMCoinUnlockBTN').innerText = 'Get SuM Coins';
-                                        }
-                                        document.getElementById('SuMCoinUnlockBTN').setAttribute('onclick', "SuMCoinMasterCard('" + HerfLink + "'," + CurrUIDF0CGF + ",'" + HerfInfo + "','" + HerfThemeColor + "');");
-                                        document.getElementById('CoinsCountF0CMF').innerText = SuMCoinsReq;
-                                        document.getElementById('SuMUnlockCancelDiv').style.display = 'block';
+                                        SuMReqCoinsCountFU(FDMID, function () {
+
+                                            SuMCoinsCountFU(CurrUIDF0CGF);
+                                            document.getElementById('CoinsCountF0CMF').innerText = SuMCoinsReq;
+                                            document.getElementById('SuMCoinUnlockBTN').setAttribute('onclick', "SuMCoinMasterCard('" + HerfLink + "'," + CurrUIDF0CGF + ",'" + HerfInfo + "','" + HerfThemeColor + "');");
+                                            document.getElementById('SuMUnlockCancelDiv').style.display = 'block';
+                                            if (CuurCoinsCountF0CGSF >= SuMCoinsReq) {
+                                                document.getElementById('SuMCoinUnlockBTN').innerText = 'Unlock!';
+                                            } else {
+                                                document.getElementById('SuMCoinUnlockBTN').innerText = 'Get SuM Coins';
+                                            }
+
+                                        });
                                     }
                                 }
                                 else {
