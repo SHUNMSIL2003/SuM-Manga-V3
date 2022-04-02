@@ -1319,6 +1319,7 @@
     <Content Include="storeitems\UramichiOniisan\sumcp0007.jpg" />
     <Content Include="offline.html" />
     <Content Include="SuMMangaInstallAPP.aspx" />
+    <Content Include="SuMTest.html" />
     <Content Include="svg\addTBlack.svg" />
     <Content Include="svg\add.svg" />
     <Content Include="svg\addTTC.svg" />
@@ -1362,6 +1363,7 @@
     <Content Include="svg\settingstBlack.svg" />
     <Content Include="svg\share.svg" />
     <Content Include="svg\sumcoin.svg" />
+    <Content Include="svg\SuMHead.svg" />
     <Content Include="svg\sumtokencoin.svg" />
     <Content Include="svg\under-maintenance.svg" />
     <Content Include="ToDo-replace-this-name.html" />
@@ -3124,6 +3126,7 @@
     <Content Include="SuMManga.Mobile.Creator.Master" />
     <Content Include="SuM-Manga-331.apk" />
     <Content Include="SuM-Manga-400.apk" />
+    <Content Include="SuM-Manga-401.apk" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

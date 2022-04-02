@@ -337,7 +337,7 @@
             }
         </style>
     </div>
-    <div id="SuMAnimationConroleDiv" style="display:none !important;visibility:hidden !important"></div>
+    <div id="SuMAnimationConroleDiv" style="display:none !important;visibility:hidden !important"><link rel="stylesheet" href="/assets/animate.min.css"></div><!-- A-CHANGE -->
     <style>
         .ripple {
             width: 32px;
@@ -757,41 +757,51 @@
             </div>
         </div>
         <p id="DtataParserF0CPush" style="display:none !important;visibility:hidden !important;"></p>
+        <div id="SuMAdPrDiv" style="background-color:rgba(0,0,0,0.2);display:none;position:fixed !important;z-index:1020 !important;top:0 !important;width:100vw !important;height:100vh !important;"></div>
         <script>
             var CurrSuMCoinsCount;
-            function SuMPushAnAd(SuMDuration) {
-                var SuMODu = SuMDuration;
-                var SuMAdSucF0CF = false;
-                var SuMAdBTNElm = document.getElementById('SuMAdBTN');
-                if (SuMDuration == null) { SuMDuration = 3; }
-                SuMAdBTNElm.innerText = SuMDuration + ' seconds';
-                SuMAdBTNElm.style.opacity = '0.64';
-                SuMAdBTNElm.removeAttribute('onclick');
-                //document.getElementById('SuMAdSlot0').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:100%;height:100%" data-ad-client="ca-pub-6383094890036271" data-ad-slot="6383094890036271"></ins>';
-                //(adsbygoogle = window.adsbygoogle || []).push({});
-                document.getElementById("SuMAdsAbsCon").style.display = 'block';
-                const SuMAdsInterval = setInterval(function () {
-                    SuMDuration--;
-                    if (SuMDuration > 0) {
-                        SuMAdBTNElm.innerText = SuMDuration + ' seconds';
+            document.getElementById('SuMAdPrDiv').style.display = 'none';
+            var AnAdIsRequsted = false;
+            //var debug0turn = 0; //debug
+            //var debug1turn = 0; //debug
+            function SuMPushAnAd(SuMCoinsAm) {
+                var SuMADRewardState = androidAPIs.SuMAdStateReward();
+                var SuMADProssState = androidAPIs.SuMAdProssState();
+                if (SuMADProssState == false) {
+                    AnAdIsRequsted = true;
+                    androidAPIs.SuMADStart();
+                }
+                else {
+                    if (SuMADRewardState == true) {
+                        SuMRewardVoucherFD(SuMCoinsAm);
                     }
-                    if (SuMDuration == 0) {
-                        SuMAdBTNElm.innerText = 'claim reward';
-                        SuMAdBTNElm.style.opacity = null;
-                        SuMAdBTNElm.setAttribute('onclick', "document.getElementById('SuMAdsAbsCon').style.display = 'none'; document.getElementById('SuMAdSlot0').innerHTML = ' '; SuMRewardVoucherFD(" + SuMODu + ");");
-                        SuMAdSucF0CF = true;
+                    else {
+                        AnAdIsRequsted = false;
+                        SuMPushAnAd(SuMCoinsAm);
                     }
-                    if (SuMDuration < 0) {
-                        clearInterval(SuMAdsInterval);
+                }
+            };
+            function SuMADCTimeManager(SuMCoinsTMFCTurn, SuMF0CMCoins) {
+                var SuMADObState = androidAPIs.SuMAdStateReward();
+                //console.log('TimeWaiFunc1; Trun:' + debug0turn + '; Reads:' + SuMADObState);
+                if (SuMADObState == null) {
+                    setTimeout(() => {
+                        SuMADCTimeManager((SuMCoinsTMFCTurn + 1), SuMF0CMCoins);
+                    }, 180);
+                }
+                else {
+                    if (SuMADObState == true) {
+                        document.getElementById('SuMAdPrDiv').style.display = 'none';
+                        SuMRewardVoucherFD(SuMF0CMCoins);
                     }
-                }, 1000);
-                /*var ad = document.querySelector('ins.adsbygoogle');
-                if (ad && ad.innerHTML.replace(/\s/g, '').length == 0) {
-                    ad.style.display = 'display:block !important';
-                    ad.innerHTML = '<p>You seem to be blocking Google AdSense ads.</p>';
-                    SuMAdSucF0CF = false;
-                }*/
-                return SuMAdSucF0CF;
+                    else {
+                        if (SuMCoinsTMFCTurn < 1296000) {
+                            setTimeout(() => {
+                                SuMADCTimeManager(SuMCoinsTMFCTurn, SuMF0CMCoins);
+                            }, 100);
+                        }
+                    }
+                }
             };
             function SuMCoinsCount(FUID) {
                 document.getElementById('CoinsCount').innerText = 'loading';
@@ -1894,8 +1904,8 @@
             </div>
         </div>
         <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand   shadow  topbar static-top" style="height:50px !important;width:100% !important;padding:2px !important;padding-bottom:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px var(--SuMDGray) !important;z-index:999;display:none;background-color:var(--SuMDWhite) !important;">
-                <a name="no-animation" id="navb2" runat="server" onclick="if ('androidAPIs' in window) {  } SuMGoBack();" style="float:left !important;width:fit-content;">
-                    <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
+                <a name="no-animation" id="navb2" runat="server" onclick="SuMGoBack();" style="float:left !important;width:fit-content;">
+                    <img src="/svg/SuMHead.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                     <p style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">SuM </p><p id="mangacolor2" style="display:inline;color:var(--SuMThemeColorThisPage);margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" id="NavigateBackF0C1" style="font-size:54%;display:block !important;margin-left:46px;margin-top:-10px;color:var(--SuMThemeColorThisPage);">Navigate Back</b>
                 </a>
@@ -1931,8 +1941,8 @@
         </script>
         <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:var(--SuMDWhite) !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;">
             <div id="subnavscont" runat="server" class=" navbar-light navbar-expand   shadow  topbar static-top" style="height:36px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMDGray) !important;bottom:0 !important;overflow:clip;border-color:var(--SuMDWhite);margin-bottom:-1px;">
-                <a name="no-animation" onclick="if ('androidAPIs' in window) {  } SuMGoBack();" style="float:left !important;width:fit-content;">
-                    <img src="/svg/NewSuMIconSVG.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
+                <a name="no-animation" onclick="SuMGoBack();" style="float:left !important;width:fit-content;">
+                    <img src="/svg/SuMHead.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
                     <p style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:var(--SuMThemeColorThisPage);margin-top:8px !important;">Manga</p>
                     <b class="pulse animated" id="NavigateBackF0C0" runat="server" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;color:var(--SuMThemeColorThisPage);">Navigate Back</b>
                 </a>

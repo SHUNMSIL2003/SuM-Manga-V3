@@ -24,7 +24,7 @@
     <div id="SettingsUnavaliblePOPUP" runat="server" style=" animation-duration:0.36s !important;background-color:var(--SuMDBlackOP32) !important;overflow:hidden;width:100vw;height:100vh;display:none;z-index:999 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center animated fadeIn GoodBlur">
         <div id="SUAC000SP" class="animated zoomIn card shadow-sm" style="margin:0 auto !important;max-width:382px !important;animation-duration:0.28s !important;width:fit-content;height:fit-content;padding:6px;border-radius:18px;background-color:var(--SuMDWhite);vertical-align:middle !important;margin-top:calc(50vh - 106px) !important;">
             <p style="font-size:146%;color:#232323;margin-bottom:0px;margin:0 auto;margin-top:6px !important;">This option is unavalible</p>
-            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;" />
+            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(80% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;" />
             <p style="width:80% !important;margin:0 auto;color:var(--SuMDBlackOP527);height:fit-content;text-align:center;display:block;font-size:112%;">The reason is eather there is a bug therefore its temporarily disabled or your device does not support it.</p>
             <div style="text-align:center;margin-top:16px;">
                 <a onclick="document.getElementById('MainContent_SettingsUnavaliblePOPUP').style.display = 'none';" class="btn" style="margin:0 auto !important;background-color:var(--SuMThemeColor);color:var(--SuMDWhite);border-radius:12px;width:fit-content;height:fit-content;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px;margin-bottom:8px !important;">OK</a>
@@ -144,7 +144,7 @@
                         </div>
                 <!-- Device Manege fucherdsafsd -->
                 <div style="padding-top:0px !important;padding-bottom:0px !important;background-color:var(--SuMDWhite) !important;margin-top:0px !important;display:none !important;">
-                    <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;" />
+                    <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(80% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;" />
                     <div onclick="if (document.getElementById('ManageDevicesCard').style.display == 'none') { document.getElementById('ManageDevicesCard').style.display = 'block'; document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight + document.getElementById('ManageDevicesCard').offsetHeight + 'px'; } else { document.getElementById('UserSettingsCards').style.height = document.getElementById('UserSettingsCards').offsetHeight - document.getElementById('ManageDevicesCard').offsetHeight + 'px'; document.getElementById('ManageDevicesCard').style.display = 'none'; }" class="card-header py-3" style="background-color:var(--SuMDWhite) !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;height:54px;overflow:hidden;border:none;">
                         <img src="/svg/devices.svg" style="width:26px;height:26px;display:inline;float:left;" />
                         <p style="color:var(--SuMDBlack) !important;display:inline;float:left;margin:8px;">Manage Devices</p>
@@ -164,7 +164,7 @@
                     </div>
                 </div>
         <div style="padding-top:0px !important;padding-bottom:0px !important;background-color:var(--SuMDWhite) !important;margin-top:0px !important;" class="">
-            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-top:8px !important;margin-bottom:8px !important;" />
+            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(80% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-top:8px !important;margin-bottom:8px !important;" />
                                         <div onclick="SuMSettingDivExpandor('ChangeEmailDiv');" class="card-header py-3" style="background-color:var(--SuMDWhite) !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;height:54px;overflow:hidden;border:none;">
                                             <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" style="width:26px;height:26px;display:inline;float:left;" fill="var(--SuMThemeColor)"><g><rect fill="none" height="24" width="24"/></g><g><g><g><g><path d="M21,10V4c0-1.1-0.9-2-2-2H3C1.9,2,1.01,2.9,1.01,4L1,16c0,1.1,0.9,2,2,2h11v-5c0-1.66,1.34-3,3-3H21z M11.53,10.67 c-0.32,0.2-0.74,0.2-1.06,0L3.4,6.25C3.15,6.09,3,5.82,3,5.53c0-0.67,0.73-1.07,1.3-0.72L11,9l6.7-4.19 C18.27,4.46,19,4.86,19,5.53c0,0.29-0.15,0.56-0.4,0.72L11.53,10.67z"/><path d="M22,14c-0.55,0-1,0.45-1,1v3c0,1.1-0.9,2-2,2s-2-0.9-2-2v-4.5c0-0.28,0.22-0.5,0.5-0.5s0.5,0.22,0.5,0.5V17 c0,0.55,0.45,1,1,1s1-0.45,1-1v-3.5c0-1.38-1.12-2.5-2.5-2.5S15,12.12,15,13.5V18c0,2.21,1.79,4,4,4s4-1.79,4-4v-3 C23,14.45,22.55,14,22,14z"/></g></g></g></g></svg>
                                             <p style="color:var(--SuMDBlackOP74) !important;display:inline;float:left;margin:8px;">Change Email</p>
@@ -193,7 +193,7 @@
                                     </div>
 
                     <div style="padding-top:0px !important;padding-bottom:0px !important;background-color:var(--SuMDWhite) !important;margin-top:0px !important;">
-                        <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-top:8px !important;margin-bottom:8px !important;" />
+                        <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(80% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-top:8px !important;margin-bottom:8px !important;" />
                         <div onclick="SuMSettingDivExpandor('SigAndMore');" class="card-header py-3" style="background-color:var(--SuMDWhite) !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;height:54px;overflow:hidden;border:none;">
                             <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" style="width:26px;height:26px;display:inline;float:left;" viewBox="0 0 24 24" fill="var(--SuMThemeColor)"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><path d="M16,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V8L16,3z M8,7h3c0.55,0,1,0.45,1,1v0c0,0.55-0.45,1-1,1H8 C7.45,9,7,8.55,7,8v0C7,7.45,7.45,7,8,7z M16,17H8c-0.55,0-1-0.45-1-1v0c0-0.55,0.45-1,1-1h8c0.55,0,1,0.45,1,1v0 C17,16.55,16.55,17,16,17z M16,13H8c-0.55,0-1-0.45-1-1v0c0-0.55,0.45-1,1-1h8c0.55,0,1,0.45,1,1v0C17,12.55,16.55,13,16,13z M15,8 V5l4,4h-3C15.45,9,15,8.55,15,8z"/></g></svg>
                             <p style="color:var(--SuMDBlackOP74) !important;display:inline;float:left;margin:8px;">Signature & more</p>
@@ -210,7 +210,7 @@
 
                                         </div>
                                 </div>
-                                <div class="col">
+                                <div class="col" style="display:none !important;visibility:hidden !important;">
                                     <div >
                                         <div >
                                             <div>
@@ -234,7 +234,7 @@
 
         
                                     <div style="background-color:var(--SuMDWhite) !important;">
-                                        <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-top:8px !important;margin-bottom:8px !important;" />
+                                        <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(80% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-top:8px !important;margin-bottom:8px !important;" />
                                         <div style="border:none;height:54px;overflow:hidden;background-color:var(--SuMDWhite) !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;" onclick="SuMSettingDivExpandor('PaymentCard');" class="card-header py-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:26px;height:26px;display:inline;float:left;" fill="var(--SuMThemeColor)"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1v-5h16v5c0 .55-.45 1-1 1zm1-10H4V7c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v1z"/></svg>
                                             <p style="color:var(--SuMDBlackOP74) !important;display:inline;float:left;margin:8px;">Payment</p>
@@ -270,7 +270,7 @@
                                     </div>
         
                     <div class="" style="background-color:var(--SuMDWhite) !important;">
-                        <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-top:8px !important;margin-bottom:8px !important;" />
+                        <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(80% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-top:8px !important;margin-bottom:8px !important;" />
                         <div id="CreatorClick" runat="server" style="border:none;height:54px;overflow:hidden;background-color:var(--SuMDWhite) !important;position:relative;z-index:997;display: flex; align-items: center;flex-direction: row;" onclick="SuMSettingDivExpandor('creatorsupmitform');" class="card-header py-3">
                             <svg xmlns="http://www.w3.org/2000/svg" style="width:auto;height:30px;display:inline;float:left;" enable-background="new 0 0 20 20" viewBox="0 0 20 20" fill="var(--SuMThemeColor)"><rect fill="none" height="20" width="20"/><path d="M15.35,8.83l0.71-0.71c0.59-0.59,0.59-1.54,0-2.12L15,4.94c-0.59-0.59-1.54-0.59-2.12,0l-0.71,0.71L15.35,8.83z M11.11,6.71 l-6.96,6.96C4.05,13.77,4,13.89,4,14.03v2.47C4,16.78,4.22,17,4.5,17h2.47c0.13,0,0.26-0.05,0.35-0.15l6.96-6.96L11.11,6.71z M4.51,11.18C3.59,10.76,3,10.16,3,9.25c0-1.31,1.39-1.99,2.61-2.59C6.45,6.24,7.5,5.73,7.5,5.25C7.5,4.91,6.83,4.5,6,4.5 c-0.94,0-1.36,0.46-1.38,0.48C4.35,5.29,3.88,5.33,3.57,5.07C3.26,4.81,3.21,4.35,3.46,4.03C3.55,3.93,4.34,3,6,3 c1.47,0,3,0.84,3,2.25C9,6.66,7.55,7.37,6.27,8C5.56,8.35,4.5,8.87,4.5,9.25c0,0.3,0.48,0.56,1.17,0.78L4.51,11.18z M14.14,12.16 c0.83,0.48,1.36,1.14,1.36,2.09c0,1.94-2.44,2.75-3.75,2.75C11.34,17,11,16.66,11,16.25s0.34-0.75,0.75-0.75 c0.77,0,2.25-0.49,2.25-1.25c0-0.39-0.38-0.71-0.97-0.97L14.14,12.16z"/></svg>
                             <p id="CraetorSecTitle" runat="server" style="color:var(--SuMDBlackOP74) !important;display:inline;float:left;margin:8px;">Apply to be a creator</p>
@@ -320,22 +320,22 @@
                 </div>
                 <p style="font-size:92%;width:100%;margin-top:-18px;">Watch ADs for coins</p>
             </div>
-            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-top:18px !important;">
+            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(80% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-top:18px !important;">
             <div style="width:100%;height:fit-content;display:block;padding-top:26px;">
                 <div style="width:100%;height:fit-content;margin:0 auto;padding:12px;">
                     <p style="display:inline-block;color:var(--SuMThemeColorOP74);font-size:132%;">1 Coin</p>
-                    <p style="display:inline-block;color:var(--SuMDBlackOP32);font-size:86%;">6 seconds AD</p>
-                    <a class="btn" onclick="SuMPushAnAd(6);" style="float:right;display:inline-block;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP74);height:28px;padding-top:1px;border-radius:15px;margin-top:2px;">claim</a>
+                    <p style="display:inline-block;color:var(--SuMDBlackOP32);font-size:86%;">10-6 seconds AD</p>
+                    <a id="SuMOneCoinBTN" class="btn" onclick="SuMPushAnAd(1);" style="float:right;display:inline-block;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP74);height:28px;padding-top:1px;border-radius:15px;margin-top:2px;">watch</a>
                 </div>
-                <div style="width:100%;height:fit-content;margin:0 auto;padding:12px;">
+                <div style="width:100%;height:fit-content;margin:0 auto;padding:12px;display:none !important;visibility:hidden !important;">
                     <p style="display:inline-block;color:var(--SuMThemeColorOP74);font-size:132%;">2 Coins</p>
                     <p style="display:inline-block;color:var(--SuMDBlackOP32);font-size:86%;">12 seconds AD</p>
-                    <a class="btn" onclick="SuMPushAnAd(12);" style="float:right;display:inline-block;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP74);height:28px;padding-top:1px;border-radius:15px;margin-top:2px;">claim</a>
+                    <a class="btn" onclick="SuMPushAnAd(2);" style="float:right;display:inline-block;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP74);height:28px;padding-top:1px;border-radius:15px;margin-top:2px;">claim</a>
                 </div>
-                <div style="width:100%;height:fit-content;margin:0 auto;padding:12px;">
+                <div style="width:100%;height:fit-content;margin:0 auto;padding:12px;display:none !important;visibility:hidden !important;">
                     <p style="display:inline-block;color:var(--SuMThemeColorOP74);font-size:132%;">4 Coins</p>
                     <p style="display:inline-block;color:var(--SuMDBlackOP32);font-size:86%;">32 seconds AD</p>
-                    <a class="btn" onclick="SuMPushAnAd(32);" style="float:right;display:inline-block;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP74);height:28px;padding-top:1px;border-radius:15px;margin-top:2px;">claim</a>
+                    <a class="btn" onclick="SuMPushAnAd(4);" style="float:right;display:inline-block;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP74);height:28px;padding-top:1px;border-radius:15px;margin-top:2px;">claim</a>
                 </div>
             </div>
         </div>
@@ -348,26 +348,35 @@
             else {
                 document.getElementById('SuMCoinsManagerCard').style.display = 'none';
             }
-            function SuMRewardVoucherFD(duration) {
-                var SuMToken = 0;
-                if (duration == 6) { SuMToken = 1; }
-                if (duration == 12) { SuMToken = 2; }
-                if (duration == 32) { SuMToken = 4; }
+            function SuMADShowAsLoad() {
+                document.getElementById('SuMOneCoinBTN').style.backgroundColor = 'var(--SuMThemeColorOP24)';
+                document.getElementById('SuMOneCoinBTN').innerText = 'watch';
+            };
+            function SuMADBTNReset() {
+                document.getElementById('SuMOneCoinBTN').style.backgroundColor = 'var(--SuMThemeColorOP74)';
+                document.getElementById('SuMOneCoinBTN').innerText = 'loading';
+            };
+            function SuMRewardVoucherFD(SuMToken) {
+                //console.log('VoucherFunc2 -Started');
                 SuMUpdateCoinsCount(TTDUIDF5C0, SuMToken);
                 document.getElementById('CoinsCount').innerText = (CurrSuMCoinsCount + SuMToken);
                 CurrSuMCoinsCount = CurrSuMCoinsCount + SuMToken;
+                //androidAPIs.SuMRestartV2();//TMP
+                document.getElementById('SuMOneCoinBTN').style.backgroundColor = 'var(--SuMThemeColorOP24)';
+                document.getElementById('SuMOneCoinBTN').innerText = 'watch';
                 //SuMCoinsCount(TTDUIDF5C0);
+                //console.log('VoucherFunc2 -isDone');
             }
         </script>
-        <div id="StartSetAnim" runat="server" class="fadeIn animated" style="width:calc(100% - 24px) !important;height:fit-content;background-color:var(--SuMDWhite) !important;border-radius:20px !important;padding: 32px !important;margin-top:12px !important;margin:12px !important;padding-top:46px !important;border:0.5px var(--SuMDBroderC) solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
-            <div style="width:100%;height:fit-content;display:block;padding:12px;padding-top:0px;padding-bottom:6px;padding-top:6px !important;">
+        <div id="StartSetAnim" runat="server" class="fadeIn animated" style="width:calc(100% - 24px) !important;height:fit-content;background-color:var(--SuMDWhite) !important;border-radius:20px !important;padding: 32px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;border:0.5px var(--SuMDBroderC) solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
+            <div style="width:100%;height:fit-content;display:block;padding:4px;padding-top:0px;padding-bottom:6px;padding-top:0px !important;">
                 <p style="font-size:138%;color:var(--SuMDBlack);display:inline-block;">SuM-Settings</p>
                 <div style="float:right;display:inline-block;border-radius:16px;width:46px;height:46px;padding-top:3px;padding-left:8px;padding-right:12px;overflow:hidden;margin-top:6px !important;">
                     <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;" fill="var(--SuMThemeColor)"><rect fill="none" height="24" width="24"></rect><path d="M19.5,12c0-0.23-0.01-0.45-0.03-0.68l1.86-1.41c0.4-0.3,0.51-0.86,0.26-1.3l-1.87-3.23c-0.25-0.44-0.79-0.62-1.25-0.42 l-2.15,0.91c-0.37-0.26-0.76-0.49-1.17-0.68l-0.29-2.31C14.8,2.38,14.37,2,13.87,2h-3.73C9.63,2,9.2,2.38,9.14,2.88L8.85,5.19 c-0.41,0.19-0.8,0.42-1.17,0.68L5.53,4.96c-0.46-0.2-1-0.02-1.25,0.42L2.41,8.62c-0.25,0.44-0.14,0.99,0.26,1.3l1.86,1.41 C4.51,11.55,4.5,11.77,4.5,12s0.01,0.45,0.03,0.68l-1.86,1.41c-0.4,0.3-0.51,0.86-0.26,1.3l1.87,3.23c0.25,0.44,0.79,0.62,1.25,0.42 l2.15-0.91c0.37,0.26,0.76,0.49,1.17,0.68l0.29,2.31C9.2,21.62,9.63,22,10.13,22h3.73c0.5,0,0.93-0.38,0.99-0.88l0.29-2.31 c0.41-0.19,0.8-0.42,1.17-0.68l2.15,0.91c0.46,0.2,1,0.02,1.25-0.42l1.87-3.23c0.25-0.44,0.14-0.99-0.26-1.3l-1.86-1.41 C19.49,12.45,19.5,12.23,19.5,12z M12.04,15.5c-1.93,0-3.5-1.57-3.5-3.5s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.97,15.5,12.04,15.5z"></path></svg>
                 </div>
                 <p style="font-size:92%;width:100%;margin-top:-18px;">Do as you see fit</p>
             </div>
-            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-bottom:0px !important;margin-top:12px !important;" />
+            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(80% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;margin-bottom:0px !important;margin-top:12px !important;" />
             <div style="vertical-align:middle;display:block !important;padding-bottom:6px !important;padding-top:12px;">
                                     <svg style="display:inline;float:left;" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 24 24" width="30px" id="SuMLockIcon" fill="var(--SuMDBlack)"><g fill="none"><path d="M0 0h24v24H0V0z"/><path d="M0 0h24v24H0V0z" opacity=".87"/></g><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"/></svg>
                                     <p style="color:var(--SuMDBlack);display:inline;float:left;margin:8px;font-size:112%;margin-top:4px;">SuM Lock</p>
@@ -403,7 +412,7 @@
                     };
                 </script>
                                 </div>
-            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;" />
+            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(80% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;" />
                                 <div style="vertical-align:middle;display:block !important;padding-bottom:6px !important;padding-top:12px !important;">
                                     <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 20 20" style="width:auto;height:30px;display:inline;float:left;" viewBox="0 0 20 20" fill="var(--SuMDBlack)"><rect fill="none" height="20" width="20"/><path d="M3.5,4.75c0-0.69,0.56-1.25,1.25-1.25S6,4.06,6,4.75S5.44,6,4.75,6S3.5,5.44,3.5,4.75z M10,2C9.26,2,8.55,2.1,7.87,2.29 C7.32,2.45,7.13,3.13,7.54,3.54l0,0c0.19,0.19,0.47,0.27,0.73,0.2C8.82,3.59,9.4,3.5,10,3.5c3.69,0,6.67,3.09,6.49,6.81 c-0.16,3.33-2.86,6.03-6.18,6.18C6.59,16.67,3.5,13.69,3.5,10c0-0.6,0.09-1.18,0.24-1.73c0.07-0.26-0.01-0.54-0.2-0.73l0,0 c-0.41-0.41-1.1-0.22-1.25,0.33C2.1,8.55,2,9.26,2,10c0,4.48,3.69,8.1,8.19,8c4.24-0.1,7.71-3.56,7.81-7.8C18.1,5.69,14.48,2,10,2z M5,10c0-2.76,2.24-5,5-5s5,2.24,5,5c0,2.76-2.24,5-5,5S5,12.76,5,10z"/></svg>
                                     <p style="color:var(--SuMDBlack);display:inline;float:left;margin:8px;font-size:112%;margin-top:4px;">Performance Mode</p><a style="display:inline-block !important;height:fit-content;width:fit-content;padding-top:2px;padding-left:6px;padding-right:6px;color:rgba(255,255,255,0.92);background-color:var(--SuMThemeColorOP64);margin-left:2px;border-radius:8px;font-size:60%;">Beta !</a>
@@ -434,7 +443,7 @@
                                     </script>
                 <p style="font-size:82%;color:var(--SuMDSubTextC);float:left;margin-left:38px;margin-top:4px;width:calc(100% - 86px);">This mode removes all animations SuM-Theme-Set to improve performance on low-end devices.</p>
                                 </div>
-            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;" />
+            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(80% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;" />
             
             <div class="" style="vertical-align:middle;display:block !important;padding-bottom:6px !important;padding-top:12px !important;">
                                     <svg xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px;display:inline;float:left;" viewBox="0 0 24 24">
@@ -477,9 +486,9 @@
                                     </div>
                                     <p style="font-size:82%;color:var(--SuMDSubTextC);float:left;margin-left:38px;margin-top:4px;width:calc(100% - 86px);">Changes SuM Theme to darker shades of color. this mode may not apply to all SuM's parts! </p>
                                 </div>
-            <hr style="margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(100% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;" />
+            <hr style="display:none !important;visibility:hidden !important;margin:0 auto !important;height:2px;border-width:0;color:var(--SuMDBlack);background-color:var(--SuMDBlack);width:calc(80% - 64px);opacity:0.06;margin:0px;margin-block:0px;border-radius:1px;margin:0 auto;" />
             
-            <div class=""  style="vertical-align:middle;display:block !important;padding-top:12px !important;">
+            <div class=""  style="vertical-align:middle;display:block !important;padding-top:12px !important;display:none !important;visibility:hidden !important;">
 <svg style="width:auto;height:30px;display:inline;float:left;" viewBox="0 0 16 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
     <title>notifications</title>
@@ -506,7 +515,7 @@
         </div>
             <div class="" style="background-color:var(--SuMDGray) !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:280px !important;padding-left:8px !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.2.1 Beta</p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.2.2 Beta</p>
                 <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:rgba(255,255,255,0.9) !important;background: var(--SuMThemeColorOP62);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:0px;width:100%;height:164px;"></p>

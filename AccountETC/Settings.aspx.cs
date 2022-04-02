@@ -91,7 +91,7 @@ namespace SuM_Manga_V3.AccountETC
                 PFP.Attributes["src"] = ResolveUrl(CurrPFP);
                 if (string.IsNullOrEmpty(CurrBanner) == false)
                 {
-                    ThisPageMaxNoShowScrool.Attributes["style"] = "background-color:var(--SuMThemeColorOP74) !important;border-radius:20px !important;width:100%;margin:0 auto !important;padding:16px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;background-image:linear-gradient(rgba(0,0,0,0.16),rgba(0,0,0,0.16)) , url(" + CurrBanner + "); background-size: cover; background-position: center;";
+                    ThisPageMaxNoShowScrool.Attributes["style"] = "background-color:var(--SuMThemeColorOP74) !important;border-radius:20px !important;width:100%;margin:0 auto !important;padding:16px !important;margin-top:0px !important; margin-bottom:0px !important;z-index:998;position:relative;background-image:linear-gradient(rgba(0,0,0,0.32),rgba(0,0,0,0.32)) , url(" + CurrBanner + "); background-size: cover; background-position: center;";
                     CurrUserBannerPlaceHolder.InnerText = CurrBanner;
                 }
                 //Imported code from SuMAccount.aspx.cs + Sig from above
