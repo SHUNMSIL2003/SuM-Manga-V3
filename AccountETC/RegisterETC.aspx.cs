@@ -55,13 +55,15 @@ namespace SuM_Manga_V3.AccountETC
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
                 {
                     sqlCon.Open();
-                    SqlCommand sqlCmd = new SqlCommand("INSERT INTO SuMUsersAccounts(UserName,Password,Email,AccountStatus,PFP,Signetsure) values(@UserName,@Password,@Email,@AccountStatus,@PFP,@Signetsure)", sqlCon);
+                    SqlCommand sqlCmd = new SqlCommand("INSERT INTO SuMUsersAccounts(UserName,Password,Email,AccountStatus,PFP,Signetsure,UserBanner,UserTheme) values(@UserName,@Password,@Email,@AccountStatus,@PFP,@Signetsure,@UserBanner,@UserTheme)", sqlCon);
                     sqlCmd.Parameters.AddWithValue("@UserName", UserNameR.Value.ToString().Replace(" ", ""));
                     sqlCmd.Parameters.AddWithValue("@Password", sha256(PasswordR.Value));
                     sqlCmd.Parameters.AddWithValue("@Email", EmailR.Value);
                     sqlCmd.Parameters.AddWithValue("@PFP", DPFP);
                     sqlCmd.Parameters.AddWithValue("@AccountStatus", accountstats);
                     sqlCmd.Parameters.AddWithValue("@Signetsure", dsig);
+                    sqlCmd.Parameters.AddWithValue("@UserBanner", "/AccountETC/SuM-ReaderBanner.jpg");
+                    sqlCmd.Parameters.AddWithValue("@UserTheme", "151,128,114");
                     sqlCmd.ExecuteNonQuery();
                     sqlCon.Close();
                 }

@@ -232,6 +232,8 @@
     <Content Include="AccountETC\PassRecovryETC.aspx" />
     <Content Include="AccountETC\RegisterETC.aspx" />
     <Content Include="AccountETC\Settings.aspx" />
+    <Content Include="AccountETC\SuM-ReaderBanner.jpg" />
+    <Content Include="AccountETC\SuM-ReadingStartBanner.jpg" />
     <Content Include="AccountETC\UsersUploads\DeafultPFP.jpg" />
     <Content Include="AccountETC\EmailPassword.html" />
     <Content Include="AccountETC\ValidateUsers.aspx" />

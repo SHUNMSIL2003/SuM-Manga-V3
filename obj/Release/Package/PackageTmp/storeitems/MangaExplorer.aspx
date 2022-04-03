@@ -241,47 +241,7 @@
                 }
             </style>
             <asp:Button ID="CommentsSecOpenBTN" runat="server" OnClick="LoadCommentsSection" CssClass="HiddenASPBTN" />
-            <script type="text/javascript">
-                androidAPIs.SetSuMSecureFlag();
-                var CommentsSecIsloaded = false;
-                var CommentsSecFirstLoad = true;
-                var elm = document.getElementById('<%= CommentsSecCont.ClientID %>');
-                var NavBarHeightValue6544dfhf645 = androidAPIs.SuMGetNavigationBarHeight();
-                elm.style.marginTop = (elm.style.marginTop - document.getElementById('subnavscont2').offsetHeight - NavBarHeightValue6544dfhf645) + 'px';
-                function FuncLoadCommentsSec() {
-                    if (CommentsSecIsloaded == false) {
-                        if (CommentsSecFirstLoad == true) {
-                            setTimeout(() => {
-                                document.getElementById('<%= CommentsSecOpenBTN.ClientID %>').click();
-                                CommentsSecFirstLoad = false;
-                            }, 1800);
-                        }
-                        CommentsSecIsloaded = true;
-                        setTimeout(() => {
-                            elm.classList.remove('slideDown');
-                            elm.classList.add('slideInUp');
-                        }, 10);
-                        setTimeout(() => {
-                            elm.style.display = "block";
-                        }, 10);
-                    }
-                    else {
-                        document.getElementById('<%= CommentsSecCont.ClientID %>').style.display = 'none';
-                        CommentsSecIsloaded = false;
-                        setTimeout(() => {
-                            elm.classList.remove('slideInUp');
-                            document.getElementById('MainContent_Comments').classList.remove('fadeIn');
-                            elm.style.display = 'none';
-                            elm.classList.add('slideDown');
-                            elm.style.display = 'block';
-                        }, 10);
-                        setTimeout(() => {
-                            elm.style.display = 'none';
-                            document.getElementById('MainContent_Comments').classList.add('fadeIn');
-                        }, 800);
-                    }
-                };
-            </script>
+            
             <asp:UpdatePanel ID="CommentsSecUpdatePanel" runat="server" UpdateMode="Conditional">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="SendBTN" EventName="Click" />
@@ -329,6 +289,48 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
             </div>
+        <script type="text/javascript">
+            androidAPIs.SetSuMSecureFlag();
+            var CommentsSecIsloaded = false;
+            var CommentsSecFirstLoad = true;
+            var elm = document.getElementById('<%= CommentsSecCont.ClientID %>');
+            var NavBarHeightValue6544dfhf645 = androidAPIs.SuMGetNavigationBarHeight();
+            elm.style.marginTop = (elm.style.marginTop - document.getElementById('subnavscont2').offsetHeight - NavBarHeightValue6544dfhf645) + 'px';
+            function FuncLoadCommentsSec() {
+                var elm = document.getElementById('<%= CommentsSecCont.ClientID %>');
+                if (CommentsSecIsloaded == false) {
+                    if (CommentsSecFirstLoad == true) {
+                        setTimeout(() => {
+                            document.getElementById('<%= CommentsSecOpenBTN.ClientID %>').click();
+                                CommentsSecFirstLoad = false;
+                            }, 1800);
+                        }
+                        CommentsSecIsloaded = true;
+                        setTimeout(() => {
+                            elm.classList.remove('slideDown');
+                            elm.classList.add('slideInUp');
+                        }, 10);
+                        setTimeout(() => {
+                            elm.style.display = "block";
+                        }, 10);
+                    }
+                    else {
+                        document.getElementById('<%= CommentsSecCont.ClientID %>').style.display = 'none';
+                    CommentsSecIsloaded = false;
+                    setTimeout(() => {
+                        elm.classList.remove('slideInUp');
+                        document.getElementById('MainContent_Comments').classList.remove('fadeIn');
+                        elm.style.display = 'none';
+                        elm.classList.add('slideDown');
+                        elm.style.display = 'block';
+                    }, 10);
+                    setTimeout(() => {
+                        elm.style.display = 'none';
+                        document.getElementById('MainContent_Comments').classList.add('fadeIn');
+                    }, 800);
+                }
+            };
+        </script>
         <div class="animated fadeIn" id="NextChapter" style="display:block;position:absolute;top:0;margin-left:calc(100vw - 174px);margin-top:4px;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;" runat="server" >
                 <a style="" class="btn btn-primary btn-sm animated shadow-sm fadeInUp" href="#"></a>
             </div>

@@ -349,23 +349,13 @@
                 document.getElementById('SuMCoinsManagerCard').style.display = 'none';
             }
             function SuMADShowAsLoad() {
-                document.getElementById('SuMOneCoinBTN').style.backgroundColor = 'var(--SuMThemeColorOP24)';
-                document.getElementById('SuMOneCoinBTN').innerText = 'watch';
             };
             function SuMADBTNReset() {
-                document.getElementById('SuMOneCoinBTN').style.backgroundColor = 'var(--SuMThemeColorOP74)';
-                document.getElementById('SuMOneCoinBTN').innerText = 'loading';
             };
             function SuMRewardVoucherFD(SuMToken) {
-                //console.log('VoucherFunc2 -Started');
                 SuMUpdateCoinsCount(TTDUIDF5C0, SuMToken);
                 document.getElementById('CoinsCount').innerText = (CurrSuMCoinsCount + SuMToken);
                 CurrSuMCoinsCount = CurrSuMCoinsCount + SuMToken;
-                //androidAPIs.SuMRestartV2();//TMP
-                document.getElementById('SuMOneCoinBTN').style.backgroundColor = 'var(--SuMThemeColorOP24)';
-                document.getElementById('SuMOneCoinBTN').innerText = 'watch';
-                //SuMCoinsCount(TTDUIDF5C0);
-                //console.log('VoucherFunc2 -isDone');
             }
         </script>
         <div id="StartSetAnim" runat="server" class="fadeIn animated" style="width:calc(100% - 24px) !important;height:fit-content;background-color:var(--SuMDWhite) !important;border-radius:20px !important;padding: 32px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;border:0.5px var(--SuMDBroderC) solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
@@ -515,7 +505,7 @@
         </div>
             <div class="" style="background-color:var(--SuMDGray) !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
             <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:280px !important;padding-left:8px !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.2.2 Beta</p>
+                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.2.3 Beta</p>
                 <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:rgba(255,255,255,0.9) !important;background: var(--SuMThemeColorOP62);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
                 <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:0px;width:100%;height:164px;"></p>

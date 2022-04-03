@@ -328,24 +328,10 @@ namespace SuM_Manga_V3.AccountETC
             if (SuMCustomBanner.HasFile == true)
             {
                 string oldimg = CurrUserBannerPlaceHolder.InnerText.ToString();
-                char[] fixing = oldimg.ToCharArray();
-                string OrPATH = string.Empty;
-                for (int i = 0; i < fixing.Length; i++)
-                {
-                    if (fixing[i] == '/')
-                    {
-                        if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = "\\"; }
-                        else { OrPATH += "\\"; }
-                    }
-                    else
-                    {
-                        if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = fixing[i].ToString(); }
-                        else { OrPATH += fixing[i].ToString(); }
-                    }
-                }
+                string OrPATH = oldimg.Replace("/", "\\");
                 bool fixer = File.Exists(Server.MapPath(OrPATH));
                 //bool Deafult = PFPIsNotADeafult(oldimg);
-                if (fixer == true && OrPATH.Contains(".svg") == false) { File.Delete(Server.MapPath(OrPATH)); }
+                if (fixer == true && OrPATH.Contains(".svg") == false && OrPATH.Contains("ReaderBanner") == false) { File.Delete(Server.MapPath(OrPATH)); }
                 string fileName = System.IO.Path.GetFileName(SuMCustomBanner.PostedFile.FileName);
                 string ffn = DateTime.Now.ToString("yyyyMMddHHmmss") + UserName + fileName;
                 SuMCustomBanner.PostedFile.SaveAs(Server.MapPath(Path.Combine("UsersUploads", ffn)));
@@ -630,42 +616,29 @@ namespace SuM_Manga_V3.AccountETC
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             string UserID = GetUserInfoCookie["ID"].ToString();
             string oldimg = CurrUserBannerPlaceHolder.InnerText.ToString();
-            char[] fixing = oldimg.ToCharArray();
-            string OrPATH = string.Empty;
-            for (int i = 0; i < fixing.Length; i++)
-            {
-                if (fixing[i] == '/')
-                {
-                    if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = "\\"; }
-                    else { OrPATH += "\\"; }
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = fixing[i].ToString(); }
-                    else { OrPATH += fixing[i].ToString(); }
-                }
-            }
+            string OrPATH = oldimg.Replace("/", "\\");
             bool fixer = File.Exists(Server.MapPath(OrPATH));
-            if (fixer == true&& OrPATH.Contains(".svg") == false) { File.Delete(Server.MapPath(OrPATH)); }
-            string pfppath = string.Empty;
+            if (fixer == true && OrPATH.Contains(".svg") == false & OrPATH.Contains("ReaderBanner") == false) { File.Delete(Server.MapPath(OrPATH)); }
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
-                string query = "UPDATE SuMUsersAccounts SET UserBanner = @SuMCustomPFP WHERE UserID = @ID";
+                string query = "UPDATE SuMUsersAccounts SET UserBanner = @UserBanner WHERE UserID = @ID";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@ID", SqlDbType.Int);
                 sqlCmd.Parameters["@ID"].Value = Convert.ToString(UserID);
-                sqlCmd.Parameters.AddWithValue("@SuMCustomPFP", pfppath);
+                sqlCmd.Parameters.AddWithValue("@UserBanner", "/AccountETC/SuM-ReaderBanner.jpg");
                 sqlCmd.ExecuteNonQuery();
-                query = "UPDATE SuMUsersAccounts SET UserBanner = NULL WHERE UserID = @ID";
+                query = "UPDATE SuMUsersAccounts SET UserTheme = @UserTheme WHERE UserID = @ID";
                 sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.Parameters.AddWithValue("@ID", SqlDbType.Int);
                 sqlCmd.Parameters["@ID"].Value = Convert.ToString(UserID);
+                sqlCmd.Parameters.AddWithValue("@UserTheme", "151,128,114");
                 sqlCmd.ExecuteNonQuery();
                 sqlCon.Close();
             }
             HttpCookie userInfo = new HttpCookie("SuMUserThemeColor");
-            userInfo.Expires = DateTime.Now.AddDays(-100);
+            userInfo["RGBRoot"] = "151,128,114";
+            userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
             ReloadAndUpdate();
         }
