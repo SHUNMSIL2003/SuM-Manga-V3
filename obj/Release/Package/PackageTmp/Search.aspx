@@ -3,7 +3,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-          
+        androidAPIs.SuMBTActTopNBottom();
         var IsFullScreen = androidAPIs.SuMIsFullScreen();
         if (IsFullScreen == true) {
               
@@ -74,10 +74,10 @@
         }, 300);
     </script>
     <div style="width:100%;height:100vh !important;background-color:var(--SuMBack) !important;">
-    <div id="ThisPageSBarFixUpPropElm" class="STBSUMBAR2   shadow slideInDown animated" style="padding-top:6px !important;position:fixed !important;top:0 !important;z-index:994 !important;height:fit-content !important;background-color:var(--SuMDWhite) !important;border-bottom-left-radius:22px !important;border-bottom-right-radius:22px !important;">
+    <div id="ThisPageSBarFixUpPropElm" class="STBSUMBAR2   shadow slideInDown animated" style="padding-top:0px !important;position:fixed !important;top:0 !important;z-index:994 !important;height:fit-content !important;background-color:var(--SuMDWhite) !important;border-radius:22px !important;width:calc(100vw - 24px) !important;margin-left:12px;">
         <nav style="width:100% !important;height:fit-content !important;" class="navbar navbar-light navbar-expand   mb-4 FNM5455511">
                     <div class="container-fluid" style="text-align:center !important;height:fit-content !important;">
-                                <div class="" style="display:inline-block !important;width:100vw !important;height:fit-content !important;text-align:center !important;align-items:center;align-content:center;padding-top:8px;padding-bottom:-8px;height:fit-content !important;">
+                                <div class="" style="display:inline-block !important;width:100vw !important;height:fit-content !important;text-align:center !important;align-items:center;align-content:center;padding-top:4px;padding-bottom:-8px;height:fit-content !important;">
                                     <div class="me-auto navbar-search w-100" style="vertical-align:middle !important;max-width:720px !important;margin:0 auto;height:fit-content !important;">
                                         <div style="width:100% !important;height:24px !important;display:block !important;margin:0 auto !important;height:fit-content !important;"></div>
                                         <div class="input-group" style="vertical-align:middle !important;">
@@ -91,21 +91,20 @@
                     </div>
                 </nav>
             </div>
-        <div id="FUEF6CS" style="width:fit-content;height:fit-content;padding-top:12px;">
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+        <div id="FUEF6CS" class="animated fadeIn" style="width:100vw;height:fit-content;padding-top:12px;">
+            <div class="" style="display:block;margin-left:12px !important;background-color:var(--SuMDWhiteOP86) !important;border-radius:20px !important;animation-duration:0.08s !important; margin:0 auto;height:calc(100vh - 228px) !important;width:calc(100vw - 24px) !important;overflow-y:scroll;margin-top:6px !important;max-width:720px !important;padding:12px;padding-bottom:12px;margin:0 auto !important;max-height:calc(100vh - 228px) !important;max-width:100%;overflow-x:hidden !important;overflow-y:scroll !important;">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="TextBoxForSuM" />
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-                        <div class="animated fadeIn" id="ShowSuMResults" style="margin:0 auto;height:fit-content !important;width:100vw !important;overflow-y:scroll;margin-top:6px !important;max-width:720px !important;padding:12px;padding-bottom:182px;" runat="server">
+                        <div class="animated fadeInUp" id="ShowSuMResults" style="display:block;width:100% !important;height:fit-content !important;" runat="server">
                         </div>
-                        <br />
-                        <br />
-                        <br />
                     </asp:Panel>
                 </ContentTemplate>
             </asp:UpdatePanel>
+            </div>
         </div>
     <script>
         document.getElementById('FUEF6CS').style.paddingTop = (document.getElementById('ThisPageSBarFixUpPropElm').getBoundingClientRect().height + 12) + 'px';

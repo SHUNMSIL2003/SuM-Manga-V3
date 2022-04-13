@@ -15,7 +15,7 @@
     <a id="RootDebug" runat="server">
 
     </a> -->
-    <div style="background-color:var(--SuMDGrayOP82) !important;width:100% !important;height:24px;position:fixed !important;top:0 !important;z-index:997 !important;" id="SuMSettingStatausBarHelperF000C000"></div>
+    <div style="background-color:transparent !important;width:100% !important;height:24px;position:fixed !important;top:0 !important;z-index:997 !important;" id="SuMSettingStatausBarHelperF000C000"></div>
     <asp:Button ID="EnablePreMode" runat="server" OnClick="SavePreformanceSettingCookie" style="display:none !important;visibility:hidden;" />
     <asp:Button ID="DisablePreMode" runat="server" OnClick="RemovePreformanceSettingCookie" style="display:none !important;visibility:hidden;" />
     <asp:Button ID="FixUpPageRe" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden;" />
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-                        <div id="SuMRnadomScrollHelper" style="scroll-snap-type: y mandatory;height:100vh;width:100vw; padding:0px !important;padding-top:0px !important;padding-bottom:8px !important; background-color:var(--SuMDGray) !important;margin:0 auto !important; margin-top:0px !important;">
+                        <div id="SuMRnadomScrollHelper" style="scroll-snap-type: y mandatory;height:100vh;width:100vw; padding:0px !important;padding-top:0px !important;padding-bottom:8px !important; background-color:transparent !important;margin:0 auto !important; margin-top:0px !important;">
     <div style="scroll-margin-top:32px !important;scroll-margin-bottom:32px !important; height:100vh !important;width:100vw;max-width:720px !important;margin:0 auto !important;height: 100vh;scroll-snap-type: y proximity !important; scroll-behavior: smooth !important; scroll-padding-top:32px !important;scroll-padding-bottom:32px !important;padding-bottom:164px !important;padding-top:64px !important;">
         <div style="width:100% !important;height:12px;margin:0 auto !important;" id="SuMStatusBarHeightFixUpF0C0"></div>
     <script>
@@ -311,7 +311,7 @@
         </div>
         </div>
 </div>
-        <div class="animated fadeIn" id="SuMCoinsManagerCard" style="width:calc(100% - 24px) !important;height:fit-content;background-color:var(--SuMDWhite) !important;border-radius:20px !important;padding: 32px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;border:0.5px var(--SuMDBroderC) solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
+        <div class="animated fadeIn" id="SuMCoinsManagerCard" style="width:calc(100% - 24px) !important;height:fit-content;background-color:var(--SuMDWhiteOP86) !important;border-radius:20px !important;padding: 32px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;border:0.5px var(--SuMDBroderC) solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
             <div style="width:100%;height:fit-content;display:block;">
                 <p style="font-size:138%;color:var(--SuMDBlack);display:inline-block;">SuM-Coins</p>
                 <div style="float:right;display:inline-block;border-radius:16px;width:fit-content;height:32px;padding-top:3px;padding-left:8px;padding-right:12px;overflow:hidden;margin-top:12px !important;">
@@ -358,7 +358,7 @@
                 CurrSuMCoinsCount = CurrSuMCoinsCount + SuMToken;
             }
         </script>
-        <div id="StartSetAnim" runat="server" class="fadeIn animated" style="width:calc(100% - 24px) !important;height:fit-content;background-color:var(--SuMDWhite) !important;border-radius:20px !important;padding: 32px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;border:0.5px var(--SuMDBroderC) solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
+        <div id="StartSetAnim" runat="server" class="fadeIn animated" style="width:calc(100% - 24px) !important;height:fit-content;background-color:var(--SuMDWhiteOP86) !important;border-radius:20px !important;padding: 32px !important;margin-top:12px !important;margin:12px !important;padding-top:32px !important;border:0.5px var(--SuMDBroderC) solid !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
             <div style="width:100%;height:fit-content;display:block;padding:4px;padding-top:0px;padding-bottom:6px;padding-top:0px !important;">
                 <p style="font-size:138%;color:var(--SuMDBlack);display:inline-block;">SuM-Settings</p>
                 <div style="float:right;display:inline-block;border-radius:16px;width:46px;height:46px;padding-top:3px;padding-left:8px;padding-right:12px;overflow:hidden;margin-top:6px !important;">
@@ -501,14 +501,14 @@
                <p style="font-size:82%;color:var(--SuMDSubTextC);float:left;margin-left:38px;margin-top:4px;width:calc(100% - 86px);">Get The latest News about mangas in general</p>
             </div>
     </div>
-                        <div class="" style="background-color:var(--SuMDGray) !important;border-radius:0px !important; padding: 4px !important;margin-top:6px !important;margin-top:12px;">
+                        <div class="" style="background-color:transparent !important;border-radius:0px !important; padding: 4px !important;margin-top:6px !important;margin-top:12px;">
         </div>
-            <div class="" style="background-color:var(--SuMDGray) !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
-            <div class="" style="margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:280px !important;padding-left:8px !important;">
-                <p class="" style="color:#a6a6a6;margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.2.3 Beta</p>
-                <p onload="CacheInfoLoading();" style="color:#a6a6a6;margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;">calculating</b><b style="display:inline;" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:rgba(255,255,255,0.9) !important;background: var(--SuMThemeColorOP62);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
-                <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
-                <p class="" style="color:#8f8f8f94;margin-left:20px;font-size:68%;margin-top:0px;width:100%;height:164px;"></p>
+            <div class="" style="background-color:transparent !important;border-radius:0px !important; padding: 2px !important;margin-top:8px !important;position:relative;overflow:hidden !important;">
+            <div class="" style="background-color:transparent !important;margin-top:-2px;vertical-align:middle;display:block !important;height:100px;overflow:hidden !important;padding-bottom:280px !important;padding-left:8px !important;">
+                <p class="" style="color:var(--SuMDBlackOP64);margin-left:18px;"><b style="font-size:96%;display:inline;">SuM Manga </b><b style="font-size:150%;display:inline;">·</b><b style="font-size:84%;display:inline;"> Version</b> 3.2.4 Beta</p>
+                <p onload="CacheInfoLoading();" style="color:var(--SuMDBlackOP64);margin-left:18px;margin-top:-16px;">Cached files size: <b id="cachesizenum" style="display:inline;color:var(--SuMDBlackOP64);">calculating</b><b style="display:inline;color:var(--SuMDBlackOP64);" id="cachesizeyunit"></b><a id="ClearCacheBTN" onclick="DeleteSuMCache();" style="font-size:86%;color:rgba(255,255,255,0.9) !important;background: var(--SuMThemeColorOP62);border-color: var(--SuMThemeColor);display:inline-block !important;width:fit-content;border-radius:12px;padding-top:3px;padding-bottom:-2px;padding-left:8px;padding-right:8px;margin-left:8px;">Clear cache</a></p>
+                <p class="" style="color:var(--SuMDBlackOP64);margin-left:20px;font-size:68%;margin-top:-12px;">This website/APP is a school project and will be deleted soon!</p>
+                <p class="" style="color:var(--SuMDBlackOP64);margin-left:20px;font-size:68%;margin-top:0px;width:100%;height:32px;"></p>
             </div>
         </div>
                         <script>

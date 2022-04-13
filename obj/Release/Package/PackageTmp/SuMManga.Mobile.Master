@@ -1,7 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SuMManga.Mobile.master.cs" Inherits="SuM_Manga_V3.SuMManga_Mobile" %>
 
 <!DOCTYPE html>
-<html lang="en" style="overflow: hidden;">
+<html lang="en" style="overflow: hidden;background-color:transparent !important;">
 <head id="SMHead" runat="server">
     <noscript>
         <meta http-equiv="refresh" content="0; url = https://sum-manga.azurewebsites.net/SuMMangaInstallAPP.aspx" />
@@ -21,6 +21,7 @@
             }
             androidAPIs.SetSuMHardwareExl();
             androidAPIs.SuM0Manager();
+            androidAPIs.SuMBTActNormal();
         }
         else {
             location.href = '/SuMMangaInstallAPP.aspx';
@@ -67,7 +68,7 @@
         body {
             width:100vw !important;
             height:100vh !important;
-            background-color:var(--SuMDGray) !important;
+            background-color:transparent !important;
         }
 
 /* use a media query to filter small devices */
@@ -194,11 +195,11 @@
     <script src="/Scripts/MicrosoftAjax.js"></script>
     <script src="/Scripts/jquery.lazyload.min.js"></script>
 </head>
-<body id="page-top" style="overflow:hidden !important;height:100vh;width:100vw;background-color:var(--SuMBack) !important;">
+<body id="page-top" style="overflow:hidden !important;height:100vh;width:100vw;background-color:transparent !important;">
     <div style="visibility:hidden !important;display:none !important;" id="SuMDarkModeControleThemeDiv">
         <style>
             :root {
-                --SuMBack: rgb(0,0,0);
+                --SuMBack: rgba(0,0,0,0);
                 --SuMCardBack: rgb(56,56,56);
                 --SuMThemeColorSec: rgb(144,144,144);
                 --SuMDWhite: rgb(56,56,56);
@@ -248,7 +249,7 @@
                 --SuMDBlackOP16: rgba(255,255,255,0.160);
                 --SuMDBlackOP10: rgba(255,255,255,0.100);
                 --SuMDBlackOP00: rgba(255,255,255,0.000);
-                --SuMDBroderC: rgb(60,60,60);
+                --SuMDBroderC: rgba(60,60,60,0.32);
                 --SuMDSubTextC: rgba(255,255,255,0.74);
             }
         </style>
@@ -256,7 +257,7 @@
     <div style="visibility:hidden !important;display:none !important;" id="SuMLightModeControleThemeDiv">
         <style>
             :root {
-                --SuMBack: rgb(0242,0242,0242);
+                --SuMBack: rgba(0242,0242,0242,0);
                 --SuMCardBack: rgb(0255,0255,0255);
                 --SuMThemeColorSec: rgb(0136, 0136, 0136);
                 --SuMDWhite:rgb(0255,0255,0255);
@@ -306,7 +307,7 @@
                 --SuMDBlackOP16:rgba(00,00,00,0.160);
                 --SuMDBlackOP10:rgba(00,00,00,0.100);
                 --SuMDBlackOP00:rgba(00,00,00,0.000);
-                --SuMDBroderC:rgb(0223,0223,0223);
+                --SuMDBroderC:rgba(0223,0223,0223,0.32);
                 --SuMDSubTextC: rgb(0128,0128,0128);
             }
         </style>
@@ -587,9 +588,11 @@
             var BestColorRoot;
             if (SuMStateBit == 0 || SuMStateBit == '0' || SuMStateBit == '' || SuMStateBit == ' ' || SuMStateBit == null) {
                 BestColorRoot = MixTwoRGBsWStaticOpacityAndR(DetectedThemeColorF0CC, '0,0,0', 6, 1);
+                androidAPIs.SuMBackLight();
             }
             if (SuMStateBit == 1 || SuMStateBit == '1') {
                 BestColorRoot = MixTwoRGBsWStaticOpacityAndR(DetectedThemeColorF0CC, '255,255,255', 2, 1);
+                androidAPIs.SuMBackDark();
             }
             document.getElementById('SecThemeColorInsertDiv').innerHTML = '<style> :root { --SuMThemeColorThisPage:rgb(#TC#); --SuMThemeColorThisPageOP01: rgba(#TC#,0.01); --SuMThemeColorThisPageOP02: rgba(#TC#,0.02); --SuMThemeColorThisPageOP03: rgba(#TC#,0.03); --SuMThemeColorThisPageOP04: rgba(#TC#,0.04); --SuMThemeColorThisPageOP05: rgba(#TC#,0.05); --SuMThemeColorThisPageOP06: rgba(#TC#,0.06); --SuMThemeColorThisPageOP07: rgba(#TC#,0.07); --SuMThemeColorThisPageOP08: rgba(#TC#,0.08); --SuMThemeColorThisPageOP09: rgba(#TC#,0.09); --SuMThemeColorThisPageOP10: rgba(#TC#,0.10); --SuMThemeColorThisPageOP11: rgba(#TC#,0.11); --SuMThemeColorThisPageOP12: rgba(#TC#,0.12); --SuMThemeColorThisPageOP13: rgba(#TC#,0.13); --SuMThemeColorThisPageOP14: rgba(#TC#,0.14); --SuMThemeColorThisPageOP15: rgba(#TC#,0.15); --SuMThemeColorThisPageOP16: rgba(#TC#,0.16); --SuMThemeColorThisPageOP17: rgba(#TC#,0.17); --SuMThemeColorThisPageOP18: rgba(#TC#,0.18); --SuMThemeColorThisPageOP19: rgba(#TC#,0.19); --SuMThemeColorThisPageOP20: rgba(#TC#,0.20); --SuMThemeColorThisPageOP21: rgba(#TC#,0.21); --SuMThemeColorThisPageOP22: rgba(#TC#,0.22); --SuMThemeColorThisPageOP23: rgba(#TC#,0.23); --SuMThemeColorThisPageOP24: rgba(#TC#,0.24); --SuMThemeColorThisPageOP25: rgba(#TC#,0.25); --SuMThemeColorThisPageOP26: rgba(#TC#,0.26); --SuMThemeColorThisPageOP27: rgba(#TC#,0.27); --SuMThemeColorThisPageOP28: rgba(#TC#,0.28); --SuMThemeColorThisPageOP29: rgba(#TC#,0.29); --SuMThemeColorThisPageOP30: rgba(#TC#,0.30); --SuMThemeColorThisPageOP31: rgba(#TC#,0.31); --SuMThemeColorThisPageOP32: rgba(#TC#,0.32); --SuMThemeColorThisPageOP33: rgba(#TC#,0.33); --SuMThemeColorThisPageOP34: rgba(#TC#,0.34); --SuMThemeColorThisPageOP35: rgba(#TC#,0.35); --SuMThemeColorThisPageOP36: rgba(#TC#,0.36); --SuMThemeColorThisPageOP37: rgba(#TC#,0.37); --SuMThemeColorThisPageOP38: rgba(#TC#,0.38); --SuMThemeColorThisPageOP39: rgba(#TC#,0.39); --SuMThemeColorThisPageOP40: rgba(#TC#,0.40); --SuMThemeColorThisPageOP41: rgba(#TC#,0.41); --SuMThemeColorThisPageOP42: rgba(#TC#,0.42); --SuMThemeColorThisPageOP43: rgba(#TC#,0.43); --SuMThemeColorThisPageOP44: rgba(#TC#,0.44); --SuMThemeColorThisPageOP45: rgba(#TC#,0.45); --SuMThemeColorThisPageOP46: rgba(#TC#,0.46); --SuMThemeColorThisPageOP47: rgba(#TC#,0.47); --SuMThemeColorThisPageOP48: rgba(#TC#,0.48); --SuMThemeColorThisPageOP49: rgba(#TC#,0.49); --SuMThemeColorThisPageOP50: rgba(#TC#,0.50); --SuMThemeColorThisPageOP51: rgba(#TC#,0.51); --SuMThemeColorThisPageOP52: rgba(#TC#,0.52); --SuMThemeColorThisPageOP53: rgba(#TC#,0.53); --SuMThemeColorThisPageOP54: rgba(#TC#,0.54); --SuMThemeColorThisPageOP55: rgba(#TC#,0.55); --SuMThemeColorThisPageOP56: rgba(#TC#,0.56); --SuMThemeColorThisPageOP57: rgba(#TC#,0.57); --SuMThemeColorThisPageOP58: rgba(#TC#,0.58); --SuMThemeColorThisPageOP59: rgba(#TC#,0.59); --SuMThemeColorThisPageOP60: rgba(#TC#,0.60); --SuMThemeColorThisPageOP61: rgba(#TC#,0.61); --SuMThemeColorThisPageOP62: rgba(#TC#,0.62); --SuMThemeColorThisPageOP63: rgba(#TC#,0.63); --SuMThemeColorThisPageOP64: rgba(#TC#,0.64); --SuMThemeColorThisPageOP65: rgba(#TC#,0.65); --SuMThemeColorThisPageOP66: rgba(#TC#,0.66); --SuMThemeColorThisPageOP67: rgba(#TC#,0.67); --SuMThemeColorThisPageOP68: rgba(#TC#,0.68); --SuMThemeColorThisPageOP69: rgba(#TC#,0.69); --SuMThemeColorThisPageOP70: rgba(#TC#,0.70); --SuMThemeColorThisPageOP71: rgba(#TC#,0.71); --SuMThemeColorThisPageOP72: rgba(#TC#,0.72); --SuMThemeColorThisPageOP73: rgba(#TC#,0.73); --SuMThemeColorThisPageOP74: rgba(#TC#,0.74); --SuMThemeColorThisPageOP75: rgba(#TC#,0.75); --SuMThemeColorThisPageOP76: rgba(#TC#,0.76); --SuMThemeColorThisPageOP77: rgba(#TC#,0.77); --SuMThemeColorThisPageOP78: rgba(#TC#,0.78); --SuMThemeColorThisPageOP79: rgba(#TC#,0.79); --SuMThemeColorThisPageOP80: rgba(#TC#,0.80); --SuMThemeColorThisPageOP81: rgba(#TC#,0.81); --SuMThemeColorThisPageOP82: rgba(#TC#,0.82); --SuMThemeColorThisPageOP83: rgba(#TC#,0.83); --SuMThemeColorThisPageOP84: rgba(#TC#,0.84); --SuMThemeColorThisPageOP85: rgba(#TC#,0.85); --SuMThemeColorThisPageOP86: rgba(#TC#,0.86); --SuMThemeColorThisPageOP87: rgba(#TC#,0.87); --SuMThemeColorThisPageOP88: rgba(#TC#,0.88); --SuMThemeColorThisPageOP89: rgba(#TC#,0.89); --SuMThemeColorThisPageOP90: rgba(#TC#,0.90); --SuMThemeColorThisPageOP91: rgba(#TC#,0.91); --SuMThemeColorThisPageOP92: rgba(#TC#,0.92); --SuMThemeColorThisPageOP93: rgba(#TC#,0.93); --SuMThemeColorThisPageOP94: rgba(#TC#,0.94); --SuMThemeColorThisPageOP95: rgba(#TC#,0.95); --SuMThemeColorThisPageOP96: rgba(#TC#,0.96); --SuMThemeColorThisPageOP97: rgba(#TC#,0.97); --SuMThemeColorThisPageOP98: rgba(#TC#,0.98); --SuMThemeColorThisPageOP99: rgba(#TC#,0.99); }</style>'.replace('#TC#', BestColorRoot);
         };
@@ -603,12 +606,14 @@
             }
             //Deafult -lightmode
             if (SuMStateBit == 0 || SuMStateBit == '0' || SuMStateBit == null || SuMStateBit == ' ' || SuMStateBit == '') {
+                androidAPIs.SuMBackLight();
                 SuMDarkModeControleDiv.innerHTML = '0';
                 SuMLightModeControleDiv.innerHTML = SuMLightModeBackUp;
                 SuMThemeColorControleDiv.innerHTML = ApplySuMThemeStyleForm(MixTwoRGBsWStaticOpacityAndR(SuMThemeColorRoot, '0,0,0', 4, 1));
             }
             //UserSelected --darkmode
             if (SuMStateBit == 1 || SuMStateBit == '1') {
+                androidAPIs.SuMBackDark();
                 SuMLightModeControleDiv.innerHTML = '0';
                 SuMDarkModeControleDiv.innerHTML = SuMDarkModeBackUp;
                 SuMThemeColorControleDiv.innerHTML = ApplySuMThemeStyleForm(MixTwoRGBsWStaticOpacityAndR(SuMThemeColorRoot, '255,255,255', 4, 1));
@@ -694,14 +699,17 @@
     <style>
         html {
             scroll-behavior: smooth !important;
+            background-color:transparent !important;
         }
         body {
             scroll-behavior:smooth !important;
+            background-color:transparent;
         }
         div {
             box-shadow: 0px 0px var(--SuMDBlack) !important;
             overflow-x: hidden !important;
             font-family:VarelaRound !important;
+            background-color:transparent;
         }
 
         ::-webkit-scrollbar {
@@ -737,8 +745,8 @@
             max-width:calc(100vw - 120px) !important;
         }
     </style>
-    <form autocomplete="off" id="SuM" method="post" runat="server" >
-    <div runat="server" id="wrapper" style="overflow:hidden;background-color:var(--SuMDWhite) !important;">
+    <form autocomplete="off" id="SuM" style="background-color:transparent !important;" method="post" runat="server" >
+    <div runat="server" id="wrapper" style="overflow:hidden;width:100vw !important;height:100vh !important; background-color:transparent !important;overflow: hidden !important; display: flex !important; flex-direction: column !important;">
         <asp:ScriptManager ID="SuMScriptManager" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
        </asp:ScriptManager>
         <!-- -sumads -start  -->
@@ -815,10 +823,18 @@
                         document.getElementById('CoinsCount').innerText = '';
                         $("#CoinsCount").append(msg.d);
                         CurrSuMCoinsCount = msg.d;
+                        androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
+                        setTimeout(() => {
+                            androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
+                            setTimeout(() => {
+                                androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
+                            }, 360);
+                        }, 180);
                     },
                     error: function (e) {
                         document.getElementById('CoinsCount').innerText = '';
                         $("#CoinsCount").append('error');
+                        androidAPIs.SuMCoinsShowITTA(null);
                     }
                 });
             };
@@ -842,8 +858,8 @@
             };
         </script>
         <!-- -sumads -end -->
-        <div class="d-flex flex-column" id="content-wrapper" style="">
-            <div id="content">
+        <div class="d-flex flex-column" id="content-wrapper" style="height:calc(100vh - 32px) !important;width:100vw !important;background-color:transparent !important;flex-grow: 1 !important; flex-shrink: 1 !important; overflow-y: scroll !important;overflow-x:hidden;">
+            <div id="content" style="background-color:transparent !important;">
                 <style>
                     .FNM5455511 {
                         margin-top:0px !important;
@@ -852,8 +868,8 @@
                         /*background-color:rgb(240, 235, 255) !important;*/
                     }
                 </style>
-                <div style="width:100vw !important; height:100vh !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:var(--SuMDWhite) !important;" id="SuMMainBlock" runat="server" class="container-fluid">
-                    <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:100vh !important;max-height:100vh !important;margin-left:-24px !important;background-color:#F8F9FD;background-color:var(--SuMDWhite) !important;" id="mc" runat="server">
+                <div style="width:100vw !important; height:100vh !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:transparent !important;" id="SuMMainBlock" runat="server" class="container-fluid">
+                    <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:100vh !important;max-height:100vh !important;margin-left:-24px !important;background-color:transparent !important;background-color:transparent !important;" id="mc" runat="server">
                     <div style="position:fixed !important;width:100vw;height:100vh;background-color:var(--SuMDWhite) !important;pointer-events:none !important;top:0;margin:0 auto;z-index:1998 !important;display:none;" id="SuMLockViewBlock">
                         <div style="width:100%;height:100%;margin:0 auto;background-color:var(--SuMDGray);" id="SuMLockViewBlockInnerColor" runat="server"></div>
                     </div>
@@ -878,8 +894,8 @@
                         <div id="SuMLoadingExpandingColorDiv" style="width:100%;height:100%;margin: 0 auto;background-color:var(--SuMDWhite);"></div>
                     </div>
                     <div class="animated fadeIn" id="SuMUnlockCancelDiv" onclick="SuMCoinMasterCloseAllCS();" style="display:none;position:fixed;top:0;z-index:997 !important;height:100vh;width:100vw;background-color:rgba(0,0,0,0.08);"></div>
-                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                    </asp:ContentPlaceHolder>
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
                     <p id="CurrCoinsCountPlaceHolderHD" style="display:none !important;visibility:hidden !important;"></p>
                     <div id="UltraCardBGCloseDiv" onclick="SuMUltraCloseCard();" style="width:100vw;height:100vh;display:none;position:fixed !important;top:0 !important;z-index:994 !important;background-color:rgba(0,0,0,0.08);"></div>
                     <script>
@@ -1017,10 +1033,18 @@
                                 success: function (msg) {
                                     $("#CuurCoinsCountF0CGSF").append(msg.d);
                                     CuurCoinsCountF0CGSF = msg.d;
+                                    androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
+                                    setTimeout(() => {
+                                        androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
+                                        setTimeout(() => {
+                                            androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
+                                        }, 360);
+                                    }, 180);
                                 },
                                 error: function (e) {
                                     $("#CuurCoinsCountF0CGSF").append('!');
                                     CuurCoinsCountF0CGSF = null;
+                                    androidAPIs.SuMCoinsShowITTA(null);
                                 }
                             });
                         };
@@ -1459,7 +1483,7 @@
                 max-height:7vh !important;
             }
         </style>
-        <div id="SuMUltraInfoCard" style="width: calc(100% - 26px); height: fit-content; background-color: var(--SuMDWhite); border-radius: 22px; z-index: 995; display: none; max-height: calc(100% - 280px) !important; position: absolute !important; inset: 0px !important; margin: auto !important; animation-duration: 0.26s !important;" class="animated fadeOutLeft">
+        <div id="SuMUltraInfoCard" style="width: calc(100% - 24px); height: fit-content; background-color: var(--SuMDWhite); border-radius: 22px; z-index: 995; display: none; max-height: calc(100% - 280px) !important; position: absolute !important; inset: 0px !important; margin: auto !important; animation-duration: 0.26s !important;" class="animated fadeOutLeft">
         <div id="SuMUltraBGColor" style="width: 100%; height: fit-content; background-color: rgba(132, 145, 162, 0.74); margin: 0px auto; padding: 32px 20px 22px;">
             
             <div class="animated fadeIn;" style=" width:100%;height:fit-content;">
@@ -1917,7 +1941,8 @@
                 </div>
             </div>
         </div>
-        <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand   shadow  topbar static-top" style="height:50px !important;width:100% !important;padding:2px !important;padding-bottom:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px var(--SuMDGray) !important;z-index:999;display:none;background-color:var(--SuMDWhite) !important;">
+        <div id="SuMBottomPartHeight" style="position:fixed !important;bottom:0 !important;z-index:999 !important;width:100vw !important;height:fit-content !important;flex-grow: 0 !important; flex-shrink: 0 !important;overflow:hidden !important;">
+        <div id="subnavscont2" runat="server" class="fadeInUp animated navbar-light navbar-expand   shadow  topbar static-top" style="margin-bottom:-2px;z-index:999;height:46px !important;width:calc(100% - 24px) !important;padding:2px !important;border-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px var(--SuMDGray) !important; display:none;background-color:var(--SuMDWhite) !important;margin-left:12px;">
                 <a name="no-animation" id="navb2" runat="server" onclick="SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/SuMHead.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;">
                     <p style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">SuM </p><p id="mangacolor2" style="display:inline;color:var(--SuMThemeColorThisPage);margin-top:8px !important;">Manga</p>
@@ -1953,7 +1978,7 @@
                 document.getElementById('subnavscont2').style.display = 'none';
             }
         </script>
-        <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:var(--SuMDWhite) !important;bottom:0 !important;z-index:999;position:fixed !important;border-radius:22px !important;max-height:100px !important;">
+        <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="border-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:var(--SuMDWhite) !important;z-index:999;position:fixed !important; display:block;border:0.5px var(--SuMThemeColorOP14) solid !important;width:calc(100vw - 24px) !important;margin-left:12px;">
             <div id="subnavscont" runat="server" class=" navbar-light navbar-expand   shadow  topbar static-top" style="height:40px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMDGray) !important;bottom:0 !important;overflow:clip;border-color:var(--SuMDWhite);margin-bottom:-1px;padding-top:18px;">
                 <a name="no-animation" onclick="SuMGoBack();" style="float:left !important;width:fit-content;">
                     <img src="/svg/SuMHead.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
@@ -1998,9 +2023,33 @@
                         </script>
                     </div>
                 </nav>
-            <div id="NavigationBarFixer1" class=" navbar-light navbar-expand   shadow  topbar static-top" style="height:32px;background-color:var(--SuMDWhite) !important;width:100vw !important;bottom:0 !important;overflow:clip;border-color:var(--SuMDWhite);border:0px !important;margin-bottom:-1px;"></div>
+            <div id="NavigationBarFixer1" class=" navbar-light navbar-expand   shadow  topbar static-top" style="height:4px;background-color:var(--SuMDWhite) !important;width:100vw !important;bottom:0 !important;overflow:clip;border-color:var(--SuMDWhite);border:0px !important;margin-bottom:-1px;"></div>
+    </div>
+    </div>
+    <div id="BottomStylingTDiv" runat="server" style="position:fixed !important;bottom:0 !important;z-index:993 !important;width:100vw !important;height:60px;background-color:rgba(0,0,0,0.86) !important;overflow:hidden !important;">
+    </div>
+    <div id="TopStylingTDiv" runat="server" style="animation-duration:0.12s !important; display:block;position:fixed !important;top:0 !important;z-index:993 !important;width:100vw !important;height:50px;background-color:rgba(0,0,0,0.86) !important;overflow:hidden !important;">
     </div>
     <script>
+        var ElmBottomSTDF0C0Elm = document.getElementById('BottomStylingTDiv');
+        var ElmTopSTDF0C0Elm = document.getElementById('TopStylingTDiv');
+        var CurrPURLF0CX = document.URL;
+        if (CurrPURLF0CX.includes('/Search.aspx') == true) {
+            ElmTopSTDF0C0Elm.style.height = '50px';
+            ElmBottomSTDF0C0Elm.style.height = '60px';
+        } else {
+            if (CurrPURLF0CX.includes('/MangaExplorer.aspx') == true) {
+                ElmTopSTDF0C0Elm.style.height = '40px';
+                ElmBottomSTDF0C0Elm.style.height = '30px';
+            } else {
+                ElmTopSTDF0C0Elm.style.height = '0px';
+                ElmBottomSTDF0C0Elm.style.height = '60px';
+            }
+        }
+
+
+
+
         if (document.getElementById('<%= fullnavscont.ClientID %>').style.display == 'block') {
             var SuMCurrPageURLF0CC = document.URL;
             if (SuMCurrPageURLF0CC.includes('/Explore.aspx') == true || SuMCurrPageURLF0CC.includes('/storeitems/') == true) {
@@ -2099,15 +2148,6 @@
             return resultX;
         };
     </script>
-        <script>
-            //Fix Up navigation bar space 
-            var Navigation1Heightfromsum = androidAPIs.SuMGetNavigationBarHeight();
-            //var SubCoSuMElm = document.getElementById('<%= fullnavscont.ClientID %>');
-            document.getElementById('NavigationBarFixer1').style.height = Navigation1Heightfromsum + 'px';
-            //SubCoSuMElm.style.height = (100 + Navigation1Heightfromsum) + 'px';
-            //SubCoSuMElm.style.paddingBottom = (Navigation1Heightfromsum) + 'px !important';
-            //
-        </script>
         <asp:UpdatePanel ID="UpdatePanelNotificationSec" runat="server" UpdateMode="Conditional">
                 <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="StartNotificationProssForShowBTN" EventName="Click" />
@@ -2240,5 +2280,8 @@
             }
 
     </style>
+    <script>
+        SuMSetThemeState(getCookie('SuMUserThemeState').replace(' ', ''));
+    </script>
 </body>
 </html>

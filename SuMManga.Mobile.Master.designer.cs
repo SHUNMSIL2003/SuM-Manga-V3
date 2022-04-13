@@ -195,6 +195,24 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NavItems;
 
         /// <summary>
+        /// BottomStylingTDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BottomStylingTDiv;
+
+        /// <summary>
+        /// TopStylingTDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TopStylingTDiv;
+
+        /// <summary>
         /// UpdatePanelNotificationSec control.
         /// </summary>
         /// <remarks>

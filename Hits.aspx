@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="Hits.aspx.cs" Inherits="SuM_Manga_V3.Hits" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
     <script>
           
           
@@ -106,12 +107,10 @@ img {vertical-align: middle;}
             transition: all 0.5s !important;*/
         }
     </style>
-    <div style="background-color:var(--SuMDGray) !important;width:100%;height:100vh !important;margin:0 auto !important;">
+    <div style="background-color:transparent !important;width:100%;height:100vh !important;margin:0 auto !important;">
     <!-- <div style="display:block;margin:0 auto;width:100%;height:24px;background-color:transparent;" id="ThisPageSBarFixUpPropElmF8C0" ></div> -->
-    <div style="background-color:var(--SuMDGrayOP74) !important;position:fixed !important;top:0 !important;z-index:994 !important;height:fit-content !important;width:100vw !important;display:block;padding:0px !important;" class="" id="SuMMangaTopBar">
-        <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;overflow:hidden !important;" id="SuMMangaTopBarHeightHelper"></div>
-    </div>
-    <div style="display:none;" ID="HitsStylePlaceHolder" runat="server" >
+
+    <div style="display:none;visibility:hidden;" ID="HitsStylePlaceHolder" runat="server" >
         <style>
 
             @keyframes rainbow {
@@ -161,9 +160,9 @@ img {vertical-align: middle;}
             }
         </style>
     </div>
-    <div id="ScrollingDivHits" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;margin-top:12px !important; -webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;scroll-snap-align:start !important;height: 100vh;scroll-snap-type: y proximity !important; scroll-behavior: smooth !important; scroll-padding-top:32px !important;scroll-padding-bottom:32px !important;padding-bottom:164px !important;padding-top:64px !important;padding-top:164px !important;padding-bottom:164px !important;">
-        <div id="ScrollHelperFASET204CutG65" style="background-color:var(--SuMDGray) !important;margin:0 auto !important;width:100%;height:fit-content;-webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
-        <div id="HotsScrollHelper" runat="server" style="background-color:var(--SuMDGray);margin:0 auto !important;padding:0px;width:100%;height:fit-content;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;-webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;">
+    <div id="ScrollingDivHits" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;margin-top:12px !important; -webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;scroll-snap-align:start !important;height: 100vh;scroll-snap-type: y proximity !important; scroll-behavior: smooth !important; scroll-padding-top:32px !important;scroll-padding-bottom:32px !important;padding-bottom:164px !important;padding-top:64px !important;padding-top:164px !important;padding-bottom:164px !important;background-color:transparent !important;">
+        <div id="ScrollHelperFASET204CutG65" style="background-color:transparent !important;margin:0 auto !important;width:100%;height:fit-content;-webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
+        <div id="HotsScrollHelper" runat="server" style="background-color:transparent !important;margin:0 auto !important;padding:0px;width:100%;height:fit-content;border-bottom-left-radius:20px !important;border-bottom-right-radius:20px !important;display:block !important;-webkit-transition: all 0.5s !important; -moz-transition: all 0.5s !important; -ms-transition: all 0.5s !important; -o-transition: all 0.5s !important; transition: all 0.5s !important;">
         <div style="width:100% !important;height:12px;margin:0 auto !important;" id="SuMStatusBarHeightFixUpF0C0"></div>
         <script>
         var StatusBarHeightValueFromSuMAndroidAPIsF0C0 = androidAPIs.getStatusBarHeight();
@@ -551,7 +550,7 @@ img {vertical-align: middle;}
         <!-- <h2 id="TopOfEachInfoCard" style="width:100%;text-align:center !important;background-color:var(--SuMDGray) !important;padding:12px;padding-top:18px;padding-bottom:12px;color:var(--SuMDBlackOP94);position:relative;top:0;z-index:997;border-bottom-left-radius:18px !important;border-bottom-right-radius:18px !important;">Top 10 for each by category</h2> -->
 
         <!-- br placeholder -->
-        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhite) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="CategoryX" runat="server">
+        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhiteOP86) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="CategoryX" runat="server">
             <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;display:inline;">Action</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:var(--SuMDBlackOP32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:var(--SuMDBlackOP64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Action" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;" >
@@ -559,49 +558,49 @@ img {vertical-align: middle;}
         </div>
 
         <!-- br placeholder -->
-        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhite) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div1" runat="server">
+        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhiteOP86) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div1" runat="server">
             <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;display:inline;">Fantasy</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:var(--SuMDBlackOP32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:var(--SuMDBlackOP64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Fantasy" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhite) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div2" runat="server">
+        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhiteOP86) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div2" runat="server">
             <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;display:inline;">Comedy</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:var(--SuMDBlackOP32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:var(--SuMDBlackOP64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Comedy" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhite) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div3" runat="server">
+        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhiteOP86) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div3" runat="server">
             <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;display:inline;">Supernatural</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:var(--SuMDBlackOP32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:var(--SuMDBlackOP64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Supernatural" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhite) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div4" runat="server">
+        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhiteOP86) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div4" runat="server">
             <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;display:inline;">Sci-Fi</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:var(--SuMDBlackOP32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:var(--SuMDBlackOP64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="SciFi" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhite) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div5" runat="server">
+        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhiteOP86) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div5" runat="server">
             <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;display:inline;">Drama</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:var(--SuMDBlackOP32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:var(--SuMDBlackOP64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Drama" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhite) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div6" runat="server">
+        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhiteOP86) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div6" runat="server">
             <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;display:inline;">Mystery</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:var(--SuMDBlackOP32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:var(--SuMDBlackOP64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="Mystery" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
         </div>
         
         <!-- br placeholder -->
-        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhite) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div7" runat="server">
+        <div style="scroll-snap-align:start !important;scroll-snap-stop: always !important;border:0.5px var(--SuMDBroderC) solid !important;height:fit-content;max-height:302px !important; width:calc(100% - 24px);overflow:hidden; background-color:var(--SuMDWhiteOP86) !important;margin-left:12px;margin-top:18px !important;display:block !important;border-radius:20px;padding:12px;padding-top:22px;" id="Div7" runat="server">
             <h2 style="color:var(--SuMDBlack);margin-left:8px;margin-bottom:-18px;display:inline;">Slice of Life</h2>
             <a style="display:inline-block; width:2px;height:18px;background-color:var(--SuMDBlackOP32);margin-bottom:-3px;border-radius:1px;margin-left:5px;overflow:hidden;"></a><h6 style="color:var(--SuMDBlackOP64);margin-left:2px;margin-bottom:-18px;display:inline;">Top 12</h6>
             <div id="SliceofLife" runat="server" style="padding-left:6px;overflow-y:hidden !important;overflow-x:scroll !important;white-space:nowrap !important; width:100% !important;max-width:100vw; height:276px;max-height:276px !important;display:flex !important;"></div>
@@ -619,8 +618,8 @@ img {vertical-align: middle;}
     <script>
         var ThisPageScrollContaner = document.getElementById('<%= ScrollingDivHits.ClientID %>');
         var ThisPageChangeStartElm = document.getElementById('ScrollHelperFASET204CutG65');
-        var SuMMangaTopBarElm = document.getElementById('SuMMangaTopBar');
-        var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
+        //var SuMMangaTopBarElm = document.getElementById('SuMMangaTopBar');
+        //var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
         var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
         var MaxScrollHDetected = 24; //ThisPageChangeStartElm.offsetHeight;
         /*setTimeout(() => {
@@ -629,7 +628,7 @@ img {vertical-align: middle;}
         /*document.onclick = function (event) {
             MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;
         };*/
-        SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
+        //SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
         /*ThisPageScrollContaner.onscroll = function () {
 
             //MaxScrollHDetected = ThisPageChangeStartElm.offsetHeight;

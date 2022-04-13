@@ -1374,6 +1374,7 @@
     <Content Include="svg\send.svg" />
     <Content Include="svg\views.svg" />
     <Content Include="svg\warning.svg" />
+    <Content Include="Tr-Test-SuT.html" />
     <Content Include="UploadConsole\CommentsSQLEDITOR.aspx" />
     <Content Include="UploadConsole\CreatorConsole.aspx" />
     <Content Include="UploadConsole\MangaChaptersUpdator.aspx" />
@@ -3129,6 +3130,7 @@
     <Content Include="SuM-Manga-331.apk" />
     <Content Include="SuM-Manga-400.apk" />
     <Content Include="SuM-Manga-401.apk" />
+    <Content Include="SuM-Manga-561.apk" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -4,7 +4,7 @@
     <script>
           
         androidAPIs.SetSuMSecureFlag();
-          
+        androidAPIs.SuMBTActTopNBottom();
         /*var IsFullScreenF248C467 = androidAPIs.SuMIsFullScreen();
         if (IsFullScreenF248C467 == true) {
               */
@@ -131,7 +131,7 @@
     <div id="ScriptInjectorC000" style="display:none !important;visibility:hidden !important;"><script>//androidAPIs.ShowSuMToastsOverview('Use full screen mode for a better experience!');</script></div>
     <a onclick="FullScreenModeManager();" id="SuMFullScreenManageBTNF204C90" style="pointer-events:all !important;width:42px;height:42px;display:block;position:fixed !important;z-index:999 !important;float:left !important;margin-left:calc(100% - 42px) !important;margin-top:74px !important;background-color:var(--SuMDBlackOP20) !important;border-top-left-radius:21px;border-bottom-left-radius:21px;border-top-right-radius:0px;border-bottom-right-radius:0px;padding-top:7px;padding-bottom:7px;padding-left:5px !important;padding-right:9px !important;display:none !important;visibility:hidden !important;"><img id="FullScStateIMG" src="/svg/openinfull.svg" style="width:28px;height:28px;margin:0 auto;" /></a>
     <div class="" id="pfc" runat="server" style="background-color:var(--SuMThemeColor);margin:0 auto !important;width:100vw !important;height:100vh !important;">
-        <div class="animated fadeInDown shadow-sm" id="InfoCardBGForJAVA" style="position:fixed !important;top:0 !important;z-index:999 !important;background-color:var(--SuMDWhite) !important;width:100% !important;height:fit-content;border-radius:20px !important;margin: 0px !important;background-color:var(--SuMDWhite);padding-top:24px;border-top-left-radius:0px !important;border-top-right-radius:0px !important;width:100%;">
+        <div class="animated fadeInDown shadow-sm" id="InfoCardBGForJAVA" style="position:fixed !important;top:0 !important;z-index:999 !important;background-color:var(--SuMDWhite) !important;width:calc(100% - 24px) !important;height:fit-content;border-radius:20px !important;margin: 0px !important;background-color:var(--SuMDWhite);padding-top:6px;border-radius:22px !important;width:100%;margin-left:12px !important;">
                     <div style="width:100% !important;height:fit-content !important;font-size:96%;padding-left:16px !important;padding-top:22px !important;padding-bottom:8px !important;">
                         <a style="display:inline-block !important;font-size:118%;color:var(--SuMDWhiteOP100) !important;" id="SuMExIMGSVG" runat="server"></a>
                         <p id="MangaName" runat="server" style="display:inline-block !important;font-size:118%;color:var(--SuMDBlackOP100) !important;"></p>
@@ -454,6 +454,9 @@
                         androidAPIs.SetSuMSecureFlag();
                         MakeSuMFullNavDisa();
                         androidAPIs.ActivateFullScreenMode();
+                        androidAPIs.SuMBTActNoTopNNoBottom();
+                        document.getElementById('BottomStylingTDiv').style.height = '0px';
+                        document.getElementById('TopStylingTDiv').style.height = '0px';
                         SuMReadingModeIsApplyed = true;
                         SuMSetThemeState(getCookie('SuMUserThemeState').replace(' ', ''));
                     }
@@ -472,6 +475,9 @@
                         NextBtnOrState();
                         androidAPIs.SetSuMSecureFlag();
                         androidAPIs.DeactivateFullScreenMode();
+                        androidAPIs.SuMBTActTopNBottom();
+                        document.getElementById('BottomStylingTDiv').style.height = '30px';
+                        document.getElementById('TopStylingTDiv').style.height = '40px';
                         viewport.setAttribute('content', 'user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
                         ReactimntIsPermitedF565C0 = true;
                         SuMReadingModeIsApplyed = false;

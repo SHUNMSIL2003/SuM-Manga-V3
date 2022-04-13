@@ -46,6 +46,8 @@ namespace SuM_Manga_V3
             {
                 UserThemeColor = "104,64,217";
             }
+            BottomStylingTDiv.Attributes["style"] = "position:fixed !important;bottom:0 !important;z-index:993 !important;width:100vw !important;height:60px;background-color:rgba(" + UserThemeColor + ",1) !important;overflow:hidden !important;";
+            TopStylingTDiv.Attributes["style"] = "display:block;position:fixed !important;top:0 !important;z-index:993 !important;width:100vw !important;height:50px;background-color:rgba(" + UserThemeColor + ",1) !important;overflow:hidden !important;";
             SuMUserThemeColorCSSDiv.InnerHtml = BuildSuMUserThemeCSS(UserThemeColor);
             if (Request.QueryString["TC"] != null)
             {
@@ -71,11 +73,11 @@ namespace SuM_Manga_V3
             //}
             string path = HttpContext.Current.Request.Url.AbsolutePath;
             subnavscont2.Attributes["style"] = "display:none !important;";
-            fullnavscont.Attributes["style"] = "border-top-left-radius:22px;border-top-right-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:var(--SuMDWhite) !important;z-index:999;position:fixed !important; display:block;border:0.5px var(--SuMThemeColorOP14) solid !important;";
+            fullnavscont.Attributes["style"] = "border-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:var(--SuMDWhite) !important;z-index:999;position:fixed !important; display:block;border:0.5px var(--SuMThemeColorOP14) solid !important;width:calc(100vw - 24px) !important;margin-left:12px;";
             if (path.Contains("MangaExplorer"))
             {
                 fullnavscont.Attributes["style"] = "display:none !important;";
-                subnavscont2.Attributes["style"] = "margin-bottom:-2px;z-index:999;height:50px !important;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px var(--SuMDGray) !important; display:block;background-color:var(--SuMDWhite) !important;";
+                subnavscont2.Attributes["style"] = "margin-bottom:-2px;z-index:999;height:46px !important;width:calc(100% - 24px) !important;padding:2px !important;border-radius:22px;position:fixed;bottom:0 !important;float:left;border-top:solid 0.4px var(--SuMDGray) !important; display:block;background-color:var(--SuMDWhite) !important;margin-left:12px;";
                 NavItems.InnerHtml = ""; nav.Attributes["style"] = "height:1vh !important;width:100% !important; ";
             }
             /*HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
