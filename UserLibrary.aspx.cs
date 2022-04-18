@@ -33,42 +33,16 @@ namespace SuM_Manga_V3
                         if (CT == "Curr")
                         {
                             LoadReqContant("Curr", UID);
-                            if (IsPostBack == false)
-                            {
-                                cr.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:var(--SuMThemeColor);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDWhiteOP96);";
-                                cr.Attributes["class"] = "animated pulse";
-                                wr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
-                                mf.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
-                                InfoAboutC.InnerHtml = "This library is to ease access to the mangas you are currently reading and track your process, you can <b>add mangas by clicking the " + '"'.ToString() + "Start Reading" + '"'.ToString() + " button</b> in the desired manga page.";
-                            }
                         }
                         else
                         {
                             if (CT == "Fav")
                             {
                                 LoadReqContant("Fav", UID);
-                                if (IsPostBack == false)
-                                {
-                                    mf.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:var(--SuMThemeColor);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDWhiteOP96);";
-                                    mf.Attributes["class"] = "animated pulse";
-                                    cr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
-                                    wr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
-                                    string FavIMG = "<img style=" + '"'.ToString() + "display:inline !important;width:20px;height:20px;margin:0 auto;" + '"'.ToString() + " src=" + '"'.ToString() + "/svg/favoriteTBlack.svg" + '"'.ToString() + " />";
-                                    InfoAboutC.InnerHtml = "This library is to ease access to your favorite mangas, you can <b>add mangas by clicking the " + '"'.ToString() + "" + FavIMG + "" + '"'.ToString() + " button</b> in the desired manga page.";
-                                }
                             }
                             else
                             {
                                 LoadReqContant("Wanna", UID);
-                                if (IsPostBack == false)
-                                {
-                                    wr.Attributes["style"] = "display:inline-block;animation-duration:0.96s !important;background-color:var(--SuMThemeColor);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDWhiteOP96);";
-                                    wr.Attributes["class"] = "animated pulse";
-                                    cr.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
-                                    mf.Attributes["style"] = "display:inline-block;background-color:var(--SuMThemeColorOP00);border-radius:16px;margin:3px;padding-top:3px;padding-bottom:3px;padding-left:12px !important;padding-right:12px !important;color:var(--SuMDBlackOP60);";
-                                    string AddIMG = "<img style=" + '"'.ToString() + "display:inline !important;width:20px;height:20px;margin:0 auto;" + '"'.ToString() + " src=" + '"'.ToString() + "/svg/addTBlack.svg" + '"'.ToString() + " />";
-                                    InfoAboutC.InnerHtml = "This library is to access mangas that peaked your interest, you can <b>add mangas by clicking the " + '"'.ToString() + "" + AddIMG + "" + '"'.ToString() + " button</b> in the desired manga page.";
-                                }
                             }
                         }
                     }

@@ -225,7 +225,7 @@
                 </script>
             </div>
         </div>
-        <div id="CommentsSecCont" runat="server" class="animated slideDown GoodBlur" style=" border:4px rgba(225,225,225,0.75) solid;border-top:4px var(--SuMDBlackOP100) solid;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:var(--SuMDWhiteOP74);display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:100vh;z-index:998;">
+        <div id="CommentsSecCont" runat="server" class=" animated slideInUp" style="border:4px rgba(225,225,225,0.75) solid;border-top:4px var(--SuMDBlackOP100) solid;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:var(--SuMDWhiteOP74);display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:100vh;z-index:998;animation-duration:0.64s !important;">
             <a id="CommentsSecTopPartColor" runat="server" style="margin-top:0px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background:var(--SuMDBlackOP100);padding:0px !important;">
                 <h5 class="animated fadeIn" id="ComSecTi" runat="server" style="color:var(--SuMDWhite);padding-top:26px;padding-left:22px;padding-bottom:4px;font-size:96%;margin-top:calc(12px - 100vh);">Comments section</h5>
                 <div class="animated fadeIn" runat="server" id="SendCommentAria" style="border-radius:12px;width:100%;height:fit-content;margin:0 auto;padding:6px;margin-top:8px;margin-bottom:6px;display:block;">
@@ -249,7 +249,7 @@
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-                        <div class="animated fadeIn" id="Comments" style="width:calc(100vw - 20px) !important;max-height:calc(70vh - 208px) !important;height:calc(70vh - 208px) !important;overflow-x:hidden;overflow-y:scroll;background-color:var(--SuMDWhite) !important;border-radius:18px;padding-left:12px;padding-right:12px;padding-top:18px;padding-bottom:18px;margin-left:10px;margin-right:10px;margin-top:10px;" runat="server">
+                        <div class="animated fadeIn" id="Comments" style="width:calc(100vw - 24px) !important;max-height:calc(70vh - 208px) !important;height:calc(70vh - 208px) !important;overflow-x:hidden;overflow-y:scroll;background-color:var(--SuMDWhiteOP86) !important;border-radius:18px;padding-left:12px;padding-right:12px;padding-top:18px;padding-bottom:18px;margin-left:12px;margin-right:12px;margin-top:10px;margin-bottom:58px !important;" runat="server">
                             <div class="animated fadeIn" style="width:100%;height:fit-content;margin-top:calc(35vh - 128px) !important;text-align:center !important;">
                                 <a id="dot1" runat="server" style="transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:var(--SuMDBlackOP40);margin-right:12px;"></a>
                                 <a id="dot2" style="transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:var(--SuMDBlackOP16);margin-left:6px;margin-right:6px;"></a>
@@ -284,7 +284,6 @@
                                 androidAPIs.SetSuMSecureFlag();
                             </script>
                         </div>
-                        <br />
                     </asp:Panel>
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -293,45 +292,38 @@
             androidAPIs.SetSuMSecureFlag();
             var CommentsSecIsloaded = false;
             var CommentsSecFirstLoad = true;
-            var elm = document.getElementById('<%= CommentsSecCont.ClientID %>');
-            var NavBarHeightValue6544dfhf645 = androidAPIs.SuMGetNavigationBarHeight();
-            elm.style.marginTop = (elm.style.marginTop - document.getElementById('subnavscont2').offsetHeight - NavBarHeightValue6544dfhf645) + 'px';
             function FuncLoadCommentsSec() {
                 var elm = document.getElementById('<%= CommentsSecCont.ClientID %>');
                 if (CommentsSecIsloaded == false) {
                     if (CommentsSecFirstLoad == true) {
                         setTimeout(() => {
                             document.getElementById('<%= CommentsSecOpenBTN.ClientID %>').click();
-                                CommentsSecFirstLoad = false;
-                            }, 1800);
-                        }
-                        CommentsSecIsloaded = true;
-                        setTimeout(() => {
-                            elm.classList.remove('slideDown');
-                            elm.classList.add('slideInUp');
-                        }, 10);
-                        setTimeout(() => {
-                            elm.style.display = "block";
-                        }, 10);
+                            CommentsSecFirstLoad = false;
+                        }, 1800);
                     }
-                    else {
-                        document.getElementById('<%= CommentsSecCont.ClientID %>').style.display = 'none';
+                    CommentsSecIsloaded = true;
+                    setTimeout(() => {
+                        elm.classList.remove('slideOutDown');
+                        elm.classList.add('slideInUp');
+                    }, 10);
+                    setTimeout(() => {
+                        elm.style.display = "block";
+                    }, 40);
+                }
+                else {
                     CommentsSecIsloaded = false;
                     setTimeout(() => {
                         elm.classList.remove('slideInUp');
-                        document.getElementById('MainContent_Comments').classList.remove('fadeIn');
-                        elm.style.display = 'none';
-                        elm.classList.add('slideDown');
+                        elm.classList.add('slideOutDown');
                         elm.style.display = 'block';
                     }, 10);
                     setTimeout(() => {
                         elm.style.display = 'none';
-                        document.getElementById('MainContent_Comments').classList.add('fadeIn');
-                    }, 800);
+                    }, 640);
                 }
             };
         </script>
-        <div class="animated fadeIn" id="NextChapter" style="display:block;position:absolute;top:0;margin-left:calc(100vw - 174px);margin-top:4px;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;" runat="server" >
+        <div class="animated fadeIn" id="NextChapter" style="display:block;position:fixed !important;bottom:0 !important;z-index:996 !important;margin-left:calc(100vw - 174px);margin-bottom:48px !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;" runat="server" >
                 <a style="" class="btn btn-primary btn-sm animated shadow-sm fadeInUp" href="#"></a>
             </div>
     </div>
@@ -364,52 +356,21 @@
                 viewport.setAttribute('content', 'user-scalable=yes, initial-scale=1, maximum-scale=1.6, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
                 androidAPIs.SetSuMSecureFlag();
                 MakeSuMFullNavDisa();
-            }/*
-            else {
-                  
-                ThisPageSubContanerElm.style.width = 'calc(100% - 18px)';
-                InfoCardBGForJAVAElmjusjd5.style.display = null;
-                MangasPhotsosElm.style.width = 'calc(100% - 18px)';
-                MangasPhotsosElm.style.border = PhotosOrBorder;
-                ThisPageSubContanerElm.style.marginTop = '64px';
-                ThisPageSubContanerElm.style.borderRadius = '20px';
-                MangasPhotsosElm.style.borderRadius = '20px';
-                FullScreenImgElm.src = '/svg/openinfull.svg';
-                FullScPlaceH.innerText = '0';
-                ShowMangaExplorerBar();
-                NextBtnOrState();
-                androidAPIs.SetSuMSecureFlag();
-                viewport.setAttribute('content', 'user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
-            }*/
+            }
         }
         function HideCS5451() {
-            document.getElementById('<%= CommentsSecCont.ClientID %>').style.display = 'none';
+            var elm = document.getElementById('<%= CommentsSecCont.ClientID %>');
             CommentsSecIsloaded = false;
             elm.style.display = 'none';
             elm.classList.remove('slideInUp');
-            document.getElementById('MainContent_Comments').classList.remove('fadeIn');
-            elm.classList.add('slideDown');
-            document.getElementById('MainContent_Comments').classList.add('fadeIn');
+            elm.classList.add('slideOutDown');
         }
-        androidAPIs.SetSuMSecureFlag();
-        /*var IsFullScreen = androidAPIs.SuMIsFullScreen();
-        if (IsFullScreen == true) {
-            document.getElementById('FullScInfoElmPLaceHolder').innerText = '0';
-            FullScreenModeManager();
-            androidAPIs.ActivateFullScreenMode();
-            androidAPIs.SetSuMSecureFlag();
-            MakeSuMFullNavDisa();
-            setTimeout(() => {
-                MakeSuMFullNavDisa();
-            }, 10);
-            FullScreenModeManager();
-            FullScreenModeManager();
-        }*/
         androidAPIs.SetSuMSecureFlag();
     </script>
     <script>
         var ReactimntIsPermitedF565C0 = true;
         var ThisPageScrollContaner = document.getElementById('<%= FirstAniDiv.ClientID %>');
+        var ElmNextBTNF3CXElm = document.getElementById('<%= NextChapter.ClientID %>');
         var ThisPageChangeStartElm = document.getElementById('InfoCardBGForJAVA');
         var SuMMangaTopBarElm = document.getElementById('SuMMangaTopBar');
         var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
@@ -443,12 +404,11 @@
                         ThisPageSubContanerElm.style.borderRadius = '0px';
                         MangasPhotsosElm.style.borderRadius = '0px';
                         MangasContF212C01.style.marginBottom = '0px !important';
-                        FullScreenImgElm.src = '/svg/closefullscreen.svg';
                         androidAPIs.ActivateFullScreenMode();
                         FullScPlaceH.innerText = '1';
                         HideMangaExplorerBar();
                         HideMangaExplorerTopPartBar();
-                        HideCS5451();
+                        HideCS5451(1);
                         NextBtnFullSState();
                         viewport.setAttribute('content', 'user-scalable=yes, initial-scale=1, maximum-scale=1.6, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
                         androidAPIs.SetSuMSecureFlag();
@@ -459,11 +419,11 @@
                         document.getElementById('TopStylingTDiv').style.height = '0px';
                         SuMReadingModeIsApplyed = true;
                         SuMSetThemeState(getCookie('SuMUserThemeState').replace(' ', ''));
+                        ElmNextBTNF3CXElm.style.marginBottom = '-86px !important';
                     }
                 }
                 else {
                     if (SuMReadingModeIsApplyed == true) {
-                          
                         ThisPageSubContanerElm.style.borderRadius = '20px';
                         FullScPlaceH.innerText = '0';
                         MangasContF212C01.style.marginBottom = '28px !important';
@@ -478,6 +438,7 @@
                         androidAPIs.SuMBTActTopNBottom();
                         document.getElementById('BottomStylingTDiv').style.height = '30px';
                         document.getElementById('TopStylingTDiv').style.height = '40px';
+                        ElmNextBTNF3CXElm.style.marginBottom = '48px !important';
                         viewport.setAttribute('content', 'user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi');
                         ReactimntIsPermitedF565C0 = true;
                         SuMReadingModeIsApplyed = false;

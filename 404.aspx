@@ -27,7 +27,7 @@
             androidAPIs.SemiTranStatusBar();
         }
         else {
-            location.href = '/SuMMangaInstallAPP.aspx';
+            //location.href = '/SuMMangaInstallAPP.aspx';
         }
     </script>
                      <div class="text-center mt-5 animated fadeIn" style="text-align:center;position:relative;vertical-align:middle;margin-top:24vh !important;">

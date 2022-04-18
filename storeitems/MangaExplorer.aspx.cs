@@ -136,20 +136,59 @@ namespace SuM_Manga_V3.storeitems
                             Response.Redirect("~/404.aspx");
                         }
                     }
+                    int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                    ReasentMarker(UID);
                 }
                 //NewFuncs-TONOTBEPREVENTFROMRELOAD
                 FavListManager(Convert.ToInt32(GetUserInfoCookie["ID"].ToString()));
                 //LoadCommentsSection(); Loads onclick now!
                 // New Code for parts outside the update panel
-                string ThemeColor = Request.QueryString["TC"].ToString();
-                CommentsSecTopPartColor.Attributes["style"] = "display:block;margin-top:18px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background-color:" + ThemeColor.Replace("0.74", "0.58") + ";padding:0px !important;";
+                string ThemeColor = Request.QueryString["TC"].ToString().Replace("0.74", "1");
+                CommentsSecTopPartColor.Attributes["style"] = "display:block;margin-top:18px !important;margin:0 auto !important;width:100vw !important;height:fit-content !important;background-color:" + ThemeColor + ";padding:0px !important;";
                 SendBTN.Attributes["style"] = "background-color:var(--SuMDBlackOP100);border-radius:4px;width:40px;height:34px;margin:4px;";
                 dot1.Attributes["style"] = "transition: background-color 0.6s ease !important;width:16px;height:16px;border-radius:8px;overflow:hidden;display:inline-block;background-color:" + ThemeColor + ";margin-right:6px;";
-                CommentsSecCont.Attributes["style"] = " -webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;";
+                CommentsSecCont.Attributes["style"] = " -webkit-backface-visibility: hidden !important;overflow-y:scroll;height:fit-content;max-height:90%;border-top-right-radius: 22px;border-top-left-radius:22px;background-color:" + ThemeColor + ";display:none;margin-top:30vh;width:100vw;height:fit-content;position:absolute;top:0 !important;padding-top:calc(100vh - 18px);border-top:0px;z-index:998;animation-duration:0.64s !important;";
                 if (IsPostBack == false)
                 {
                     AddOneView();
                 }
+            }
+        }
+        protected void ReasentMarker(int UID)
+        {
+            object RawRes;
+            string NewSol = string.Empty;
+            string Target = "#" + Request.QueryString["VC"].ToString() + "&";
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string qwi = "SELECT Resently FROM SuMUsersAccounts WHERE UserID = @UID";
+                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd00.Parameters["@UID"].Value = UID;
+                RawRes = sqlCmd00.ExecuteScalar();
+                if (RawRes != null)
+                {
+                    if (RawRes.ToString().Contains(Target) == true)
+                    {
+                        NewSol = Target + RawRes.ToString().Replace(Target, "");
+                    }
+                    else
+                    {
+                        NewSol = Target + RawRes.ToString();
+                    }
+                }
+                else
+                {
+                    NewSol = Target;
+                }
+                qwi = "UPDATE SuMUsersAccounts SET Resently = @NEWResently WHERE UserID = @UID";
+                sqlCmd00 = new SqlCommand(qwi, sqlCon);
+                sqlCmd00.Parameters.AddWithValue("@NEWResently", NewSol);
+                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                sqlCmd00.Parameters["@UID"].Value = UID;
+                sqlCmd00.ExecuteNonQuery();
+                sqlCon.Close();
             }
         }
         protected void AddOneView()
@@ -316,44 +355,25 @@ namespace SuM_Manga_V3.storeitems
             {
                 HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
                 int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
-                char[] RawComment = UserComment.Text.ToCharArray();
-                string ProssesedComment = "";
-                /*for (int i = 0; i < RawComment.Length; i++)
-                {
-                    if (RawComment[i] != '#' && RawComment[i] != ';' && RawComment[i] != '&')
-                    {
-                        ProssesedComment += RawComment[i];
-                    }
-                }*/
-                //ProssesedComment = BadWordsFilter(ProssesedComment).Replace(">", "").Replace("<", "").Replace("#", "").Replace("&", "").Replace(";", "");
-                ProssesedComment = ProssesedComment.Replace(">", "").Replace("<", "").Replace("#", "").Replace("&", "").Replace(";", "");
+                string ProssesedComment = UserComment.Text.ToString();
+                ProssesedComment = ProssesedComment.Replace(">", "").Replace("<", "").Replace("#", "").Replace("&", "").Replace(";", "").Replace("'", "");
                 string NewComment = "#" + UID.ToString() + ";" + ProssesedComment + "&";
                 int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
                 using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
                 {
                     sqlCon.Open();
-                    string query = "SELECT " + CurrCH + " FROM SuMMangaComments WHERE MangaID = @MangaID";
+                    string query = "UPDATE SuMMangaComments SET " + CurrCH + " = " + CurrCH + " + '" + NewComment + "' WHERE MangaID = @MangaID";
                     SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                     sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                     sqlCmd.Parameters["@MangaID"].Value = MID;
-                    var Raw = sqlCmd.ExecuteScalar();
-                    string RAWDATA = Raw.ToString();
-                    RAWDATA += NewComment;
-                    query = "UPDATE SuMMangaComments SET " + CurrCH + " = @NewComment WHERE MangaID = @MangaID";
-                    sqlCmd = new SqlCommand(query, sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                    sqlCmd.Parameters["@MangaID"].Value = MID;
-                    sqlCmd.Parameters.AddWithValue("@NewComment", RAWDATA);
                     sqlCmd.ExecuteNonQuery();
                     sqlCon.Close();
                 }
                 LoadCommentsSectionNFBTN();
-                //Response.Redirect(Request.RawUrl);
             }
         }
         protected void LoadCommentsSection(object sender, EventArgs e)
         {
-            //System.Threading.Thread.Sleep(6000);
             string ThemeColor = Request.QueryString["TC"].ToString();
             string MangaID = Request.QueryString["VC"].ToString();
             string CurrCH = Request.QueryString["Chapter"].ToString();
@@ -395,7 +415,7 @@ namespace SuM_Manga_V3.storeitems
                         Raw = sqlCmd.ExecuteScalar();
                         PFP = Raw.ToString();
                         CommentsHTML += ApplyCommentForm(PFP, UserName, CSF[1, i]);
-                        if (i != 0) { CommentsHTML += "<hr style=" + '"'.ToString() + "width:calc(100% - 26px) !important;height:2px !important;color:" + ThemeColor.Replace("0.74", "0.82") + " !important;margin:0 auto !important;margin-top:-4px !important;margin-bottom:12px !important;border-radius:1px !important;" + '"'.ToString() + " />"; }
+                        if (i != 0) { CommentsHTML += "<hr style=" + '"'.ToString() + "width:64% !important;height:2px !important;color:" + ThemeColor.Replace("0.74", "0.82") + " !important;margin:0 auto !important;margin-top:-4px !important;margin-bottom:12px !important;border-radius:1px !important;" + '"'.ToString() + " />"; }
                     }
                     sqlCon.Close();
                 }

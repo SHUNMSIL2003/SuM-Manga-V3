@@ -7,6 +7,7 @@
         <meta http-equiv="refresh" content="0; url = https://sum-manga.azurewebsites.net/SuMMangaInstallAPP.aspx" />
     </noscript>
     <script>
+
         if ("androidAPIs" in window) {
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
@@ -24,8 +25,41 @@
             androidAPIs.SuMBTActNormal();
         }
         else {
-            location.href = '/SuMMangaInstallAPP.aspx';
+            //location.href = '/SuMMangaInstallAPP.aspx';
         }
+
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onkeydown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        function preventDefaultActivities(e) {
+            console.log("Suppressed default activity");
+            e.preventDefault();
+        }
+        console.log("this website is for a school project, It will be deleted soon! (By May)");
+        console.log("Content of this website is for public information. Usage of it without owners permission is strictly prohibited.");
+    
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+
+        window.addEventListener('contextmenu', e => {
+            e.preventDefault();
+        });
     </script>
     <meta name="google-signin-client_id" content="464504450730-iuk9hotshe7kjnq73p11mdvijc49ll5c.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -159,38 +193,8 @@
                 box-shadow: inset 0 0px 0 var(--SuMDBlack) !important;
             }
     </style>
-    <script>
-        /* */
-        document.onkeypress = function (event) {
-            event = (event || window.event);
-            if (event.keyCode == 123) {
-                return false;
-            }
-        }
-        document.onmousedown = function (event) {
-            event = (event || window.event);
-            if (event.keyCode == 123) {
-                return false;
-            }
-        }
-        document.onkeydown = function (event) {
-            event = (event || window.event);
-            if (event.keyCode == 123) {
-                return false;
-            }
-        }
-        function preventDefaultActivities(e) {
-            console.log("Suppressed default activity");
-            e.preventDefault();
-        }
-        console.log("this website is for a school project, It will be deleted soon! (By May)");
-        console.log("Content of this website is for public information. Usage of it without owners permission is strictly prohibited.");
-    </script>   
-    <script>
-        window.addEventListener('contextmenu', e => {
-            e.preventDefault();
-        });
-    </script>
+    <script></script>   
+    <script></script>
     <script src="/Scripts/jquery-3.6.0.min.js"></script>
     <script src="/Scripts/MicrosoftAjax.js"></script>
     <script src="/Scripts/jquery.lazyload.min.js"></script>
@@ -401,6 +405,7 @@
             }
         }
     </style>
+    
     <script>
         var timer;
         var touchduration = 860; //length of time we want the user to touch before we do something
@@ -632,22 +637,6 @@
             if ("androidAPIs" in window) {
                 androidAPIs.FullyTransStatusBar();
             }
-            if (CurrSuMURL.includes('/ContantExplorer.aspx') == false) {
-                if ("androidAPIs" in window == true) {
-                    var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', '');
-                    if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) {
-                        androidAPIs.SetLightStatusBarColor();
-                    }
-                    else {
-                        androidAPIs.SetDarkStatusBarColor();
-                    }
-                }
-            }
-            else {
-                if ("androidAPIs" in window == true) {
-                    androidAPIs.SetDarkStatusBarColor();
-                }
-            }
         };
         SuMSetThemeState(SuMThemeStateBit);
 
@@ -812,7 +801,6 @@
                 }
             };
             function SuMCoinsCount(FUID) {
-                document.getElementById('CoinsCount').innerText = 'loading';
                 $.ajax({
                     dataType: "json",
                     method: 'post',
@@ -857,7 +845,6 @@
                 });
             };
         </script>
-        <!-- -sumads -end -->
         <div class="d-flex flex-column" id="content-wrapper" style="height:calc(100vh - 32px) !important;width:100vw !important;background-color:transparent !important;flex-grow: 1 !important; flex-shrink: 1 !important; overflow-y: scroll !important;overflow-x:hidden;">
             <div id="content" style="background-color:transparent !important;">
                 <style>
@@ -898,576 +885,10 @@
                         </asp:ContentPlaceHolder>
                     <p id="CurrCoinsCountPlaceHolderHD" style="display:none !important;visibility:hidden !important;"></p>
                     <div id="UltraCardBGCloseDiv" onclick="SuMUltraCloseCard();" style="width:100vw;height:100vh;display:none;position:fixed !important;top:0 !important;z-index:994 !important;background-color:rgba(0,0,0,0.08);"></div>
-                    <script>
-                        SuMSetThemeState(getCookie('SuMUserThemeState').replace(' ', ''));
-                        var SuMLoadingContElm = document.getElementById('LoadingSuMInfoBub');
-                        SuMLoadingContElm.style.display = 'none';
-                        var SuMLoadingTitleElm = document.getElementById('SuMLoadingTXT');
-                        var SuMLoadingAnElmF0C0 = document.getElementById('SuMMovingLoadingNID');
-                        var SuMLoadingAnConElmF0C0 = document.getElementById('SuMMovingLoadingCont');
-                        var SuMLoadingSVGPreviewElmF0C0 = document.getElementById('SuMLoadingSVGPreview');
-                        var SuMLoadingFailedTXTElm = document.getElementById('SuMLoadingFailedTXT');
-
-                        var SuMLoadingExpandAnIElm = document.getElementById('SuMLoadingExpandAnI');
-                        SuMLoadingExpandAnIElm.style.display = 'none';
-                        var SuMLoadingExpandingColorDivElm = document.getElementById('SuMLoadingExpandingColorDiv');
-
-                        var SuMLoadHerfFailed = false;
-                        var SuMLoadingIsInPross = false;
-
-                        var SuMSettingsSVGPath = '<rect fill="none" height="24" width="24"/> <path d="M19.5,12c0-0.23-0.01-0.45-0.03-0.68l1.86-1.41c0.4-0.3,0.51-0.86,0.26-1.3l-1.87-3.23c-0.25-0.44-0.79-0.62-1.25-0.42 l-2.15,0.91c-0.37-0.26-0.76-0.49-1.17-0.68l-0.29-2.31C14.8,2.38,14.37,2,13.87,2h-3.73C9.63,2,9.2,2.38,9.14,2.88L8.85,5.19 c-0.41,0.19-0.8,0.42-1.17,0.68L5.53,4.96c-0.46-0.2-1-0.02-1.25,0.42L2.41,8.62c-0.25,0.44-0.14,0.99,0.26,1.3l1.86,1.41 C4.51,11.55,4.5,11.77,4.5,12s0.01,0.45,0.03,0.68l-1.86,1.41c-0.4,0.3-0.51,0.86-0.26,1.3l1.87,3.23c0.25,0.44,0.79,0.62,1.25,0.42 l2.15-0.91c0.37,0.26,0.76,0.49,1.17,0.68l0.29,2.31C9.2,21.62,9.63,22,10.13,22h3.73c0.5,0,0.93-0.38,0.99-0.88l0.29-2.31 c0.41-0.19,0.8-0.42,1.17-0.68l2.15,0.91c0.46,0.2,1,0.02,1.25-0.42l1.87-3.23c0.25-0.44,0.14-0.99-0.26-1.3l-1.86-1.41 C19.49,12.45,19.5,12.23,19.5,12z M12.04,15.5c-1.93,0-3.5-1.57-3.5-3.5s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.97,15.5,12.04,15.5z"/>';
-                        var SuMUserLibrarySVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 18l2 1V3c0-1.1-.9-2-2-2H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13zM15 5H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z"/>';
-                        var SuMHitsSVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 11.55c-1.82-1.7-4.12-2.89-6.68-3.35C4.11 7.99 3 8.95 3 10.18v6.24c0 1.68.72 2.56 1.71 2.69 2.5.32 4.77 1.35 6.63 2.87.35.29.92.32 1.27.04 1.87-1.53 4.16-2.58 6.68-2.9.94-.13 1.71-1.06 1.71-2.02v-6.92c0-1.23-1.11-2.19-2.32-1.98-2.56.46-4.86 1.65-6.68 3.35zM12 8c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/>';
-                        var SuMExploreSVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"/>';
-                        var SuMMangaNContantExpSVGPath = '<g><rect fill="none" height="24" width="24"/><rect fill="none" height="24" width="24"/></g><g><path d="M17.5,4.5c-1.95,0-4.05,0.4-5.5,1.5c-1.45-1.1-3.55-1.5-5.5-1.5c-1.45,0-2.99,0.22-4.28,0.79C1.49,5.62,1,6.33,1,7.14 l0,11.28c0,1.3,1.22,2.26,2.48,1.94C4.46,20.11,5.5,20,6.5,20c1.56,0,3.22,0.26,4.56,0.92c0.6,0.3,1.28,0.3,1.87,0 c1.34-0.67,3-0.92,4.56-0.92c1,0,2.04,0.11,3.02,0.36c1.26,0.33,2.48-0.63,2.48-1.94l0-11.28c0-0.81-0.49-1.52-1.22-1.85 C20.49,4.72,18.95,4.5,17.5,4.5z M21,17.23c0,0.63-0.58,1.09-1.2,0.98c-0.75-0.14-1.53-0.2-2.3-0.2c-1.7,0-4.15,0.65-5.5,1.5V8 c1.35-0.85,3.8-1.5,5.5-1.5c0.92,0,1.83,0.09,2.7,0.28c0.46,0.1,0.8,0.51,0.8,0.98V17.23z"/><g/><path d="M13.98,11.01c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.54-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,10.99,14.05,11.01,13.98,11.01z"/><path d="M13.98,13.67c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,13.66,14.05,13.67,13.98,13.67z"/><path d="M13.98,16.33c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.7-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,16.32,14.05,16.33,13.98,16.33z"/></g>';
-                        var SuMCreatorSVGPath = '<rect fill="none" height="20" width="20"/><path d="M15.35,8.83l0.71-0.71c0.59-0.59,0.59-1.54,0-2.12L15,4.94c-0.59-0.59-1.54-0.59-2.12,0l-0.71,0.71L15.35,8.83z M11.11,6.71 l-6.96,6.96C4.05,13.77,4,13.89,4,14.03v2.47C4,16.78,4.22,17,4.5,17h2.47c0.13,0,0.26-0.05,0.35-0.15l6.96-6.96L11.11,6.71z M4.51,11.18C3.59,10.76,3,10.16,3,9.25c0-1.31,1.39-1.99,2.61-2.59C6.45,6.24,7.5,5.73,7.5,5.25C7.5,4.91,6.83,4.5,6,4.5 c-0.94,0-1.36,0.46-1.38,0.48C4.35,5.29,3.88,5.33,3.57,5.07C3.26,4.81,3.21,4.35,3.46,4.03C3.55,3.93,4.34,3,6,3 c1.47,0,3,0.84,3,2.25C9,6.66,7.55,7.37,6.27,8C5.56,8.35,4.5,8.87,4.5,9.25c0,0.3,0.48,0.56,1.17,0.78L4.51,11.18z M14.14,12.16 c0.83,0.48,1.36,1.14,1.36,2.09c0,1.94-2.44,2.75-3.75,2.75C11.34,17,11,16.66,11,16.25s0.34-0.75,0.75-0.75 c0.77,0,2.25-0.49,2.25-1.25c0-0.39-0.38-0.71-0.97-0.97L14.14,12.16z"/>';
-
-                        function SuMActivateAnimationF0C0() {
-                            /*setTimeout(() => {
-                                document.getElementById('SuMMovingLoadingNID').style.transitionDuration = '0s';
-                            }, 10);*/
-                            SuMLoadingAnElmF0C0.style.transitionDuration = '0s';
-                            /*setTimeout(() => {
-                                document.getElementById('SuMMovingLoadingNID').style.marginLeft = '-40%';
-                            }, 20);*/
-                            SuMLoadingAnElmF0C0.style.marginLeft = '-40%';
-                            setTimeout(() => {
-                                document.getElementById('SuMMovingLoadingNID').style.transitionDuration = '0.74s';
-                            }, 2);
-                            //SuMLoadingAnElmF0C0.style.transitionDuration = '1s';
-                            setTimeout(() => {
-                                document.getElementById('SuMMovingLoadingNID').style.marginLeft = '100%';
-                            }, 20);
-                            //SuMLoadingAnElmF0C0.style.marginLeft = '100%';
-                            setTimeout(() => {
-                                if (SuMLoadHerfFailed == false) {
-                                    SuMActivateAnimationF0C0();
-                                }
-                            }, 960);
-                        };
-
-                        function ExpandTranStartF0C0(ExpAnThemeColor) {
-                            //AnPrep
-                            SuMLoadingExpandAnIElm.style.display = 'none';
-                            SuMLoadingExpandingColorDivElm.style.backgroundColor = ExpAnThemeColor;
-                            SuMLoadingExpandAnIElm.style.width = '26px';
-                            SuMLoadingExpandAnIElm.style.height = '26px';
-                            SuMLoadingExpandAnIElm.style.borderRadius = '13px';
-                            //AnStart
-                            SuMLoadingExpandAnIElm.style.display = 'block';
-                            setTimeout(() => {
-                                SuMLoadingExpandAnIElm.style.width = '360px';
-                                SuMLoadingExpandAnIElm.style.height = '360px';
-                                SuMLoadingExpandAnIElm.style.marginTop = 'calc(50vh - 220px)';
-                                SuMLoadingExpandAnIElm.style.marginLeft = 'calc(50vw - 180px)';
-                                SuMLoadingExpandAnIElm.style.borderRadius = '180px';
-                            }, 60);
-                            setTimeout(() => {
-                                SuMLoadingExpandAnIElm.style.width = '100vw';
-                                SuMLoadingExpandAnIElm.style.height = '100vw';
-                                SuMLoadingExpandAnIElm.style.marginTop = 'calc(50vh - 50vw - 40px)';
-                                SuMLoadingExpandAnIElm.style.marginLeft = '0px';
-                                SuMLoadingExpandAnIElm.style.borderRadius = '50vw';
-                            }, 260);
-                            setTimeout(() => {
-                                SuMLoadingExpandAnIElm.style.height = '100vh';
-                                SuMLoadingExpandAnIElm.style.marginTop = '0px';
-                                SuMLoadingExpandAnIElm.style.borderRadius = '0px';
-                            }, 640);
-                        };
-
-                        function SuMLoadingPIMGLoad(IMGKey) {
-                            if (IMGKey == 'MangaExplorer' || IMGKey == 'ContantExplorer') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMMangaNContantExpSVGPath;
-                            }
-                            if (IMGKey == 'Explore') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMExploreSVGPath;
-                            }
-                            if (IMGKey == 'Settings') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMSettingsSVGPath;
-                            }
-                            if (IMGKey == 'UserLibrary') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMUserLibrarySVGPath;
-                            }
-                            if (IMGKey == 'Hits') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMHitsSVGPath;
-                            }
-                            if (IMGKey == 'Creator') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMCreatorSVGPath;
-                            }
-                        };
-
-                        var SuMCoinsReq = 0;
-                        var CuurCoinsCountF0CGSF = 0;
-
-                        function SuMReqCoinsCountFU(FMID, callback) {
-                            document.getElementById('CoinsCountF0CMF').innerText = '...';
-                            $.ajax({
-                                dataType: "json",
-                                method: 'post',
-                                url: '<%= ResolveUrl("BTNTesting.aspx/GetMangaCoinsCountFSQL") %>',
-                                data: JSON.stringify({ MID: FMID }),
-                                contentType: "application/json; charset=utf-8",
-                                success: function (msg) {
-                                    document.getElementById('CoinsCountF0CMF').innerText = '';
-                                    $("#CoinsCountF0CMF").append(msg.d);
-                                    SuMCoinsReq = msg.d;
-                                    callback();
-                                },
-                                error: function (e) {
-                                    document.getElementById('CoinsCountF0CMF').innerText = '';
-                                    $("#CoinsCountF0CMF").append('!');
-                                    SuMCoinsReq = '!';
-                                    callback();
-                                }
-                            });
-                        };
-
-                        function SuMCoinsCountFU(FUID) {
-                            $.ajax({
-                                dataType: "json",
-                                method: 'post',
-                                url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %>',
-                                data: JSON.stringify({ UID: FUID }),
-                                contentType: "application/json; charset=utf-8",
-                                success: function (msg) {
-                                    $("#CuurCoinsCountF0CGSF").append(msg.d);
-                                    CuurCoinsCountF0CGSF = msg.d;
-                                    androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
-                                    setTimeout(() => {
-                                        androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
-                                        setTimeout(() => {
-                                            androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
-                                        }, 360);
-                                    }, 180);
-                                },
-                                error: function (e) {
-                                    $("#CuurCoinsCountF0CGSF").append('!');
-                                    CuurCoinsCountF0CGSF = null;
-                                    androidAPIs.SuMCoinsShowITTA(null);
-                                }
-                            });
-                        };
-
-                        function SuMCoinMasterCard(HerfLink, CurrUIDF0CGF, HerfInfo, HerfThemeColor) {
-                            SuMLoadingIsInPross = false;
-                            if (CuurCoinsCountF0CGSF >= SuMCoinsReq) {
-                                SuMUpdateCoinsCount(CurrUIDF0CGF, SuMCoinsReq * (-1));
-                                SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, 'ContantExplorer');
-                            } else {
-                                SuMGoToThis('/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)', 'var(--SuMThemeColorOP74)', 'SuM Settings', 'Settings');
-                            }
-                        };
-
-                        function SuMCoinMasterCloseAllCS() {
-                            SuMLoadingIsInPross = false;
-                            document.getElementById('LoadingSuMInfoBub').style.display = 'none';
-                            document.getElementById('SuMUnlockCancelDiv').style.display = 'none';
-                        };
-
-                        /* SuM Coins Count FixUP */
-                        var CurrUIDF0CFixUp0 = getUIDFrUserCo();
-                        SuMCoinsCountFU(CurrUIDF0CFixUp0);
-
-                        function SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, IMGID) {
-                            if (SuMLoadingIsInPross == false && HerfLink.includes(document.URL) == false && document.URL.includes(HerfLink) == false) {
-                                SuMLoadingIsInPross = true;
-                                SuMLoadingAnConElmF0C0.style.display = 'block';
-                                SuMLoadingFailedTXTElm.style.display = 'none';
-                                document.getElementById('SuMUnlockCancelDiv').style.display = 'none';
-                                document.getElementById('SuMShowCoinMCardBTN').style.display = 'none';
-                                document.getElementById('SuMCoinUnlockBTN').removeAttribute('onclick');
-                                document.getElementById('SuMCoinUnlockBTN').innerText = 'loading...';
-                                SuMLoadHerfFailed = false;
-                                if (HerfThemeColor.includes('--') == false) {
-                                    SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
-                                    SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
-                                    SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
-                                    SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
-                                    SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
-                                    document.getElementById('SuMCoinUnlockBTN').style.backgroundColor = HerfThemeColor.replace('0.74', '0.86');
-                                }
-                                else {
-                                    SuMLoadingTitleElm.style.color = 'var(--SuMThemeColorOP92)';
-                                    SuMLoadingAnConElmF0C0.style.backgroundColor = 'var(--SuMThemeColorOP14)';
-                                    SuMLoadingAnElmF0C0.style.backgroundColor = 'var(--SuMThemeColorOP92)';
-                                    SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', 'var(--SuMThemeColorOP92)');
-                                    SuMLoadingFailedTXTElm.style.color = 'var(--SuMThemeColorOP64)';
-                                    document.getElementById('SuMCoinUnlockBTN').style.backgroundColor = 'var(--SuMThemeColorOP86)';
-                                }
-                                SuMLoadingPIMGLoad(IMGID);
-                                SuMLoadingTitleElm.innerText = HerfInfo;
-                                SuMLoadingContElm.style.display = 'block';
-                                if (navigator.onLine == true) {
-                                    if (IMGID == 'ContantExplorer' || IMGID == 'Creator') {
-                                        ExpandTranStartF0C0(HerfThemeColor);
-                                        SuMActivateAnimationF0C0();
-                                    } else {
-                                        if (IMGID != 'MangaExplorer') {
-                                            SuMActivateAnimationF0C0();
-                                        }
-                                    }
-                                    if (IMGID != 'MangaExplorer') {
-                                        setTimeout(() => {
-                                            if (HerfLink != null) {
-                                                if (document.URL.includes('/MangaExplorer.aspx') == true) {
-                                                    HideMangaExplorerTopPartBar();
-                                                    HideMangaExplorerBar();
-                                                }
-                                                if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
-                                                    SuMHideFullNavAnF0C0();
-                                                }
-                                                SuMUltraCloseCard();
-                                                setTimeout(() => {
-                                                    location.href = HerfLink;
-                                                }, 360);
-                                            }
-                                        }, 840);
-                                    } else {
-                                        //-sumcoinpross
-                                        document.getElementById('SuMShowCoinMCardBTN').style.display = 'flex';
-                                        SuMLoadingAnConElmF0C0.style.display = 'none';
-                                        var FDMID = 0;
-                                        var CurrUIDF0CGF = getUIDFrUserCo();
-                                        var MIDEXTRaw = HerfLink.split('&');
-                                        for (var ic = 0; ic < MIDEXTRaw.length; ic++) {
-                                            if (MIDEXTRaw[ic].includes('VC=') == true) {
-                                                FDMID = MIDEXTRaw[ic].replace('VC=', '').replace(' ', '');
-                                                ic = MIDEXTRaw;
-                                            }
-                                        }
-                                        SuMReqCoinsCountFU(FDMID, function () {
-
-                                            SuMCoinsCountFU(CurrUIDF0CGF);
-                                            document.getElementById('CoinsCountF0CMF').innerText = SuMCoinsReq;
-                                            document.getElementById('SuMCoinUnlockBTN').setAttribute('onclick', "SuMCoinMasterCard('" + HerfLink + "'," + CurrUIDF0CGF + ",'" + HerfInfo + "','" + HerfThemeColor + "');");
-                                            document.getElementById('SuMUnlockCancelDiv').style.display = 'block';
-                                            if (CuurCoinsCountF0CGSF >= SuMCoinsReq) {
-                                                document.getElementById('SuMCoinUnlockBTN').innerText = 'Unlock!';
-                                            } else {
-                                                document.getElementById('SuMCoinUnlockBTN').innerText = 'Get Coins';
-                                            }
-
-                                        });
-                                    }
-                                }
-                                else {
-                                    if (IMGID != 'MangaExplorer') {
-                                        fetch(HerfLink, { method: 'GET' }).then(res => {
-                                            SuMActivateAnimationF0C0();
-                                            if (IMGID == 'ContantExplorer' || IMGID == 'Creator') {
-                                                ExpandTranStartF0C0(HerfThemeColor);
-                                            }
-                                            setTimeout(() => {
-                                                if (HerfLink != null) {
-                                                    if (document.URL.includes('/MangaExplorer.aspx') == true) {
-                                                        HideMangaExplorerTopPartBar();
-                                                        HideMangaExplorerBar();
-                                                    }
-                                                    if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
-                                                        SuMHideFullNavAnF0C0();
-                                                    }
-                                                    SuMUltraCloseCard();
-                                                    setTimeout(() => {
-                                                        location.href = HerfLink;
-                                                    }, 360);
-                                                }
-                                            }, 840);
-                                        }).catch(err => {
-                                            SuMLoadingAnConElmF0C0.style.display = 'none';
-                                            SuMLoadingFailedTXTElm.style.display = 'block';
-                                            setTimeout(() => {
-                                                HideSuMLoadingPopUp();
-                                                SuMLoadingIsInPross = false;
-                                            }, 2040);
-                                        });
-                                        SuMLoadHerfFailed = true;
-                                    } else {
-                                        //--sumcoainpross -fail
-                                        SuMLoadingAnConElmF0C0.style.display = 'none';
-                                        SuMLoadingFailedTXTElm.style.display = 'block';
-                                        setTimeout(() => {
-                                            HideSuMLoadingPopUp();
-                                            SuMLoadingIsInPross = false;
-                                        }, 2040);
-                                    }
-                                }
-                            }
-                        };
-
-                        function SuMGoBack() {
-                            var HerfLink = document.referrer;
-                            var HerfThemeColor = null;
-                            var HerfInfo = null;
-                            var IMGID = null;
-                            if (HerfLink.includes('Explore.aspx') == true) {
-                                IMGID = 'Explore';
-                                HerfInfo = 'SuM Explore';
-                            }
-                            if (HerfLink.includes('Hits.aspx') == true) {
-                                IMGID = 'Hits';
-                                HerfInfo = 'SuM Hits';
-                            }
-                            if (HerfLink.includes('ContantExplorer.aspx') == true) {
-                                IMGID = 'ContantExplorer';
-                            }
-                            if (HerfLink.includes('MangaExplorer.aspx') == true) {
-                                IMGID = 'MangaExplorer';
-                            }
-                            if (HerfLink.includes('Settings.aspx') == true) {
-                                IMGID = 'Settings';
-                                HerfInfo = 'SuM Settings';
-                            }
-                            if (HerfLink.includes('UserLibrary.aspx') == true) {
-                                IMGID = 'UserLibrary';
-                                HerfInfo = 'My Library';
-                            }
-                            if (HerfLink.includes('CreatorPanel.aspx') == true || HerfLink.includes('CreatorMangaPanel.aspx') == true) {
-                                IMGID = 'Creator';
-                                HerfInfo = 'Creator Panel';
-                            }
-                            var SuMFoundThemeC = false;
-                            HerfLink.replace('/', '&').replace('?', '&').substring(1).split("&").forEach(function (val) {
-
-                                var currVal = val.split("=");
-                                if (currVal[0] == "TC") {
-                                    SuMFoundThemeC = true;
-                                    var SuMBackLoiadingDetectedThemeColor = decodeURI(currVal[1]);
-                                    if (SuMBackLoiadingDetectedThemeColor != null && SuMBackLoiadingDetectedThemeColor.replace(' ', '').includes('255,255,255') == false) {
-                                        HerfThemeColor = SuMBackLoiadingDetectedThemeColor;
-                                    }
-                                    else {
-                                        HerfThemeColor = 'var(--SuMThemeColorOP74)';
-                                    }
-
-                                }
-                                if (currVal[0] == 'Manga') {
-                                    if (IMGID == 'ContantExplorer') {
-                                        HerfInfo = currVal[1];
-                                    }
-                                }
-                                if (currVal[0] == 'Chapter') {
-                                    if (IMGID == 'MangaExplorer') {
-                                        HerfInfo = 'Chapter ' + parseInt(currVal[1].replace('ch', ''));
-                                    }
-                                }
-
-                            });
-                            if (SuMFoundThemeC == false) {
-                                HerfThemeColor = 'var(--SuMThemeColorOP74)';
-                            }
-                            if (SuMLoadingIsInPross == false && HerfLink != null && HerfLink != document.URL && HerfLink.includes(document.URL) == false && document.URL.includes(HerfLink) == false) {
-                                SuMLoadingIsInPross = true;
-                                SuMLoadingAnConElmF0C0.style.display = 'block';
-                                SuMLoadingFailedTXTElm.style.display = 'none';
-                                SuMLoadHerfFailed = false;
-                                SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
-                                SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
-                                SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
-                                SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
-                                SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
-                                SuMLoadingPIMGLoad(IMGID);
-                                SuMLoadingTitleElm.innerText = HerfInfo;
-                                //SuMActivateAnimationF0C0();
-                                SuMLoadingContElm.style.display = 'block';
-                                SuMActivateAnimationF0C0();
-                                if (navigator.onLine == true) {
-                                    if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer' || IMGID =='Creator') {
-                                        ExpandTranStartF0C0(HerfThemeColor);
-                                    }
-                                    setTimeout(() => {
-                                        if (document.URL.includes('/MangaExplorer.aspx') == true) {
-                                            HideMangaExplorerTopPartBar();
-                                            HideMangaExplorerBar();
-                                        }
-                                        if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
-                                            SuMHideFullNavAnF0C0();
-                                        }
-                                        setTimeout(() => {
-                                            history.back();
-                                        }, 360);
-                                    }, 840);
-                                }
-                                else {
-                                    fetch(HerfLink, { method: 'GET' }).then(res => {
-                                        if (IMGID == 'MangaExplorer' || IMGID == 'ContantExplorer' || IMGID =='Creator') {
-                                            ExpandTranStartF0C0(HerfThemeColor);
-                                        }
-                                        setTimeout(() => {
-                                            if (document.URL.includes('/MangaExplorer.aspx') == true) {
-                                                HideMangaExplorerTopPartBar();
-                                                HideMangaExplorerBar();
-                                            }
-                                            if (document.URL.includes('/MangaExplorer.aspx') == false && HerfLink.includes('/MangaExplorer.aspx') == true) {
-                                                SuMHideFullNavAnF0C0();
-                                            }
-                                            setTimeout(() => {
-                                                history.back();
-                                            }, 360);
-                                        }, 840);
-                                    }).catch(err => {
-                                        SuMLoadingAnConElmF0C0.style.display = 'none';
-                                        SuMLoadingFailedTXTElm.style.display = 'block';
-                                        setTimeout(() => {
-                                            HideSuMLoadingPopUp();
-                                            SuMLoadingIsInPross = false;
-                                        }, 2040);
-                                    });
-                                    SuMLoadHerfFailed = true;
-                                }
-                            }
-                        };
-
-                        var CISuMShowThisMIsActive = false;
-                        function SuMTXTShowThis(SuMAlert, HerfThemeColor, HerfInfo, IMGID) {
-                            if (CISuMShowThisMIsActive == false) {
-                                CISuMShowThisMIsActive = true;
-                                SuMLoadingAnConElmF0C0.style.display = 'block';
-                                SuMLoadingFailedTXTElm.style.display = 'none';
-                                document.getElementById('SuMShowCoinMCardBTN').style.display = 'none';
-                                SuMLoadHerfFailed = false;
-                                if (HerfThemeColor.includes('--') == false) {
-                                    SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
-                                    SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
-                                    SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
-                                    SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
-                                    SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
-                                }
-                                else {
-                                    SuMLoadingTitleElm.style.color = 'var(--SuMThemeColorOP92)';
-                                    SuMLoadingAnConElmF0C0.style.backgroundColor = 'var(--SuMThemeColorOP14)';
-                                    SuMLoadingAnElmF0C0.style.backgroundColor = 'var(--SuMThemeColorOP92)';
-                                    SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', 'var(--SuMThemeColorOP92)');
-                                    SuMLoadingFailedTXTElm.style.color = 'var(--SuMThemeColorOP64)';
-                                }
-
-
-                                SuMLoadingPIMGLoad(IMGID);
-                                SuMLoadingTitleElm.innerText = HerfInfo;
-                                //SuMActivateAnimationF0C0();
-                                SuMLoadingContElm.style.display = 'block';
-                                SuMLoadingAnConElmF0C0.style.display = 'none';
-                                SuMLoadingFailedTXTElm.innerText = SuMAlert;
-                                SuMLoadingFailedTXTElm.style.display = 'block';
-                                setTimeout(() => {
-                                    androidAPIs.VIBRATEPhone();
-                                }, 90);
-                                setTimeout(() => {
-                                    HideSuMLoadingPopUp();
-                                }, 1320);
-                                SuMLoadHerfFailed = true;
-                            }
-                        };
-
-                        function HideSuMLoadingPopUp() {
-                            if (SuMLoadingContElm.classList.contains('fadeIn') == true) {
-                                SuMLoadingContElm.classList.remove('fadeIn');
-                                SuMLoadingContElm.classList.add('fadeOut');
-                            }
-                            else {
-                                if (SuMLoadingContElm.classList.contains('fadeIn') == false) {
-                                    SuMLoadingContElm.classList.add('fadeIn');
-                                }
-                            }
-                            setTimeout(() => {
-                                SuMLoadingContElm.style.display = 'none';
-                                SuMLoadingContElm.classList.remove('fadeOut');
-                                SuMLoadingContElm.classList.add('fadeIn');
-                                CISuMShowThisMIsActive = false;
-                            }, 360);
-                        };
-
-                    </script>
+                    <script><%= ResolveUrl("BTNTesting.aspx/GetMangaCoinsCountFSQL") %><%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %></script>
                     </div>
                 </div>
-                <script>
-                    var SuMMainBlockElm = document.getElementById('<%= SuMMainBlock.ClientID %>');
-                    var MCCONTANER = document.getElementById('<%= mc.ClientID %>');
-                    if ("androidAPIs" in window == false) {
-                        MCCONTANER.innerHTML = "";
-                        MCCONTANER.style.display = "none";
-                        MCCONTANER.style.visibility = "hidden";
-                        location.href = '/SuMMangaInstallAPP.aspx';
-                    }
-                    document.addEventListener("DOMContentLoaded", function () {
-
-                        if ("androidAPIs" in window) {
-
-                            androidAPIs.layoutDoneLoading();
-
-                        }
-                        else
-                        {
-                            MCCONTANER.innerHTML = "";
-                            MCCONTANER.style.display = "none";
-                            MCCONTANER.style.visibility = "hidden";
-                        }
-
-                    });
-
-                    function SuMLockHandler() {
-                        var SuMCookieCopyF0C0 = document.cookie;
-                        var SuMLockViewBlockElm = document.getElementById('SuMLockViewBlock');
-                        if (SuMCookieCopyF0C0.includes('SuMLockMode') == true) {
-                            SuMLockViewBlockElm.style.display = 'block';
-                            var SuMAuthPrIsDF0C0 = androidAPIs.SUMAuthProssIsDone();
-                            if (SuMAuthPrIsDF0C0 == true) {
-                                var SuMAuthPrResF0C0 = androidAPIs.SUMAuthProssResult();
-                                if (SuMAuthPrResF0C0 == true) {
-                                    SuMLockViewBlockElm.style.display = 'none';
-                                }
-                                else {
-                                    SuMLockViewBlockElm.style.display = 'block';
-                                    androidAPIs.SUMVerification();
-                                    setTimeout(() => {
-                                        SuMAuthAcceptenceLooper(SuMAuthPrResF0C0, SuMAuthPrIsDF0C0);
-                                    }, 540);
-                                }
-                            }
-                            else {
-                                SuMLockViewBlockElm.style.display = 'block';
-                                androidAPIs.SUMVerification();
-                                setTimeout(() => {
-                                    SuMAuthAcceptenceLooper(androidAPIs.SUMAuthProssResult(), SuMAuthPrIsDF0C0);
-                                }, 540);
-                            }
-                        }
-                        else {
-                            SuMLockViewBlockElm.style.display = 'none';
-                            androidAPIs.SUMAuthReset();
-                        }
-                    };
-
-                    SuMLockHandler();
-
-                    function SuMAuthAcceptenceLooper(SuMAuthPrRSF0C1, SuMAuthPrIsDF0C1) {
-                        setTimeout(() => {
-                            SuMAuthPrIsDF0C1 = androidAPIs.SUMAuthProssIsDone();
-                            SuMAuthPrRSF0C1 = androidAPIs.SUMAuthProssResult();
-                            if (SuMAuthPrIsDF0C1 == false || SuMAuthPrRSF0C1 == false) {
-                                var SuMAuthIsStillInProssF0C0 = androidAPIs.SUMAuthIsUnderPross();
-                                if (SuMAuthIsStillInProssF0C0 == false) {
-                                    androidAPIs.SUMVerification();
-                                    SuMAuthAcceptenceLooper(androidAPIs.SUMAuthProssResult(), androidAPIs.SUMAuthProssIsDone());
-                                }
-                                else {
-                                    SuMAuthAcceptenceLooper(androidAPIs.SUMAuthProssResult(), androidAPIs.SUMAuthProssIsDone());
-                                }
-                                SuMLockViewBlockElmC1.style.display = 'block';
-                            }
-                            else {
-                                var SuMLockViewBlockElmC1 = document.getElementById('SuMLockViewBlock');
-                                SuMLockViewBlockElmC1.style.display = 'none';
-                            }
-                        }, 960);
-                    };
-
-                        //androidAPIs.SUMAuthIsUnderPross();
-                        //androidAPIs.SUMVerification();
-                        //androidAPIs.SUMAuthReset();
-                        //androidAPIs.SUMAuthProssIsDone();
-                        //androidAPIs.SUMAuthProssResult();
-                </script>
+                <script><%= SuMMainBlock.ClientID %><%= mc.ClientID %></script>
             </div>
         </div>
         <style>
@@ -1552,178 +973,14 @@
             
         </div>
     </div>
-    <script>
-        document.getElementById('SuMUltraInfoCard').style.display = 'none';
-        document.getElementById('SuMUltraInfoCard').classList.remove('fadeInRight');
-        document.getElementById('SuMUltraInfoCard').classList.add('fadeOutLeft');
-        document.getElementById('SuMUltraMDisc').innerText = 'loading';
-        document.getElementById('SuMUltarProdYear').innerText = 'loading';
-        document.getElementById('SuMUltarChptersNum').innerText = 'loading';
-        document.getElementById('SuMUltraFavListClick').style.opacity = '0.32';
-        document.getElementById('SuMUltraCurrReadingTXT').innerText = 'loading';
-        document.getElementById('SuMUltraWannaListClick').style.opacity = '0.32';
-        document.getElementById('SuMUltraStartReadingFuncClick').style.opacity = '0.32';
-        document.getElementById('SuMUltraCover').src = '/svg/add.svg';
-        var SuMUltraIsLoading = false;
-        function SuMUltraCloseCard() {
-            var UltraAbsConClElm = document.getElementById('SuMUltraInfoCard');
-            UltraAbsConClElm.classList.remove('fadeInRight');
-            UltraAbsConClElm.classList.add('fadeOutLeft');
-            setTimeout(() => {
-                UltraAbsConClElm.style.display = 'none';
-            }, 360);
-            document.getElementById('UltraCardBGCloseDiv').style.display = 'none';
-            setTimeout(() => {
-                document.getElementById('SuMUltraMDisc').innerText = 'loading';
-                document.getElementById('SuMUltarProdYear').innerText = 'loading';
-                document.getElementById('SuMUltarChptersNum').innerText = 'loading';
-                document.getElementById('SuMUltraCover').src = '/svg/add.svg';
-                document.getElementById('SuMUltraFavListClick').style.opacity = '0.32';
-                document.getElementById('SuMUltraCurrReadingTXT').innerText = 'loading';
-                document.getElementById('SuMUltraWannaListClick').style.opacity = '0.32';
-                document.getElementById('SuMUltraStartReadingFuncClick').style.opacity = '0.32';
-                document.getElementById('SuMUltraWannaListClick').setAttribute('onclick', "return false;");
-                document.getElementById('SuMUltraFavListClick').setAttribute('onclick', "return false;");
-                document.getElementById('SuMUltraStartReadingFuncClick').setAttribute('onclick', 'return false;');
-                document.getElementById('SuMUltarTitle').innerText = 'loading';
-                SuMUltraIsLoading = false;
-            }, 380);
-        };
-        function SuMApplyInfoToUltraCard(UltraID, UltraCover, UltraTitle, UltraMELink, IMGID, HerfInfo, HerfThemeColor) {
-            document.getElementById('UltraCardBGCloseDiv').style.display = 'block';
-            if (SuMUltraIsLoading == false) {
-                SuMUltraIsLoading = true;
-                var UltraAbsConElm = document.getElementById('SuMUltraInfoCard');
-                document.getElementById('SuMUltraCurrReadingSVG').setAttribute('fill', HerfThemeColor);
-                document.getElementById('SuMUltraWannaSVG').setAttribute('fill', HerfThemeColor);
-                document.getElementById('SuMUltraFavSVG').setAttribute('fill', HerfThemeColor);
-                if (UltraAbsConElm.classList.contains('fadeOutLeft') == true) {
-                    UltraAbsConElm.classList.remove('fadeOutLeft');
-                }
-                if (UltraAbsConElm.classList.contains('fadeInRight') == false) {
-                    UltraAbsConElm.classList.add('fadeInRight');
-                }
-                document.getElementById('SuMUltraBGColor').style.backgroundColor = HerfThemeColor;
-                document.getElementById('SuMUltarTitle').innerText = UltraTitle;
-                document.getElementById('SuMUltraCover').src = UltraCover;
-                UltraAbsConElm.style.display = 'block';
-                var UltraUCookie = getCookie('SuMCurrentUser');
-                if (UltraUCookie != null && UltraUCookie != '' && UltraUCookie != ' ') {
-                    document.getElementById('UltraExploreOrLogIn').innerText = 'More';
-                    document.getElementById('SuMUltraHerfFuncLTE').setAttribute('onclick', "SuMGoToThis('" + UltraMELink + "', '" + HerfThemeColor + "', '" + HerfInfo + "', '" + IMGID + "');");
-                }
-                else {
-                    document.getElementById('UltraExploreOrLogIn').innerText = 'Login for more';
-                    document.getElementById('SuMUltraHerfFuncLTE').setAttribute('onclick', "location.href = '/AccountETC/LoginETC.aspx';");
-                }
-                SuMGetMDisc(UltraID);
-                SuMGetMYear(UltraID);
-                SuMGetMChaptersNum(UltraID);
-                SuMGetMAgeRating(UltraID);
-                SuMGetMFavState(UltraID);
-                SuMGetMWannaState(UltraID);
-                SuMGetMCurrState(UltraID, HerfThemeColor);
-                SetSuMShareBTN(UltraMELink);
-            }
-        };
-        function SuMGetMDisc(RMID) {
-            document.getElementById('SuMUltraMDisc').innerText = '';
-            $.ajax({
-                dataType: "json",
-                method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMDiscFSQL") %>',
-                data: JSON.stringify({ MID: RMID }),
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    $("#SuMUltraMDisc").append(msg.d);
-                },
-                error: function (e) {
-                    //$("#SuMUltraMDisc").append(msg.d);
-                    $("#SuMUltraMDisc").append('Failed to load!');
-                }
-            });
-        };
-        function SuMGetMYear(RMID) {
-            document.getElementById('SuMUltarProdYear').innerText = '';
-            $.ajax({
-                dataType: "json",
-                method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMYearFSQL") %>',
-                data: JSON.stringify({ MID: RMID }),
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    $("#SuMUltarProdYear").append(msg.d);
-                },
-                error: function (e) {
-                    //$("#SuMUltraMDisc").append(msg.d);
-                    $("#SuMUltarProdYear").append('0000!');
-                }
-            });
-        };
-        function SuMGetMChaptersNum(RMID) {
-            document.getElementById('SuMUltarChptersNum').innerText = '';
-            $.ajax({
-                dataType: "json",
-                method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMChapterNumFSQL") %>',
-                data: JSON.stringify({ MID: RMID }),
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    $("#SuMUltarChptersNum").append(msg.d + ' chapters');
-                },
-                error: function (e) {
-                    //$("#SuMUltraMDisc").append(msg.d);
-                    $("#SuMUltarChptersNum").append('Failed to load!');
-                }
-            });
-        };
-        function SuMGetMAgeRating(RMID) {
-            document.getElementById('SuMUltraAgeRating').innerText = '';
-            $.ajax({
-                dataType: "json",
-                method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMAgeRatingFSQL") %>',
-                data: JSON.stringify({ MID: RMID }),
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    $("#SuMUltraAgeRating").append(msg.d);
-                },
-                error: function (e) {
-                    //$("#SuMUltraMDisc").append(msg.d);
-                    $("#SuMUltraAgeRating").append('Failed to load!');
-                }
-            });
-        };
-        function SuMGetMFavState(RMID) {
-            document.getElementById('SuMUltraFavListClick').style.opacity = '0.32';
-            var FCSRSIsFav = false;
-            var CTALICA = getCookie('SuMCurrentUser');
-            if (CTALICA != null && CTALICA != '') {
-                var UIDFrJSC = getUIDFrUserCo();
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetMIsFavFSQL") %>',
-                    data: JSON.stringify({ MID: RMID, UID: UIDFrJSC }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        FCSRSIsFav = msg.d;
-                        if (FCSRSIsFav == true) {
-                            document.getElementById('SuMUltraFavSVG').innerHTML = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"/>';
-                            document.getElementById('SuMUltraFavListClick').setAttribute('onclick', "RemoveFromFavTWM(" + RMID + "," + getUIDFrUserCo() + ");");
+    <script><%= ResolveUrl("BTNTesting.aspx/GetMDiscFSQL") %><%= ResolveUrl("BTNTesting.aspx/GetMYearFSQL") %><%= ResolveUrl("BTNTesting.aspx/GetMChapterNumFSQL") %><%= ResolveUrl("BTNTesting.aspx/GetMAgeRatingFSQL") %><%= ResolveUrl("BTNTesting.aspx/GetMIsFavFSQL") %>)
                         }
                         else {
-                            document.getElementById('SuMUltraFavSVG').innerHTML = '<path d="M0 0h24v24H0V0z" fill="none"></path><path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>';
-                            document.getElementById('SuMUltraFavListClick').setAttribute('onclick', "AddToFavTWM(" + RMID + "," + getUIDFrUserCo() + ");");
+
                         }
-                        document.getElementById('SuMUltraFavListClick').style.opacity = '0.94';
                     },
                     error: function (e) {
-                        //FCSRSIsFav = null;
-                        document.getElementById('SuMUltraFavListClick').opacity = '0.32';
-                        document.getElementById('SuMUltraFavSVG').innerHTML = '<path d="M0 0h24v24H0V0z" fill="none"></path><path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>';
-                        document.getElementById('SuMUltraFavListClick').setAttribute('onclick', "return false;");
-                    }
+                        //FCSRSIsFav = null;}
                 });
             }
         };
@@ -1958,73 +1215,15 @@
         </div>
 <!-- ipt> -->
         <script>
-            //Fix Up navigation bar space 
-            var Navigation0Heightfromsum = androidAPIs.SuMGetNavigationBarHeight();
-            var SubCo2SuMElm = document.getElementById('<%= subnavscont2.ClientID %>');
-            SubCo2SuMElm.style.height = (50 + Navigation0Heightfromsum) + 'px';
-            SubCo2SuMElm.style.paddingBottom = (Navigation0Heightfromsum) + 'px !important';
-            //
-            document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('subnavscont2').offsetHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 6) + 'px';
-        </script>
-        <script>
             var IsFullScreenNavBarForExFixer = androidAPIs.SuMIsFullScreen();
             if (window.location.href.indexOf("MangaExplorer") > -1 && IsFullScreenNavBarForExFixer == false) {
                 document.getElementById('subnavscont2').style.display = 'block';
-                document.getElementById('<%= subnavscont.ClientID %>').style.display = 'none';
-                document.getElementById('<%= subnavscont.ClientID %>').style.visibility = 'hidden';
             }
             else
             {
                 document.getElementById('subnavscont2').style.display = 'none';
             }
         </script>
-        <div id="fullnavscont" runat="server" class="STBSUMBAR shadow" style="border-radius:22px;height:fit-content !important;overflow:hidden !important;background-color:var(--SuMDWhite) !important;z-index:999;position:fixed !important; display:block;border:0.5px var(--SuMThemeColorOP14) solid !important;width:calc(100vw - 24px) !important;margin-left:12px;">
-            <div id="subnavscont" runat="server" class=" navbar-light navbar-expand   shadow  topbar static-top" style="height:40px;width:100% !important;padding:2px !important;border-top-left-radius:22px;border-top-right-radius:22px;border-top:solid 0.4px var(--SuMDGray) !important;bottom:0 !important;overflow:clip;border-color:var(--SuMDWhite);margin-bottom:-1px;padding-top:18px;">
-                <a name="no-animation" onclick="SuMGoBack();" style="float:left !important;width:fit-content;">
-                    <img src="/svg/SuMHead.svg" style="width:26px;height:26px;border-bottom-left-radius:6px;margin-left:14px !important;margin-top:4px !important;display:inline;" />
-                    <p style="display:inline;color:var(--SuMThemeColor);margin-top:8px !important;">SuM </p><p id="mangacolor" runat="server" style="display:inline;color:var(--SuMThemeColorThisPage);margin-top:8px !important;">Manga</p>
-                    <b class="pulse animated" id="NavigateBackF0C0" runat="server" style="font-size:54%;display:block !important;margin-left:12px;margin-top:-10px;color:var(--SuMThemeColorThisPage);">Navigate Back</b>
-                </a>
-            <a name="no-animation" id="FullSearch" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;" onclick="if (!navigator.onLine) { document.getElementById('SearchOffline').style.display = 'block'; } else { location.href = '/Search.aspx'; }" href="#"><img src="/svg/Search.svg" style="width:28px;height:28px; float:right !important;margin-top:4px !important;margin-right:14px !important;" /></a>
-            <a name="no-animation" id="SuMNotificationStart" runat="server" class="" style="float:right !important;vertical-align:middle !important;width:fit-content;padding-top:4px !important;" >
-                <asp:ImageButton ID="StartNotificationProssForShowBTN" runat="server" Width="26" Height="26" ImageAlign="AbsMiddle" BackColor="Transparent" BorderColor="Transparent" ImageUrl="/svg/notifications.svg" OnClick="SuMAppAlertsStartsS" />
-            </a>
-                <a style="display:block;width:100vw;height:2px;margin:0 auto !important;background-color:var(--SuMDWhite);color:var(--SuMDWhite);">   </a>
-        </div>
-        <nav id="nav" runat="server" style="overflow:clip;height:72px !important;width:100% !important;max-height:64px !important;bottom:0 !important;background-color:var(--SuMDWhite) !important;" class="navbar navbar-light navbar-expand   mb-4 topbar static-top FNM5455511">
-                    <div id="NavItems" runat="server" class="container-fluid" style="text-align:center !important;height:64px !important;overflow:hidden !important;margin-bottom:14px !important;">
-                                <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
-                                    <a name="no-animation" onclick="SuMGoToThis('/Explore.aspx','var(--SuMThemeColorOP74)','SuM Explore','Explore');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
-                                        <svg id="ExpIMG" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;position:relative;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--SuMThemeColorSec)"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"/></svg>
-                                        <b id="ExpText" style="font-size:64%;color:var(--SuMThemeColorSec);height:fit-content !important;text-align:center !important;display:block;position:relative;">Explore</b>
-                                    </a>
-                                </div>
-                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
-                                    <a name="no-animation" onclick="SuMGoToThis('/Hits.aspx','var(--SuMThemeColorOP74)','SuM Hits','Hits');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" id="HitsIMG" viewBox="0 0 24 24" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;" fill="var(--SuMThemeColorSec)"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 11.55c-1.82-1.7-4.12-2.89-6.68-3.35C4.11 7.99 3 8.95 3 10.18v6.24c0 1.68.72 2.56 1.71 2.69 2.5.32 4.77 1.35 6.63 2.87.35.29.92.32 1.27.04 1.87-1.53 4.16-2.58 6.68-2.9.94-.13 1.71-1.06 1.71-2.02v-6.92c0-1.23-1.11-2.19-2.32-1.98-2.56.46-4.86 1.65-6.68 3.35zM12 8c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/></svg>
-                                        <b id="HitsTEXT" style="font-size:64%;color:var(--SuMThemeColorSec);height:fit-content !important; text-align:center !important;display:block;">Hits</b>
-                                    </a>
-                                </div>
-                        
-                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
-                                    <a name="no-animation" onclick="SuMGoToThis('/UserLibrary.aspx?RT=Curr','var(--SuMThemeColorOP74)','My Library','UserLibrary');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
-                                        <svg id="LibIMG" xmlns="http://www.w3.org/2000/svg" style="max-height:38px;max-width:38px; width:62px;height:62px;display:block;" viewBox="0 0 24 24" fill="var(--SuMThemeColorSec)"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 18l2 1V3c0-1.1-.9-2-2-2H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13zM15 5H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z"/></svg>
-                                        <b id="LibText" style="font-size:64%;color:var(--SuMThemeColorSec);height:fit-content !important; text-align:center !important;display:block;">Library</b>
-                                    </a>
-                                </div>
-                        <div class="" style="display:inline !important;width:64px !important;height:64px !important;text-align:center !important;align-items:center;align-content:center;overflow:hidden !important;">
-                                    <a name="no-animation" onclick="SuMGoToThis('/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)','var(--SuMThemeColorOP74)','SuM Settings','Settings');" href="#" class="nav-link" data-bss-disabled-mobile="false" data-bss-hover-animate="pulse" style="text-align:center !important;overflow:hidden !important;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" id="SetIMG" viewBox="0 0 24 24" style="max-height:38px;max-width:38px;width:62px;height:62px;display:block;" fill="var(--SuMThemeColorSec)"><rect fill="none" height="24" width="24"/><path d="M19.5,12c0-0.23-0.01-0.45-0.03-0.68l1.86-1.41c0.4-0.3,0.51-0.86,0.26-1.3l-1.87-3.23c-0.25-0.44-0.79-0.62-1.25-0.42 l-2.15,0.91c-0.37-0.26-0.76-0.49-1.17-0.68l-0.29-2.31C14.8,2.38,14.37,2,13.87,2h-3.73C9.63,2,9.2,2.38,9.14,2.88L8.85,5.19 c-0.41,0.19-0.8,0.42-1.17,0.68L5.53,4.96c-0.46-0.2-1-0.02-1.25,0.42L2.41,8.62c-0.25,0.44-0.14,0.99,0.26,1.3l1.86,1.41 C4.51,11.55,4.5,11.77,4.5,12s0.01,0.45,0.03,0.68l-1.86,1.41c-0.4,0.3-0.51,0.86-0.26,1.3l1.87,3.23c0.25,0.44,0.79,0.62,1.25,0.42 l2.15-0.91c0.37,0.26,0.76,0.49,1.17,0.68l0.29,2.31C9.2,21.62,9.63,22,10.13,22h3.73c0.5,0,0.93-0.38,0.99-0.88l0.29-2.31 c0.41-0.19,0.8-0.42,1.17-0.68l2.15,0.91c0.46,0.2,1,0.02,1.25-0.42l1.87-3.23c0.25-0.44,0.14-0.99-0.26-1.3l-1.86-1.41 C19.49,12.45,19.5,12.23,19.5,12z M12.04,15.5c-1.93,0-3.5-1.57-3.5-3.5s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.97,15.5,12.04,15.5z"/></svg>
-                                        <b id="SetText" style="font-size:64%;color:var(--SuMThemeColorSec);height:fit-content !important; text-align:center !important;display:block;">Settings</b>
-                                    </a>
-                                </div>
-                        <script>
-
-                        </script>
-                    </div>
-                </nav>
-            <div id="NavigationBarFixer1" class=" navbar-light navbar-expand   shadow  topbar static-top" style="height:4px;background-color:var(--SuMDWhite) !important;width:100vw !important;bottom:0 !important;overflow:clip;border-color:var(--SuMDWhite);border:0px !important;margin-bottom:-1px;"></div>
-    </div>
     </div>
     <div id="BottomStylingTDiv" runat="server" style="position:fixed !important;bottom:0 !important;z-index:993 !important;width:100vw !important;height:60px;background-color:rgba(0,0,0,0.86) !important;overflow:hidden !important;">
     </div>
@@ -2046,111 +1245,24 @@
                 ElmBottomSTDF0C0Elm.style.height = '60px';
             }
         }
-
-
-
-
-        if (document.getElementById('<%= fullnavscont.ClientID %>').style.display == 'block') {
-            var SuMCurrPageURLF0CC = document.URL;
-            if (SuMCurrPageURLF0CC.includes('/Explore.aspx') == true || SuMCurrPageURLF0CC.includes('/storeitems/') == true) {
-                SuMNavApplyThemeColor('Explore');
-            }
-            if (SuMCurrPageURLF0CC.includes('/UserLibrary.aspx') == true) {
-                SuMNavApplyThemeColor('Library');
-            }
-            if (SuMCurrPageURLF0CC.includes('/Hits.aspx') == true) {
-                SuMNavApplyThemeColor('Hits');
-            }
-            if (SuMCurrPageURLF0CC.includes('/AccountETC/') == true || SuMCurrPageURLF0CC.includes('/SuMCreator/') == true || SuMCurrPageURLF0CC.includes('/SuMAdmin/') == true || SuMCurrPageURLF0CC.includes('/UploadConsole/')) {
-                SuMNavApplyThemeColor('Settings');
-            }
-        }
-        function SuMNavApplyThemeColor(ActiveTargit) {
-            if (ActiveTargit == 'Explore') {
-                document.getElementById('ExpIMG').setAttribute('fill', 'var(--SuMThemeColor)');
-                document.getElementById('ExpText').style.color = 'var(--SuMThemeColor)';
-            }
-            else {
-                document.getElementById('ExpIMG').setAttribute('fill', 'var(--SuMThemeColorSec)');
-                document.getElementById('ExpText').style.color = 'var(--SuMThemeColorSec)';
-            }
-            if (ActiveTargit == 'Library') {
-                document.getElementById('LibIMG').setAttribute('fill', 'var(--SuMThemeColor)');
-                document.getElementById('LibText').style.color = 'var(--SuMThemeColor)';
-            }
-            else {
-                document.getElementById('LibIMG').setAttribute('fill', 'var(--SuMThemeColorSec)');
-                document.getElementById('LibText').style.color = 'var(--SuMThemeColorSec)';
-            }
-            if (ActiveTargit == 'Settings') {
-                document.getElementById('SetIMG').setAttribute('fill', 'var(--SuMThemeColor)');
-                document.getElementById('SetText').style.color = 'var(--SuMThemeColor)';
-            }
-            else {
-                document.getElementById('SetIMG').setAttribute('fill', 'var(--SuMThemeColorSec)');
-                document.getElementById('SetText').style.color = 'var(--SuMThemeColorSec)';
-            }
-            if (ActiveTargit == 'Hits') {
-                document.getElementById('HitsIMG').setAttribute('fill', 'var(--SuMThemeColor)');
-                document.getElementById('HitsTEXT').style.color = 'var(--SuMThemeColor)';
-            }
-            else {
-                document.getElementById('HitsIMG').setAttribute('fill', 'var(--SuMThemeColorSec)');
-                document.getElementById('HitsTEXT').style.color = 'var(--SuMThemeColorSec)';
-            }
-        };
     </script>
     <script>
-        var SuMFullNavBarElm = document.getElementById('<%= fullnavscont.ClientID %>');
-        if (SuMFullNavBarElm.classList.contains('animated') == false) {
-            SuMFullNavBarElm.classList.add('animated');
-        }
-        SuMFullNavBarElm.classList.remove('fadeInUp');
-        SuMFullNavBarElm.classList.remove('fadeOutDown');
-        if (document.URL.includes('/MangaExplorer.aspx') == false) {
-            SuMFullNavBarElm.style.display = 'block';
-        }
-        else {
-            MakeSuMFullNavDisa();
-        }
-        SuMFullNavBarElm.style.visibility = null;
 
         if (document.referrer.includes('/MangaExplorer.aspx?') == true) {
-            MakeSuMFullNavDisa();
-            if (SuMFullNavBarElm.classList.contains('animated') == false) {
-                SuMFullNavBarElm.classList.add('animated');
-            }
-            SuMFullNavBarElm.classList.add('fadeInUp');
-            SuMFullNavBarElm.classList.remove('fadeOutDown');
-            SuMFullNavBarElm.style.display = 'block';
-            SuMFullNavBarElm.style.visibility = null;
+           MakeSuMFullNavDisa();
         }
         function MakeSuMFullNavDisa() {
-            SuMFullNavBarElm.style.display = 'none';
-            SuMFullNavBarElm.style.visibility = 'hidden';
-            SuMFullNavBarElm.style.overflow = 'hidden';
+            androidAPIs.HideSuMwebNav();
         };
         function SuMHideFullNavAnF0C0() {
-            SuMFullNavBarElm.classList.remove('fadeInUp');
-            SuMFullNavBarElm.classList.remove('fadeOutDown');
-            if (SuMFullNavBarElm.classList.contains('animated') == false) {
-                SuMFullNavBarElm.classList.add('animated');
-            }
-
-            SuMFullNavBarElm.classList.add('fadeOutDown')
-            setTimeout(() => {
-                SuMFullNavBarElm.style.display = 'none !important';
-                SuMFullNavBarElm.style.visibility = 'hidden !important';
-            }, 360);
+            androidAPIs.HideSuMwebNav();
         };
         function GetSuMWebNavBarHeight() {
-            var resultX = document.getElementById('<%= fullnavscont.ClientID %>').getBoundingClientRect().height + 2;
-            return resultX;
+            return 110;
         };
     </script>
-        <asp:UpdatePanel ID="UpdatePanelNotificationSec" runat="server" UpdateMode="Conditional">
+        <!-- <asp:UpdatePanel ID="UpdatePanelNotificationSec" runat="server" UpdateMode="Conditional">
                 <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="StartNotificationProssForShowBTN" EventName="Click" />
                     </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
@@ -2175,16 +1287,9 @@
                 </div>
                     </asp:Panel>
                 </ContentTemplate>
-            </asp:UpdatePanel>
+            </asp:UpdatePanel> -->
     </div>
         <script>
-            if (document.getElementById('subnavscont2').style.display == 'none') {
-                document.getElementById('fullnavscont').style.display = 'block';
-            };
-            if (document.getElementById('subnavscont2').style.display == 'block') {
-                document.getElementById('fullnavscont').style.display = 'none';
-            };
-            
             if (!navigator.onLine) {
                 document.getElementById('FullSearch').onclick = "document.getElementById('SearchOffline').style.display = 'block'";
                 document.getElementById('SubSearch').onclick = "document.getElementById('SearchOffline').style.display = 'block'";
@@ -2193,7 +1298,7 @@
             };
             if ("androidAPIs" in window == false) {
 
-                location.href = '/SuMMangaInstallAPP.aspx';
+                //location.href = '/SuMMangaInstallAPP.aspx';
             }
             var MangaExplorerBarElm = document.getElementById('<%= subnavscont2.ClientID %>');
             function HideMangaExplorerBar() {
@@ -2217,10 +1322,10 @@
                 }
             };
             function NextBtnOrState() {
-                document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('subnavscont2').offsetHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 6) + 'px';
+                //document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('subnavscont2').offsetHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 6) + 'px';
             };
             function NextBtnFullSState() {
-                document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 12) + 'px';
+                //document.getElementById('MainContent_NextChapter').style.marginTop = (window.innerHeight - document.getElementById('MainContent_NextChapter').offsetHeight - 12) + 'px';
             }
         </script>
     <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>

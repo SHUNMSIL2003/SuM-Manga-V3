@@ -1,19 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="Explore.aspx.cs" Inherits="SuM_Manga_V3.Explore" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <script>
-          
-        /*var IsFullScreen = androidAPIs.SuMIsFullScreen();
-        if (IsFullScreen == true) {
-              */
-          
-        //}
-          
-        setTimeout(() => {
-              
-        }, 420);
-        
-    </script>
     <div id="ScriptInjectorA000" style="display:none !important;visibility:hidden !important;" runat="server">
         <script>
             androidAPIs.ShowSuMToastsOverview('welcome UserName!');
@@ -101,12 +88,7 @@ img {vertical-align: middle;}
         <div style="background-color:transparent;width:100%;margin:0 auto !important;height:24px;overflow:hidden !important;" id="SuMMangaTopBarHeightHelper"></div>
     </div>
     <div id="AnimatedMainContHEx" runat="server" class="fadeIn animated" style="height:100% !important;width:100vw !important;max-width:720px !important;margin:0 auto !important;overflow-y:scroll;height: 100vh;scroll-snap-type: y proximity !important; scroll-behavior: smooth !important; scroll-padding-top:32px !important;scroll-padding-bottom:32px !important;padding-top:164px !important;padding-bottom:164px !important;background-color:transparent !important;">
-        <div style="width:100% !important;height:12px;margin:0 auto !important;" id="SuMStatusBarHeightFixUpF0C0"></div>
-        <script>
-        var StatusBarHeightValueFromSuMAndroidAPIsF0C0 = androidAPIs.getStatusBarHeight();
-        document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C0 + 12) + 'px';
-        </script>
-<div class="slideshow-container" id="cardscontain" runat="server" style="border:0.5px var(--SuMDBroderC) solid !important;scroll-margin-top:38px; border-radius:20px;width:calc(100% - 24px) !important;height:fit-content !important;overflow:hidden !important;margin-top:12px;margin-left:12px;display:block;background-color:var(--SuMDBlackOP74) !important;transition: background-color 0.32s ease !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
+<div class="slideshow-container" id="cardscontain" runat="server" style="border:0.5px var(--SuMDBroderC) solid !important;scroll-margin-top:38px; border-radius:20px;width:calc(100% - 24px) !important;height:383px !important;overflow:hidden !important;margin-top:12px;margin-left:12px;display:block;background-color:var(--SuMDBlackOP74) !important;transition: background-color 0.32s ease !important;scroll-snap-align:start !important;scroll-snap-stop: always !important;">
     <div id="ThisPageTopBarFixer" style="background-color:transparent !important;width:100% !important;height:fit-content !important;display:block;margin-bottom:-16px;padding-top:8px !important;">
         <img id="ThisPageSBarFixUpPropElm0" style="display:inline;margin-left:16px;margin-top:8px;float:left;" width="38" height="38" src="/svg/awesomeTW.svg" />
         <p id="ThisPageSBarFixUpPropElm1" style="color:rgba(255,255,255,0.92) !important;font-size:128%;margin-top:12px;margin-left:6px;display:inline;float:left;">The latest of manga !</p>
@@ -160,7 +142,7 @@ img {vertical-align: middle;}
         }
         slides[slideIndex - 1].style.display = "block";
         dots[slideIndex - 1].className += " active";
-        SlideShowCardElm.style.backgroundColor = document.getElementById('CardNuM' + (slideIndex) + 'Theme').innerText;
+        SlideShowCardElm.style.backgroundColor = document.getElementById('CardNuM' + (slideIndex) + 'Theme').innerText.replace('0.74', '1');
         setTimeout(showSlides, 3360); // Change image every 2 seconds
     }
 </script><!--
