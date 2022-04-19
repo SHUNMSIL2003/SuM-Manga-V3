@@ -24,7 +24,7 @@ namespace SuM_Manga_V3.AccountETC
             {
                 //MPB.InnerText = "Explore";
                 //MPB.Attributes["href"] = "Library.aspx";
-                Response.Redirect("~/Explore.aspx");
+                Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
             }
             else
             {
@@ -118,7 +118,7 @@ namespace SuM_Manga_V3.AccountETC
                                 {
                                     SaveCookie(username, ID, GSID);
                                     sqlCon.Close();
-                                    HttpContext.Current.Response.Redirect("~/Explore.aspx");
+                                    HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
                                 }
                                 else
                                 {
@@ -129,7 +129,7 @@ namespace SuM_Manga_V3.AccountETC
                                     string CreatorIDName = cv.ExecuteScalar().ToString();
                                     SaveSCCookie(username, ID, CreatorIDName, GSID);
                                     sqlCon.Close();
-                                    HttpContext.Current.Response.Redirect("~/Explore.aspx");
+                                    HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
                                 }
                             }
                             else
@@ -171,7 +171,7 @@ namespace SuM_Manga_V3.AccountETC
                             {
                                 SaveCookie(username, ID, GSID);
                                 sqlCon.Close();
-                                HttpContext.Current.Response.Redirect("~/Explore.aspx");
+                                HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
                             }
                             else
                             {
@@ -182,7 +182,7 @@ namespace SuM_Manga_V3.AccountETC
                                 string CreatorIDName = cv.ExecuteScalar().ToString();
                                 SaveSCCookie(username, ID, CreatorIDName, GSID);
                                 sqlCon.Close();
-                                HttpContext.Current.Response.Redirect("~/Explore.aspx");
+                                HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
                             }
                         }
                     }
@@ -232,7 +232,7 @@ namespace SuM_Manga_V3.AccountETC
             userInfo["SID"] = SessionID;
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
-            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)");
+            HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
         }
         protected static void SaveSCCookie(string UserName, int ID, string CreatorName, string SessionID)
         {
@@ -243,7 +243,7 @@ namespace SuM_Manga_V3.AccountETC
             userInfo["ID"] = ID.ToString();
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
-            HttpContext.Current.Response.Redirect("/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)");
+            HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
         }
         protected static void SaveUserThemeCookie(string RGBRootString)
         {

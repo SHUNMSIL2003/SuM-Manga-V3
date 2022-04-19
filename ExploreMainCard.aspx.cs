@@ -241,6 +241,8 @@ namespace SuM_Manga_V3
                 ViewsNumPart = String.Format("{0:0.00}", B);
                 ViewsLPart = "B";
             }
+            string GernsString = GetGarnas(MangaID);
+            string OnClickJSCode = "androidAPIs.SuMExploreInfoStart('" + Link + "','" + theme + "','" + cardtitle + "','" + CraetorName + "','" + GernsString + "','" + AgeRating + "','" + CardBG + "',);";
             string divstyle = b12.ToString() + "overflow:hidden !important;background-image:linear-gradient(" + theme + ",rgba(0,0,0,0.3)),url(" + CardBG + ") !important;background-size:cover;background-position:center !important;width:100% !important;height:76vw;max-width:630px !important;max-height:300px !important;padding:12px;margin:0 auto !important;border-radius:12px !important;" + b12.ToString();
             string DivContant = "<div style=" + b12.ToString() + "width:calc(98% - 24px);height:fit-content;position:relative;margin:0 auto;margin-top:2px;" + b12.ToString() + ">";
             DivContant += "<h1 style=" + b12.ToString() + "float:left;margin-top:12px;margin-left:12px;color:#ffffff;font-size:178%;margin-right:14px !important;width:calc(100% - 24px) !important;height:34.17px !important;white-space:nowrap !important;overflow:hidden !important;text-overflow:ellipsis !important;" + b12.ToString() + ">" + cardtitle + "</h1>";
@@ -250,9 +252,125 @@ namespace SuM_Manga_V3
             DivContant += "<div style=" + b12.ToString() + "margin:0 auto;margin-bottom:0px;height:fit-content;width:100%;position:relative;margin-top:0px !important;" + b12.ToString() + "><a style=" + b12.ToString() + "display:block;float:right !important;margin-bottom:0px;margin-right:8px;bottom:0;position:relative;" + b12.ToString() + ">";
             DivContant += "<p style=" + b12.ToString() + "display:inline;color:rgba(255,255,255,0.74);" + b12.ToString() + "> " + AgeRating + " </p><img style=" + b12.ToString() + "width:20px;height:20px;display:inline;" + b12.ToString() + " src=" + b12.ToString() + "/svg/views.svg" + b12.ToString() + ">";
             DivContant += "<p style=" + "display:inline;color:#ffffff;" + "> " + ViewsNumPart + " </p><b style=" + "display:inline;color:#ffffff;" + ">" + ViewsLPart + "</b></a></div>";
-            string result = "<div onclick=" + b12.ToString() + "SuMApplyInfoToUltraCard('" + MangaID + "', '" + CardBG + "', '" + cardtitle.Replace("'", "") + "', '" + Link + "', 'ContantExplorer', '" + cardtitle.Replace("'", "") + "', '" + theme + "');" + b12.ToString() + " class=" + divclass + " style=" + divstyle + ">" + "<div class=" + b12.ToString() + "animated fadeIn" + b12.ToString() + " >" + DivContant + "</div>" + "</div>";
+            string result = "<div onclick=" + b12.ToString() + OnClickJSCode + b12.ToString() + " class=" + divclass + " style=" + divstyle + ">" + "<div class=" + b12.ToString() + "animated fadeIn" + b12.ToString() + " >" + DivContant + "</div>" + "</div>";
             result += "<p id=CardNuM" + Num.ToString() + "Theme style=display:none;visibility:hidden; >" + theme + "</p>";
             return result;
+        }
+        protected string GetGarnas(int id)
+        {
+            string garns = " ";
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                bool IsIt = false;
+                sqlCon.Open();
+                string query = "SELECT Fantasy FROM SuMManga WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Fantasy, "; }
+
+                query = "SELECT Comedy FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Comedy, "; }
+
+                query = "SELECT Supernatural FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Supernatural, "; }
+
+                query = "SELECT SciFi FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Sci-Fi, "; }
+
+                query = "SELECT Drama FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Drama, "; }
+
+                query = "SELECT Mystery FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Mystery, "; }
+
+                query = "SELECT SliceofLife FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Slice of Life, "; }
+
+                query = "SELECT Action FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Action, "; }
+
+                sqlCon.Close();
+            }
+            if (string.IsNullOrEmpty(garns) == false) { garns = garns.Substring(1, (garns.Length - 3)); }
+            return garns;
         }
         protected void SussionProssINB(int UID, string SID)
         {

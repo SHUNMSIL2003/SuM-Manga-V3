@@ -80,7 +80,15 @@ namespace SuM_Manga_V3
                             sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
                             un = sqlCmd.ExecuteScalar();
                             string CreatorName = un.ToString();
-                            ShowSuMResults.InnerHtml += BuildSearchCard(Cover, Name, CExplorerLink, themecolor, MangaIDF, CreatorName);
+
+                            query = "SELECT MangaAgeRating FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                            un = sqlCmd.ExecuteScalar();
+                            string AgeRating = un.ToString();
+
+                            ShowSuMResults.InnerHtml += BuildSearchCard(Cover, Name, CExplorerLink, themecolor, MangaIDF, CreatorName, AgeRating);
                             if (IDs.Count != 0) { ShowSuMResults.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;color:var(--SuMDGrayOP100);width:calc(100vw - 36px);margin:0 auto important;" + sc.ToString() + ">"; } //"<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:96vw;opacity:0.18;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
                             
                         }
@@ -128,8 +136,10 @@ namespace SuM_Manga_V3
             }
             return RS;
         }
-        protected string BuildSearchCard(string CoverLink, string MangaName, string ExplorerLink, string MangaTheme, int MID, string MangaCreator)
+        protected string BuildSearchCard(string CoverLink, string MangaName, string ExplorerLink, string MangaTheme, int MID, string MangaCreator,string AgeRating)
         {
+            string GernsString = GetGarnas(MID);
+            string OnClickJSCode = "androidAPIs.SuMExploreInfoStart('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName + "','" + MangaCreator + "','" + GernsString + "','" + AgeRating + "','" + CoverLink + "',);";
             char sc = '"'; string scfu = sc.ToString();
             string divST = "<div style=" + "overflow:clip;width:fit-content;height:fit-content;position:relative;" + ">";
             string PDivST = "<div style=" + "margin-top:52px;display:block;width:fit-content;padding-left:8px;" + ">";
@@ -138,23 +148,9 @@ namespace SuM_Manga_V3
             string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
             //string hr = ""; //"<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:rgba(99,99,99,0.9);background-color:rgba(99,99,99,0.9);width:96vw;opacity:0.24;margin:0px;margin-block:0px;" + sc.ToString() + ">";
             string AuthString = "<p style=" + "color:var(--SuMDBlackOP50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
-            string RS = divST + "<a style=" + astyle + " onclick="+'"'+ "SuMApplyInfoToUltraCard('" + MID + "', '" + CoverLink + "', '" + MangaName.Replace("'", "") + "', '" + ExplorerLink + "', 'ContantExplorer', '" + MangaName.Replace("'", "") + "', '" + MangaTheme + "');" + '"'+" ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">" + GetGarnas(MID) + "</p></div></a></div>";// + hr;
+            string RS = divST + "<a style=" + astyle + " onclick="+'"'+ OnClickJSCode + '"'+" ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">" + GernsString + "</p></div></a></div>";// + hr;
             return RS;
         }
-        /*protected string BuildGCard(string CoverLink, string MangaName, string ExplorerLink, string MangaTheme, int id)
-        {
-            char b12 = '"';
-            string zoominanim = b12.ToString() + "fadeIn animated" + b12.ToString();
-            string divs0 = "margin-left:6px;display:inline-block;height:fit-content;width:174px;max-height:300px;overflow:clip;";
-            string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
-            string divs1 = "border-radius:8px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:174px;height:261px";
-            //string divstyle = "overflow:hidden;background-image:linear-gradient(var(--SuMDBlackOP527),var(--SuMDBlackOP30)),url(" + CardBG + ");background-size:cover;background-position:center;width:100vw;height:74vw;padding:12px;";
-            string divs2 = "background-color:" + theme + "!important;width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;"; //var(--SuMThemeColorOP64)
-            string ps0 = "height:fit-content;width:auto;max-width:112px;color:var(--SuMDWhite);margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
-            string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:var(--SuMDBlackOP64);word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";
-            string result = "<div class=" + zoominanim + " style=" + divs0 + "><a href=" + Link + " style=" + as0 + "><div style=" + divs1 + "><div class="+ "GoodBlur" + " style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GetGarnas(id) + "</p></a></div>";//GetGarnas(id)
-            return result;
-        }*/
         protected string GetGarnas(int id)
         {
             string garns = " ";

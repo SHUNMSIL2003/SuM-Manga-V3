@@ -25,7 +25,7 @@
             androidAPIs.SuMBTActNormal();
         }
         else {
-            //location.href = '/SuMMangaInstallAPP.aspx';
+            location.href = '/SuMMangaInstallAPP.aspx';
         }
 
         document.onkeypress = function (event) {

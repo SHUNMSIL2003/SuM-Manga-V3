@@ -20,64 +20,30 @@
                         });
                 });
             }
-            androidAPIs.SetSuMHardwareExl();
-            androidAPIs.SuM0Manager();
+            //androidAPIs.SetSuMHardwareExl();
+            //androidAPIs.SuM0Manager();
             androidAPIs.SuMBTActNormal();
         }
         else {
-            //location.href = '/SuMMangaInstallAPP.aspx';
+            location.href = '/SuMMangaInstallAPP.aspx';
         }
     </script>
-    <meta name="google-signin-client_id" content="464504450730-iuk9hotshe7kjnq73p11mdvijc49ll5c.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta charset="utf-8">
     <asp:PlaceHolder id="MetaPlaceHolder" runat="server" />
     <meta name="robots" content="<%=GetMetaRobotsValueFromDatabase()%>" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <!--
-    <meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">--><!-- 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>SuM Manga</title>
-    <link rel="stylesheet" href="/dist/magic.min.css">
-    <meta name="description" content="Shun Manga - Readers Haven">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/any_icon_x16.png?h=57b6f23874c6f0554f87db98b188162f">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/any_icon_x32.png?h=c6e95e86bee5c429ad96d74eb8a03d17">
-    <link rel="icon" type="image/png" sizes="180x180" href="/assets/img/any_icon_x180.png?h=871c022ab54519fd72e751e1fb1e8b51">
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/any_icon_x192.png?h=ce0f4944b0b251649d44e6c8399f6165">
-    <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/any_icon_x512.png?h=951d9a72d5c8436fe4694aec7383dc0a">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css?h=9c9410dd08c3e2433b1961c2a8a68b39">
-    <!-- <link rel="manifest" href="manifest.json?h=f7ca12cbff627266dac4280164023899" /> -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css?h=34f9b351b7076f97babcdac3c1081100">
-    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css?h=34f9b351b7076f97babcdac3c1081100">
-    <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css?h=34f9b351b7076f97babcdac3c1081100">
-    <!-- <link rel="stylesheet" href="/assets/animate.min.css"> --moveditfurtherdown  -->
-    <meta name="google-site-verification" content="mp9Vewhm3_3ddQfuO0zmgnIvZpKaygdMO36zmFOgzos" />
-    <meta name="google-site-verification" content="stq20Tq0dTHp54Sd5A1Y--jkDZ1foUxliw3UjUZs8Kc" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6840d9">
-    <link rel="shortcut icon" href="/favicon.ico">
-    <meta name="application-name" content="SuM Manga">
-    <meta name="theme-color" content="var(--SuMDGray)">
     <style>
         div#popup {
             display: none;
         }
-        body {
+        body,html {
             width:100vw !important;
             height:100vh !important;
             background-color:transparent !important;
-        }
-
-/* use a media query to filter small devices */
-        @media only screen and (min-width:1600px) {
-            /* show the popup */
-            /*div#popup {
-                display: block;
-            }*/
         }
         @font-face {
             font-family: 'VarelaRound';
@@ -129,6 +95,10 @@
             perspective: 1000 !important;
             transform: translate3d(0,0,0) !important;
             backdrop-filter:blur(1px) !important;*/
+        }
+        * {
+            -webkit-backface-visibility: hidden !important;
+            backface-visibility: hidden !important;
         }
         input, textarea {
             -webkit-user-select: text !important;
@@ -341,68 +311,6 @@
         </style>
     </div>
     <div id="SuMAnimationConroleDiv" style="display:none !important;visibility:hidden !important"><link rel="stylesheet" href="/assets/animate.min.css"></div><!-- A-CHANGE -->
-    <style>
-        .ripple {
-            width: 32px;
-            height: 32px;
-            background-color: var(--SuMThemeColorOP32);
-            border: none !important;
-            position: fixed !important;
-            border-radius: 50%;
-            z-index:10000 !important;
-        }
-
-        @keyframes ripple-effect {
-            0% {
-                opacity:0;
-            }
-            25% {
-                opacity:1;
-            }
-            50% {
-                transform:scale(2);
-            }
-            90% {
-                transform:scale(1);
-            }
-            100%{
-                opacity:0;
-            }
-        }
-
-        @keyframes ripple-hold-effect {
-            0% {
-                opacity:0;
-                width:32px;
-                height:32px;
-                border-radius:50%;
-            }
-            25% {
-                opacity:1;
-                border-radius:50%;
-                width:64px;
-                height:64px;
-                margin-top:calc(50vh - 32px);
-                margin-left:calc(50vw - 32px);
-            }
-            50%{
-                width:75vw;
-                height:75vw;
-                border-radius:25%;
-                margin-top:calc(50vh - 37.5vw);
-                margin-left:12.5vw;
-                background-color: var(--SuMThemeColorOP64);
-            }
-            100% {
-                margin-top:0px;
-                margin-left:0px;
-                width:100vw;
-                height:100vh;
-                border-radius:0px;
-                background-color: var(--SuMThemeColorOP86);
-            }
-        }
-    </style>
     <script>
         var timer;
         var touchduration = 860; //length of time we want the user to touch before we do something
@@ -488,20 +396,7 @@
                 clearTimeout(timer); // clearTimeout, not cleartimeout..
             AtouchHoldisBeingCommanded = false;
         };
-        //document.ontouchstart = () => touchstart(event);
-        //document.ontouchend = () => touchend(event);
 
-        /*document.addEventListener('click', function (event) {
-            const ripple = document.createElement("div");
-            ripple.className = "ripple";
-            document.body.appendChild(ripple);
-            ripple.style.left = `${event.clientX - 16}px`;
-            ripple.style.top = `${event.clientY - 16}px`;
-            ripple.style.animation = "ripple-effect .16s  linear";
-            ripple.onanimationend = () => document.body.removeChild(ripple);
-        });*/
-
-        if ("androidAPIs" in window == true) { androidAPIs.SuM0Manager(); }
 
         function getCookie(cname) {
             let name = cname + "=";
@@ -634,22 +529,6 @@
             if ("androidAPIs" in window) {
                 if ("androidAPIs" in window == true) { androidAPIs.FullyTransStatusBar(); }
             }
-            /*if (CurrSuMURL.includes('/ContantExplorer.aspx') == false) {
-                if ("androidAPIs" in window == true) {
-                    var SUMSTATEBITFMC0 = getCookie('SuMUserThemeState').replace(' ', '');
-                    if (SUMSTATEBITFMC0 == 0 || SUMSTATEBITFMC0 == '0' || SUMSTATEBITFMC0 == '' || SUMSTATEBITFMC0 == ' ' || SUMSTATEBITFMC0 == null) {
-                         
-                    }
-                    else {
-                         
-                    }
-                }
-            }
-            else {
-                if ("androidAPIs" in window == true) {
-                     
-                }
-            }*/
         };
         SuMSetThemeState(SuMThemeStateBit);
 
@@ -700,15 +579,15 @@
     </style>
     <style>
         html {
-            scroll-behavior: smooth !important;
+            /*scroll-behavior: smooth !important;*/
             background-color:transparent !important;
         }
         body {
-            scroll-behavior:smooth !important;
+            /*scroll-behavior:smooth !important;*/
             background-color:transparent;
         }
         div {
-            box-shadow: 0px 0px var(--SuMDBlack) !important;
+            box-shadow: none !important;
             overflow-x: hidden !important;
             font-family:VarelaRound !important;
             background-color:transparent;
@@ -843,7 +722,7 @@
                 $.ajax({
                     dataType: "json",
                     method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/UpdateCoinsCountFSQL") %>',
+                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFSQL") %>',
                     data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
                     contentType: "application/json; charset=utf-8",
                     success: function (msg) {
@@ -855,6 +734,26 @@
                     }
                 });
             };
+
+            function SuMUpdateCoinsCountSuMReading(FUID,FToken,SuMReadingLink) {
+                const cFUID = FUID;
+                $.ajax({
+                    dataType: "json",
+                    method: 'post',
+                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFSQL") %>',
+                    data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (msg) {
+                        androidAPIs.SuMExploreLoadReader(SuMReadingLink)
+                        //androidAPIs.ShowSuMToastsOverviewWV3('Coins count Are Secured!', FUID);
+                        SuMCoinsCount(cFUID);
+                    },
+                    error: function (e) {
+                        androidAPIs.ShowSuMToastsOverviewWV3('Failed!', FUID);
+                    }
+                });
+            };
+
         </script>
         <!-- -sumads -end -->
         <div class="d-flex flex-column" id="content-wrapper" style="height:fit-content !important;width:100vw !important;background-color:transparent !important;flex-grow: 1 !important; flex-shrink: 1 !important; overflow-y: scroll !important;overflow-x:hidden;">
@@ -1052,9 +951,11 @@
                             SuMLoadingIsInPross = false;
                             if (CuurCoinsCountF0CGSF >= SuMCoinsReq) {
                                 SuMUpdateCoinsCount(CurrUIDF0CGF, SuMCoinsReq * (-1));
-                                SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, 'ContantExplorer');
+                                //SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, 'ContantExplorer');
+                                androidAPIs.SuMExploreLoadReaderForSucInJS(HerfLink)
                             } else {
-                                SuMGoToThis('/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)', 'var(--SuMThemeColorOP74)', 'SuM Settings', 'Settings');
+                                //SuMGoToThis('/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)', 'var(--SuMThemeColorOP74)', 'SuM Settings', 'Settings');
+                                androidAPIs.GoToSettingsSuMExplore();
                             }
                         };
 
@@ -1806,6 +1707,5 @@
             SuMCoinsCountUltMoving(getUIDFrUserCo());
         </script>
         </form>
-     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet" />
 </body>
 </html>

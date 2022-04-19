@@ -346,6 +346,8 @@
     <Content Include="ExploreDisabled.aspx" />
     <Content Include="SE.html" />
     <Content Include="storeitems\ContantExplorerCard.aspx" />
+    <Content Include="storeitems\MangaExplorerCardHolder.aspx" />
+    <Content Include="storeitems\MangaExplorerCard.aspx" />
     <Content Include="SuMExplore.aspx" />
     <Content Include="Explore.aspx" />
     <Content Include="favicon-16x16.png" />
@@ -1482,6 +1484,7 @@
     <Content Include="dist\magic.css.map" />
     <Content Include="dist\magic.min.css.map" />
     <Content Include=".well-known\assetlinks.json" />
+    <Content Include="SuM-Manga-5327.apk" />
     <None Include="Properties\PublishProfiles\Sum-Manga - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\Sum-Manga - Web Deploy2.pubxml" />
     <None Include="Properties\PublishProfiles\Sum-Manga - Web Deploy3.pubxml" />
@@ -2935,6 +2938,20 @@
     </Compile>
     <Compile Include="storeitems\ContantExplorerCard.aspx.designer.cs">
       <DependentUpon>ContantExplorerCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="storeitems\MangaExplorerCardHolder.aspx.cs">
+      <DependentUpon>MangaExplorerCardHolder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="storeitems\MangaExplorerCardHolder.aspx.designer.cs">
+      <DependentUpon>MangaExplorerCardHolder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="storeitems\MangaExplorerCard.aspx.cs">
+      <DependentUpon>MangaExplorerCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="storeitems\MangaExplorerCard.aspx.designer.cs">
+      <DependentUpon>MangaExplorerCard.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuMExplore.aspx.cs">
       <DependentUpon>SuMExplore.aspx</DependentUpon>

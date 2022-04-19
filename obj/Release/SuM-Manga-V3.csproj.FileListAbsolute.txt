@@ -1,4 +1,6 @@
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\System.Collections.Immutable.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\VBCSCompiler.exe
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll.config
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.pdb
@@ -9,9 +11,9 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\csi.exe
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\csi.exe.config
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\csi.rsp
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.CSharp.Core.targets
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
@@ -19,7 +21,6 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.Managed.Core.targets
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\Microsoft.VisualBasic.Core.targets
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\System.Buffers.dll
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\System.Collections.Immutable.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\System.Memory.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\System.Numerics.Vectors.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\System.Reflection.Metadata.dll
@@ -29,7 +30,6 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\System.Threading.Tasks.Extensions.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\vbc.exe
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\vbc.exe.config
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\vbc.rsp
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\VBCSCompiler.exe
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\roslyn\VBCSCompiler.exe.config
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\AjaxControlToolkit.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Antlr3.Runtime.dll

@@ -642,5 +642,63 @@ namespace SuM_Manga_V3
             }
             return V;
         }
+        [System.Web.Services.WebMethod()]
+        [System.Web.Script.Services.ScriptMethod()]
+        public static string GetMangaViewsCountFSQL(object MID)
+        {
+            if (MID != null)
+            {
+                string RS = ShowViews(Convert.ToInt32(MID.ToString()));
+                return RS;
+            }
+            else return "failed!";
+        }
+        protected static string ShowViews(int y)
+        {
+            string parta = string.Empty;
+            string partb = string.Empty;
+            int V = 0;
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                sqlCon.Open();
+                string query = "SELECT MangaViews FROM SuMManga WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = y;
+                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        V = Convert.ToInt32(dr[0].ToString());
+                    }
+                }
+                sqlCon.Close();
+            }
+            if (V < 1000)
+            {
+                parta = V.ToString();
+                partb = "";
+            }
+            if (V > 999 && V < 1000000)
+            {
+                double B = V / 1000.0;
+                parta = String.Format("{0:0.00}", B);
+                partb = "K";
+            }
+            if (V > 999999 && V < 1000000000)
+            {
+                double B = V / 1000000.0;
+                parta = String.Format("{0:0.00}", B);
+                partb = "M";
+            }
+            if (V > 999999999)
+            {
+                double B = V / 1000000000.0;
+                parta = String.Format("{0:0.00}", B);
+                partb = "B";
+            }
+            return parta + partb;
+
+        }
     }
 }

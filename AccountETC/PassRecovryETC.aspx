@@ -20,6 +20,7 @@
                 });
             }
             androidAPIs.SetSuMHardwareExl();
+            androidAPIs.ResizewebView3AccountSettingsCard(860);
         }
 </script>
     <style>
@@ -388,29 +389,7 @@
             pointer-events: none;
          }
          body {
-            animation: rainbow 10s linear infinite;
-        }
-
-        @keyframes rainbow {
-            0% {
-                background-color: #baa9cc;
-            }
-
-            25% {
-                background-color: #85798b;
-            }
-
-            50% {
-                background-color: #82667b;
-            }
-
-            75% {
-                background-color: #968aae;
-            }
-
-            100% {
-                background-color: #baa9cc;
-            }
+             background-color:transparent !important;
         }
          img {
             pointer-events: none;
@@ -466,10 +445,7 @@
             }, 100);
         })();*/
     </script>
-    <div style="height:calc(100vh - 100px);" class="container pulse animated">
-        <div class="row justify-content-center">
-            <div class="col-md-9 col-lg-12 col-xl-10">
-                <div style="border-radius:22px;" class="card shadow-lg o-hidden border-0 my-5">
+    <div style="border-radius:22px;margin:0px !important;background-color:transparent !important;" class="card o-hidden border-0 my-5">
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-flex">
@@ -507,9 +483,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
     <script>
           
                                             </script>

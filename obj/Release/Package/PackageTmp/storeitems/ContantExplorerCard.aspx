@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.card.Master" AutoEventWireup="true" CodeBehind="ContantExplorerCard.aspx.cs" Async="true" Inherits="SuM_Manga_V3.storeitems.ContantExplorerCard" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script>var FMID = 0;</script>
     <div style="display:none !important;visibility:hidden !important;" id="ScriptInjectorB000" runat="server"></div>
     <asp:Button ID="UpdateWannaNFavNCurr" runat="server" OnClick="Page_Load" style="display:none !important;visibility:hidden !important;" />
     <style>
@@ -116,4 +117,30 @@
             </div>
             </div>
         </div>
+    <p id="SuMViewsPlaceHolder" runat="server" style="display:none !important;visibility:hidden !important;"></p>
+    <script>/*
+        var FMID;
+        var currurlfcardc0 = document.URL.replace(" ", "");
+        var tryingtogetfuidhelper = currurlfcardc0.split("&");
+        for (var i = 0; i < tryingtogetfuidhelper.length; i++) {
+            if (tryingtogetfuidhelper[i].includes("VC=")) {
+                MangaIDFoundCardExploreInfo = tryingtogetfuidhelper[i].replace("VC=");
+            }
+        }*/
+        var MangaIDFoundCardExploreInfo = document.getElementById('<%= SuMViewsPlaceHolder.ClientID %>').innerText;
+        $.ajax({
+            dataType: "json",
+            method: 'post',
+            url: '<%= ResolveUrl("~/BTNTesting.aspx/GetMangaViewsCountFSQL") %>',
+            data: JSON.stringify({ MID: MangaIDFoundCardExploreInfo }),
+            contentType: "application/json; charset=utf-8",
+            success: function (msg) {
+                $("#SuMViewsPlaceHolder").append(msg.d);
+                androidAPIs.SuMExploreMangaViews(msg.d);
+            },
+            error: function (e) {
+                androidAPIs.SuMExploreMangaViews('error!');
+            }
+        });
+    </script>
 </asp:Content>

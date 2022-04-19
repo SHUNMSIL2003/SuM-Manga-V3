@@ -43,7 +43,7 @@
             }
     </style>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <title>Register - SuM Manga</title>
     <meta name="theme-color" content="var(--SuMDGray)">
     <meta name="description" content="Shun Manga Shop">
@@ -389,30 +389,9 @@
             pointer-events: none;
          }
          body {
-            animation: rainbow 10s linear infinite;
+           background-color:transparent !important;
         }
 
-        @keyframes rainbow {
-            0% {
-                background-color: #baa9cc;
-            }
-
-            25% {
-                background-color: #85798b;
-            }
-
-            50% {
-                background-color: #82667b;
-            }
-
-            75% {
-                background-color: #968aae;
-            }
-
-            100% {
-                background-color: #baa9cc;
-            }
-        }
          input, textarea {
             -webkit-user-select: text !important;
             -khtml-user-select: text !important;
@@ -468,8 +447,7 @@
         })();*/
     </script>
     <form id="SuM" method="post" runat="server">
-    <div style="height:calc(100vh - 100px);" class="container pulse animated">
-        <div style="border-radius:22px;" class="card shadow-lg o-hidden border-0 my-5">
+    <div style="border-radius:22px;margin:0px !important;background-color:transparent !important;" class="card o-hidden border-0 my-5">
             <div class="card-body p-0">
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-flex">
@@ -502,7 +480,6 @@
                 </div>
             </div>
         </div>
-    </div>
         <script>
               
     </script>

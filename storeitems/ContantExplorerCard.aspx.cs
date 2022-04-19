@@ -32,6 +32,7 @@ namespace SuM_Manga_V3.storeitems
             string theme = ThemeColor;
             int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
             int cn1 = 0;
+            int ChapterCValue = 0;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
@@ -41,8 +42,15 @@ namespace SuM_Manga_V3.storeitems
                 sqlCmd.Parameters["@MangaID"].Value = idfg0554;
                 var un = sqlCmd.ExecuteScalar();
                 cn1 = Convert.ToInt32(un);
+                query = "SELECT ChapterCValue FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = idfg0554;
+                un = sqlCmd.ExecuteScalar();
+                ChapterCValue = Convert.ToInt32(un);
                 sqlCon.Close();
             }
+            SuMViewsPlaceHolder.InnerHtml = Request.QueryString["VC"];
             ScriptInjectorB000.InnerHtml = "<script> androidAPIs.ShowSuMToastsOverview('" + MangaNameFSQL + " :" + cn1.ToString() + " Chapters!'); androidAPIs.SuMExploreInfoMangaDisc('" + GetDisc().Replace("'", "") + "'); </script>";
             if (IsPostBack == false)
             {
@@ -94,7 +102,7 @@ namespace SuM_Manga_V3.storeitems
                     if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
                     {
                         RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
-                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "SuMGoToThis('" + RLink + "','" + themecolor + "','Chapter " + chxC + "','MangaExplorer');" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
+                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "androidAPIs.SuMExploreLoadReader('" + RLink + "',"+ ChapterCValue + ");" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
                     }
                     else
                     {
@@ -494,6 +502,7 @@ namespace SuM_Manga_V3.storeitems
             int CSN = 1 * 12;
             int CEN = 0;
             int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
+            int ChapterCValue = 0;
             using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
             {
                 sqlCon.Open();
@@ -503,6 +512,12 @@ namespace SuM_Manga_V3.storeitems
                 sqlCmd.Parameters["@MangaID"].Value = idfg0554;
                 var un = sqlCmd.ExecuteScalar();
                 CEN = Convert.ToInt32(un);
+                query = "SELECT ChapterCValue FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = idfg0554;
+                un = sqlCmd.ExecuteScalar();
+                ChapterCValue = Convert.ToInt32(un);
                 sqlCon.Close();
             }
             //NormallCoderFromDownHere
@@ -539,7 +554,7 @@ namespace SuM_Manga_V3.storeitems
                     if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
                     {
                         RLink = pathstartnochx + extraexplore + identifylast + identifynexthelper + "ch" + ChapterFixedForm + "&TC=" + themecolor + "&VC=" + Request.QueryString["VC"].ToString();//+ OptionToAddCurrFunc;
-                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "SuMGoToThis('" + RLink + "','" + themecolor + "','Chapter " + chxC + "','MangaExplorer');" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
+                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "androidAPIs.SuMExploreLoadReader('" + RLink + "',"+ ChapterCValue + ");" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
                     }
                     else
                     {

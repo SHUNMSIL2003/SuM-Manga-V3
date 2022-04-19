@@ -77,6 +77,8 @@ namespace SuM_Manga_V3
                         string query = string.Empty;
                         SqlCommand sqlCmd = new SqlCommand("", sqlCon);
                         int[] MIDs = ST0(ResultFromSQL.ToString());
+                        string AgeRating = string.Empty;
+                        string Auther = string.Empty;
                         for (int i = 0; i < MIDs.Length; i++)
                         {
                             int maxidf = MIDs[i];
@@ -104,7 +106,21 @@ namespace SuM_Manga_V3
                             sqlCmd.Parameters["@MangaID"].Value = maxidf;
                             string themecolor = sqlCmd.ExecuteScalar().ToString();
                             CExplorerLink += "&VC=" + maxidf.ToString() + "&TC=" + themecolor;
-                            Recent.InnerHtml += BuildRecentCard(Cover, MTitle, themecolor, CExplorerLink, (i + 1), maxidf);
+
+                            query = "SELECT MangaCreator FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
+                            un = sqlCmd.ExecuteScalar();
+                            Auther = un.ToString();
+                            query = "SELECT MangaAgeRating FROM SuMManga WHERE MangaID = @MangaID";
+                            sqlCmd = new SqlCommand(query, sqlCon);
+                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            sqlCmd.Parameters["@MangaID"].Value = maxidf;
+                            un = sqlCmd.ExecuteScalar();
+                            AgeRating = un.ToString();
+
+                            Recent.InnerHtml += BuildRecentCard(Cover, MTitle, themecolor, CExplorerLink, (i + 1), maxidf, Auther, AgeRating);
                         }
                         sqlCon.Close();
                     }
@@ -119,10 +135,128 @@ namespace SuM_Manga_V3
                 RecentsSuperCont.Attributes["style"] = "display:none !important;";
             }
         }
-        protected string BuildRecentCard(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink, int Num, int MangaID)
+        protected string BuildRecentCard(string CoverLink, string MangaTitle, string ThemeColor, string ExplorerLink, int Num, int MangaID,string Author,string AgeRating)
         {
-            string RS = "<div class=" + '"' + "animated fadeInRight" + '"' + " onclick=" + '"' + "SuMApplyInfoToUltraCard('" + MangaID + "', '" + CoverLink + "', '" + MangaTitle.Replace("'", "") + "', '" + ExplorerLink + "', 'ContantExplorer', '" + MangaTitle.Replace("'", "") + "', '" + ThemeColor + "');" + '"' + " loading=lazy style=" + '"' + "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CoverLink + ");background-size:cover;background-position:center;width:96px;height:96px;overflow:hidden !important;margin-left:16px !important;" + '"' + "><div id=RecentItem" + Num.ToString() + " class=GoodBlur style=" + '"' + "background-color:" + ThemeColor + " !important;width:98px;margin-left:-1px;height:36px;position:absolute;bottom:0;border-radius:0px;overflow:hidden !important;" + '"' + "><p style=" + '"' + "margin-top:2px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" + '"' + ">" + MangaTitle + "</p></div></div>";
+            string GernsString = GetGarnas(MangaID);
+            string OnClickJSCode = "androidAPIs.SuMExploreInfoStart('" + ExplorerLink + "','" + ThemeColor + "','" + MangaTitle.Replace("'","") + "','" + Author + "','" + GernsString + "','" + AgeRating + "','" + CoverLink + "',);";
+            string RS = "<div class=" + '"' + "animated fadeInRight" + '"' + " onclick=" + '"' + OnClickJSCode + '"' + " loading=lazy style=" + '"' + "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CoverLink + ");background-size:cover;background-position:center;width:96px;height:96px;overflow:hidden !important;margin-left:16px !important;" + '"' + "><div id=RecentItem" + Num.ToString() + " class=GoodBlur style=" + '"' + "background-color:" + ThemeColor + " !important;width:98px;margin-left:-1px;height:36px;position:absolute;bottom:0;border-radius:0px;overflow:hidden !important;" + '"' + "><p style=" + '"' + "margin-top:2px;height:fit-content;width:auto;max-width:112px;color:#ffffff;margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" + '"' + ">" + MangaTitle + "</p></div></div>";
             return RS;
+        }
+        protected string GetGarnas(int id)
+        {
+            string garns = " ";
+            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                bool IsIt = false;
+                sqlCon.Open();
+                string query = "SELECT Fantasy FROM SuMManga WHERE MangaID = @MangaID";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Fantasy, "; }
+
+                query = "SELECT Comedy FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Comedy, "; }
+
+                query = "SELECT Supernatural FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Supernatural, "; }
+
+                query = "SELECT SciFi FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Sci-Fi, "; }
+
+                query = "SELECT Drama FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Drama, "; }
+
+                query = "SELECT Mystery FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Mystery, "; }
+
+                query = "SELECT SliceofLife FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Slice of Life, "; }
+
+                query = "SELECT Action FROM SuMManga WHERE MangaID = @MangaID";
+                sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                sqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        IsIt = reader.GetBoolean(0);
+                    }
+                }
+                if (IsIt == true) { garns += "Action, "; }
+
+                sqlCon.Close();
+            }
+            if (string.IsNullOrEmpty(garns) == false) { garns = garns.Substring(1, (garns.Length - 3)); }
+            return garns;
         }
         protected int[] ST0(string x)
         {
