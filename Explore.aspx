@@ -1,11 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="Explore.aspx.cs" Inherits="SuM_Manga_V3.Explore" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="ScriptInjectorA000" style="display:none !important;visibility:hidden !important;" runat="server">
-        <script>
-            androidAPIs.ShowSuMToastsOverview('welcome UserName!');
-        </script>
-    </div>
     <style>
         * {box-sizing: border-box;}
 .mySlides {display: none;}
@@ -315,46 +310,5 @@ img {vertical-align: middle;}
         </div>
         <div style="display:block !important;width:100% !important;height:64px !important;background-color:transparent !important;text-align:center;margin:0 auto !important;"></div>
     </div>
-    <script>
-          
-        var ThisPageScrollContaner = document.getElementById('<%= AnimatedMainContHEx.ClientID %>');
-        var ThisPageChangeStartElm = document.getElementById('<%= cardscontain.ClientID %>');
-        var HeightFixrFASIT208CutJK3 = document.getElementById('<%= cardstoshow.ClientID %>').offsetHeight + 2;
-        var SuMMangaTopBarElm = document.getElementById('SuMMangaTopBar');
-        var SuMMangaTopBarHeightHelperElm = document.getElementById('SuMMangaTopBarHeightHelper');
-        var StatusBarHeightValueFromAPIs = androidAPIs.getStatusBarHeight();
-        var MaxScrollHDetected = 24;
-        SuMMangaTopBarHeightHelperElm.style.height = (StatusBarHeightValueFromAPIs + 6) + 'px !important';
-
-          
-          
-        var StatusBarHeightValueFromSuMAndroidAPIsF0C1 = androidAPIs.getStatusBarHeight();
-        document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
-        setTimeout(() => {
-              
-            document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
-            setTimeout(() => {
-                  
-                document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
-                setTimeout(() => {
-                      
-                    setTimeout(() => {
-                          
-                        setTimeout(() => {
-                              
-                            document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
-                            setTimeout(() => {
-                                  
-                                setTimeout(() => {
-                                      
-                                    document.getElementById('SuMStatusBarHeightFixUpF0C0').style.height = (StatusBarHeightValueFromSuMAndroidAPIsF0C1 + 12) + 'px';
-                                }, 1800);
-                            }, 45);
-                        }, 90);
-                    }, 180);
-                }, 360);
-            }, 640);
-        }, 960);
-    </script>
 </div>
 </asp:Content>

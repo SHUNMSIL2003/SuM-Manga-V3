@@ -7,25 +7,16 @@
         <meta http-equiv="refresh" content="0; url = https://sum-manga.azurewebsites.net/SuMMangaInstallAPP.aspx" />
     </noscript>
     <script>
-
-        if ("androidAPIs" in window) {
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/SuMManga-SW.js')
-                        .then(registration => {
-                            console.log(`Service Worker registered! Scope: ${registration.scope}`);
-                        })
-                        .catch(err => {
-                            console.log(`Service Worker registration failed: ${err}`);
-                        });
-                });
+        (function () {
+            setInterval(() => {
+                debugger;
+            }, 20);
+        })();
+        var ABSCurrURLF0C0SC0 = document.URL;
+        if (ABSCurrURLF0C0SC0.includes('/Explore.aspx') == false) {
+            if (ABSCurrURLF0C0SC0 != 'https://sum-manga.azurewebsites.net/' && ABSCurrURLF0C0SC0 != 'https://sum-manga.azurewebsites.net') {
+                location.href = 'SuMMangaInstallAPP.aspx';
             }
-            androidAPIs.SetSuMHardwareExl();
-            androidAPIs.SuM0Manager();
-            androidAPIs.SuMBTActNormal();
-        }
-        else {
-            location.href = '/SuMMangaInstallAPP.aspx';
         }
 
         document.onkeypress = function (event) {
@@ -504,7 +495,6 @@
             ripple.onanimationend = () => document.body.removeChild(ripple);
         });
 
-        if ("androidAPIs" in window == true) { androidAPIs.SuM0Manager(); }
 
         function getCookie(cname) {
             let name = cname + "=";
@@ -593,11 +583,9 @@
             var BestColorRoot;
             if (SuMStateBit == 0 || SuMStateBit == '0' || SuMStateBit == '' || SuMStateBit == ' ' || SuMStateBit == null) {
                 BestColorRoot = MixTwoRGBsWStaticOpacityAndR(DetectedThemeColorF0CC, '0,0,0', 6, 1);
-                androidAPIs.SuMBackLight();
             }
             if (SuMStateBit == 1 || SuMStateBit == '1') {
                 BestColorRoot = MixTwoRGBsWStaticOpacityAndR(DetectedThemeColorF0CC, '255,255,255', 2, 1);
-                androidAPIs.SuMBackDark();
             }
             document.getElementById('SecThemeColorInsertDiv').innerHTML = '<style> :root { --SuMThemeColorThisPage:rgb(#TC#); --SuMThemeColorThisPageOP01: rgba(#TC#,0.01); --SuMThemeColorThisPageOP02: rgba(#TC#,0.02); --SuMThemeColorThisPageOP03: rgba(#TC#,0.03); --SuMThemeColorThisPageOP04: rgba(#TC#,0.04); --SuMThemeColorThisPageOP05: rgba(#TC#,0.05); --SuMThemeColorThisPageOP06: rgba(#TC#,0.06); --SuMThemeColorThisPageOP07: rgba(#TC#,0.07); --SuMThemeColorThisPageOP08: rgba(#TC#,0.08); --SuMThemeColorThisPageOP09: rgba(#TC#,0.09); --SuMThemeColorThisPageOP10: rgba(#TC#,0.10); --SuMThemeColorThisPageOP11: rgba(#TC#,0.11); --SuMThemeColorThisPageOP12: rgba(#TC#,0.12); --SuMThemeColorThisPageOP13: rgba(#TC#,0.13); --SuMThemeColorThisPageOP14: rgba(#TC#,0.14); --SuMThemeColorThisPageOP15: rgba(#TC#,0.15); --SuMThemeColorThisPageOP16: rgba(#TC#,0.16); --SuMThemeColorThisPageOP17: rgba(#TC#,0.17); --SuMThemeColorThisPageOP18: rgba(#TC#,0.18); --SuMThemeColorThisPageOP19: rgba(#TC#,0.19); --SuMThemeColorThisPageOP20: rgba(#TC#,0.20); --SuMThemeColorThisPageOP21: rgba(#TC#,0.21); --SuMThemeColorThisPageOP22: rgba(#TC#,0.22); --SuMThemeColorThisPageOP23: rgba(#TC#,0.23); --SuMThemeColorThisPageOP24: rgba(#TC#,0.24); --SuMThemeColorThisPageOP25: rgba(#TC#,0.25); --SuMThemeColorThisPageOP26: rgba(#TC#,0.26); --SuMThemeColorThisPageOP27: rgba(#TC#,0.27); --SuMThemeColorThisPageOP28: rgba(#TC#,0.28); --SuMThemeColorThisPageOP29: rgba(#TC#,0.29); --SuMThemeColorThisPageOP30: rgba(#TC#,0.30); --SuMThemeColorThisPageOP31: rgba(#TC#,0.31); --SuMThemeColorThisPageOP32: rgba(#TC#,0.32); --SuMThemeColorThisPageOP33: rgba(#TC#,0.33); --SuMThemeColorThisPageOP34: rgba(#TC#,0.34); --SuMThemeColorThisPageOP35: rgba(#TC#,0.35); --SuMThemeColorThisPageOP36: rgba(#TC#,0.36); --SuMThemeColorThisPageOP37: rgba(#TC#,0.37); --SuMThemeColorThisPageOP38: rgba(#TC#,0.38); --SuMThemeColorThisPageOP39: rgba(#TC#,0.39); --SuMThemeColorThisPageOP40: rgba(#TC#,0.40); --SuMThemeColorThisPageOP41: rgba(#TC#,0.41); --SuMThemeColorThisPageOP42: rgba(#TC#,0.42); --SuMThemeColorThisPageOP43: rgba(#TC#,0.43); --SuMThemeColorThisPageOP44: rgba(#TC#,0.44); --SuMThemeColorThisPageOP45: rgba(#TC#,0.45); --SuMThemeColorThisPageOP46: rgba(#TC#,0.46); --SuMThemeColorThisPageOP47: rgba(#TC#,0.47); --SuMThemeColorThisPageOP48: rgba(#TC#,0.48); --SuMThemeColorThisPageOP49: rgba(#TC#,0.49); --SuMThemeColorThisPageOP50: rgba(#TC#,0.50); --SuMThemeColorThisPageOP51: rgba(#TC#,0.51); --SuMThemeColorThisPageOP52: rgba(#TC#,0.52); --SuMThemeColorThisPageOP53: rgba(#TC#,0.53); --SuMThemeColorThisPageOP54: rgba(#TC#,0.54); --SuMThemeColorThisPageOP55: rgba(#TC#,0.55); --SuMThemeColorThisPageOP56: rgba(#TC#,0.56); --SuMThemeColorThisPageOP57: rgba(#TC#,0.57); --SuMThemeColorThisPageOP58: rgba(#TC#,0.58); --SuMThemeColorThisPageOP59: rgba(#TC#,0.59); --SuMThemeColorThisPageOP60: rgba(#TC#,0.60); --SuMThemeColorThisPageOP61: rgba(#TC#,0.61); --SuMThemeColorThisPageOP62: rgba(#TC#,0.62); --SuMThemeColorThisPageOP63: rgba(#TC#,0.63); --SuMThemeColorThisPageOP64: rgba(#TC#,0.64); --SuMThemeColorThisPageOP65: rgba(#TC#,0.65); --SuMThemeColorThisPageOP66: rgba(#TC#,0.66); --SuMThemeColorThisPageOP67: rgba(#TC#,0.67); --SuMThemeColorThisPageOP68: rgba(#TC#,0.68); --SuMThemeColorThisPageOP69: rgba(#TC#,0.69); --SuMThemeColorThisPageOP70: rgba(#TC#,0.70); --SuMThemeColorThisPageOP71: rgba(#TC#,0.71); --SuMThemeColorThisPageOP72: rgba(#TC#,0.72); --SuMThemeColorThisPageOP73: rgba(#TC#,0.73); --SuMThemeColorThisPageOP74: rgba(#TC#,0.74); --SuMThemeColorThisPageOP75: rgba(#TC#,0.75); --SuMThemeColorThisPageOP76: rgba(#TC#,0.76); --SuMThemeColorThisPageOP77: rgba(#TC#,0.77); --SuMThemeColorThisPageOP78: rgba(#TC#,0.78); --SuMThemeColorThisPageOP79: rgba(#TC#,0.79); --SuMThemeColorThisPageOP80: rgba(#TC#,0.80); --SuMThemeColorThisPageOP81: rgba(#TC#,0.81); --SuMThemeColorThisPageOP82: rgba(#TC#,0.82); --SuMThemeColorThisPageOP83: rgba(#TC#,0.83); --SuMThemeColorThisPageOP84: rgba(#TC#,0.84); --SuMThemeColorThisPageOP85: rgba(#TC#,0.85); --SuMThemeColorThisPageOP86: rgba(#TC#,0.86); --SuMThemeColorThisPageOP87: rgba(#TC#,0.87); --SuMThemeColorThisPageOP88: rgba(#TC#,0.88); --SuMThemeColorThisPageOP89: rgba(#TC#,0.89); --SuMThemeColorThisPageOP90: rgba(#TC#,0.90); --SuMThemeColorThisPageOP91: rgba(#TC#,0.91); --SuMThemeColorThisPageOP92: rgba(#TC#,0.92); --SuMThemeColorThisPageOP93: rgba(#TC#,0.93); --SuMThemeColorThisPageOP94: rgba(#TC#,0.94); --SuMThemeColorThisPageOP95: rgba(#TC#,0.95); --SuMThemeColorThisPageOP96: rgba(#TC#,0.96); --SuMThemeColorThisPageOP97: rgba(#TC#,0.97); --SuMThemeColorThisPageOP98: rgba(#TC#,0.98); --SuMThemeColorThisPageOP99: rgba(#TC#,0.99); }</style>'.replace('#TC#', BestColorRoot);
         };
@@ -611,14 +599,12 @@
             }
             //Deafult -lightmode
             if (SuMStateBit == 0 || SuMStateBit == '0' || SuMStateBit == null || SuMStateBit == ' ' || SuMStateBit == '') {
-                androidAPIs.SuMBackLight();
                 SuMDarkModeControleDiv.innerHTML = '0';
                 SuMLightModeControleDiv.innerHTML = SuMLightModeBackUp;
                 SuMThemeColorControleDiv.innerHTML = ApplySuMThemeStyleForm(MixTwoRGBsWStaticOpacityAndR(SuMThemeColorRoot, '0,0,0', 4, 1));
             }
             //UserSelected --darkmode
             if (SuMStateBit == 1 || SuMStateBit == '1') {
-                androidAPIs.SuMBackDark();
                 SuMLightModeControleDiv.innerHTML = '0';
                 SuMDarkModeControleDiv.innerHTML = SuMDarkModeBackUp;
                 SuMThemeColorControleDiv.innerHTML = ApplySuMThemeStyleForm(MixTwoRGBsWStaticOpacityAndR(SuMThemeColorRoot, '255,255,255', 4, 1));
@@ -628,15 +614,9 @@
             //prevent fullscreen mode from statying activated
             var PreSuMURL = document.referrer;
             if (PreSuMURL.includes('/MangaExplorer.aspx') == true) {
-                if ("androidAPIs" in window) {
-                    androidAPIs.DeactivateFullScreenMode();
-                }
             }
             //Change StatusBarColor to fit dark mode or light mode --defultcoloredpages
             var CurrSuMURL = document.URL;
-            if ("androidAPIs" in window) {
-                androidAPIs.FullyTransStatusBar();
-            }
         };
         SuMSetThemeState(SuMThemeStateBit);
 
@@ -755,96 +735,7 @@
         </div>
         <p id="DtataParserF0CPush" style="display:none !important;visibility:hidden !important;"></p>
         <div id="SuMAdPrDiv" style="background-color:rgba(0,0,0,0.2);display:none;position:fixed !important;z-index:1020 !important;top:0 !important;width:100vw !important;height:100vh !important;"></div>
-        <script>
-            var CurrSuMCoinsCount;
-            document.getElementById('SuMAdPrDiv').style.display = 'none';
-            var AnAdIsRequsted = false;
-            //var debug0turn = 0; //debug
-            //var debug1turn = 0; //debug
-            function SuMPushAnAd(SuMCoinsAm) {
-                var SuMADRewardState = androidAPIs.SuMAdStateReward();
-                var SuMADProssState = androidAPIs.SuMAdProssState();
-                if (SuMADProssState == false) {
-                    AnAdIsRequsted = true;
-                    androidAPIs.SuMADStart();
-                }
-                else {
-                    if (SuMADRewardState == true) {
-                        SuMRewardVoucherFD(SuMCoinsAm);
-                    }
-                    else {
-                        AnAdIsRequsted = false;
-                        SuMPushAnAd(SuMCoinsAm);
-                    }
-                }
-            };
-            function SuMADCTimeManager(SuMCoinsTMFCTurn, SuMF0CMCoins) {
-                var SuMADObState = androidAPIs.SuMAdStateReward();
-                //console.log('TimeWaiFunc1; Trun:' + debug0turn + '; Reads:' + SuMADObState);
-                if (SuMADObState == null) {
-                    setTimeout(() => {
-                        SuMADCTimeManager((SuMCoinsTMFCTurn + 1), SuMF0CMCoins);
-                    }, 180);
-                }
-                else {
-                    if (SuMADObState == true) {
-                        document.getElementById('SuMAdPrDiv').style.display = 'none';
-                        SuMRewardVoucherFD(SuMF0CMCoins);
-                    }
-                    else {
-                        if (SuMCoinsTMFCTurn < 1296000) {
-                            setTimeout(() => {
-                                SuMADCTimeManager(SuMCoinsTMFCTurn, SuMF0CMCoins);
-                            }, 100);
-                        }
-                    }
-                }
-            };
-            function SuMCoinsCount(FUID) {
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %>',
-                    data: JSON.stringify({ UID: FUID }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        document.getElementById('CoinsCount').innerText = '';
-                        $("#CoinsCount").append(msg.d);
-                        CurrSuMCoinsCount = msg.d;
-                        androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                        setTimeout(() => {
-                            androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                            setTimeout(() => {
-                                androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                            }, 360);
-                        }, 180);
-                    },
-                    error: function (e) {
-                        document.getElementById('CoinsCount').innerText = '';
-                        $("#CoinsCount").append('error');
-                        androidAPIs.SuMCoinsShowITTA(null);
-                    }
-                });
-            };
-            function SuMUpdateCoinsCount(FUID, FToken) {
-                if (document.URL.includes('Settings.aspx') == true) {
-                    document.getElementById('CoinsCount').innerText = 'loading';
-                }
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/UpdateCoinsCountFSQL") %>',
-                    data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        return true;
-                    },
-                    error: function (e) {
-                        return false;
-                    }
-                });
-            };
-        </script>
+        
         <div class="d-flex flex-column" id="content-wrapper" style="height:calc(100vh - 32px) !important;width:100vw !important;background-color:transparent !important;flex-grow: 1 !important; flex-shrink: 1 !important; overflow-y: scroll !important;overflow-x:hidden;">
             <div id="content" style="background-color:transparent !important;">
                 <style>
@@ -885,10 +776,8 @@
                         </asp:ContentPlaceHolder>
                     <p id="CurrCoinsCountPlaceHolderHD" style="display:none !important;visibility:hidden !important;"></p>
                     <div id="UltraCardBGCloseDiv" onclick="SuMUltraCloseCard();" style="width:100vw;height:100vh;display:none;position:fixed !important;top:0 !important;z-index:994 !important;background-color:rgba(0,0,0,0.08);"></div>
-                    <script><%= ResolveUrl("BTNTesting.aspx/GetMangaCoinsCountFSQL") %><%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %></script>
                     </div>
                 </div>
-                <script><%= SuMMainBlock.ClientID %><%= mc.ClientID %></script>
             </div>
         </div>
         <style>
@@ -968,207 +857,155 @@
             
         </div>
     </div>
+    <script>
+        document.getElementById('SuMUltraInfoCard').style.display = 'none';
+        document.getElementById('SuMUltraInfoCard').classList.remove('fadeInRight');
+        document.getElementById('SuMUltraInfoCard').classList.add('fadeOutLeft');
+        document.getElementById('SuMUltraMDisc').innerText = 'loading';
+        document.getElementById('SuMUltarProdYear').innerText = 'loading';
+        document.getElementById('SuMUltarChptersNum').innerText = 'loading';
+        document.getElementById('SuMUltraFavListClick').style.opacity = '0.32';
+        document.getElementById('SuMUltraCurrReadingTXT').innerText = 'loading';
+        document.getElementById('SuMUltraWannaListClick').style.opacity = '0.32';
+        document.getElementById('SuMUltraStartReadingFuncClick').style.opacity = '0.32';
+        document.getElementById('SuMUltraCover').src = '/svg/add.svg';
+        var SuMUltraIsLoading = false;
+        function SuMUltraCloseCard() {
+            var UltraAbsConClElm = document.getElementById('SuMUltraInfoCard');
+            UltraAbsConClElm.classList.remove('fadeInRight');
+            UltraAbsConClElm.classList.add('fadeOutLeft');
+            setTimeout(() => {
+                UltraAbsConClElm.style.display = 'none';
+            }, 360);
+            document.getElementById('UltraCardBGCloseDiv').style.display = 'none';
+            setTimeout(() => {
+                document.getElementById('SuMUltraMDisc').innerText = 'loading';
+                document.getElementById('SuMUltarProdYear').innerText = 'loading';
+                document.getElementById('SuMUltarChptersNum').innerText = 'loading';
+                document.getElementById('SuMUltraCover').src = '/svg/add.svg';
+                document.getElementById('SuMUltraFavListClick').style.opacity = '0.32';
+                document.getElementById('SuMUltraCurrReadingTXT').innerText = 'loading';
+                document.getElementById('SuMUltraWannaListClick').style.opacity = '0.32';
+                document.getElementById('SuMUltraStartReadingFuncClick').style.opacity = '0.32';
+                document.getElementById('SuMUltraWannaListClick').setAttribute('onclick', "return false;");
+                document.getElementById('SuMUltraFavListClick').setAttribute('onclick', "return false;");
+                document.getElementById('SuMUltraStartReadingFuncClick').setAttribute('onclick', 'return false;');
+                document.getElementById('SuMUltarTitle').innerText = 'loading';
+                SuMUltraIsLoading = false;
+            }, 380);
+        };
+        function SuMApplyInfoToUltraCard(UltraID, UltraCover, UltraTitle, UltraMELink, IMGID, HerfInfo, HerfThemeColor) {
+            document.getElementById('UltraCardBGCloseDiv').style.display = 'block';
+            if (SuMUltraIsLoading == false) {
+                SuMUltraIsLoading = true;
+                document.getElementById('SuMUltraCurrReadingSVG').setAttribute('fill', HerfThemeColor);
+                document.getElementById('SuMUltraWannaSVG').setAttribute('fill', HerfThemeColor);
+                document.getElementById('SuMUltraFavSVG').setAttribute('fill', HerfThemeColor);
+                if (document.getElementById('SuMUltraInfoCard').classList.contains('fadeOutLeft') == true) {
+                    document.getElementById('SuMUltraInfoCard').classList.remove('fadeOutLeft');
+                }
+                if (document.getElementById('SuMUltraInfoCard').classList.contains('fadeInRight') == false) {
+                    document.getElementById('SuMUltraInfoCard').classList.add('fadeInRight');
+                }
+                document.getElementById('SuMUltraBGColor').style.backgroundColor = HerfThemeColor;
+                document.getElementById('SuMUltarTitle').innerText = UltraTitle;
+                document.getElementById('SuMUltraCover').src = UltraCover;
+                document.getElementById('SuMUltraInfoCard').style.display = 'block';
+                /*var UltraUCookie = getCookie('SuMCurrentUser');
+                if (UltraUCookie != null && UltraUCookie != '' && UltraUCookie != ' ') {
+                    document.getElementById('UltraExploreOrLogIn').innerText = 'More';
+                    document.getElementById('SuMUltraHerfFuncLTE').setAttribute('onclick', "SuMGoToThis('" + UltraMELink + "', '" + HerfThemeColor + "', '" + HerfInfo + "', '" + IMGID + "');");
+                }
+                else {*/
+                document.getElementById('UltraExploreOrLogIn').innerText = 'Install our app to start reading';
+                document.getElementById('SuMUltraHerfFuncLTE').setAttribute('onclick', "location.href = '/SuMMangaInstallAPP.aspx';");
+                //}
+                SuMGetMDisc(UltraID);
+                SuMGetMYear(UltraID);
+                SuMGetMChaptersNum(UltraID);
+                SuMGetMAgeRating(UltraID);
+            }
+        };
+        function SuMGetMDisc(RMID) {
+            document.getElementById('SuMUltraMDisc').innerText = '';
+            $.ajax({
+                dataType: "json",
+                method: 'post',
+                url: '<%= ResolveUrl("BTNTesting.aspx/GetMDiscFSQL") %>',
+                data: JSON.stringify({ MID: RMID }),
+                contentType: "application/json; charset=utf-8",
+                success: function (msg) {
+                    $("#SuMUltraMDisc").append(msg.d);
+                },
+                error: function (e) {
+                    //$("#SuMUltraMDisc").append(msg.d);
+                    $("#SuMUltraMDisc").append('Failed to load!');
+                }
+            });
+        };
+        function SuMGetMYear(RMID) {
+            document.getElementById('SuMUltarProdYear').innerText = '';
+            $.ajax({
+                dataType: "json",
+                method: 'post',
+                url: '<%= ResolveUrl("BTNTesting.aspx/GetMYearFSQL") %>',
+                data: JSON.stringify({ MID: RMID }),
+                contentType: "application/json; charset=utf-8",
+                success: function (msg) {
+                    $("#SuMUltarProdYear").append(msg.d);
+                },
+                error: function (e) {
+                    //$("#SuMUltraMDisc").append(msg.d);
+                    $("#SuMUltarProdYear").append('0000!');
+                }
+            });
+        };
+        function SuMGetMChaptersNum(RMID) {
+            document.getElementById('SuMUltarChptersNum').innerText = '';
+            $.ajax({
+                dataType: "json",
+                method: 'post',
+                url: '<%= ResolveUrl("BTNTesting.aspx/GetMChapterNumFSQL") %>',
+                data: JSON.stringify({ MID: RMID }),
+                contentType: "application/json; charset=utf-8",
+                success: function (msg) {
+                    $("#SuMUltarChptersNum").append(msg.d + ' chapters');
+                },
+                error: function (e) {
+                    //$("#SuMUltraMDisc").append(msg.d);
+                    $("#SuMUltarChptersNum").append('Failed to load!');
+                }
+            });
+        };
+        function SuMGetMAgeRating(RMID) {
+            document.getElementById('SuMUltraAgeRating').innerText = '';
+            $.ajax({
+                dataType: "json",
+                method: 'post',
+                url: '<%= ResolveUrl("BTNTesting.aspx/GetMAgeRatingFSQL") %>',
+                data: JSON.stringify({ MID: RMID }),
+                contentType: "application/json; charset=utf-8",
+                success: function (msg) {
+                    $("#SuMUltraAgeRating").append(msg.d);
+                },
+                error: function (e) {
+                    //$("#SuMUltraMDisc").append(msg.d);
+                    $("#SuMUltraAgeRating").append('Failed to load!');
+                }
+            });
+        };
+    </script>
     <div id="ShowMoreContentForUltra" style="visibility:hidden;display:none;width:calc(100% - 64px);height:fit-content;position:fixed !important;top:0;bottom:0;left:0;right:0;margin:auto;z-index:996 !important;border-radius:22px;background-color:rgb(255,255,255)">
         <div id="ShowMoreContentForUltraFilling" style="width:100%;height:fit-content;background-color:rgb(0,0,0);color:rgba(255,255,255,0.96);font-size:118%;overflow-x:hidden;overflow-y:scroll;max-height:calc(100% - 200px);">
             
         </div>
     </div>
-    <script><%= ResolveUrl("BTNTesting.aspx/GetMDiscFSQL") %><%= ResolveUrl("BTNTesting.aspx/GetMYearFSQL") %><%= ResolveUrl("BTNTesting.aspx/GetMChapterNumFSQL") %><%= ResolveUrl("BTNTesting.aspx/GetMAgeRatingFSQL") %><%= ResolveUrl("BTNTesting.aspx/GetMIsFavFSQL") %>)
-                        }
-                        else {
-
-                        }
-                    },
-                    error: function (e) {
-                        //FCSRSIsFav = null;}
-                });
-            }
-        };
-        function SuMGetMWannaState(RMID) {
-            document.getElementById('SuMUltraWannaListClick').style.opacity = '0.32';
-            var FCSRSIsWanna = false;
-            var CTALICA = getCookie('SuMCurrentUser');
-            if (CTALICA != null && CTALICA != '') {
-                var UIDFrJSC = getUIDFrUserCo();
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetMIsWannaFSQL") %>',
-                    data: JSON.stringify({ MID: RMID, UID: UIDFrJSC }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        FCSRSIsWanna = msg.d;
-                        if (FCSRSIsWanna == true) {
-                            document.getElementById('SuMUltraWannaSVG').innerHTML = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"/>';
-                            document.getElementById('SuMUltraWannaListClick').setAttribute('onclick', "RemoveFromWannaTWM(" + RMID + "," + getUIDFrUserCo() + ");");
-                        }
-                        else {
-                            document.getElementById('SuMUltraWannaSVG').innerHTML = '<path d="M0 0h24v24H0V0z" fill="none"></path><path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"></path>';
-                            document.getElementById('SuMUltraWannaListClick').setAttribute('onclick', "AddToWannaTWM(" + RMID + "," + getUIDFrUserCo() + ");");
-                        }
-                        document.getElementById('SuMUltraWannaListClick').style.opacity = '0.94';
-                    },
-                    error: function (e) {
-                        //FCSRSIsFav = null;
-                        document.getElementById('SuMUltraWannaListClick').opacity = '0.32';
-                        document.getElementById('SuMUltraWannaSVG').innerHTML = '<path d="M0 0h24v24H0V0z" fill="none"></path><path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"></path>';
-                    }
-                });
-            }
-        };
-        function SuMGetMCurrState(RMID, EThemeColor) {
-            document.getElementById('SuMUltraStartReadingFuncClick').style.opacity = '0.32';
-            var FCSRSIsCurr = false;
-            var CTALICA = getCookie('SuMCurrentUser');
-            if (CTALICA != null && CTALICA != '') {
-                var UIDFrJSC = getUIDFrUserCo();
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetMIsCurrFSQL") %>',
-                    data: JSON.stringify({ MID: RMID, UID: UIDFrJSC }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        FCSRSIsCurr = msg.d;
-                        var BBB = "";
-                        $.ajax({
-                            dataType: "json",
-                            method: 'post',
-                            url: '<%= ResolveUrl("BTNTesting.aspx/GetMCurrLinkSQLWM") %>',
-                            data: JSON.stringify({ MID: RMID, CN: FCSRSIsCurr, ThemeColor: EThemeColor }),
-                            contentType: "application/json; charset=utf-8",
-                            success: function (msg) {
-                                BBB += msg.d;
-                                document.getElementById('SuMUltraStartReadingFuncClick').setAttribute('onclick', msg.d);
-                            },
-                            error: function (e) {
-                                return 'return false;';
-                            }
-                        });
-                        if (FCSRSIsCurr > 0) {
-                            document.getElementById('SuMUltraCurrReadingTXT').innerText = 'Ch ' + FCSRSIsCurr;
-
-                        }
-                        else {
-                            document.getElementById('SuMUltraCurrReadingTXT').innerText = 'Start R...';
-                        }
-                        document.getElementById('SuMUltraStartReadingFuncClick').style.opacity = '0.94';
-                    },
-                    error: function (e) {
-                        //FCSRSIsFav = null;
-                        document.getElementById('SuMUltraCurrReadingTXT').innerText = 'Failed!';
-                        document.getElementById('SuMUltraStartReadingFuncClick').opacity = '0.32';
-                        document.getElementById('SuMUltraStartReadingFuncClick').setAttribute('onclick', 'return false;');
-                    }
-                });
-            }
-        };
-        function SuMGetMCurrLink(TMID, TCN, EThemeColor) {
-            var BBB = "";
-            $.ajax({
-                dataType: "json",
-                method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMCurrLinkSQLWM") %>',
-                data: JSON.stringify({ MID: TMID, CN: TCN, ThemeColor: EThemeColor }),
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    BBB += msg.d;
-                    return BBB;
-                },
-                error: function (e) {
-                    return 'return false;';
-                }
-            });
-            //return BBB;
-        };
-        function AddToWannaTWM(TMID, TUID) {
-            $.ajax({
-                dataType: "json",
-                method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/AddToWannaWM") %>',
-                data: JSON.stringify({ MID: TMID, UID: TUID }),
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    document.getElementById('SuMUltraWannaSVG').innerHTML = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"/>';
-                    document.getElementById('SuMUltraWannaListClick').style.opacity = '0.94';
-                    document.getElementById('SuMUltraWannaListClick').setAttribute('onclick', "RemoveFromWannaTWM(" + TMID + "," + getUIDFrUserCo() + ");");
-                }
-            });
-        };
-        function RemoveFromWannaTWM(TMID, TUID) {
-            $.ajax({
-                dataType: "json",
-                method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/RemoveFromWannaWM") %>',
-                data: JSON.stringify({ MID: TMID, UID: TUID }),
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    document.getElementById('SuMUltraWannaSVG').innerHTML = '<path d="M0 0h24v24H0V0z" fill="none"></path><path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"></path>';
-                    document.getElementById('SuMUltraWannaListClick').style.opacity = '0.94';
-                    document.getElementById('SuMUltraWannaListClick').setAttribute('onclick', "AddToWannaTWM(" + TMID + "," + getUIDFrUserCo() + ");");
-                },
-                error: function (e) {
-                    alert(e);
-                }
-            });
-        };
-        function AddToFavTWM(TMID, TUID) {
-            $.ajax({
-                dataType: "json",
-                method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/AddToFavWM") %>',
-                data: JSON.stringify({ MID: TMID, UID: TUID }),
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    document.getElementById('SuMUltraFavSVG').innerHTML = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"/>';
-                    document.getElementById('SuMUltraFavListClick').style.opacity = '0.94';
-                    document.getElementById('SuMUltraFavListClick').setAttribute('onclick', "RemoveFromFavTWM(" + TMID + "," + getUIDFrUserCo() + ");");
-                }
-            });
-        };
-        function RemoveFromFavTWM(TMID, TUID) {
-            $.ajax({
-                dataType: "json",
-                method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/RemoveFromFavWM") %>',
-                data: JSON.stringify({ MID: TMID, UID: TUID }),
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    document.getElementById('SuMUltraFavSVG').innerHTML = '<path d="M0 0h24v24H0V0z" fill="none"></path><path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>';
-                    document.getElementById('SuMUltraFavListClick').style.opacity = '0.94';
-                    document.getElementById('SuMUltraFavListClick').setAttribute('onclick', "AddToFavTWM(" + TMID + "," + getUIDFrUserCo() + ");");
-                },
-                error: function (e) {
-                    alert(e);
-                }
-            });
-        };
-        function SetSuMShareBTN(SuMLINK) {
-            if (SuMLINK.includes('sum-manga.azurewebsites.net') == false) {
-                SuMLINK = 'https://sum-manga.azurewebsites.net/' + SuMLINK;
-            }
-            var OnclickShare = "androidAPIs.SuMShareThisLink('" + SuMLINK + "');";
-            document.getElementById('SuMUltraShareClick').setAttribute('onclick', OnclickShare);
-        };
-    </script>
         <div id="SuMMainCardCon" class="animated fadeIn" style="backdrop-filter:blur(0.5px) !important;display: none; height: 100vh; width: 100vw; padding: 8px; animation-duration: 0.18s !important; background-color: rgba(0, 0, 0, 0.46) !important; margin: 0px auto !important; position: fixed !important; top: 0px !important; z-index: 998 !important;">
             <div style="width:100%;height:fit-content;padding:12px;">
                 <a onclick="SuMMainCardManager(0);" style="pointer-events:all;display:block;padding:4px;width:fit-content;height:fit-content;float:right !important;border-radius:50%;background-color:var(--SuMDWhiteOP18);">
                     <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="24px" fill="rgba(255,255,255,0.92)"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"></path></svg>
                 </a>
             </div>
-            <!-- <a id="SuMMainULogOrSetClick" style="margin:12px !important;background-color:var(--SuMDWhite);border-radius:20px;width:calc(100% - 130px) !important;height:96px !important;margin:0 auto;padding:12px !important;display:inline-block !important;float:left;border:2px var(--SuMThemeColorOP74) solid;">
-                <img id="SuMMainPFP" style="border-radius:50%;width:64px;height:64px;background-color:var(--SuMThemeColorOP64);padding:1px !important;display:inline;margin-top:4px;margin-left:8px;" src="/AccountETC/DeafultPFP/1.jpg">
-                <p id="SuMMainUserNameOrTXT" style="margin-left:12px;color:var(--SuMThemeColor) !important;font-size:118%;display:inline-block;width:calc(100% - 92px);overflow:hidden;text-overflow:ellipsis !important;float:right;margin-top:20px;">UserName</p>
-            </a>
-            <a style="display:inline-block !important;margin:12px !important;width:92px !important;height:96px;border-radius:20px;background-color:var(--SuMThemeColor);margin-left:0px !important;float:right;">
-
-            </a>
-            <div style="width:100%;height:calc(100vh - 400px);margin:0 auto;">
-<div style="background-color:var(--SuMDWhiteOP64);border-radius:20px;height:100%;width:calc(100% - 24px);padding:8px;margin:0 auto;backdrop-filter: blur(3px) !important;">
-    
-</div>
-            </div> -->
             <p style="color:white;width:100%;display:block;font-size:124%;opacity:0.86;text-align:center;margin:0 auto;margin-top:calc(50vh - 164px) !important;">comming soon!</p>
         </div>
         <div id="Offline" class="STBSUMBAR   shadow animated slideInUp" style="display:none;overflow:clip;border-top-left-radius:22px;border-top-right-radius:22px;height:174px;overflow:hidden !important;background-color:var(--SuMThemeColor) !important;bottom:0 !important;">
@@ -1215,8 +1052,7 @@
         </div>
 <!-- ipt> -->
         <script>
-            var IsFullScreenNavBarForExFixer = androidAPIs.SuMIsFullScreen();
-            if (window.location.href.indexOf("MangaExplorer") > -1 && IsFullScreenNavBarForExFixer == false) {
+            if (window.location.href.indexOf("MangaExplorer") > -1) {
                 document.getElementById('subnavscont2').style.display = 'block';
             }
             else
@@ -1224,8 +1060,6 @@
                 document.getElementById('subnavscont2').style.display = 'none';
             }
         </script>
-    </div>
-    <div id="BottomStylingTDiv" runat="server" style="position:fixed !important;bottom:0 !important;z-index:993 !important;width:100vw !important;height:60px;background-color:rgba(0,0,0,0.86) !important;overflow:hidden !important;">
     </div>
     <div id="TopStylingTDiv" runat="server" style="animation-duration:0.12s !important; display:block;position:fixed !important;top:0 !important;z-index:993 !important;width:100vw !important;height:50px;background-color:rgba(0,0,0,0.86) !important;overflow:hidden !important;">
     </div>
@@ -1252,42 +1086,13 @@
            MakeSuMFullNavDisa();
         }
         function MakeSuMFullNavDisa() {
-            androidAPIs.HideSuMwebNav();
         };
         function SuMHideFullNavAnF0C0() {
-            androidAPIs.HideSuMwebNav();
         };
         function GetSuMWebNavBarHeight() {
             return 110;
         };
     </script>
-        <!-- <asp:UpdatePanel ID="UpdatePanelNotificationSec" runat="server" UpdateMode="Conditional">
-                <Triggers>
-                    </Triggers>
-                <ContentTemplate>
-                    <asp:Panel runat="server">
-                        <div id="SuMUserNofifications" runat="server" style="animation-duration:0.36s !important;background-color:aqua;overflow:hidden;width:100vw;height:100vh;display:none;padding-bottom:74px;padding-top:42px;z-index:998 !important;margin:0 auto !important;position:absolute !important;padding-left:12px !important;padding-right:12px !important;" class="row justify-content-center animated fadeIn">
-                         <div style="width:100vw;height:100vh;max-width:720px !important;margin:0 auto;" >
-                             <div style="display:block !important;margin:0 auto !important;overflow:hidden;width:100vw;max-width:720px;height:24px !important;"></div>
-                            <div style="width:calc(100% - 24px) !important;height:68px;display:block !important;overflow:hidden !important;position:relative;margin-top:12px; margin-left:-4px !important;">
-                                <img id="NotiUPFP" runat="server" src="/UserPFP/pfp.png" style="border-radius:50% !important;width:36px;height:36px;margin-top:2px;display:inline-block !important;margin-top:8px !important;" />
-                                <p style="color:var(--SuMDWhiteOP92);display:inline !important;font-size:126%;margin-top:8px !important;" id="NotiUserName" runat="server">UserName</p><p style="display:inline !important;font-size:122%;color:var(--SuMDWhiteOP94);margin-top:12px !important;">'s</p>
-                                <img onclick="document.getElementById('SuMUserNofifications').style.display = 'none';return false;" src="/svg/closeWt.svg" style="float:right !important;margin-right:-2px;margin-top:10px;width:32px;height:32px;pointer-events:all !important;" />
-                            </div>
-                        <a class="shadow-sm" style="color:rgba(255,255,255,92);margin-left:12px;margin-top:22px;margin-bottom:2px;font-size:130%;">SuM Account Info</a>
-                        <div id="ACCOUNTNOTOFICATIONSPaymentCard" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:fit-content;padding:6px;border-radius:16px;background-color:var(--SuMDWhiteOP94);vertical-align:middle !important;margin:0 auto !important;margin-left:-4px !important;">
-                        
-                        </div>
-                        <div style="width:calc(100% - 24px) !important;height:14px !important;display:block !important;margin-left:-4px !important;"></div>
-                        <a class="shadow-sm" style="color:var(--SuMDWhiteOP92);margin-left:12px;margin-top:16px;margin-bottom:3px;font-size:130%;">SuM Notifications</a>
-                        <div id="USERNOTIFICATIONS" runat="server" class="animated zoomIn card shadow-sm" style="vertical-align:middle !important;animation-duration:0.12s !important;width:calc(100% - 18px) !important;height:calc(100% - 366px) !important;padding:6px;border-radius:16px;background-color:var(--SuMDWhiteOP94);vertical-align:middle !important;margin:0 auto !important;min-height:62px !important;overflow-x:hidden !important;overflow-y:scroll !important;margin-left:-4px !important;">
-                            
-                        </div>
-                    </div>
-                </div>
-                    </asp:Panel>
-                </ContentTemplate>
-            </asp:UpdatePanel> -->
     </div>
         <script>
             if (!navigator.onLine) {
@@ -1296,10 +1101,6 @@
                 document.getElementById('MainContent_AccountSettingsOrLogin').href = '#';
                 document.getElementById('SendCommentAria').style.display = 'none';
             };
-            if ("androidAPIs" in window == false) {
-
-                //location.href = '/SuMMangaInstallAPP.aspx';
-            }
             var MangaExplorerBarElm = document.getElementById('<%= subnavscont2.ClientID %>');
             function HideMangaExplorerBar() {
                 if (MangaExplorerBarElm.classList.contains('fadeInUp') == true || MangaExplorerBarElm.classList.contains('fadeOutDown') == false) {

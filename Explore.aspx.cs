@@ -21,12 +21,10 @@ namespace SuM_Manga_V3
                 int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
                 SussionProssINB(UID, GetUserInfoCookie["SID"].ToString());
                 LoadResents(UID);
-                ScriptInjectorA000.InnerHtml = "<script> androidAPIs.ShowSuMToastsOverview('welcome " + GetUserInfoCookie["UserName"].ToString() + "!'); </script>";
             }
             else 
             {
                 RecentsSuperCont.Attributes["style"] = "display:none !important;";
-                ScriptInjectorA000.InnerHtml = "<script> androidAPIs.ShowSuMToastsOverview('welcome to SuMManga!'); </script>";
             }
             if (IsPostBack == false)
             {

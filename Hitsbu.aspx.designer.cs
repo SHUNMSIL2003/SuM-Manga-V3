@@ -11,89 +11,44 @@ namespace SuM_Manga_V3
 {
 
 
-    public partial class Explore
+    public partial class Hitsbu
     {
 
         /// <summary>
-        /// AnimatedMainContHEx control.
+        /// HitsStylePlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AnimatedMainContHEx;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HitsStylePlaceHolder;
 
         /// <summary>
-        /// cardscontain control.
+        /// ScrollingDivHits control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardscontain;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ScrollingDivHits;
 
         /// <summary>
-        /// cardstoshow control.
+        /// HotsScrollHelper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardstoshow;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HotsScrollHelper;
 
         /// <summary>
-        /// cardsdots control.
+        /// Top10Con control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardsdots;
-
-        /// <summary>
-        /// RecentsCont control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RecentsCont;
-
-        /// <summary>
-        /// UPDATERESESNTS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UPDATERESESNTS;
-
-        /// <summary>
-        /// RecentsSuperCont control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RecentsSuperCont;
-
-        /// <summary>
-        /// RESENTSUPATEPANLE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel RESENTSUPATEPANLE;
-
-        /// <summary>
-        /// Recent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Recent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Top10Con;
 
         /// <summary>
         /// CategoryX control.

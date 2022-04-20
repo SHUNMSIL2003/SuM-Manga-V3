@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Async="true" Inherits="SuM_Manga_V3.Search" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.card.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Async="true" Inherits="SuM_Manga_V3.Search" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">

@@ -123,15 +123,6 @@ namespace SuM_Manga_V3
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navb2;
 
         /// <summary>
-        /// BottomStylingTDiv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BottomStylingTDiv;
-
-        /// <summary>
         /// TopStylingTDiv control.
         /// </summary>
         /// <remarks>
@@ -139,59 +130,5 @@ namespace SuM_Manga_V3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TopStylingTDiv;
-
-        /// <summary>
-        /// UpdatePanelNotificationSec control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelNotificationSec;
-
-        /// <summary>
-        /// SuMUserNofifications control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMUserNofifications;
-
-        /// <summary>
-        /// NotiUPFP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage NotiUPFP;
-
-        /// <summary>
-        /// NotiUserName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NotiUserName;
-
-        /// <summary>
-        /// ACCOUNTNOTOFICATIONSPaymentCard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ACCOUNTNOTOFICATIONSPaymentCard;
-
-        /// <summary>
-        /// USERNOTIFICATIONS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl USERNOTIFICATIONS;
     }
 }

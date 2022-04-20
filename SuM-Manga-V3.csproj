@@ -344,6 +344,7 @@
     <Content Include="ExploreRecentlyCard.aspx" />
     <Content Include="ExploreMainCard.aspx" />
     <Content Include="ExploreDisabled.aspx" />
+    <Content Include="Hitsbu.aspx" />
     <Content Include="SE.html" />
     <Content Include="storeitems\ContantExplorerCard.aspx" />
     <Content Include="storeitems\MangaExplorerCardHolder.aspx" />
@@ -2931,6 +2932,13 @@
     </Compile>
     <Compile Include="ExploreDisabled.aspx.designer.cs">
       <DependentUpon>ExploreDisabled.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Hitsbu.aspx.cs">
+      <DependentUpon>Hitsbu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Hitsbu.aspx.designer.cs">
+      <DependentUpon>Hitsbu.aspx</DependentUpon>
     </Compile>
     <Compile Include="storeitems\ContantExplorerCard.aspx.cs">
       <DependentUpon>ContantExplorerCard.aspx</DependentUpon>
