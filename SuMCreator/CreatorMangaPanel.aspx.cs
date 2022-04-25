@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
+using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Net.Mail;
@@ -76,17 +76,17 @@ namespace SuM_Manga_V3.SuMCreator
             doc.Save(Server.MapPath(Path.Combine("CreatorsDrafts", SUMProfileFileName + ".xml")));
             MangaPicUP.PostedFile.SaveAs(Server.MapPath(Path.Combine("CreatorsDrafts", SUMProfileFileName + ".png")));
             //Save ReqID to CreatorProssDataBase and UserDataBase
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string NewReqIDs = string.Empty;
 
                 string query = "SELECT UnderProssReq FROM SuMCreators WHERE CreatorID = @UID";
-                SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
-                sqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd2.Parameters["@UID"].Value = UserID;
-                //var RR = sqlCmd2.ExecuteReader();
-                using (var reader = sqlCmd2.ExecuteReader())
+                MySqlCommand MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                MySqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd2.Parameters["@UID"].Value = UserID;
+                //var RR = MySqlCmd2.ExecuteReader();
+                using (var reader = MySqlCmd2.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -102,12 +102,12 @@ namespace SuM_Manga_V3.SuMCreator
                 }*/
 
                 query = "UPDATE SuMCreators SET UnderProssReq = @NewUnderProssReq WHERE CreatorID = @UID";
-                sqlCmd2 = new SqlCommand(query, sqlCon);
-                sqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd2.Parameters["@UID"].Value = UserID;
-                sqlCmd2.Parameters.AddWithValue("@NewUnderProssReq", NewReqIDs);
-                sqlCmd2.ExecuteNonQuery();
-                sqlCon.Close();
+                MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                MySqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd2.Parameters["@UID"].Value = UserID;
+                MySqlCmd2.Parameters.AddWithValue("@NewUnderProssReq", NewReqIDs);
+                MySqlCmd2.ExecuteNonQuery();
+                MySqlCon.Close();
             }
             Response.Redirect("~/SuMCreator/CreatorPanel.aspx");
         }

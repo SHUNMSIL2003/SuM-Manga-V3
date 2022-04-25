@@ -6,12 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Text;
-using System.Data.SqlClient;
+using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
 using System.Security.Cryptography;
-using System.Configuration;
+ 
 using System.Web.Security;
 using System.Net.Mail;
 using System.IO;
+ 
 
 namespace SuM_Manga_V3.AccountETC
 {
@@ -39,41 +40,37 @@ namespace SuM_Manga_V3.AccountETC
             LoginStatus.InnerText = "";
             LogInProssInfo.Attributes["style"] = "display:none;";
             string statevalid = "";
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName AND Password = @Password ";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
                 string username = UserNameL.Value.ToString().Replace(" ", ""); //Request.QueryString["UserNameL"].ToString();
-                sqlCmd.Parameters.AddWithValue("@UserName", username);
+                MySqlCmd.Parameters.AddWithValue("@UserName", username);
                 string password = PasswordL.Value; //Request.QueryString["PasswordL"].ToString();
-                sqlCmd.Parameters.AddWithValue("@Password", sha256(password));
-                var Res = sqlCmd.ExecuteScalar();
+                MySqlCmd.Parameters.AddWithValue("@Password", sha256(password));
+                var Res = MySqlCmd.ExecuteScalar();
                 if (Res != null)
                 {
                     int ID = Convert.ToInt32(Res.ToString());
                     //New -s
                     string queryRGB = "SELECT UserTheme FROM SuMUsersAccounts WHERE UserID = @UserID";
-                    SqlCommand sqlCmdRGB = new SqlCommand(queryRGB, sqlCon);
-                    sqlCmdRGB.Parameters.AddWithValue("@UserID", SqlDbType.Int);
-                    sqlCmdRGB.Parameters["@UserID"].Value = ID;
-                    object RGBRS = sqlCmdRGB.ExecuteScalar();
+                    MySqlCommand MySqlCmdRGB = new MySqlCommand(queryRGB, MySqlCon);
+                    MySqlCmdRGB.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    MySqlCmdRGB.Parameters["@UserID"].Value = ID;
+                    object RGBRS = MySqlCmdRGB.ExecuteScalar();
                     if (RGBRS != null) 
                     {
                         SaveUserThemeCookie(RGBRS.ToString());
                     }
                     //New -e
                     string query2 = "SELECT AccountStatus FROM SuMUsersAccounts WHERE UserID = @UserID";
-                    SqlCommand sqlCmd2 = new SqlCommand(query2, sqlCon);
-                    sqlCmd2.Parameters.AddWithValue("@UserID", SqlDbType.Int);
-                    sqlCmd2.Parameters["@UserID"].Value = ID;
-                    using (SqlDataReader dr = sqlCmd2.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            statevalid = dr[0].ToString();
-                        }
-                    }
+                    MySqlCommand MySqlCmd2 = new MySqlCommand(query2, MySqlCon);
+                    MySqlCmd2.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    MySqlCmd2.Parameters["@UserID"].Value = ID;
+                    object A00 = MySqlCmd2.ExecuteScalar();
+                    statevalid = A00.ToString();
                     if (statevalid.Contains("#R") == true)//statevalid[0] == '#' && statevalid[1] == 'R'&&
                     {
                         LoginStatus.InnerText = "You need to Complete SuM Account registration! You will find a link in you email-inbox.";
@@ -83,17 +80,17 @@ namespace SuM_Manga_V3.AccountETC
                     else
                     {
                         string qwi = "SELECT SIDs FROM SuMUsersAccounts WHERE UserID = @UID";
-                        sqlCmd = new SqlCommand(qwi, sqlCon);
-                        sqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                        sqlCmd.Parameters["@UID"].Value = ID;
-                        var CMDRs = sqlCmd.ExecuteScalar();
+                        MySqlCmd = new MySqlCommand(qwi, MySqlCon);
+                        MySqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        MySqlCmd.Parameters["@UID"].Value = ID;
+                        var CMDRs = MySqlCmd.ExecuteScalar();
                         if (CMDRs != null)
                         {
 
                             if (SIDsCountLessThanX(CMDRs.ToString(), 3) == true)
                             {
                                 string qc = "SELECT Creator FROM SuMUsersAccounts WHERE UserID = @UID";
-                                SqlCommand cv = new SqlCommand(qc, sqlCon);
+                                MySqlCommand cv = new MySqlCommand(qc, MySqlCon);
                                 cv.Parameters.AddWithValue("@UID", SqlDbType.Int);
                                 cv.Parameters["@UID"].Value = ID;
                                 bool ituac = false;
@@ -109,7 +106,7 @@ namespace SuM_Manga_V3.AccountETC
                                 }
                                 string GSID = GetNewSID(username);
                                 qc = "UPDATE SuMUsersAccounts SET SIDs = @NSID WHERE UserID = @UID";
-                                cv = new SqlCommand(qc, sqlCon);
+                                cv = new MySqlCommand(qc, MySqlCon);
                                 cv.Parameters.AddWithValue("@UID", SqlDbType.Int);
                                 cv.Parameters["@UID"].Value = ID;
                                 cv.Parameters.AddWithValue("@NSID", CMDRs.ToString() + GSID);
@@ -117,18 +114,18 @@ namespace SuM_Manga_V3.AccountETC
                                 if (ituac == false)
                                 {
                                     SaveCookie(username, ID, GSID);
-                                    sqlCon.Close();
+                                    MySqlCon.Close();
                                     HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
                                 }
                                 else
                                 {
                                     qc = "SELECT CreatorName FROM SuMCreators WHERE CreatorID = @CreatorID";
-                                    cv = new SqlCommand(qc, sqlCon);
+                                    cv = new MySqlCommand(qc, MySqlCon);
                                     cv.Parameters.AddWithValue("@CreatorID", SqlDbType.Int);
                                     cv.Parameters["@CreatorID"].Value = ID;
                                     string CreatorIDName = cv.ExecuteScalar().ToString();
                                     SaveSCCookie(username, ID, CreatorIDName, GSID);
-                                    sqlCon.Close();
+                                    MySqlCon.Close();
                                     HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
                                 }
                             }
@@ -146,7 +143,7 @@ namespace SuM_Manga_V3.AccountETC
                         else
                         {
                             string qc = "SELECT Creator FROM SuMUsersAccounts WHERE UserID = @UID";
-                            SqlCommand cv = new SqlCommand(qc, sqlCon);
+                            MySqlCommand cv = new MySqlCommand(qc, MySqlCon);
                             cv.Parameters.AddWithValue("@UID", SqlDbType.Int);
                             cv.Parameters["@UID"].Value = ID;
                             bool ituac = false;
@@ -162,7 +159,7 @@ namespace SuM_Manga_V3.AccountETC
                             }
                             string GSID = GetNewSID(username);
                             qc = "UPDATE SuMUsersAccounts SET SIDs = @NSID WHERE UserID = @UID";
-                            cv = new SqlCommand(qc, sqlCon);
+                            cv = new MySqlCommand(qc, MySqlCon);
                             cv.Parameters.AddWithValue("@UID", SqlDbType.Int);
                             cv.Parameters["@UID"].Value = ID;
                             cv.Parameters.AddWithValue("@NSID", CMDRs.ToString() + GSID);
@@ -170,18 +167,18 @@ namespace SuM_Manga_V3.AccountETC
                             if (ituac == false)
                             {
                                 SaveCookie(username, ID, GSID);
-                                sqlCon.Close();
+                                MySqlCon.Close();
                                 HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
                             }
                             else
                             {
                                 qc = "SELECT CreatorName FROM SuMCreators WHERE CreatorID = @CreatorID";
-                                cv = new SqlCommand(qc, sqlCon);
+                                cv = new MySqlCommand(qc, MySqlCon);
                                 cv.Parameters.AddWithValue("@CreatorID", SqlDbType.Int);
                                 cv.Parameters["@CreatorID"].Value = ID;
                                 string CreatorIDName = cv.ExecuteScalar().ToString();
                                 SaveSCCookie(username, ID, CreatorIDName, GSID);
-                                sqlCon.Close();
+                                MySqlCon.Close();
                                 HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
                             }
                         }
@@ -193,23 +190,24 @@ namespace SuM_Manga_V3.AccountETC
                     PasswordL.Attributes["style"] = "border: solid 2px rgb(255,90,69);border-radius:14px;";
                     LoginStatus.InnerText = "Username Or Password are incurrect!";
                     LogInProssInfo.Attributes["style"] = "background-color:rgba(255,124,107,0.16);width:100%;text-align:center;padding:0px;height:fit-content;border-radius:14px;display:block;";
-                    sqlCon.Close();
+                    MySqlCon.Close();
                 }
-                sqlCon.Close();
+                MySqlCon.Close();
             }
         }
         protected void LogOutOffAll(object sender, EventArgs e)
         {
             HttpCookie GetLoginCacheUserInfo = Request.Cookies["SuMCurrentLoginWorkerCache"];
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "UPDATE SuMUsersAccounts SET SIDs = NULL WHERE UserID = @UID";
-                SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
-                sqlCmd2.Parameters.AddWithValue("@UID", System.Data.SqlDbType.Int);
-                sqlCmd2.Parameters["@UID"].Value = Convert.ToInt32(GetLoginCacheUserInfo["ID"].ToString());
-                sqlCmd2.ExecuteNonQuery();
-                sqlCon.Close();
+                MySqlCommand MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                MySqlCmd2.Parameters.AddWithValue("@UID", System.Data.SqlDbType.Int);
+                MySqlCmd2.Parameters["@UID"].Value = Convert.ToInt32(GetLoginCacheUserInfo["ID"].ToString());
+                MySqlCmd2.ExecuteNonQuery();
+                MySqlCon.Close();
             }
             Response.Redirect("~/AccountETC/LoginETC.aspx");
         }
@@ -257,30 +255,30 @@ namespace SuM_Manga_V3.AccountETC
             string virivicationcode = GetVerificationCode(8);
             string accountstats = "#R$" + virivicationcode;
             string UserName = UserNameL.Value.ToString();
-            string Email = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string Email = string.Empty; string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "UPDATE SuMUsersAccounts SET AccountStatus = @AccountStatus WHERE UserName = @UserName";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
                 //HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-                sqlCmd.Parameters.AddWithValue("@UserName", UserName);
-                sqlCmd.Parameters.AddWithValue("@AccountStatus", accountstats);
-                sqlCmd.ExecuteNonQuery();
-                //sqlCmd.Parameters.AddWithValue("@SuMCustomPFP", SqlDbType.Image).Value = imgarray;
+                MySqlCmd.Parameters.AddWithValue("@UserName", UserName);
+                MySqlCmd.Parameters.AddWithValue("@AccountStatus", accountstats);
+                MySqlCmd.ExecuteNonQuery();
+                //MySqlCmd.Parameters.AddWithValue("@SuMCustomPFP", SqlDbType.Image).Value = imgarray;
 
                 string query4 = "SELECT Email FROM SuMUsersAccounts WHERE UserName = @UserName";
-                SqlCommand sqlCmd4 = new SqlCommand(query4, sqlCon);
+                MySqlCommand MySqlCmd4 = new MySqlCommand(query4, MySqlCon);
                 //HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-                sqlCmd4.Parameters.AddWithValue("@UserName", UserName);
-                using (SqlDataReader dr = sqlCmd4.ExecuteReader())
+                MySqlCmd4.Parameters.AddWithValue("@UserName", UserName);
+                using (MySqlDataReader dr = MySqlCmd4.ExecuteReader())
                 {
                     while (dr.Read())
                     {
                         Email = dr[0].ToString();
                     }
                 }
-                sqlCon.Close();
+                MySqlCon.Close();
             }
             SendVirifyEmail(virivicationcode, Email);
 

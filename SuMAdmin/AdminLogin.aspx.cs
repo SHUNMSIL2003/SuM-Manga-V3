@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
+using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
 using System.Text;
 
 namespace SuM_Manga_V3.SuMAdmin
@@ -32,25 +32,25 @@ namespace SuM_Manga_V3.SuMAdmin
         {
             //LoginStatus.InnerText = "";
             //string statevalid = "";
-            /*using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            /*string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "SELECT COUNT(1) FROM SuMAdministrators WHERE UserName = @UserName AND Password = @Password ";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
                 string username = UserNameL.Value; //Request.QueryString["UserNameL"].ToString();
-                sqlCmd.Parameters.AddWithValue("@UserName", sha256(username));
+                MySqlCmd.Parameters.AddWithValue("@UserName", sha256(username));
                 string password = PasswordL.Value; //Request.QueryString["PasswordL"].ToString();
-                sqlCmd.Parameters.AddWithValue("@Password", sha256(password));
-                int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                MySqlCmd.Parameters.AddWithValue("@Password", sha256(password));
+                int count = Convert.ToInt32(MySqlCmd.ExecuteScalar());
                 if (count > 0)
                 {
                     SaveCookie(sha256(username));
-                    sqlCon.Close();
+                    MySqlCon.Close();
                     HttpContext.Current.Response.Redirect("~/SuMAdmin/AdminControlPanel.aspx");
                 }
                 else
                 {
-                    LoginStatus.InnerText = "Invalid!"; sqlCon.Close();
+                    LoginStatus.InnerText = "Invalid!"; MySqlCon.Close();
                     UserNameL.Attributes["style"] = "border: solid 2px red;";
                     PasswordL.Attributes["style"] = "border: solid 2px red;";
                     //LoginStatus.InnerText = "Username Or Password are incurrect!";

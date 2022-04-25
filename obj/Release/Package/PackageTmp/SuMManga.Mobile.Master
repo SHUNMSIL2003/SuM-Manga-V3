@@ -931,7 +931,7 @@
             $.ajax({
                 dataType: "json",
                 method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMDiscFSQL") %>',
+                url: '<%= ResolveUrl("BTNTesting.aspx/GetMDiscFMySql") %>',
                 data: JSON.stringify({ MID: RMID }),
                 contentType: "application/json; charset=utf-8",
                 success: function (msg) {
@@ -948,7 +948,7 @@
             $.ajax({
                 dataType: "json",
                 method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMYearFSQL") %>',
+                url: '<%= ResolveUrl("BTNTesting.aspx/GetMYearFMySql") %>',
                 data: JSON.stringify({ MID: RMID }),
                 contentType: "application/json; charset=utf-8",
                 success: function (msg) {
@@ -965,7 +965,7 @@
             $.ajax({
                 dataType: "json",
                 method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMChapterNumFSQL") %>',
+                url: '<%= ResolveUrl("BTNTesting.aspx/GetMChapterNumFMySql") %>',
                 data: JSON.stringify({ MID: RMID }),
                 contentType: "application/json; charset=utf-8",
                 success: function (msg) {
@@ -982,7 +982,7 @@
             $.ajax({
                 dataType: "json",
                 method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMAgeRatingFSQL") %>',
+                url: '<%= ResolveUrl("BTNTesting.aspx/GetMAgeRatingFMySql") %>',
                 data: JSON.stringify({ MID: RMID }),
                 contentType: "application/json; charset=utf-8",
                 success: function (msg) {

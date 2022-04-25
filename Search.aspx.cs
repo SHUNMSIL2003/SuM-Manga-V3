@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.Configuration;
+using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
+ 
 using System.Web.Services;
 using System.Data;
 
@@ -26,14 +26,14 @@ namespace SuM_Manga_V3
                 string TextFS = TITB.ToString();
                 if (TextFS != "Search for..." && string.IsNullOrEmpty(TextFS) == false)
                 {
-                    using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                    string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
                     {
-                        sqlCon.Open();
+                        MySqlCon.Open();
                         string qwi = "SELECT MangaID FROM SuMManga WHERE MangaName LIKE '%" + TextFS + "%'";//@SearchText + '%'";
-                        SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                        var jdbvg = sqlCmd00.ExecuteScalar();
+                        MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                        var jdbvg = MySqlCmd00.ExecuteScalar();
                         Queue<int> IDs = new Queue<int>();
-                        using (SqlDataReader sdr = sqlCmd00.ExecuteReader())
+                        using (MySqlDataReader sdr = MySqlCmd00.ExecuteReader())
                         {
                             while (sdr.Read())
                             {
@@ -49,50 +49,50 @@ namespace SuM_Manga_V3
                             string CExplorerLink = string.Empty;
                             int MangaIDF = MID;
                             string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
-                            SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
-                            var un = sqlCmd.ExecuteScalar();
+                            MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                            MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            MySqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                            var un = MySqlCmd.ExecuteScalar();
                             Name = un.ToString();
                             query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
-                            un = sqlCmd.ExecuteScalar();
+                            MySqlCmd = new MySqlCommand(query, MySqlCon);
+                            MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            MySqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                            un = MySqlCmd.ExecuteScalar();
                             CExplorerLink = un.ToString();
                             CExplorerLink += "&VC=" + MangaIDF.ToString();
                             query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
-                            // X = sqlCmd.ExecuteScalar();
-                            un = sqlCmd.ExecuteScalar();
+                            MySqlCmd = new MySqlCommand(query, MySqlCon);
+                            MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            MySqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                            // X = MySqlCmd.ExecuteScalar();
+                            un = MySqlCmd.ExecuteScalar();
                             Cover = un.ToString();
                             query = "SELECT SuMThemeColor FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
-                            string themecolor = sqlCmd.ExecuteScalar().ToString();
+                            MySqlCmd = new MySqlCommand(query, MySqlCon);
+                            MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            MySqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                            string themecolor = MySqlCmd.ExecuteScalar().ToString();
                             CExplorerLink += "&TC=" + themecolor;
                             query = "SELECT MangaCreator FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
-                            un = sqlCmd.ExecuteScalar();
+                            MySqlCmd = new MySqlCommand(query, MySqlCon);
+                            MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            MySqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                            un = MySqlCmd.ExecuteScalar();
                             string CreatorName = un.ToString();
 
                             query = "SELECT MangaAgeRating FROM SuMManga WHERE MangaID = @MangaID";
-                            sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = MangaIDF;
-                            un = sqlCmd.ExecuteScalar();
+                            MySqlCmd = new MySqlCommand(query, MySqlCon);
+                            MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            MySqlCmd.Parameters["@MangaID"].Value = MangaIDF;
+                            un = MySqlCmd.ExecuteScalar();
                             string AgeRating = un.ToString();
 
                             ShowSuMResults.InnerHtml += BuildSearchCard(Cover, Name, CExplorerLink, themecolor, MangaIDF, CreatorName, AgeRating);
                             if (IDs.Count != 0) { ShowSuMResults.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;color:var(--SuMDGrayOP100);width:calc(100vw - 36px);margin:0 auto important;" + sc.ToString() + ">"; } //"<hr style=" + sc.ToString() + "margin:0 auto !important;height:1px;border-width:0;color:rgba(120,120,120,0.8);background-color:rgba(120,120,120,0.8);width:96vw;opacity:0.18;margin:0px;margin-block:0px;" + sc.ToString() + ">"; }
                             
                         }
-                        sqlCon.Close();
+                        MySqlCon.Close();
                     }
                     //ShowSuMResults.InnerHtml = Result;
                 }
@@ -154,15 +154,15 @@ namespace SuM_Manga_V3
         protected string GetGarnas(int id)
         {
             string garns = " ";
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
                 bool IsIt = false;
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "SELECT Fantasy FROM SuMManga WHERE MangaID = @MangaID";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = id;
-                using (var reader = sqlCmd.ExecuteReader())
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = MySqlCmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -172,10 +172,10 @@ namespace SuM_Manga_V3
                 if (IsIt == true) { garns += "Fantasy, "; }
 
                 query = "SELECT Comedy FROM SuMManga WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = id;
-                using (var reader = sqlCmd.ExecuteReader())
+                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = MySqlCmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -185,10 +185,10 @@ namespace SuM_Manga_V3
                 if (IsIt == true) { garns += "Comedy, "; }
 
                 query = "SELECT Supernatural FROM SuMManga WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = id;
-                using (var reader = sqlCmd.ExecuteReader())
+                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = MySqlCmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -198,10 +198,10 @@ namespace SuM_Manga_V3
                 if (IsIt == true) { garns += "Supernatural, "; }
 
                 query = "SELECT SciFi FROM SuMManga WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = id;
-                using (var reader = sqlCmd.ExecuteReader())
+                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = MySqlCmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -211,10 +211,10 @@ namespace SuM_Manga_V3
                 if (IsIt == true) { garns += "Sci-Fi, "; }
 
                 query = "SELECT Drama FROM SuMManga WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = id;
-                using (var reader = sqlCmd.ExecuteReader())
+                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = MySqlCmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -224,10 +224,10 @@ namespace SuM_Manga_V3
                 if (IsIt == true) { garns += "Drama, "; }
 
                 query = "SELECT Mystery FROM SuMManga WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = id;
-                using (var reader = sqlCmd.ExecuteReader())
+                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = MySqlCmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -237,10 +237,10 @@ namespace SuM_Manga_V3
                 if (IsIt == true) { garns += "Mystery, "; }
 
                 query = "SELECT SliceofLife FROM SuMManga WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = id;
-                using (var reader = sqlCmd.ExecuteReader())
+                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = MySqlCmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -250,10 +250,10 @@ namespace SuM_Manga_V3
                 if (IsIt == true) { garns += "Slice of Life, "; }
 
                 query = "SELECT Action FROM SuMManga WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = id;
-                using (var reader = sqlCmd.ExecuteReader())
+                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = id;
+                using (var reader = MySqlCmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -263,14 +263,14 @@ namespace SuM_Manga_V3
                 if (IsIt == true) { garns += "Action, "; }
 
                 /*query = "SELECT TYPE FROM SuMManga WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = id;
-                if (sqlCmd.ExecuteScalar() != null) { garns += "TYPE, "; }*/
+                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = id;
+                if (MySqlCmd.ExecuteScalar() != null) { garns += "TYPE, "; }*/
 
                 //if (garns != null) { if (garns[garns.Length - 2] == ',' && garns[garns.Length - 1] == ' ') { garns.Substring(garns.Length - 3); } }
 
-                sqlCon.Close();
+                MySqlCon.Close();
             }
             if (string.IsNullOrEmpty(garns) == false) { garns = garns.Substring(1, (garns.Length - 3)); }
             return garns;

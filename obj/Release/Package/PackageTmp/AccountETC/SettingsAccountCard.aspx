@@ -292,7 +292,7 @@
             }
             return false;
         };
-        androidAPIs.LoadWebVersionValue("3.2.7 Beta");
+        androidAPIs.LoadWebVersionValue("3.2.8 Beta");
         var UIDDetectedForLoaingCoinsCardsInfo = getUIDFrUserCo();
         if (UIDDetectedForLoaingCoinsCardsInfo != null && UIDDetectedForLoaingCoinsCardsInfo != '') {
             SuMCoinsCount(UIDDetectedForLoaingCoinsCardsInfo);

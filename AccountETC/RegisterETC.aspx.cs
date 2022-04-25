@@ -6,9 +6,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Text;
-using System.Data.SqlClient;
+using System.Data.SqlClient; 
+using MySql.Data.MySqlClient; 
+using System.Configuration;
 using System.Net.Mail;
 using System.IO;
+ 
 
 namespace SuM_Manga_V3.AccountETC
 {
@@ -52,31 +55,33 @@ namespace SuM_Manga_V3.AccountETC
             {
                 string virivicationcode = GetVerificationCode(8);
                 string accountstats = "#R$" + virivicationcode;
-                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
+                string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+                using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))//Data Source=(LocalDB)\MSMySqlLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
                 {
-                    sqlCon.Open();
-                    SqlCommand sqlCmd = new SqlCommand("INSERT INTO SuMUsersAccounts(UserName,Password,Email,AccountStatus,PFP,Signetsure,UserBanner,UserTheme) values(@UserName,@Password,@Email,@AccountStatus,@PFP,@Signetsure,@UserBanner,@UserTheme)", sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@UserName", UserNameR.Value.ToString().Replace(" ", ""));
-                    sqlCmd.Parameters.AddWithValue("@Password", sha256(PasswordR.Value));
-                    sqlCmd.Parameters.AddWithValue("@Email", EmailR.Value);
-                    sqlCmd.Parameters.AddWithValue("@PFP", DPFP);
-                    sqlCmd.Parameters.AddWithValue("@AccountStatus", accountstats);
-                    sqlCmd.Parameters.AddWithValue("@Signetsure", dsig);
-                    sqlCmd.Parameters.AddWithValue("@UserBanner", "/AccountETC/SuM-ReaderBanner.jpg");
-                    sqlCmd.Parameters.AddWithValue("@UserTheme", "151,128,114");
-                    sqlCmd.ExecuteNonQuery();
-                    sqlCon.Close();
+                    MySqlCon.Open();
+                    MySqlCommand MySqlCmd = new MySqlCommand("INSERT INTO SuMUsersAccounts(UserName,Password,Email,AccountStatus,PFP,Signetsure,UserBanner,UserTheme) values(@UserName,@Password,@Email,@AccountStatus,@PFP,@Signetsure,@UserBanner,@UserTheme)", MySqlCon);
+                    MySqlCmd.Parameters.AddWithValue("@UserName", UserNameR.Value.ToString().Replace(" ", ""));
+                    MySqlCmd.Parameters.AddWithValue("@Password", sha256(PasswordR.Value));
+                    MySqlCmd.Parameters.AddWithValue("@Email", EmailR.Value);
+                    MySqlCmd.Parameters.AddWithValue("@PFP", DPFP);
+                    MySqlCmd.Parameters.AddWithValue("@AccountStatus", accountstats);
+                    MySqlCmd.Parameters.AddWithValue("@Signetsure", dsig);
+                    MySqlCmd.Parameters.AddWithValue("@UserBanner", "/AccountETC/SuM-ReaderBanner.jpg");
+                    MySqlCmd.Parameters.AddWithValue("@UserTheme", "151,128,114");
+                    MySqlCmd.ExecuteNonQuery();
+                    MySqlCon.Close();
                 }
                 int id = 0;
-                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                //string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+                using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
                 {
-                    sqlCon.Open();
+                    MySqlCon.Open();
                     string query = "SELECT UserID FROM SuMUsersAccounts WHERE UserName = @UserName";
-                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
                     //HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
                     string username0 = UserNameR.Value.ToString().Replace(" ", "");
-                    sqlCmd.Parameters.AddWithValue("@UserName", username0);
-                    using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                    MySqlCmd.Parameters.AddWithValue("@UserName", username0);
+                    using (MySqlDataReader dr = MySqlCmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
@@ -90,16 +95,17 @@ namespace SuM_Manga_V3.AccountETC
                 string Y = DateTime.UtcNow.ToString("yyyy");
                 string freetrialalert = "#FreeT?Y" + Y + "?M" + M + "?D" + D + "$N";
                 //
-                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
+                //string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+                using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))//Data Source=(LocalDB)\MSMySqlLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
                 {
-                    sqlCon.Open();
-                    SqlCommand sqlCmd = new SqlCommand("INSERT INTO UsersAccountAlert(UserID,SuMPaymentAlert,AlertsSeen) values(@UserID,@SuMPaymentAlert,@AlertsSeen)", sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
-                    sqlCmd.Parameters["@UserID"].Value = id;
-                    sqlCmd.Parameters.AddWithValue("@SuMPaymentAlert", freetrialalert);
-                    sqlCmd.Parameters.AddWithValue("@AlertsSeen", "0");
-                    sqlCmd.ExecuteNonQuery();
-                    sqlCon.Close();
+                    MySqlCon.Open();
+                    MySqlCommand MySqlCmd = new MySqlCommand("INSERT INTO UsersAccountAlert(UserID,SuMPaymentAlert,AlertsSeen) values(@UserID,@SuMPaymentAlert,@AlertsSeen)", MySqlCon);
+                    MySqlCmd.Parameters.AddWithValue("@UserID", SqlDbType.Int);
+                    MySqlCmd.Parameters["@UserID"].Value = id;
+                    MySqlCmd.Parameters.AddWithValue("@SuMPaymentAlert", freetrialalert);
+                    MySqlCmd.Parameters.AddWithValue("@AlertsSeen", "0");
+                    MySqlCmd.ExecuteNonQuery();
+                    MySqlCon.Close();
                 }
                 SendVirifyEmail(virivicationcode);
                 Response.Redirect("~/AccountETC/LoginETC.aspx");
@@ -166,13 +172,13 @@ namespace SuM_Manga_V3.AccountETC
         }
         public bool XExsisits(string type, string X)
         {
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "SELECT COUNT(1) FROM SuMUsersAccounts WHERE " + type + " = @" + type + " ";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@" + type + "", X);
-                int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@" + type + "", X);
+                int count = Convert.ToInt32(MySqlCmd.ExecuteScalar());
                 if (count > 0) { return true; }
                 else { return false; }
             }

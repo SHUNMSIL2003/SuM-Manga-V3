@@ -455,6 +455,10 @@
                 if ("androidAPIs" in window == true) { androidAPIs.FullyTransStatusBar(); }
             }
         };
+        function SetSuMThemeBitStateIO(SuMBit) {
+            document.cookie = "SuMLockMode=" + SuMBit + "; expires=Thu, 18 Dec 9999 12:00:00 UTC; path=/";
+            SuMSetThemeState(SuMBit);
+        }
         SuMSetThemeState(SuMThemeStateBit);
 
     </script>
@@ -619,7 +623,7 @@
                 $.ajax({
                     dataType: "json",
                     method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %>',
+                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
                     data: JSON.stringify({ UID: FUID }),
                     contentType: "application/json; charset=utf-8",
                     success: function (msg) {
@@ -647,11 +651,11 @@
                 $.ajax({
                     dataType: "json",
                     method: 'post',
-                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFSQL") %>',
+                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFMySql") %>',
                     data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
                     contentType: "application/json; charset=utf-8",
                     success: function (msg) {
-                        androidAPIs.ShowSuMToastsOverviewWV3('Coins count Are Secured!',FUID);
+                        androidAPIs.ShowSuMToastsOverviewWV3('Coins count is secured!',FUID);
                         //SuMCoinsCount(cFUID);
                     },
                     error: function (e) {
@@ -665,12 +669,12 @@
                 $.ajax({
                     dataType: "json",
                     method: 'post',
-                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFSQL") %>',
+                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFMySql") %>',
                     data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
                     contentType: "application/json; charset=utf-8",
                     success: function (msg) {
                         androidAPIs.SuMExploreLoadReader(SuMReadingLink)
-                        //androidAPIs.ShowSuMToastsOverviewWV3('Coins count Are Secured!', FUID);
+                        //androidAPIs.ShowSuMToastsOverviewWV3('Coins count is secured!', FUID);
                         SuMCoinsCount(cFUID);
                     },
                     error: function (e) {
@@ -693,9 +697,6 @@
                 </style>
                 <div style="width:100vw !important; height:fit-content !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:transparent !important;" id="SuMMainBlock" runat="server" class="container-fluid">
                     <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:fit-content !important;max-height:100vh !important;margin-left:-24px !important;background-color:transparent !important;background-color:transparent !important;" id="mc" runat="server">
-                    <div style="position:fixed !important;width:100vw;height:100vh;background-color:var(--SuMDWhite) !important;pointer-events:none !important;top:0;margin:0 auto;z-index:1998 !important;display:none;" id="SuMLockViewBlock">
-                        <div style="width:100%;height:100%;margin:0 auto;background-color:var(--SuMDGray);" id="SuMLockViewBlockInnerColor" runat="server"></div>
-                    </div>
                     <div id="LoadingSuMInfoBub" style="text-align: center; display: none; height: fit-content; width: 280px; background-color: var(--SuMDWhite); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 18px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important;padding-top:38px;padding-bottom:32px;text-align:center !important;" class="shadow-sm animated fadeIn">
                         <svg id="SuMLoadingSVGPreview" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="var(--SuMDWhiteOP92)"></svg>
                         <p id="SuMLoadingTXT" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: var(--SuMDWhiteOP92); width: calc(100% - 64px) !important;margin-bottom:-8px;text-align:left;">INFO</p>
@@ -775,7 +776,7 @@
                             $.ajax({
                                 dataType: "json",
                                 method: 'post',
-                                url: '<%= ResolveUrl("BTNTesting.aspx/GetMangaCoinsCountFSQL") %>',
+                                url: '<%= ResolveUrl("BTNTesting.aspx/GetMangaCoinsCountFMySql") %>',
                                 data: JSON.stringify({ MID: FMID }),
                                 contentType: "application/json; charset=utf-8",
                                 success: function (msg) {
@@ -797,7 +798,7 @@
                             $.ajax({
                                 dataType: "json",
                                 method: 'post',
-                                url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %>',
+                                url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
                                 data: JSON.stringify({ UID: FUID }),
                                 contentType: "application/json; charset=utf-8",
                                 success: function (msg) {
@@ -928,7 +929,7 @@
             $.ajax({
                 dataType: "json",
                 method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMDiscFSQL") %>',
+                url: '<%= ResolveUrl("BTNTesting.aspx/GetMDiscFMySql") %>',
                 data: JSON.stringify({ MID: RMID }),
                 contentType: "application/json; charset=utf-8",
                 success: function (msg) {
@@ -950,7 +951,7 @@
                 $.ajax({
                     dataType: "json",
                     method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %>',
+                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
                     data: JSON.stringify({ UID: FUID }),
                     contentType: "application/json; charset=utf-8",
                     success: function (msg) {

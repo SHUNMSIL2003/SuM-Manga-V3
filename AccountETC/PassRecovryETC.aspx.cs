@@ -6,9 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Text;
-using System.Data.SqlClient;
+using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
 using System.Net.Mail;
 using System.IO;
+ 
 
 namespace SuM_Manga_V3.AccountETC
 {
@@ -31,13 +32,13 @@ namespace SuM_Manga_V3.AccountETC
             errormsg.InnerText = "";
             //emailre = EmailF.Value.ToString();
             string email = EmailF.Value.ToString();
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "SELECT UserName FROM SuMUsersAccounts WHERE Email = @Email";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@Email", email);
-                var smth = sqlCmd.ExecuteScalar();
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@Email", email);
+                var smth = MySqlCmd.ExecuteScalar();
                 //string username = smth.ToString();
                 if (smth != null)
                 {
@@ -70,7 +71,7 @@ namespace SuM_Manga_V3.AccountETC
                     EmailF.Attributes["style"] = "border-color:red;border-width:2px;border-radius:14px;";
                     errormsg.InnerText = "Email doesn't match any user";
                 }
-                sqlCon.Close();
+                MySqlCon.Close();
             }
         }
         protected void ConfirmCode(object sender, EventArgs e)
@@ -113,23 +114,23 @@ namespace SuM_Manga_V3.AccountETC
                 if (PasswordIsOk(newPass) == true)
                 {
                     string emailre = Request.Cookies["sd654fgsd65d5"].Value.ToString();
-                    using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                    string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
                     {
-                        sqlCon.Open();
+                        MySqlCon.Open();
                         string query = "UPDATE SuMUsersAccounts SET Password = @Password WHERE Email = @Email";
-                        SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
-                        sqlCmd2.Parameters.AddWithValue("@Email", emailre);
-                        sqlCmd2.Parameters.AddWithValue("@Password", sha256(newPass));
-                        sqlCmd2.ExecuteNonQuery();
+                        MySqlCommand MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                        MySqlCmd2.Parameters.AddWithValue("@Email", emailre);
+                        MySqlCmd2.Parameters.AddWithValue("@Password", sha256(newPass));
+                        MySqlCmd2.ExecuteNonQuery();
                         //LogOutPartStart
                         query = "SELECT UserID FROM SuMUsersAccounts WHERE Email = @Email";
-                        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                        sqlCmd.Parameters.AddWithValue("@Email", emailre);
+                        MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                        MySqlCmd.Parameters.AddWithValue("@Email", emailre);
                         HttpCookie CacheUserInfo = new HttpCookie("SuMCurrentLoginWorkerCache");
-                        CacheUserInfo["ID"] = sqlCmd.ExecuteScalar().ToString();
+                        CacheUserInfo["ID"] = MySqlCmd.ExecuteScalar().ToString();
                         CacheUserInfo.Expires = DateTime.Now.AddMinutes(30);
                         HttpContext.Current.Response.Cookies.Add(CacheUserInfo);
-                        sqlCon.Close();
+                        MySqlCon.Close();
                     }
                     LogOutOffAll();
                     Response.Redirect("~/AccountETC/LoginETC.aspx");
@@ -146,15 +147,15 @@ namespace SuM_Manga_V3.AccountETC
         protected void LogOutOffAll()
         {
             HttpCookie GetLoginCacheUserInfo = Request.Cookies["SuMCurrentLoginWorkerCache"];
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "UPDATE SuMUsersAccounts SET SIDs = NULL WHERE UserID = @UID";
-                SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
-                sqlCmd2.Parameters.AddWithValue("@UID", System.Data.SqlDbType.Int);
-                sqlCmd2.Parameters["@UID"].Value = Convert.ToInt32(GetLoginCacheUserInfo["ID"].ToString());
-                sqlCmd2.ExecuteNonQuery();
-                sqlCon.Close();
+                MySqlCommand MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                MySqlCmd2.Parameters.AddWithValue("@UID", System.Data.SqlDbType.Int);
+                MySqlCmd2.Parameters["@UID"].Value = Convert.ToInt32(GetLoginCacheUserInfo["ID"].ToString());
+                MySqlCmd2.ExecuteNonQuery();
+                MySqlCon.Close();
             }
         }
         static string sha256(string randomString)

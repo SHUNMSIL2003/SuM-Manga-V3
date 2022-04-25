@@ -4,20 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
+using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
 
 namespace SuM_Manga_V3.UploadConsole
 {
-    public partial class CommentsSQLEDITOR : System.Web.UI.Page
+    public partial class CommentsMySqlEDITOR : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             /*string chxxxx = string.Empty;
             string q = string.Empty;
-            SqlCommand cmd = new SqlCommand();
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            MySqlCommand cmd = new MySqlCommand();
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 for (int c = 1; c < 1000; c++)
                 {
                     string ChapterFixedForm = string.Empty;
@@ -28,11 +28,11 @@ namespace SuM_Manga_V3.UploadConsole
                     if (c > 999 && c < 10000) { ChapterFixedForm = chxC; }
                     chxxxx = "ch" + ChapterFixedForm;
                     q = "ALTER TABLE SuMMangaComments ADD " + chxxxx + " NVARCHAR(MAX) NULL";
-                    cmd = new SqlCommand(q, sqlCon);
+                    cmd = new MySqlCommand(q, MySqlCon);
                     cmd.ExecuteNonQuery();
                     res.InnerHtml += "<a style=font-size:100%; > ALTER TABLE SuMMangaComments ADD " + chxxxx + " NVARCHAR(MAX) NULL </a>";
                 }
-                sqlCon.Close();
+                MySqlCon.Close();
             }
             res.InnerHtml = "<a style=font-size:300%; >Done!</a>";*/
         }

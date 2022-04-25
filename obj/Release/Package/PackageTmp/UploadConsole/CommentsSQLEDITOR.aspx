@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CommentsSQLEDITOR.aspx.cs" Inherits="SuM_Manga_V3.UploadConsole.CommentsSQLEDITOR" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CommentsMySqlEDITOR.aspx.cs" Inherits="SuM_Manga_V3.UploadConsole.CommentsMySqlEDITOR" %>
 
 <!DOCTYPE html>
 

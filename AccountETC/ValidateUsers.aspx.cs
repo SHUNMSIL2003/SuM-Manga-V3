@@ -6,12 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Text;
-using System.Data.SqlClient;
+using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
 using System.Security.Cryptography;
-using System.Configuration;
+ 
 using System.Web.Security;
 using System.Net.Mail;
 using System.IO;
+ 
 namespace SuM_Manga_V3.AccountETC
 {
     public partial class ValidateUsers : System.Web.UI.Page
@@ -23,22 +24,22 @@ namespace SuM_Manga_V3.AccountETC
                 string username = Request.QueryString["UserName"];
                 string vcode = Request.QueryString["VCode"];
                 string acs = "#R$" + vcode;
-                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
                 {
-                    sqlCon.Open();
+                    MySqlCon.Open();
                     string query = "SELECT COUNT(1) FROM SuMUsersAccounts WHERE UserName = @UserName AND AccountStatus = @AccountStatus ";
-                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@UserName", username);
-                    sqlCmd.Parameters.AddWithValue("@AccountStatus", acs);
-                    int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                    MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                    MySqlCmd.Parameters.AddWithValue("@UserName", username);
+                    MySqlCmd.Parameters.AddWithValue("@AccountStatus", acs);
+                    int count = Convert.ToInt32(MySqlCmd.ExecuteScalar());
                     if (count > 0)
                     {
                         string query2 = "UPDATE SuMUsersAccounts SET AccountStatus = @AccountStatus WHERE UserName = @UserName";
-                        SqlCommand sqlCmd2 = new SqlCommand(query2, sqlCon);
-                        sqlCmd2.Parameters.AddWithValue("@UserName", username);
-                        sqlCmd2.Parameters.AddWithValue("@AccountStatus", "#S$FT");//#S --> subscriped      $FT   ---> (The subscription type)Free Trial
-                        sqlCmd2.ExecuteNonQuery();
-                        sqlCon.Close();
+                        MySqlCommand MySqlCmd2 = new MySqlCommand(query2, MySqlCon);
+                        MySqlCmd2.Parameters.AddWithValue("@UserName", username);
+                        MySqlCmd2.Parameters.AddWithValue("@AccountStatus", "#S$FT");//#S --> subscriped      $FT   ---> (The subscription type)Free Trial
+                        MySqlCmd2.ExecuteNonQuery();
+                        MySqlCon.Close();
                         Response.Redirect("~/AccountETC/LoginETC.aspx");
                     }
                     else
@@ -65,29 +66,29 @@ namespace SuM_Manga_V3.AccountETC
             string accountstats = "#R$" + virivicationcode;
             string UserName = Request.QueryString["UserName"];
             string Email = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "UPDATE SuMUsersAccounts SET AccountStatus = @AccountStatus WHERE UserName = @UserName";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
                 //HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-                sqlCmd.Parameters.AddWithValue("@UserName", UserName);
-                sqlCmd.Parameters.AddWithValue("@AccountStatus", accountstats);
-                sqlCmd.ExecuteNonQuery();
-                //sqlCmd.Parameters.AddWithValue("@SuMCustomPFP", SqlDbType.Image).Value = imgarray;
+                MySqlCmd.Parameters.AddWithValue("@UserName", UserName);
+                MySqlCmd.Parameters.AddWithValue("@AccountStatus", accountstats);
+                MySqlCmd.ExecuteNonQuery();
+                //MySqlCmd.Parameters.AddWithValue("@SuMCustomPFP", SqlDbType.Image).Value = imgarray;
 
                 string query4 = "SELECT Email FROM SuMUsersAccounts WHERE UserName = @UserName";
-                SqlCommand sqlCmd4 = new SqlCommand(query4, sqlCon);
+                MySqlCommand MySqlCmd4 = new MySqlCommand(query4, MySqlCon);
                 //HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-                sqlCmd4.Parameters.AddWithValue("@UserName", UserName);
-                using (SqlDataReader dr = sqlCmd4.ExecuteReader())
+                MySqlCmd4.Parameters.AddWithValue("@UserName", UserName);
+                using (MySqlDataReader dr = MySqlCmd4.ExecuteReader())
                 {
                     while (dr.Read())
                     {
                         Email = dr[0].ToString();
                     }
                 }
-                sqlCon.Close();
+                MySqlCon.Close();
             }
             SendVirifyEmail(virivicationcode, Email);
 

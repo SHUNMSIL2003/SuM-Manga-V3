@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
+using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
 using System.Data;
 
 namespace SuM_Manga_V3.storeitems
@@ -21,12 +21,12 @@ namespace SuM_Manga_V3.storeitems
             if (lt <= 1) { PPS.Attributes["class"] = "page-item disabled"; PrePageG.Attributes["href"] = "#"; }
             else { PPS.Attributes["class"] = "page-item"; PrePageG.Attributes["href"] = "/Library.aspx?P=" + (lt - 1).ToString(); }
             MangasAvalibleDiv.InnerHtml = "";
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string qwi = "SELECT MAX(MangaID) FROM SuMManga";
-                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                var jdbvg = sqlCmd00.ExecuteScalar();
+                MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                var jdbvg = MySqlCmd00.ExecuteScalar();
                 if (jdbvg != null)
                 {
                     int MaxID = Convert.ToInt32(jdbvg);
@@ -38,35 +38,35 @@ namespace SuM_Manga_V3.storeitems
                         {
                             NPS.Attributes["class"] = "page-item";
                             string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
-                            SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                            sqlCmd.Parameters["@MangaID"].Value = i;
-                            if (sqlCmd.ExecuteScalar() != null)
+                            MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                            MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                            MySqlCmd.Parameters["@MangaID"].Value = i;
+                            if (MySqlCmd.ExecuteScalar() != null)
                             {
-                                var X = sqlCmd.ExecuteScalar(); //ExecuteNonQuery();
+                                var X = MySqlCmd.ExecuteScalar(); //ExecuteNonQuery();
                                 string MangaName = X.ToString();
 
 
                                 query = "SELECT CExplorerLink FROM SuMManga WHERE MangaID = @MangaID";
-                                sqlCmd = new SqlCommand(query, sqlCon);
-                                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                                sqlCmd.Parameters["@MangaID"].Value = i;
-                                X = sqlCmd.ExecuteScalar();
+                                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                                MySqlCmd.Parameters["@MangaID"].Value = i;
+                                X = MySqlCmd.ExecuteScalar();
                                 string CExplorerLink = X.ToString();
 
                                 query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
-                                sqlCmd = new SqlCommand(query, sqlCon);
-                                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                                sqlCmd.Parameters["@MangaID"].Value = i;
-                                // X = sqlCmd.ExecuteScalar();
-                                string MangaCoverLink = sqlCmd.ExecuteScalar().ToString();
+                                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                                MySqlCmd.Parameters["@MangaID"].Value = i;
+                                // X = MySqlCmd.ExecuteScalar();
+                                string MangaCoverLink = MySqlCmd.ExecuteScalar().ToString();
 
                                 query = "SELECT SuMThemeColor FROM SuMManga WHERE MangaID = @MangaID";
-                                sqlCmd = new SqlCommand(query, sqlCon);
-                                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                                sqlCmd.Parameters["@MangaID"].Value = i;
-                                // X = sqlCmd.ExecuteScalar();
-                                string MangaTheme = sqlCmd.ExecuteScalar().ToString();
+                                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                                MySqlCmd.Parameters["@MangaID"].Value = i;
+                                // X = MySqlCmd.ExecuteScalar();
+                                string MangaTheme = MySqlCmd.ExecuteScalar().ToString();
 
                                 MangasAvalibleDiv.InnerHtml += BuildGCard(MangaCoverLink,MangaName, "", CExplorerLink, MangaTheme, i);
                             }
@@ -77,9 +77,9 @@ namespace SuM_Manga_V3.storeitems
                             MangasAvalibleDiv.InnerHtml = "<h4>No More Pages Left!</h4>";
                         }
                     }
-                    sqlCon.Close();
+                    MySqlCon.Close();
                 }
-                else { sqlCon.Close(); Response.Redirect("~/404.aspx"); }
+                else { MySqlCon.Close(); Response.Redirect("~/404.aspx"); }
             }
         }
         protected string BuildGCard(string CardBG, string cardtitle, string G, string Link, string theme, int id)

@@ -105,7 +105,7 @@
                 </Triggers>
                 <ContentTemplate>
                     <asp:Panel runat="server">
-                        <div id="TheMangaPhotosF" style="width:100%;height:fit-content;padding-top:6px;" runat="server">
+                        <div id="TheMangaPhotosF" style="width:100%;height:fit-content;background-color:transparent;padding:8px !important;padding-top:14px !important;" runat="server">
                         </div>
                         <a id="ThreIsMoreACard" onclick="document.getElementById('MainContent_LoadMOreChapters').click(); return false;" runat="server" style="width:100%;height:fit-content;text-align:center !important;margin:0 auto !important;display:block;padding-bottom:130px !important;padding-top:60px !important;" >
                             <p style="color:#FFFFFFEB !important;width:100%;text-align:center !important;margin:0 auto !important;font-size:92%;"><b style="color:#FFFFFFEB;">Tap anywhere for more</b></p>
@@ -131,7 +131,7 @@
         $.ajax({
             dataType: "json",
             method: 'post',
-            url: '<%= ResolveUrl("~/BTNTesting.aspx/GetMangaViewsCountFSQL") %>',
+            url: '<%= ResolveUrl("~/BTNTesting.aspx/GetMangaViewsCountFMySql") %>',
             data: JSON.stringify({ MID: MangaIDFoundCardExploreInfo }),
             contentType: "application/json; charset=utf-8",
             success: function (msg) {

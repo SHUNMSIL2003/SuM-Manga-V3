@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
+using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Net.Mail;
@@ -15,13 +15,15 @@ namespace SuM_Manga_V3.storeitems
 {
     public partial class ContantExplorerCard : System.Web.UI.Page
     {
+        public int ChapterCValue = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //TheMangaPhotosF.Attributes["style"] = "width:100%;height:fit-content;padding-top:6px;background-color:" + Request.QueryString["TC"].Replace("0.74", "1") + ";";
             //LastRefreshPross();   -- Needs work  %-- No need now !
             bool ThereIsMoreCHs = false;
             if (Request.QueryString["Manga"] == null || Request.QueryString["VC"] == null) { backhome(); }
             string CardBG = string.Empty;
-            string MangaNameFSQL = ShowName();
+            string MangaNameFMySql = ShowName();
             string ThemeColor = string.Empty;
             if (Request.QueryString["TC"] != null)
             {
@@ -32,26 +34,25 @@ namespace SuM_Manga_V3.storeitems
             string theme = ThemeColor;
             int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
             int cn1 = 0;
-            int ChapterCValue = 0;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = idfg0554;
-                var un = sqlCmd.ExecuteScalar();
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = idfg0554;
+                var un = MySqlCmd.ExecuteScalar();
                 cn1 = Convert.ToInt32(un);
                 query = "SELECT ChapterCValue FROM SuMManga WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = idfg0554;
-                un = sqlCmd.ExecuteScalar();
+                MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = idfg0554;
+                un = MySqlCmd.ExecuteScalar();
                 ChapterCValue = Convert.ToInt32(un);
-                sqlCon.Close();
+                MySqlCon.Close();
             }
             SuMViewsPlaceHolder.InnerHtml = Request.QueryString["VC"];
-            ScriptInjectorB000.InnerHtml = "<script> androidAPIs.ShowSuMToastsOverview('" + MangaNameFSQL + " :" + cn1.ToString() + " Chapters!'); androidAPIs.SuMExploreInfoMangaDisc('" + GetDisc().Replace("'", "") + "'); </script>";
+            ScriptInjectorB000.InnerHtml = "<script> androidAPIs.ShowSuMToastsOverview('" + MangaNameFMySql + " :" + cn1.ToString() + " Chapters!'); androidAPIs.SuMExploreInfoMangaDisc('" + GetDisc().Replace("'", "") + "'); </script>";
             if (IsPostBack == false)
             {
                 string ThemeSBM = Request.QueryString["TC"].ToString().Replace("0.74", "0.86");
@@ -165,46 +166,46 @@ namespace SuM_Manga_V3.storeitems
         protected string ShowName()
         {
             string V = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
                 string x = Request.QueryString["VC"];
                 int y = Convert.ToInt32(x);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = y;
-                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = y;
+                using (MySqlDataReader dr = MySqlCmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
                         V = dr[0].ToString();
                     }
                 }
-                sqlCon.Close();
+                MySqlCon.Close();
             }
             return V;
         }
         protected string GetDisc()
         {
             string V = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "SELECT MangaInfo FROM SuMManga WHERE MangaID = @MangaID";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
                 string x = Request.QueryString["VC"];
                 int y = Convert.ToInt32(x);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = y;
-                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = y;
+                using (MySqlDataReader dr = MySqlCmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
                         V = dr[0].ToString();
                     }
                 }
-                sqlCon.Close();
+                MySqlCon.Close();
             }
             return V;
         }
@@ -213,14 +214,14 @@ namespace SuM_Manga_V3.storeitems
             object RawRes;
             string NewSol = string.Empty;
             string Target = "#" + Request.QueryString["VC"].ToString() + "&";
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string qwi = "SELECT Resently FROM SuMUsersAccounts WHERE UserID = @UID";
-                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd00.Parameters["@UID"].Value = UID;
-                RawRes = sqlCmd00.ExecuteScalar();
+                MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd00.Parameters["@UID"].Value = UID;
+                RawRes = MySqlCmd00.ExecuteScalar();
                 if (RawRes != null)
                 {
                     if (RawRes.ToString().Contains(Target) == true)
@@ -237,12 +238,12 @@ namespace SuM_Manga_V3.storeitems
                     NewSol = Target;
                 }
                 qwi = "UPDATE SuMUsersAccounts SET Resently = @NEWResently WHERE UserID = @UID";
-                sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                sqlCmd00.Parameters.AddWithValue("@NEWResently", NewSol);
-                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd00.Parameters["@UID"].Value = UID;
-                sqlCmd00.ExecuteNonQuery();
-                sqlCon.Close();
+                MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                MySqlCmd00.Parameters.AddWithValue("@NEWResently", NewSol);
+                MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd00.Parameters["@UID"].Value = UID;
+                MySqlCmd00.ExecuteNonQuery();
+                MySqlCon.Close();
             }
         }
         protected void WannaListManager(int UID)
@@ -250,15 +251,15 @@ namespace SuM_Manga_V3.storeitems
             int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
             bool ItsAWanna = false;
             object RawRes;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string qwi = "SELECT Wanna FROM SuMUsersAccounts WHERE UserID = @UID";
-                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd00.Parameters["@UID"].Value = UID;
-                RawRes = sqlCmd00.ExecuteScalar();
-                sqlCon.Close();
+                MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd00.Parameters["@UID"].Value = UID;
+                RawRes = MySqlCmd00.ExecuteScalar();
+                MySqlCon.Close();
             }
             if (RawRes != null)
             {
@@ -283,15 +284,15 @@ namespace SuM_Manga_V3.storeitems
             int MID = Convert.ToInt32(Request.QueryString["VC"].ToString());
             bool ItsAFav = false;
             object RawRes;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string qwi = "SELECT Fav FROM SuMUsersAccounts WHERE UserID = @UID";
-                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd00.Parameters["@UID"].Value = UID;
-                RawRes = sqlCmd00.ExecuteScalar();
-                sqlCon.Close();
+                MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd00.Parameters["@UID"].Value = UID;
+                RawRes = MySqlCmd00.ExecuteScalar();
+                MySqlCon.Close();
             }
             if (RawRes != null)
             {
@@ -321,14 +322,14 @@ namespace SuM_Manga_V3.storeitems
                 string NewLIST = string.Empty;
                 bool NeedUpdate = false;
                 string Target = "#" + Request.QueryString["VC"].ToString() + "&";
-                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
                 {
-                    sqlCon.Open();
+                    MySqlCon.Open();
                     string qwi = "SELECT Wanna FROM SuMUsersAccounts WHERE UserID = @UID";
-                    SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                    sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                    sqlCmd00.Parameters["@UID"].Value = UID;
-                    RawRes = sqlCmd00.ExecuteScalar();
+                    MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                    MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    MySqlCmd00.Parameters["@UID"].Value = UID;
+                    RawRes = MySqlCmd00.ExecuteScalar();
                     if (RawRes != null)
                     {
                         if (RawRes.ToString().Contains(Target) == false)
@@ -340,13 +341,13 @@ namespace SuM_Manga_V3.storeitems
                     if (NeedUpdate == true)
                     {
                         qwi = "UPDATE SuMUsersAccounts SET Wanna = @NEWWanna WHERE UserID = @UID";
-                        sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                        sqlCmd00.Parameters.AddWithValue("@NEWWanna", NewLIST);
-                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                        sqlCmd00.Parameters["@UID"].Value = UID;
-                        sqlCmd00.ExecuteNonQuery();
+                        MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                        MySqlCmd00.Parameters.AddWithValue("@NEWWanna", NewLIST);
+                        MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        MySqlCmd00.Parameters["@UID"].Value = UID;
+                        MySqlCmd00.ExecuteNonQuery();
                     }
-                    sqlCon.Close();
+                    MySqlCon.Close();
                 }
             }
         }
@@ -360,14 +361,14 @@ namespace SuM_Manga_V3.storeitems
                 string NewLIST = string.Empty;
                 bool NeedUpdate = false;
                 string Target = "#" + Request.QueryString["VC"].ToString() + "&";
-                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
                 {
-                    sqlCon.Open();
+                    MySqlCon.Open();
                     string qwi = "SELECT Wanna FROM SuMUsersAccounts WHERE UserID = @UID";
-                    SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                    sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                    sqlCmd00.Parameters["@UID"].Value = UID;
-                    RawRes = sqlCmd00.ExecuteScalar();
+                    MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                    MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    MySqlCmd00.Parameters["@UID"].Value = UID;
+                    RawRes = MySqlCmd00.ExecuteScalar();
                     if (RawRes != null)
                     {
                         if (RawRes.ToString().Contains(Target) == true)
@@ -379,13 +380,13 @@ namespace SuM_Manga_V3.storeitems
                     if (NeedUpdate == true)
                     {
                         qwi = "UPDATE SuMUsersAccounts SET Wanna = @NEWWanna WHERE UserID = @UID";
-                        sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                        sqlCmd00.Parameters.AddWithValue("@NEWWanna", NewLIST);
-                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                        sqlCmd00.Parameters["@UID"].Value = UID;
-                        sqlCmd00.ExecuteNonQuery();
+                        MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                        MySqlCmd00.Parameters.AddWithValue("@NEWWanna", NewLIST);
+                        MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        MySqlCmd00.Parameters["@UID"].Value = UID;
+                        MySqlCmd00.ExecuteNonQuery();
                     }
-                    sqlCon.Close();
+                    MySqlCon.Close();
                 }
             }
         }
@@ -399,14 +400,14 @@ namespace SuM_Manga_V3.storeitems
                 string NewLIST = string.Empty;
                 bool NeedUpdate = false;
                 string Target = "#" + Request.QueryString["VC"].ToString() + "&";
-                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
                 {
-                    sqlCon.Open();
+                    MySqlCon.Open();
                     string qwi = "SELECT Fav FROM SuMUsersAccounts WHERE UserID = @UID";
-                    SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                    sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                    sqlCmd00.Parameters["@UID"].Value = UID;
-                    RawRes = sqlCmd00.ExecuteScalar();
+                    MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                    MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    MySqlCmd00.Parameters["@UID"].Value = UID;
+                    RawRes = MySqlCmd00.ExecuteScalar();
                     if (RawRes != null)
                     {
                         if (RawRes.ToString().Contains(Target) == false)
@@ -418,13 +419,13 @@ namespace SuM_Manga_V3.storeitems
                     if (NeedUpdate == true)
                     {
                         qwi = "UPDATE SuMUsersAccounts SET Fav = @NEWFav WHERE UserID = @UID";
-                        sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                        sqlCmd00.Parameters.AddWithValue("@NEWFav", NewLIST);
-                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                        sqlCmd00.Parameters["@UID"].Value = UID;
-                        sqlCmd00.ExecuteNonQuery();
+                        MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                        MySqlCmd00.Parameters.AddWithValue("@NEWFav", NewLIST);
+                        MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        MySqlCmd00.Parameters["@UID"].Value = UID;
+                        MySqlCmd00.ExecuteNonQuery();
                     }
-                    sqlCon.Close();
+                    MySqlCon.Close();
                 }
             }
         }
@@ -438,14 +439,14 @@ namespace SuM_Manga_V3.storeitems
                 string NewLIST = string.Empty;
                 bool NeedUpdate = false;
                 string Target = "#" + Request.QueryString["VC"].ToString() + "&";
-                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
                 {
-                    sqlCon.Open();
+                    MySqlCon.Open();
                     string qwi = "SELECT Fav FROM SuMUsersAccounts WHERE UserID = @UID";
-                    SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                    sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                    sqlCmd00.Parameters["@UID"].Value = UID;
-                    RawRes = sqlCmd00.ExecuteScalar();
+                    MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                    MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                    MySqlCmd00.Parameters["@UID"].Value = UID;
+                    RawRes = MySqlCmd00.ExecuteScalar();
                     if (RawRes != null)
                     {
                         if (RawRes.ToString().Contains(Target) == true)
@@ -457,13 +458,13 @@ namespace SuM_Manga_V3.storeitems
                     if (NeedUpdate == true)
                     {
                         qwi = "UPDATE SuMUsersAccounts SET Fav = @NEWFav WHERE UserID = @UID";
-                        sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                        sqlCmd00.Parameters.AddWithValue("@NEWFav", NewLIST);
-                        sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                        sqlCmd00.Parameters["@UID"].Value = UID;
-                        sqlCmd00.ExecuteNonQuery();
+                        MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                        MySqlCmd00.Parameters.AddWithValue("@NEWFav", NewLIST);
+                        MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                        MySqlCmd00.Parameters["@UID"].Value = UID;
+                        MySqlCmd00.ExecuteNonQuery();
                     }
-                    sqlCon.Close();
+                    MySqlCon.Close();
                 }
             }
         }
@@ -502,23 +503,16 @@ namespace SuM_Manga_V3.storeitems
             int CSN = 1 * 12;
             int CEN = 0;
             int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
-            int ChapterCValue = 0;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "SELECT ChaptersNumber FROM SuMManga WHERE MangaID = @MangaID";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = idfg0554;
-                var un = sqlCmd.ExecuteScalar();
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = idfg0554;
+                var un = MySqlCmd.ExecuteScalar();
                 CEN = Convert.ToInt32(un);
-                query = "SELECT ChapterCValue FROM SuMManga WHERE MangaID = @MangaID";
-                sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = idfg0554;
-                un = sqlCmd.ExecuteScalar();
-                ChapterCValue = Convert.ToInt32(un);
-                sqlCon.Close();
+                MySqlCon.Close();
             }
             //NormallCoderFromDownHere
             string ThemeColor = Request.QueryString["TC"].ToString();
@@ -599,23 +593,23 @@ namespace SuM_Manga_V3.storeitems
         protected void ShareLink()
         {
             var V = "";
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "SELECT MangaName FROM SuMManga WHERE MangaID = @MangaID";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
                 string x = Request.QueryString["VC"];
                 int y = Convert.ToInt32(x);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = y;
-                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = y;
+                using (MySqlDataReader dr = MySqlCmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
                         V = dr[0].ToString();
                     }
                 }
-                sqlCon.Close();
+                MySqlCon.Close();
             }
             string LINK = "https://sum-manga.azurewebsites.net/storeitems/ContantExplorer.aspx?Manga=" + Request.QueryString["Manga"].ToString() + "&VC=" + Request.QueryString["VC"].ToString() + "&TC=" + Request.QueryString["TC"].ToString();
             //No need- now Using androidAPIs SuMShare.Attributes["onclick"] = "navigator.share({title:'SuM Manga',text:'Check out " + V.ToString() + " on SuM Manga.',url:'" + LINK + "'});";
@@ -623,14 +617,14 @@ namespace SuM_Manga_V3.storeitems
         protected bool IsItInCurr(int MID, int UID)
         {
 
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
-                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd00.Parameters["@UID"].Value = UID;
-                var RawRes = sqlCmd00.ExecuteScalar();
+                MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd00.Parameters["@UID"].Value = UID;
+                var RawRes = MySqlCmd00.ExecuteScalar();
                 if (RawRes != null)
                 {
                     string Res = RawRes.ToString();
@@ -684,14 +678,14 @@ namespace SuM_Manga_V3.storeitems
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             int UID = Convert.ToInt32(Convert.ToString(GetUserInfoCookie["ID"]));
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string qwi = "SELECT Curr FROM SuMUsersAccounts WHERE UserID = @UID";
-                SqlCommand sqlCmd00 = new SqlCommand(qwi, sqlCon);
-                sqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd00.Parameters["@UID"].Value = UID;
-                var RawRes = sqlCmd00.ExecuteScalar();
+                MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd00.Parameters["@UID"].Value = UID;
+                var RawRes = MySqlCmd00.ExecuteScalar();
                 if (RawRes != null)
                 {
                     string TC = Request.QueryString["TC"].ToString();
@@ -717,8 +711,8 @@ namespace SuM_Manga_V3.storeitems
                             MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                             MRSC.Attributes["style"] = "overflow:hidden;background-color:rgb(255, 255, 255, 0.84);border-radius:13px;width:160px;height:46px;margin:0 auto;text-align:center;justify-content:center;margin-top:4px !important;margin-bottom:12px !important;padding:4px;";
                             string WorkerHelp = "&UCU=" + MID.ToString();
-                            MRSW.Attributes["onclick"] = " SuMGoToThis('" + LinkToUpdate + linktoupdatech + ChapterFixedForm + WorkerHelp + "','" + Request.QueryString["TC"].ToString() + "','Chapter" + c.ToString() + "','MangaExplorer'); ";
-                            sqlCon.Close();
+                            MRSW.Attributes["onclick"] = "androidAPIs.SuMExploreLoadReader('" + LinkToUpdate + linktoupdatech + ChapterFixedForm + WorkerHelp + "'," + ChapterCValue + ");";
+                            MySqlCon.Close();
                         }
                     }
                     if (foundit == false)
@@ -726,8 +720,8 @@ namespace SuM_Manga_V3.storeitems
                         MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
                         MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                         MRSC.Attributes["style"] = "overflow:hidden;background-color:rgb(255, 255, 255, 0.84);border-radius:13px;width:160px;height:46px;margin:0 auto;text-align:center;justify-content:center;margin-top:4px !important;margin-bottom:12px !important;padding:4px;";
-                        MRSW.Attributes["onclick"] = " SuMGoToThis('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "','" + Request.QueryString["TC"].ToString() + "','Chapter 1','MangaExplorer'); ";
-                        sqlCon.Close();
+                        MRSW.Attributes["onclick"] = "androidAPIs.SuMExploreLoadReader('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "'," + ChapterCValue + ");";
+                        MySqlCon.Close();
                     }
                 }
                 else
@@ -738,8 +732,8 @@ namespace SuM_Manga_V3.storeitems
                     MRSW.InnerHtml = "<b>Start Reading</b><br /><p style=" + "margin-top:-4px;font-size:60%;color:" + TC + ">Auto adds to currently reading</p>";
                     MRSW.Attributes["style"] = "overflow:hidden;color:" + TC + ";";
                     MRSC.Attributes["style"] = "overflow:hidden;background-color:rgb(255, 255, 255, 0.84);border-radius:12px;width:160px;height:38px;margin:0 auto;text-align:center;justify-content:center;margin-top:3px !important;margin-bottom:13px !important;";
-                    MRSW.Attributes["onclick"] = " SuMGoToThis('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "','" + Request.QueryString["TC"].ToString() + "','Chapter 1','MangaExplorer'); ";
-                    sqlCon.Close();
+                    MRSW.Attributes["onclick"] = "androidAPIs.SuMExploreLoadReader('" + LinkToUpdate + linktoupdatech + "0001" + "&ADTCU=" + MID + "'," + ChapterCValue + ");";
+                    MySqlCon.Close();
                 }
             }
 
@@ -798,23 +792,23 @@ namespace SuM_Manga_V3.storeitems
         protected string ShowDis()
         {
             string V = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string query = "SELECT MangaInfo FROM SuMManga WHERE MangaID = @MangaID";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
                 string x = Request.QueryString["VC"];
                 int y = Convert.ToInt32(x);
-                sqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaID"].Value = y;
-                using (SqlDataReader dr = sqlCmd.ExecuteReader())
+                MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaID"].Value = y;
+                using (MySqlDataReader dr = MySqlCmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
                         V = dr[0].ToString();
                     }
                 }
-                sqlCon.Close();
+                MySqlCon.Close();
             }
             return V;
         }

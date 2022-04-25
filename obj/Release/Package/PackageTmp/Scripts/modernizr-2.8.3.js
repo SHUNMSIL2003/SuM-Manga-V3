@@ -485,7 +485,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
     // Chrome incognito mode used to throw an exception when using openDatabase
     // It doesn't anymore.
-    tests['websqldatabase'] = function() {
+    tests['webMySqldatabase'] = function() {
       return !!window.openDatabase;
     };
 

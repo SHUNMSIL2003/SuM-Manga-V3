@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
+using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Net.Mail;
@@ -67,26 +67,26 @@ namespace SuM_Manga_V3.SuMAdmin
                 string CExplorerLink = "/storeitems/ContantExplorer.aspx?Manga=" + MangaRoot;
                 string MangaCoverLink = "/storeitems/" + MangaRoot + "/" + MangaName.Replace(" ", "-") + ".png";
                 int MangaID = 0;
-                using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
                 {
-                    sqlCon.Open();
-                    SqlCommand sqlCmd = new SqlCommand("INSERT INTO SuMManga(MangaName,CExplorerLink,MangaInfo,SuMThemeColor,MangaCoverLink,ChaptersNumber,MangaViews,MangaCreator,MangaAgeRating,LastUpdateDate) values(@MangaName,@CExplorerLink,@MangaInfo,@SuMThemeColor,@MangaCoverLink,0,0,@MangaCreator,@MangaAgeRating,@LastUpdateDate)", sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
-                    sqlCmd.Parameters.AddWithValue("@CExplorerLink", CExplorerLink);//C
-                    sqlCmd.Parameters.AddWithValue("@MangaInfo", MangaDiscription);
-                    sqlCmd.Parameters.AddWithValue("@SuMThemeColor", MangaThemeColor);
-                    sqlCmd.Parameters.AddWithValue("@MangaCoverLink", MangaCoverLink);
-                    sqlCmd.Parameters.AddWithValue("@MangaCreator", MangaPuplisherName);
-                    sqlCmd.Parameters.AddWithValue("@MangaAgeRating", MangaAgeID);
-                    sqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
-                    sqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
-                    sqlCmd.ExecuteNonQuery();
+                    MySqlCon.Open();
+                    MySqlCommand MySqlCmd = new MySqlCommand("INSERT INTO SuMManga(MangaName,CExplorerLink,MangaInfo,SuMThemeColor,MangaCoverLink,ChaptersNumber,MangaViews,MangaCreator,MangaAgeRating,LastUpdateDate) values(@MangaName,@CExplorerLink,@MangaInfo,@SuMThemeColor,@MangaCoverLink,0,0,@MangaCreator,@MangaAgeRating,@LastUpdateDate)", MySqlCon);
+                    MySqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
+                    MySqlCmd.Parameters.AddWithValue("@CExplorerLink", CExplorerLink);//C
+                    MySqlCmd.Parameters.AddWithValue("@MangaInfo", MangaDiscription);
+                    MySqlCmd.Parameters.AddWithValue("@SuMThemeColor", MangaThemeColor);
+                    MySqlCmd.Parameters.AddWithValue("@MangaCoverLink", MangaCoverLink);
+                    MySqlCmd.Parameters.AddWithValue("@MangaCreator", MangaPuplisherName);
+                    MySqlCmd.Parameters.AddWithValue("@MangaAgeRating", MangaAgeID);
+                    MySqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
+                    MySqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
+                    MySqlCmd.ExecuteNonQuery();
                     System.Threading.Thread.Sleep(180);
-                    sqlCmd = new SqlCommand("SELECT MangaID FROM SuMManga WHERE MangaName = @MangaName AND LastUpdateDate = @LastUpdateDate", sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
-                    sqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
-                    sqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
-                    object RS = sqlCmd.ExecuteScalar();
+                    MySqlCmd = new MySqlCommand("SELECT MangaID FROM SuMManga WHERE MangaName = @MangaName AND LastUpdateDate = @LastUpdateDate", MySqlCon);
+                    MySqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
+                    MySqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
+                    MySqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
+                    object RS = MySqlCmd.ExecuteScalar();
                     if (RS != null)
                     {
                         MangaID = Convert.ToInt32(RS.ToString());
@@ -94,11 +94,11 @@ namespace SuM_Manga_V3.SuMAdmin
                     else 
                     {
                         System.Threading.Thread.Sleep(640);
-                        sqlCmd = new SqlCommand("SELECT MangaID FROM SuMManga WHERE MangaName = @MangaName AND LastUpdateDate = @LastUpdateDate", sqlCon);
-                        sqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
-                        sqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
-                        sqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
-                        RS = sqlCmd.ExecuteScalar();
+                        MySqlCmd = new MySqlCommand("SELECT MangaID FROM SuMManga WHERE MangaName = @MangaName AND LastUpdateDate = @LastUpdateDate", MySqlCon);
+                        MySqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
+                        MySqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
+                        MySqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
+                        RS = MySqlCmd.ExecuteScalar();
                         if (RS != null)
                         {
                             MangaID = Convert.ToInt32(RS.ToString());
@@ -106,11 +106,11 @@ namespace SuM_Manga_V3.SuMAdmin
                         else
                         {
                             System.Threading.Thread.Sleep(1000);
-                            sqlCmd = new SqlCommand("SELECT MangaID FROM SuMManga WHERE MangaName = @MangaName AND LastUpdateDate = @LastUpdateDate", sqlCon);
-                            sqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
-                            sqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
-                            sqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
-                            RS = sqlCmd.ExecuteScalar();
+                            MySqlCmd = new MySqlCommand("SELECT MangaID FROM SuMManga WHERE MangaName = @MangaName AND LastUpdateDate = @LastUpdateDate", MySqlCon);
+                            MySqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
+                            MySqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
+                            MySqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
+                            RS = MySqlCmd.ExecuteScalar();
                             if (RS != null)
                             {
                                 MangaID = Convert.ToInt32(RS.ToString());
@@ -118,11 +118,11 @@ namespace SuM_Manga_V3.SuMAdmin
                             else
                             {
                                 System.Threading.Thread.Sleep(2000);
-                                sqlCmd = new SqlCommand("SELECT MangaID FROM SuMManga WHERE MangaName = @MangaName AND LastUpdateDate = @LastUpdateDate", sqlCon);
-                                sqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
-                                sqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
-                                sqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
-                                RS = sqlCmd.ExecuteScalar();
+                                MySqlCmd = new MySqlCommand("SELECT MangaID FROM SuMManga WHERE MangaName = @MangaName AND LastUpdateDate = @LastUpdateDate", MySqlCon);
+                                MySqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
+                                MySqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
+                                MySqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
+                                RS = MySqlCmd.ExecuteScalar();
                                 if (RS != null)
                                 {
                                     MangaID = Convert.ToInt32(RS.ToString());
@@ -130,16 +130,16 @@ namespace SuM_Manga_V3.SuMAdmin
                                 else
                                 {
                                     System.Threading.Thread.Sleep(6000);
-                                    sqlCmd = new SqlCommand("SELECT MangaID FROM SuMManga WHERE MangaName = @MangaName AND LastUpdateDate = @LastUpdateDate", sqlCon);
-                                    sqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
-                                    sqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
-                                    sqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
-                                    RS = sqlCmd.ExecuteScalar();
+                                    MySqlCmd = new MySqlCommand("SELECT MangaID FROM SuMManga WHERE MangaName = @MangaName AND LastUpdateDate = @LastUpdateDate", MySqlCon);
+                                    MySqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
+                                    MySqlCmd.Parameters.AddWithValue("@LastUpdateDate", SqlDbType.Int);
+                                    MySqlCmd.Parameters["@LastUpdateDate"].Value = CurrLastUpdateDate;
+                                    RS = MySqlCmd.ExecuteScalar();
                                 }
                             }
                         }
                     }
-                    sqlCon.Close();
+                    MySqlCon.Close();
                 }
                 string epath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
                 string ActivePath = epath + "\\SuMCreator\\CreatorsDrafts\\";
@@ -156,48 +156,48 @@ namespace SuM_Manga_V3.SuMAdmin
         protected void PuplishGerns(int MID, string[] MGs) 
         {
             //string GernX = string.Empty;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
-                SqlCommand sqlCmd = new SqlCommand("", sqlCon);
+                MySqlCon.Open();
+                MySqlCommand MySqlCmd = new MySqlCommand("", MySqlCon);
                 for (int i = 0; i < MGs.Length; i++)
                 {
-                    sqlCmd = new SqlCommand("UPDATE SuMManga SET " + MGs[i] + " = @GernX WHERE MangaID = @MID", sqlCon);
-                    sqlCmd.Parameters.AddWithValue("@GernX", SqlDbType.Bit);
-                    sqlCmd.Parameters["@GernX"].Value = 1;
-                    sqlCmd.Parameters.AddWithValue("@MID", SqlDbType.Int);
-                    sqlCmd.Parameters["@MID"].Value = MID;
-                    sqlCmd.ExecuteNonQuery();
+                    MySqlCmd = new MySqlCommand("UPDATE SuMManga SET " + MGs[i] + " = @GernX WHERE MangaID = @MID", MySqlCon);
+                    MySqlCmd.Parameters.AddWithValue("@GernX", SqlDbType.Bit);
+                    MySqlCmd.Parameters["@GernX"].Value = 1;
+                    MySqlCmd.Parameters.AddWithValue("@MID", SqlDbType.Int);
+                    MySqlCmd.Parameters["@MID"].Value = MID;
+                    MySqlCmd.ExecuteNonQuery();
                 }
-                sqlCon.Close();
+                MySqlCon.Close();
             }
         }
         protected void CreateComentsSpace(int MID) 
         {
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
-                SqlCommand sqlCmd = new SqlCommand("INSERT INTO SuMMangaComments(MangaID,CreatorComment) values(@MID,@CreatorComment)", sqlCon);
-                sqlCmd.Parameters.AddWithValue("@CreatorComment", " ");
-                sqlCmd.Parameters.AddWithValue("@MID", SqlDbType.Int);
-                sqlCmd.Parameters["@MID"].Value = MID;
-                sqlCmd.ExecuteNonQuery();
-                sqlCon.Close();
+                MySqlCon.Open();
+                MySqlCommand MySqlCmd = new MySqlCommand("INSERT INTO SuMMangaComments(MangaID,CreatorComment) values(@MID,@CreatorComment)", MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@CreatorComment", " ");
+                MySqlCmd.Parameters.AddWithValue("@MID", SqlDbType.Int);
+                MySqlCmd.Parameters["@MID"].Value = MID;
+                MySqlCmd.ExecuteNonQuery();
+                MySqlCon.Close();
             }
         }
         protected void ProssEnding(int UserID, string ReqFID, int MangaID)
         {
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
-                sqlCon.Open();
+                MySqlCon.Open();
                 string NewReqIDs = string.Empty;
 
                 string query = "SELECT UnderProssReq FROM SuMCreators WHERE CreatorID = @UID";
-                SqlCommand sqlCmd2 = new SqlCommand(query, sqlCon);
-                sqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd2.Parameters["@UID"].Value = UserID;
-                //var RR = sqlCmd2.ExecuteReader();
-                using (var reader = sqlCmd2.ExecuteReader())
+                MySqlCommand MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                MySqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd2.Parameters["@UID"].Value = UserID;
+                //var RR = MySqlCmd2.ExecuteReader();
+                using (var reader = MySqlCmd2.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -205,18 +205,18 @@ namespace SuM_Manga_V3.SuMAdmin
                     }
                 }
                 query = "UPDATE SuMCreators SET UnderProssReq = @NewUnderProssReq WHERE CreatorID = @UID";
-                sqlCmd2 = new SqlCommand(query, sqlCon);
-                sqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd2.Parameters["@UID"].Value = UserID;
-                sqlCmd2.Parameters.AddWithValue("@NewUnderProssReq", NewReqIDs);
-                sqlCmd2.ExecuteNonQuery();
+                MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                MySqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd2.Parameters["@UID"].Value = UserID;
+                MySqlCmd2.Parameters.AddWithValue("@NewUnderProssReq", NewReqIDs);
+                MySqlCmd2.ExecuteNonQuery();
 
                 query = "SELECT MangasIDs FROM SuMCreators WHERE CreatorID = @UID";
-                sqlCmd2 = new SqlCommand(query, sqlCon);
-                sqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd2.Parameters["@UID"].Value = UserID;
-                //var RR = sqlCmd2.ExecuteReader();
-                using (var reader = sqlCmd2.ExecuteReader())
+                MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                MySqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd2.Parameters["@UID"].Value = UserID;
+                //var RR = MySqlCmd2.ExecuteReader();
+                using (var reader = MySqlCmd2.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -224,13 +224,13 @@ namespace SuM_Manga_V3.SuMAdmin
                     }
                 }
                 query = "UPDATE SuMCreators SET MangasIDs = @MangasIDs WHERE CreatorID = @UID";
-                sqlCmd2 = new SqlCommand(query, sqlCon);
-                sqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
-                sqlCmd2.Parameters["@UID"].Value = UserID;
-                sqlCmd2.Parameters.AddWithValue("@MangasIDs", NewReqIDs);
-                sqlCmd2.ExecuteNonQuery();
+                MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                MySqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd2.Parameters["@UID"].Value = UserID;
+                MySqlCmd2.Parameters.AddWithValue("@MangasIDs", NewReqIDs);
+                MySqlCmd2.ExecuteNonQuery();
 
-                sqlCon.Close();
+                MySqlCon.Close();
             }
         }
         protected string[] ST0String(string x)

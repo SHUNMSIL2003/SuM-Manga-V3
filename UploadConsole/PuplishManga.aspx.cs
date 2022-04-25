@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
 
 namespace SuM_Manga_V3.UploadConsole
 {
@@ -29,22 +29,22 @@ namespace SuM_Manga_V3.UploadConsole
             string MangaFolderName = MangaNameFolder.Text;
             string CExplorerLink = "/storeitems/ContantExplorer.aspx?Manga=" + MangaFolderName;
             string MangaCoverLink = "/storeitems/" + MangaFolderName + "/" + CoverLink.Text;
-            using (SqlConnection sqlCon = new SqlConnection(@"Server=tcp:summanga.database.windows.net,1433;Initial Catalog=summangasqldatabase;Persist Security Info=False;User ID=summangasqladmin;Password=55878833sqlpass#S;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))//Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))//Data Source=(LocalDB)\MSMySqlLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
             {
-                sqlCon.Open();
-                SqlCommand sqlCmd = new SqlCommand("INSERT INTO SuMManga(MangaInfo,MangaCreator,MangaName,MangaViews,SuMThemeColor,MangaCoverLink,ChaptersNumber,CExplorerLink) values(@MangaInfo,@MangaCreator,@MangaName,@MangaViews,@SuMThemeColor,@MangaCoverLink,@ChaptersNumber,@CExplorerLink)", sqlCon);
-                sqlCmd.Parameters.AddWithValue("@MangaInfo", MangaDisc);
-                sqlCmd.Parameters.AddWithValue("@MangaCreator", MangaAuthor);
-                sqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
-                sqlCmd.Parameters.AddWithValue("@MangaViews", SqlDbType.Int);
-                sqlCmd.Parameters["@MangaViews"].Value = MangaViews;
-                sqlCmd.Parameters.AddWithValue("@SuMThemeColor", ThemeColor);
-                sqlCmd.Parameters.AddWithValue("@MangaCoverLink", MangaCoverLink);
-                sqlCmd.Parameters.AddWithValue("@ChaptersNumber", SqlDbType.Int);
-                sqlCmd.Parameters["@ChaptersNumber"].Value = ChaptersNum;
-                sqlCmd.Parameters.AddWithValue("@CExplorerLink", CExplorerLink);
-                sqlCmd.ExecuteNonQuery();
-                sqlCon.Close();
+                MySqlCon.Open();
+                MySqlCommand MySqlCmd = new MySqlCommand("INSERT INTO SuMManga(MangaInfo,MangaCreator,MangaName,MangaViews,SuMThemeColor,MangaCoverLink,ChaptersNumber,CExplorerLink) values(@MangaInfo,@MangaCreator,@MangaName,@MangaViews,@SuMThemeColor,@MangaCoverLink,@ChaptersNumber,@CExplorerLink)", MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@MangaInfo", MangaDisc);
+                MySqlCmd.Parameters.AddWithValue("@MangaCreator", MangaAuthor);
+                MySqlCmd.Parameters.AddWithValue("@MangaName", MangaName);
+                MySqlCmd.Parameters.AddWithValue("@MangaViews", SqlDbType.Int);
+                MySqlCmd.Parameters["@MangaViews"].Value = MangaViews;
+                MySqlCmd.Parameters.AddWithValue("@SuMThemeColor", ThemeColor);
+                MySqlCmd.Parameters.AddWithValue("@MangaCoverLink", MangaCoverLink);
+                MySqlCmd.Parameters.AddWithValue("@ChaptersNumber", SqlDbType.Int);
+                MySqlCmd.Parameters["@ChaptersNumber"].Value = ChaptersNum;
+                MySqlCmd.Parameters.AddWithValue("@CExplorerLink", CExplorerLink);
+                MySqlCmd.ExecuteNonQuery();
+                MySqlCon.Close();
             }*/
         }
         protected static string RgbConverter(Color c)

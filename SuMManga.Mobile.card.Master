@@ -623,7 +623,7 @@
                 $.ajax({
                     dataType: "json",
                     method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %>',
+                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
                     data: JSON.stringify({ UID: FUID }),
                     contentType: "application/json; charset=utf-8",
                     success: function (msg) {
@@ -651,11 +651,11 @@
                 $.ajax({
                     dataType: "json",
                     method: 'post',
-                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFSQL") %>',
+                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFMySql") %>',
                     data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
                     contentType: "application/json; charset=utf-8",
                     success: function (msg) {
-                        androidAPIs.ShowSuMToastsOverviewWV3('Coins count Are Secured!',FUID);
+                        androidAPIs.ShowSuMToastsOverviewWV3('Coins count is secured!',FUID);
                         //SuMCoinsCount(cFUID);
                     },
                     error: function (e) {
@@ -669,12 +669,12 @@
                 $.ajax({
                     dataType: "json",
                     method: 'post',
-                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFSQL") %>',
+                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFMySql") %>',
                     data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
                     contentType: "application/json; charset=utf-8",
                     success: function (msg) {
                         androidAPIs.SuMExploreLoadReader(SuMReadingLink)
-                        //androidAPIs.ShowSuMToastsOverviewWV3('Coins count Are Secured!', FUID);
+                        //androidAPIs.ShowSuMToastsOverviewWV3('Coins count is secured!', FUID);
                         SuMCoinsCount(cFUID);
                     },
                     error: function (e) {
@@ -776,7 +776,7 @@
                             $.ajax({
                                 dataType: "json",
                                 method: 'post',
-                                url: '<%= ResolveUrl("BTNTesting.aspx/GetMangaCoinsCountFSQL") %>',
+                                url: '<%= ResolveUrl("BTNTesting.aspx/GetMangaCoinsCountFMySql") %>',
                                 data: JSON.stringify({ MID: FMID }),
                                 contentType: "application/json; charset=utf-8",
                                 success: function (msg) {
@@ -798,7 +798,7 @@
                             $.ajax({
                                 dataType: "json",
                                 method: 'post',
-                                url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %>',
+                                url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
                                 data: JSON.stringify({ UID: FUID }),
                                 contentType: "application/json; charset=utf-8",
                                 success: function (msg) {
@@ -929,7 +929,7 @@
             $.ajax({
                 dataType: "json",
                 method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMDiscFSQL") %>',
+                url: '<%= ResolveUrl("BTNTesting.aspx/GetMDiscFMySql") %>',
                 data: JSON.stringify({ MID: RMID }),
                 contentType: "application/json; charset=utf-8",
                 success: function (msg) {
@@ -951,7 +951,7 @@
                 $.ajax({
                     dataType: "json",
                     method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFSQL") %>',
+                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
                     data: JSON.stringify({ UID: FUID }),
                     contentType: "application/json; charset=utf-8",
                     success: function (msg) {

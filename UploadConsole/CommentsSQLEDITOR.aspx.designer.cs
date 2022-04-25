@@ -11,7 +11,7 @@ namespace SuM_Manga_V3.UploadConsole
 {
 
 
-    public partial class CommentsSQLEDITOR
+    public partial class CommentsMySqlEDITOR
     {
 
         /// <summary>
