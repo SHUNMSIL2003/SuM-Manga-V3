@@ -1,4 +1,3 @@
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Net.Http.Headers.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll.config
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.pdb
@@ -56,6 +55,7 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.ObjectPool.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.Options.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.Primitives.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Extensions.WebEncoders.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Net.Http.Headers.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.ScriptManager.MSAjax.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.ScriptManager.WebForms.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Microsoft.Web.Infrastructure.dll
