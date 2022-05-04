@@ -20,7 +20,6 @@
                         });
                 });
             }
-            androidAPIs.SuMBTActNormal();
         }
         else {
             (function () {
@@ -31,10 +30,7 @@
             location.href = '/SuMMangaInstallAPP.aspx';
         }
     </script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta charset="utf-8">
-    <asp:PlaceHolder id="MetaPlaceHolder" runat="server" />
-    <meta name="robots" content="<%=GetMetaRobotsValueFromDatabase()%>" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <title>SuM Manga</title>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css?h=9c9410dd08c3e2433b1961c2a8a68b39">
@@ -60,12 +56,12 @@
             -o-user-select: none;
             user-select: none;
         }
-        .sumsmoothtrans {
-            /*-webkit-transition: all 0.18s;
-            -moz-transition: all 0.18s;
-            -ms-transition: all 0.18s;
-            -o-transition: all 0.18s;
-            transition: all 0.18s;*/
+        *{
+            -webkit-transition: none !important;
+            -moz-transition: none !important;
+            -ms-transition: none !important;
+            -o-transition: none !important;
+            transition: none !important;
         }
          text, h1, h2, h3, h4, h5, h6, p , b {
             pointer-events: none;
@@ -78,7 +74,7 @@
         img {
             pointer-events:none;
         }
-        .GoodBlur {
+        *{
             -webkit-backface-visibility: hidden !important;
             -webkit-perspective: 1000 !important;
             -webkit-transform: translate3d(0,0,0) !important;
@@ -134,7 +130,6 @@
             }
     </style>
     <script>
-        /* */
         document.onkeypress = function (event) {
             event = (event || window.event);
             if (event.keyCode == 123) {
@@ -157,18 +152,13 @@
             console.log("Suppressed default activity");
             e.preventDefault();
         }
-        console.log("this website is for a school project, It will be deleted soon! (By May)");
-        console.log("Content of this website is for public information. Usage of it without owners permission is strictly prohibited.");
     </script>   
     <script>
         window.addEventListener('contextmenu', e => {
             e.preventDefault();
         });
     </script>
-    <script src="/Scripts/jquery-3.6.0.min.js"></script>
     <script src="/Scripts/MicrosoftAjax.js"></script>
-    <script src="/Scripts/jquery.lazyload.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 </head>
 <body id="page-top" style="overflow:hidden !important;height:100vh;width:100vw;background-color:transparent !important;">
     <div style="visibility:hidden !important;display:none !important;" id="SuMDarkModeControleThemeDiv">
@@ -338,27 +328,6 @@
             }
             return "";
         };
-        function getUIDFrUserCo() {
-            var SUC = getCookie('SuMCurrentUser');
-            var SUCPross = SUC.split('&');
-            for (var iii = 0; iii < SUCPross.length; iii++) {
-                if (SUCPross[iii].includes('ID=') == true && SUCPross[iii][0] == 'I' && SUCPross[iii][1] == 'D' && SUCPross[iii][2] == '=') {
-                    return SUCPross[iii].replace('ID=', '');
-                }
-            }
-            return null;
-        };
-        var SuMGlobalCurrUID = getUIDFrUserCo();
-        function SuMPerfModeHandler() {
-            var SuMPerfMode = getCookie('SuMPerformanceMode').replace(' ', '');
-            if (SuMPerfMode == 0 || SuMPerfMode == '0' || SuMPerfMode == '' || SuMPerfMode == null) {
-                document.getElementById('SuMAnimationConroleDiv').innerHTML = '<link rel="stylesheet" href="/assets/animate.min.css">';
-            }
-            if (SuMPerfMode == 1 || SuMPerfMode == '1') {
-                document.getElementById('SuMAnimationConroleDiv').innerHTML = ' ';
-            }
-        };
-        SuMPerfModeHandler();
         function MixTwoRGBsWStaticOpacityAndR(SuMColor1, SuMColor2, R1, R2) {
             SuMColor1 = SuMColor1.replace('rgb', '').replace('a', '').replace('(', '').replace(')', '').replace(' ', '');
             SuMColor2 = SuMColor2.replace('rgb', '').replace('a', '').replace('(', '').replace(')', '').replace(' ', '');
@@ -557,134 +526,6 @@
     <div runat="server" id="wrapper" style="overflow:hidden;width:100vw !important;height:fit-content !important; background-color:transparent !important;overflow: hidden !important; display: flex !important; flex-direction: column !important;">
         <asp:ScriptManager ID="SuMScriptManager" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
        </asp:ScriptManager>
-        <!-- -sumads -start  -->
-        <div id="SuMAdsAbsCon" class="animated fadeIn" style="display:none;width:100vw !important;height:100vh !important;position:fixed !important;z-index:998 !important;top:0;background-color:var(--SuMThemeColorOP92);">
-            <div style="height:calc(30vh - 32px);width:100%;margin:0 auto;display:flex;justify-content:center;align-items:center;">
-                <div style="display:block;height:fit-content;width:100%;display:block;padding:12px;">
-                    <p style="width:fit-content;height:fit-content;color:rgba(255,255,255,0.86);margin:0 auto;display:block;text-align:center;font-size:118%;">rewards will be claimed after the ads duration ends.</p>
-                </div>
-            </div>
-            <a id="SuMAdBTN" onclick="null;" style="width:132px;height:36px;display:block;color:var(--SuMThemeColorOP94);background-color:var(--SuMDWhiteOP94);border-radius:18px;margin-left:calc(100% - 146px);margin-bottom:6px;font-size:108%;padding-top:6px;text-align:center;">x seconds</a>
-            <div style="width:calc(100vw - 24px);height:calc(70vh - 186px);background-color:var(--SuMDWhiteOP94);border-radius:22px;margin:0 auto;margin-top:0px !important;max-height:calc(70vh - 186px) !important;max-width:calc(100vh - 24px) !important;display:block;">
-                <!-- Homepage Leaderboard -->
-                <div id="SuMAdSlot0" style="width:100%;height:100%;text-align:center;margin:0 auto;display:block;display:flex;justify-content:center;align-items:center;">
-                    <p style="width:100%;height:fit-content;text-align:center;color:var(--SuMDBlackOP32);font-size:740%;">AD</p>
-                </div>
-            </div>
-        </div>
-        <p id="DtataParserF0CPush" style="display:none !important;visibility:hidden !important;"></p>
-        <div id="SuMAdPrDiv" style="background-color:rgba(0,0,0,0.2);display:none;position:fixed !important;z-index:1020 !important;top:0 !important;width:100vw !important;height:100vh !important;"></div>
-        <script>
-            var CurrSuMCoinsCount;
-            document.getElementById('SuMAdPrDiv').style.display = 'none';
-            var AnAdIsRequsted = false;
-
-            function SuMPushAnAd(SuMCoinsAm) {
-                var SuMADRewardState = androidAPIs.SuMAdStateReward();
-                var SuMADProssState = androidAPIs.SuMAdProssState();
-                if (SuMADProssState == false) {
-                    AnAdIsRequsted = true;
-                    androidAPIs.SuMADStart();
-                }
-                else {
-                    if (SuMADRewardState == true) {
-                        SuMRewardVoucherFD(SuMCoinsAm);
-                    }
-                    else {
-                        AnAdIsRequsted = false;
-                        SuMPushAnAd(SuMCoinsAm);
-                    }
-                }
-            };
-            function SuMADCTimeManager(SuMCoinsTMFCTurn, SuMF0CMCoins) {
-                var SuMADObState = androidAPIs.SuMAdStateReward();
-                //console.log('TimeWaiFunc1; Trun:' + debug0turn + '; Reads:' + SuMADObState);
-                if (SuMADObState == null) {
-                    setTimeout(() => {
-                        SuMADCTimeManager((SuMCoinsTMFCTurn + 1), SuMF0CMCoins);
-                    }, 180);
-                }
-                else {
-                    if (SuMADObState == true) {
-                        document.getElementById('SuMAdPrDiv').style.display = 'none';
-                        SuMRewardVoucherFD(SuMF0CMCoins);
-                    }
-                    else {
-                        if (SuMCoinsTMFCTurn < 1296000) {
-                            setTimeout(() => {
-                                SuMADCTimeManager(SuMCoinsTMFCTurn, SuMF0CMCoins);
-                            }, 100);
-                        }
-                    }
-                }
-            };
-            function SuMCoinsCount(FUID) {
-                document.getElementById('CoinsCount').innerText = 'loading';
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
-                    data: JSON.stringify({ UID: FUID }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        document.getElementById('CoinsCount').innerText = '';
-                        $("#CoinsCount").append(msg.d);
-                        CurrSuMCoinsCount = msg.d;
-                        androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                        setTimeout(() => {
-                            androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                            setTimeout(() => {
-                                androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                            }, 360);
-                        }, 180);
-                    },
-                    error: function (e) {
-                        document.getElementById('CoinsCount').innerText = '';
-                        $("#CoinsCount").append('error');
-                        androidAPIs.SuMCoinsShowITTA(null);
-                    }
-                });
-            };
-
-            function SuMUpdateCoinsCount(FUID, FToken) {
-                const cFUID = FUID;
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFMySql") %>',
-                    data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        androidAPIs.ShowSuMToastsOverviewWV3('Coins count is secured!',FUID);
-                        //SuMCoinsCount(cFUID);
-                    },
-                    error: function (e) {
-                        androidAPIs.ShowSuMToastsOverviewWV3('Coins count Securing Failed!',FUID);
-                    }
-                });
-            };
-
-            function SuMUpdateCoinsCountSuMReading(FUID,FToken,SuMReadingLink) {
-                const cFUID = FUID;
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFMySql") %>',
-                    data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        androidAPIs.SuMExploreLoadReader(SuMReadingLink)
-                        //androidAPIs.ShowSuMToastsOverviewWV3('Coins count is secured!', FUID);
-                        SuMCoinsCount(cFUID);
-                    },
-                    error: function (e) {
-                        androidAPIs.ShowSuMToastsOverviewWV3('Failed!', FUID);
-                    }
-                });
-            };
-
-        </script>
-        <!-- -sumads -end -->
         <div class="d-flex flex-column" id="content-wrapper" style="height:fit-content !important;width:100vw !important;background-color:transparent !important;flex-grow: 1 !important; flex-shrink: 1 !important; overflow-y: scroll !important;overflow-x:hidden;">
             <div id="content" style="background-color:transparent !important;height:fit-content !important;">
                 <style>
@@ -692,289 +533,17 @@
                         margin-top:0px !important;
                         margin-bottom:0px !important;
                         height:7vh !important;
-                        /*background-color:rgb(240, 235, 255) !important;*/
                     }
                 </style>
                 <div style="width:100vw !important; height:fit-content !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:transparent !important;" id="SuMMainBlock" runat="server" class="container-fluid">
                     <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:fit-content !important;max-height:100vh !important;margin-left:-24px !important;background-color:transparent !important;background-color:transparent !important;" id="mc" runat="server">
-                    <div id="LoadingSuMInfoBub" style="text-align: center; display: none; height: fit-content; width: 280px; background-color: var(--SuMDWhite); border-radius: 18px; margin-right: auto; margin-bottom: 0px; padding: 18px 32px; margin-left: calc(50vw - 140px); position: fixed !important; top: 0px !important; z-index: 1999 !important; margin-top: calc(50vh - 120px) !important;padding-top:38px;padding-bottom:32px;text-align:center !important;" class="shadow-sm animated fadeIn">
-                        <svg id="SuMLoadingSVGPreview" style="display:inline !important;margin-left:12px !important;margin-top:-6px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="var(--SuMDWhiteOP92)"></svg>
-                        <p id="SuMLoadingTXT" style="display: inline-block; margin-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 132%; color: var(--SuMDWhiteOP92); width: calc(100% - 64px) !important;margin-bottom:-8px;text-align:left;">INFO</p>
-                        <div id="SuMShowCoinMCardBTN" class="btn" style="border-radius:16px;background-color:var(--SuMBack);display:block;color:var(--SuMDBlackOP32);width: calc(100% - 32px);overflow:hidden;height:32px;margin:16px auto -6px;padding:0px;border:none !important;">
-                            <a id="SuMCoinUnlockBTN" style="background-color:rgba(135, 56, 65, 0.86); display:inline-block; color:rgba(255,255,255,0.92);width:calc(100% - 56px); overflow: hidden;height:32px;padding-top: 4px;">Unlock!</a>
-                            <div style="width:56px;height:32px;display:inline-block;">
-                                <div style="width:100%;height:100%;display:flex;justify-content:center;align-items:center;">
-                                    <p id="CoinsCountF0CMF" style="width:fit-content;height:fit-content;display:inline-block;margin-top:14px;">0</p>
-                                    <img src="/svg/sumtokencoin.svg" style="display:inline-block;width:20px;height:20px;margin-left:3px;">
-                                </div>
-                            </div>
-                        </div>
-                        <div id="SuMMovingLoadingCont" style="display:block;width:calc(100% - 32px);overflow:hidden;height:26px;border-radius: 13px; background-color: var(--SuMDWhiteOP18); margin: 0px auto;margin-top:16px;">
-                            <div id="SuMMovingLoadingNID" style="background-color: var(--SuMDWhiteOP92); height: 26px; width: 40%; display: block; margin-left: 100%; transition-duration: 0.76s; transition-timing-function: ease !important; transition-delay: 0s !important; transition-property: all !important;"></div>
-                        </div>
-                        <p id="SuMLoadingFailedTXT" class="" style="font-size: 32px; width: 100%; display: block; text-align: center; margin-bottom: 32px; height: 26px; margin-top: 16px;  color: red !important;">Offline!</p>
-                    </div>
-                    <div id="SuMLoadingExpandAnI" style="display:none;background-color:var(--SuMDWhite);overflow:hidden;border-radius:50%;width:26px;height:26px;position:fixed !important;top:0 !important;z-index:998 !important;margin-left:calc(50vw - 13px) !important;margin-top:calc(50vh - 13px) !important;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s;">
-                        <div id="SuMLoadingExpandingColorDiv" style="width:100%;height:100%;margin: 0 auto;background-color:var(--SuMDWhite);"></div>
-                    </div>
-                    <div class="animated fadeIn" id="SuMUnlockCancelDiv" onclick="SuMCoinMasterCloseAllCS();" style="display:none;position:fixed;top:0;z-index:997 !important;height:100vh;width:100vw;background-color:rgba(0,0,0,0.08);"></div>
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">
                         </asp:ContentPlaceHolder>
-                    <p id="CurrCoinsCountPlaceHolderHD" style="display:none !important;visibility:hidden !important;"></p>
-                    <div id="UltraCardBGCloseDiv" onclick="SuMUltraCloseCard();" style="width:100vw;height:100vh;display:none;position:fixed !important;top:0 !important;z-index:994 !important;background-color:rgba(0,0,0,0.08);"></div>
-                    <script>
-                        SuMSetThemeState(getCookie('SuMUserThemeState').replace(' ', ''));
-                        var SuMLoadingContElm = document.getElementById('LoadingSuMInfoBub');
-                        SuMLoadingContElm.style.display = 'none';
-                        var SuMLoadingTitleElm = document.getElementById('SuMLoadingTXT');
-                        var SuMLoadingAnElmF0C0 = document.getElementById('SuMMovingLoadingNID');
-                        var SuMLoadingAnConElmF0C0 = document.getElementById('SuMMovingLoadingCont');
-                        var SuMLoadingSVGPreviewElmF0C0 = document.getElementById('SuMLoadingSVGPreview');
-                        var SuMLoadingFailedTXTElm = document.getElementById('SuMLoadingFailedTXT');
-
-                        var SuMLoadingExpandAnIElm = document.getElementById('SuMLoadingExpandAnI');
-                        SuMLoadingExpandAnIElm.style.display = 'none';
-                        var SuMLoadingExpandingColorDivElm = document.getElementById('SuMLoadingExpandingColorDiv');
-
-                        var SuMLoadHerfFailed = false;
-                        var SuMLoadingIsInPross = false;
-
-                        var SuMSettingsSVGPath = '<rect fill="none" height="24" width="24"/> <path d="M19.5,12c0-0.23-0.01-0.45-0.03-0.68l1.86-1.41c0.4-0.3,0.51-0.86,0.26-1.3l-1.87-3.23c-0.25-0.44-0.79-0.62-1.25-0.42 l-2.15,0.91c-0.37-0.26-0.76-0.49-1.17-0.68l-0.29-2.31C14.8,2.38,14.37,2,13.87,2h-3.73C9.63,2,9.2,2.38,9.14,2.88L8.85,5.19 c-0.41,0.19-0.8,0.42-1.17,0.68L5.53,4.96c-0.46-0.2-1-0.02-1.25,0.42L2.41,8.62c-0.25,0.44-0.14,0.99,0.26,1.3l1.86,1.41 C4.51,11.55,4.5,11.77,4.5,12s0.01,0.45,0.03,0.68l-1.86,1.41c-0.4,0.3-0.51,0.86-0.26,1.3l1.87,3.23c0.25,0.44,0.79,0.62,1.25,0.42 l2.15-0.91c0.37,0.26,0.76,0.49,1.17,0.68l0.29,2.31C9.2,21.62,9.63,22,10.13,22h3.73c0.5,0,0.93-0.38,0.99-0.88l0.29-2.31 c0.41-0.19,0.8-0.42,1.17-0.68l2.15,0.91c0.46,0.2,1,0.02,1.25-0.42l1.87-3.23c0.25-0.44,0.14-0.99-0.26-1.3l-1.86-1.41 C19.49,12.45,19.5,12.23,19.5,12z M12.04,15.5c-1.93,0-3.5-1.57-3.5-3.5s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.97,15.5,12.04,15.5z"/>';
-                        var SuMUserLibrarySVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 18l2 1V3c0-1.1-.9-2-2-2H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13zM15 5H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z"/>';
-                        var SuMHitsSVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 11.55c-1.82-1.7-4.12-2.89-6.68-3.35C4.11 7.99 3 8.95 3 10.18v6.24c0 1.68.72 2.56 1.71 2.69 2.5.32 4.77 1.35 6.63 2.87.35.29.92.32 1.27.04 1.87-1.53 4.16-2.58 6.68-2.9.94-.13 1.71-1.06 1.71-2.02v-6.92c0-1.23-1.11-2.19-2.32-1.98-2.56.46-4.86 1.65-6.68 3.35zM12 8c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/>';
-                        var SuMExploreSVGPath = '<path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"/>';
-                        var SuMMangaNContantExpSVGPath = '<g><rect fill="none" height="24" width="24"/><rect fill="none" height="24" width="24"/></g><g><path d="M17.5,4.5c-1.95,0-4.05,0.4-5.5,1.5c-1.45-1.1-3.55-1.5-5.5-1.5c-1.45,0-2.99,0.22-4.28,0.79C1.49,5.62,1,6.33,1,7.14 l0,11.28c0,1.3,1.22,2.26,2.48,1.94C4.46,20.11,5.5,20,6.5,20c1.56,0,3.22,0.26,4.56,0.92c0.6,0.3,1.28,0.3,1.87,0 c1.34-0.67,3-0.92,4.56-0.92c1,0,2.04,0.11,3.02,0.36c1.26,0.33,2.48-0.63,2.48-1.94l0-11.28c0-0.81-0.49-1.52-1.22-1.85 C20.49,4.72,18.95,4.5,17.5,4.5z M21,17.23c0,0.63-0.58,1.09-1.2,0.98c-0.75-0.14-1.53-0.2-2.3-0.2c-1.7,0-4.15,0.65-5.5,1.5V8 c1.35-0.85,3.8-1.5,5.5-1.5c0.92,0,1.83,0.09,2.7,0.28c0.46,0.1,0.8,0.51,0.8,0.98V17.23z"/><g/><path d="M13.98,11.01c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.54-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,10.99,14.05,11.01,13.98,11.01z"/><path d="M13.98,13.67c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.71-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,13.66,14.05,13.67,13.98,13.67z"/><path d="M13.98,16.33c-0.32,0-0.61-0.2-0.71-0.52c-0.13-0.39,0.09-0.82,0.48-0.94c1.53-0.5,3.53-0.66,5.36-0.45 c0.41,0.05,0.71,0.42,0.66,0.83c-0.05,0.41-0.42,0.7-0.83,0.66c-1.62-0.19-3.39-0.04-4.73,0.39 C14.13,16.32,14.05,16.33,13.98,16.33z"/></g>';
-                        var SuMCreatorSVGPath = '<rect fill="none" height="20" width="20"/><path d="M15.35,8.83l0.71-0.71c0.59-0.59,0.59-1.54,0-2.12L15,4.94c-0.59-0.59-1.54-0.59-2.12,0l-0.71,0.71L15.35,8.83z M11.11,6.71 l-6.96,6.96C4.05,13.77,4,13.89,4,14.03v2.47C4,16.78,4.22,17,4.5,17h2.47c0.13,0,0.26-0.05,0.35-0.15l6.96-6.96L11.11,6.71z M4.51,11.18C3.59,10.76,3,10.16,3,9.25c0-1.31,1.39-1.99,2.61-2.59C6.45,6.24,7.5,5.73,7.5,5.25C7.5,4.91,6.83,4.5,6,4.5 c-0.94,0-1.36,0.46-1.38,0.48C4.35,5.29,3.88,5.33,3.57,5.07C3.26,4.81,3.21,4.35,3.46,4.03C3.55,3.93,4.34,3,6,3 c1.47,0,3,0.84,3,2.25C9,6.66,7.55,7.37,6.27,8C5.56,8.35,4.5,8.87,4.5,9.25c0,0.3,0.48,0.56,1.17,0.78L4.51,11.18z M14.14,12.16 c0.83,0.48,1.36,1.14,1.36,2.09c0,1.94-2.44,2.75-3.75,2.75C11.34,17,11,16.66,11,16.25s0.34-0.75,0.75-0.75 c0.77,0,2.25-0.49,2.25-1.25c0-0.39-0.38-0.71-0.97-0.97L14.14,12.16z"/>';
-
-
-                        function SuMLoadingPIMGLoad(IMGKey) {
-                            if (IMGKey == 'MangaExplorer' || IMGKey == 'ContantExplorer') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMMangaNContantExpSVGPath;
-                            }
-                            if (IMGKey == 'Explore') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMExploreSVGPath;
-                            }
-                            if (IMGKey == 'Settings') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMSettingsSVGPath;
-                            }
-                            if (IMGKey == 'UserLibrary') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMUserLibrarySVGPath;
-                            }
-                            if (IMGKey == 'Hits') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMHitsSVGPath;
-                            }
-                            if (IMGKey == 'Creator') {
-                                SuMLoadingSVGPreviewElmF0C0.innerHTML = SuMCreatorSVGPath;
-                            }
-                        };
-
-                        var SuMCoinsReq = 0;
-                        var CuurCoinsCountF0CGSF = 0;
-
-                        function SuMReqCoinsCountFU(FMID, callback) {
-                            document.getElementById('CoinsCountF0CMF').innerText = '...';
-                            $.ajax({
-                                dataType: "json",
-                                method: 'post',
-                                url: '<%= ResolveUrl("BTNTesting.aspx/GetMangaCoinsCountFMySql") %>',
-                                data: JSON.stringify({ MID: FMID }),
-                                contentType: "application/json; charset=utf-8",
-                                success: function (msg) {
-                                    document.getElementById('CoinsCountF0CMF').innerText = '';
-                                    $("#CoinsCountF0CMF").append(msg.d);
-                                    SuMCoinsReq = msg.d;
-                                    callback();
-                                },
-                                error: function (e) {
-                                    document.getElementById('CoinsCountF0CMF').innerText = '';
-                                    $("#CoinsCountF0CMF").append('!');
-                                    SuMCoinsReq = '!';
-                                    callback();
-                                }
-                            });
-                        };
-
-                        function SuMCoinsCountFU(FUID) {
-                            $.ajax({
-                                dataType: "json",
-                                method: 'post',
-                                url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
-                                data: JSON.stringify({ UID: FUID }),
-                                contentType: "application/json; charset=utf-8",
-                                success: function (msg) {
-                                    $("#CuurCoinsCountF0CGSF").append(msg.d);
-                                    CuurCoinsCountF0CGSF = msg.d;
-                                    androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
-                                    setTimeout(() => {
-                                        androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
-                                        setTimeout(() => {
-                                            androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
-                                        }, 360);
-                                    }, 180);
-                                },
-                                error: function (e) {
-                                    $("#CuurCoinsCountF0CGSF").append('!');
-                                    CuurCoinsCountF0CGSF = null;
-                                    androidAPIs.SuMCoinsShowITTA(null);
-                                }
-                            });
-                        };
-
-                        function SuMCoinMasterCard(HerfLink, CurrUIDF0CGF, HerfInfo, HerfThemeColor) {
-                            SuMLoadingIsInPross = false;
-                            if (CuurCoinsCountF0CGSF >= SuMCoinsReq) {
-                                SuMUpdateCoinsCount(CurrUIDF0CGF, SuMCoinsReq * (-1));
-                                //SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, 'ContantExplorer');
-                                androidAPIs.SuMExploreLoadReaderForSucInJS(HerfLink)
-                            } else {
-                                //SuMGoToThis('/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)', 'var(--SuMThemeColorOP74)', 'SuM Settings', 'Settings');
-                                androidAPIs.GoToSettingsSuMExplore();
-                            }
-                        };
-
-                        function SuMCoinMasterCloseAllCS() {
-                            SuMLoadingIsInPross = false;
-                            document.getElementById('LoadingSuMInfoBub').style.display = 'none';
-                            document.getElementById('SuMUnlockCancelDiv').style.display = 'none';
-                        };
-
-                        /* SuM Coins Count FixUP */
-                        var CurrUIDF0CFixUp0 = getUIDFrUserCo();
-                        SuMCoinsCountFU(CurrUIDF0CFixUp0);
-
-                        function SuMGoBack() {
-                            androidAPIs.GoBack();
-                        };
-
-                        var CISuMShowThisMIsActive = false;
-                        function SuMTXTShowThis(SuMAlert, HerfThemeColor, HerfInfo, IMGID) {
-                            if (CISuMShowThisMIsActive == false) {
-                                CISuMShowThisMIsActive = true;
-                                SuMLoadingAnConElmF0C0.style.display = 'block';
-                                SuMLoadingFailedTXTElm.style.display = 'none';
-                                document.getElementById('SuMShowCoinMCardBTN').style.display = 'none';
-                                SuMLoadHerfFailed = false;
-                                if (HerfThemeColor.includes('--') == false) {
-                                    SuMLoadingTitleElm.style.color = HerfThemeColor.replace('0.74', '0.92');
-                                    SuMLoadingAnConElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.18');
-                                    SuMLoadingAnElmF0C0.style.backgroundColor = HerfThemeColor.replace('0.74', '0.92');
-                                    SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', HerfThemeColor.replace('0.74', '0.92'));
-                                    SuMLoadingFailedTXTElm.style.color = HerfThemeColor.replace('0.74', '0.64');
-                                }
-                                else {
-                                    SuMLoadingTitleElm.style.color = 'var(--SuMThemeColorOP92)';
-                                    SuMLoadingAnConElmF0C0.style.backgroundColor = 'var(--SuMThemeColorOP14)';
-                                    SuMLoadingAnElmF0C0.style.backgroundColor = 'var(--SuMThemeColorOP92)';
-                                    SuMLoadingSVGPreviewElmF0C0.setAttribute('fill', 'var(--SuMThemeColorOP92)');
-                                    SuMLoadingFailedTXTElm.style.color = 'var(--SuMThemeColorOP64)';
-                                }
-
-
-                                SuMLoadingPIMGLoad(IMGID);
-                                SuMLoadingTitleElm.innerText = HerfInfo;
-                                //SuMActivateAnimationF0C0();
-                                SuMLoadingContElm.style.display = 'block';
-                                SuMLoadingAnConElmF0C0.style.display = 'none';
-                                SuMLoadingFailedTXTElm.innerText = SuMAlert;
-                                SuMLoadingFailedTXTElm.style.display = 'block';
-                                setTimeout(() => {
-                                    androidAPIs.VIBRATEPhone();
-                                }, 90);
-                                setTimeout(() => {
-                                    HideSuMLoadingPopUp();
-                                }, 1320);
-                                SuMLoadHerfFailed = true;
-                            }
-                        };
-
-                        function HideSuMLoadingPopUp() {
-                            if (SuMLoadingContElm.classList.contains('fadeIn') == true) {
-                                SuMLoadingContElm.classList.remove('fadeIn');
-                                SuMLoadingContElm.classList.add('fadeOut');
-                            }
-                            else {
-                                if (SuMLoadingContElm.classList.contains('fadeIn') == false) {
-                                    SuMLoadingContElm.classList.add('fadeIn');
-                                }
-                            }
-                            setTimeout(() => {
-                                SuMLoadingContElm.style.display = 'none';
-                                SuMLoadingContElm.classList.remove('fadeOut');
-                                SuMLoadingContElm.classList.add('fadeIn');
-                                CISuMShowThisMIsActive = false;
-                            }, 360);
-                        };
-
-                    </script>
                     </div>
                 </div>
             </div>
         </div>
-        <style>
-            .STBSUMBAR {
-                position:fixed !important;
-                bottom:0 !important;
-                width:100% !important;
-                text-align:center !important;
-            }
-            .WAHFH021 {
-                display:inline !important;
-                max-height:64px !important;
-                max-height:7vh !important;
-            }
-        </style>
-    <script>
-        function SuMGetMDisc(RMID) {
-            document.getElementById('SuMUltraMDisc').innerText = '';
-            $.ajax({
-                dataType: "json",
-                method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMDiscFMySql") %>',
-                data: JSON.stringify({ MID: RMID }),
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    $("#SuMUltraMDisc").append(msg.d);
-                },
-                error: function (e) {
-                    //$("#SuMUltraMDisc").append(msg.d);
-                    $("#SuMUltraMDisc").append('Failed to load!');
-                }
-            });
-        };
-    </script>
-    <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>
-    <script src="/assets/js/bs-init.js?h=cfc1cf2ac1407be801a1de7dc4705464"></script>
-    <script src="/assets/js/theme.js?h=79f403485707cf2617c5bc5a2d386bb0"></script>
         </div>
-        <script>
-            function SuMCoinsCountUltMoving(FUID) {
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
-                    data: JSON.stringify({ UID: FUID }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        document.getElementById('CoinsCount').innerText = '';
-                        $("#CoinsCount").append(msg.d);
-                        CurrSuMCoinsCount = msg.d;
-                        androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                        setTimeout(() => {
-                            androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                            setTimeout(() => {
-                                androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                            }, 360);
-                        }, 180);
-                    },
-                    error: function (e) {
-                        document.getElementById('CoinsCount').innerText = '';
-                        $("#CoinsCount").append('error');
-                        androidAPIs.SuMCoinsShowITTA("X");
-                    }
-                });
-            };
-            SuMCoinsCountUltMoving(getUIDFrUserCo());
-        </script>
         </form>
 </body>
 </html>

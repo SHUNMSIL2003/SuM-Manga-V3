@@ -215,14 +215,16 @@ namespace SuM_Manga_V3
 
                         Result += BuildGCard(Cover, Name, CExplorerLink, themecolor, MangaIDF, Auther, AgeRating);
                     }
+
                     if (IDs.Length < 12)
                     {
                         int fix_num = 12 - IDs.Length;
-                        for (int i = 0; i < fix_num; fix_num++)
+                        for (int i = 0; i < fix_num; i++)
                         {
-                            BuildGCard_Null("/svg/add.svg", "Top " + (12 - (fix_num - (i + 1))), "androidAPIs.ShowSuMToastsOverview('more will come soon!');", "rgba(0,0,0,0.74)");
+                            Result += BuildGCard_Null("Top " + (12 - (fix_num - (i + 1))), "androidAPIs.ShowSuMToastsOverview('more will come soon!');", "rgba(0,0,0,0.74)");
                         }
                     }
+
                     MySqlCon.Close();
                 }
             }
@@ -245,7 +247,7 @@ namespace SuM_Manga_V3
             string result = "<div class=" + zoominanim + " style=" + divs0 + "><a onclick=" + b12.ToString() + OnClickJSCode + b12.ToString() + " style=" + as0 + "><div " + LazyLoading + " style=" + divs1 + "><div class=" + "GoodBlur" + " style=" + divs2 + "><p style=" + ps0 + ">" + cardtitle + "</p></div></div><p style=" + ps1 + ">" + GernsString + "</p></a></div>"; //GetGarnas(id)
             return result;
         }
-        protected string BuildGCard_Null(string CardBG, string cardtitle, string Link, string theme)
+        protected string BuildGCard_Null(string cardtitle, string Link, string theme)
         {
             string GernsString = "more soon!";
             string OnClickJSCode = Link;
@@ -254,7 +256,7 @@ namespace SuM_Manga_V3
             string zoominanim = b12.ToString() + "fadeIn animated" + b12.ToString();
             string divs0 = "margin-left:6px;display:inline-block;height:fit-content;min-width:118px;max-width:118px;scroll-snap-align:start;";
             string as0 = "text-decoration:none;display:inline;margin-left:6px;margin-right:6px;";//backdrop-filter:blur(1px); Down in divs2
-            string divs1 = "border-radius:12px;position:relative;overflow:hidden;background-image:url(" + CardBG + ");background-size:cover;background-position:center;width:118px;height:177px";
+            string divs1 = "border-radius:12px;position:relative;overflow:hidden;background-color:rgba(0,0,0,0.64);background-size:cover;background-position:center;width:118px;height:177px";
             string divs2 = '"' + "background-color:" + theme + " !important; width:100%;height:fit-content;position:absolute;bottom:0;border-radius:8px;" + '"'; //var(--SuMThemeColorOP64)
             string ps0 = "margin-top:8px;height:fit-content;width:auto;max-width:112px;color:rgb(255,255,255);margin-left:6px;word-wrap:break-word;white-space:pre-wrap;word-break:break-word;text-align:center;";
             string ps1 = "height:fit-content;width:118px;max-width:118px;font-size:69%;color:var(--SuMDBlackOP64);word-wrap:break-word;white-space:pre-wrap;word-break:break-word;";

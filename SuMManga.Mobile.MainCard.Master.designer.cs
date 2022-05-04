@@ -11,7 +11,7 @@ namespace SuM_Manga_V3
 {
 
 
-    public partial class SuMManga_Mobile_card
+    public partial class SuMManga_Mobile_MainCard
     {
 
         /// <summary>
@@ -22,6 +22,15 @@ namespace SuM_Manga_V3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead SMHead;
+
+        /// <summary>
+        /// MetaPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder MetaPlaceHolder;
 
         /// <summary>
         /// SuMUserThemeColorCSSDiv control.

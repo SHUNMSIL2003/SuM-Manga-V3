@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.card.Master" AutoEventWireup="true" CodeBehind="ExploreMainCard.aspx.cs" Inherits="SuM_Manga_V3.ExploreMainCard" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.MainCard.Master" AutoEventWireup="true" CodeBehind="ExploreMainCard.aspx.cs" Inherits="SuM_Manga_V3.ExploreMainCard" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div id="ScriptInjectorA000" style="display:none !important;visibility:hidden !important;" runat="server">

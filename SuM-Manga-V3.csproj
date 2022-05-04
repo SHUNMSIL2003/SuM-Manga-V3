@@ -3118,6 +3118,13 @@
     <Compile Include="SuMManga.Master.designer.cs">
       <DependentUpon>SuMManga.Master</DependentUpon>
     </Compile>
+    <Compile Include="SuMManga.Mobile.MainCard.Master.cs">
+      <DependentUpon>SuMManga.Mobile.MainCard.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuMManga.Mobile.MainCard.Master.designer.cs">
+      <DependentUpon>SuMManga.Mobile.MainCard.Master</DependentUpon>
+    </Compile>
     <Compile Include="SuMManga.Mobile.card.Master.cs">
       <DependentUpon>SuMManga.Mobile.card.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3258,6 +3265,7 @@
     <Content Include="SuM-Manga-401.apk" />
     <Content Include="SuM-Manga-561.apk" />
     <Content Include="SuMManga.Mobile.card.Master" />
+    <Content Include="SuMManga.Mobile.MainCard.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

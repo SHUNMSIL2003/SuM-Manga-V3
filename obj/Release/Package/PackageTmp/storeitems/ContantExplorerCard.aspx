@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.card.Master" AutoEventWireup="true" CodeBehind="ContantExplorerCard.aspx.cs" Async="true" Inherits="SuM_Manga_V3.storeitems.ContantExplorerCard" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.MainCard.Master" AutoEventWireup="true" CodeBehind="ContantExplorerCard.aspx.cs" Async="true" Inherits="SuM_Manga_V3.storeitems.ContantExplorerCard" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>var FMID = 0;</script>

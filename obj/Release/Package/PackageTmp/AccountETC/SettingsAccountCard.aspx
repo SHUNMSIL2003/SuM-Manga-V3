@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.card.Master" AutoEventWireup="true" CodeBehind="SettingsAccountCard.aspx.cs" Inherits="SuM_Manga_V3.AccountETC.SettingsAccountCard" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.MainCard.Master" AutoEventWireup="true" CodeBehind="SettingsAccountCard.aspx.cs" Inherits="SuM_Manga_V3.AccountETC.SettingsAccountCard" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
