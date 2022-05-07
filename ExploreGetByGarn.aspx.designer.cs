@@ -15,24 +15,6 @@ namespace SuM_Manga_V3
     {
 
         /// <summary>
-        /// UPDATERESESNTS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UPDATERESESNTS;
-
-        /// <summary>
-        /// RESENTSUPATEPANLE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel RESENTSUPATEPANLE;
-
-        /// <summary>
         /// GR control.
         /// </summary>
         /// <remarks>

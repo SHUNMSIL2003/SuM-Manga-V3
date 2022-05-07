@@ -1,3 +1,5 @@
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Http.WebHost.dll
+D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Http.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll.config
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\SuM-Manga-V3.pdb
@@ -76,7 +78,6 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Text.Encodings.Web.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Threading.Tasks.Extensions.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.ValueTuple.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Http.dll
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Http.WebHost.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Optimization.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\Ubiety.Dns.Core.dll
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\WebGrease.dll
@@ -117,7 +118,6 @@ D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Security.Principal.Windows.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Text.Encodings.Web.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Threading.Tasks.Extensions.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.ValueTuple.xml
-D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Http.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Http.WebHost.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\bin\System.Web.Optimization.xml
 D:\SuM-Manga-V3\SuM-Manga-V3\obj\Release\SuM-Manga-V3.csproj.AssemblyReference.cache
