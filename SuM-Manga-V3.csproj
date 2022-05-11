@@ -369,6 +369,7 @@
     <Content Include="dist\magic.min.css" />
     <Content Include="dragscroll.js" />
     <Content Include="Explore2ListCard.aspx" />
+    <Content Include="ExploreGetByGarnAPI.aspx" />
     <Content Include="ExploreGetByGarn.aspx" />
     <Content Include="ExploreRecentlyCard.aspx" />
     <Content Include="ExploreMainCard.aspx" />
@@ -2949,6 +2950,13 @@
     </Compile>
     <Compile Include="Explore2ListCard.aspx.designer.cs">
       <DependentUpon>Explore2ListCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExploreGetByGarnAPI.aspx.cs">
+      <DependentUpon>ExploreGetByGarnAPI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExploreGetByGarnAPI.aspx.designer.cs">
+      <DependentUpon>ExploreGetByGarnAPI.aspx</DependentUpon>
     </Compile>
     <Compile Include="ExploreGetByGarn.aspx.cs">
       <DependentUpon>ExploreGetByGarn.aspx</DependentUpon>

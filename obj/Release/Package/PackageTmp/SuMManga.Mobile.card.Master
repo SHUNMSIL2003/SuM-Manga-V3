@@ -27,7 +27,7 @@
                     debugger;
                 }, 20);
             })();
-            //location.href = '/SuMMangaInstallAPP.aspx';
+            location.href = '/SuMMangaInstallAPP.aspx';
         }
     </script>
     <meta charset="utf-8">
