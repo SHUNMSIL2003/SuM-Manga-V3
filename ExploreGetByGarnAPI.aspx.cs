@@ -313,7 +313,7 @@ namespace SuM_Manga_V3
         }
         protected string BuildGCard(string CardBG, string cardtitle, string Link, string theme, int id, string Auther, string AgeRating)
         {
-            string GernsString = "disabled"; //GetGarnas(id);
+            string GernsString = GetGarnas(id);
             return "{ " + '"' + "CardBG" + '"' + ": " + '"' + CardBG + '"' + ", " + '"' + "cardtitle" + '"' + ": " + '"' + cardtitle + '"' + ", " + '"' + "id" + '"' + ": " + id + ", " + '"' + "theme" + '"' + ": " + '"' + theme + '"' + ", " + '"' + "Link" + '"' + ": " + '"' + Link + '"' + ", " + '"' + "Auther" + '"' + ": " + '"' + Auther + '"' + ", " + '"' + "AgeRating" + '"' + ": " + '"' + AgeRating + '"' + ", " + '"' + "GernsString" + '"' + ": " + '"' + GernsString + '"' + " }";
         }
     }

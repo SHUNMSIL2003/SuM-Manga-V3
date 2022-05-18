@@ -222,26 +222,50 @@ namespace SuM_Manga_V3.AccountETC
             }
             return hash.ToString();
         }
-        protected static void SaveCookie(string UserName, int ID, string SessionID)
+        protected void SaveCookie(string UserName, int ID, string SessionID)
         {
             HttpCookie userInfo = new HttpCookie("SuMCurrentUser");
             userInfo["UserName"] = UserName;
             userInfo["ID"] = ID.ToString();
             userInfo["SID"] = SessionID;
+            userInfo["UB"] = GetUserBanner(ID);
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
+            //SaveUserBannerCookie(ID);
             HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
         }
-        protected static void SaveSCCookie(string UserName, int ID, string CreatorName, string SessionID)
+        protected void SaveSCCookie(string UserName, int ID, string CreatorName, string SessionID)
         {
             HttpCookie userInfo = new HttpCookie("SuMCurrentUser");
             userInfo["UserName"] = UserName;
             userInfo["CreatorName"] = CreatorName;
             userInfo["SID"] = SessionID;
             userInfo["ID"] = ID.ToString();
+            userInfo["UB"] = GetUserBanner(ID);
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
+            //SaveUserBannerCookie(ID);
             HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
+        }
+        protected string GetUserBanner(int UID)
+        {
+            string BannerPath = string.Empty;
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
+            {
+                MySqlCon.Open();
+                string query = "SELECT UserBanner FROM SuMUsersAccounts WHERE UserID = " + UID + " ";
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                using (var reader = MySqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        BannerPath = reader[0].ToString();
+                    }
+                }
+                MySqlCon.Close();
+            }
+            return BannerPath;
         }
         protected static void SaveUserThemeCookie(string RGBRootString)
         {
@@ -249,6 +273,39 @@ namespace SuM_Manga_V3.AccountETC
             userInfo["RGBRoot"] = RGBRootString;
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
+        }
+        protected void SaveUserBannerCookie(int UID)
+        {
+            HttpCookie userInfo = new HttpCookie("SuMUserBanner64String");
+            //string UserBanner = GetBanner(UID);
+            userInfo["Banner64String"] = GetBanner(UID);
+            userInfo.Expires = DateTime.MaxValue;
+            HttpContext.Current.Response.Cookies.Add(userInfo);
+        }
+        protected string GetBanner(int UID)
+        {
+            //string Result = "";
+            string BannerPath = string.Empty;
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
+            {
+                MySqlCon.Open();
+                string query = "SELECT UserBanner FROM SuMUsersAccounts WHERE UserID = " + UID + " ";
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                using (var reader = MySqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        BannerPath = reader[0].ToString();
+                    }
+                }
+                MySqlCon.Close();
+            }
+            byte[] imageArray = System.IO.File.ReadAllBytes(Server.MapPath("~" + BannerPath));
+            string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+            //Result = BuildRespons(base64ImageRepresentation);
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('"+ base64ImageRepresentation + "')", true);
+            return base64ImageRepresentation;
         }
         protected void ResendConfLink(object sender, EventArgs e)
         {

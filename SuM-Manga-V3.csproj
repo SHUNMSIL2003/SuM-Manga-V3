@@ -272,6 +272,7 @@
     <Content Include="AccountETC\Settings.aspx" />
     <Content Include="AccountETC\SuM-ReaderBanner.jpg" />
     <Content Include="AccountETC\SuM-ReadingStartBanner.jpg" />
+    <Content Include="AccountETC\UsersUploads\20220504022801Shun2003kageyama-tobio-haikyuu-hinata-shoyo-Favim.com-6208281.jpg" />
     <Content Include="AccountETC\UsersUploads\DeafultPFP.jpg" />
     <Content Include="AccountETC\EmailPassword.html" />
     <Content Include="AccountETC\ValidateUsers.aspx" />
@@ -289,6 +290,7 @@
     <Content Include="android\android-launchericon-512-512.png" />
     <Content Include="android\android-launchericon-72-72.png" />
     <Content Include="android\android-launchericon-96-96.png" />
+    <Content Include="APIs\UserBanner64String.aspx" />
     <Content Include="apple-touch-icon-114x114-precomposed.png" />
     <Content Include="apple-touch-icon-114x114.png" />
     <Content Include="apple-touch-icon-120x120-precomposed.png" />
@@ -2928,6 +2930,13 @@
     </Compile>
     <Compile Include="AccountETC\ValidateUsers.aspx.designer.cs">
       <DependentUpon>ValidateUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APIs\UserBanner64String.aspx.cs">
+      <DependentUpon>UserBanner64String.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APIs\UserBanner64String.aspx.designer.cs">
+      <DependentUpon>UserBanner64String.aspx</DependentUpon>
     </Compile>
     <Compile Include="BTNTesting.aspx.cs">
       <DependentUpon>BTNTesting.aspx</DependentUpon>
