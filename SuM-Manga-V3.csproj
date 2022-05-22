@@ -290,6 +290,12 @@
     <Content Include="android\android-launchericon-512-512.png" />
     <Content Include="android\android-launchericon-72-72.png" />
     <Content Include="android\android-launchericon-96-96.png" />
+    <Content Include="APIs\GetMangaLibState.aspx" />
+    <Content Include="APIs\SuMCoinsReq.aspx" />
+    <Content Include="APIs\MangaViewsParser.aspx" />
+    <Content Include="APIs\MangaDiscParser.aspx" />
+    <Content Include="APIs\SetMangaLibState.aspx" />
+    <Content Include="APIs\MangaParser.aspx" />
     <Content Include="APIs\UserBanner64String.aspx" />
     <Content Include="apple-touch-icon-114x114-precomposed.png" />
     <Content Include="apple-touch-icon-114x114.png" />
@@ -378,6 +384,7 @@
     <Content Include="ExploreDisabled.aspx" />
     <Content Include="Hitsbu.aspx" />
     <Content Include="SE.html" />
+    <Content Include="storeitems\ContantExplorerCardBackUp.aspx" />
     <Content Include="storeitems\ContantExplorerCard.aspx" />
     <Content Include="storeitems\MangaExplorerCardHolder.aspx" />
     <Content Include="storeitems\MangaExplorerCard.aspx" />
@@ -2931,6 +2938,48 @@
     <Compile Include="AccountETC\ValidateUsers.aspx.designer.cs">
       <DependentUpon>ValidateUsers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="APIs\GetMangaLibState.aspx.cs">
+      <DependentUpon>GetMangaLibState.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APIs\GetMangaLibState.aspx.designer.cs">
+      <DependentUpon>GetMangaLibState.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APIs\SuMCoinsReq.aspx.cs">
+      <DependentUpon>SuMCoinsReq.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APIs\SuMCoinsReq.aspx.designer.cs">
+      <DependentUpon>SuMCoinsReq.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APIs\MangaViewsParser.aspx.cs">
+      <DependentUpon>MangaViewsParser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APIs\MangaViewsParser.aspx.designer.cs">
+      <DependentUpon>MangaViewsParser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APIs\MangaDiscParser.aspx.cs">
+      <DependentUpon>MangaDiscParser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APIs\MangaDiscParser.aspx.designer.cs">
+      <DependentUpon>MangaDiscParser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APIs\SetMangaLibState.aspx.cs">
+      <DependentUpon>SetMangaLibState.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APIs\SetMangaLibState.aspx.designer.cs">
+      <DependentUpon>SetMangaLibState.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APIs\MangaParser.aspx.cs">
+      <DependentUpon>MangaParser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APIs\MangaParser.aspx.designer.cs">
+      <DependentUpon>MangaParser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="APIs\UserBanner64String.aspx.cs">
       <DependentUpon>UserBanner64String.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3001,6 +3050,13 @@
     </Compile>
     <Compile Include="Hitsbu.aspx.designer.cs">
       <DependentUpon>Hitsbu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="storeitems\ContantExplorerCardBackUp.aspx.cs">
+      <DependentUpon>ContantExplorerCardBackUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="storeitems\ContantExplorerCardBackUp.aspx.designer.cs">
+      <DependentUpon>ContantExplorerCardBackUp.aspx</DependentUpon>
     </Compile>
     <Compile Include="storeitems\ContantExplorerCard.aspx.cs">
       <DependentUpon>ContantExplorerCard.aspx</DependentUpon>

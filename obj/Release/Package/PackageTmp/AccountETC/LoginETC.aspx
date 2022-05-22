@@ -19,8 +19,8 @@
                         });
                 });
             }
-            androidAPIs.SetSuMHardwareExl();
-            androidAPIs.ResizewebView3AccountSettingsCard(860);
+            //androidAPIs.SetSuMHardwareExl();
+            //androidAPIs.ResizewebView3AccountSettingsCard(860);
         }
 </script>
     <style>

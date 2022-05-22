@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="SuMMangaExternalDataBase-Web.config Connection String" description="SuMMangaExternalDataBase Connection String used in web.config by the application to access the database." defaultValue="Data Source=sv85.ifastnet.com;&#xD;&#xA;   port=3306;&#xD;&#xA;   Initial Catalog=summanga_summangasqldatabase;&#xD;&#xA;   Integrated Security=False;&#xD;&#xA;   User ID=summanga_summangasqladmin;&#xD;&#xA;   Password=587883sqlpasscode2022;&#xD;&#xA;   Connection Timeout=30;" tags="SqlConnectionString">
+  <parameter name="SuMMangaExternalDataBase-Web.config Connection String" description="SuMMangaExternalDataBase Connection String used in web.config by the application to access the database." defaultValue="Data Source=sv85.ifastnet.com;    port=3306;    Initial Catalog=summanga_summangasqldatabase;    Integrated Security=False;    User ID=summanga_summangasqladmin;    Password=587883sqlpasscode2022;    Connection Timeout=30;" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="D:\\SuM-Manga-V3\\SuM-Manga-V3\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SuMMangaExternalDataBase']/@connectionString" />
   </parameter>
 </parameters>
