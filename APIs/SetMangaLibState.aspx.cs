@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Web;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.IO;
 
 namespace SuM_Manga_V3
 {
@@ -18,7 +11,7 @@ namespace SuM_Manga_V3
         protected void Page_Load(object sender, EventArgs e)
         {
             string json = string.Empty;
-            if (Request.QueryString["MID"] != null && Request.QueryString["SB"] != null && Request.QueryString["LIB"] != null)//  /SetMangaLibState.aspx?MID=0&SB=0/1&LIB=Fav/Wanna
+            if (Request.QueryString["MID"] != null && Request.QueryString["CN"] != null && Request.QueryString["LIB"] != null)//  /SetMangaLibState.aspx?MID=0&SB=0/1&LIB=Fav/Wanna
             {
                 HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
                 if (GetUserInfoCookie != null)
@@ -77,6 +70,7 @@ namespace SuM_Manga_V3
                 }
                 MySqlCon.Close();
             }
+            if (!NeedUpdate) return "[NO_CHANGE_DETECTED]";
             return "1";
         }
         protected private string RemoveFromX(string lib, int MID, int UID)
@@ -112,6 +106,7 @@ namespace SuM_Manga_V3
                 }
                 MySqlCon.Close();
             }
+            if (!NeedUpdate) return "[NO_CHANGE_DETECTED]";
             return "0";
         }
     }

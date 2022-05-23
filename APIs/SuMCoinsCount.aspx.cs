@@ -6,22 +6,18 @@ using System.Data;
 
 namespace SuM_Manga_V3
 {
-    public partial class SuMCoinsReq : System.Web.UI.Page
+    public partial class SuMCoinsCount : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             string json = string.Empty;
-            if (Request.QueryString["MID"] != null)//  /MangaParser.aspx?MID=0&CN=0&MN=X
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            if (GetUserInfoCookie != null)
             {
-                HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
-                if (GetUserInfoCookie != null)
-                {
-                    int MID = Convert.ToInt32(Request.QueryString["MID"].ToString());
-                    json = MangaCoinsCountDMySql(MID).ToString();
-                }
-                else json = "[LOGIN_PLZ]";
+                int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                json = MangaCoinsCountDMySql(UID).ToString();
             }
-            else json = "[MISSING_MID]";
+            else json = "[LOGIN_PLZ]";
             Response.Clear();
             //Response.ContentType = "application/json; charset=utf-8";
             //.Content = new StringContent(result, System.Text.Encoding.UTF8, "text/plain");
@@ -29,16 +25,16 @@ namespace SuM_Manga_V3
             Response.Write(json);
             Response.End();
         }
-        protected static int MangaCoinsCountDMySql(int MID)
+        protected static int MangaCoinsCountDMySql(int UID)
         {
             int V = 0;
             string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString; using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
                 MySqlCon.Open();
-                string query = "SELECT ChapterCValue FROM SuMManga WHERE MangaID = @MID";
+                string query = "SELECT UserCoins FROM SuMUsersAccounts WHERE UserID = @UID";
                 MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
-                MySqlCmd.Parameters.AddWithValue("@MID", SqlDbType.Int);
-                MySqlCmd.Parameters["@MID"].Value = MID;
+                MySqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd.Parameters["@UID"].Value = UID;
                 using (MySqlDataReader dr = MySqlCmd.ExecuteReader())
                 {
                     while (dr.Read())

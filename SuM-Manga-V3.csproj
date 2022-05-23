@@ -291,6 +291,8 @@
     <Content Include="android\android-launchericon-72-72.png" />
     <Content Include="android\android-launchericon-96-96.png" />
     <Content Include="APIs\GetMangaLibState.aspx" />
+    <Content Include="APIs\ClaimOneDailyCoinByADs.aspx" />
+    <Content Include="APIs\SuMCoinsCount.aspx" />
     <Content Include="APIs\SuMCoinsReq.aspx" />
     <Content Include="APIs\MangaViewsParser.aspx" />
     <Content Include="APIs\MangaDiscParser.aspx" />
@@ -2944,6 +2946,20 @@
     </Compile>
     <Compile Include="APIs\GetMangaLibState.aspx.designer.cs">
       <DependentUpon>GetMangaLibState.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APIs\ClaimOneDailyCoinByADs.aspx.cs">
+      <DependentUpon>ClaimOneDailyCoinByADs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APIs\ClaimOneDailyCoinByADs.aspx.designer.cs">
+      <DependentUpon>ClaimOneDailyCoinByADs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APIs\SuMCoinsCount.aspx.cs">
+      <DependentUpon>SuMCoinsCount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APIs\SuMCoinsCount.aspx.designer.cs">
+      <DependentUpon>SuMCoinsCount.aspx</DependentUpon>
     </Compile>
     <Compile Include="APIs\SuMCoinsReq.aspx.cs">
       <DependentUpon>SuMCoinsReq.aspx</DependentUpon>

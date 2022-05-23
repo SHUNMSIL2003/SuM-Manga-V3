@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Web;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.IO;
 
 namespace SuM_Manga_V3
 {
@@ -18,7 +11,7 @@ namespace SuM_Manga_V3
         protected void Page_Load(object sender, EventArgs e)
         {
             string json = string.Empty;
-            if (Request.QueryString["MID"] != null)//  /MangaParser.aspx?MID=0&CN=0&MN=X
+            if (Request.QueryString["MID"] != null)//  /MangaViewsParser.aspx?MID=0
             {
                 HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
                 if (GetUserInfoCookie != null)

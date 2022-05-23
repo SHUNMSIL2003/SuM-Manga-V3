@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SuMCoinsCount.aspx.cs" Inherits="SuM_Manga_V3.SuMCoinsCount" %>

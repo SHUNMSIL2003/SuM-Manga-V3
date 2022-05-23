@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Web;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.IO;
 
 namespace SuM_Manga_V3
 {
@@ -28,10 +21,10 @@ namespace SuM_Manga_V3
                     int MID = Convert.ToInt32(Request.QueryString["MID"].ToString());
                     int CN = Convert.ToInt32(Request.QueryString["CN"].ToString().ToLower().Replace("ch", ""));
                     json = GetMangaString64JSON(MID, Request.QueryString["CN"].ToString(), UID, Request.QueryString["MN"].ToString());
-                    if (json != "[]")
+                    if (!json.Contains("[NOT_READY_YET]") && json.Contains("#File;Split&"))
                     {
                         AddOneView();
-                        ReasentMarker(UID,MID);
+                        ReasentMarker(UID, MID);
                         UpdateChapterNumInCurr(MID, CN, UID);
                         SuMTokenIsValid = SuMCoinPass(UID, MID);
                     }
@@ -92,7 +85,7 @@ namespace SuM_Manga_V3
                 }
                 if (UCC >= RCA)
                 {
-                    query = "UPDATE SuMUsersAccounts SET UserCoins = UserCoins + " + RCA.ToString() + " WHERE UserID = @UID ";
+                    query = "UPDATE SuMUsersAccounts SET UserCoins = UserCoins - " + RCA.ToString() + " WHERE UserID = @UID ";
                     MySqlCmd = new MySqlCommand(query, MySqlCon);
                     MySqlCmd.Parameters.AddWithValue("@UID", SqlDbType.Int);
                     MySqlCmd.Parameters["@UID"].Value = UID;

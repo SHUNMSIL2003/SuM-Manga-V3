@@ -23,9 +23,7 @@ namespace SuM_Manga_V3.AccountETC
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             if (GetUserInfoCookie != null)
             {
-                //MPB.InnerText = "Explore";
-                //MPB.Attributes["href"] = "Library.aspx";
-                Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
+                Response.Redirect("~/Tr-Test-SuT.html");
             }
             else
             {
@@ -115,7 +113,7 @@ namespace SuM_Manga_V3.AccountETC
                                 {
                                     SaveCookie(username, ID, GSID);
                                     MySqlCon.Close();
-                                    HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
+                                    HttpContext.Current.Response.Redirect("~/Tr-Test-SuT.html");
                                 }
                                 else
                                 {
@@ -126,7 +124,7 @@ namespace SuM_Manga_V3.AccountETC
                                     string CreatorIDName = cv.ExecuteScalar().ToString();
                                     SaveSCCookie(username, ID, CreatorIDName, GSID);
                                     MySqlCon.Close();
-                                    HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
+                                    HttpContext.Current.Response.Redirect("~/Tr-Test-SuT.html");
                                 }
                             }
                             else
@@ -168,7 +166,7 @@ namespace SuM_Manga_V3.AccountETC
                             {
                                 SaveCookie(username, ID, GSID);
                                 MySqlCon.Close();
-                                HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
+                                HttpContext.Current.Response.Redirect("~/Tr-Test-SuT.html");
                             }
                             else
                             {
@@ -179,7 +177,7 @@ namespace SuM_Manga_V3.AccountETC
                                 string CreatorIDName = cv.ExecuteScalar().ToString();
                                 SaveSCCookie(username, ID, CreatorIDName, GSID);
                                 MySqlCon.Close();
-                                HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
+                                HttpContext.Current.Response.Redirect("~/Tr-Test-SuT.html");
                             }
                         }
                     }
@@ -232,7 +230,7 @@ namespace SuM_Manga_V3.AccountETC
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
             //SaveUserBannerCookie(ID);
-            HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
+            HttpContext.Current.Response.Redirect("~/Tr-Test-SuT.html");
         }
         protected void SaveSCCookie(string UserName, int ID, string CreatorName, string SessionID)
         {
@@ -245,7 +243,7 @@ namespace SuM_Manga_V3.AccountETC
             userInfo.Expires = DateTime.MaxValue;
             HttpContext.Current.Response.Cookies.Add(userInfo);
             //SaveUserBannerCookie(ID);
-            HttpContext.Current.Response.Redirect("~/AccountETC/SettingsAccountCard.aspx");
+            HttpContext.Current.Response.Redirect("~/Tr-Test-SuT.html");
         }
         protected string GetUserBanner(int UID)
         {
