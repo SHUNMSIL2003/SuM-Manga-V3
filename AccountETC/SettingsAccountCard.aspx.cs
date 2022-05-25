@@ -227,7 +227,8 @@ namespace SuM_Manga_V3.AccountETC
                 MySqlCon.Close();
             }
             ForceLogOut();
-            ReloadAndUpdate();
+            Response.Redirect("~/AccountETC/LoginETC.aspx");
+            //ReloadAndUpdate();
         }
         protected string RemoveAnSIDfromSIDsString(string SIDs, string SIDToRemove)
         {

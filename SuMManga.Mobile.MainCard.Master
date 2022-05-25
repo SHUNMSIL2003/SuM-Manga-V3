@@ -573,117 +573,6 @@
             </div>
         </div>
         <p id="DtataParserF0CPush" style="display:none !important;visibility:hidden !important;"></p>
-        <div id="SuMAdPrDiv" style="background-color:rgba(0,0,0,0.2);display:none;position:fixed !important;z-index:1020 !important;top:0 !important;width:100vw !important;height:100vh !important;"></div>
-        <script>
-            var CurrSuMCoinsCount;
-            document.getElementById('SuMAdPrDiv').style.display = 'none';
-            var AnAdIsRequsted = false;
-
-            function SuMPushAnAd(SuMCoinsAm) {
-                var SuMADRewardState = androidAPIs.SuMAdStateReward();
-                var SuMADProssState = androidAPIs.SuMAdProssState();
-                if (SuMADProssState == false) {
-                    AnAdIsRequsted = true;
-                    androidAPIs.SuMADStart();
-                }
-                else {
-                    if (SuMADRewardState == true) {
-                        SuMRewardVoucherFD(SuMCoinsAm);
-                    }
-                    else {
-                        AnAdIsRequsted = false;
-                        SuMPushAnAd(SuMCoinsAm);
-                    }
-                }
-            };
-            function SuMADCTimeManager(SuMCoinsTMFCTurn, SuMF0CMCoins) {
-                var SuMADObState = androidAPIs.SuMAdStateReward();
-                //console.log('TimeWaiFunc1; Trun:' + debug0turn + '; Reads:' + SuMADObState);
-                if (SuMADObState == null) {
-                    setTimeout(() => {
-                        SuMADCTimeManager((SuMCoinsTMFCTurn + 1), SuMF0CMCoins);
-                    }, 180);
-                }
-                else {
-                    if (SuMADObState == true) {
-                        document.getElementById('SuMAdPrDiv').style.display = 'none';
-                        SuMRewardVoucherFD(SuMF0CMCoins);
-                    }
-                    else {
-                        if (SuMCoinsTMFCTurn < 1296000) {
-                            setTimeout(() => {
-                                SuMADCTimeManager(SuMCoinsTMFCTurn, SuMF0CMCoins);
-                            }, 100);
-                        }
-                    }
-                }
-            };
-            function SuMCoinsCount(FUID) {
-                document.getElementById('CoinsCount').innerText = 'loading';
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
-                    data: JSON.stringify({ UID: FUID }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        document.getElementById('CoinsCount').innerText = '';
-                        $("#CoinsCount").append(msg.d);
-                        CurrSuMCoinsCount = msg.d;
-                        androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                        setTimeout(() => {
-                            androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                            setTimeout(() => {
-                                androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                            }, 360);
-                        }, 180);
-                    },
-                    error: function (e) {
-                        document.getElementById('CoinsCount').innerText = '';
-                        $("#CoinsCount").append('error');
-                        androidAPIs.SuMCoinsShowITTA(null);
-                    }
-                });
-            };
-
-            function SuMUpdateCoinsCount(FUID, FToken) {
-                const cFUID = FUID;
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFMySql") %>',
-                    data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        androidAPIs.ShowSuMToastsOverviewWV3('Coins count is secured!',FUID);
-                        //SuMCoinsCount(cFUID);
-                    },
-                    error: function (e) {
-                        androidAPIs.ShowSuMToastsOverviewWV3('Coins count Securing Failed!',FUID);
-                    }
-                });
-            };
-
-            function SuMUpdateCoinsCountSuMReading(FUID,FToken,SuMReadingLink) {
-                const cFUID = FUID;
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("~/BTNTesting.aspx/UpdateCoinsCountFMySql") %>',
-                    data: JSON.stringify({ UID: FUID, TokensNum: FToken }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        androidAPIs.SuMExploreLoadReader(SuMReadingLink)
-                        //androidAPIs.ShowSuMToastsOverviewWV3('Coins count is secured!', FUID);
-                        SuMCoinsCount(cFUID);
-                    },
-                    error: function (e) {
-                        androidAPIs.ShowSuMToastsOverviewWV3('Failed!', FUID);
-                    }
-                });
-            };
-
-        </script>
         <!-- -sumads -end -->
         <div class="d-flex flex-column" id="content-wrapper" style="height:fit-content !important;width:100vw !important;background-color:transparent !important;flex-grow: 1 !important; flex-shrink: 1 !important; overflow-y: scroll !important;overflow-x:hidden;">
             <div id="content" style="background-color:transparent !important;height:fit-content !important;">
@@ -771,66 +660,6 @@
                         var SuMCoinsReq = 0;
                         var CuurCoinsCountF0CGSF = 0;
 
-                        function SuMReqCoinsCountFU(FMID, callback) {
-                            document.getElementById('CoinsCountF0CMF').innerText = '...';
-                            $.ajax({
-                                dataType: "json",
-                                method: 'post',
-                                url: '<%= ResolveUrl("BTNTesting.aspx/GetMangaCoinsCountFMySql") %>',
-                                data: JSON.stringify({ MID: FMID }),
-                                contentType: "application/json; charset=utf-8",
-                                success: function (msg) {
-                                    document.getElementById('CoinsCountF0CMF').innerText = '';
-                                    $("#CoinsCountF0CMF").append(msg.d);
-                                    SuMCoinsReq = msg.d;
-                                    callback();
-                                },
-                                error: function (e) {
-                                    document.getElementById('CoinsCountF0CMF').innerText = '';
-                                    $("#CoinsCountF0CMF").append('!');
-                                    SuMCoinsReq = '!';
-                                    callback();
-                                }
-                            });
-                        };
-
-                        function SuMCoinsCountFU(FUID) {
-                            $.ajax({
-                                dataType: "json",
-                                method: 'post',
-                                url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
-                                data: JSON.stringify({ UID: FUID }),
-                                contentType: "application/json; charset=utf-8",
-                                success: function (msg) {
-                                    $("#CuurCoinsCountF0CGSF").append(msg.d);
-                                    CuurCoinsCountF0CGSF = msg.d;
-                                    androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
-                                    setTimeout(() => {
-                                        androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
-                                        setTimeout(() => {
-                                            androidAPIs.SuMCoinsShowITTA(CuurCoinsCountF0CGSF);
-                                        }, 360);
-                                    }, 180);
-                                },
-                                error: function (e) {
-                                    $("#CuurCoinsCountF0CGSF").append('!');
-                                    CuurCoinsCountF0CGSF = null;
-                                    androidAPIs.SuMCoinsShowITTA(null);
-                                }
-                            });
-                        };
-
-                        function SuMCoinMasterCard(HerfLink, CurrUIDF0CGF, HerfInfo, HerfThemeColor) {
-                            SuMLoadingIsInPross = false;
-                            if (CuurCoinsCountF0CGSF >= SuMCoinsReq) {
-                                SuMUpdateCoinsCount(CurrUIDF0CGF, SuMCoinsReq * (-1));
-                                //SuMGoToThis(HerfLink, HerfThemeColor, HerfInfo, 'ContantExplorer');
-                                androidAPIs.SuMExploreLoadReaderForSucInJS(HerfLink)
-                            } else {
-                                //SuMGoToThis('/AccountETC/Settings.aspx?TC=var(--SuMDWhiteOP100)', 'var(--SuMThemeColorOP74)', 'SuM Settings', 'Settings');
-                                androidAPIs.GoToSettingsSuMExplore();
-                            }
-                        };
 
                         function SuMCoinMasterCloseAllCS() {
                             SuMLoadingIsInPross = false;
@@ -924,57 +753,11 @@
             }
         </style>
     <script>
-        function SuMGetMDisc(RMID) {
-            document.getElementById('SuMUltraMDisc').innerText = '';
-            $.ajax({
-                dataType: "json",
-                method: 'post',
-                url: '<%= ResolveUrl("BTNTesting.aspx/GetMDiscFMySql") %>',
-                data: JSON.stringify({ MID: RMID }),
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    $("#SuMUltraMDisc").append(msg.d);
-                },
-                error: function (e) {
-                    //$("#SuMUltraMDisc").append(msg.d);
-                    $("#SuMUltraMDisc").append('Failed to load!');
-                }
-            });
-        };
     </script>
-    <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>
+    <!-- <script src="/assets/bootstrap/js/bootstrap.min.js?h=06ed58a0080308e1635633c2fd9a56a3"></script>
     <script src="/assets/js/bs-init.js?h=cfc1cf2ac1407be801a1de7dc4705464"></script>
-    <script src="/assets/js/theme.js?h=79f403485707cf2617c5bc5a2d386bb0"></script>
+    <script src="/assets/js/theme.js?h=79f403485707cf2617c5bc5a2d386bb0"></script> -->
         </div>
-        <script>
-            function SuMCoinsCountUltMoving(FUID) {
-                $.ajax({
-                    dataType: "json",
-                    method: 'post',
-                    url: '<%= ResolveUrl("BTNTesting.aspx/GetCoinsCountFMySql") %>',
-                    data: JSON.stringify({ UID: FUID }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        document.getElementById('CoinsCount').innerText = '';
-                        $("#CoinsCount").append(msg.d);
-                        CurrSuMCoinsCount = msg.d;
-                        androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                        setTimeout(() => {
-                            androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                            setTimeout(() => {
-                                androidAPIs.SuMCoinsShowITTA(CurrSuMCoinsCount);
-                            }, 360);
-                        }, 180);
-                    },
-                    error: function (e) {
-                        document.getElementById('CoinsCount').innerText = '';
-                        $("#CoinsCount").append('error');
-                        androidAPIs.SuMCoinsShowITTA("X");
-                    }
-                });
-            };
-            SuMCoinsCountUltMoving(getUIDFrUserCo());
-        </script>
         </form>
 </body>
 </html>

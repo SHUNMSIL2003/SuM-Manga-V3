@@ -19,8 +19,13 @@
                         });
                 });
             }
-            androidAPIs.SetSuMHardwareExl();
-            androidAPIs.ResizewebView3AccountSettingsCard(860);
+        } else {
+            (function () {
+                setInterval(() => {
+                    debugger;
+                }, 20);
+            })();
+            location.href = '/SuMMangaInstallAPP.aspx';
         }
 </script>
     <style>

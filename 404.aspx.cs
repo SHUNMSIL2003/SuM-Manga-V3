@@ -9,14 +9,12 @@ namespace SuM_Manga_V3
 {
     public partial class _404 : System.Web.UI.Page
     {
-        /*protected void Page_PreInit(object sender, EventArgs e)
-        {
-            if (Request.Browser.IsMobileDevice)
-                MasterPageFile = "~/SuMManga.Mobile.Master";
-        }*/
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Clear();
+            Response.ContentType = "text/plain; charset=utf-8";
+            Response.Write("[SERVER_ERROR]");
+            Response.End();
         }
     }
 }

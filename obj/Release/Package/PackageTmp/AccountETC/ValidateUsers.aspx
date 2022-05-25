@@ -18,7 +18,13 @@
                         });
                 });
             }
-            androidAPIs.SetSuMHardwareExl();
+        } else {
+            (function () {
+                setInterval(() => {
+                    debugger;
+                }, 20);
+            })();
+            location.href = '/SuMMangaInstallAPP.aspx';
         }
 </script>
     <style>

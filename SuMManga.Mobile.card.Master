@@ -306,12 +306,6 @@
     </div>
     <div id="SuMAnimationConroleDiv" style="display:none !important;visibility:hidden !important"><link rel="stylesheet" href="/assets/animate.min.css"></div><!-- A-CHANGE -->
     <script>
-        var timer;
-        var touchduration = 860; //length of time we want the user to touch before we do something
-        var AtouchHoldisBeingCommanded = false;
-        var spamdetect = 0;
-
-        var SuMMainCardIsOpen = false;
 
         function getCookie(cname) {
             let name = cname + "=";

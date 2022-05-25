@@ -18,27 +18,55 @@ namespace SuM_Manga_V3
                 if (GetUserInfoCookie != null)
                 {
                     int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
-                    int MID = Convert.ToInt32(Request.QueryString["MID"].ToString());
-                    int CN = Convert.ToInt32(Request.QueryString["CN"].ToString().ToLower().Replace("ch", ""));
-                    json = GetMangaString64JSON(MID, Request.QueryString["CN"].ToString(), UID, Request.QueryString["MN"].ToString());
-                    if (!json.Contains("[NOT_READY_YET]") && json.Contains("#File;Split&"))
+                    object SIDObj = GetUserInfoCookie["SID"].ToString();
+                    if (SIDObj != null)
                     {
-                        AddOneView();
-                        ReasentMarker(UID, MID);
-                        UpdateChapterNumInCurr(MID, CN, UID);
-                        SuMTokenIsValid = SuMCoinPass(UID, MID);
+                        if (SID_State(UID, SIDObj.ToString()))
+                        {
+                            //[VALID_REQ]
+                            int MID = Convert.ToInt32(Request.QueryString["MID"].ToString());
+                            int CN = Convert.ToInt32(Request.QueryString["CN"].ToString().ToLower().Replace("ch", ""));
+                            json = GetMangaString64JSON(MID, Request.QueryString["CN"].ToString(), UID, Request.QueryString["MN"].ToString());
+                            if (!json.Contains("[NOT_READY_YET]") && json.Contains("#File;Split&"))
+                            {
+                                AddOneView();
+                                ReasentMarker(UID, MID);
+                                UpdateChapterNumInCurr(MID, CN, UID);
+                                SuMTokenIsValid = SuMCoinPass(UID, MID);
+                            }
+                        }
+                        else json = "[SESSION_EXPIRED]";https://localhost:44382/APIs/MangaParser.aspx.cs
                     }
+                    else json = "[SESSION_EXPIRED]";
                 }
                 else json = "[LOGIN_PLZ]";
             }
             else json = "[MISSING_A_Q]";
             if (!SuMTokenIsValid) json = "[BUY_COINS]";
             Response.Clear();
-            //Response.ContentType = "application/json; charset=utf-8";
-            //.Content = new StringContent(result, System.Text.Encoding.UTF8, "text/plain");
             Response.ContentType = "text/plain; charset=utf-8";
             Response.Write(json);
             Response.End();
+        }
+        protected private bool SID_State(int UID, string SID)
+        {
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
+            {
+                MySqlCon.Open();
+                string qwi = "SELECT SIDs FROM SuMUsersAccounts WHERE UserID = @UID";
+                MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd00.Parameters["@UID"].Value = UID;
+                var RawRes = MySqlCmd00.ExecuteScalar();
+                if (RawRes != null)
+                {
+                    string Res = RawRes.ToString().Replace(" ", "");
+                    if (Res.Contains(SID)) return true;
+                    else return false;
+                }
+                else return false;
+            }
         }
         protected private bool SuMCoinPass(int UID, int MID)
         {

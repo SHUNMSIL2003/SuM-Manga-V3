@@ -17,16 +17,25 @@ namespace SuM_Manga_V3
                 if (GetUserInfoCookie != null)
                 {
                     int UID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
-                    int MID = Convert.ToInt32(Request.QueryString["MID"].ToString());
-                    int SB = Convert.ToInt32(Request.QueryString["CN"].ToString());
-                    string LIB = Request.QueryString["LIB"].ToString();
-                    if (LIB == "Fav" || LIB == "Wanna")
+                    object SIDObj = GetUserInfoCookie["SID"].ToString();
+                    if (SIDObj != null)
                     {
-                        if (SB == 1) json = AddToX(LIB, MID, UID);
-                        if (SB == 0) json = RemoveFromX(LIB, MID, UID);
+                        if (SID_State(UID, SIDObj.ToString()))
+                        {
+                            int MID = Convert.ToInt32(Request.QueryString["MID"].ToString());
+                            int SB = Convert.ToInt32(Request.QueryString["CN"].ToString());
+                            string LIB = Request.QueryString["LIB"].ToString();
+                            if (LIB == "Fav" || LIB == "Wanna")
+                            {
+                                if (SB == 1) json = AddToX(LIB, MID, UID);
+                                if (SB == 0) json = RemoveFromX(LIB, MID, UID);
+                            }
+                        }
+                        else json = "[SESSION_EXPIRED]";
                     }
+                    else json = "[SESSION_EXPIRED]";
                 }
-                else json = "0";
+                else json = "[LOGIN_PLZ]";
             }
             else json = "0";
             Response.Clear();
@@ -35,6 +44,26 @@ namespace SuM_Manga_V3
             Response.ContentType = "text/plain; charset=utf-8";
             Response.Write(json);
             Response.End();
+        }
+        protected private bool SID_State(int UID, string SID)
+        {
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
+            {
+                MySqlCon.Open();
+                string qwi = "SELECT SIDs FROM SuMUsersAccounts WHERE UserID = @UID";
+                MySqlCommand MySqlCmd00 = new MySqlCommand(qwi, MySqlCon);
+                MySqlCmd00.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                MySqlCmd00.Parameters["@UID"].Value = UID;
+                var RawRes = MySqlCmd00.ExecuteScalar();
+                if (RawRes != null)
+                {
+                    string Res = RawRes.ToString().Replace(" ", "");
+                    if (Res.Contains(SID)) return true;
+                    else return false;
+                }
+                else return false;
+            }
         }
         protected private string AddToX(string lib,int MID,int UID)
         {
