@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Web;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.IO;
 
 namespace SuM_Manga_V3
 {

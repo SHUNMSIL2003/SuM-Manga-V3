@@ -35,7 +35,7 @@ namespace SuM_Manga_V3
                                 SuMTokenIsValid = SuMCoinPass(UID, MID);
                             }
                         }
-                        else json = "[SESSION_EXPIRED]";https://localhost:44382/APIs/MangaParser.aspx.cs
+                        else json = "[SESSION_EXPIRED]";//https://localhost:44382/APIs/MangaParser.aspx.cs
                     }
                     else json = "[SESSION_EXPIRED]";
                 }

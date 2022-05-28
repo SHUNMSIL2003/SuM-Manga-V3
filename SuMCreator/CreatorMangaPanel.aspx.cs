@@ -25,7 +25,7 @@ namespace SuM_Manga_V3.SuMCreator
             }
             else { Response.Redirect("~/AccountETC/LoginETC.aspx"); }
         }
-        protected void CreateSUMXMLProfile(object sender, EventArgs e)
+        protected private void CreateSUMXMLProfile(object sender, EventArgs e)
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             int UserID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
@@ -111,7 +111,7 @@ namespace SuM_Manga_V3.SuMCreator
             }
             Response.Redirect("~/SuMCreator/CreatorPanel.aspx");
         }
-        protected void ReadSUMXMLProfile()
+        protected private void ReadSUMXMLProfile()
         {
             // Load the document.
             string SUMProfileFileName = "";
@@ -126,7 +126,7 @@ namespace SuM_Manga_V3.SuMCreator
             string UserReqID = doc.Element("ReqID").ToString();
             //UseIt
         }
-        protected Color getDominantColor(Bitmap bmp)
+        protected private Color getDominantColor(Bitmap bmp)
         {
             //Used for tally
             int r = 0;
@@ -156,11 +156,11 @@ namespace SuM_Manga_V3.SuMCreator
 
             return Color.FromArgb(r, g, b);
         }
-        protected static string RgbConverter(Color c)
+        protected private static string RgbConverter(Color c)
         {
             return String.Format("rgba({0},{1},{2},0.74)", c.R, c.G, c.B);
         }
-        protected string RandomID()
+        protected private string RandomID()
         {
             int length = 9;
             char[] chArray = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();

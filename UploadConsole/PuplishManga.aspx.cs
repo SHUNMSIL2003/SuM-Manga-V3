@@ -6,7 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
 using System.Data;
-using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
+using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace SuM_Manga_V3.UploadConsole
 {
@@ -16,9 +18,9 @@ namespace SuM_Manga_V3.UploadConsole
         {
 
         }
-        protected void PuplishStart(object sender, EventArgs e)
+        protected private void PuplishStart(object sender, EventArgs e)
         {
-            /*string MangaName = MangaNameP.Text;
+            string MangaName = MangaNameP.Text;
             string MangaDisc = MangaDescP.Text;
             string MangaAuthor = MangaAuthorP.Text;
             int ChaptersNum = Convert.ToInt32(ChaptersNumP.Text.ToString());
@@ -29,7 +31,8 @@ namespace SuM_Manga_V3.UploadConsole
             string MangaFolderName = MangaNameFolder.Text;
             string CExplorerLink = "/storeitems/ContantExplorer.aspx?Manga=" + MangaFolderName;
             string MangaCoverLink = "/storeitems/" + MangaFolderName + "/" + CoverLink.Text;
-            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))//Data Source=(LocalDB)\MSMySqlLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))//Data Source=(LocalDB)\MSMySqlLocalDB;AttachDbFilename=P:\Shun-MuS-Projct\App_Data\SuMAccounts.mdf; Integrated Security=True
             {
                 MySqlCon.Open();
                 MySqlCommand MySqlCmd = new MySqlCommand("INSERT INTO SuMManga(MangaInfo,MangaCreator,MangaName,MangaViews,SuMThemeColor,MangaCoverLink,ChaptersNumber,CExplorerLink) values(@MangaInfo,@MangaCreator,@MangaName,@MangaViews,@SuMThemeColor,@MangaCoverLink,@ChaptersNumber,@CExplorerLink)", MySqlCon);
@@ -45,13 +48,13 @@ namespace SuM_Manga_V3.UploadConsole
                 MySqlCmd.Parameters.AddWithValue("@CExplorerLink", CExplorerLink);
                 MySqlCmd.ExecuteNonQuery();
                 MySqlCon.Close();
-            }*/
+            }
         }
-        protected static string RgbConverter(Color c)
+        protected private static string RgbConverter(Color c)
         {
             return String.Format("rgba({0},{1},{2},0.74)", c.R, c.G, c.B);
         }
-        protected static Color getDominantColor(Bitmap bmp)
+        protected private static Color getDominantColor(Bitmap bmp)
         {
             //Used for tally
             int r = 0;

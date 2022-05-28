@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.Master" AutoEventWireup="true" CodeBehind="PuplishManga.aspx.cs" Inherits="SuM_Manga_V3.UploadConsole.PuplishManga" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.MainCard.Master" AutoEventWireup="true" CodeBehind="PuplishManga.aspx.cs" Inherits="SuM_Manga_V3.UploadConsole.PuplishManga" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="fadeIn animated">

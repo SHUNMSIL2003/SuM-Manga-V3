@@ -11,6 +11,10 @@ namespace SuM_Manga_V3
 {
     public partial class SuMManga_Mobile_card : System.Web.UI.MasterPage
     {
+        private void Page_PreInit(object sender, EventArgs e)
+        {
+            if (!Request.Browser.IsMobileDevice) Response.Redirect("~/SuMMangaInstallAPP.aspx");
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             string UserThemeColor = string.Empty;

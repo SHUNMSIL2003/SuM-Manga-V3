@@ -15,24 +15,6 @@ namespace SuM_Manga_V3.SuMCreator
     {
 
         /// <summary>
-        /// SuMLoadingFHandBG control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMLoadingFHandBG;
-
-        /// <summary>
-        /// SuMLoadingHandlerTXT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMLoadingHandlerTXT;
-
-        /// <summary>
         /// PFPElm control.
         /// </summary>
         /// <remarks>

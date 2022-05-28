@@ -70,55 +70,13 @@
       "sizes": "16x16"
     }
   ],
-  "start_url": "/Explore.aspx",
-  "scope": "https://apis.google.com/",
+  "start_url": "/SuMMangaInstallAPP.aspx",
+  "scope": "",
   "description": "Best app for reading manga!",
-  "background_color": "var(--SuMDGray)",
-  "theme_color": "var(--SuMDGray)",
+  "background_color": "#00000000",
+  "theme_color": "#00000000",
   "display": "standalone",
   "orientation": "portrait-primary",
   "categories": [ "books", "manga", "entertainment", "paid", "ASchoolProjectNotReal" ],
-  "url": "https://sum-manga.azurewebsites.net",
-  "screenshots": [
-    {
-      "src": "SS0.png",
-      "sizes": "750x1334",
-      "type": "image/png",
-      "platform": "narrow",
-      "label": "Homescreen"
-    },
-    {
-      "src": "SS1.png",
-      "sizes": "750x1334",
-      "type": "image/png",
-      "platform": "narrow",
-      "label": "Settings"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "My library",
-      "description": "a shortcut to your SuM library.",
-      "url": "/UserLibrary.aspx",
-      "icons": [
-        {
-          "src": "/svg/bookmarks.svg",
-          "type": "image/png",
-          "purpose": "maskable"
-        }
-      ]
-    },
-    {
-      "name": "SuM Settings",
-      "description": "a shortcut to your SuM Settings.",
-      "url": "/AccountETC/Settings.aspx",
-      "icons": [
-        {
-          "src": "/svg/settingsNA.svg",
-          "type": "image/png",
-          "purpose": "maskable"
-        }
-      ]
-    }
-  ]
+  "url": "https://sum-manga.azurewebsites.net"
 }

@@ -1,6 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SuMManga.Mobile.card.Master.cs" Inherits="SuM_Manga_V3.SuMManga_Mobile_card" %>
 
-
 <!DOCTYPE html>
 <html lang="en" style="overflow: hidden;background-color:transparent !important;">
 <head id="SMHead" runat="server">
@@ -33,6 +32,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <title>SuM Manga</title>
+    <meta name=”robots” content=”noindex,nofollow”>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css?h=9c9410dd08c3e2433b1961c2a8a68b39">
     <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials">
     <style>
@@ -84,16 +84,6 @@
             transform: translate3d(0,0,0) !important;
             transform: translateZ(0) !important;
             /*backdrop-filter:blur(1px) !important;*/
-        }
-        .GoodBlurAnim {/*
-            -webkit-backface-visibility: hidden !important;
-            -webkit-perspective: 1000 !important;
-            -webkit-transform: translate3d(0,0,0) !important;
-            -webkit-transform: translateZ(0) !important;
-            backface-visibility: hidden !important;
-            perspective: 1000 !important;
-            transform: translate3d(0,0,0) !important;
-            backdrop-filter:blur(1px) !important;*/
         }
         * {
             -webkit-backface-visibility: hidden !important;
@@ -426,50 +416,6 @@
 
     </script>
     <style>
-        .custom-control-input:focus ~ .custom-control-label::before {
-            /* when the button is toggled off 
-  it is still in focus and a violet border will appear */
-            border-color: var(--SuMThemeColor) !important;
-            /* box shadow is blue by default
-  but we do not want any shadow hence we have set 
-  all the values as 0 */
-            box-shadow: 0 0 0 0rem rgba(0, 0, 0, 0) !important;
-        }
-  
-            /*sets the background color of
-          switch to violet when it is checked*/
-        .custom-control-input:checked ~ .custom-control-label::before {
-            border-color: var(--SuMThemeColor) !important;
-            background-color: var(--SuMThemeColor) !important;
-        }
-  
-            /*sets the background color of
-          switch to violet when it is active*/
-        .custom-control-input:active ~ .custom-control-label::before {
-            background-color: var(--SuMThemeColor) !important;
-            border-color: var(--SuMThemeColor) !important;
-        }
-  
-            /*sets the border color of switch
-          to violet when it is not checked*/
-        .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
-            border-color: var(--SuMThemeColor) !important;
-        }
-        .form-check-input:checked {
-            background-color: var(--SuMThemeColor) !important;
-            border-color: var(--SuMThemeColor) !important;
-        }
-
-        .form-switch .form-check-input {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='var(--SuMThemeColor)'/%3e%3c/svg%3e");
-        }
-
-            .form-switch .form-check-input:focus {
-                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='var(--SuMThemeColor)'/%3e%3c/svg%3e");
-            }
-
-    </style>
-    <style>
         html {
             /*scroll-behavior: smooth !important;*/
             background-color:transparent !important;
@@ -507,14 +453,6 @@
             display:none !important;
             visibility:hidden !important;
         }
-        .ForceMaxW {
-            /*margin: 0 auto !important;*/
-        }
-        .PupShadow {/*
-            box-shadow: 0px 0px 1px 160vw rgba(104, 64, 217, 0.25) !important;*/
-        }
-        .NotifMaxWidth {
-        }
     </style>
     <form autocomplete="off" id="SuM" style="background-color:transparent !important;" method="post" runat="server" >
     <div runat="server" id="wrapper" style="overflow:hidden;width:100vw !important;height:fit-content !important; background-color:transparent !important;overflow: hidden !important; display: flex !important; flex-direction: column !important;">
@@ -522,13 +460,6 @@
        </asp:ScriptManager>
         <div class="d-flex flex-column" id="content-wrapper" style="height:fit-content !important;width:100vw !important;background-color:transparent !important;flex-grow: 1 !important; flex-shrink: 1 !important; overflow-y: scroll !important;overflow-x:hidden;">
             <div id="content" style="background-color:transparent !important;height:fit-content !important;">
-                <style>
-                    .FNM5455511 {
-                        margin-top:0px !important;
-                        margin-bottom:0px !important;
-                        height:7vh !important;
-                    }
-                </style>
                 <div style="width:100vw !important; height:fit-content !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:transparent !important;" id="SuMMainBlock" runat="server" class="container-fluid">
                     <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:fit-content !important;max-height:100vh !important;margin-left:-24px !important;background-color:transparent !important;background-color:transparent !important;" id="mc" runat="server">
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">

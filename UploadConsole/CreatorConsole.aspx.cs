@@ -23,7 +23,7 @@ namespace SuM_Manga_V3.UploadConsole
             }
             else { Response.Redirect("~/AccountETC/SuMSettings.aspx"); }
         }
-        protected void LoadUploads(string CreatorName,int CID)
+        protected private void LoadUploads(string CreatorName,int CID)
         {
             ADDB.Attributes["style"] = "display:none;";
             upl.Attributes["style"] = "color:var(--SuMThemeColor);margin-left:12px;";
@@ -82,7 +82,7 @@ namespace SuM_Manga_V3.UploadConsole
                 MySqlCon.Close();
             }
         }
-        protected void LoadDrafs(string CreatorName,int CID)
+        protected private void LoadDrafs(string CreatorName,int CID)
         {
             upl.Attributes["style"] = "color:#636166;margin-left:12px;";
             dra.Attributes["style"] = "color:var(--SuMThemeColor);";
@@ -96,14 +96,14 @@ namespace SuM_Manga_V3.UploadConsole
                 cmd.Parameters["@CID"].Value = CID;
             }
         }
-        protected void LoadInProsses(string CreatorName,int CID)
+        protected private void LoadInProsses(string CreatorName,int CID)
         {
             upl.Attributes["style"] = "color:#636166;margin-left:12px;";
             dra.Attributes["style"] = "color:#636166;";
             inp.Attributes["style"] = "color:var(--SuMThemeColor);margin-right:12px;";
             ADDB.Attributes["style"] = "background-color:var(--SuMThemeColor);color:var(--SuMDWhite);border-radius:16px;height:fit-content;width:fit-content;font-size:160%;";
         }
-        protected string BuildRestCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink)
+        protected private string BuildRestCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink)
         {
             char sc = '"'; string scfu = sc.ToString();
             string astyle = scfu + "width:100vw;height:74px;background-color:var(--SuMDWhite);border-bottom:var(--SuMDGray) 1px solid;border-top:var(--SuMDGray) 1px solid;position:relative;margin-left:0px;display:block;" + scfu;
@@ -133,7 +133,7 @@ namespace SuM_Manga_V3.UploadConsole
                 }
             }
         }*/
-        protected int[] ST0(string x)
+        protected private int[] ST0(string x)
         {
             Queue<int> R1 = new Queue<int>();
             bool fh = false;
