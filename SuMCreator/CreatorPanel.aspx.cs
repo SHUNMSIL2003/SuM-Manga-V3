@@ -148,7 +148,7 @@ namespace SuM_Manga_V3.SuMCreator
                     }
                     if (SomthingIsShown == false) 
                     {
-                        ShowContantDiv.InnerHtml = "<p style=width:100%;text-align:center;font-size:118%;color:var(--SuMDWhiteOP82);height:fit-content; >Nothing Yet!</p>";
+                        ShowContantDiv.InnerHtml = "<p style=width:100%;text-align:center;font-size:118%;color:rgba(255,255,255,0.92);height:fit-content; >Nothing Yet!</p>";
                     }
                 }
             }
@@ -288,7 +288,7 @@ namespace SuM_Manga_V3.SuMCreator
             string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:12px;float:left;margin:8px;" + scfu;
             string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
             string AuthString = "<p style=" + "color:var(--SuMDBlackOP50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
-            string RS = "<div style=" + '"' + "position: relative;width:100%;background-color:var(--SuMDWhite);border-radius:18px;height:fit-content;padding:8px;margin:0 auto;margin-bottom:12px;" + '"' + " class=shadow-sm > " + divST + " <a onclick=" + sc.ToString() + "SuMGoToThis('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName.Replace("'", "") + "','Creator');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">" + chapter + " Chapters</p></div></a></div>" + "</div>"; // + hr;
+            string RS = "<div style=" + '"' + "position: relative;width:100%;background-color:rgba(255,255,255,0.96);border-radius:18px;height:fit-content;padding:8px;margin:0 auto;margin-bottom:12px;" + '"' + " class=shadow-sm > " + divST + " <a onclick=" + sc.ToString() + "SuMGoToThis('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName.Replace("'", "") + "','Creator');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">" + chapter + " Chapters</p></div></a></div>" + "</div>"; // + hr;
             return RS;
         }
         protected private string BuildUnderProssCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink, string MangaCreator)
@@ -300,7 +300,7 @@ namespace SuM_Manga_V3.SuMCreator
             string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:12px;float:left;margin:8px;" + scfu;
             string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
             string AuthString = "<p style=" + "color:var(--SuMDBlackOP50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
-            string RS = "<div style=" + '"' + "opacity:0.74;position: relative;width:100%;background-color:var(--SuMDWhite);border-radius:18px;height:fit-content;padding:8px;margin:0 auto;margin-bottom:12px;" + '"' + " class=shadow-sm > " + divST + " <a onclick=" + sc.ToString() + "SuMGoToThis('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName.Replace("'", "") + "','Creator');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=color:#6b6b6b;font-size:74%;>processing</p></div></a></div>" + "</div>"; // + hr;
+            string RS = "<div style=" + '"' + "opacity:0.74;position: relative;width:100%;background-color:rgba(255,255,255,0.96);border-radius:18px;height:fit-content;padding:8px;margin:0 auto;margin-bottom:12px;" + '"' + " class=shadow-sm > " + divST + " <a onclick=" + sc.ToString() + "SuMGoToThis('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName.Replace("'", "") + "','Creator');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=color:#6b6b6b;font-size:74%;>processing</p></div></a></div>" + "</div>"; // + hr;
             return RS;
         }
         protected private string BuildRejectedCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink, string MangaCreator)

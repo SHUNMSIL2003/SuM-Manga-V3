@@ -21,11 +21,11 @@ namespace SuM_Manga_V3.SuMCreator
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             if (GetUserInfoCookie != null)
             {
-                if (GetUserInfoCookie["CreatorName"] == null || GetUserInfoCookie["CreatorName"] == string.Empty) { Response.Redirect("~/404.aspx"); }
+                if (GetUserInfoCookie["CreatorName"] == null || GetUserInfoCookie["CreatorName"] == string.Empty) { Response.Redirect("~/404.aspx?aspxerrorpath=LOGIN_PLZ"); }
             }
             else { Response.Redirect("~/AccountETC/LoginETC.aspx"); }
         }
-        protected private void CreateSUMXMLProfile(object sender, EventArgs e)
+        public void CreateSUMXMLProfile(object sender, EventArgs e)
         {
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
             int UserID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());

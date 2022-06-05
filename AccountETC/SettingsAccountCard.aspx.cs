@@ -100,8 +100,8 @@ namespace SuM_Manga_V3.AccountETC
                 PFPC.Attributes["src"] = ResolveUrl(CurrPFP);
                 if (GetUserInfoCookie["CreatorName"] != null) 
                 {
-                    CreatorClick.Attributes["onclick"] = "SuMGoToThis('/SuMCreator/CreatorPanel.aspx','var(--SuMThemeColorOP74)','Creator Panel','Creator');";
-                    CraetorSecTitle.InnerText = "creator panel";
+                    CreatorClick.Attributes["onclick"] = "androidAPIs.SuMCreatorPanel();";
+                    CraetorSecTitle.InnerText = "Creator panel";
                 }
             }
             else

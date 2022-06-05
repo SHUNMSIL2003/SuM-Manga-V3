@@ -277,7 +277,7 @@
         document.addEventListener('click', function (event) {
             var SettingSuMCardHeightDetacted0 = document.getElementById('<%= SlideDownCard.ClientID %>').getBoundingClientRect().height + 4;
             androidAPIs.ResizewebView3AccountSettingsCard(SettingSuMCardHeightDetacted0);
-            androidAPIs.LoadWebVersionValue("3.2.6 Beta");
+            androidAPIs.LoadWebVersionValue("4.0.1 API-6");
         });
         function SuMSettingDivExpandor(NormallId) {
             var ChangeDivv = document.getElementById('MainContent_' + NormallId);
@@ -292,11 +292,11 @@
             }
             return false;
         };
-        androidAPIs.LoadWebVersionValue("3.2.8 Beta");
-        var UIDDetectedForLoaingCoinsCardsInfo = getUIDFrUserCo();
+        androidAPIs.LoadWebVersionValue("4.0.1 API-6");
+        /*var UIDDetectedForLoaingCoinsCardsInfo = getUIDFrUserCo();
         if (UIDDetectedForLoaingCoinsCardsInfo != null && UIDDetectedForLoaingCoinsCardsInfo != '') {
             SuMCoinsCount(UIDDetectedForLoaingCoinsCardsInfo);
-        }
+        }*/
 
     </script>
 </asp:Content>

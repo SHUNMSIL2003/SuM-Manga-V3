@@ -156,8 +156,8 @@
             console.log("Suppressed default activity");
             e.preventDefault();
         }
-        console.log("this website is for a school project, It will be deleted soon! (By May)");
-        console.log("Content of this website is for public information. Usage of it without owners permission is strictly prohibited.");
+        console.log("this website is for a school project, It will be deleted soon! (By Jun)");
+        console.log("Content of this website is used as a placeholder. Usage of it without owners permission is strictly prohibited.");
     </script>   
     <script>
         window.addEventListener('contextmenu', e => {
