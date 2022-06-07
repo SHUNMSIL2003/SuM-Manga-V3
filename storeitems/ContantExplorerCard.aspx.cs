@@ -163,7 +163,7 @@ namespace SuM_Manga_V3.storeitems
             string themecolor = ThemeColor;
             char sc = '"';
             char b12 = '"';
-            TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#FFFFFF;width:80%;opacity:0.08;margin:0px;margin-block:0px;" + sc.ToString() + ">";
+            TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#FFFFFF;width:80%;opacity:0.0;margin:0px;margin-block:0px;" + sc.ToString() + ">";
             string btnanimationclass = string.Empty;
             btnanimationclass = b12.ToString() + "fadeIn animated btn" + b12.ToString();
             HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];

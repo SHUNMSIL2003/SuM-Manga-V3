@@ -4,6 +4,7 @@
 <html>
 
 <head runat="server">
+    <meta name=”robots” content=”noindex,nofollow”>
     <link rel="manifest" href="/manifest.json">
     <script>
         if ("androidAPIs" in window) {

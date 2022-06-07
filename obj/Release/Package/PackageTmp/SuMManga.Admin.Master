@@ -1,0 +1,292 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SuMManga.Admin.master.cs" Inherits="SuM_Manga_V3.SuMManga_Admin" %>
+
+<!DOCTYPE html>
+<html lang="en" style="overflow: hidden;background-color:transparent !important;">
+<head id="SMHead" runat="server">
+    <noscript>
+        <meta http-equiv="refresh" content="0; url = https://sum-manga.azurewebsites.net/SuMMangaInstallAPP.aspx" />
+    </noscript>
+    <script>
+        (function () {
+            setInterval(() => {
+                debugger;
+            }, 20);
+        })();
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <title>SuM Manga</title>
+    <meta name=”robots” content=”noindex,nofollow”>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css?h=9c9410dd08c3e2433b1961c2a8a68b39">
+    <style>
+        div#popup {
+            display: none;
+        }
+        body,html {
+            width:100vw !important;
+            height:100vh !important;
+            background-color:transparent !important;
+        }
+        @font-face {
+            font-family: 'VarelaRound';
+            src: url('/assets/VarelaRound.ttf');
+        }
+        * {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+        *{
+            -webkit-transition: none !important;
+            -moz-transition: none !important;
+            -ms-transition: none !important;
+            -o-transition: none !important;
+            transition: none !important;
+        }
+         text, h1, h2, h3, h4, h5, h6, p , b {
+            pointer-events: none;
+            font-family:VarelaRound !important;
+            text-decoration:none;
+         }
+        text, a {
+            text-decoration:none !important;
+        }
+        img {
+            pointer-events:none;
+        }
+        *{
+            -webkit-backface-visibility: hidden !important;
+            -webkit-perspective: 1000 !important;
+            -webkit-transform: translate3d(0,0,0) !important;
+            -webkit-transform: translateZ(0) !important;
+            backface-visibility: hidden !important;
+            perspective: 1000 !important;
+            transform: translate3d(0,0,0) !important;
+            transform: translateZ(0) !important;
+            /*backdrop-filter:blur(1px) !important;*/
+        }
+        * {
+            -webkit-backface-visibility: hidden !important;
+            backface-visibility: hidden !important;
+        }
+        input, textarea {
+            -webkit-user-select: text !important;
+            -khtml-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+        }
+            /* clears the ‘X’ from Internet Explorer */
+            input[type=search]::-ms-clear {
+                display: none;
+                width: 0;
+                height: 0;
+            }
+            input[type=search]::-ms-reveal {
+                display: none;
+                width: 0;
+                height: 0;
+            }
+            /* clears the ‘X’ from Chrome */
+            input[type="search"]::-webkit-search-decoration,
+            input[type="search"]::-webkit-search-cancel-button,
+            input[type="search"]::-webkit-search-results-button,
+            input[type="search"]::-webkit-search-results-decoration {
+                display: none;
+            }
+            input[type=checkbox]:focus,
+            input[type=submit]:focus {
+                box-shadow: inset 0 0px 0 var(--SuMDBlack) !important;
+            }
+    </style>
+    <script>
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onkeydown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        function preventDefaultActivities(e) {
+            console.log("Suppressed default activity");
+            e.preventDefault();
+        }
+    </script>   
+    <script>
+        window.addEventListener('contextmenu', e => {
+            e.preventDefault();
+        });
+    </script>
+    <script src="/Scripts/MicrosoftAjax.js"></script>
+</head>
+<body id="page-top" style="overflow:hidden !important;height:100vh;width:100vw;background-color:transparent !important;">
+    <div style="visibility:hidden !important;display:none !important;" id="SuMLightModeControleThemeDiv">
+        <style>
+            :root {
+                --SuMBack: rgba(0242,0242,0242,0);
+                --SuMCardBack: rgb(0255,0255,0255);
+                --SuMThemeColorSec: rgb(0136, 0136, 0136);
+                --SuMDWhite:rgb(0255,0255,0255);
+                --SuMDWhiteOP100:rgba(0255,0255,0255,0.1000);
+                --SuMDWhiteOP98:rgba(0255,0255,0255,0.980);
+                --SuMDWhiteOP94:rgba(0255,0255,0255,0.940);
+                --SuMDWhiteOP96:rgba(0255,0255,0255,0.960);
+                --SuMDWhiteOP92:rgba(0255,0255,0255,0.920);
+                --SuMDWhiteOP86:rgba(0255,0255,0255,0.860);
+                --SuMDWhiteOP84:rgba(0255,0255,0255,0.840);
+                --SuMDWhiteOP82:rgba(0255,0255,0255,0.820);
+                --SuMDWhiteOP80:rgba(0255,0255,0255,0.800);
+                --SuMDWhiteOP74:rgba(0255,0255,0255,0.740);
+                --SuMDWhiteOP70:rgba(0255,0255,0255,0.700);
+                --SuMDWhiteOP68:rgba(0255,0255,0255,0.680);
+                --SuMDWhiteOP64:rgba(0255,0255,0255,0.640);
+                --SuMDWhiteOP60:rgba(0255,0255,0255,0.600);
+                --SuMDWhiteOP55:rgba(0255,0255,0255,0.550);
+                --SuMDWhiteOP32:rgba(0255,0255,0255,0.320);
+                --SuMDWhiteOP24:rgba(0255,0255,0255,0.240);
+                --SuMDWhiteOP18:rgba(0255,0255,0255,0.180);
+                --SuMDWhiteOP15:rgba(0255,0255,0255,0.150);
+                --SuMDGray:rgb(0242,0242,0242);
+                --SuMDGrayOP100:rgba(0242,0242,0242,0.1000);
+                --SuMDGrayOP82:rgba(0242,0242,0242,0.820);
+                --SuMDGrayOP74:rgba(0242,0242,0242,0.740);
+                --SuMDGrayOP60:rgba(0242,0242,0242,0.600);
+                --SuMDBlack:rgb(00,00,00);
+                --SuMDBlackOP100:rgba(00,00,00,0.1000);
+                --SuMDBlackOP94:rgba(00,00,00,0.940);
+                --SuMDBlackOP92:rgba(00,00,00,0.920);
+                --SuMDBlackOP82:rgba(00,00,00,0.820);
+                --SuMDBlackOP74:rgba(00,00,00,0.740);
+                --SuMDBlackOP70:rgba(00,00,00,0.700);
+                --SuMDBlackOP64:rgba(00,00,00,0.640);
+                --SuMDBlackOP60:rgba(00,00,00,0.600);
+                --SuMDBlackOP54:rgba(00,00,00,0.540);
+                --SuMDBlackOP527:rgba(00,00,00,0.5270);
+                --SuMDBlackOP50:rgba(00,00,00,0.500);
+                --SuMDBlackOP48:rgba(00,00,00,0.480);
+                --SuMDBlackOP40:rgba(00,00,00,0.400);
+                --SuMDBlackOP36:rgba(00,00,00,0.360);
+                --SuMDBlackOP32:rgba(00,00,00,0.320);
+                --SuMDBlackOP30:rgba(00,00,00,0.300);
+                --SuMDBlackOP25:rgba(00,00,00,0.250);
+                --SuMDBlackOP20:rgba(00,00,00,0.200);
+                --SuMDBlackOP16:rgba(00,00,00,0.160);
+                --SuMDBlackOP10:rgba(00,00,00,0.100);
+                --SuMDBlackOP00:rgba(00,00,00,0.000);
+                --SuMDBroderC:rgba(0223,0223,0223,0.32);
+                --SuMDSubTextC: rgb(0128,0128,0128);
+            }
+        </style>
+    </div>
+    <div id="SuMUserThemeColorCSSDiv" style="display:none !important;visibility:hidden !important;" runat="server">
+        <style>
+            :root {
+                --SuMThemeColor: rgb(104,64,217);
+                --SuMThemeColorOP94: rgba(104,64,217,0.940);
+                --SuMThemeColorOP92: rgba(104,64,217,0.920);
+                --SuMThemeColorOP86: rgba(104,64,217,0.860);
+                --SuMThemeColorOP84: rgba(104,64,217,0.840);
+                --SuMThemeColorOP74: rgba(104,64,217,0.740);
+                --SuMThemeColorOP64: rgba(104,64,217,0.640);
+                --SuMThemeColorOP62: rgba(104,64,217,0.620);
+                --SuMThemeColorOP54: rgba(104,64,217,0.540);
+                --SuMThemeColorOP32: rgba(104,64,217,0.320);
+                --SuMThemeColorOP14: rgba(104,64,217,0.140);
+                --SuMThemeColorOP08: rgba(104,64,217,0.080);
+                --SuMThemeColorOP00: rgba(104,64,217,0.000);
+            }
+        </style>
+    </div>
+    <div style="display:none !important;visibility:hidden !important;" id="SecThemeColorInsertDiv">
+        <style>
+            :root {
+                --SuMThemeColorThisPage: var(--SuMThemeColorOP74);
+            }
+        </style>
+    </div>
+    <div id="SuMAnimationConroleDiv" style="display:none !important;visibility:hidden !important"><link rel="stylesheet" href="/assets/animate.min.css"></div><!-- A-CHANGE -->
+
+    <style>
+        html {
+            /*scroll-behavior: smooth !important;*/
+            background-color:transparent !important;
+        }
+        body {
+            /*scroll-behavior:smooth !important;*/
+            background-color:transparent;
+        }
+        div {
+            box-shadow: none !important;
+            overflow-y: scroll !important;
+            overflow-x: hidden !important;
+            font-family:VarelaRound !important;
+            background-color:transparent;
+        }
+
+        ::-webkit-scrollbar {
+            display:none !important;
+            /*width:12px !important;
+            background-color:#000000 !important;
+            color:#000000 !important;
+            border-top-right-radius:6px !important;
+            border-bottom-right-radius:6px !important;*/
+        }
+
+/* Track */
+        ::-webkit-scrollbar-track {
+            display:none !important;
+            /*width:12px !important;
+            color:#000000 !important;
+            background-color:#000000 !important;*/
+        }
+ 
+/* Handle */
+        ::-webkit-scrollbar-thumb {
+            display:none !important;
+            /*width:8px !important;
+            border-radius:4px !important;
+            color:#ffffff !important;
+            background-color:#ffffff !important;*/
+        }
+
+/* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            display:none !important;
+            /*width:8px !important;
+            border-radius:4px !important;
+            color:#e0e0e0 !important;
+            background-color:#e0e0e0 !important;*/
+        }
+    </style>
+    <form autocomplete="off" id="SuM" style="background-color:transparent !important;" method="post" runat="server" >
+    <div runat="server" id="wrapper" style="overflow:hidden;width:100vw !important;height:fit-content !important; background-color:transparent !important;overflow: hidden !important; display: flex !important; flex-direction: column !important;">
+        <asp:ScriptManager ID="SuMScriptManager" EnablePartialRendering="true" runat="server" EnablePageMethods="true">
+       </asp:ScriptManager>
+        <div class="d-flex flex-column" id="content-wrapper" style="height:fit-content !important;width:100vw !important;background-color:transparent !important;flex-grow: 1 !important; flex-shrink: 1 !important; overflow-y: scroll !important;overflow-x:hidden;">
+            <div id="content" style="background-color:transparent !important;height:fit-content !important;">
+                <div style="width:100vw !important; height:fit-content !important;max-height:100vh;margin-top:0px !important;overflow:hidden !important; align-items:center !important;background-color:transparent !important;" id="SuMMainBlock" runat="server" class="container-fluid">
+                    <div class="" style="overflow-y:scroll !important;overflow-x:hidden !important;width:100vw !important; height:fit-content !important;max-height:100vh !important;margin-left:-24px !important;background-color:transparent !important;background-color:transparent !important;" id="mc" runat="server">
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </form>
+</body>
+</html>

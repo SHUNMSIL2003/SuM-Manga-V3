@@ -240,11 +240,11 @@ namespace SuM_Manga_V3
                                 MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
                                 MySqlCmd.Parameters["@MangaID"].Value = R[0, i];
                                 g = MySqlCmd.ExecuteScalar();
-                                string ExplorerLink = g.ToString().Replace("ContantExplorer.aspx", "MangaExplorer.aspx");
+                                string ExplorerLink = g.ToString();//.Replace("ContantExplorer.aspx", "MangaExplorer.aspx");
                                 string Fixer = "";
                                 int FixerNum = 4 - R[1, i].ToString().Length;
                                 while (FixerNum > 0) { Fixer += "0"; FixerNum--; }
-                                ExplorerLink += "&VC=" + R[0, i].ToString() + "&TC=" + MangaTheme + "&Chapter=ch" + Fixer + R[1, i];
+                                //ExplorerLink += "&VC=" + R[0, i].ToString() + "&TC=" + MangaTheme + "&Chapter=ch" + Fixer + R[1, i];
 
                                 query = "SELECT MangaCoverLink FROM SuMManga WHERE MangaID = @MangaID";
                                 MySqlCmd = new MySqlCommand(query, MySqlCon);
@@ -266,6 +266,8 @@ namespace SuM_Manga_V3
                                 MySqlCmd.Parameters["@MangaID"].Value = R[0, i];
                                 g = MySqlCmd.ExecuteScalar();
                                 int ChapterCValue = Convert.ToInt32(g);
+
+                                ExplorerLink = "/APIs/MangaParser.aspx?MID=" + R[0, i].ToString() + "&CN=" + "ch" + Fixer + R[1, i] + "&MN=" + ExplorerLink.Split('=')[1];
 
                                 ShowReqContant.InnerHtml += BuildCurrCard(MangaName, MangaTheme, ExplorerLink, R[1, i].ToString(), CoverLink, CreatorName, ChapterCValue);
 
@@ -361,7 +363,7 @@ namespace SuM_Manga_V3
             string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:12px;float:left;margin:8px;" + scfu;
             string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
             string AuthString = "<p style=" + "color:var(--SuMDBlackOP50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
-            string RS = divST + "<a onclick=" + sc.ToString() + "androidAPIs.SuMExploreLoadReader('" + ExplorerLink + "',"+ ChapterCValue + ");" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">Chapter: " + chapter + "</p></div></a></div>"; // + hr;
+            string RS = divST + "<a onclick=" + sc.ToString() + "androidAPIs.SuMExploreLoadReader('" + ExplorerLink + "');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">Chapter: " + chapter + "</p></div></a></div>"; // + hr;
             return RS;
         }
         protected string BuildRestCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink, string MangaCreator,int MangaID,string AgeRating)

@@ -11,7 +11,7 @@ namespace SuM_Manga_V3.SuMAdmin
 {
 
 
-    public partial class SuMManualPuplish
+    public partial class SuMManualChapterPuplish
     {
 
         /// <summary>
@@ -33,42 +33,6 @@ namespace SuM_Manga_V3.SuMAdmin
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl REQIDELM;
 
         /// <summary>
-        /// SuMCreatorPuplishNameTXT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SuMCreatorPuplishNameTXT;
-
-        /// <summary>
-        /// MangaNamePELM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaNamePELM;
-
-        /// <summary>
-        /// MangaDiscPELM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaDiscPELM;
-
-        /// <summary>
-        /// MangaGernsPELM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaGernsPELM;
-
-        /// <summary>
         /// MangaAgeRatingPELM control.
         /// </summary>
         /// <remarks>
@@ -85,5 +49,14 @@ namespace SuM_Manga_V3.SuMAdmin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage MangaCoverELM;
+
+        /// <summary>
+        /// ChapterPagesC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ChapterPagesC;
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.MainCard.Master" AutoEventWireup="true" CodeBehind="CreatorMangaPanel.aspx.cs" Async="true" Inherits="SuM_Manga_V3.SuMCreator.CreatorMangaPanel" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.card.Master" AutoEventWireup="true" CodeBehind="CreatorMangaPanel.aspx.cs" Async="true" Inherits="SuM_Manga_V3.SuMCreator.CreatorMangaPanel" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
@@ -29,7 +29,7 @@
             background-color:transparent !important;
         }
     </style>
-    <div style="width:100%;height:100%;padding-bottom:280px !important;background-color:var(--SuMThemeColorOP92);padding:16px;" class="animated fadeIn" id="CreateProfileDiv" runat="server">
+    <div style="width:100%;height:100%;padding-bottom:280px !important;background-color:var(--SuMThemeColorOP92);padding:16px;padding-top:0px !important;" class="animated fadeIn" id="CreateProfileDiv" runat="server">
         <div style="background-color:var(--SuMDWhite);margin:0 auto;width:100%;height:fit-content;border-radius:20px;">
            <div style="background-color:var(--SuMThemeColorOP14);border-radius:18px;width:calc(100% - 24px);height:fit-content;margin:12px;">
                 <div style="width:100%;display:block;padding:8px;padding-left:18px;margin-bottom:-12px;">
@@ -113,7 +113,7 @@
                <asp:CheckBox AutoPostBack="false" ID="SciFi" runat="server" Checked="false" style="display:none !important;visibility:hidden !important;" />
            </div>
             <asp:Button style="display:none !important;visibility:hidden !important;" OnClick="CreateSUMXMLProfile" ID="SendItBTN" runat="server" />
-            <a style="width:48px;height:48px;background-color:var(--SuMThemeColorOP08);float:right;margin-right:18px;padding:6px;margin:6px;border-radius:21px;" onclick="SendTheProfile();">
+            <a style="width:48px;height:48px;background-color:transparent;float:right;margin-right:18px;padding:6px;margin:6px;border-radius:21px;" onclick="SendTheProfile();">
                 <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="var(--SuMThemeColorOP92)"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3.4 20.4l17.45-7.48c.81-.35.81-1.49 0-1.84L3.4 3.6c-.66-.29-1.39.2-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"/></svg>
             </a>
         </div>

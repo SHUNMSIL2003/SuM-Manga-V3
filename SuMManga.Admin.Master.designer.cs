@@ -7,83 +7,83 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SuM_Manga_V3.SuMAdmin
+namespace SuM_Manga_V3
 {
 
 
-    public partial class SuMManualPuplish
+    public partial class SuMManga_Admin
     {
 
         /// <summary>
-        /// SuMThemeBox control.
+        /// SMHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMThemeBox;
+        protected global::System.Web.UI.HtmlControls.HtmlHead SMHead;
 
         /// <summary>
-        /// REQIDELM control.
+        /// SuMUserThemeColorCSSDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl REQIDELM;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMUserThemeColorCSSDiv;
 
         /// <summary>
-        /// SuMCreatorPuplishNameTXT control.
+        /// SuM control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SuMCreatorPuplishNameTXT;
+        protected global::System.Web.UI.HtmlControls.HtmlForm SuM;
 
         /// <summary>
-        /// MangaNamePELM control.
+        /// wrapper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaNamePELM;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl wrapper;
 
         /// <summary>
-        /// MangaDiscPELM control.
+        /// SuMScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaDiscPELM;
+        protected global::System.Web.UI.ScriptManager SuMScriptManager;
 
         /// <summary>
-        /// MangaGernsPELM control.
+        /// SuMMainBlock control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaGernsPELM;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMMainBlock;
 
         /// <summary>
-        /// MangaAgeRatingPELM control.
+        /// mc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MangaAgeRatingPELM;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mc;
 
         /// <summary>
-        /// MangaCoverELM control.
+        /// MainContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage MangaCoverELM;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
     }
 }

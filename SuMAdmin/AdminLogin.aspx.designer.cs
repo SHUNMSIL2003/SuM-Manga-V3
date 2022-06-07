@@ -15,48 +15,30 @@ namespace SuM_Manga_V3.SuMAdmin
     {
 
         /// <summary>
-        /// SuM control.
+        /// SuMAdminMSG control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm SuM;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuMAdminMSG;
 
         /// <summary>
-        /// UserNameL control.
+        /// SuMAdminKEY control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText UserNameL;
+        protected global::System.Web.UI.WebControls.TextBox SuMAdminKEY;
 
         /// <summary>
-        /// PasswordL control.
+        /// SuMAdminCC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword PasswordL;
-
-        /// <summary>
-        /// LoginStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LoginStatus;
-
-        /// <summary>
-        /// rem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rem;
+        protected global::System.Web.UI.WebControls.TextBox SuMAdminCC;
     }
 }

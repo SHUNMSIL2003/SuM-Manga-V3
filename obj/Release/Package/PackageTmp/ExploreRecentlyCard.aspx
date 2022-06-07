@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.card.Master" AutoEventWireup="true" CodeBehind="ExploreRecentlyCard.aspx.cs" Inherits="SuM_Manga_V3.ExploreRecentlyCard" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.MainCard.Master" AutoEventWireup="true" CodeBehind="ExploreRecentlyCard.aspx.cs" Inherits="SuM_Manga_V3.ExploreRecentlyCard" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>

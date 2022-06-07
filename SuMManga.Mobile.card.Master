@@ -7,20 +7,7 @@
         <meta http-equiv="refresh" content="0; url = https://sum-manga.azurewebsites.net/SuMMangaInstallAPP.aspx" />
     </noscript>
     <script>
-        if ("androidAPIs" in window) {
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/SuMManga-SW.js')
-                        .then(registration => {
-                            console.log(`Service Worker registered! Scope: ${registration.scope}`);
-                        })
-                        .catch(err => {
-                            console.log(`Service Worker registration failed: ${err}`);
-                        });
-                });
-            }
-        }
-        else {
+        if (!"androidAPIs" in window) {
             (function () {
                 setInterval(() => {
                     debugger;

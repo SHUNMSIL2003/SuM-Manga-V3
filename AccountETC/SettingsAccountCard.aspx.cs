@@ -268,9 +268,9 @@ namespace SuM_Manga_V3.AccountETC
             if (SuMCustomPFP.HasFile == true)
             {
                 string oldimg = PFP.Attributes["src"].ToString();
-                char[] fixing = oldimg.ToCharArray();
-                string OrPATH = string.Empty;
-                for (int i = 0; i < fixing.Length; i++)
+                //char[] fixing = oldimg.ToCharArray();
+                string OrPATH = oldimg.Replace("/", "\\");//string.Empty;
+                /*for (int i = 0; i < fixing.Length; i++)
                 {
                     if (fixing[i] == '/')
                     {
@@ -282,7 +282,7 @@ namespace SuM_Manga_V3.AccountETC
                         if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = fixing[i].ToString(); }
                         else { OrPATH += fixing[i].ToString(); }
                     }
-                }
+                }*/
                 bool fixer = File.Exists(Server.MapPath(OrPATH));
                 bool Deafult = PFPIsNotADeafult(oldimg);
                 if (fixer == true && Deafult == false) { File.Delete(Server.MapPath(OrPATH)); }

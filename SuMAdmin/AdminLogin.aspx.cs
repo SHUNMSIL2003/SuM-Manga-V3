@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
+using MySql.Data.MySqlClient;
+using System.Configuration;
 using System.Text;
 
 namespace SuM_Manga_V3.SuMAdmin
@@ -13,55 +10,22 @@ namespace SuM_Manga_V3.SuMAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMAdmin"];
             if (GetUserInfoCookie != null)
             {
-                //MPB.InnerText = "Explore";
-                //MPB.Attributes["href"] = "Library.aspx";
-                Response.Redirect("~/Default.aspx");
+                if (GetUserInfoCookie.Expires > DateTime.UtcNow.AddHours(8))
+                {
+                    SuMAdminMSG.InnerText = "Session expired, login plz.";
+                    Response.Cookies["SuMAdmin"].Expires = DateTime.Now.AddDays(-1);
+                }
+                else Response.Redirect("~/SuMAdmin/AcceptSuMUploads.aspx");
             }
             else
             {
-                //ResendConf.Visible = false;
-                LoginStatus.InnerText = "";
-                UserNameL.Attributes["style"] = "";
-                PasswordL.Attributes["style"] = "";
+                SuMAdminMSG.InnerText = "";
             }
         }
-        protected void LoginToSuM(object sender, EventArgs e)
-        {
-            //LoginStatus.InnerText = "";
-            //string statevalid = "";
-            /*string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
-            {
-                MySqlCon.Open();
-                string query = "SELECT COUNT(1) FROM SuMAdministrators WHERE UserName = @UserName AND Password = @Password ";
-                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
-                string username = UserNameL.Value; //Request.QueryString["UserNameL"].ToString();
-                MySqlCmd.Parameters.AddWithValue("@UserName", sha256(username));
-                string password = PasswordL.Value; //Request.QueryString["PasswordL"].ToString();
-                MySqlCmd.Parameters.AddWithValue("@Password", sha256(password));
-                int count = Convert.ToInt32(MySqlCmd.ExecuteScalar());
-                if (count > 0)
-                {
-                    SaveCookie(sha256(username));
-                    MySqlCon.Close();
-                    HttpContext.Current.Response.Redirect("~/SuMAdmin/AdminControlPanel.aspx");
-                }
-                else
-                {
-                    LoginStatus.InnerText = "Invalid!"; MySqlCon.Close();
-                    UserNameL.Attributes["style"] = "border: solid 2px red;";
-                    PasswordL.Attributes["style"] = "border: solid 2px red;";
-                    //LoginStatus.InnerText = "Username Or Password are incurrect!";
-                    //UserNameL.BorderColor = System.Drawing.Color.Red;
-                    //PasswordL.BorderColor = System.Drawing.Color.Red;
-                    //rem.InnerText = "Not OK";
-                }
-
-            }*/
-        }
-        /*static string sha256(string randomString)
+        private static string sha256(string randomString)
         {
             var crypt = new System.Security.Cryptography.SHA256Managed();
             var hash = new System.Text.StringBuilder();
@@ -71,15 +35,70 @@ namespace SuM_Manga_V3.SuMAdmin
                 hash.Append(theByte.ToString("x2"));
             }
             return hash.ToString();
-        }*/
-        /*static void SaveCookie(string UserName)
+        }
+        protected void LoginToSuM(object sender, EventArgs e)
         {
-            HttpCookie userInfo = new HttpCookie("SuMCurrentUser");  //Request.Cookies["userInfo"].Value;  
-            userInfo["UserName"] = UserName;
-            //userInfo.Expires.Add(new TimeSpan(4, 1, 0));
-            userInfo.Expires = DateTime.MaxValue;
+            SuMLoginPross();
+        }
+        protected private void SuMLoginPross()
+        {
+            SuMAdminMSG.InnerText = "";
+            object AID_OBJ = SuMAdminKEY.Text;//Daily Generated Admin-Login-Key (for extra security)
+            object ACC_OBJ = SuMAdminCC.Text;//Admin(Worker) Privat Key
+            if (AID_OBJ == null || ACC_OBJ == null)
+            {
+                SuMAdminMSG.InnerText = "enter the administration key and confirmation code";
+            }
+            string AID = AID_OBJ.ToString();
+            string ACC = ACC_OBJ.ToString();
+            string DGAID = "DEBUGINGKEY";//(place holder) a key will be givn to workers evryday (shared key)
+            if (AID != DGAID)
+            {
+                SuMAdminMSG.InnerText = "invalid inputs";
+                SuMAdminKEY.Text = "";
+                SuMAdminCC.Text = "";
+            }
+            else
+            {
+                int ACC_SBS = ACCIsValid(ACC);
+                if (ACC_SBS > 0)
+                {
+                    SaveCookie(ACC_SBS, ACC, AID);
+                }
+                else
+                {
+                    SuMAdminMSG.InnerText = "invalid inputs";
+                    SuMAdminKEY.Text = "";
+                    SuMAdminCC.Text = "";
+                }
+            }
+        }
+        protected private int ACCIsValid(string ACC)
+        {
+            if(string.IsNullOrEmpty(ACC)) return 0;
+            object Res;
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
+            {
+                MySqlCon.Open();
+                string query = "SELECT ID FROM SuMAdmins WHERE AK = @AK ";
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                MySqlCmd.Parameters.AddWithValue("@AK", sha256(ACC));
+                Res = MySqlCmd.ExecuteScalar();
+            }
+            if (Res == null) return 0;
+            if (Convert.ToInt32(Res.ToString()) > 0) return Convert.ToInt32(Res.ToString());
+            else return 0;
+        }
+        protected private void SaveCookie(int ID, string ACC,string AID)
+        {
+            HttpCookie userInfo = new HttpCookie("SuMAdmin");
+            userInfo["ID"] = ID.ToString();
+            userInfo["ACC"] = ACC;
+            userInfo["AID256"] = sha256(AID);
+            userInfo.Expires = DateTime.UtcNow.AddHours(8);//Working time
             HttpContext.Current.Response.Cookies.Add(userInfo);
-            HttpContext.Current.Response.Redirect("/AccountETC/SuMAccount.aspx");
-        }*/
+            HttpContext.Current.Response.Redirect("~/SuMAdmin/AcceptSuMUploads.aspx");
+        }
     }
 }

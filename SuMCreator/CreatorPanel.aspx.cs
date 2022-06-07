@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Xml.Linq;
-using System.Data.SqlClient; using MySql.Data.MySqlClient; using System.Configuration;
+using MySql.Data.MySqlClient;
+using System.Configuration;
 using System.Data;
-using System.Drawing;
-using System.Net.Mail;
 using System.IO;
-using System.Text;
 
 namespace SuM_Manga_V3.SuMCreator
 {
@@ -156,58 +151,155 @@ namespace SuM_Manga_V3.SuMCreator
         protected private void ProssUnderProssReq(string XMLPaths)
         {
             XMLPaths = XMLPaths.Replace("#", "");
-            if (System.Text.RegularExpressions.Regex.Matches(XMLPaths, "&").Count > 1)
-            {
-
-                string[] XMLPathX = XMLPaths.Split('&');
-                string MangaName = string.Empty;
-                string MangaPicRelativRoot = string.Empty;
-                string MangaThemeColor = string.Empty;
-                string MangaDiscription = string.Empty;
-                string MangaGerns = string.Empty;
-                string MangaPuplisherName = string.Empty;
-                string MangaAgeID = string.Empty;
-                string UserReqID = string.Empty;
-                string PathDeteced = string.Empty;
-                for (int i = 0; i < XMLPathX.Length-1; i++)
+            if (!string.IsNullOrEmpty(XMLPaths))
+                if (System.Text.RegularExpressions.Regex.Matches(XMLPaths, "&").Count > 1)
                 {
-                    PathDeteced = "~/SuMCreator/CreatorsDrafts/" + XMLPathX[i];
-                    //DataSet ds = new DataSet();
-                    //ds.ReadXml(HttpContext.Current.Server.MapPath("~/SuMCreator/CreatorsDrafts/" + XMLPathX[i]));
-                    XDocument doc = XDocument.Load(HttpContext.Current.Server.MapPath(PathDeteced));
-                    MangaName = doc.Element("SuMReq").Element("Name").Value.ToString();
-                    MangaPicRelativRoot = doc.Element("SuMReq").Element("Pic").Value.ToString();
-                    MangaThemeColor = doc.Element("SuMReq").Element("ThemeColor").Value.ToString();
-                    MangaDiscription = doc.Element("SuMReq").Element("Description").Value.ToString();
-                    MangaGerns = doc.Element("SuMReq").Element("Genres").Value.ToString();
-                    MangaPuplisherName = doc.Element("SuMReq").Element("Creator").Value.ToString();
-                    MangaAgeID = doc.Element("SuMReq").Element("AgeID").Value.ToString();
-                    UserReqID = doc.Element("SuMReq").Element("ReqID").Value.ToString();
-                    ShowContantDiv.InnerHtml += BuildUnderProssCard(MangaName, MangaThemeColor, "", "/SuMCreator/CreatorsDrafts/" + MangaPicRelativRoot, MangaPuplisherName);
+
+                    string[] XMLPathX = XMLPaths.Split('&');
+                    string MangaName = string.Empty;
+                    string MangaPicRelativRoot = string.Empty;
+                    string MangaThemeColor = string.Empty;
+                    string MangaPuplisherName = string.Empty;
+                    string PathDeteced = string.Empty;
+                    for (int i = 0; i < XMLPathX.Length - 1; i++)
+                    {
+                        PathDeteced = "~/SuMCreator/CreatorsDrafts/" + XMLPathX[i];
+                        if (File.Exists(Server.MapPath(PathDeteced)))
+                        {
+                            XDocument doc = XDocument.Load(HttpContext.Current.Server.MapPath(PathDeteced));
+                            MangaName = doc.Element("SuMReq").Element("Name").Value.ToString();
+                            MangaPicRelativRoot = doc.Element("SuMReq").Element("Pic").Value.ToString();
+                            MangaThemeColor = doc.Element("SuMReq").Element("ThemeColor").Value.ToString();
+                            MangaPuplisherName = doc.Element("SuMReq").Element("Creator").Value.ToString();
+                            ShowContantDiv.InnerHtml += BuildUnderProssCard(MangaName, MangaThemeColor, "", "/SuMCreator/CreatorsDrafts/" + MangaPicRelativRoot, MangaPuplisherName);
+                        }
+                        else
+                        {
+                            if (File.Exists(Server.MapPath(PathDeteced.Replace("CreatorsDrafts", "CreatorRej"))))
+                            {
+                                XDocument docc = XDocument.Load(HttpContext.Current.Server.MapPath(PathDeteced.Replace("CreatorsDrafts", "CreatorRej")));
+                                MangaName = docc.Element("SuMReq").Element("Name").Value.ToString();
+                                MangaPicRelativRoot = docc.Element("SuMReq").Element("Pic").Value.ToString();
+                                MangaThemeColor = docc.Element("SuMReq").Element("ThemeColor").Value.ToString();
+                                MangaPuplisherName = docc.Element("SuMReq").Element("Creator").Value.ToString();
+                                ShowContantDiv.InnerHtml += BuildRejectedCard(MangaName, MangaThemeColor, "", "/SuMCreator/CreatorRej/" + MangaPicRelativRoot, MangaPuplisherName);
+                            }
+                            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+                            int UserID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+                            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
+                            {
+                                MySqlCon.Open();
+                                string NewReqIDs = string.Empty;
+
+                                string query = "SELECT UnderProssReq FROM SuMCreators WHERE CreatorID = @UID";
+                                MySqlCommand MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                                MySqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                                MySqlCmd2.Parameters["@UID"].Value = UserID;
+                                using (var reader = MySqlCmd2.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        NewReqIDs = reader[0].ToString().Replace("#" + XMLPathX[i] + "&", "");
+                                    }
+                                }
+                                query = "UPDATE SuMCreators SET UnderProssReq = @NewUnderProssReq WHERE CreatorID = @UID";
+                                MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                                MySqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                                MySqlCmd2.Parameters["@UID"].Value = UserID;
+                                MySqlCmd2.Parameters.AddWithValue("@NewUnderProssReq", NewReqIDs);
+                                MySqlCmd2.ExecuteNonQuery();
+                            }
+                            //Deleting XML
+                            XDocument doc = null;
+                            PathDeteced = PathDeteced.Replace("CreatorsDrafts", "CreatorRej");
+                            if (File.Exists(Server.MapPath(PathDeteced)))
+                            {
+                                doc = XDocument.Load(HttpContext.Current.Server.MapPath(PathDeteced));
+                                File.Delete(Server.MapPath(PathDeteced));
+                            }
+                            //Deleting Pic
+                            if (doc != null)
+                            {
+                                PathDeteced = "~/SuMCreator/CreatorRej/" + doc.Element("SuMReq").Element("Pic").Value.ToString();
+                                if (File.Exists(Server.MapPath(PathDeteced)))
+                                    File.Delete(Server.MapPath(PathDeteced));
+                            }
+                        }
+                    }
                 }
-            }
-            else
-            {
-                string MangaName = string.Empty;
-                string MangaPicRelativRoot = string.Empty;
-                string MangaThemeColor = string.Empty;
-                string MangaDiscription = string.Empty;
-                string MangaGerns = string.Empty;
-                string MangaPuplisherName = string.Empty;
-                string MangaAgeID = string.Empty;
-                string UserReqID = string.Empty;
-                string PathDeteced = "~/SuMCreator/CreatorsDrafts/" + XMLPaths.Replace("&", "");
-                XDocument doc = XDocument.Load(HttpContext.Current.Server.MapPath(PathDeteced));
-                MangaName = doc.Element("SuMReq").Element("Name").Value.ToString();
-                MangaPicRelativRoot = doc.Element("SuMReq").Element("Pic").Value.ToString();
-                MangaThemeColor = doc.Element("SuMReq").Element("ThemeColor").Value.ToString();
-                MangaDiscription = doc.Element("SuMReq").Element("Description").Value.ToString();
-                MangaGerns = doc.Element("SuMReq").Element("Genres").Value.ToString();
-                MangaPuplisherName = doc.Element("SuMReq").Element("Creator").Value.ToString();
-                MangaAgeID = doc.Element("SuMReq").Element("AgeID").Value.ToString();
-                UserReqID = doc.Element("SuMReq").Element("ReqID").Value.ToString();
-                ShowContantDiv.InnerHtml += BuildUnderProssCard(MangaName, MangaThemeColor, "", "/SuMCreator/CreatorsDrafts/" + MangaPicRelativRoot, MangaPuplisherName);
-            }
+                else
+                {
+                    string MangaName = string.Empty;
+                    string MangaPicRelativRoot = string.Empty;
+                    string MangaThemeColor = string.Empty;
+                    string MangaGerns = string.Empty;
+                    string MangaPuplisherName = string.Empty;
+                    string PathDeteced = "~/SuMCreator/CreatorsDrafts/" + XMLPaths.Replace("&", "");
+                    if (File.Exists(Server.MapPath(PathDeteced)))
+                    {
+                        XDocument doc = XDocument.Load(HttpContext.Current.Server.MapPath(PathDeteced));
+                        MangaName = doc.Element("SuMReq").Element("Name").Value.ToString();
+                        MangaPicRelativRoot = doc.Element("SuMReq").Element("Pic").Value.ToString();
+                        MangaThemeColor = doc.Element("SuMReq").Element("ThemeColor").Value.ToString();
+                        MangaPuplisherName = doc.Element("SuMReq").Element("Creator").Value.ToString();
+                        ShowContantDiv.InnerHtml += BuildUnderProssCard(MangaName, MangaThemeColor, "", "/SuMCreator/CreatorsDrafts/" + MangaPicRelativRoot, MangaPuplisherName);
+                    }
+                    else
+                    {
+                        if (File.Exists(Server.MapPath(PathDeteced.Replace("CreatorsDrafts", "CreatorRej"))))
+                        {
+                            XDocument docc = XDocument.Load(HttpContext.Current.Server.MapPath(PathDeteced.Replace("CreatorsDrafts", "CreatorRej")));
+                            MangaName = docc.Element("SuMReq").Element("Name").Value.ToString();
+                            MangaPicRelativRoot = docc.Element("SuMReq").Element("Pic").Value.ToString();
+                            MangaThemeColor = docc.Element("SuMReq").Element("ThemeColor").Value.ToString();
+                            MangaPuplisherName = docc.Element("SuMReq").Element("Creator").Value.ToString();
+                            ShowContantDiv.InnerHtml += BuildRejectedCard(MangaName, MangaThemeColor, "", "/SuMCreator/CreatorsDrafts/" + MangaPicRelativRoot, MangaPuplisherName);
+                        }
+                        HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+                        int UserID = Convert.ToInt32(GetUserInfoCookie["ID"].ToString());
+                        string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+                        using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
+                        {
+                            MySqlCon.Open();
+                            string NewReqIDs = string.Empty;
+
+                            string query = "SELECT UnderProssReq FROM SuMCreators WHERE CreatorID = @UID";
+                            MySqlCommand MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                            MySqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                            MySqlCmd2.Parameters["@UID"].Value = UserID;
+                            using (var reader = MySqlCmd2.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    NewReqIDs = reader[0].ToString().Replace("#" + XMLPaths.Replace("&", "") + "&", "");
+                                }
+                            }
+                            query = "UPDATE SuMCreators SET UnderProssReq = @NewUnderProssReq WHERE CreatorID = @UID";
+                            MySqlCmd2 = new MySqlCommand(query, MySqlCon);
+                            MySqlCmd2.Parameters.AddWithValue("@UID", SqlDbType.Int);
+                            MySqlCmd2.Parameters["@UID"].Value = UserID;
+                            MySqlCmd2.Parameters.AddWithValue("@NewUnderProssReq", NewReqIDs);
+                            MySqlCmd2.ExecuteNonQuery();
+                        }
+                        XDocument doc = null;
+                        //Deleting XML
+                        PathDeteced = PathDeteced.Replace("CreatorsDrafts", "CreatorRej");
+                        if (File.Exists(Server.MapPath(PathDeteced)))
+                        {
+                            doc = XDocument.Load(HttpContext.Current.Server.MapPath(PathDeteced));
+                            File.Delete(Server.MapPath(PathDeteced));
+                        }
+                        if (doc != null)
+                        {
+                            //Deleting Pic
+                            PathDeteced = "~/SuMCreator/CreatorRej/" + doc.Element("SuMReq").Element("Pic").Value.ToString();
+                            if (File.Exists(Server.MapPath(PathDeteced)))
+                                File.Delete(Server.MapPath(PathDeteced));
+                        }
+                    }
+
+                }
         }
         protected private void ProssAcceptedReq(string XMLPath) 
         {
@@ -218,7 +310,8 @@ namespace SuM_Manga_V3.SuMCreator
         protected private void ProssMyMangas(string IDs)
         {
             int[] MyIDs = ST0(IDs);
-            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
                 MySqlCon.Open();
 
@@ -274,12 +367,12 @@ namespace SuM_Manga_V3.SuMCreator
                     string CreatorName = g.ToString();
 
 
-                    ShowContantDiv.InnerHtml += BuildMyMangasCard(MangaName, MangaTheme, ExplorerLink, chaptersnum, CoverLink, CreatorName);
+                    ShowContantDiv.InnerHtml += BuildMyMangasCard(MangaName, MangaTheme, ExplorerLink, chaptersnum, CoverLink, CreatorName,MyIDs[i]);
                 }
                 MySqlCon.Close();
             }
         }
-        protected private string BuildMyMangasCard(string MangaName, string MangaTheme, string ExplorerLink, string chapter, string CoverLink, string MangaCreator)
+        protected private string BuildMyMangasCard(string MangaName, string MangaTheme, string ExplorerLink, string chapter, string CoverLink, string MangaCreator,int MangaID)
         {
             char sc = '"'; string scfu = sc.ToString();
             string divST = "<div style=" + "overflow:clip;width:fit-content;height:fit-content;" + ">";
@@ -288,7 +381,7 @@ namespace SuM_Manga_V3.SuMCreator
             string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:12px;float:left;margin:8px;" + scfu;
             string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
             string AuthString = "<p style=" + "color:var(--SuMDBlackOP50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
-            string RS = "<div style=" + '"' + "position: relative;width:100%;background-color:rgba(255,255,255,0.96);border-radius:18px;height:fit-content;padding:8px;margin:0 auto;margin-bottom:12px;" + '"' + " class=shadow-sm > " + divST + " <a onclick=" + sc.ToString() + "SuMGoToThis('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName.Replace("'", "") + "','Creator');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:#6b6b6b;font-size:84%;" + ">" + chapter + " Chapters</p></div></a></div>" + "</div>"; // + hr;
+            string RS = "<div style=" + '"' + "position: relative;width:100%;background-color:rgba(255,255,255,0.96);border-radius:18px;height:fit-content;padding:8px;margin:0 auto;margin-bottom:12px;" + '"' + " class=shadow-sm > " + divST + " <a onclick=" + sc.ToString() + "androidAPIs.SuMCreatorAddAChapter(" + MangaID.ToString() + ");" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:rgba(0,0,0,0);font-size:84%;" + ">" + chapter + " Chapters</p></div></a></div>" + "</div>"; // + hr;
             return RS;
         }
         protected private string BuildUnderProssCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink, string MangaCreator)
@@ -300,7 +393,7 @@ namespace SuM_Manga_V3.SuMCreator
             string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:12px;float:left;margin:8px;" + scfu;
             string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
             string AuthString = "<p style=" + "color:var(--SuMDBlackOP50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
-            string RS = "<div style=" + '"' + "opacity:0.74;position: relative;width:100%;background-color:rgba(255,255,255,0.96);border-radius:18px;height:fit-content;padding:8px;margin:0 auto;margin-bottom:12px;" + '"' + " class=shadow-sm > " + divST + " <a onclick=" + sc.ToString() + "SuMGoToThis('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName.Replace("'", "") + "','Creator');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=color:#6b6b6b;font-size:74%;>processing</p></div></a></div>" + "</div>"; // + hr;
+            string RS = "<div style=" + '"' + "opacity:0.74;position: relative;width:100%;background-color:rgba(255,255,255,0.96);border-radius:18px;height:fit-content;padding:8px;margin:0 auto;margin-bottom:12px;" + '"' + " class=shadow-sm > " + divST + " <a onclick=" + scfu + "androidAPIs.ShowSuMToastsOverview('" + MangaName.Replace("'", "") + " is still under process!');androidAPIs.VIBRATEPhone();" + scfu + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=color:#6b6b6b;font-size:74%;>processing</p></div></a></div>" + "</div>"; // + hr;
             return RS;
         }
         protected private string BuildRejectedCard(string MangaName, string MangaTheme, string ExplorerLink, string CoverLink, string MangaCreator)
@@ -312,7 +405,7 @@ namespace SuM_Manga_V3.SuMCreator
             string imgstyle = scfu + "height:84px;width:84px;object-fit:cover;display:inline;border-radius:12px;float:left;margin:8px;" + scfu;
             string h4style = scfu + "color:" + MangaTheme + ";margin-top:-42px;float:left;margin-left:6px;margin-top:12px;width:calc(100% - 120px);" + scfu;
             string AuthString = "<p style=" + "color:var(--SuMDBlackOP50);float:left;margin-top:-10px;margin-left:6px;" + ">By <b style=" + "font-size:80%;" + ">" + MangaCreator + "</b></p>";
-            string RS = "<div style=" + '"' + "position: relative;width:100%;background-color:var(--SuMDWhite);border-radius:18px;height:fit-content;padding:8px;margin:0 auto;margin-bottom:12px;" + '"' + " class=shadow-sm > " + divST + " <a onclick=" + sc.ToString() + "SuMGoToThis('" + ExplorerLink + "','" + MangaTheme + "','" + MangaName.Replace("'", "") + "','Creator');" + sc.ToString() + " style=" + astyle + " ><img src=" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=" + "color:red;font-size:84%;" + ">Rejected!</p></div></a></div>" + "</div>"; // + hr;
+            string RS = "<div style=" + '"' + "opacity:0.86;position: relative;width:100%;background-color:rgba(255,255,255,0.96);border-radius:18px;height:fit-content;padding:8px;margin:0 auto;margin-bottom:12px;" + '"' + " class=shadow-sm > " + divST + " <a onclick="+scfu+ "androidAPIs.ShowSuMToastsOverview('"+MangaName.Replace("'","")+ " was rejected!');androidAPIs.VIBRATEPhone();" + scfu+" style=" + astyle + " ><img src=" + "/SuMCreator/CreatorRej" + CoverLink + " class=" + sc.ToString() + "animated pulse" + sc.ToString() + " style=" + imgstyle + "><h4 style=" + h4style + ">" + MangaName + "</h4>" + AuthString + "<br style=" + "float:left;" + ">" + PDivST + "<p style=color:#6b6b6b;font-size:74%;>Rejected!</p></div></a></div>" + "</div>"; // + hr;
             return RS;
         }
         protected private void ReadSUMXMLProfile()

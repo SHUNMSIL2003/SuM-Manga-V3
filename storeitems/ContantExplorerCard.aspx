@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.MainCard.Master" AutoEventWireup="true" CodeBehind="ContantExplorerCard.aspx.cs" Async="true" Inherits="SuM_Manga_V3.storeitems.ContantExplorerCard" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SuMManga.Mobile.card.Master" AutoEventWireup="true" CodeBehind="ContantExplorerCard.aspx.cs" Async="true" Inherits="SuM_Manga_V3.storeitems.ContantExplorerCard" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div style="display:none !important;visibility:hidden !important;" id="ScriptInjectorB000" runat="server"></div>
     <asp:Button ID="LoadMOreChapters" OnClick="LOADMORECHAPTERS" runat="server" style="display:none;visibility:hidden;" />

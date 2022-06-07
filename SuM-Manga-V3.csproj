@@ -368,8 +368,11 @@
     <Content Include="storeitems\Haikyuu!!-Shun120220222\Haikyuu!!.png" />
     <Content Include="storeitems\Jujutsu-Kaisen-Gege-Akutami120220222\Jujutsu-Kaisen.png" />
     <Content Include="SuMAdmin\AcceptSuMUploads.aspx" />
+    <Content Include="SuMAdmin\SuMManualChapterPuplish.aspx" />
     <Content Include="SuMAdmin\SuMManualPuplish.aspx" />
+    <Content Include="SuMCreator\CreatorChapterPanel.aspx" />
     <Content Include="SuMCreator\CreatorMangaPanel.aspx" />
+    <Content Include="SuMCreator\CreatorRej\0.html" />
     <Content Include="SuMCreator\CreatorsDrafts\BF.aspx" />
     <Content Include="SuMManga-SW.js" />
     <Content Include="pwabuilder-sw\pwabuilder-sw-register.js" />
@@ -2661,7 +2664,6 @@
     <Content Include="storeitems\UramichiOniisan\UramichiOniisan.jpg" />
     <Content Include="storeitems\view.png" />
     <Content Include="SuM-32.ico" />
-    <Content Include="SuMAdmin\AdminControlPanel.aspx" />
     <Content Include="SuMAdmin\AdminLogin.aspx" />
     <Content Include="SuMCreator\CreatorPanel.aspx" />
     <Content Include="SuMSiteIconFlexable.ico" />
@@ -2841,13 +2843,6 @@
     <Compile Include="SuMAdmin\AcceptSuMUploads.aspx.designer.cs">
       <DependentUpon>AcceptSuMUploads.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SuMAdmin\AdminControlPanel.aspx.cs">
-      <DependentUpon>AdminControlPanel.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SuMAdmin\AdminControlPanel.aspx.designer.cs">
-      <DependentUpon>AdminControlPanel.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SuMAdmin\AdminLogin.aspx.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2855,12 +2850,26 @@
     <Compile Include="SuMAdmin\AdminLogin.aspx.designer.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SuMAdmin\SuMManualChapterPuplish.aspx.cs">
+      <DependentUpon>SuMManualChapterPuplish.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuMAdmin\SuMManualChapterPuplish.aspx.designer.cs">
+      <DependentUpon>SuMManualChapterPuplish.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SuMAdmin\SuMManualPuplish.aspx.cs">
       <DependentUpon>SuMManualPuplish.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SuMAdmin\SuMManualPuplish.aspx.designer.cs">
       <DependentUpon>SuMManualPuplish.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuMCreator\CreatorChapterPanel.aspx.cs">
+      <DependentUpon>CreatorChapterPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuMCreator\CreatorChapterPanel.aspx.designer.cs">
+      <DependentUpon>CreatorChapterPanel.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuMCreator\CreatorMangaPanel.aspx.cs">
       <DependentUpon>CreatorMangaPanel.aspx</DependentUpon>
@@ -2882,6 +2891,13 @@
     </Compile>
     <Compile Include="SuMCreator\CreatorsDrafts\BF.aspx.designer.cs">
       <DependentUpon>BF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuMManga.Admin.Master.cs">
+      <DependentUpon>SuMManga.Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuMManga.Admin.Master.designer.cs">
+      <DependentUpon>SuMManga.Admin.Master</DependentUpon>
     </Compile>
     <Compile Include="SuMManga.Mobile.MainCard.Master.cs">
       <DependentUpon>SuMManga.Mobile.MainCard.Master</DependentUpon>
@@ -2981,6 +2997,7 @@
     <Content Include="SuMManga.Mobile.MainCard.Master" />
     <Content Include="summanga-10-582-universal-release.apk" />
     <Content Include="summanga-12-584-universal-release.apk" />
+    <Content Include="SuMManga.Admin.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
