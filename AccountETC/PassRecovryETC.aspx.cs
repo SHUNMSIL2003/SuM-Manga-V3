@@ -86,6 +86,7 @@ namespace SuM_Manga_V3.AccountETC
                         BtnS.Visible = true;
                         SuMRP.Attributes["style"] = "display:none;";
                         VCODECONF.Attributes["style"] = "display:none;";
+                        EmailF.Attributes["style"] = "display:none;";
                         PasswordRes.Attributes["style"] = "";
                         PasswordResC.Attributes["style"] = "";
                     }
