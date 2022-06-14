@@ -478,7 +478,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <div class="custom-control custom-checkbox small">
-                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" checked="checked" id="formCheck-1"><label id="rem" runat="server" class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
+                                                <div class="form-check"><!-- <input class="form-check-input custom-control-input" type="checkbox" checked="checked" id="formCheck-1"><label id="rem" runat="server" class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label> --></div>
                                             </div> 
                                         </div><!-- <button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: var(--SuMThemeColor);" onclick="LoginToSuM" runat="server">Login</button> -->
                                         <asp:Button CssClass="btn btn-primary d-block btn-user w-100" style="background: var(--SuMThemeColor);border-color: var(--SuMThemeColor);border-radius:14px;" OnClick="LoginToSuM" runat="server" Text="Login" />

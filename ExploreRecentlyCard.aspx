@@ -107,51 +107,34 @@ img {vertical-align: middle;}
                         </div>
             <script>
                 setTimeout(() => {
+                    var style = getComputedStyle(document.body);
+                    console.log(style.getPropertyValue('--SuMThemeColorOP74'));
+                    document.getElementById('RescentBody').style.backgroundColor = style.getPropertyValue('--SuMThemeColorOP74');
                     document.getElementById('<%= UPDATERESESNTS.ClientID %>').click();
-                    setTimeout(() => {
-                        var RecentF0CSElm = document.getElementById('RecentScrollContS');
-                        var RescentBodyF0CSElm = document.getElementById('RescentBody');
-                        var currLeftID = Math.round(RecentF0CSElm.scrollLeft / 112) + 1;
-                        var currRecentItemThemeColor = document.getElementById('RecentItem' + currLeftID).style.backgroundColor;
-                        if (currRecentItemThemeColor != null) {
-                            RescentBodyF0CSElm.style.backgroundColor = currRecentItemThemeColor;
-                        }
-                        setTimeout(() => {
-                            var RecentF0CSElm = document.getElementById('RecentScrollContS');
-                            var RescentBodyF0CSElm = document.getElementById('RescentBody');
-                            var currLeftID = Math.round(RecentF0CSElm.scrollLeft / 112) + 1;
-                            var currRecentItemThemeColor = document.getElementById('RecentItem' + currLeftID).style.backgroundColor;
-                            if (currRecentItemThemeColor != null) {
-                                RescentBodyF0CSElm.style.backgroundColor = currRecentItemThemeColor;
-                            }
-                        }, 360);
-                    }, 180);
                 }, 10);
                 var isScrollingSuMRecentsFuncF0CS;
                 document.getElementById('RecentScrollContS').onscroll = function () {
                     window.clearTimeout(isScrollingSuMRecentsFuncF0CS);
                     isScrollingSuMRecentsFuncF0CS = setTimeout(function () {
-
                         var RecentF0CSElm = document.getElementById('RecentScrollContS');
                         var RescentBodyF0CSElm = document.getElementById('RescentBody');
                         var currLeftID = Math.round(RecentF0CSElm.scrollLeft / 112) + 1;
-                        var currRecentItemThemeColor = document.getElementById('RecentItem' + currLeftID).style.backgroundColor;
-                        if (currRecentItemThemeColor != null) {
-
-                            RescentBodyF0CSElm.style.backgroundColor = currRecentItemThemeColor;
-
+                        if (currLeftID != 1 && currLeftID != 0) {
+                            var currRecentItemThemeColor = document.getElementById('RecentItem' + currLeftID).style.backgroundColor;
+                            if (currRecentItemThemeColor != null) {
+                                RescentBodyF0CSElm.style.backgroundColor = currRecentItemThemeColor;
+                            }
+                        } else {
+                            var style = getComputedStyle(document.body);
+                            console.log(style.getPropertyValue('--SuMThemeColorOP74'));
+                            RescentBodyF0CSElm.style.backgroundColor = style.getPropertyValue('--SuMThemeColorOP74');
                         }
-
                     }, 20);
                 };
                 setTimeout(() => {
-                    var RecentF0CSElm = document.getElementById('RecentScrollContS');
-                    var RescentBodyF0CSElm = document.getElementById('RescentBody');
-                    var currLeftID = Math.round(RecentF0CSElm.scrollLeft / 112) + 1;
-                    var currRecentItemThemeColor = document.getElementById('RecentItem' + currLeftID).style.backgroundColor;
-                    if (currRecentItemThemeColor != null) {
-                        RescentBodyF0CSElm.style.backgroundColor = currRecentItemThemeColor;
-                    }
+                    var style = getComputedStyle(document.body);
+                    console.log(style.getPropertyValue('--SuMThemeColorOP74'));
+                    document.getElementById('RescentBody').style.backgroundColor = style.getPropertyValue('--SuMThemeColorOP74');
                 }, 540);
             </script>
 </div>

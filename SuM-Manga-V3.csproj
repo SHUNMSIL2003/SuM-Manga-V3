@@ -2999,6 +2999,7 @@
     <Content Include="summanga-12-584-universal-release.apk" />
     <Content Include="SuMManga.Admin.Master" />
     <Content Include="summanga-14-586-universal-release.apk" />
+    <Content Include="summanga-15-587-universal-release.apk" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

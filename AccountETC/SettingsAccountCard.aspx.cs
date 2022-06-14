@@ -268,21 +268,7 @@ namespace SuM_Manga_V3.AccountETC
             if (SuMCustomPFP.HasFile == true)
             {
                 string oldimg = PFP.Attributes["src"].ToString();
-                //char[] fixing = oldimg.ToCharArray();
-                string OrPATH = oldimg.Replace("/", "\\");//string.Empty;
-                /*for (int i = 0; i < fixing.Length; i++)
-                {
-                    if (fixing[i] == '/')
-                    {
-                        if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = "\\"; }
-                        else { OrPATH += "\\"; }
-                    }
-                    else
-                    {
-                        if (string.IsNullOrEmpty(OrPATH) == true) { OrPATH = fixing[i].ToString(); }
-                        else { OrPATH += fixing[i].ToString(); }
-                    }
-                }*/
+                string OrPATH = oldimg.Replace("/", "\\");
                 bool fixer = File.Exists(Server.MapPath(OrPATH));
                 bool Deafult = PFPIsNotADeafult(oldimg);
                 if (fixer == true && Deafult == false) { File.Delete(Server.MapPath(OrPATH)); }
@@ -324,7 +310,8 @@ namespace SuM_Manga_V3.AccountETC
                 Bitmap PicBitMap = new Bitmap(SuMCustomBanner.PostedFile.InputStream);
                 string BannerThemeColorRGBRoot = RgbConverter(getDominantColor(PicBitMap));
                 SaveUserThemeCookie(BannerThemeColorRGBRoot);
-                string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
+                string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+                using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
                 {
                     MySqlCon.Open();
                     string query = "UPDATE SuMUsersAccounts SET UserBanner = @SuMCustomPFP WHERE UserID = @ID";
@@ -341,8 +328,36 @@ namespace SuM_Manga_V3.AccountETC
                     MySqlCmd.ExecuteNonQuery();
                     MySqlCon.Close();
                 }
+                UpdateUserInfo();
                 ReloadAndUpdate();
             }
+        }
+        protected private void UpdateUserInfo()
+        {
+            HttpCookie GetUserInfoCookie = Request.Cookies["SuMCurrentUser"];
+            GetUserInfoCookie["UB"] = GetUserBanner(Convert.ToInt32(GetUserInfoCookie["ID"].ToString()));
+            GetUserInfoCookie.Expires = DateTime.MaxValue;
+            HttpContext.Current.Response.Cookies.Add(GetUserInfoCookie);
+        }
+        protected string GetUserBanner(int UID)
+        {
+            string BannerPath = string.Empty;
+            string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString;
+            using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
+            {
+                MySqlCon.Open();
+                string query = "SELECT UserBanner FROM SuMUsersAccounts WHERE UserID = " + UID + " ";
+                MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
+                using (var reader = MySqlCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        BannerPath = reader[0].ToString();
+                    }
+                }
+                MySqlCon.Close();
+            }
+            return BannerPath;
         }
         protected static void SaveUserThemeCookie(string RGBRootString)
         {
