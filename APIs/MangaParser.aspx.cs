@@ -29,7 +29,7 @@ namespace SuM_Manga_V3
                             json = GetMangaString64JSON(MID, Request.QueryString["CN"].ToString(), UID, Request.QueryString["MN"].ToString());
                             if (!json.Contains("[NOT_READY_YET]") && json.Contains("#File;Split&"))
                             {
-                                AddOneView();
+                                AddOneView(MID);
                                 ReasentMarker(UID, MID);
                                 UpdateChapterNumInCurr(MID, CN, UID);
                                 SuMTokenIsValid = SuMCoinPass(UID, MID);
@@ -233,17 +233,15 @@ namespace SuM_Manga_V3
             }
         }
 
-        protected void AddOneView()
+        protected void AddOneView(int MID)
         {
-            string x = Request.QueryString["VC"];
-            int y = Convert.ToInt32(x);
             string SuMMangaExternalDataBase = ConfigurationManager.ConnectionStrings["SuMMangaExternalDataBase"].ConnectionString; using (MySqlConnection MySqlCon = new MySqlConnection(SuMMangaExternalDataBase))
             {
                 MySqlCon.Open();
                 string query = "UPDATE SuMManga SET MangaViews = MangaViews + 1 WHERE MangaID = @MangaID";
                 MySqlCommand MySqlCmd = new MySqlCommand(query, MySqlCon);
                 MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
-                MySqlCmd.Parameters["@MangaID"].Value = y;
+                MySqlCmd.Parameters["@MangaID"].Value = MID;
                 MySqlCmd.ExecuteNonQuery();
                 MySqlCon.Close();
             }

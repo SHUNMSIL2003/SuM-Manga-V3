@@ -106,10 +106,10 @@ namespace SuM_Manga_V3.SuMCreator
             CreateIfMissing("~/SuMCreator/CreatorsDrafts/"+ SUMProfileFileName);//path for pics
             for (int i = 0; i < ChaptersUP.PostedFiles.Count; i++)
             {
-                string CapterFixUp = "0000";
+                /*string CapterFixUp = "0000";
                 if ((i + 1) > 9) CapterFixUp = "000";
                 if ((i + 1) > 99) CapterFixUp = "00";
-                if ((i + 1) > 999) CapterFixUp = "0";
+                if ((i + 1) > 999) CapterFixUp = "0";*/
                 if ((i + 1) > 9999) i = ChaptersUP.PostedFiles.Count;
                 //string ext = new FileInfo(ChaptersUP.PostedFiles[i].FileName).Extension;
                 ChaptersUP.PostedFiles[i].SaveAs(Server.MapPath(Path.Combine("CreatorsDrafts/"+ SUMProfileFileName, /*CapterFixUp + (i + 1).ToString()*/ChaptersUP.PostedFiles[i].FileName.ToString() + ".jpg")));

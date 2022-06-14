@@ -18,7 +18,6 @@ namespace SuM_Manga_V3.storeitems
             {
                 ThemeColor = Request.QueryString["TC"].ToString();
             }
-            else { ThemeColor = "var(--SuMThemeColor)"; }
             string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100%;height:fit-content;float:left;";//ORgbConverter(getDominantColor(bMap));------background-color:" + ThemeColor + ";
             int idfg0554 = Convert.ToInt32(Request.QueryString["VC"].ToString());
             int cn1 = 0;
@@ -38,6 +37,15 @@ namespace SuM_Manga_V3.storeitems
                 MySqlCmd.Parameters["@MangaID"].Value = idfg0554;
                 un = MySqlCmd.ExecuteScalar();
                 ChapterCValue = Convert.ToInt32(un);
+                if (string.IsNullOrEmpty(ThemeColor))
+                {
+                    query = "SELECT SuMThemeColor FROM SuMManga WHERE MangaID = @MangaID";
+                    MySqlCmd = new MySqlCommand(query, MySqlCon);
+                    MySqlCmd.Parameters.AddWithValue("@MangaID", SqlDbType.Int);
+                    MySqlCmd.Parameters["@MangaID"].Value = idfg0554;
+                    object a = MySqlCmd.ExecuteScalar();
+                    if (a != null) ThemeColor = a.ToString();
+                }
                 MySqlCon.Close();
             }
             ScriptInjectorB000.InnerHtml = "<script> androidAPIs.ShowSuMToastsOverview('" + cn1.ToString() + " Chapters!'); </script>";
@@ -80,7 +88,7 @@ namespace SuM_Manga_V3.storeitems
                     if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
                     {
                         RLink = "/APIs/MangaParser.aspx?MID=" + MangaID + "&CN=" + "ch" + ChapterFixedForm + "&MN=" + MangaSName;
-                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "androidAPIs.SuMExploreLoadReader('" + RLink + "');" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
+                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "androidAPIs.SuMExploreLoadReader('" + RLink + "','"+ThemeColor+"');" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
                     }
                     else
                     {
@@ -160,7 +168,6 @@ namespace SuM_Manga_V3.storeitems
             string abtntheme = "padding-block:0px;padding:0px;border-radius:0px;color:#ffffff;width:100%;height:fit-content;float:left;";
             string ChapterFixedForm = string.Empty;
             string RLink = string.Empty;
-            string themecolor = ThemeColor;
             char sc = '"';
             char b12 = '"';
             TheMangaPhotosF.InnerHtml += "<hr style=" + sc.ToString() + "margin:0 auto !important;height:2px;border-radius:1px;border-width:0;color:#ffffff;background-color:#FFFFFF;width:80%;opacity:0.0;margin:0px;margin-block:0px;" + sc.ToString() + ">";
@@ -187,7 +194,7 @@ namespace SuM_Manga_V3.storeitems
                     if (System.IO.Directory.Exists(checkifitexsistsStart + "ch" + ChapterFixedForm + "\\") == true)
                     {
                         RLink = "/APIs/MangaParser.aspx?MID=" + MangaID + "&CN=" + "ch" + ChapterFixedForm + "&MN=" + MangaSName;
-                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "androidAPIs.SuMExploreLoadReader('" + RLink + "');" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
+                        TheMangaPhotosF.InnerHtml += "<a href=" + "#" + " onclick=" + sc.ToString() + "androidAPIs.SuMExploreLoadReader('" + RLink + "','"+ ThemeColor + "');" + sc.ToString() + " style=" + abtntheme + " class=" + btnanimationclass + " ><img onerror=" + b12.ToString() + "this.onerror = null; this.src = '/assets/BrokeIMG.png'" + b12.ToString() + " " + LazyLoading + " src=" + cpcover + " style=" + b12.ToString() + "margin:6px;margin-left:12px !important;width:72px;height:72px;float:left;opacity:0.92;border-radius:12px;" + b12.ToString() + "> <p style=" + b12.ToString() + "color:#ffffff;float:left;margin-left:6px;margin-top:14px !important;font-size:112%;" + b12.ToString() + ">Chapter " + chxC + "</p></a>";
                     }
                     else
                     {
