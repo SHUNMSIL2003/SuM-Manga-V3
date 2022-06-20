@@ -277,7 +277,7 @@
         document.addEventListener('click', function (event) {
             var SettingSuMCardHeightDetacted0 = document.getElementById('<%= SlideDownCard.ClientID %>').getBoundingClientRect().height + 4;
             androidAPIs.ResizewebView3AccountSettingsCard(SettingSuMCardHeightDetacted0);
-            androidAPIs.LoadWebVersionValue("4.0.2 API-6");
+            androidAPIs.LoadWebVersionValue("4.0.3 API-6");
         });
         function SuMSettingDivExpandor(NormallId) {
             var ChangeDivv = document.getElementById('MainContent_' + NormallId);
@@ -292,6 +292,6 @@
             }
             return false;
         };
-        androidAPIs.LoadWebVersionValue("4.0.2 API-6");
+        androidAPIs.LoadWebVersionValue("4.0.3 API-6");
     </script>
 </asp:Content>

@@ -367,6 +367,7 @@
     <Content Include="pwabuilder-sw-register.js" />
     <Content Include="storeitems\Haikyuu!!-Shun120220222\Haikyuu!!.png" />
     <Content Include="storeitems\Jujutsu-Kaisen-Gege-Akutami120220222\Jujutsu-Kaisen.png" />
+    <Content Include="SuM.html" />
     <Content Include="SuMAdmin\AcceptSuMUploads.aspx" />
     <Content Include="SuMAdmin\SuMManualChapterPuplish.aspx" />
     <Content Include="SuMAdmin\SuMManualPuplish.aspx" />
@@ -3000,7 +3001,8 @@
     <Content Include="SuMManga.Admin.Master" />
     <None Include="summanga-14-586-universal-release.apk.old" />
     <None Include="summanga-15-587-universal-release.apk.old" />
-    <Content Include="summanga-16-588-universal-release.apk" />
+    <None Include="summanga-16-588-universal-release.apk.old" />
+    <Content Include="summanga-17-589-universal-release.apk" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -106,6 +106,7 @@ img {vertical-align: middle;}
                             </div>
                         </div>
             <script>
+                androidAPIs.SuMLoadCounter();
                 setTimeout(() => {
                     var style = getComputedStyle(document.body);
                     console.log(style.getPropertyValue('--SuMThemeColorOP74'));
