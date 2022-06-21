@@ -3002,7 +3002,8 @@
     <None Include="summanga-14-586-universal-release.apk.old" />
     <None Include="summanga-15-587-universal-release.apk.old" />
     <None Include="summanga-16-588-universal-release.apk.old" />
-    <Content Include="summanga-17-589-universal-release.apk" />
+    <None Include="summanga-17-589-universal-release.apk.old" />
+    <Content Include="summanga-18-590-universal-release.apk" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
